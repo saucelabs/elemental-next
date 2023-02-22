@@ -14,7 +14,8 @@ language: ruby
 # How To Work with Frames
 
 ## Intro
-==**`!! CONTENT NEEDED !! --> intro content needs update`**==
+==** !! CONTENT ADDED !! --> intro content added **==
+In this tip, you'll learn how to work with frames and write tests against them.
 
 ## Use Case
 
