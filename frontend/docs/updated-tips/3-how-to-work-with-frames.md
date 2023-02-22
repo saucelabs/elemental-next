@@ -1,4 +1,3 @@
-
 ---
 title: 'How To Work with Frames'
 slug: '3-how-to-work-with-frames'
@@ -14,7 +13,7 @@ language: ruby
 # How To Work with Frames
 
 ## Intro
-==** !! CONTENT ADDED !! --> intro content added **==
+
 In this tip, you'll learn how to work with frames and write tests against them.
 
 ## Use Case
@@ -139,7 +138,6 @@ Happy Testing!
 
 ## About The Author
 
-==**`!! CONTENT ADDED !! --> author bio content updated`**==
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
