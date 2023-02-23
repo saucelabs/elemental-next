@@ -14,7 +14,7 @@ category: "testing"
 
 ## Intro
 
-Uploading a file is a common piece of functionality found on the web. But when trying to automate it you get prompted with a with a dialog box that is just out of reach for Selenium.
+Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium.
 
 ## Use Case 
 
@@ -22,7 +22,7 @@ In these cases people often look to a third-party tool to manipulate this window
 
 ## A Solution
 
-A work-around for this problem is to side-step the system dialog box entirely. We can do this by using Selenium to insert the full path of the file we want to upload (as text) _into_ the form and then submit the form.
+A work-around for this problem is to side-step the system dialog box entirely. We can do this by using Selenium to insert the full path of the file we want to upload (as text) into the form and then submit the form.
 
 Let's step through an example.
 
@@ -30,7 +30,7 @@ Let's step through an example.
 
 __NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__
 
-First let's pull in our requisite libraries for asertions, constructing a path to a file, and driving the browser with Selenium.
+First let's pull in our requisite libraries for assertions, constructing a path to a file, and driving the browser with Selenium.
 
 ```javascript
 // filename: test/upload.spec.js
@@ -63,7 +63,7 @@ describe("Upload Test", function() {
 // ...
 ```
 
-After declaring the class we create two methods. The first method, `beforeEach`, will execute before each test in this class. In it we are launching a new instance of Firefox with Selenium and storing it in a class variable that we'll use throughout this class. After our test executes the second method, `afterEach`, will execute. This calls `driver.quit()` which ends the session by closing the browser instance and the destroying the Selenium object in-memory.
+After declaring the class we create two methods. The first method, `beforeEach`, will execute before each test in this class. In it we are launching a new instance of Firefox with Selenium and storing it in a class variable that we'll use throughout this class. After our test executes the second method, `afterEach`, will execute. This calls `driver.quit()` which ends the session by closing the browser instance and then destroying the Selenium object in-memory.
 
 Now to wire up our test.
 
