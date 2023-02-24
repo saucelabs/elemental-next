@@ -2,7 +2,8 @@
 title: "How To Select From a Dropdown List"
 slug: "5-select-from-a-dropdown"
 number: 5
-publish_date: 2023-02-23
+publish_date: 2019-08-09
+last_update: 2023-02-23
 tags:
   - "dropdown"
   - "forms"
@@ -22,7 +23,7 @@ Let's take a look at a couple of different approaches.
 
 ## Use Case
 
-==!! Content section needs updating !!==
+Common use cases can be a user selecting sizes from a drop down menu when shopping, or different design choices of the same item.
 
 ## Example
 
@@ -117,7 +118,9 @@ If you save this file with either of these examples and run it (e.g., `mocha` fr
 
 ## Summary
 
-Hopefully this tip will help you breeze through selecting items from a dropdown list.
+We've gone over using Selenium to select from a drop down using the drop down list, or XPath to find an element within the dropdown list.
+
+Hopefully this tip will help you breeze through selecting items from a dropdown list. 
 
 Happy Testing!
 
