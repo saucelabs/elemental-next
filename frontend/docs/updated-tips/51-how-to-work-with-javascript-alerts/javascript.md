@@ -3,6 +3,7 @@ title: "How To Work With JavaScript Alerts"
 slug: "51-javascript-alerts"
 number: 51
 publish_date: 2019-08-09
+last_update: 2023-02-24
 tags:
   - "javascript"
   - "javascript alerts"
