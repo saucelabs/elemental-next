@@ -3,6 +3,7 @@ title: 'Template Ruby'
 slug: '0-template'
 number: 0
 publish_date: 2023-02-17
+last_update: 2023-02-24
 tags:
   - 'template'
 level: 0
