@@ -3,7 +3,7 @@ title: "How To Upload a File"
 slug: "1-upload-a-file"
 number: 1
 publish_date: 2019-08-09
-last_updat: 2023-02-22
+last_update: 2023-02-22
 tags:
   - "file"
   - "upload"
