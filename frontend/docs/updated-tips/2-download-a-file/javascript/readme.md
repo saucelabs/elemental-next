@@ -146,7 +146,7 @@ When we save this file and run it (e.g., `mocha` from the command-line) this is 
 
 ## Summary
 
-A similar approach can be applied to some other browsers with varying configurations.
+A similar approach can be applied to some other browsers with varying configurations to download a file into a temp directory, automaticaly close the browser, and delete the directory,
 
 Happy Testing!
 
