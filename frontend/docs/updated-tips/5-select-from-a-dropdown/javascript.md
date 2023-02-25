@@ -15,9 +15,9 @@ category: "testing"
 
 ## Intro
 
-Selecting from a dropdown list *seems* like one of those simple things. Just grab the list by it's element and select an item within it based on the text you want.
+Selecting from a dropdown list *seems* basic. Just grab the list by it's element and select an item within it based on the text you want.
 
-While it sounds pretty straightforward, there is a bit more finesse to it.
+While it sounds pretty straightforward, there is a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
 
@@ -79,7 +79,7 @@ Grabbing all of the options returns a collection that we iterate over and when t
 
 We finish the test by performing a check to see that our selection was made correctly. This is done by looping over the dropdown options collection one more time. This time we're getting the text of the item that was selected, storing it in a variable, and then making an assertion against it.
 
-While this works, there is a simpler way to do this.
+While this works, there is a more accessible way to do this.
 
 ## Example 2
 
@@ -101,7 +101,7 @@ While this works, there is a simpler way to do this.
 });
 ```
 
-Similar to the first example, we are selecting a dropdown list option by its text. But instead of first finding the dropdown list, we instead employ a more robust locator (e.g., XPath) to find an element within the dropdown list that contains our target text -- and click it.
+Similar to the first example, we are selecting a dropdown list option by its text. Instead of first finding the dropdown list, we will employ a more robust locator (e.g., XPath) to find an element within the dropdown list that contains our target text -- and click it.
 
 We then determine what has been selected in the dropdown list by using one more powerful locator (e.g., a CSS selector). This time, looking to see which option has the `selected` attribute, and grabbing its text. We use this found text to assert that the correct item was chosen.
 
@@ -118,9 +118,9 @@ If you save this file with either of these examples and run it (e.g., `mocha` fr
 
 ## Summary
 
-We've gone over using Selenium to select from a drop down using the drop down list, or XPath to find an element within the dropdown list.
+In this tip, we've gone over using Selenium to select from a drop down using the drop down list, or XPath to find an element within the dropdown list.
 
-Hopefully this tip will help you breeze through selecting items from a dropdown list. 
+Hopefully this will help you when selecting items from a dropdown list. 
 
 Happy Testing!
 
