@@ -25,7 +25,7 @@ A great way to increase your chances of automated web testing success is to map 
 3. What browsers are your users using?  
 4. What things have broken in the application before?  
 
-NOTE: for organizations that don't deal *directly* in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.
+__NOTE: for organizations that don't deal *directly* in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.__
 
 After answering these questions you'll have a better understanding of the critical functionality and relevant browsers for the application you're testing. This will help you focus your test automation efforts on the things that matter most. 
 
