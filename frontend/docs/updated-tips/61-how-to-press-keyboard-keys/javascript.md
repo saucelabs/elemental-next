@@ -27,13 +27,13 @@ But how do you do it and where do you start?
 
 ## Use Case
 
-Common use cases to press keyboard keys are simulating a user typing into a variety of inputs. You'll find inputs are needed in search bars, forms, and as stated above, traversing the user interface. 
+Common use cases to press keyboard keys include simulating a user typing into a variety of inputs. You'll find inputs are also needed in search bars, forms, and as stated above, traversing the user interface. 
 
 ## A Solution
 
 You can easily issue a key press by using the `sendKeys` command.
 
-This can be done to a specific element, or generically with Selenium's Action Builder ([link](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html#sendKeys)). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
+This can be done to a specific element or generically with Selenium's Action Builder ([link](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html#sendKeys)). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
 
 Let's try out a couple of examples.
 
@@ -78,7 +78,7 @@ Let's use an example from [the-internet](https://github.com/tourdedave/the-inter
 
 After visiting the page we find an element that's both visible and interactable with the keyboard (e.g., the input element on the page) and send the space key to it (e.g., `.sendKeys(Key.SPACE`). Then we grab the resulting text (e.g., `driver.findElement(By.id('result')).getText()`) and assert that it says what we expect (e.g., `'You entered: SPACE'`).
 
-Alternatively, we can issue a key press without finding the element first, by using the Action Builder.
+Alternatively, we can issue a key press without finding the element first by using the Action Builder.
 
 ```javascript
 // filename: test/keyboard-keys.spec.js
@@ -113,7 +113,7 @@ When we save this file and run it (e.g. `mocha` from the command-line) here is w
 
 ## Summary
 
-If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
+If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. If you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
 
 Happy Testing!
 
