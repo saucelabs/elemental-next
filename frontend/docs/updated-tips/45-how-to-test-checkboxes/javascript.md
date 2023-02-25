@@ -10,11 +10,12 @@ tags:
   - "selected"
 level: 1
 category: "testing"
+language: javascript
 ---
 
 # How To Test Checkboxes
 
-## The Intro
+## Intro
 
 Checkboxes are an often used element in web applications. But how do you work with them in your Selenium tests? 
 
@@ -37,7 +38,7 @@ For reference, here is the markup from [the page we will be testing against](htt
 </form>
 ```
 
-Let's kick things off by requiring our dependent libraries, declare our test class, and wire up some test setup and teardown methods.
+Let's start by requiring our dependent libraries, declare our test class, and write up some test setup and teardown methods.
 
 ```javascript
 // filename: test/checkboxes.spec.js
@@ -57,9 +58,9 @@ describe("Checkboxes", function() {
 // ...
 ```
 
-Before we dig into writing a test to verify the state of the page, let's walk through both checkbox approaches to see what Selenium gives us.
+Before we begin writing a test to verify the state of the page, let's walk through both checkbox approaches to see what Selenium gives us.
 
-To do that we'll want to grab all of the checkboxes on the page and iterate through them. Once using an attribute lookup and again asking if the element is selected. For each we'll output the return values we get from Selenium.
+To do that we'll want to grab all of the checkboxes on the page and iterate through them. Once using an attribute lookup, and again asking if the element is selected. For each we'll output the return values we get from Selenium.
 
 ```javascript
 // filename: test/checkboxes.spec.js
