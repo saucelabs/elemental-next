@@ -21,7 +21,7 @@ This tip will explain how to work with multiple windows in Selenium and switch b
 
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
-On the face of it, this is a pretty straightforward concept. But lurking within it is a small gotcha to watch out for that will bite you in some browsers and not others.
+On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.
 
 Let's step through a couple of examples to demonstrate.
 
@@ -67,9 +67,9 @@ Now let's write a test that exercises new window functionality from an applicati
 
 After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the last one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
 
-While this may seem like a good approach, it can present problems later. That's because the order of the window handles is not consistent across all browsers. Some return in the order opened, others _alphabetically_.
+While this may seem like a good approach, it can present problems later. That's because the order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.
 
-Here's a more resilient approach. One that will work across all browsers.
+Here's a more resilient approach that will work across all browsers.
 
 ## Example 2
 
@@ -94,7 +94,7 @@ Here's a more resilient approach. One that will work across all browsers.
 
 After loading the page we store the window handles in a variable (e.g., `windowHandlesBefore`) and then proceed with clicking the new window link.
 
-Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the initial one). We store the result in another variable (e.g., `newWindow`) and then switch between the windows. Each time checking the page title to make sure the correct window is in focus.
+Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the initial one). We store the result in another variable (e.g., `newWindow`) and then switch between the windows each time checking the page title to make sure the correct window is in focus.
 
 ## Expected Behavior
 
