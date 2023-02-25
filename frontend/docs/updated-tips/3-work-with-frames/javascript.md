@@ -13,7 +13,7 @@ category: "testing"
 
 ## Intro
 
-==!! Content section needs updating !!==
+In this tip, you'll learn how to work with frames and write tests against them.
 
 ## Use Case
 
@@ -21,9 +21,9 @@ On occasion you'll run into a relic of the front-end world -- frames. And when w
 
 ## A Solution
 
-Rather than gnash your teeth when authoring your tests, you can easily work with the elements in a frame by telling Selenium to _switch_ to that frame first. Then the rest of your test should be business as usual.
+Rather than getting frustrated when authoring your tests, you can work with the elements in a frame by telling Selenium to switch to that frame first. Then the rest of your test should be more straightforward.
 
-Let's dig in with some examples.
+Let's explore further with some examples.
 
 ## Example
 
@@ -140,7 +140,7 @@ If we save the file and run it (e.g., `mocha` from the command-line) here is wha
 
 ## Summary
 
-Now you're ready to handily defeat frames when they cross your path.
+Now you're ready to readily defeat frames when they cross your path.
 
 Happy Testing!
 
