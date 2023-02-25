@@ -15,7 +15,7 @@ category: "testing"
 
 ## Intro
 
-==**`!! Content section needs updating !!`**==
+This tip will explain how to work with multiple windows in Selenium and switch between them. 
 
 ## Use Case
 
@@ -111,10 +111,12 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-==**`!! Content section needs updating !!`**==
+I hope this was a helpful guide on how to work with and switch between multiple windows using Selenium. 
+
+For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/). 
+
+Happy Testing! 
 
 ## About The Author
 
-Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
-
-Happy Testing!
+Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
