@@ -17,11 +17,11 @@ language: javascript
 
 ## Intro
 
-Checkboxes are an often used element in web applications. But how do you work with them in your Selenium tests? 
+Checkboxes are an often used element in web applications but how do you work with them in your Selenium tests? 
 
 ## Use Case
 
-Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked`. But this doesn't exist in Selenium. So how do you do it?
+Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium. So how do you do it?
 
 There are two ways to approach this -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
 
@@ -60,7 +60,7 @@ describe("Checkboxes", function() {
 
 Before we begin writing a test to verify the state of the page, let's walk through both checkbox approaches to see what Selenium gives us.
 
-To do that we'll want to grab all of the checkboxes on the page and iterate through them. Once using an attribute lookup, and again asking if the element is selected. For each we'll output the return values we get from Selenium.
+To do that we'll want to grab all of the checkboxes on the page and iterate through them once using an attribute lookup and again asking if the element is selected. For each we'll output the return values we get from Selenium.
 
 ```javascript
 // filename: test/checkboxes.spec.js
@@ -95,7 +95,7 @@ false
 true
 ```
 
-With the attribute lookup, depending on the state of the checkbox, we receive either a `null` or a `true` boolean value. Whereas with `.isSelected` we get a boolean value either way.
+With the attribute lookup, depending on the state of the checkbox, we receive either a `null` or a `true` boolean value whereas with `.isSelected` we get a boolean value either way.
 
 Let's see what these approaches look like when put to use in our test.
 
@@ -127,7 +127,7 @@ When we save and run the file (e.g., `mocha` from the command-line) here is what
 
 ## Summary
 
-Attribute lookups are generally meant for pulling information out of the page for review. However in this case they lend themselves to seeing if a checkbox is checked. But there is a method which was built for this use case that is more readable and has a predictable set of return values. So `isSelected` should be the thing you reach for, knowing that an attribute lookup is there as a solid backup if you find you need it.
+Attribute lookups are generally meant for pulling information out of the page for review however in this case they lend themselves to seeing if a checkbox is checked. There is a method which was built for this use case that is more readable and has a predictable set of return values. `isSelected` should be the thing you reach for, knowing that an attribute lookup is there as a solid backup if you find you need it.
 
 Happy Testing!
 
