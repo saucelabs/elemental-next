@@ -23,11 +23,11 @@ In web design CSS (Cascading Style Sheets) is used to apply styles to the markup
 
 At the heart of Selenium is the ability to interact with a page through its elements by way of various locator strategies. Identifier, Id, Name, Link, DOM, XPath, and CSS -- oh my!
 
-This is the life-blood of your automated tests and there are numerous elements to choose from. But which ones do you use? And when do you use them? And why?
+This is the life-blood of your automated tests and there are numerous elements to choose from. But which ones do you use? And when do you use them and why?
 
 ## A Solution
 
-While each locator strategy serves its purpose there is one approach that is better. One that is cross-browser performant, simpler to maintain, and powerful -- that's CSS Selectors.
+While each locator strategy serves its purpose there is one approach that is better. It is one that is cross-browser performant, simpler to maintain, and powerful -- that's CSS Selectors.
 
 ## Example 1
 
@@ -77,7 +77,7 @@ Note the `css: a`. The `css:` is us telling Selenium what locator strategy to us
 
 ## Example 2
 
-While the previous solution works it's far from perfect. Of all the possible links on the page Selenium will return the first one. So, if there were other links aside from the ones listed in the download list, we may not get the result we want. To help this, we can be more precise with our CSS.
+While the previous solution works, it's far from perfect. Of all the possible links on the page Selenium will return the first one. So, if there were other links aside from the ones listed in the download list, we may not get the result we want. To help this, we can be more precise with our CSS.
 
 ```ruby
 run do
@@ -129,11 +129,11 @@ You can find a full list of CSS Selectors [here](http://www.w3schools.com/cssref
 
 ## Summary
 
-In a perfect world all pages would be written with sound markup and uniquely named bits. But that's more the exception than the rule. So, you will likely find as you dig into automating various sites that things will not be as straightforward as the examples above. And there are some circumstances where you have a selector dialed in but you hit issues with older browsers.
+In a perfect world all pages would be written with sound markup and uniquely named bits but that's more the exception than the rule. So, you will likely find as you dig into automating various sites that things will not be as straightforward as the examples above. There are some circumstances where you have a selector dialed in but you hit issues with older browsers.
 
 As far as finding CSS Selectors, the simplest way to find them is to inspect the elements on a page. The best way to do this is from within your web browser. Fortunately popular browsers of today come pre-loaded with development tools that make this simple to accomplish.
 
-When viewing the page right click on the element you want to interact with and click __Inspect Element__. This will bring up a small window with all of the HTML for the page but zoomed into your selection highlighted. From here you can see if there are unique attributes you can work with (e.g. `id`, `class`, etc). And at the bottom of the window a set of selectors will be listed showing you the selector for your selection and a heirarchy of the selectors on the page that lead up to your selection.
+When viewing the page right click on the element you want to interact with and click __Inspect Element__. This will bring up a small window with all of the HTML for the page but zoomed into your selection highlighted. From here you can see if there are unique attributes you can work with (e.g. `id`, `class`, etc). At the bottom of the window a set of selectors will be listed showing you the selector for your selection and a heirarchy of the selectors on the page that lead up to your selection.
 
 From here you should able to construct a CSS Selector to use in a test.
 
