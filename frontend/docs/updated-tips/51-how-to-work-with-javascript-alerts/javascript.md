@@ -17,7 +17,7 @@ category: "testing"
 
 ## Intro
 
-Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.
+Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes. 
 
 ## Use Case
 
@@ -25,7 +25,7 @@ A popular use case for alerts is in the case of error prevention for password re
 
 If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc.) then you need to know how to handle them in your Selenium tests.
 
-Let's dig in with an example.
+Here is an example.
 
 ## Example
 
@@ -67,7 +67,7 @@ Now let's write our test.
 });
 ```
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we need a mildly clever locator which targets the second item in the unordered list.
+A quick glance at the page's markup shows that there are no unique IDs on the buttons. In order to click on the second button (to trigger the JavaScript confirmation dialog) we need a locator which targets the second item in the unordered list.
 
 After we click the button to trigger the JavaScript Alert we use Selenium's `switchTo().alert()` to focus on the JavaScript pop-up and use `.accept()` to click `Ok` (if we wanted to click `Cancel` we would have used `.dismiss()`).
 
@@ -87,7 +87,7 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-We've learned how to accept/dismiss javascript alerts using Selenium Webdriver by locating the alert using  use Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result. 
+We've learned how to accept/dismiss javascript alerts using Selenium Webdriver by locating the alert using  Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result. 
 
 Happy Testing!
 
