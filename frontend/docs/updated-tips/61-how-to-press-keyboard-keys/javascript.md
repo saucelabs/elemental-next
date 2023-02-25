@@ -12,6 +12,7 @@ tags:
   - "enter"
 level: 1
 category: "testing"
+language: javascript
 ---
 
 # How To Press Keyboard Keys
@@ -26,7 +27,7 @@ But how do you do it and where do you start?
 
 ## Use Case
 
-Common use cases to press keyboard keys are stimulating a user typing into a variety of inputs. You'll find inputs are needed in search bars, forms, and as stated above traversing the user interface. 
+Common use cases to press keyboard keys are simulating a user typing into a variety of inputs. You'll find inputs are needed in search bars, forms, and as stated above, traversing the user interface. 
 
 ## A Solution
 
@@ -34,7 +35,7 @@ You can easily issue a key press by using the `sendKeys` command.
 
 This can be done to a specific element, or generically with Selenium's Action Builder ([link](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html#sendKeys)). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
 
-Let's step through a couple of examples.
+Let's try out a couple of examples.
 
 ## Example
 
@@ -58,7 +59,7 @@ describe("Keyboard Keys", function() {
 // ...
 ```
 
-Now we can wire up our test.
+Now we can write up our test.
 
 Let's use an example from [the-internet](https://github.com/tourdedave/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed to perform our assertion.
 
@@ -112,7 +113,7 @@ When we save this file and run it (e.g. `mocha` from the command-line) here is w
 
 ## Summary
 
-If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should reach for.
+If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
 
 Happy Testing!
 
