@@ -10,21 +10,20 @@ tags:
   - "action builder"
 level: 1
 category: "testing"
+language: javascript
 ---
 
 # How To Work With Hovers
 
 ## Intro
 
-If you need to work with mouse hovers in your tests it may not be obvious how to do this with Selenium. And a quick search through the documentation can easily leave you befuddled forcing you to go spelunking through StackOverflow for the solution.
+If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution.
 
 ## Use Case
 
 The most popular use case for a hover action is to display additional menu options(submenu.)
 
 By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
-
-Let's dig in with an example.
 
 ## Example
 
@@ -87,7 +86,7 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-The code above locates the avatar element and hovers over it. By checking the `.isDisplayed` we are able to see if their is a caption/additional user info before closing the page.
+The code above locates the avatar element and hovers over it. By checking the `.isDisplayed` we are able to see if there is a caption/additional user info before closing the page.
 
 Happy Testing!
 
