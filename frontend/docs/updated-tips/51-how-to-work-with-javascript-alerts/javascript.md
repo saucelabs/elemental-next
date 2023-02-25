@@ -87,7 +87,7 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-We've learned how to accept/dismiss javascript alerts using Selenium Webdriver by locating the alert using  Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result. 
+We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result. 
 
 Happy Testing!
 
