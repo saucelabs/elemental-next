@@ -13,11 +13,15 @@ category: 'strategy'
 
 # How To Pick A Programming Language
 
+## Intro
+
+In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing. 
+
 ## Use Case
 
-In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. It might seem like a good idea to choose the same language that the application you're testing is written in. That way if you get stuck you can ask the Developers on your team for help.
+It might seem like a good idea to choose the same language that the application you're testing is written in, because if you get stuck you can ask the Developers on your team for help.
 
-But if you're not proficient in this language (or new to software development) then your progress will be slow and you'll likely end up asking for more Developer help than they have time for, which could hinder your automation efforts and slow your testing progress.
+But, if you're not proficient in this language (or new to software development) then your progress will be slow and you'll likely end up asking for more Developer help than they have time for, which could hinder your automation efforts and slow your testing progress.
 
 ## A Solution
 
@@ -31,15 +35,13 @@ If you're a Tester (or a team of Testers) and you will be building and maintaini
 
 For example, there's not much advantage in writing your test automation in Java if your team has no previous development experience and will be the ones owning it. Instead, try to choose a language that is more approachable -- e.g. a scripting language like Ruby or Python. But if you're a Developer that is working on the application and just looking to add automated acceptance testing to the mix then it makes sense to continue with the same language.
 
-## Summary
-
 As your suite of tests grow you will find the need to add functionality to make things easier to use, run faster, offer better reporting, etc. When this happens you will effectively be doing two jobs -- building a test harness (a.k.a. a Selenium framework) AND writing automated tests.
 
 As you're considering which language to go with, consider what open source frameworks already exist for the languages you're considering. Going with one that's already built will save you a lot of time and give you a host of functionality out of the box that you would otherwise have to build and maintain yourself -- and it's FREE.
 
 You can find a list of open source Selenium WebDriver frameworks and their respective languages [here](http://davehaeffner.com/resources/selenium-frameworks/) ==**`!! Broken link needs to be replaced !!`**==. But if you feel the urge to build your own framework (which most people do), then check out [The Selenium Guidebook](https://seleniumguidebook.com/) ==**`!! Deprecated resource needs to be replaced !!`**==. It steps through the nuts and bolts of building a Selenium framework with detailed examples.
 
-## Outro
+## Summary
 
 Choosing a programming language for automated testing is not a decision that should be taken lightly. If you're just starting out (or looking to port your tests) then considering and discussing this will help position you for greater success.
 
