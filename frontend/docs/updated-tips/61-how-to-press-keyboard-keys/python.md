@@ -12,7 +12,7 @@ tags:
   - "enter"
 level: 1
 category: "testing"
-language: csharp
+language: python
 ---
 
 # How To Press Keyboard Keys
