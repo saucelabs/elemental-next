@@ -117,7 +117,7 @@ run do
 end
 ```
 
-When checking to see if a checkbox has been selected, it's a simple matter of checking for a boolean value.
+When checking to see if a checkbox has been selected, it's a straightforward matter of checking for a boolean value.
 
 ## Expected Behavior
 
@@ -131,7 +131,7 @@ When you save and run the file (e.g., `ruby checkboxes.rb` from the command-line
 
 ## Summary
 
-Attribute lookups are generally meant for pulling information out of the page for review however in this case they lend themselves to seeing if a checkbox is checked. There is a method which was built for this use case that is more readable and has a predictable set of return values. `isSelected` should be the thing you reach for, knowing that an attribute lookup is there as a solid backup if you find you need it.
+Attribute lookups are generally meant for pulling information out of the page for review, however, in this case they lend themselves to seeing if a checkbox is checked. There is a method which was built for this use case that is more readable and has a predictable set of return values. `isSelected` should be the thing you reach for, knowing that an attribute lookup is there as a solid backup if you find you need it.
 
 ## About The Author
 
