@@ -14,13 +14,16 @@ category: "testing"
 
 ## Intro
 
-Sometimes you'll work with applications that are secured behind [Basic HTTP Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) (a.k.a. Basic Auth). In order to access them you'll need to pass credentials to the site when requesting a page. Otherwise you'll get a system level pop-up prompting you for a username and password -- rendering Selenium helpless.
+In this guide, you will learn how to pass credentials to a site when requesting a page that is secured behind Basic HTTP Authentication.
+
 
 ## Use Case
 
-Before Selenium 2 we were able to accomplish this by injecting credentials into a custom header, but now the cool kid way to do it it was something like [BrowserMob Proxy](http://bmp.lightbody.net/). And some people are solving this with browser specific configurations too.
+Sometimes you'll work with applications that are secured behind [Basic HTTP Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) (a.k.a. Basic Auth). In order to access them you'll need to pass credentials to the site when requesting a page. Otherwise you'll get a system level pop-up prompting you for a username and password -- rendering Selenium helpless.
 
-But all of this feels heavy. Instead, let's look at a simple approach that is browser agnostic and quick to setup.
+Before Selenium 2 we were able to accomplish this by injecting credentials into a custom header, but now a popular way to do it is using something like [BrowserMob Proxy](http://bmp.lightbody.net/). Some people are also solving this issue with browser specific configurations but those methods feel a little heavy and complicated.
+
+Instead, let's use a more straightforward approach that is browser agnostic and quick to setup.
 
 ## A Solution
 
@@ -52,7 +55,7 @@ describe("Basic Auth", function() {
 // ...
 ```
 
-Now to add our test.
+Now let's add our test code to the script.
 
 ```javascript
 // filename: test/basic-auth-1.spec.js
@@ -73,7 +76,11 @@ Now to add our test.
 
 In the test we're loading the page by passing in the username and password in the front of the URL (e.g., `http://admin:admin@`). Once it loads we grab text from the page to make sure we ended up in the right place.
 
+## Example 2
+
 Alternatively, we could have accessed this page before the test (e.g., as part of the test setup). This would have cached the Basic Auth session in the browser, enabling us to visit the page again without having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.
+
+Here's what that script would look like.
 
 ```javascript
 // filename: test/basic-auth.spec-2.js
@@ -114,7 +121,7 @@ When you save these files and run them (e.g., `mocha`), here is what will happen
 + Assert that the text is what we expect
 + Close the browser
 
-<u>basic-auth-2.spec.js</u>
+And when you save the second example and run it (e.g., `basic-auth-2.spec.js`), here is what will happen:
 
 + Open the browser
 + Visit the page using Basic Auth as part of the test setup
@@ -125,7 +132,7 @@ When you save these files and run them (e.g., `mocha`), here is what will happen
 
 ## Summary
 
-Hopefully this tip will help save you from getting tripped by Basic Auth when you come across it.
+Hopefully these examples will help save you from getting any setbacks from Basic Auth when you come across it.
 
 Happy Testing!
 
