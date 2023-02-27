@@ -3,7 +3,8 @@ title: 'How To Pick a Programming Language'
 slug: '21-choosing-a-language'
 number: 21
 publish_date: 2015-10-13
-last_updated: 2023-02-24
+last_update: 
+  date: 2023-02-22
 tags:
   - 'programming language'
   - 'frameworks'

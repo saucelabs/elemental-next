@@ -3,7 +3,8 @@ title: 'How To Test Checkboxes'
 slug: '45-checkboxes'
 number: 45
 publish_date: 2015-10-13
-last_updated: 2023-02-26
+last_update: 
+  date: 2023-02-22
 tags:
   - "checkboxes"
   - "attribute"

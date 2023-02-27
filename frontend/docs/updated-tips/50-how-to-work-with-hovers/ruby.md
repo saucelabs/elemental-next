@@ -3,7 +3,8 @@ title: 'How To Work With Hovers'
 slug: '50-hovers'
 number: 50
 publish_date: 2015-07-01
-last_update: 2023-02-26
+last_update: 
+  date: 2023-02-22
 tags:
   - "hover"
   - "hovers"
