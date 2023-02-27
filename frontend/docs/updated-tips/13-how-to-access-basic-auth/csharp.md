@@ -2,8 +2,8 @@
 title: 'How To Access Basic Auth'
 slug: '13-how-to-access-basic-auth/csharp.md'
 number: 13
-publish_date: 2023-02-17
-
+publish_date: 2016-06-12
+last_update: 2023-02-17
 tags:
   - "authentication"
 level: 1
