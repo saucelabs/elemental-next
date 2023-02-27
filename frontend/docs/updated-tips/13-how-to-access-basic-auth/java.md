@@ -2,8 +2,8 @@
 title: 'How To Access Basic Auth'
 slug: '13-how-to-access-basic-auth/java.md'
 number: 13
-publish_date: 2023-02-17
-
+publish_date: 2015-11-10
+last_update: 2023-02-17
 tags:
   - "authentication"
 level: 1
