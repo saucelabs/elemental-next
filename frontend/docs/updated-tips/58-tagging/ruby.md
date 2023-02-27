@@ -1,24 +1,29 @@
 ---
-title: "How To Slice and Dice Your Tests With Tags"
-slug: "58-tagging"
+title: 'How To Filter Test Results With Tags'
+slug: '58-tagging'
 number: 58
 publish_date: 2014-07-09
+last_update: 
+  date: 2023-02-22
 tags:
-  - "tagging"
-  - "tags"
-  - "annotations"
-  - "test packs"
+  - 'tagging'
+  - 'tags'
+  - 'annotations'
+  - 'test packs'
 level: 1
-category: "tagging"
+category: 'tagging'
+language: ruby
 ---
 
-## The Problem
+# How To Filter Test Results With Tags
 
-As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping like tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?
+## Intro
 
-## A Solution
+As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?
 
-By applying some metadata to your tests, you can specify a filter at runtime to execute a focused group of tests -- effectively creating a dynamic test suite that takes into account all of your tests, returning just the ones you want.
+## Use Case
+
+By applying some metadata to your tests, you can specify a filter at runtime to execute a focused group of tests, returning just the ones you want.
 
 Here are some tagging ideas to help get you started:
 
@@ -28,9 +33,9 @@ Here are some tagging ideas to help get you started:
 + `component name`
 + `story number` (e.g., traceability to your development stories)
 
-Let's dig in with an example.
+Let's start with an example.
 
-## An Example
+## Example
 
 In RSpec, this metadata and filtered execution is referred to as [tags](https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option) (or tagging).
 
@@ -110,9 +115,7 @@ To run just the smoke tag and negate the wip tag, you would do the following:
 rspec --tag smoke --tag ~wip
 ```
 
-## A note about tagging in RSpec
-
-If you're running RSpec 2 or earlier, the following config is required:
+Please note that if you're running RSpec 2 or earlier, the following config is required:
 
 ```ruby
 require 'rspec'
@@ -127,6 +130,14 @@ Otherwise, you'll have to specify tags using the standard key/value syntax (e.g.
 + The test suite identifies which tests to run based on the tags provided
 + Executes the filtered set of tests, ignoring the rest
 
-## Outro
+## Summary
+
+By utilizing metadata tags and filtering a set of tests, you have learned to effectively create a dynamic test suite that takes into account all of your tests.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

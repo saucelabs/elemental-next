@@ -1,27 +1,36 @@
 ---
-title: "How To Test Checkboxes"
-slug: "45-checkboxes"
+title: 'How To Test Checkboxes'
+slug: '45-checkboxes'
 number: 45
 publish_date: 2015-10-13
+last_update: 
+  date: 2023-02-22
 tags:
   - "checkboxes"
   - "attribute"
   - "selected"
 level: 1
-category: "testing"
+category: 'testing'
+language: ruby
 ---
 
-## The Problem
+# How To Test Checkboxes
 
-Checkboxes are an often used element in web applications. But how do you work with them in your Selenium tests? Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked?` or `.isChecked`. But this doesn't exist in Selenium. So how do you do it?
+## Intro
 
-## A Solution
+Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests.
 
-There are two ways to approach this -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
+## Use Case
 
-Let's step through each approach to see their pros and cons.
+Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium.
 
-## An Example
+## Solution
+
+There are two ways to approach this issue -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
+
+We're going to go through each of these approaches to see their pros and cons.
+
+## Example
 
 For reference, here is the markup from [the page we will be testing against](http://the-internet.herokuapp.com/checkboxes) (an example from [the-internet](https://github.com/tourdedave/the-internet)).
 
@@ -109,7 +118,7 @@ run do
 end
 ```
 
-When checking to see if a checkbox has been selected, it's a simple matter of checking for a boolean value.
+When checking to see if a checkbox has been selected, it's a straightforward matter of checking for a boolean value.
 
 ## Expected Behavior
 
@@ -121,8 +130,12 @@ When you save and run the file (e.g., `ruby checkboxes.rb` from the command-line
 + Assert that the last checkbox (the one that is supposed to be checked on initial page load) is checked
 + Close the browser
 
-## Outro
+## Summary
 
-Attribute lookups are meant for pulling information out of the page for review. While they work in this circumstance you are better off using a selected lookup. But the approach you choose will depend on how the checkbox you're testing is constructed. 
+Attribute lookups are generally meant for pulling information out of the page for review, however, in this case they lend themselves to seeing if a checkbox is checked. There is a method which was built for this use case that is more readable and has a predictable set of return values. `isSelected` should be the thing you reach for, knowing that an attribute lookup is there as a solid backup if you find you need it.
 
-Happy Testing!
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

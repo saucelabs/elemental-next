@@ -1,21 +1,30 @@
 ---
-title: "How To Prepare Your Tests for Continuous Integration"
-slug: "57-junit-xml"
+title: 'How To Prepare Your Tests for Continuous Integration'
+slug: '"57-junit-xml'
 number: 57
 publish_date: 2015-07-14
+last_update: 
+  date: 2023-02-22
 tags:
-  - "xml"
-  - "junit xml"
-  - "ci"
-  - "continuous integration"
-  - "reporting"
+  - 'xml'
+  - 'junit xml'
+  - 'ci'
+  - 'continuous integration'
+  - 'reporting'
 level: 1
-category: "reporting"
+category: 'reporting'
+language: ruby
 ---
 
-## The Problem
+# How To Prepare Your Tests for Continuous Integration
 
-If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server. In order to make the most of this setup, you'll need to make sure your test suite outputs a machine readable test report.
+## Intro
+
+If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server.
+
+## Use Case
+
+In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report.
 
 But what does this entail? How do you set it up? And will it work when running things in parallel?
 
@@ -25,9 +34,9 @@ CI servers work with a standardized report format called JUnit XML which is a st
 
 The report will include test results (e.g., failure messages and stack traces) and test metrics (e.g., start time, end time, number of tests, etc.). Your CI server (once configured to do so) will consume this report after each test run and tell you when things pass and fail. It will also offer trend data over time to help determine the stability of your test suite.
 
-Let's step through an example of how to configure a test suite in order to output a JUnit XML report.
+Let's go through an example of how to configure a test suite in order to output a JUnit XML report.
 
-## An Example
+## Example(s)
 
 In [RSpec](http://rspec.info/), you need a plugin to configure JUnit XML output. There are two popular ones:
 
@@ -57,6 +66,7 @@ If we want to run our tests in parallel (using something like [parallel_tests](h
 
 Thankfully parallel_tests has a RSpec command helper file as well (e.g., `.parallel_rspec`).
 
+==**`!! Code snippet needs validation !!`**==
 ```ruby
 # filename: .parallel_rspec
 
@@ -68,6 +78,7 @@ Now with numerous tests being run through `parallel_tests` the final result will
 
 And if we didn't want this to run all of the time (like if we only wanted JUnit XML output to get generated when running our tests on a CI server) then we can add a conditional to our `.parallel_rspec` file.
 
+==**`!! Code snippet needs validation !!`**==
 ```ruby
 # filename: .parallel_rspec
 
@@ -79,8 +90,12 @@ And if we didn't want this to run all of the time (like if we only wanted JUnit 
 
 Now all we need to do is specify an environment variable at run time in order to trigger JUnit XML output (e.g., `CI=on parallel_rspec`).
 
-## Outro
+## Summary
 
 Now you're ready to plug your Selenium tests into a CI Server and let them report the results.
 
-Happy Testing!
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

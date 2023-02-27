@@ -1,26 +1,35 @@
 ---
-title: "How To Select From a Dropdown List"
-slug: "5-select-from-a-dropdown"
+title: 'How To Select From a Dropdown List'
+slug: '5-select-from-a-dropdown'
 number: 5
 publish_date: 2015-07-06
+last_update: 
+  date: 2023-02-22
 tags:
-  - "dropdown"
-  - "forms"
+  - 'dropdown'
+  - 'forms'
 level: 1
-category: "testing"
+category: 'testing'
+language: ruby
 ---
 
-## The Problem
+# How To Select from a Dropdown List
 
-Selecting from a dropdown list *seems* like one of those simple things. Just grab the list by it's element and select an item within it based on the text you want.
+## Intro
 
-While it sounds pretty straightforward, there is a bit more finesse to it.
+Selecting from a dropdown list *seems* basic. Just grab the list by it's element and select an item within it based on the text you want.
+
+While it sounds pretty straightforward, there is a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
 
-## An Example
+## Use Case
 
-First let's pull in our requisite libraries and wire up some simple `setup`, `teardown`, and `run` methods.
+Common use cases can be a user selecting sizes from a drop down menu when shopping, or different design choices of the same item.
+
+## Example 1
+
+First let's pull in our requisite libraries and write some simple `setup`, `teardown`, and `run` methods.
 
 ```ruby
 # filename: dropdown.rb
@@ -44,7 +53,7 @@ def run
 end
 ```
 
-Now lets' wire up our test.
+Now let's write up our test.
 
 ```ruby
 # filename: dropdown.rb
@@ -67,9 +76,9 @@ Grabbing all of the options returns a collection that we iterate over and when t
 
 We finish the test by performing a check to see that our selection was made correctly. This is done by reiterating over the dropdown options collection one more time. This time we're getting the text of the item that was selected, storing it in a variable, and making an assertion against it.
 
-While this works, there is a simpler, built-in way to do this with Selenium. Let's give that a go.
+While this works, there is a more accessible way to do this.
 
-## Another Example
+## Example 2
 
 ```ruby
 # filename: dropdown.rb
@@ -86,13 +95,13 @@ run do
 end
 ```
 
-Similar to the first example, we are finding the dropdown list by its ID. But instead of iterating over its option elements and clicking based on a conditional check, we are leveraging a built-in helper function of Selenium, [`Select`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Support/Select.html), and it's [`select_by`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Support/Select.html#select_by-instance_method) method to choose the item we want.
+Similar to the first example, we are finding the dropdown list by its ID. Instead of iterating over its option elements and clicking based on a conditional check, we are leveraging a built-in helper function of Selenium, [`Select`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Support/Select.html), and it's [`select_by`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Support/Select.html#select_by-instance_method) method to choose the item we want.
 
 We then ask the `select_list` what option was selected by using the [`selected_options`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Support/Select.html#selected_options-instance_method) method. This returns an array of Selenium Elements (which in this case is an array of just one element). So we need to reference the first element by it's index (e.g., `[0]`), ask for it's text, and store it in a variable (e.g., `selected_option`).
 
 Then we perform our assertion against this variable (just like in the previous example).
 
-__NOTE: In addition to selecting by text, you can also select by value.__
+__NOTE: In addition to selecting by text, you can also select by value using the code below.__
 
 ```ruby
   select_list.select_by(:value, '1')
@@ -109,8 +118,16 @@ If you save this file with either of these examples and run it (e.g., `ruby drop
 + Assert that the selected option is the one you expect
 + Close the browser
 
-## Outro
+## Summary
 
-Hopefully this tip will help you breeze through selecting items from a dropdown list.
+In this tip, we've gone over using Selenium to select from a drop down using the drop down list, or a built-in helper function of Selenium to find an element within the dropdown list.
+
+Hopefully this will help you when selecting items from a dropdown list.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

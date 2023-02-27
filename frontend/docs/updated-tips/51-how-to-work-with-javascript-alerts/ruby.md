@@ -1,28 +1,33 @@
 ---
-title: "How To Work With JavaScript Alerts"
-slug: "51-javascript-alerts"
+title: 'How To Work With JavaScript Alerts'
+slug: '51-javascript-alerts'
 number: 51
-publish_date: 2015-07-01
+publish_date: 2019-08-09
+last_update: 
+  date: 2023-02-22
 tags:
-  - "javascript"
-  - "javascript alerts"
-  - "javascript popups"
-  - "javascript dialogs"
+  - 'javascript'
+  - 'javascript alerts'
+  - 'javascript popups'
+  - 'javascript dialogs'
 level: 1
-category: "testing"
+category: 'testing'
+language: ruby
 ---
 
-## The Problem
+# How To Work With JavaScript Alerts
+
+## Intro
+
+Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes. 
+
+## Use Case
+
+A popular use case for alerts is in the case of error prevention for password restrictions.
 
 If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc.) then you need to know how to handle them in your Selenium tests.
 
-## A Solution
-
-Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.
-
-Let's dig in with an example.
-
-## An Example
+Here is an example.
 
 Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/tourdedave/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
 
@@ -83,6 +88,15 @@ If you save this file and run it (e.g., `ruby javascript_alerts.rb` from the com
 + Assert that the result on the page is what we expect
 + Close the browser
 
-## Outro
+
+## Summary
+
+We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result. 
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

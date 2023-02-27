@@ -3,6 +3,8 @@ title: 'How To Work with Frames'
 slug: '3-work-with-frames'
 number: 3
 publish_date: 2023-02-21
+last_update: 
+  date: 2023-02-22
 tags:
   - 'frames'
 level: 1
@@ -18,7 +20,7 @@ In this tip, you'll learn how to work with frames and write tests against them.
 
 ## Use Case
 
-On occasion, we may encounter relics of the front-end world, such as frames. When writing tests against them, it's easy to get tripped up if we're not paying attention.
+On occasion, we may encounter relics of the front-end world, such as frames. When writing tests against them, it's easy to make a mistake if we're not paying attention.
 
 ## A Solution
 
@@ -132,7 +134,7 @@ If we save the file and run it (e.g., `ruby frames.rb` from the command-line) he
 
 ## Summary
 
-Now you're ready to readily defeat frames when they cross your path.
+Now you can readily defeat frames when they cross your path.
 
 Happy Testing!
 
