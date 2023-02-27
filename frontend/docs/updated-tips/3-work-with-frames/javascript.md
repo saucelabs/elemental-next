@@ -17,7 +17,7 @@ In this tip, you'll learn how to work with frames and write tests against them.
 
 ## Use Case
 
-On occasion you'll run into a relic of the front-end world -- frames. And when writing a test against them, you can easily get tripped up if you're not paying attention.
+On occasion you'll run into a relic of the front-end world -- frames. And when writing a test against them, you can easily make a mistake if you're not paying attention.
 
 ## A Solution
 
@@ -140,7 +140,7 @@ If we save the file and run it (e.g., `mocha` from the command-line) here is wha
 
 ## Summary
 
-Now you're ready to readily defeat frames when they cross your path.
+Now you can readily defeat frames when they cross your path.
 
 Happy Testing!
 

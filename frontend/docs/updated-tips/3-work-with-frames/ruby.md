@@ -18,7 +18,7 @@ In this tip, you'll learn how to work with frames and write tests against them.
 
 ## Use Case
 
-On occasion, we may encounter relics of the front-end world, such as frames. When writing tests against them, it's easy to get tripped up if we're not paying attention.
+On occasion, we may encounter relics of the front-end world, such as frames. When writing tests against them, it's easy to make a mistake if we're not paying attention.
 
 ## A Solution
 
@@ -132,7 +132,7 @@ If we save the file and run it (e.g., `ruby frames.rb` from the command-line) he
 
 ## Summary
 
-Now you're ready to readily defeat frames when they cross your path.
+Now you can readily defeat frames when they cross your path.
 
 Happy Testing!
 
