@@ -3,7 +3,8 @@ title: 'How To Prepare Your Tests for Continuous Integration'
 slug: '"57-junit-xml'
 number: 57
 publish_date: 2015-07-14
-last_update: 2023-02-26
+last_update: 
+  date: 2023-02-22
 tags:
   - 'xml'
   - 'junit xml'

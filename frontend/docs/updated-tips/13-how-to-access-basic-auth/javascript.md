@@ -3,7 +3,8 @@ title: "How To Access Basic Auth"
 slug: "13-work-with-basic-auth"
 number: 13
 publish_date: 2019-08-09
-last_update: 2023-02-24
+last_update: 
+  date: 2023-02-22
 tags:
   - "authentication"
 level: 1

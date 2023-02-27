@@ -3,7 +3,8 @@ title: 'Choosing a Locator Strategy'
 slug: '22-locator-strategy'
 number: 22
 publish_date: 2013-10-22
-last_updated: 2023-02-17
+last_update: 
+  date: 2023-02-22
 tags:
   - "locators"
   - "locator strategy"

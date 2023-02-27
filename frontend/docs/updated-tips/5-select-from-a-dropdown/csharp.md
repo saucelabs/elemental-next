@@ -3,7 +3,8 @@ title: "How To Select From a Dropdown List"
 slug: "5-select-from-a-dropdown"
 number: 5
 publish_date: 2019-08-09
-last_update: 2023-02-26
+last_update: 
+  date: 2023-02-22
 tags:
   - "dropdown"
   - "forms"
