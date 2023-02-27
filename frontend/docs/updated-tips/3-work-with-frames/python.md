@@ -2,7 +2,8 @@
 title: "How To Work with Frames"
 slug: "3-work-with-frames"
 number: 3
-publish_date: 2023-02-23
+publish_date: 2016-11-14
+last_update: 2023-02-23
 tags:
   - "frames"
 level: 1
