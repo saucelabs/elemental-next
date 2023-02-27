@@ -1,14 +1,13 @@
 ---
 title: "How To Figure Out What To Test"
-slug: "18-what-to-test-csharp"
+slug: "18-what-to-test"
 number: 18
-publish_date: 2023-02-17
-last_update: 2023-02-26
-tags:
+publish_date: 2015-10-13
+last_update: 2023-02-22
+tags: 
   - "test strategy"
 level: 1
 category: "strategy"
-language: csharp
 ---
 
 # How To Figure Out What To Test
@@ -17,7 +16,7 @@ language: csharp
 
 There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?
 
-## Use Case
+## Use Cases
 
 A great way to increase your chances of automated web testing success is to map out a testing strategy. The best way to do this is to answer these four questions:
 
@@ -26,7 +25,7 @@ A great way to increase your chances of automated web testing success is to map 
 3. What browsers are your users using?  
 4. What things have broken in the application before?  
 
-NOTE: for organizations that don't deal *directly* in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.
+__NOTE: for organizations that don't deal *directly* in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.__
 
 After answering these questions you'll have a better understanding of the critical functionality and relevant browsers for the application you're testing. This will help you focus your test automation efforts on the things that matter most. 
 
