@@ -65,7 +65,7 @@ If we want to run our tests in parallel (using something like [parallel_tests](h
 
 Thankfully parallel_tests has a RSpec command helper file as well (e.g., `.parallel_rspec`).
 
-==**`!! Code snippet below needs validation !!`**==
+==**`!! Code snippet needs validation !!`**==
 ```ruby
 # filename: .parallel_rspec
 
@@ -77,7 +77,7 @@ Now with numerous tests being run through `parallel_tests` the final result will
 
 And if we didn't want this to run all of the time (like if we only wanted JUnit XML output to get generated when running our tests on a CI server) then we can add a conditional to our `.parallel_rspec` file.
 
-==**`!! Code snippet below needs validation !!`**==
+==**`!! Code snippet needs validation !!`**==
 ```ruby
 # filename: .parallel_rspec
 
