@@ -1,2 +1,2 @@
 # elemental-next
-Moving beyond Elemental-Selenium
+Moving beyond Elemental-Selenium, choosing the future
