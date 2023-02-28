@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.archive    {
+    font-family: sans-serif;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.Heading    {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 3rem;   
+}
+
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
