@@ -3,7 +3,8 @@ title: 'How To Run Your Tests On Any Browser & Operating System'
 slug: '26-cloud'
 number: 0
 publish_date: 2015-09-15
-last_update: 2023-02-27
+last_update: 
+  date: 2023-02-27
 tags:
   - 'sauce labs'
   - 'test infrastructure'
