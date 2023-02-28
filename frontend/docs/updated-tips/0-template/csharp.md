@@ -3,7 +3,8 @@ title: "How To Figure Out What To Test"
 slug: "18-what-to-test-csharp"
 number: 18
 publish_date: 2023-02-17
-last_update: 2023-02-26
+last_update:
+  date:  2023-02-26
 tags:
   - "test strategy"
 level: 1
