@@ -3,7 +3,8 @@ title: "How To Figure Out What To Test"
 slug: "18-what-to-test"
 number: 18
 publish_date: 2015-10-13
-last_update: 2023-02-22
+last_update: 
+  date: 2023-02-22
 tags: 
   - "test strategy"
 level: 1
