@@ -1,4 +1,4 @@
-.list {
-    display: list-item
-    
+list {
+    display: list-item;
+    position: absolute;
 }

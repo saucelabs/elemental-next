@@ -1,22 +1,18 @@
-import React from 'react';
+import * as React from 'react';
+//import "./card.css";
+import classes from "./card.module.css"
 
-function Archive(){
-    const dummydata =    {
-        headline: "Sed ut perspiciatis unde omnis iste natus error sit voluptatems",
-		text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        contentUrl: "https://recodebrain.com/"
-    }
-};
+function Card ({ headline, text, contentUrl }) {
+    return  (
+        <div className = {"card"}>
+            <div className={classes.heading}>
+                <a href = {contentUrl}>{headline}</a>
+            </div>
+            <div className={classes.text}>
+                <p> {text} </p>
+            </div>
+        </div>
+    );
+}
 
-return (
-    <div className="card">
-    <div className= "Heading">
-        <h1>Creating Reusable Card</h1>
-        <h2>
-            Up for Edit
-        </h2>
-    </div>
-    </div>
-
-    
-)
+// export default Card;
