@@ -69,8 +69,8 @@ export default function Archive() {
                 contentUrl= {"https://images.unsplash.com/photo-1637014387463-a446e89abb68?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"}
             />
             <Card
-                headline= {'10: Retrying Test Actions'}
-                text= {"We all write tests with the best intention of having them pass, and when they fail, to reveal legitimate issues in the application we're testing. But that's not always easy to accomplish..."}
+                headline= {'5: How to Select from a Dropdown List'}
+                text= {"Selecting from a dropdown list seems like one of those simple things. However, there is a bit more finesse to it."}
                 contentUrl= {"https://images.unsplash.com/photo-1637014387463-a446e89abb68?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"}
             />
         </div>
