@@ -36,6 +36,7 @@ First let's pull in our requisite libraries, declare the test class, and wire up
 # filename: dropdown.py
 import unittest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 class DropDown(unittest.TestCase):
