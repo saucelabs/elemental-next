@@ -40,7 +40,7 @@ Let's start by requiring our requisite libraries (`import unittest` for our test
 
 import unittest
 from selenium import webdriver
-
+from selenium.webdriver.common.by import By
 
 class BasicAuth1(unittest.TestCase):
 
