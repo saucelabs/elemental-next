@@ -9,9 +9,10 @@ const config = {
   title: 'Elemental Selenium',
   tagline: 'The Place for Tips',
   favicon: 'img/ES.ico',
+  noIndex: process.env.NO_INDEX,
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: process.env.TARGET_URL,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -19,7 +20,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'saucelabs', // Usually your GitHub org/user name.
-  projectName: 'elemental-bromine', // Usually your repo name.
+  projectName: 'elemental-next', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -131,6 +132,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      algolia: {
+        appId: "RO95H65NEO",
+        apiKey: "3a5924ec9fa1457b4999d8dcfc382c2d",
+        indexName: "elemental-next",
+        contextualSearch: false,
+      }
     }),
 };
 
