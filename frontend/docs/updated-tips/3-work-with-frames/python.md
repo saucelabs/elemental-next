@@ -1,6 +1,7 @@
 ---
-title: "How To Work with Frames"
-slug: "3-work-with-frames"
+title: "Work with Frames in Python"
+id: "3-work-with-frames-python"
+slug: python/
 number: 3
 publish_date: 2016-11-14
 last_update: 
@@ -12,7 +13,7 @@ category: "testing"
 language: python 
 ---
 
-# How To Work With Frames
+# How To Work with Frames
 
 ## Intro
 

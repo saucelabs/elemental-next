@@ -1,6 +1,7 @@
 ---
-title: "How To Work with Frames"
-slug: "3-work-with-frames"
+title: "Work with Frames in CSharp"
+id: "3-work-with-frames-csharp"
+slug: csharp/
 number: 3
 publish_date: 2016-06-12
 last_update: 

@@ -1,12 +1,16 @@
 ---
-title: "How To Work with Frames"
-slug: "3-work-with-frames"
+title: "Work with Frames in Javascript"
+id: "3-work-with-frames-javascript"
+slug: javascript/
 number: 3
 publish_date: 2023-02-23
+last_update:
+  date: 2023-03-06
 tags:
   - "frames"
 level: 1
 category: "testing"
+language: javascript
 ---
 
 # How To Work With Frames
