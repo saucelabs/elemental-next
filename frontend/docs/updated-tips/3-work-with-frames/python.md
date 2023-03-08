@@ -1,5 +1,5 @@
 ---
-title: "Work with Frames in Python"
+title: "Python"
 id: "3-work-with-frames-python"
 slug: python/
 number: 3
