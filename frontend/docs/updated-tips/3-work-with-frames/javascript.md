@@ -1,5 +1,5 @@
 ---
-title: "Work with Frames in Javascript"
+title: "Javascript"
 id: "3-work-with-frames-javascript"
 slug: javascript/
 number: 3
