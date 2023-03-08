@@ -1,5 +1,5 @@
 ---
-title: "Work with Frames in CSharp"
+title: "CSharp"
 id: "3-work-with-frames-csharp"
 slug: csharp/
 number: 3
