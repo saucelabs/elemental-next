@@ -8,21 +8,22 @@ tags:
   - "downloading"
 level: 2
 category: "testing"
+language: JavaScript
 ---
 
 ## The Problem
 
-In a [previous chapter](#chapter2) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
+In a [previous chapter](#chapter2) we gave examples of how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
 
 While this works it requires a custom configuration that is inconsistent from browser to browser.
 
 ## A Solution
 
-Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded. And we can do that by using an HTTP client alongside Selenium in our test.
+Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded and we can do that by using an HTTP client alongside Selenium in our test.
 
-With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times (depending on the file size).
+With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without difficult configuration, local disk usage, or lengthy download times (depending on the file size).
 
-Let's dig with an example.
+Let's try an example.
 
 ## An Example
 
@@ -64,11 +65,13 @@ Next we'll want to write a helper function to create the options we'll use to pe
 // ...
 ```
 
-The helper function (e.g., `getHttpOptions`) receives a URL, parses it, and use it to create and return an object with the necessary values.
+The helper function (e.g., `getHttpOptions`) receives a URL, parses it, and uses it to create and return an object with the necessary values.
 
 Now we're ready to wire up our test.
 
 It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a `HEAD` request with it.
+
+==**`!! Code snippet needs validation !!`**==
 
 ```javascript
 // filename: test/download-v2.spec.js
@@ -106,3 +109,9 @@ When you save this and run it (e.g., `mocha` from the command-line) here is what
 Compared to the browser specific configuration with Selenium this is hands down a leaner, faster, and more maintainable approach. But unfortunately it only works with files served up from a dedicated URL. So if you're trying to test file downloads that are generated in-memory as part of the browser session (a.k.a. not accessible from a URL) then you'll need to reach for the browser specific Selenium configuration.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
