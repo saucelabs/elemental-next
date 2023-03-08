@@ -1,5 +1,5 @@
 ---
-title: 'Work with Frames in Ruby'
+title: 'Ruby'
 id: '3-work-with-frames-ruby'
 slug: ruby/
 number: 3
