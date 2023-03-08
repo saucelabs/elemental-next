@@ -1,5 +1,5 @@
 ---
-title: "Work with Frames in Java"
+title: "Java"
 id: "3-work-with-frames-java"
 slug: java/
 number: 3
