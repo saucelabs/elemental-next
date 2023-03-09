@@ -2,7 +2,9 @@
 title: "How To Work with Multiple Windows"
 slug: "4-work-with-multiple-windows"
 number: 4
-publish_date: 2023-02-23
+publish_date: 2019-08-09
+last_update: 
+  date: 2023-02-22
 tags:
   - "windows"
   - "multiple windows"

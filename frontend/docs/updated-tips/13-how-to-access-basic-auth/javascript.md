@@ -137,7 +137,7 @@ Hopefully these examples will help save you from getting any setbacks from Basic
 
 Happy Testing!
 
-## About the Author
+## About The Author
 
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 

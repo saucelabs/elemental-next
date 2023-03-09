@@ -1,6 +1,7 @@
 ---
-title: "How To Work with Frames"
-slug: "3-work-with-frames"
+title: "Java"
+id: "3-work-with-frames-java"
+slug: java/
 number: 3
 publish_date: 2015-11-09
 last_update: 

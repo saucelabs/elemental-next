@@ -3,7 +3,8 @@ title: "How To Download a File"
 slug: "2-download-a-file"
 number: 2
 publish_date: 2019-08-09
-last_updat: 2023-02-22
+last_update: 
+  date: 2023-02-22
 tags:
   - "files"
   - "downloading"

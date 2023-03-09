@@ -1,0 +1,46 @@
+.archive {
+    margin-bottom: 40px;
+}  
+
+
+.heading    {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #292620; 
+}
+
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.card {
+    position: center;
+    width: 689px;
+    height: 154px;
+    margin-left: 366px;
+    /*top: 358px;  */
+    
+    background: #FBFBFB;
+    box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
+    border-radius: 15px;
+    /* margin-bottom: 300px; */
+
+}
+
+.text   {
+    position: absolute;
+    width: 654px;
+    height: 38px;
+    
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #5E5D5B;
+}
+

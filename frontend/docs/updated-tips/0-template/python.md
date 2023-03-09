@@ -1,9 +1,11 @@
 ---
 title: 'Template Python'
-slug: '0-template'
+id: '0-template-python'
+slug: python/
 number: 0
 publish_date: 2023-02-17
-last_update: 2023-02-24
+last_update:
+  date: 2023-02-24
 tags:
   - 'template'
 level: 0
