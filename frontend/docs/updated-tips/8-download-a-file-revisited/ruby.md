@@ -1,30 +1,38 @@
 ---
-title: "How To Download a File Without a Browser"
-slug: "8-download-a-file-revisited"
+title: 'How To Download a File Without a Browser'
+id: '8-download-a-file-revisited-ruby'
+slug: ruby/
 number: 8
 publish_date: 2015-08-20
+last_update:
+  date: 03-08-2023
 tags:
-  - "files"
-  - "downloading"
+  - 'files'
+  - 'downloading'
 level: 2
-category: "testing"
+category: 'testing'
+language: ruby
 ---
 
-## The Problem
+# How To Download a File Without a Browser
 
-In a [previous tip](http://elementalselenium.com/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
+## Intro
 
-While this works it requires a custom configuration that is inconsistent from browser to browser.
+In a [previous tip](http://elementalselenium.com/tips/2-download-a-file)==**`!! Link needs replacing !!`**== we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
+
+## Use Case
+
+While the previous method works, it requires a custom configuration that is inconsistent from browser to browser.
+
+Ultimately, we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded, which we can do by using an HTTP client alongside Selenium in our test.
 
 ## A Solution
 
-Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded. And we can do that by using an HTTP client alongside Selenium in our test.
-
 With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times (depending on the file size).
 
-Let's dig with an example.
+Let's continue with an example.
 
-## An Example
+## Example
 
 To start things off let's pull in our requisite libraries (e.g., `selenium-webdriver` to drive the browser, `rspec/expectations` and `RSpec::Matchers` for our assertions, and `rest-client` for our HTTP request) and wire up some simple `setup`, `teardown`, and `run` methods.
 
@@ -60,7 +68,7 @@ run do
   @driver.get 'http://the-internet.herokuapp.com/download'
   link = @driver.find_element(css: '.example a').attribute('href')
   response = RestClient.head link
-  expect(response.headers[:content_type]).to eql('application/pdf')
+  expect(response.headers[:content_type]).to eql('application/octet-stream')
   expect(response.headers[:content_length].to_i).to be > 0
 end
 ```
@@ -79,8 +87,14 @@ If you save this and run it (e.g., `ruby download_revisited.rb` from the command
 + Check the response headers to see that the file type is correct
 + Check the response headers to see that the file is not empty
 
-## Outro
+## Summary
 
 Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
