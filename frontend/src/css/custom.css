@@ -28,3 +28,42 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: white;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  object-fit: contain;
+  border-bottom: 1px solid lightgray;
+  
+
+  /* position: absolute;
+  width: 1362px;
+  height: 77px;
+  left: 39px;
+  top: 30px; */
+
+  
+  font-style: normal;
+}
+.navbar.title{
+  font-size: 36px;
+  line-height: 42px;  
+  color: rgb(236, 223, 36);
+
+}
+
+
+/* .header_wrapper{
+  max-width: 975px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+} */
