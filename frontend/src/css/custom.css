@@ -32,18 +32,14 @@
 .navbar{
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 9999; 
   background-color: white;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  object-fit: contain;
-  border-bottom: 1px solid lightgray;
-  
-
-  /* position: absolute;
   width: 1362px;
   height: 77px;
+  -webkit-box-shadow: none;
+
+  /* position: absolute;
+  
   left: 39px;
   top: 30px; */
 
