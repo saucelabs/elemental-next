@@ -63,21 +63,30 @@ const config = {
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'Elemental Selenium',
-        logo: {
-          alt: 'Elemental Selenium Logo',
-          src: 'img/ES.svg',
-        },
+        // logo: {
+        //   alt: 'Elemental Selenium Logo',
+        //   src: 'img/ES.svg',
+        // },
         items: [
           {
             type: 'doc',
             docId: 'intro',
-            position: 'left',
-            label: 'tutorial',
+            position: 'right',
+            label: 'Tips',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
+          {
+            href: 'https://github.com/saucelabs/elemental-next',
+            label: 'Contribute',
+            position: 'right',
+          },
           {
             href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            label: 'External Resources',
+            position: 'right',
+          },
+          {
+            to: '/index',
+            label: 'Sign In',
             position: 'right',
           },
         ],
