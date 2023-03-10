@@ -4,6 +4,7 @@
  * work well for content-centric websites.
  */
 
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #49311b;
@@ -64,3 +65,4 @@
   align-items: center;
   justify-content: space-between;
 } */
+
