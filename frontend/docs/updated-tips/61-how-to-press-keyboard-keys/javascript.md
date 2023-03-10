@@ -1,6 +1,7 @@
 ---
-title: "How To Press Keyboard Keys"
-slug: "61-keyboard-keys"
+title: "Javascript"
+id: "61-keyboard-keys-javascript"
+slug: javascript/
 number: 61
 publish_date: 2019-08-09
 last_update: 

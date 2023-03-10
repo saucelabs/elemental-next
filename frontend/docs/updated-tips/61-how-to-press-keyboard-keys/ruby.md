@@ -1,6 +1,7 @@
 ---
-title: 'How To Press Keyboard Keys'
-slug: '61-keyboard-keys'
+title: 'Ruby'
+id: "61-keyboard-keys-ruby"
+slug: ruby/
 number: 61
 publish_date: 2015-10-12
 last_update: 

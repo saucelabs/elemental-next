@@ -1,6 +1,7 @@
 ---
-title: "How To Press Keyboard Keys"
-slug: "61-keyboard-keys"
+title: "Python"
+id: "61-keyboard-keys-python"
+slug: python/
 number: 61
 publish_date: 2016-11-19
 last_update:

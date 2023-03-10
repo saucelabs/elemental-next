@@ -1,6 +1,7 @@
 ---
-title: "How To Work With JavaScript Alerts"
-slug: "51-javascript-alerts"
+title: "JavaScript"
+id: "51-javascript-alerts-javascript"
+slug: javascript/
 number: 51
 publish_date: 2019-08-09
 last_update: 

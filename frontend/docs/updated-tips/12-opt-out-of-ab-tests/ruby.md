@@ -1,5 +1,5 @@
 ---
-title: 'How To Opt-out of A/B Tests'
+title: 'Ruby'
 id: '12-opt-out-of-ab-tests-ruby'
 slug: ruby/
 number: 12

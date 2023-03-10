@@ -1,5 +1,5 @@
 ---
-title: 'Building an Interactive Prompt'
+title: 'Ruby'
 id: '11-build-an-interactive-prompt-ruby'
 slug: ruby/
 number: 11

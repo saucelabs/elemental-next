@@ -1,6 +1,7 @@
 ---
-title: "How To Download a File"
-slug: "2-download-a-file"
+title: "Javascript"
+id: "2-download-a-file-javascript"
+slug: javascript/
 number: 2
 publish_date: 2019-08-09
 last_update: 

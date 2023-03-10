@@ -1,6 +1,6 @@
 ---
-title: 'How To Access Previous Tips'
-slug: '31-archives'
+title: 'All Languages'
+id: '31-archives'
 number: 31
 publish_date: 2014-12-23
 last_update: 
