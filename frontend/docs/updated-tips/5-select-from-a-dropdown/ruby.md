@@ -1,6 +1,7 @@
 ---
-title: 'How To Select From a Dropdown List'
-slug: '5-select-from-a-dropdown'
+title: 'Ruby'
+id: '5-select-from-a-dropdown-ruby'
+slug: ruby/
 number: 5
 publish_date: 2015-07-06
 last_update: 

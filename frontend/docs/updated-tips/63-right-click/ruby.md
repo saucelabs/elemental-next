@@ -1,5 +1,5 @@
 ---
-title: "How To Right-click"
+title: "Ruby"
 id: "63-right-click-ruby"
 slug: ruby/
 number: 63

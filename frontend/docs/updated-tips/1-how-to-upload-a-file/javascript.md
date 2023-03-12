@@ -1,6 +1,7 @@
 ---
-title: "How To Upload a File"
-slug: "1-upload-a-file"
+title: "Javascript"
+id: "1-upload-a-file-javascript"
+slug: javascript/
 number: 1
 publish_date: 2019-08-09
 last_update: 

@@ -1,6 +1,7 @@
 ---
-title: "How To Download a File"
-slug: "2-download-a-file"
+title: Python
+id: "2-download-a-file-python"
+slug: python/
 number: 2
 publish_date: 2016-09-23
 last_update: 

@@ -1,6 +1,6 @@
 ---
-title: 'How To Pick a Programming Language'
-slug: '21-choosing-a-language'
+title: 'All Languages'
+id: '21-choosing-a-language'
 number: 21
 publish_date: 2015-10-13
 last_update: 

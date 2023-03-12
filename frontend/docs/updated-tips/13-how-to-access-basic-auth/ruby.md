@@ -1,6 +1,7 @@
 ---
-title: 'How To Access Basic Auth'
-slug: '13-work-with-basic-auth'
+title: 'Ruby'
+id: '13-work-with-basic-auth-ruby'
+slug: ruby/
 number: 13
 publish_date: 2015-10-14
 last_update: 

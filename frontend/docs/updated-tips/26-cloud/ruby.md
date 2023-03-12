@@ -1,6 +1,7 @@
 ---
-title: 'How To Run Your Tests On Any Browser & Operating System'
-slug: '26-cloud'
+title: 'Ruby'
+id: '26-cloud-ruby'
+slug: ruby/
 number: 0
 publish_date: 2015-09-15
 last_update: 
