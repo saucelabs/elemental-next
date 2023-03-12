@@ -1,20 +1,21 @@
 ---
 title: Python
-id: "2-download-a-file-python"
+id: '2-download-a-file-python'
 slug: python/
 number: 2
 publish_date: 2016-09-23
 last_update: 
   date: 2023-03-02
 tags:
-  - "files"
-  - "downloading"
-  - "file download"
+  - 'files'
+  - 'downloading'
+  - 'file download'
 level: 2
-category: "testing"
+category: 'testing'
+language: python
 ---
 
-# Download A File
+# How to Download A File
 
 ## Intro
 

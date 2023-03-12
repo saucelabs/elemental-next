@@ -1,17 +1,18 @@
 ---
-title: Python"
-id: "50-hovers-python"
+title: Python'
+id: '50-hovers-python'
 slug: python/
 number: 50
 publish_date: 2016-11-23
 last_update: 
   date: 2023-02-22
 tags:
-  - "hover"
-  - "hovers"
-  - "action builder"
+  - 'hover'
+  - 'hovers'
+  - 'action builder'
 level: 1
-category: "testing"
+category: 'testing'
+language: python
 ---
 
 # How To Work With Hovers

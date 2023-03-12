@@ -1,5 +1,5 @@
 ---
-title: 'All Languages'
+title: 'Accessing Previous Tips Archive'
 id: '31-archives'
 number: 31
 publish_date: 2014-12-23
@@ -9,6 +9,7 @@ tags:
   - 'archives'
 level: 1
 category: 'archives'
+language: all
 ---
 
 # How To Access Previous Tips
