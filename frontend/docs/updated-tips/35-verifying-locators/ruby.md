@@ -1,9 +1,11 @@
 ---
-title: 'How To Verify Your Locators without Selenium'
-slug: '35-verifying-locators'
+title: 'Ruby'
+id: '35-verifying-locators'
+slug: ruby/
 number: 35
 publish_date: 2015-10-13
-last_update: 2023-02-27
+last_update:
+  date: 2023-02-27
 tags:
   - 'locators'
   - 'css'
@@ -13,6 +15,7 @@ tags:
   - 'firefox'
 level: 1
 category: 'tools'
+language: ruby
 ---
 
 # How To Verify Your Locators without Selenium
