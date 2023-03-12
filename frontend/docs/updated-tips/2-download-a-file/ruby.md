@@ -1,5 +1,5 @@
 ---
-title: 'How To Download a File'
+title: 'Ruby'
 id: '2-download-a-file-ruby'
 slug: ruby/
 number: 2
