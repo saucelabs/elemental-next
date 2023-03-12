@@ -1,17 +1,17 @@
 ---
-title: "Fast and Reliable Test Setup with REST APIs"
-id: "24-rest-apis-ruby"
+title: 'Ruby'
+id: '24-rest-apis-ruby'
 slug: ruby/
 number: 24
 publish_date: 2013-11-5
 last_update:
   date: 2023-03-09
 tags:
-  - "REST APIs"
-  - "test setup"
-  - "guest post"
+  - 'REST APIs'
+  - 'test setup'
+  - 'guest post'
 level: 2
-category: "testing"
+category: 'testing'
 language: ruby
 ---
 
