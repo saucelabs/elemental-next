@@ -1,25 +1,29 @@
 ---
 title: "How To Opt-out of A/B Tests"
-slug: "12-opt-out-of-ab-tests"
+id: '12-opt-out-of-ab-tests-javascript'
+slug: "javascript/"
 number: 12
 publish_date: 2019-08-09
+last_update:
+  date: 2023-03-09
 tags:
   - "ab tests"
   - "optimizely"
   - "opt-out"
 level: 2
 category: "testing"
+language: javascript
 ---
 
-## The Problem
+## Intro
 
 Occasionally when running tests you may see unexpected behavior due to [A/B testing (a.k.a. split testing)](http://en.wikipedia.org/wiki/A/B_testing) of the application you're working with.
 
 In order to keep your tests running without issue we need a clean way to opt-out of these split tests.
 
-## A quick primer on A/B testing
+## Use Case
 
-Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement.
+Split testing is a straightforward way to experiment with an application's features to see which changes lead to higher user engagement.
 
 A simple example would be testing variations of an e-mail landing page to see if more people sign up. In such a split test there would be the control (how the application looks and behaves now) and variants (e.g., 2 or 3 changes that could include changing text or images on the page, element positioning, color of the submit button, etc).
 
@@ -37,7 +41,8 @@ Our example page is from [the-internet](http://github.com/tourdedave/the-interne
 + Variation 1: `A/B Test Variation 1`
 + Opt-out: `No A/B Test`
 
-Let's kick things off by loading our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
+Let's start by loading our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
+==**`!! Deprecated code needs replacing !!`**==
 
 ```javascript
 // filename: test/abOptOut.spec.js
@@ -58,6 +63,7 @@ describe("A/B opt-out", function() {
 ```
 
 Now let's wire up our first test to step through loading the split testing page and verifying that the text changes after we forge an opt-out cookie.
+==**`!! Deprecated code needs replacing !!`**==
 
 ```javascript
 // filename: test/abOptOut.spec.js
@@ -80,6 +86,7 @@ Now let's wire up our first test to step through loading the split testing page 
 After navigating to the page we confirm that we are in one of the A/B test groups by grabbing the heading text and checking to see if it matches what we expect. After that we add the opt-out cookie, refresh the page, and then confirm that we are no longer in the A/B test group by checking the heading text again.
 
 We could also load the opt-out cookie before navigating to this page.
+==**`!! Deprecated code needs replacing !!`**==
 
 ```javascript
 // filename: test/abOptOut.spec.js
@@ -117,7 +124,7 @@ Here we are navigating to the main page of the site first and then adding the op
   });
 });
 ```
-
+  
 By appending `?optimizely_opt_out=true` we achieve the same outcome as before. Keep in mind that this approach triggers a JavaScript alert, so we have to switch to and dismiss it (e.g., `driver.switchTo().alert().dismiss()`) before performing our check.
 
 ## Expected Behavior
@@ -131,6 +138,14 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 + Confirm that the session is opted out of the split test
 + Close the browser
 
-## Outro
+## Summary
+
+In this tip, we learned about split testing and learned about some standard opt-out mechanisms built into A/B testing platforms.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
