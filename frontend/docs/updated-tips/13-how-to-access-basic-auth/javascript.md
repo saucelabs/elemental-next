@@ -1,6 +1,7 @@
 ---
 title: "How To Access Basic Auth"
-slug: "13-work-with-basic-auth"
+id: "13-work-with-basic-auth-javascript"
+slug: javascript/
 number: 13
 publish_date: 2019-08-09
 last_update: 

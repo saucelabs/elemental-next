@@ -1,6 +1,7 @@
 ---
-title: "How To Work With JavaScript Alerts"
-slug: "51-javascript-alerts"
+title: "Python"
+id: "51-javascript-alerts-python"
+slug: python/
 number: 51
 publish_date: 2016-11-19
 last_update:

@@ -1,6 +1,7 @@
 ---
-title: "How To Work With Hovers"
-slug: "50-hovers"
+title: "Javascript"
+id: "50-hovers-javascript"
+slug: javascript/
 number: 50
 publish_date: 2019-08-09
 last_update: 

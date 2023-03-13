@@ -1,6 +1,7 @@
 ---
-title: 'How To Filter Test Results With Tags'
-slug: '58-tagging'
+title: 'Ruby'
+id: '58-tagging-ruby'
+slug: ruby/
 number: 58
 publish_date: 2014-07-09
 last_update: 

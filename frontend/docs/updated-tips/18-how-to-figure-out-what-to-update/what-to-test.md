@@ -1,6 +1,6 @@
 ---
-title: "How To Figure Out What To Test"
-slug: "18-what-to-test"
+title: "All Languages"
+id: "18-what-to-test"
 number: 18
 publish_date: 2015-10-13
 last_update: 

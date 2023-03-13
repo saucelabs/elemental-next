@@ -1,6 +1,7 @@
 ---
 title: 'Template Ruby'
-slug: '0-template'
+id: '0-template-ruby'
+slug: ruby/
 number: 0
 publish_date: 2023-02-17
 last_update:
