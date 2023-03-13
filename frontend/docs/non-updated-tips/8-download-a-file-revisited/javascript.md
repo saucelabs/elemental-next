@@ -13,21 +13,22 @@ language: JavaScript
 
 ## The Problem
 
-In a [previous chapter](#chapter2) we gave examples of how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
+In a [previous tip](http://elementalselenium.com/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
 
 While this works it requires a custom configuration that is inconsistent from browser to browser.
 
 ## A Solution
 
-Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded and we can do that by using an HTTP client alongside Selenium in our test.
+Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded. And we can do that by using an HTTP client alongside Selenium in our test.
 
-With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without difficult configuration, local disk usage, or lengthy download times (depending on the file size).
+With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times (depending on the file size).
 
-Let's try an example.
+Let's dig with an example.
 
 ## An Example
 
-To start things off let's pull in our requisite libraries and wire up some test setup and teardown methods.
+To start things off let's pull in our requisite libraries and wire up some test setup and teardown methods. Remember to run
+`npm install selenium-webdriver` and `npm install -g mocha` to execute the code examples.
 
 ```javascript
 // filename: test/download-v2.spec.js
@@ -40,7 +41,7 @@ describe("File download v2", function() {
   let driver;
 
   beforeEach(async function() {
-    driver = await new Builder().forBrowser("chrome").build();
+    driver = await new Builder().forBrowser("firefox").build();
   });
 
   afterEach(async function() {
@@ -71,8 +72,6 @@ Now we're ready to wire up our test.
 
 It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a `HEAD` request with it.
 
-==**`!! Code snippet needs validation !!`**==
-
 ```javascript
 // filename: test/download-v2.spec.js
 // ...
@@ -91,6 +90,10 @@ It's just a simple matter of visiting the page with download links, grabbing a U
 ```
 
 Once we receive the response we check its header for the `content-type` and `content-length` to make sure the file is the correct type and not empty.
+
+To run the complete code example, type `mocha --timeout 30000 download-v2.spec.js`. `mocha` runs the test and it has a default timeout
+of 2 seconds, which is a little to short to open a browser and perform actions, therefore we increase the timeout a bit more.
+
 
 ## Expected Behavior
 
