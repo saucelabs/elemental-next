@@ -1,6 +1,7 @@
 ---
-title: "How To Upload a File"
-slug: "1-upload-a-file"
+title: "Python"
+id: "1-upload-a-file-python"
+slug: python/
 number: 1
 publish_date: 2016-09-13
 last_update: 

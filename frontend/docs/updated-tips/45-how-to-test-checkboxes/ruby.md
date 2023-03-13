@@ -1,6 +1,7 @@
 ---
-title: 'How To Test Checkboxes'
-slug: '45-checkboxes'
+title: 'Ruby'
+id: '45-checkboxes-ruby'
+slug: ruby/
 number: 45
 publish_date: 2015-10-13
 last_update: 

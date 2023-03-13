@@ -1,5 +1,5 @@
 ---
-title: 'How To Add A Wrapper To Your Selenium Tests'
+title: 'Ruby'
 id: '55-wrapper-ruby'
 slug: ruby/
 number: 55

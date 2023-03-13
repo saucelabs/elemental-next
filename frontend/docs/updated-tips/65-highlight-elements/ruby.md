@@ -1,5 +1,5 @@
 ---
-title: 'How To Visually Verify Your Locators'
+title: 'Ruby'
 id: '65-highlight-elements-ruby'
 slug: ruby/
 number: 65

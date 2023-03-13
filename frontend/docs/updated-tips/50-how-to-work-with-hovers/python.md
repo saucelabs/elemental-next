@@ -1,6 +1,7 @@
 ---
-title: "How To Work With Hovers"
-slug: "50-hovers"
+title: Python"
+id: "50-hovers-python"
+slug: python/
 number: 50
 publish_date: 2016-11-23
 last_update: 

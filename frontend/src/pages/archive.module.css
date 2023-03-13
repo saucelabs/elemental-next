@@ -2,13 +2,21 @@
     margin-bottom: 40px;
 }  
 
-
 .heading    {
     font-style: normal;
     font-weight: 500;
     font-size: 32px;
     line-height: 38px;
     color: #292620; 
+}
+
+.tipsheader {
+    font-weight: 500; 
+    font-size: 48px;
+    line-height: 56px;
+    padding-top: 180px;
+    padding-left: 350px;
+    color: #292620;;
 }
 
 a:visited {
@@ -22,7 +30,7 @@ a:visited {
     width: 689px;
     height: 154px;
     margin-left: 366px;
-    /*top: 358px;  */
+    margin-top: 58px;  
     
     background: #FBFBFB;
     box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
@@ -37,7 +45,7 @@ a:visited {
     height: 38px;
     
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 16px;
     line-height: 19px;
 
