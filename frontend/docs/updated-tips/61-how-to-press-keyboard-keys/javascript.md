@@ -1,19 +1,19 @@
 ---
-title: "Javascript"
-id: "61-keyboard-keys-javascript"
+title: 'Javascript'
+id: '61-keyboard-keys-javascript'
 slug: javascript/
 number: 61
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "keyboard"
-  - "keys"
-  - "key presses"
-  - "tab"
-  - "enter"
+  - 'keyboard'
+  - 'keys'
+  - 'key presses'
+  - 'tab'
+  - 'enter'
 level: 1
-category: "testing"
+category: 'testing'
 language: javascript
 ---
 

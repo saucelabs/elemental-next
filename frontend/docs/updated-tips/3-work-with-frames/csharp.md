@@ -1,15 +1,15 @@
 ---
-title: "CSharp"
-id: "3-work-with-frames-csharp"
+title: 'CSharp'
+id: '3-work-with-frames-csharp'
 slug: csharp/
 number: 3
 publish_date: 2016-06-12
 last_update: 
   date: 2023-02-22
 tags:
-  - "frames"
+  - 'frames'
 level: 1
-category: "testing"
+category: 'testing'
 language: csharp 
 ---
 

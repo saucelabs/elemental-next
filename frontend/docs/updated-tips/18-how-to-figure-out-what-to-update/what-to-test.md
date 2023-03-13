@@ -1,14 +1,15 @@
 ---
-title: "All Languages"
-id: "18-what-to-test"
+title: 'What to Test'
+id: '18-what-to-test'
 number: 18
 publish_date: 2015-10-13
 last_update: 
   date: 2023-02-22
 tags: 
-  - "test strategy"
+  - 'test strategy'
 level: 1
-category: "strategy"
+category: 'strategy'
+language: all
 ---
 
 # How To Figure Out What To Test

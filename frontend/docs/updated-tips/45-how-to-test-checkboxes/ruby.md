@@ -7,9 +7,9 @@ publish_date: 2015-10-13
 last_update: 
   date: 2023-02-22
 tags:
-  - "checkboxes"
-  - "attribute"
-  - "selected"
+  - 'checkboxes'
+  - 'attribute'
+  - 'selected'
 level: 1
 category: 'testing'
 language: ruby
