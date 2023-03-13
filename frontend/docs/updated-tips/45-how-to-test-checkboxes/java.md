@@ -1,6 +1,7 @@
 ---
-title: "How To Test Checkboxes"
-slug: "45-checkboxes"
+title: "Java"
+id: "45-checkboxes-java"
+slug: java/
 number: 45
 publish_date: 2019-08-09
 last_update: 

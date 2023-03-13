@@ -1,6 +1,7 @@
 ---
-title: 'Choosing a Locator Strategy'
-slug: '22-locator-strategy'
+title: 'Ruby'
+id: '22-locator-strategy-ruby'
+slug: ruby/
 number: 22
 publish_date: 2013-10-22
 last_update: 

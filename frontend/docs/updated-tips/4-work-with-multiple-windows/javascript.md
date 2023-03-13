@@ -1,6 +1,7 @@
 ---
-title: "How To Work with Multiple Windows"
-slug: "4-work-with-multiple-windows"
+title: "Javascript"
+id: "4-work-with-multiple-windows-javascript"
+slug: javascript/
 number: 4
 publish_date: 2019-08-09
 last_update: 

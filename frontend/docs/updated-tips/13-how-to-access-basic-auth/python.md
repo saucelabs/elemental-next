@@ -1,6 +1,7 @@
 ---
-title: "How To Access Basic Auth"
-slug: "13-work-with-basic-auth"
+title: "Python"
+id: "13-work-with-basic-auth-python"
+slug: python/
 number: 13
 publish_date: 2016-11-17
 last_update: 

@@ -1,5 +1,5 @@
 ---
-title: 'How to Create a Data-driven Test'
+title: 'Ruby'
 id: '19-data-driven-testing-ruby'
 slug: ruby/
 number: 19
