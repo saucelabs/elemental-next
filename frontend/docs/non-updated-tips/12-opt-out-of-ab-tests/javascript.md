@@ -42,7 +42,6 @@ Our example page is from [the-internet](http://github.com/tourdedave/the-interne
 + Opt-out: `No A/B Test`
 
 Let's start by loading our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
-==**`!! Deprecated code needs replacing !!`**==
 
 ```javascript
 // filename: test/abOptOut.spec.js
@@ -52,8 +51,7 @@ const { Builder, By } = require("selenium-webdriver");
 describe("A/B opt-out", function() {
   let driver;
 
-  beforeEach(async function() {
-    driver = await new Builder().forBrowser("chrome").build();
+  beforeEach(async function() { this.timeout(60000) driver = await new Builder().forBrowser("chrome").build();
   });
 
   afterEach(async function() {
@@ -63,7 +61,6 @@ describe("A/B opt-out", function() {
 ```
 
 Now let's wire up our first test to step through loading the split testing page and verifying that the text changes after we forge an opt-out cookie.
-==**`!! Deprecated code needs replacing !!`**==
 
 ```javascript
 // filename: test/abOptOut.spec.js
@@ -86,7 +83,6 @@ Now let's wire up our first test to step through loading the split testing page 
 After navigating to the page we confirm that we are in one of the A/B test groups by grabbing the heading text and checking to see if it matches what we expect. After that we add the opt-out cookie, refresh the page, and then confirm that we are no longer in the A/B test group by checking the heading text again.
 
 We could also load the opt-out cookie before navigating to this page.
-==**`!! Deprecated code needs replacing !!`**==
 
 ```javascript
 // filename: test/abOptOut.spec.js
