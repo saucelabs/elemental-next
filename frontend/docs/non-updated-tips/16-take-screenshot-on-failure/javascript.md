@@ -13,6 +13,9 @@ level: 2
 category: "reporting"
 language: javascript
 ---
+
+# How To Take A Screenshot on Failure
+
 ## Intro
 
 When your tests fail, which happens often, how do you capture the failure?
