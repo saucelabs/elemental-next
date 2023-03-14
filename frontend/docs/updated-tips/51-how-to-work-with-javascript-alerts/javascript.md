@@ -1,18 +1,19 @@
 ---
-title: "JavaScript"
-id: "51-javascript-alerts-javascript"
+title: 'JavaScript'
+id: '51-javascript-alerts-javascript'
 slug: javascript/
 number: 51
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "javascript"
-  - "javascript alerts"
-  - "javascript popups"
-  - "javascript dialogs"
+  - 'javascript'
+  - 'javascript alerts'
+  - 'javascript popups'
+  - 'javascript dialogs'
 level: 1
-category: "testing"
+category: 'testing'
+language: javascript
 ---
 
 # How To Work With JavaScript Alerts

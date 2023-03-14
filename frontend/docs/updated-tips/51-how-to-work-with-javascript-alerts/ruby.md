@@ -1,6 +1,6 @@
 ---
-title: "Ruby"
-id: "51-javascript-alerts-ruby"
+title: 'Ruby'
+id: '51-javascript-alerts-ruby'
 slug: ruby/
 number: 51
 publish_date: 2019-08-09

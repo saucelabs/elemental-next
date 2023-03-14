@@ -1,20 +1,21 @@
 ---
-title: "Javascript"
-id: "2-download-a-file-javascript"
+title: 'Javascript'
+id: '2-download-a-file-javascript'
 slug: javascript/
 number: 2
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "files"
-  - "downloading"
-  - "file download"
+  - 'files'
+  - 'downloading'
+  - 'file download'
 level: 2
-category: "testing"
+category: 'testing'
+language: javascript
 ---
 
-# Download A File
+# How to Download A File
 
 ## Intro
 

@@ -1,17 +1,18 @@
 ---
-title: "Javascript"
-id: "1-upload-a-file-javascript"
+title: 'Javascript'
+id: '1-upload-a-file-javascript'
 slug: javascript/
 number: 1
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "file"
-  - "upload"
-  - "file upload"
+  - 'file'
+  - 'upload'
+  - 'file upload'
 level: 1
-category: "testing"
+category: 'testing'
+language: javascript
 ---
 # How To Upload A File
 
