@@ -15,6 +15,8 @@ category: "testing"
 language: javascript
 ---
 
+# How To Opt-out of A/B Tests
+
 ## Intro
 
 Occasionally when running tests you may see unexpected behavior due to [A/B testing (a.k.a. split testing)](http://en.wikipedia.org/wiki/A/B_testing) of the application you're working with.
