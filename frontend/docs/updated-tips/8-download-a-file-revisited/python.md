@@ -1,5 +1,5 @@
 ---
-title: 'python'
+title: 'Python'
 id: '8-download-a-file-revisited-python'
 slug: /python
 number: 8
