@@ -30,7 +30,6 @@ Let's try an example.
 ## An Example
 
 Let's start by importing our requisite libraries and wire up some setup and teardown methods.
-==**`!! Code on this page are deprecated !!`**==
 
 ```javascript
 // filename: test/screenshot.spec.js
@@ -42,8 +41,7 @@ const path = require("path");
 describe("Screenshot", function() {
   let driver;
 
-  beforeEach(async function() {
-    driver = await new Builder().forBrowser("chrome").build();
+  beforeEach(async function() { this.timeout(60000) driver = await new Builder().forBrowser("chrome").build();
   });
 
   afterEach(async function() {
@@ -62,7 +60,6 @@ In `afterEach` we check to see if the test was unsuccessful (e.g., `this.currenT
 To make the filename unique we use the test name after cleaning it up (by replacing spaces with `-`). When this command executes it will save an image file (e.g., `screenshot_Screenshot-on-failure.jpg`) to the local system in the current working directory.
 
 Now to wire up a test which will fail.
-==**`!! Code on this page are deprecated !!`**==
 
 ```javascript
 // filename: test/screenshot.spec.js
