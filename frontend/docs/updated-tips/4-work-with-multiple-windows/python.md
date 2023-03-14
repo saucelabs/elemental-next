@@ -14,6 +14,8 @@ level: 2
 category: "testing"
 ---
 
+# How To Work with Multiple Windows
+
 ## Intro
 
 This tip will explain how to work with multiple windows in Selenium and switch between them. 
