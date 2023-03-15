@@ -1,17 +1,17 @@
 ---
-title: "Javascript"
-id: "45-checkboxes-javascript"
+title: 'Javascript'
+id: '45-checkboxes-javascript'
 slug: javascript/
 number: 45
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "checkboxes"
-  - "attribute"
-  - "selected"
+  - 'checkboxes'
+  - 'attribute'
+  - 'selected'
 level: 1
-category: "testing"
+category: 'testing'
 language: javascript
 ---
 

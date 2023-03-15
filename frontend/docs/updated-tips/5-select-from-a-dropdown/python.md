@@ -1,16 +1,16 @@
 ---
-title: "Python"
-id: "5-select-from-a-dropdown-python"
+title: 'Python'
+id: '5-select-from-a-dropdown-python'
 slug: python/
 number: 5
 publish_date: 2019-08-09
 last_update: 
   date: 2023-03-02
 tags:
-  - "dropdown"
-  - "forms"
+  - 'dropdown'
+  - 'forms'
 level: 1
-category: "testing"
+category: 'testing'
 language: python
 ---
 

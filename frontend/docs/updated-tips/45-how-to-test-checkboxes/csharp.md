@@ -1,17 +1,17 @@
 ---
-title: "CSharp"
-id: "45-checkboxes-csharp"
+title: 'CSharp'
+id: '45-checkboxes-csharp'
 slug: csharp/
 number: 45
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "checkboxes"
-  - "attribute"
-  - "selected"
+  - 'checkboxes'
+  - 'attribute'
+  - 'selected'
 level: 1
-category: "testing"
+category: 'testing'
 language: csharp
 ---
 

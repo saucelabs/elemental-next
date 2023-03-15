@@ -1,16 +1,16 @@
 ---
-title: "CSharp"
-id: "5-select-from-a-dropdown-csharp"
+title: 'CSharp'
+id: '5-select-from-a-dropdown-csharp'
 slug: csharp/
 number: 5
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "dropdown"
-  - "forms"
+  - 'dropdown'
+  - 'forms'
 level: 1
-category: "testing"
+category: 'testing'
 language: csharp
 ---
 

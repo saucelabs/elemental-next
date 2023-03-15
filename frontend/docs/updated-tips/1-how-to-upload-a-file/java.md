@@ -1,21 +1,33 @@
 ---
-title: "How To Upload a File"
-slug: "1-upload-a-file"
+title: 'Java'
+id: '1-upload-a-file-java'
+slug: java/
 number: 1
-publish_date: 2015-11-07
+publish_date: 2023-02-17
+last_update:
+  date: 2023-03-12
 tags:
-  - "file"
-  - "upload"
-  - "file upload"
+  - 'file'
+  - 'upload'
+  - 'file upload'
 level: 1
-category: "testing"
+category: 'testing'
+language: java
 ---
 
-## The Problem
+# How to upload a file
+
+
+## Intro
 
 Uploading a file is a common piece of functionality found on the web. But when trying to automate it you get prompted with a with a dialog box that is just out of reach for Selenium.
 
+
+## Use Case
+
 In these cases people often look to a third-party tool to manipulate this window (e.g., [AutoIt](http://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/)). While this can help solve your short-term need, it sets you up for failure later by chaining you to a specific platform (e.g., AutoIt only works on Windows), effectively limiting your ability to test this functionality on different browser & operating system combinations.
+
+
 
 ## A Solution
 
@@ -23,7 +35,7 @@ A work-around for this problem is to side-step the system dialog box entirely. W
 
 Let's step through an example.
 
-## An Example
+## Example
 
 __NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__
 
@@ -87,7 +99,6 @@ We create an `uploadFile()` method and annotate it with `@Test` so it is run as 
 
 Next we visit the page with the upload form, input the string value of `path` (e.g., the full path to the file plus the filename with it's extension), and submit the form. After the file is uploaded to the page it will display the filename it just processed. We use this text to perform our assertion (making sure the uploaded file is what we expect).
 
-
 ## Expected Behavior
 
 When we save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
@@ -98,11 +109,15 @@ When we save this file and run it (e.g., `mvn clean test` from the command-line)
 + Page displays the uploaded filename
 + Grab the text from the page and assert it's what we expect
 + Close the browser
-
-## Outro
+## Summary
 
 This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or Sauce Labs), then you'll want to have a look at [`FileDetector`](https://github.com/SeleniumHQ/selenium/blob/ab1e647d0fc8fc39e6b00ae94321ab228b6728f2/java/client/src/org/openqa/selenium/remote/FileDetector.java). You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload).
 
 Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
 
 Happy Testing!
+
+## About The Author
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

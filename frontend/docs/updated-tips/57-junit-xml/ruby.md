@@ -1,6 +1,6 @@
 ---
 title: 'Ruby'
-id: '"57-junit-xml-ruby'
+id: '57-junit-xml-ruby'
 slug: ruby/
 number: 57
 publish_date: 2015-07-14
