@@ -1,6 +1,7 @@
 ---
-title: 'How To Upload a File'
-slug: '1-upload-a-file'
+title: 'Ruby'
+id: "1-upload-a-file-ruby"
+slug: ruby/
 number: 1
 publish_date: 2019-08-09
 last_update: 

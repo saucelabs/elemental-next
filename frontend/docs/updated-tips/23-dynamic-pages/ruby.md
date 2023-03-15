@@ -1,5 +1,5 @@
 ---
-title: 'How to Test Dynamic Pages'
+title: 'Ruby'
 id: '23-dynamic-pages-ruby'
 slug: ruby/
 number: 23

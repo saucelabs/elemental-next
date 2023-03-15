@@ -1,5 +1,5 @@
 ---
-title: 'How To Run Your Tests Headlessly with Chrome'
+title: 'Ruby'
 id: '72-headless-chrome-ruby'
 slug: ruby/
 number: 72

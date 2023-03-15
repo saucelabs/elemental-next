@@ -1,5 +1,5 @@
 ---
-title: 'Using a Page Object'
+title: 'Ruby'
 id: '7-use-a-page-object-ruby'
 slug: ruby/
 number: 7

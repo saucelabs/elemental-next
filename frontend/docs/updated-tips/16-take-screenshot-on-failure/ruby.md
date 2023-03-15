@@ -1,5 +1,5 @@
 ---
-title: 'How To Take A Screenshot on Failure'
+title: 'Ruby'
 id: '16-take-screenshot-on-failure-ruby'
 slug: ruby/
 number: 16

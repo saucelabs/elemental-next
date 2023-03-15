@@ -1,5 +1,5 @@
 ---
-title: 'How To Test HTML5 Drag and Drop'
+title: 'Ruby'
 id: '39-drag-and-drop-ruby'
 slug: ruby/
 number: 39

@@ -1,5 +1,5 @@
 ---
-title: 'How To Test For Disabled Elements'
+title: 'Ruby'
 id: '40-disabled-element-ruby'
 slug: ruby/
 number: 40
