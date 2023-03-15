@@ -1,6 +1,6 @@
 ---
 title: "Python"
-id: "29-chrome-driver"
+id: "29-chrome-driver-python"
 slug: python/
 number: 29
 publish_date: 2016-11-26
