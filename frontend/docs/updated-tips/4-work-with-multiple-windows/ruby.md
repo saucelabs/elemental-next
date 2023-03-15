@@ -1,6 +1,7 @@
 ---
-title: 'How To Work with Multiple Windows'
-slug: '4-work-with-multiple-windows'
+title: 'Ruby'
+id: '4-work-with-multiple-windows-ruby'
+slug: ruby/
 number: 4
 publish_date: 2015-08-21
 last_update:

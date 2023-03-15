@@ -1,23 +1,24 @@
 ---
-title: 'Where To Look for Selenium Information'
-slug: '36-available-resources'
+title: 'Selenium Resources'
+id: '36-available-resources'
 number: 36
 publish_date: 2015-10-13
 last_update: 
   date: 2023-02-22
 tags:
-  - "videos"
-  - "talks"
-  - "books"
-  - "chat"
-  - "forums"
-  - "meetups"
-  - "conferences"
-  - "mailing lists"
-  - "resources"
-  - "all the things"
+  - 'videos'
+  - 'talks'
+  - 'books'
+  - 'chat'
+  - 'forums'
+  - 'meetups'
+  - 'conferences'
+  - 'mailing lists'
+  - 'resources'
+  - 'all the things'
 level: 1
 category: 'community'
+language: all
 ---
 
 # Where To Look for Selenium Information

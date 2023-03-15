@@ -1,14 +1,15 @@
 ---
-title: 'How To Work With Hovers'
-slug: '50-hovers'
+title: 'Ruby'
+id: '50-hovers-ruby'
+slug: ruby/
 number: 50
 publish_date: 2015-07-01
 last_update: 
   date: 2023-02-22
 tags:
-  - "hover"
-  - "hovers"
-  - "action builder"
+  - 'hover'
+  - 'hovers'
+  - 'action builder'
 level: 1
 category: 'testing'
 language: ruby

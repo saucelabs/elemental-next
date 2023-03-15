@@ -1,14 +1,16 @@
 ---
-title: "How To Access Basic Auth"
-slug: "13-work-with-basic-auth"
+title: 'Python'
+id: '13-work-with-basic-auth-python'
+slug: python/
 number: 13
 publish_date: 2016-11-17
 last_update: 
   date: 2023-02-22
 tags:
-  - "authentication"
+  - 'authentication'
 level: 1
-category: "testing"
+category: 'testing'
+language: python
 ---
 
 # How To Access Basic Auth

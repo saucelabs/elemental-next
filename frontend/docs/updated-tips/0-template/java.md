@@ -1,9 +1,10 @@
 ---
 title: 'Template Java'
-slug: '0-template'
+id: '0-template-java'
+slug: java/
 number: 0
 publish_date: 2023-02-17
-last_update: 
+last_update:
   date: 2023-02-24
 tags:
   - 'template'
