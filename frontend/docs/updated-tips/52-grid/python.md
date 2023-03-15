@@ -1,17 +1,27 @@
 ---
-title: "How To Use Selenium Grid"
-slug: "52-grid"
+title: "Python"
+id: "52-grid"
+slug: python/
 number: 52
 publish_date: 2016-11-17
+last_update:
+    date: 2023-030-15
 tags:
   - "grid"
   - "selenium grid"
   - "cross browser"
 level: 2
 category: "infrastructure"
+language: python
 ---
 
-## The Problem
+# How To Use Selenium Grid
+
+## Intro
+
+Selenium Grid is part of [the Selenium project](http://www.seleniumhq.org/). It lets you distribute test execution across several machines. You can connect to it with Selenium Remote by specifying the browser, browser version, and operating system you want. You specify these values through Selenium Remote's `Capabilities`.
+
+## Use Case
 
 If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using a third-party solution like [Sauce Labs](https://saucelabs.com/) then what do you do?
 
@@ -21,17 +31,16 @@ With [Selenium Grid](https://github.com/SeleniumHQ/selenium/wiki/Grid2) you can 
 
 ## A brief Selenium Grid primer
 
-Selenium Grid is part of [the Selenium project](http://www.seleniumhq.org/). It lets you distribute test execution across several machines. You can connect to it with Selenium Remote by specifying the browser, browser version, and operating system you want. You specify these values through Selenium Remote's `Capabilities`.
-
 There are two main elements to Selenium Grid -- a hub, and nodes. First you need to stand up a hub. Then you can connect (or "register") nodes to that hub. Nodes are where your tests will run, and the hub is responsible for making sure your tests end up on the right one (e.g., the machine with the operating system and browser you specified in your test).
 
-Let's step through an example.
 
-## An Example
+##  Example
+
+`scripts\code needs validation`
 
 ### Part 1: Grid Setup
 
-Selenium Grid comes built into the Selenium Standalone Server. So to get started we'll need to download the latest version of it from [here](http://selenium-release.storage.googleapis.com/index.html).
+Selenium Grid comes built into the Selenium Standalone Server. So to get started we'll need to download the latest version of it from [here](https://www.selenium.dev/downloads/).
 
 Then we need to start the hub.
 
@@ -115,7 +124,7 @@ When we save this file and run it (e.g., `python grid.py` from the command-line)
 + test runs on the new browser instance
 + test completes and the browser closes on the node
 
-## Outro
+## Summary
 
 If you're looking to set up Selenium Grid to work with Internet Explorer or Chrome, be sure to read up on how to set them up since there is additional configuration required for each. And if you run into issues, be sure to check out the browser driver documentation for the browser you're working with:
 
@@ -128,3 +137,10 @@ If you're looking to set up Selenium Grid to work with Internet Explorer or Chro
 Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
+
