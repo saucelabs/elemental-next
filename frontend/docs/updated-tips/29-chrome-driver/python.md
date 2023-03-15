@@ -1,8 +1,11 @@
 ---
-title: "How To Run Your Tests Locally Against Chrome"
-slug: "29-chrome-driver"
+title: "Python"
+id: "29-chrome-driver"
+slug: python/
 number: 29
 publish_date: 2016-11-26
+last_update:
+  date: 2023-03-09
 tags:
   - "drivers"
   - "chromedriver"
@@ -10,21 +13,28 @@ tags:
   - "different browsers"
 level: 2
 category: "setup"
+language: python
 ---
 
-## The Problem
+# How To Run Your Tests Locally Against Chrome
+
+## Intro
 
 It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started.
+
+## Use Case
+
+WebDriver works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser. 
+
+ChromeDriver is Google Chrome's browser driver. In this specific use case is of using WebDriver with Chrome in testing locally. 
 
 ## A Solution
 
 With the introduction of WebDriver (circa Selenium 2) a lot of benefits were realized (e.g. more effective & faster browser execution, no more single host origin issues, etc). But with it came some architectural & configuration differences that may not be widely known. Namely -- browser drivers.
 
-WebDriver works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser.
+Let's step through an example using [ChromeDriver](https://chromedriver.chromium.org/downloads).
 
-Let's step through an example using [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/).
-
-## An Example
+## Example
 
 Before starting, we'll need to download the latest ChromeDriver binary executable from [here](http://chromedriver.storage.googleapis.com/index.html). Once we have it we'll need to tell Selenium where it is. And there are three ways to do this:
 
@@ -72,7 +82,7 @@ if __name__ == "__main__":
 
 When we save this file and run it (e.g., `python chrome.py`) it will launch an instance of Chrome, visit the homepage of [the-internet](http://the-internet.herokuapp.com/), and assert that the page title loaded.
 
-## Another Example
+## Example 2
 
 Alternatively, we can launch ChromeDriver from the command-line...
 
@@ -116,7 +126,7 @@ When we save this file and run it (e.g., `python chrome.py` from the command-lin
 + Chrome closes
 + ChromeDriver continues to run until stopped
 
-## Outro
+## Summary
 
 Hopefully this tip has helped you get a better handle on how WebDriver works with various browsers and saved you some time in your configuration setup. But keep in mind that no two browser drivers are alike, so be sure to check out the documentation for the browser you care about to find out it's specific requirements:
 
@@ -130,3 +140,9 @@ Hopefully this tip has helped you get a better handle on how WebDriver works wit
 + [SafariDriver for Safari 10](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
