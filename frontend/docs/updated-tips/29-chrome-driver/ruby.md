@@ -1,6 +1,6 @@
 ---
 title: How To Run Your Tests Locally Against Chrome
-id: 29-chrome-driver
+id: 29-chrome-driver-ruby
 slug: ruby/
 number: 29
 publish_date: 2015-08-25
