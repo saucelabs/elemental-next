@@ -1,5 +1,5 @@
 ---
-title: 'Template Python'
+title: 'Python'
 id: '0-template-python'
 slug: python/
 number: 0

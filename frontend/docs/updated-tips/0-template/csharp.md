@@ -1,5 +1,5 @@
 ---
-title: 'Template Csharp'
+title: 'CSharp'
 id: '0-template-csharp'
 slug: csharp/
 number: 0
