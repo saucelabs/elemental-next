@@ -30,7 +30,7 @@ A simple way to gain insight into your test failures is to capture screenshots a
 
 Here is an example.
 
-## Example(s)
+## Example
 
 Let's start by including our requisite libraries (`selenium-webdriver` to drive the browser and `rspec/expectations` & `RSpec::Matchers` for our assertion) and wire up some simple `setup` and `teardown` methods.
 
