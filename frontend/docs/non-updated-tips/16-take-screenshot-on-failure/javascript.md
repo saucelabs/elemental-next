@@ -1,16 +1,16 @@
 ---
-title: "How To Take A Screenshot on Failure"
-id: '16-take-screenshot-on-failure'
-slug: "javascript/"
+title: How To Take A Screenshot on Failure
+id: 16-take-screenshot-on-failure-javascript
+slug: javascript/
 number: 16
 publish_date: 2015-07-08
 last_update: 
   date: 2023-03-09
 tags:
-  - "reporting"
-  - "screenshot"
+  - reporting
+  - screenshot
 level: 2
-category: "reporting"
+category: reporting
 language: javascript
 ---
 
@@ -18,19 +18,19 @@ language: javascript
 
 ## Intro
 
-When your tests fail, which happens often, how do you capture the failure?
+With browser tests it can often be challenging to track down the issue that caused a failure.
 
 ## Use Case
 
-With browser tests it can often be challenging to track down the issue that caused a failure. By itself a failure message along with a stack trace is hardly enough to go on especially when you run the test again and it passes.
+By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
 ## A Solution
 
-A simple way to gain insight into your test failures is to capture screenshots at the moment of failure. Thankfully, it's a quick and easy thing to add to your tests.
+A simple way to gain insight into your test failures is to capture screenshots at the moment of failure. This is something that is fairly quick to add to your tests, and allows you to review these error messages.
 
-Let's try an example.
+Here is an example.
 
-## An Example
+## Example
 
 Let's start by importing our requisite libraries and wire up some setup and teardown methods.
 
@@ -84,11 +84,11 @@ When we save this file and run it (`mocha` from the command-line) here is what w
 + Capture a screenshot in the current working directory
 + Close the browser
 
-## Outro
+## Summary
 
-In this tip, we have learned that you can capture the moment of testing failure with a screenshot and this is something that can be added to your tests.
+For more info on `strftime` (a.k.a. String Formatted Time) go [here](http://apidock.com/ruby/DateTime/strftime).
 
-Happy Testing!
+But if you want truly unique filenames, then you should use a unique ID in the filename instead of a timestamp (e.g., something like [`uuid`](https://github.com/assaf/uuid)). This will prevent screenshots from getting overwritten when you have two (or more) tests taking screenshots at the same time.
 
 ## About The Author
 
