@@ -12,6 +12,7 @@ tags:
   - "new window"
 level: 2
 category: "testing"
+language: python
 ---
 
 # How To Work with Multiple Windows
@@ -117,6 +118,6 @@ Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info
 
 Happy Testing!
 
-## About The Summary
+## About The Author
 
 Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
