@@ -1,6 +1,7 @@
 ---
-title: 'How To Prepare Your Tests for Continuous Integration'
-slug: '"57-junit-xml'
+title: 'Ruby'
+id: '57-junit-xml-ruby'
+slug: ruby/
 number: 57
 publish_date: 2015-07-14
 last_update: 

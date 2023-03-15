@@ -1,5 +1,5 @@
 ---
-title: 'Retrying Test Actions'
+title: 'Ruby'
 id: '10-retry-test-actions-ruby'
 slug: ruby/
 number: 10

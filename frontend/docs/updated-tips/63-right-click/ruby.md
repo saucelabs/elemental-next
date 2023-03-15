@@ -1,19 +1,19 @@
 ---
-title: "How To Right-click"
-id: "63-right-click-ruby"
+title: 'Ruby'
+id: '63-right-click-ruby'
 slug: ruby/
 number: 63
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-06
 tags:
-  - "right-click"
-  - "right click"
-  - "context menu"
-  - "action builder"
-  - "context click"
+  - 'right-click'
+  - 'right click'
+  - 'context menu'
+  - 'action builder'
+  - 'context click'
 level: 2
-category: "testing"
+category: 'testing'
 language: ruby
 ---
 

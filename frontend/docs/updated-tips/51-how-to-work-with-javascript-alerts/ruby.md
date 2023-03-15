@@ -1,6 +1,7 @@
 ---
-title: 'How To Work With JavaScript Alerts'
-slug: '51-javascript-alerts'
+title: 'Ruby'
+id: '51-javascript-alerts-ruby'
+slug: ruby/
 number: 51
 publish_date: 2019-08-09
 last_update: 

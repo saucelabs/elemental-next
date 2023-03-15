@@ -1,18 +1,20 @@
 ---
-title: "How To Press Keyboard Keys"
-slug: "61-keyboard-keys"
+title: 'Python'
+id: '61-keyboard-keys-python'
+slug: python/
 number: 61
 publish_date: 2016-11-19
 last_update:
     date: 2023-03-03
 tags:
-  - "keyboard"
-  - "keys"
-  - "key presses"
-  - "tab"
-  - "enter"
+  - 'keyboard'
+  - 'keys'
+  - 'key presses'
+  - 'tab'
+  - 'enter'
 level: 1
-category: "testing"
+category: 'testing'
+language: python
 ---
 
 # How To Press Keyboard Keys

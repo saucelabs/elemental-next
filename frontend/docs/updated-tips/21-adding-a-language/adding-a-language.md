@@ -1,6 +1,6 @@
 ---
-title: 'How To Pick a Programming Language'
-slug: '21-choosing-a-language'
+title: 'Choosing a Programming Language'
+id: '21-choosing-a-language'
 number: 21
 publish_date: 2015-10-13
 last_update: 
@@ -10,6 +10,7 @@ tags:
   - 'frameworks'
 level: 1
 category: 'strategy'
+language: all
 ---
 
 # How To Pick A Programming Language

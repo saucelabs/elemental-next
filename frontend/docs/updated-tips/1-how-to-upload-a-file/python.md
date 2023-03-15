@@ -1,16 +1,18 @@
 ---
-title: "How To Upload a File"
-slug: "1-upload-a-file"
+title: 'Python'
+id: '1-upload-a-file-python'
+slug: python/
 number: 1
 publish_date: 2016-09-13
 last_update: 
   date: 2023-02-22
 tags:
-  - "file"
-  - "upload"
-  - "file upload"
+  - 'file'
+  - 'upload'
+  - 'file upload'
 level: 1
-category: "testing"
+category: 'testing'
+language: python
 ---
 
 # How To Upload A File

@@ -1,5 +1,5 @@
 ---
-title: 'How To Download a File Without a Browser'
+title: 'Ruby'
 id: '8-download-a-file-revisited-ruby'
 slug: ruby/
 number: 8

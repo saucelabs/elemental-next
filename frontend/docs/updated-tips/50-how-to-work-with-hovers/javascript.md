@@ -1,16 +1,17 @@
 ---
-title: "How To Work With Hovers"
-slug: "50-hovers"
+title: 'Javascript'
+id: '50-hovers-javascript'
+slug: javascript/
 number: 50
 publish_date: 2019-08-09
 last_update: 
   date: 2023-02-22
 tags:
-  - "hover"
-  - "hovers"
-  - "action builder"
+  - 'hover'
+  - 'hovers'
+  - 'action builder'
 level: 1
-category: "testing"
+category: 'testing'
 language: javascript
 ---
 

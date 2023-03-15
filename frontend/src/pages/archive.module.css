@@ -2,7 +2,6 @@
     margin-bottom: 40px;
 }  
 
-
 .heading    {
     font-style: normal;
     font-weight: 500;
@@ -11,7 +10,14 @@
     color: #292620; 
 }
 
-
+.tipsheader {
+    font-weight: 500; 
+    font-size: 48px;
+    line-height: 56px;
+    padding-top: 180px;
+    padding-left: 350px;
+    color: #292620;;
+}
 
 a:visited {
     color: inherit;
@@ -33,17 +39,13 @@ a:visited {
 
 }
 
-/* .card:first-child{
-    margin-top: 200px; 
-} */
-
 .text   {
     position: absolute;
     width: 654px;
     height: 38px;
     
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 16px;
     line-height: 19px;
 

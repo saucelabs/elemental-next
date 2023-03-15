@@ -8,11 +8,12 @@ tags:
   - "downloading"
 level: 2
 category: "testing"
+language: JavaScript
 ---
 
 ## The Problem
 
-In a [previous chapter](#chapter2) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
+In a [previous tip](http://elementalselenium.com/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
 
 While this works it requires a custom configuration that is inconsistent from browser to browser.
 
@@ -26,7 +27,8 @@ Let's dig with an example.
 
 ## An Example
 
-To start things off let's pull in our requisite libraries and wire up some test setup and teardown methods.
+To start things off let's pull in our requisite libraries and wire up some test setup and teardown methods. Remember to run
+`npm install selenium-webdriver` and `npm install -g mocha` to execute the code examples.
 
 ```javascript
 // filename: test/download-v2.spec.js
@@ -39,7 +41,7 @@ describe("File download v2", function() {
   let driver;
 
   beforeEach(async function() {
-    driver = await new Builder().forBrowser("chrome").build();
+    driver = await new Builder().forBrowser("firefox").build();
   });
 
   afterEach(async function() {
@@ -64,7 +66,7 @@ Next we'll want to write a helper function to create the options we'll use to pe
 // ...
 ```
 
-The helper function (e.g., `getHttpOptions`) receives a URL, parses it, and use it to create and return an object with the necessary values.
+The helper function (e.g., `getHttpOptions`) receives a URL, parses it, and uses it to create and return an object with the necessary values.
 
 Now we're ready to wire up our test.
 
@@ -89,6 +91,10 @@ It's just a simple matter of visiting the page with download links, grabbing a U
 
 Once we receive the response we check its header for the `content-type` and `content-length` to make sure the file is the correct type and not empty.
 
+To run the complete code example, type `mocha --timeout 30000 download-v2.spec.js`. `mocha` runs the test and it has a default timeout
+of 2 seconds, which is a little to short to open a browser and perform actions, therefore we increase the timeout a bit more.
+
+
 ## Expected Behavior
 
 When you save this and run it (e.g., `mocha` from the command-line) here is what will will happen:
@@ -106,3 +112,9 @@ When you save this and run it (e.g., `mocha` from the command-line) here is what
 Compared to the browser specific configuration with Selenium this is hands down a leaner, faster, and more maintainable approach. But unfortunately it only works with files served up from a dedicated URL. So if you're trying to test file downloads that are generated in-memory as part of the browser session (a.k.a. not accessible from a URL) then you'll need to reach for the browser specific Selenium configuration.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
