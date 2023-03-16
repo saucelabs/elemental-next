@@ -1,5 +1,5 @@
 ---
-title: How To Right-click
+title: Python
 id: 63-right-click-python
 slug: python/
 number: 63
