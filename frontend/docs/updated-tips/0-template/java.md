@@ -1,5 +1,5 @@
 ---
-title: 'Template Java'
+title: 'Java'
 id: '0-template-java'
 slug: java/
 number: 0

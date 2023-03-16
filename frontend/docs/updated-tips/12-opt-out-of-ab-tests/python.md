@@ -1,23 +1,29 @@
 ---
-title: "How To Opt-out of A/B Tests"
-slug: "12-opt-out-of-ab-tests"
+title: "Python"
+id: "12-opt-out-of-ab-tests-python"
+slug: /python
 number: 12
 publish_date: 2016-11-19
+last_update:
+  date: 2023-03-14
 tags:
   - "ab tests"
   - "optimizely"
-  - "opt-out"
+  - "opt-out
 level: 2
 category: "testing"
+language: python
 ---
 
-## The Problem
+# How To Opt-out of A/B Tests
+
+## Intro
 
 Occasionally when running tests you may see unexpected behavior due to [A/B testing (a.k.a. split testing)](http://en.wikipedia.org/wiki/A/B_testing) of the application you're working with.
 
 In order to keep your tests running without issue we need a clean way to opt-out of these split tests.
 
-## A quick primer on A/B testing
+## Use Case
 
 Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement.
 
@@ -29,7 +35,7 @@ Once the variants are configured, they are put into rotation, and the experiment
 
 Thankfully there are some standard opt-out mechanisms built into A/B testing platforms. They tend to come in the form of an appended URL or forging a cookie. Let's dig in with an example of each approach with a popular A/B testing platform, [Optimizely](https://www.optimizely.com/).
 
-## An Example
+## Example
 
 Our example page is from [the-internet](http://github.com/tourdedave/the-internet) and can be seen [here](http://the-internet.herokuapp.com/abtest). There are three different versions of the page that are available. On each page the heading text will vary:
 
@@ -37,12 +43,13 @@ Our example page is from [the-internet](http://github.com/tourdedave/the-interne
 + Variation 1: `A/B Test Variation 1`
 + Opt-out: `No A/B Test`
 
-Let's kick things off by loading our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+Let's start things off by loading our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
 ```python
 # filename: ab_test_opt_out.py
 import unittest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 class ABTestOptOut(unittest.TestCase):
@@ -55,7 +62,7 @@ class ABTestOptOut(unittest.TestCase):
 # ...
 ```
 
-Now let's wire up our first test to step through loading the split testing page and verifying that the text changes after we forge an opt-out cookie.
+Now let's begin our first test to step through loading the split testing page and verifying that the text changes after we forge an opt-out cookie.
 
 ```python
 # filename: ab_test_opt_out.py
@@ -63,11 +70,11 @@ Now let's wire up our first test to step through loading the split testing page 
     def test_forge_cookie_on_target_page(self):
         driver = self.driver
         driver.get('http://the-internet.herokuapp.com/abtest')
-        heading_text = driver.find_element_by_tag_name('h3').text
+        heading_text = driver.find_element(By.TAG_NAME,'h3').text
         assert heading_text in ['A/B Test Variation 1', 'A/B Test Control']
         driver.add_cookie({'name' : 'optimizelyOptOut', 'value' : 'true'})
         driver.refresh()
-        heading_text = driver.find_element_by_tag_name('h3').text
+        heading_text = driver.find_element(By.TAG_NAME,'h3').text
         assert heading_text == 'No A/B Test'
 
 # ...
@@ -85,7 +92,7 @@ We could also load the opt-out cookie before navigating to this page.
         driver.get('http://the-internet.herokuapp.com')
         driver.add_cookie({'name' : 'optimizelyOptOut', 'value' : 'true'})
         driver.get('http://the-internet.herokuapp.com/abtest')
-        heading_text = driver.find_element_by_tag_name('h3').text
+        heading_text = driver.find_element(By.TAG_NAME,'h3').text
         assert heading_text == 'No A/B Test'
 
 # ...
@@ -96,11 +103,11 @@ Here we are navigating to the main page of the site first and then adding the op
 ```python
 # filename: ab_test_opt_out.py
     def test_url_parameter(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true')
-        driver.switch_to.alert.dismiss()
-        heading_text = driver.find_element_by_tag_name('h3').text
-        assert heading_text == 'No A/B Test'
+            driver = self.driver
+            driver.get('http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true')
+            driver.switch_to.alert.dismiss()
+            heading_text = driver.find_element(By.TAG_NAME,'h3').text
+            assert heading_text == 'No A/B Test'
 
 if __name__ == "__main__":
     unittest.main()
@@ -119,6 +126,14 @@ When we save this file and run it (e.g., `python ab_test_opt_out.py` from the co
 + Confirm that the session is opted out of the split test
 + Close the browser
 
-## Outro
+## Summary
+
+Hopefully this tip was helpful in guiding you in different methods of how to opt out of split tests.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
