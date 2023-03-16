@@ -1,7 +1,7 @@
 ---
 title: "Python"
 id: "12-opt-out-of-ab-tests-python"
-slug: /python
+slug: python/
 number: 12
 publish_date: 2016-11-19
 last_update:
