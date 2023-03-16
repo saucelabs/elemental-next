@@ -24,7 +24,7 @@ With browser tests it can often be challenging to track down the issue that caus
 
 By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
-## Solution
+## A Solution
 
 A simple way to gain insight into your test failures is to capture screenshots at the moment of failure. This is something that is fairly quick to add to your tests, and allows you to review these error messages.
 
