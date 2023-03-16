@@ -1,5 +1,5 @@
 ---
-title: Implicit vs Explicit Waits
+title: Ruby
 id: 47-waiting-ruby
 slug: ruby/
 number: 47
