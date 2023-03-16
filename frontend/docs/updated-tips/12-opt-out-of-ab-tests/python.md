@@ -1,17 +1,17 @@
 ---
-title: "Python"
-id: "12-opt-out-of-ab-tests-python"
-slug: /python
+title: Python
+id: 12-opt-out-of-ab-tests-python
+slug: python/
 number: 12
 publish_date: 2016-11-19
 last_update:
   date: 2023-03-14
 tags:
-  - "ab tests"
-  - "optimizely"
-  - "opt-out
+  - ab tests
+  - optimizely
+  - opt-out
 level: 2
-category: "testing"
+category: testing
 language: python
 ---
 
