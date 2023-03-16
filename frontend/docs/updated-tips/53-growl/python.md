@@ -1,30 +1,40 @@
 ---
-title: "How To Add Growl Notifications To Your Tests"
-slug: "53-growl"
+title: Python
+id: how-to-add-growl-notifications-python
+slug: python/
 number: 53
 publish_date: 2016-11-22
+last_update:
+  date: 2023-03-03
 tags:
-  - "jquery"
-  - "growl"
-  - "growl notifications"
-  - "jquery-growl"
+  - jquery
+  - growl
+  - growl notifications
+  - jquery-growl
 level: 2
-category: "reporting"
+category: reporting
+language: python
 ---
 
-## The Problem
+# How To Add Growl Notifications To Your Tests
+
+## Intro
 
 Good test reports are a fundamental component of successful test automation. But running down a test failure by looking at a test report can be a real pain sometimes.
 
 Leaving you with no choice but to roll up your sleeves and get your hands dirty with debug statements, or step through things piece by piece -- all for the sake of trying to track down a transient issue.
 
+## Use Case
+
+By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing. 
+
 ## A Solution
 
-By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing. This way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs 
+With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs 
 
 Let's step through an example of how to set this up.
 
-## An Example
+## Example
 
 First we'll need to pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import time` to add a delay in our script so we're able to see the notification messages), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
@@ -73,6 +83,8 @@ Now for our test. We'll need to visit the page we want to display notifications 
             "href=http://the-internet.herokuapp.com/css/jquery.growl.css "
             "type=text/css />');")
 
+        time.sleep(5)
+
         # jquery-growl w/ no frills
         driver.execute_script("$.growl({ title: 'GET', message: '/' });")
 
@@ -101,7 +113,7 @@ When we save this file and run it (e.g., `python growl.py`) here is what will ha
 + Notification messages disappear
 + Browser closes
 
-## Outro
+## Summary
 
 In order to use this approach, you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay (unless you can get your team to add it to the application under test).
 
@@ -110,3 +122,9 @@ In a future tip I'll step through how to access Selenium logging output so we ca
 I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/austenjt), [GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl with Selenium.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
