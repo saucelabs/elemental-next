@@ -1,5 +1,5 @@
 ---
-title: How To Handle Exceptions
+title: Ruby
 id: 44-exception-handling-ruby
 slug: ruby/
 number: 44
