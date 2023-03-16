@@ -28,17 +28,16 @@ Running your Selenium tests on a different browser tends to require additional s
 
 ## Example
 
-The prebuilt SafariDriver extension can be downloaded from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.48/) (the link is listed in [the __Getting Started__ section of the SafariDriver Selenium Wiki](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver#getting-started)). Download it, double-click it, and click `Trust` when prompted.
+Run the following command on the terminal:
+
+`$  /usr/bin/safaridriver --enable`
 
 After that, make sure it's enabled. To do that:
 
 1. open `Safari`
-2. go to `Preferences`
-3. click on the `Extensions` tab
-4. Make sure `Enable WebDriver` is checked
-5. Close `Safari`
+2. go to `Develop`
+3. click on `Allow Remote Automations` 
 
-<img src='/img/safari-extension.png'/>
 
 Now if we open up an interactive Ruby terminal (e.g., `irb`) and launch a Selenium instance, here's what we'd see.
 
