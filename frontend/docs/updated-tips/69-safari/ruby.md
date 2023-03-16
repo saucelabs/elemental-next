@@ -47,8 +47,6 @@ irb(main):001:0> require 'selenium-webdriver'
 irb(main):002:0> driver = Selenium::WebDriver.for :safari
 ```
 
-<img src='/img/safari-success.png'/>
-
 A successful communication between Safari and the Selenium Driver extension has occurred.
 
 Now let's wire up a simple test so we can see that everything works as expect.
