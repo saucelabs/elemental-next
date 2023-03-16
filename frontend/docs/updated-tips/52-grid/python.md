@@ -36,7 +36,7 @@ There are two main elements to Selenium Grid -- a hub, and nodes. First you need
 
 ##  Example
 
-`scripts\code needs validation`
+`example needs validation`
 
 ### Part 1: Grid Setup
 
