@@ -1,5 +1,5 @@
 ---
-title: 'Template Ruby'
+title: 'Ruby'
 id: '0-template-ruby'
 slug: ruby/
 number: 0
