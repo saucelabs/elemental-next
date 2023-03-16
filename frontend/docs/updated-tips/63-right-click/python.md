@@ -1,25 +1,34 @@
 ---
-title: "How To Right-click"
-slug: "63-right-click"
+title: How To Right-click
+id: 63-right-click-python
+slug: python/
 number: 63
 publish_date: 2016-11-20
+last_update:
+  date: 2023-03-15
 tags:
-  - "right-click"
-  - "right click"
-  - "context menu"
-  - "action builder"
-  - "context click"
+  - right-click
+  - right click
+  - context menu
+  - action builder
+  - context click
 level: 2
-category: "testing"
+category: testing
+language: python
 ---
 
-## The Problem
+# How To Right-Click
+
+## Intro
+
+By leveraging Selenium's Action Builder (a.k.a. [ActionChains](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains) in the Selenium Python bindings) we can issue a right-click command (a.k.a. a [`context_click`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.context_click)).
+
+
+## Use Case
 
 Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
 
 ## A Solution
-
-By leveraging Selenium's Action Builder (a.k.a. [ActionChains](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains) in the Selenium Python bindings) we can issue a right-click command (a.k.a. a [`context_click`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.context_click)).
 
 We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`send_keys`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.send_keys) command).
 
@@ -27,7 +36,7 @@ __NOTE: For a full write-up on working with keyboard keys in Selenium, see [tip 
 
 Let's dig in with an example.
 
-## An Example
+## Example
 
 Let's start by pulling in our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
 
@@ -37,6 +46,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 
 class RightClick(unittest.TestCase):
@@ -59,7 +69,7 @@ We'll use an example from [the-internet](https://github.com/tourdedave/the-inter
     def test_example_1(self):
         driver = self.driver
         driver.get('http://the-internet.herokuapp.com/context_menu')
-        menu_area = driver.find_element_by_id('hot-spot')
+        menu_area = driver.find_element(By.ID,'hot-spot')
         ActionChains(driver).context_click(
             menu_area).send_keys(
             Keys.ARROW_DOWN).send_keys(
@@ -85,8 +95,14 @@ When we save this file and run it (e.g., `python right_click.py`) from the comma
 + Assert that the text from the alert is what we expect
 + Close the browser
 
-## Outro
+## Summary
 
 To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with keyboard keys and JavaScript alerts in your Selenium tests, check out tips [61](/tips/61-keyboard-keys) and [51](/tips/51-javascript-alerts).
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
