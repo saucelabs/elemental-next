@@ -1,5 +1,5 @@
 ---
-title: "How To Opt-out of A/B Tests"
+title: "Javascript"
 id: '12-opt-out-of-ab-tests-javascript'
 slug: "javascript/"
 number: 12
