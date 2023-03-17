@@ -59,7 +59,7 @@ def run
 end
 ```
 
-Now we're ready to wire up our test.
+Now we're ready to write up our test.
 
 It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a `HEAD` request with it.
 

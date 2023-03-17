@@ -1,17 +1,27 @@
 ---
-title: "How To Work with Multiple Windows"
-slug: "4-work-with-multiple-windows"
+title: 'Python'
+id: '4-work-with-multiple-windows-python'
+slug: /python
 number: 4
 publish_date: 2016-11-14
+last_update: 
+  date: 2023-03-14
 tags:
   - "windows"
   - "multiple windows"
   - "new window"
 level: 2
 category: "testing"
+language: python
 ---
 
-## The Problem
+# How To Work with Multiple Windows
+
+## Intro
+
+This tip will explain how to work with multiple windows in Selenium and switch between them. 
+
+# Use Case
 
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
@@ -19,7 +29,7 @@ On the face of it, this is a pretty straightforward concept. But lurking within 
 
 Let's step through a couple of examples to demonstrate.
 
-## An Example
+## Example
 
 First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
@@ -27,6 +37,7 @@ First we'll need to pull in our requisite libraries (`import unittest` for our t
 # filename: new_window.py
 import unittest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 class Windows(unittest.TestCase):
@@ -47,10 +58,10 @@ Now let's write a test that exercises new window functionality from an applicati
     def test_example_1(self):
         driver = self.driver
         driver.get('http://the-internet.herokuapp.com/windows')
-        driver.find_element_by_css_selector('.example a').click()
-        driver.switch_to_window(driver.window_handles[0])
+        driver.find_element(By.CSS_SELECTOR,'.example a').click()
+        driver.switch_to.window(driver.window_handles[0])
         assert driver.title != "New Window", "title should not be New Window"
-        driver.switch_to_window(driver.window_handles[-1])
+        driver.switch_to.window(driver.window_handles[-1])
         assert driver.title == "New Window", "title should be New Window"
 
 # ...
@@ -62,7 +73,7 @@ While this may seem like a good approach, it can present problems later. That's 
 
 Here's a more resilient approach. One that will work across all browsers.
 
-## A Better Example
+## Example 2
 
 ```python
 # filename: new_window.py
@@ -72,14 +83,14 @@ Here's a more resilient approach. One that will work across all browsers.
         driver.get('http://the-internet.herokuapp.com/windows')
 
         first_window = driver.window_handles[0]
-        driver.find_element_by_css_selector('.example a').click()
+        driver.find_element(By.CSS_SELECTOR,'.example a').click()
         all_windows = driver.window_handles
         for window in all_windows:
             if window != first_window:
                 new_window = window
-        driver.switch_to_window(first_window)
+        driver.switch_to.window(first_window)
         assert driver.title != "New Window", "title should not be New Window"
-        driver.switch_to_window(new_window)
+        driver.switch_to.window(new_window)
         assert driver.title == "New Window", "title should be New Window"
 
 if __name__ == "__main__":
@@ -101,8 +112,12 @@ Now that we have two windows open we grab all of the window handles and search t
 + Assert that the correct window is in focus
 + Close the browser
 
-## Outro
+## Summary
 
 Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip. And thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the code for this tip and [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
+
+## About The Author
+
+Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.

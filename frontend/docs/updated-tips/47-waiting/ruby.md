@@ -1,32 +1,42 @@
 ---
-title: "Implicit vs Explicit Waits"
-slug: "47-waiting"
+title: Ruby
+id: 47-waiting-ruby
+slug: ruby/
 number: 47
 publish_date: 2015-10-13
+last_update:
+  date: 2023-03-15
 tags:
-  - "waiting"
-  - "dynamic pages"
-  - "explicit waits"
-  - "implicit waits"
+  - waiting
+  - dynamic pages
+  - explicit waits
+  - implicit waits
 level: 2
-category: "testing"
+category: testing
+language: ruby
 ---
 
-## The Problem
+# Implicit vs Explicit Waits
 
-In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages. And the standard advice from the Selenium Core Committers is to use explicit waits (see [tip 23](/tips/23-dynamic-pages) for a walk-through of explicit waits).
+## Intro
 
-This is in lieu of an implicit wait (e.g., setting a default amount of time for Selenium to wait if it can't perform an action immediately) and/or static sleeps. Avoiding static sleeps should be obvious (e.g., don't force your tests to wait a _hard-coded_ amount of time to perform an action -- it's bad news) but what about an implicit wait? Is there still value in using it? Or is it just old news that is likely to be deprecated in a future version of Selenium? And what about using them together?
+In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages.
+
+## Use Case
+
+The standard advice from the Selenium Core Committers is to use explicit waits (see [tip 23](/tips/23-dynamic-pages)==**`!! Internal link needs replacing !!`**== for a walk-through of explicit waits).
+
+This is in lieu of an implicit wait (e.g., setting a default amount of time for Selenium to wait if it can't perform an action immediately) and/or static sleeps. Avoiding static sleeps might be obvious (e.g., don't force your tests to wait a _hard-coded_ amount of time to perform an action -- it's bad news) but what about an implicit wait? Is there still value in using it? Or is it just old news that is likely to be deprecated in a future version of Selenium? And what about using them together?
 
 ## A Solution
 
 The short answer? Use explicit waits.
 
-Adding an implicit wait to your Selenium tests is simple enough and may seem intuitive. But there are cases where it simply doesn't help you like you think it will. And while you can combine explicit and implicit waits together (e.g., override an implicit wait with an explicit wait to make a Selenium action wait longer) -- you shouldn't. More on that later.
+Adding an implicit wait to your Selenium tests is simple enough and may seem intuitive. But there are cases where it simply doesn't help you like you think it will. And while you can combine explicit and implicit waits together (e.g., override an implicit wait with an explicit wait to make a Selenium action wait longer) -- you shouldn't. I'll discuss more on that later.
 
-Let's dig in with some examples.
+Let's continue with some examples.
 
-## An Example
+## Example
 
 Let's step through some examples that deal with [dynamically loaded content](http://the-internet.herokuapp.com/dynamic_loading) available on [the-internet](https://github.com/tourdedave/the-internet). There are two examples, each is constructed slightly differently, but they have the same behavior (e.g., when you click the button on the page a loading bar appears for 5 seconds then disappears and displays some text).
 
@@ -63,8 +73,8 @@ Now let's add our first test.
 run do
   @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/1'
   @driver.find_element(css: '#start button').click
-  @driver.find_element(css: '#finish').displayed?
-  expect(@driver.find_element(css: '#finish').text).to eql('Hello World!')
+  @driver.find_element(id: 'finish').displayed?
+  expect(@driver.find_element(id: 'finish').text).to eql('Hello World!')
 end
 ```
 
@@ -76,8 +86,8 @@ Let's run the same test against the other dynamic loading example.
 run do
   @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/2'
   @driver.find_element(css: '#start button').click
-  @driver.find_element(css: '#finish').displayed?
-  expect(@driver.find_element(css: '#finish').text).to eql('Hello World!')
+  @driver.find_element(id: 'finish').displayed?
+  expect(@driver.find_element(id: 'finish').text).to eql('Hello World!')
 end
 ```
 
@@ -93,8 +103,8 @@ end
 run do
   @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/2'
   @driver.find_element(css: '#start button').click
-  wait_for(10) { @driver.find_element(css: '#finish').displayed? }
-  expect(@driver.find_element(css: '#finish').text).to eql('Hello World!')
+  wait_for(10) { @driver.find_element(id: 'finish').displayed? }
+  expect(@driver.find_element(id: 'finish').text).to eql('Hello World!')
 end
 ```
 
@@ -104,23 +114,24 @@ If we wrap our `.displayed?` action in an explicit wait we are able to override 
 run do
   @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/1'
   @driver.find_element(css: '#start button').click
-  wait_for(10) { @driver.find_element(css: '#finish').displayed? }
-  expect(@driver.find_element(css: '#finish').text).to eql('Hello World!')
+  wait_for(10) { @driver.find_element(id: 'finish').displayed? }
+  expect(@driver.find_element(id: 'finish').text).to eql('Hello World!')
 end
 ```
 
-## On Not Mixing Explicit and Implicit Waits
-
-If your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., transient failures as you scale your test suite). For more details about this, check out [this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978) from [Jim Evans](https://twitter.com/jimevansmusic) (a member of the Selenium core team).
-
-The best thing is to only use explicit waits. We already have them in place, so we can go ahead and simply remove the implicit wait from our `setup` method.
-
-```ruby
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
-```
-
+>### On Not Mixing Explicit and Implicit Waits
+>
+>If your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., transient failures as you scale your test suite). For more details about this, check out [this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978) from [Jim Evans](https://twitter.com/jimevansmusic) (a member of the Selenium core team).
+>
+>The best thing is to only use explicit waits. We already have them in place, so we can go ahead and simply remove the implicit wait from our `setup` method.
+>
+>```ruby
+>def setup
+>  @driver = Selenium::WebDriver.for :firefox
+>end
+>```
+> And there you go!
+>
 ## Expected Behavior
 
 If we save the file and run it (e.g., `ruby waiting.rb` from the command-line) here is what will happen:
@@ -132,10 +143,16 @@ If we save the file and run it (e.g., `ruby waiting.rb` from the command-line) h
 + Assert that the finish text appears on the page
 + Close the browser
 
-## Outro
+## Summary
 
 While an implicit wait can be useful, providing you an initial blanket of cover, it's not ideal for every circumstance. Instead explicit waits are a better tool for the job since they provide more resilient and predictable results (even if they make your test code more verbose).
 
 Regardless of the approach you choose, be sure never to mix implicit and explicit waits together.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

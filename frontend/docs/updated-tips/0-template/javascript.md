@@ -1,5 +1,5 @@
 ---
-title: 'Template Javascript'
+title: 'Javascript'
 id: '0-template-javascript'
 slug: javascript/
 number: 0

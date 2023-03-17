@@ -1,8 +1,11 @@
 ---
-title: "How To Use Safari"
-slug: "69-safari"
+title: "Ruby"
+id: '69-safari-ruby'
+slug: ruby/
 number: 69
 publish_date: 2015-08-25
+last_update:
+  date: 2023-03-13
 tags:
   - "safari"
   - "drivers"
@@ -12,29 +15,29 @@ level: 1
 category: "setup"
 ---
 
-## The Problem
+# Safari
+
+## Intro
+
+Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
+Let's step through how to do it and make sure it's working.
+
+## Use Case
 
 Running your Selenium tests on a different browser tends to require additional setup, and [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver) is no exception.
 
-## A Solution
+## Example
 
-Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
+Run the following command on the terminal:
 
-Let's step through how to do it and make sure it's working.
-
-## An Example
-
-The prebuilt SafariDriver extension can be downloaded from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.48/) (the link is listed in [the __Getting Started__ section of the SafariDriver Selenium Wiki](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver#getting-started)). Download it, double-click it, and click `Trust` when prompted.
+`$  /usr/bin/safaridriver --enable`
 
 After that, make sure it's enabled. To do that:
 
 1. open `Safari`
-2. go to `Preferences`
-3. click on the `Extensions` tab
-4. Make sure `Enable WebDriver` is checked
-5. Close `Safari`
+2. go to `Develop`
+3. click on `Allow Remote Automations` 
 
-<img src='/img/safari-extension.png'/>
 
 Now if we open up an interactive Ruby terminal (e.g., `irb`) and launch a Selenium instance, here's what we'd see.
 
@@ -43,8 +46,6 @@ Now if we open up an interactive Ruby terminal (e.g., `irb`) and launch a Seleni
 irb(main):001:0> require 'selenium-webdriver'
 irb(main):002:0> driver = Selenium::WebDriver.for :safari
 ```
-
-<img src='/img/safari-success.png'/>
 
 A successful communication between Safari and the Selenium Driver extension has occurred.
 
@@ -86,10 +87,16 @@ When you save the file and run it (e.g., `ruby safari.rb` from the command-line)
 + The title of the page is checked to make sure it's what we expect
 + Safari closes
 
-## Outro
+## Summary
 
 Keep in mind that Safari can load without you realizing it (since it doesn't obtain focus when launching with Selenium). When that happens you'll need to switch to Safari in order to see what the test is doing.
 
 And if you're running Safari on a remote node (or set of nodes), you'll need to install and enable the SafariDriver browser extension on each of them.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
