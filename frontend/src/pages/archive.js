@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Layout from '@theme/Layout';
 //import List from '@site/src/components/ArchiveComponents/CardLayout/list';
-//import Card from '@site/src/components/ArchiveComponents/card/card';
+import Card from '@site/src/components/card';
 
 import archiveStyles from './archive.module.css';
 
