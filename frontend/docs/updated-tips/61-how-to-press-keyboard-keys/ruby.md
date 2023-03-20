@@ -13,7 +13,8 @@ tags:
   - 'tab'
   - 'enter'
 level: 1
-category: 'testing'
+category: 
+  - fundamentals
 language: ruby
 ---
 
