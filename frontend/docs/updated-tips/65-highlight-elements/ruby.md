@@ -20,9 +20,7 @@ language: ruby
 
 ## Intro
 
-This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
-
-## Use Case
+>This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
 
 It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
 
@@ -124,4 +122,4 @@ Happy Testing!
 
 ## About The Author
 
-You can also follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).
+You can follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).

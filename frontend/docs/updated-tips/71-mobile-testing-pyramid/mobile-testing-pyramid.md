@@ -14,17 +14,17 @@ category: 'strategy'
 language: all
 ---
 
-# Page Title
-
-The Mobile Testing Pyramid
+# The Mobile Testing Pyramid
 
 ## Intro
 
-This is a guest post from Kwo Ding. You can follow him on LinkedIn [here](https://www.linkedin.com/in/kwoding/). You can also see a recording of him delivering this material at SauceCon ([link](https://www.youtube.com/watch?v=ACP6N1L62AU)).
+>This is a guest post from Kwo Ding. You can follow him on LinkedIn [here](https://www.linkedin.com/in/kwoding/). You can also see a recording of him delivering this material at SauceCon ([link](https://www.youtube.com/watch?v=ACP6N1L62AU)).
 
-## Use Case
+When most people start mobile testing, they tend to start with a few real devices and perform exploratory testing manually. Over time, the number of devices grow, but in order to reach fast feedback and lessen the amount of manual testing, a better usage of available tools is necessary.
 
-Mobile testing involves more complexity when you compare it to web UI testing. A few examples of mobile testing challenges:
+## A Solution
+
+Mobile testing can be complex, and not only has to cover the UI aspects, but also compatibility of hardware, network connectivity, etc. A few examples of mobile testing challenges are:
 
 - Layout issues
 - Device incompatibility
@@ -32,15 +32,7 @@ Mobile testing involves more complexity when you compare it to web UI testing. A
 - Network issues
 - Authentication issues
 
-As you can see, mobile testing not only has to cover the UI aspects, but also the compatibility of hardware, network connectivity, operation system flavors (especially on Android), etc.
-
-When most people start with testing for mobile, they tend to start with getting a few real devices and perform exploratory testing manually. Over time, the number of devices will grow, because actual customer feedback comes in describing that their app does not work properly in certain situations on specific devices. Does this sound familiar?
-
-In order to reach fast feedback and lower amounts of the manual testing, a better usage of available tools is necessary.
-
-## Mobile Test Pyramid
-
-Based on my personal mobile testing experience, I came up with the mobile pyramid strategy. Of course, it was inspired by the test pyramid of Mike Cohn ('Succeeding with Agile', 2009). But this doesn't quite cover the detail that is needed for a good mobile testing strategy.
+Based on my personal mobile testing experience, I came up with the **Mobile Test Pyramid** strategy. Of course, it was inspired by the test pyramid of Mike Cohn ('Succeeding with Agile', 2009). But this doesn't quite cover the detail that is needed for a good mobile testing strategy.
 
 The mobile test pyramid has 3 levels:
 

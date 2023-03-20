@@ -19,21 +19,19 @@ language: python
 
 ## Intro
 
-If you need to work with mouse hovers in your tests it may not be obvious how to do this with Selenium. And a quick search through the documentation can easily leave you befuddled forcing you to go spelunking through StackOverflow for the solution.
+If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution.
 
-## Use Case
+## A Solution
 
 The most popular use case for a hover action is to display additional menu options(submenu.)
 
 By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
 
-## A Solution
+## Example
 
 Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/tourdedave/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them, they display additional user information and a link to view a full profile.
 
-Let's write a test that will hover over the first avatar and make sure that this additional information appears.
-
-## Example
+We're going to write a test that will hover over the first avatar and make sure that this additional information appears.
 
 First we'll include our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
 

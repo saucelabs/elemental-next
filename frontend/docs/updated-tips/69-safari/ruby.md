@@ -20,11 +20,13 @@ category: "setup"
 ## Intro
 
 Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
-Let's step through how to do it and make sure it's working.
 
-## Use Case
+
+## A Solution
 
 Running your Selenium tests on a different browser tends to require additional setup, and [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver) is no exception.
+
+The following example will go through how to do it and make sure it's working.
 
 ## Example
 
