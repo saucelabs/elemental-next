@@ -9,7 +9,8 @@ tags:
   - 'programming language'
   - 'frameworks'
 level: 1
-category: 'strategy'
+category:
+  - resources
 language: all
 ---
 
