@@ -13,7 +13,8 @@ tags:
   - 'waiting'
   - 'explicit waits'
 level: 2
-category: 'testing'
+category: 
+  - fundamentals
 language: ruby
 ---
 
