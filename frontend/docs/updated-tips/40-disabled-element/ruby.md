@@ -11,7 +11,9 @@ tags:
   - 'dropdown lists'
   - 'disabled element'
 level: 2
-category: 'testing'
+category: 
+  - remote
+  - troubleshooting
 language: ruby
 ---
 
