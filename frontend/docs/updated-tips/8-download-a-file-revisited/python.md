@@ -18,9 +18,7 @@ language: python
 
 ## Intro
 
-In a [previous tip](/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
-
-## Use Case
+In a [previous tip](/tips/2-download-a-file) we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
 
 While the previous method works, it requires a custom configuration that is inconsistent from browser to browser.
 

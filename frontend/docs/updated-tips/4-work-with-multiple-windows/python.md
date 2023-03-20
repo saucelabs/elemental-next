@@ -21,15 +21,13 @@ language: python
 
 This tip will explain how to work with multiple windows in Selenium and switch between them. 
 
-# Use Case
-
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
-On the face of it, this is a pretty straightforward concept. But lurking within it is a small gotcha to watch out for that will bite you in some browsers and not others.
+On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.
 
 Let's step through a couple of examples to demonstrate.
 
-## Example
+## Example 1
 
 First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
