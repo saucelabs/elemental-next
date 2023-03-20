@@ -10,7 +10,8 @@ tags:
   - 'headless'
   - 'chrome'
 level: 2
-category: 'infrastructure'
+category: 
+  - remote
 language: ruby
 ---
 
