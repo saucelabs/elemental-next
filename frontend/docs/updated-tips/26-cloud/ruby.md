@@ -13,7 +13,8 @@ tags:
   - 'cloud'
   - 'someone elses grid'
 level: 1
-category: 'infrastructure'
+category: 
+  - troubleshooting
 language: ruby
 ---
 
