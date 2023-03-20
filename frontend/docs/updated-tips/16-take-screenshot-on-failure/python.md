@@ -10,7 +10,8 @@ tags:
   - "reporting"
   - "screenshot"
 level: 2
-category: "reporting"
+category: 
+  - troubleshooting
 language: python
 ---
 
