@@ -10,7 +10,8 @@ tags:
   - 'page object'
   - 'abstraction'
 level: 2
-category: 'patterns'
+category:
+  - tools
 language: ruby
 ---
 
