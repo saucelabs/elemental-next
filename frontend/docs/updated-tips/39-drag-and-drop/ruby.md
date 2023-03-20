@@ -12,7 +12,8 @@ tags:
   - 'javascript'
   - 'bug'
 level: 2
-category: 'testing'
+category: 
+  - remote
 language: ruby
 ---
 
