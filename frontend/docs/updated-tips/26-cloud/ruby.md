@@ -21,18 +21,7 @@ language: ruby
 
 ## Intro
 
-What happens when you need to test features on an older browser? What if you need to test multiple older browsers? Let's explore this use case.
-
-## Use Case
-
-Let's say half of your users use Chrome on Windows, so you use Chrome on your Windows machine to test features. However, not all 
-your users update their Chrome browser at the same time. You might be testing in Chrome version X, and most of your users are in 
-Chrome version X-1.
-
-In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a 
-"legit" version of Windows installed on the VM.
-
-Now what happens if you need to check things on multiple versions of Chrome? Then you're looking at multiple VMs.
+In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a "legit" version of Windows installed on the VM.
 
 Now what about when the other half of your users use Chrome and Safari on macOS, and maybe other operating systems? What if you need
 to run those tests in parallel and scale up the number of VMs available? Then you're looking at provisioning, running, and 

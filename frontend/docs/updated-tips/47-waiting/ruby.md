@@ -22,11 +22,9 @@ language: ruby
 
 In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages.
 
-## Use Case
+But should we be using static sleeps, implicit waits, explicit waits?
 
-The standard advice from the Selenium Core Committers is to use explicit waits (see [tip 23](/tips/23-dynamic-pages)==**`!! Internal link needs replacing !!`**== for a walk-through of explicit waits).
-
-This is in lieu of an implicit wait (e.g., setting a default amount of time for Selenium to wait if it can't perform an action immediately) and/or static sleeps. Avoiding static sleeps might be obvious (e.g., don't force your tests to wait a _hard-coded_ amount of time to perform an action -- it's bad news) but what about an implicit wait? Is there still value in using it? Or is it just old news that is likely to be deprecated in a future version of Selenium? And what about using them together?
+Static sleeps are something to be avoided, because they force your tests to wait a _hard-coded_ amount of time to perform an action -- this is not recommended. But what about implicit waits, explicit waits... and what about using them together?
 
 ## A Solution
 
