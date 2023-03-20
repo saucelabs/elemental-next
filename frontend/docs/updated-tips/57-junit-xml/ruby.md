@@ -24,11 +24,7 @@ language: ruby
 
 If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server.
 
-## Use Case
-
-In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report.
-
-But what does this entail? How do you set it up? And will it work when running things in parallel?
+In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report. But what does this entail? How do you set it up? And will it work when running things in parallel?
 
 ## A Solution
 

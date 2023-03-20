@@ -27,10 +27,6 @@ Perhaps you'll need to tab to traverse from one portion of the page to another, 
 
 But how do you do it and where do you start?
 
-## Use Case
-
-Common use cases to press keyboard keys include simulating a user typing into a variety of inputs. You'll find inputs are also needed in search bars, forms, and as stated above, traversing the user interface.
-
 ## A Solution
 
 You can easily issue a key press by using the `send_keys` command.
