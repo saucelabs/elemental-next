@@ -11,7 +11,9 @@ tags:
   - 'downloading'
   - 'file download'
 level: 2
-category: 'testing'
+category:
+  - remote
+  - fundamentals
 language: javascript
 ---
 
