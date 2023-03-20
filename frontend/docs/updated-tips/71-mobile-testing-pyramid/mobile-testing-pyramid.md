@@ -10,7 +10,8 @@ tags:
   - 'mobile'
   - 'pyramid'
 level: 2
-category: 'strategy'
+category: 
+  - resources
 language: all
 ---
 
