@@ -20,15 +20,17 @@ language: ruby
 
 ## Intro
 
-It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started.
-
-## A Solution
+It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started. 
 
 With the introduction of WebDriver (circa Selenium 2) a lot of benefits were realized (e.g. more effective & faster browser execution, no more single host origin issues, etc). But with it came some architectural & configuration differences that may not be widely known. Namely -- browser drivers.
 
-WebDriver works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser.
+## A Solution
 
-Let's step through an example using [ChromeDriver](https://sites.google.com/chromium.org/driver/).
+[WebDriver](https://www.selenium.dev/documentation/webdriver/) works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser. 
+
+[ChromeDriver](https://chromedriver.chromium.org/downloads) is Google Chrome's browser driver. In this specific use case is of using WebDriver with Chrome in testing locally.
+
+Let's step through an example using ChromeDriver ([download here](https://chromedriver.chromium.org/downloads)).
 
 ## Example 1
 
