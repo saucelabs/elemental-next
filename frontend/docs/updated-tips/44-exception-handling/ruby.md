@@ -23,10 +23,6 @@ language: ruby
 
 ## Intro
 
-In this tip, we're going to go over how to handle exceptions. 
-
-## Use Case
-
 It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable (e.g., `NoSuchElementError` or `StaleElementReferenceError`). They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them.
 
 ## A Solution

@@ -22,11 +22,9 @@ language: javascript
 
 Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests.
 
-## Use Case
-
 Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium.
 
-## Solution
+## A Solution
 
 There are two ways to approach this issue -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
 
