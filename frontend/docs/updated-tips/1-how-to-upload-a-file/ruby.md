@@ -11,7 +11,9 @@ tags:
   - 'upload'
   - 'file upload'
 level: 1
-category: 'testing'
+category: 
+  - remote
+  - fundamentals
 language: ruby
 ---
 
