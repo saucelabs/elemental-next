@@ -12,7 +12,9 @@ tags:
   - "safaridriver"
   - "different browsers"
 level: 1
-category: "setup"
+category:
+  - tools
+language: ruby
 ---
 
 # Safari
