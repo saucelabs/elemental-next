@@ -17,7 +17,8 @@ tags:
   - 'resources'
   - 'all the things'
 level: 1
-category: 'community'
+category:
+  - resources
 language: all
 ---
 
