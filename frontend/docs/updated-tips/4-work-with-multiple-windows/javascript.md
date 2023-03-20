@@ -11,7 +11,8 @@ tags:
   - 'multiple windows'
   - 'new window'
 level: 2
-category: 'testing'
+category: 
+  - remote
 language: javascript
 ---
 
