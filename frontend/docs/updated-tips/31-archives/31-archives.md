@@ -8,7 +8,8 @@ last_update:
 tags:
   - 'archives'
 level: 1
-category: 'archives'
+category: 
+  - resources
 language: all
 ---
 
