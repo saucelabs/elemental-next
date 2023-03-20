@@ -10,7 +10,8 @@ tags:
   - 'dropdown'
   - 'forms'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
 language: python
 ---
 
