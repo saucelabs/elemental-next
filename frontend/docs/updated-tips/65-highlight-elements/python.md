@@ -12,7 +12,8 @@ tags:
   - javascript
   - locators
 level: 2
-category: testing
+category:
+  - troubleshooting
 language: python
 ---
 
@@ -129,3 +130,4 @@ Happy Testing!
 ## About The Author
 
 You can follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).
+
