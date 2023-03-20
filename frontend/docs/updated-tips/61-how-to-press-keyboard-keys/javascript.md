@@ -14,7 +14,7 @@ tags:
   - 'enter'
 level: 1
 category:
-	- fundamentals
+  - fundamentals
 language: javascript
 ---
 
