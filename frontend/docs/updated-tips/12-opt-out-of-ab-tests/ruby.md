@@ -11,7 +11,8 @@ tags:
   - 'optimizely'
   - 'opt-out'
 level: 2
-category: 'testing'
+category:
+  - troubleshoting
 language: ruby
 ---
 
