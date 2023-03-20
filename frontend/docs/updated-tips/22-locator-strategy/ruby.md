@@ -11,7 +11,8 @@ tags:
   - 'locator strategy'
   - 'css selectors'
 level: 1
-category: 'strategy'
+category:
+  - fundamentals
 language: ruby
 ---
 
