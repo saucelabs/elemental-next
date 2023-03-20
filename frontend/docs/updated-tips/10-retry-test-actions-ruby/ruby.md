@@ -19,8 +19,6 @@ language: ruby
 
 We all write tests with the best intention of having them pass and, when they fail, to reveal legitimate issues in the application we're testing. But that's not always easy to accomplish. Especially when your application is dependent upon third-party service providers (e.g. payment providers, social networks, etc).
 
-## Use Case
-
 Rather than have your tests fail intermittently for reasons that don't actually reflect an issue in your application (or that are really difficult to track down), we'd like to trigger a context specific retry for a specific set of actions (rather than the whole test) that will back-off after a few attempts.
 
 If it finds what it needs, the tests passes. If it doesn't, the test fails -- and you know you have a legitimate problem on your hands.

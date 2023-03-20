@@ -22,8 +22,6 @@ language: ruby
 
 This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST APIs in his testing practice
 
-## Use Case
-
 When we list out the properties that make a test a "good test", some of things that often come up are:
 
 * Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail.

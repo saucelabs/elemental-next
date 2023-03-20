@@ -20,8 +20,6 @@ language: ruby
 
 In this tip, you'll learn how to work with frames and write tests against them.
 
-## Use Case
-
 On occasion, we may encounter relics of the front-end world, such as frames. When writing tests against them, it's easy to make a mistake if we're not paying attention.
 
 ## A Solution

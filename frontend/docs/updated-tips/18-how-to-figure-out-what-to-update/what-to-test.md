@@ -18,7 +18,7 @@ language: all
 
 There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?
 
-## Use Cases
+## A Solution
 
 A great way to increase your chances of automated web testing success is to map out a testing strategy. The best way to do this is to answer these four questions:
 

@@ -22,8 +22,6 @@ language: ruby
 
 There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process.
 
-## Use Case
-
 Sometimes performing these tests are because you want to test the expected outcomes. Other times, because you want to see if the system breaks in an odd way. But, wiring up all of these permutations into a set of automated tests can be burdensome and rife with copied code, which can make it hard to maintain over time.
 
 ## A Solution

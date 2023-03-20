@@ -21,8 +21,6 @@ language: javascript
 
 This tip will explain how to work with multiple windows in Selenium and switch between them. 
 
-## Use Case
-
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
 On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.

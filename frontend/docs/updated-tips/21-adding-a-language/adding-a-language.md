@@ -19,8 +19,6 @@ language: all
 
 In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing. 
 
-## Use Case
-
 It might seem like a good idea to choose the same language that the application you're testing is written in, because if you get stuck you can ask the developers on your team for help.
 
 But if you're not proficient in this language (or new to software development), then your progress will be slow and you'll likely end up asking for more developer help than they have time for which could hinder your automation efforts and slow your testing progress.
