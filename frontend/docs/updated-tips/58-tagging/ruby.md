@@ -12,7 +12,8 @@ tags:
   - 'annotations'
   - 'test packs'
 level: 1
-category: 'tagging'
+category:
+  - fundamentals
 language: ruby
 ---
 
