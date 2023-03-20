@@ -8,7 +8,8 @@ last_update:
 tags: 
   - 'test strategy'
 level: 1
-category: 'strategy'
+category: 
+  - fundamentals
 language: all
 ---
 

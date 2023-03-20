@@ -9,7 +9,8 @@ last_update:
 tags:
   - 'authentication'
 level: 1
-category: 'testing'
+category: 
+  - troubleshooting
 language: ruby
 ---
 

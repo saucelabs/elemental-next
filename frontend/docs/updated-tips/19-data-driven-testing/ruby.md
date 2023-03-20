@@ -11,7 +11,8 @@ tags:
   - 'csv'
   - 'authentication'
 level: 2
-category: 'testing'
+category:
+  - remote
 language: ruby
 ---
 

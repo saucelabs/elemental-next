@@ -14,7 +14,8 @@ tags:
   - no such element error
   - stale element reference error
 level: 2
-category: testing
+category:
+  - troubleshooting
 language: ruby
 ---
 

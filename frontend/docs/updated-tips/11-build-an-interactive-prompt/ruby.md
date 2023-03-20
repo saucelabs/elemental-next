@@ -10,7 +10,8 @@ tags:
   - 'repl'
   - 'debugging'
 level: 2
-category: 'tools'
+category: 
+  - troubleshooting
 language: ruby
 ---
 
