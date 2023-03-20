@@ -9,7 +9,8 @@ last_update:
 tags:
   - 'reliability'
 level: 2
-category: 'patterns'
+category:
+  - troubleshooting
 language: ruby
 ---
 
