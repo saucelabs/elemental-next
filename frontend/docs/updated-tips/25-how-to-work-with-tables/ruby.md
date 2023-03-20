@@ -12,7 +12,8 @@ tags:
   - 'css selectors'
   - 'css pseudo-classes'
 level: 2
-category: 'testing'
+category: 
+  - remote
 language: ruby
 ---
 
