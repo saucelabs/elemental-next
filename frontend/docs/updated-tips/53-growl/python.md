@@ -12,7 +12,8 @@ tags:
   - growl notifications
   - jquery-growl
 level: 2
-category: reporting
+category: 
+  - troubleshooting
 language: python
 ---
 
