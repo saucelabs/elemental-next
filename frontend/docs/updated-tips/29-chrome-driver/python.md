@@ -12,7 +12,9 @@ tags:
   - "chrome"
   - "different browsers"
 level: 2
-category: "setup"
+category: 
+  - fundamentals
+  - remote
 language: python
 ---
 
