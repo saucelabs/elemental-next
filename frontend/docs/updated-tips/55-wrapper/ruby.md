@@ -11,7 +11,8 @@ tags:
   - 'growl'
   - 'growl notifications'
 level: 2
-category: 'infrastructure'
+category: 
+  - troubleshooting
 language: ruby
 ---
 
