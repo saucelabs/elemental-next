@@ -12,7 +12,9 @@ tags:
   - 'javascript popups'
   - 'javascript dialogs'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
+  - tools
 language: python
 ---
 
