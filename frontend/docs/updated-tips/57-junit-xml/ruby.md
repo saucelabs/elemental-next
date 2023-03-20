@@ -13,7 +13,8 @@ tags:
   - 'continuous integration'
   - 'reporting'
 level: 1
-category: 'reporting'
+category: 
+  - tools
 language: ruby
 ---
 
