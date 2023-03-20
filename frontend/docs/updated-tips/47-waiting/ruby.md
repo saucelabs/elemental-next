@@ -12,7 +12,8 @@ tags:
   - explicit waits
   - implicit waits
 level: 2
-category: testing
+category:
+  - troubleshooting
 language: ruby
 ---
 
