@@ -19,7 +19,8 @@ language: javascript
 
 ## Intro
 
-Just like with uploading files we hit the same issue with downloading them. A dialog box just out of Selenium's reach.
+Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
 
 ## Use Case
 

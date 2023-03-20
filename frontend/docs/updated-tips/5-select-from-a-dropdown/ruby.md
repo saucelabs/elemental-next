@@ -18,15 +18,9 @@ language: ruby
 
 ## Intro
 
-Selecting from a dropdown list *seems* basic. Just grab the list by it's element and select an item within it based on the text you want.
-
-While it sounds pretty straightforward, there is a bit more skill to it.
+Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might *seem* straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
-
-## Use Case
-
-Common use cases can be a user selecting sizes from a drop down menu when shopping, or different design choices of the same item.
 
 ## Example 1
 

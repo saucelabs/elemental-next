@@ -20,8 +20,6 @@ language: ruby
 
 With browser tests it can often be challenging to track down the issue that caused a failure.
 
-## Use Case
-
 By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
 ## A Solution

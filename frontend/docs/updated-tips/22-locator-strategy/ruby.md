@@ -21,8 +21,6 @@ language: ruby
 
 In web design CSS (Cascading Style Sheets) is used to apply styles to the markup (HTML) on a page. CSS is able to do this by declaring which bits of the the markup it wants to interact with through the use of selectors. Selenium operates in a similar manner but instead of changing the style of elements it interacts with them by clicking, getting values from, typing, sending keys, etc.
 
-## Use Case
-
 At the heart of Selenium is the ability to interact with a page through its elements by way of various locator strategies. Identifier, Id, Name, Link, DOM, XPath, and CSS -- oh my!
 
 This is the life-blood of your automated tests and there are numerous elements to choose from. But which ones do you use? And when do you use them and why?
