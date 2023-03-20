@@ -11,7 +11,8 @@ tags:
   - 'test setup'
   - 'guest post'
 level: 2
-category: 'testing'
+category: 
+  - fundamentals
 language: ruby
 ---
 
