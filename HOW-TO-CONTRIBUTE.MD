@@ -33,10 +33,7 @@ Use Markdown in order to add code samples, screenshots and links:
 <!-- Create a page title that best explains your tip -->
 
 ## Intro
-<!-- Write a short introduction of 2-3 sentences of what your content will be teaching the reader -->
-
-## Use Case
-<!-- Write 1-2 pargraphs or a bulleted list of the problem or use case for your tip -->
+<!-- Write a short introduction of 2-3 sentences of what your content will be teaching the reader including the problem or use case for your tip -->
 
 ## A Solution
 <!-- Write your solution which can be 1-2 paragraphs, a bulleted list or a combination of both -->
