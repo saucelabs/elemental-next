@@ -18,9 +18,7 @@ language: ruby
 
 ## Intro
 
-This is a guest post from [Chris Kenst](https://twitter.com/ckenst).
-
-## Use Case
+>This is a guest post from [Chris Kenst](https://twitter.com/ckenst).
 
 If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a third party library like Xvfb ([tip 38](/tips/38-headless)) ==**`!! Link needs replacing !!`**== or PhantomJS ([tip 46](/tips/46-headless-ghostdriver)) ==**`!! Link needs replacing !!`**== but those can be hard to install and aren't guaranteed to be supported in the long run (like PhantomJS).
 

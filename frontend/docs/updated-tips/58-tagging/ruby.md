@@ -23,7 +23,7 @@ language: ruby
 
 As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?
 
-## Use Case
+## A Solution
 
 By applying some metadata to your tests, you can specify a filter at runtime to execute a focused group of tests, returning just the ones you want.
 
