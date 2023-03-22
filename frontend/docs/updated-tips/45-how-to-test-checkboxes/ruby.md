@@ -4,19 +4,19 @@ id: '45-checkboxes-ruby'
 slug: ruby/
 number: 45
 publish_date: 2015-10-13
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'checkboxes'
   - 'attribute'
   - 'selected'
 level: 1
-category: 
+category:
   - fundamentals
 language: ruby
 ---
 
-# How To Test Checkboxes
+# How to Test Checkboxes
 
 ## Intro
 

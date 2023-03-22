@@ -4,7 +4,7 @@ id: '50-hovers-ruby'
 slug: ruby/
 number: 50
 publish_date: 2015-07-01
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'hover'
@@ -15,7 +15,7 @@ category: 'testing'
 language: ruby
 ---
 
-# How To Work With Hovers
+# How to Work with Hovers
 
 ## Intro
 

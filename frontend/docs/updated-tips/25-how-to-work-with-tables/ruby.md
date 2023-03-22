@@ -12,12 +12,12 @@ tags:
   - 'css selectors'
   - 'css pseudo-classes'
 level: 2
-category: 
+category:
   - remote
 language: ruby
 ---
 
-# How To Work With HTML Data Tables
+# How to Work with HTML Data Tables
 
 ## Intro
 

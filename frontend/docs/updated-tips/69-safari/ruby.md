@@ -17,7 +17,7 @@ category:
 language: ruby
 ---
 
-# Safari
+# Safari Browser
 
 ## Intro
 
@@ -40,7 +40,7 @@ After that, make sure it's enabled. To do that:
 
 1. open `Safari`
 2. go to `Develop`
-3. click on `Allow Remote Automations` 
+3. click on `Allow Remote Automations`
 
 
 Now if we open up an interactive Ruby terminal (e.g., `irb`) and launch a Selenium instance, here's what we'd see.

@@ -18,7 +18,7 @@ category:
 language: python
 ---
 
-# How To Press Keyboard Keys
+# How to Press Keyboard Keys
 
 ## Intro
 
