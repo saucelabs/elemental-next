@@ -13,12 +13,12 @@ tags:
   - action builder
   - context click
 level: 2
-category: 
+category:
   - fundamentals
 language: python
 ---
 
-# How To Right-Click
+# How to Right-click
 
 ## Intro
 
@@ -93,7 +93,7 @@ When we save this file and run it (e.g., `python right_click.py`) from the comma
 
 ## Summary
 
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with keyboard keys and JavaScript alerts in your Selenium tests, check out tips [61](/tips/61-keyboard-keys) and [51](/tips/51-javascript-alerts).
+To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
 
 Happy Testing!
 

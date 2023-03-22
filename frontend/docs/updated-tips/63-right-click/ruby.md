@@ -17,7 +17,7 @@ category: 'testing'
 language: ruby
 ---
 
-# How To Right-click
+# How to Right-click
 
 ## Intro
 

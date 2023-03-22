@@ -12,12 +12,12 @@ tags:
   - 'javascript'
   - 'locators'
 level: 2
-category: 
+category:
   - troubleshooting
 language: ruby
 ---
 
-# How To Visually Verify Your Locators
+# How to Visually Verify Your Locators
 
 ## Intro
 

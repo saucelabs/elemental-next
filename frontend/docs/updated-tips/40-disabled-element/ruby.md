@@ -11,13 +11,13 @@ tags:
   - 'dropdown lists'
   - 'disabled element'
 level: 2
-category: 
+category:
   - remote
   - troubleshooting
 language: ruby
 ---
 
-# How To Test For Disabled Elements
+# How to Test For Disabled Elements
 
 ## Intro
 

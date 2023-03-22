@@ -4,7 +4,7 @@ id: '57-junit-xml-ruby'
 slug: ruby/
 number: 57
 publish_date: 2015-07-14
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'xml'
@@ -13,12 +13,12 @@ tags:
   - 'continuous integration'
   - 'reporting'
 level: 1
-category: 
+category:
   - tools
 language: ruby
 ---
 
-# How To Prepare Your Tests for Continuous Integration
+# How to Prepare Your Tests for Continuous Integration
 
 ## Intro
 
@@ -34,7 +34,7 @@ The report will include test results (e.g., failure messages and stack traces) a
 
 Let's go through an example of how to configure a test suite in order to output a JUnit XML report.
 
-## Example(s)
+## Example
 
 In [RSpec](http://rspec.info/), you need a plugin to configure JUnit XML output. There are two popular ones:
 
