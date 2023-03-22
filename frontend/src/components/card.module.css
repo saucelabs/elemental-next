@@ -10,7 +10,10 @@
     font-weight: 500;
     font-size: 32px;
     line-height: 38px;
-    color: #292620; 
+    color: #000000;; 
+    padding-left: 10px;
+    padding-top: 10px;
+
 }
 
 .card {
@@ -41,6 +44,8 @@ a:visited {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 24px;
     color: #5E5D5B;
+    padding-left: 12px;
+    padding-top: 5px;
 }

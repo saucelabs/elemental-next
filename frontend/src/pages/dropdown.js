@@ -11,7 +11,7 @@ const Dropdown = ({ filterItem, setTip, difficultyItems }) => {
             onClick={() => setItem(Data)}
             >
             Difficulty
-        </button>
+      </button>
         <div className={dropdownStyles.menu}>
             {difficultyItems?.map((Val, id) => {
             return (
@@ -27,6 +27,8 @@ const Dropdown = ({ filterItem, setTip, difficultyItems }) => {
             );
             })}
         </div>
+
+        
         
             
 
