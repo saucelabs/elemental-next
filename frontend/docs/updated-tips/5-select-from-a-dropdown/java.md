@@ -4,18 +4,18 @@ id: '5-select-from-a-dropdown-java'
 slug: java/
 number: 5
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'dropdown'
   - 'forms'
 level: 1
-category: 
+category:
   - fundamentals
 language: java
 ---
 
-# How To Select From a Dropdown
+# How to Select from a Dropdown List
 
 ## Intro
 
@@ -37,7 +37,7 @@ First let's pull in our requisite libraries, declare the test class, and wire up
 
 In this tip, we've gone over using Selenium to select from a drop down using the drop down list, or XPath to find an element within the dropdown list.
 
-Hopefully this will help you when selecting items from a dropdown list. 
+Hopefully this will help you when selecting items from a dropdown list.
 
 Happy Testing!
 

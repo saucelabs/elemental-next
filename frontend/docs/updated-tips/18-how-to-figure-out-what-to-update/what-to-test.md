@@ -3,17 +3,17 @@ title: 'What to Test'
 id: '18-what-to-test'
 number: 18
 publish_date: 2015-10-13
-last_update: 
+last_update:
   date: 2023-02-22
-tags: 
+tags:
   - 'test strategy'
 level: 1
-category: 
+category:
   - fundamentals
 language: all
 ---
 
-# How To Figure Out What To Test
+# How to Figure Out What to Test
 
 ## Intro
 
@@ -23,14 +23,14 @@ There is a lot to figure out when it comes to automated web testing, but where d
 
 A great way to increase your chances of automated web testing success is to map out a testing strategy. The best way to do this is to answer these four questions:
 
-1. How does your business make money?  
-2. How do your users use your application?  
-3. What browsers are your users using?  
-4. What things have broken in the application before?  
+1. How does your business make money?
+2. How do your users use your application?
+3. What browsers are your users using?
+4. What things have broken in the application before?
 
 __NOTE: for organizations that don't deal *directly* in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.__
 
-After answering these questions you'll have a better understanding of the critical functionality and relevant browsers for the application you're testing. This will help you focus your test automation efforts on the things that matter most. 
+After answering these questions you'll have a better understanding of the critical functionality and relevant browsers for the application you're testing. This will help you focus your test automation efforts on the things that matter most.
 
 You'll want to keep track of these items somehow -- the recommended approach is to use a prioritized backlog.
 
@@ -48,7 +48,7 @@ Your answers to this question will help you determine what features are highly u
 
 ### Question 3 - Browsers
 
-Now that you know what functionality is business critical and widely adopted by your users, you need to determine what browsers to focus your automated web testing efforts on. Your usage data will tell you this as well. It will help you determine which browsers you can reasonably avoid testing in (e.g. based on non-existent or low usage numbers). 
+Now that you know what functionality is business critical and widely adopted by your users, you need to determine what browsers to focus your automated web testing efforts on. Your usage data will tell you this as well. It will help you determine which browsers you can reasonably avoid testing in (e.g. based on non-existent or low usage numbers).
 
 Note the top 2 browsers (or 3 depending on your numbers), but focus on the top 1 for now. This is the browser you will start writing your automated tests in.
 

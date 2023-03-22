@@ -4,7 +4,7 @@ id: '2-download-a-file-javascript'
 slug: javascript/
 number: 2
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'files'
@@ -21,20 +21,16 @@ language: javascript
 
 ## Intro
 
-Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box
 just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
-
-## Use Case
-
-A common use case is downlooading files from the internet. Selenium itself doesn't support this use case but with additional support Selenium can be able to download a file.
 
 ## A Solution
 
-With some additional configuration when setting up Selenium we can easily side-step the dialog box. This is done by instructing the browser to download files to a specific location without triggering the dialog box.
+In order to avoid the dialog box, we will be instructing the browser to download files to a specific location without being prompted.
 
-After the file is downloaded we can perform some simple checks to make sure the file is what we expect.
+After the file is downloaded we can then perform some simple checks to make sure the file is what we expect.
 
-Let's dig in with an example.
+Let's continue with an example.
 
 ## An Example
 
@@ -75,7 +71,7 @@ describe("File download", function() {
         driver = await new Builder()
           .forBrowser("firefox")
           .setFirefoxOptions(options)
-          .build(); 
+          .build();
       } catch (ex) {
        console.log(ex.stack)
       }
@@ -112,7 +108,7 @@ Now let's take care of our test's teardown.
   afterEach(async function() {
     this.timeout(60000);
     await driver.quit();
-    cleanupTmpDir(); 
+    cleanupTmpDir();
   });
 // ...
 ```

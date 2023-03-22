@@ -4,17 +4,17 @@ id: '3-work-with-frames-csharp'
 slug: csharp/
 number: 3
 publish_date: 2016-06-12
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'frames'
 level: 1
-category: 
+category:
   - fundamentals
-language: csharp 
+language: csharp
 ---
 
-# How To Work With Frames
+# How to Work with Frames
 
 ## Intro
 
@@ -28,7 +28,7 @@ Rather than getting frustrated when authoring your tests, you can work with the 
 
 Let's explore further with some examples.
 
-## Example
+## Example 1
 
 We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
 

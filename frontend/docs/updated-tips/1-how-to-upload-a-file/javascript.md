@@ -4,19 +4,19 @@ id: '1-upload-a-file-javascript'
 slug: javascript/
 number: 1
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'file'
   - 'upload'
   - 'file upload'
 level: 1
-category: 
+category:
   - remote
   - fundamentals
 language: javascript
 ---
-# How To Upload A File
+# How to Upload a File
 
 ## Intro
 
@@ -50,7 +50,7 @@ Now to create a new test class and add in test setup and teardown for it.
 // filename: test/upload.spec.js
 describe("Upload Test", function() {
     let driver;
-  
+
     beforeEach(async function() {
       this.timeout(60000)
       try{

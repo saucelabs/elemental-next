@@ -11,13 +11,13 @@ tags:
   - 'upload'
   - 'file upload'
 level: 1
-category: 
+category:
   - remote
   - fundamentals
 language: java
 ---
 
-# How to upload a file
+# How to Upload a file
 
 
 ## Intro
@@ -110,9 +110,9 @@ When we save this file and run it (e.g., `mvn clean test` from the command-line)
 + Close the browser
 ## Summary
 
-This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or Sauce Labs), then you'll want to have a look at [`FileDetector`](https://github.com/SeleniumHQ/selenium/blob/ab1e647d0fc8fc39e6b00ae94321ab228b6728f2/java/client/src/org/openqa/selenium/remote/FileDetector.java). You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload).
+This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or Sauce Labs), then you'll want to have a look at [`FileDetector`](https://github.com/SeleniumHQ/selenium/blob/ab1e647d0fc8fc39e6b00ae94321ab228b6728f2/java/client/src/org/openqa/selenium/remote/FileDetector.java). You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload)==**`!! Broken link!!`**==.
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip!
 
 Happy Testing!
 

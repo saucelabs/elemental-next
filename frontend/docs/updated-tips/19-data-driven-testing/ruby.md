@@ -121,7 +121,7 @@ If you save this file and run it (e.g., `ruby data_driven.rb` from the command-l
 + Open the browser
 + Load the login page
 + Submit the login form with user data
-+ Grab the notification message and assert it against the expected value 
++ Grab the notification message and assert it against the expected value
 + Close the browser
 
 ## Summary

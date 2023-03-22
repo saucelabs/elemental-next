@@ -4,17 +4,17 @@ id: '13-work-with-basic-auth-python'
 slug: python/
 number: 13
 publish_date: 2016-11-17
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'authentication'
 level: 1
-category: 
+category:
   - troubleshooting
 language: python
 ---
 
-# How To Access Basic Auth
+# How to Access Basic Auth
 
 ## Intro
 
@@ -32,7 +32,7 @@ By specifying the username and password _in the URL_ when visiting a page with S
 
 Let's take a look at an example.
 
-## Example
+## Example 1
 
 Let's start by requiring our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
@@ -68,6 +68,8 @@ if __name__ == "__main__":
 ```
 
 In the test we're loading the page by passing in the username and password in the front of the URL (e.g., `http://admin:admin@`). Once it loads we grab text from the page to make sure we ended up in the right place.
+
+## Example 2
 
 Alternatively, we could have accessed this page as part of the test setup (after creating an instance of Selenium). This would have cached the Basic Auth session in the browser, enabling us to visit the page again without having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.
 

@@ -11,24 +11,29 @@ tags:
   - "optimizely"
   - "opt-out"
 level: 2
-category: 
+category:
   - troubleshooting
 language: javascript
 ---
 
-# How To Opt-out of A/B Tests
+# How to Opt-out of A/B Tests
 
 ## Intro
 
 Occasionally when running tests you may see unexpected behavior due to [A/B testing (a.k.a. split testing)](http://en.wikipedia.org/wiki/A/B_testing) of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests.
 
-Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement. A simple example would be testing variations of an e-mail landing page to see if more people sign up. In such a split test there would be the control (how the application looks and behaves now) and variants (e.g., 2 or 3 changes that could include changing text or images on the page, element positioning, color of the submit button, etc).
+## A Solution
 
-Once the variants are configured, they are put into rotation, and the experiment starts. During this experiment each user will see a different version of the feature and their engagement with it will be tracked. Split tests live for the length of the experiment or until a winner is found (e.g., tracking indicates that a variant converted higher than the control). If no winner is found, new variants may be created and another experiment tried. If a winner is found, then the winning variant becomes the new control and the feature gets updated accordingly.
+First, here is a primer on Split Testing.
+>### Split Testing
+>Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement. A simple example would be testing variations of an e-mail landing page to see if more people sign up. In such a split test there would be the control (how the application looks and behaves now) and variants (e.g., 2 or 3 changes that could include changing text or images on the page, element positioning, color of the submit button, etc).
+>
+>Once the variants are configured, they are put into rotation, and the experiment starts. During this experiment each user will see a different version of the feature and their engagement with it will be tracked. Split tests live for the length of the experiment or until a winner is found (e.g., tracking indicates that a variant converted higher than the control). If no winner is found, new variants may be created and another experiment tried. If a winner is found, then the winning variant becomes the new control and the feature gets updated accordingly.
 
-## Solution
 
-Thankfully there are some standard opt-out mechanisms built into A/B testing platforms. They tend to come in the form of an appended URL or forging a cookie. Let's dig in with an example of each approach with a popular A/B testing platform, [Optimizely](https://www.optimizely.com/).
+Thankfully there are some standard opt-out mechanisms built into A/B testing platforms. They tend to come in the form of an appended URL or forging a cookie.
+
+Let's start with an example for each approach with a popular A/B testing platform, [Optimizely](https://www.optimizely.com/).
 
 ## Example
 
@@ -117,7 +122,7 @@ Here we are navigating to the main page of the site first and then adding the op
   });
 });
 ```
-  
+
 By appending `?optimizely_opt_out=true` we achieve the same outcome as before. Keep in mind that this approach triggers a JavaScript alert, so we have to switch to and dismiss it (e.g., `driver.switchTo().alert().dismiss()`) before performing our check.
 
 ## Expected Behavior

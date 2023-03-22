@@ -10,12 +10,12 @@ tags:
   - 'files'
   - 'downloading'
 level: 2
-category: 
+category:
   - remote
 language: ruby
 ---
 
-# How To Download a File Without a Browser
+# How to Download a File Without a Browser
 
 ## Intro
 
@@ -26,6 +26,8 @@ While the previous method works, it requires a custom configuration that is inco
 Ultimately, we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded, which we can do by using an HTTP client alongside Selenium in our test.
 
 ## A Solution
+
+Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded. And we can do that by using an HTTP client alongside Selenium in our test.
 
 With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times (depending on the file size).
 

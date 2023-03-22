@@ -4,17 +4,17 @@ id: '13-work-with-basic-auth-ruby'
 slug: ruby/
 number: 13
 publish_date: 2015-10-14
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'authentication'
 level: 1
-category: 
+category:
   - troubleshooting
 language: ruby
 ---
 
-# How To Access Basic Auth
+# How to Access Basic Auth
 
 ## Intro
 

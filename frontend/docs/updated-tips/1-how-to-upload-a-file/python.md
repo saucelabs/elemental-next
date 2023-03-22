@@ -4,7 +4,7 @@ id: '1-upload-a-file-python'
 slug: python/
 number: 1
 publish_date: 2016-09-13
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'file'
@@ -17,7 +17,7 @@ category:
 language: python
 ---
 
-# How To Upload A File
+# How to Upload a File
 
 ## Intro
 
@@ -106,7 +106,7 @@ When we save this file and run it (e.g., `python upload.py` from the command-lin
 
 This approach will work across all browsers. If you want to use it with a remote instance (e.g., on Selenium Grid or Sauce Labs) then you'll want to have a look at [`file_detector`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html?highlight=detect#selenium.webdriver.remote.webdriver.WebDriver.file_detector).
 
-Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
+Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
 
