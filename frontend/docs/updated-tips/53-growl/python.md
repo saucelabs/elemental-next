@@ -12,12 +12,12 @@ tags:
   - growl notifications
   - jquery-growl
 level: 2
-category: 
+category:
   - troubleshooting
 language: python
 ---
 
-# How To Add Growl Notifications To Your Tests
+# How to Add Growl Notifications to Your Tests
 
 ## Intro
 
@@ -27,7 +27,7 @@ Good test reports are a fundamental component of successful test automation, but
 
 By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing.
 
-With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs 
+With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs
 
 Let's step through an example of how to set this up.
 

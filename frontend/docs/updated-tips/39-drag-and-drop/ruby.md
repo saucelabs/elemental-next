@@ -12,12 +12,12 @@ tags:
   - 'javascript'
   - 'bug'
 level: 2
-category: 
+category:
   - remote
 language: ruby
 ---
 
-# How To Test HTML5 Drag and Drop
+# How to Test HTML5 Drag and Drop
 
 ## Intro
 
@@ -27,7 +27,7 @@ Exercising a page's drag-and-drop functionality used to be simple with [Selenium
 
 As a workaround, we can simulate dragging and dropping by executing JavaScript with Selenium. Let's continue with an example.
 
-## Example(s)
+## Example
 
 You can see a simple HTML5 drag and drop example [here on the-internet](http://the-internet.herokuapp.com/drag_and_drop).
 
@@ -66,7 +66,7 @@ run do
 
   expect(@driver.find_element(id: 'column-a').text).to eql('B')
   expect(@driver.find_element(id: 'column-b').text).to eql('A')
-  
+
 end
 ```
 

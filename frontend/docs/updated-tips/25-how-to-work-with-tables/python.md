@@ -4,7 +4,7 @@ id: 'how-to-work-with-html-data-tables-python'
 slug: python/
 number: 25
 publish_date: 2016-11-23
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - "tables"
@@ -17,7 +17,7 @@ category:
 language: python
 ---
 
-# How To Work With HTML Data Tables
+# How to Work with HTML Data Tables
 
 ## Intro
 
@@ -25,7 +25,7 @@ Odds are at some point you've come across the use of tables in a web application
 
 When the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.
 
-## Solution
+## A Solution
 
 You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
 
@@ -49,7 +49,7 @@ But keep in mind that if you care about older browsers (e.g., Internet Explorer 
 
 Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
 
-## Example
+## Example 1
 
 __NOTE: You can see the application under test [here](http://the-internet.herokuapp.com/tables). It's an example from [the-internet](https://github.com/tourdedave/the-internet). In the example there are 2 tables. We will start with the first table and then work with the second.__
 
@@ -226,9 +226,9 @@ When we save this file and run it (e.g., `python tables.py` from the command-lin
 
 ## Summary
 
-CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests. They enable a bit of CSS gymnastics but that's only assuming you've come up with a test strategy that rules out older browsers. If you don't have a test strategy or are curious to see how yours compares, check out [tip 18](/tips/18-what-to-test).
+CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests. They enable a bit of CSS gymnastics but that's only assuming you've come up with a test strategy that rules out older browsers. If you don't have a test strategy or are curious to see how yours compares, check out [tip 18](/tips/18-what-to-test)==**`!! Internal link needs replacing !!`**==.
 
-For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors), and maybe [the W3C spec for CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
+For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors)==**`!! Broken link needs replacing !!`**==, and maybe [the W3C spec for CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
 
 Happy Testing!
 

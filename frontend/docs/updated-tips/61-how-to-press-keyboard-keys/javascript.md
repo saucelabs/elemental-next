@@ -4,7 +4,7 @@ id: '61-keyboard-keys-javascript'
 slug: javascript/
 number: 61
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'keyboard'
@@ -18,7 +18,7 @@ category:
 language: javascript
 ---
 
-# How To Press Keyboard Keys
+# How to Press Keyboard Keys
 
 ## Intro
 

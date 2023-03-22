@@ -4,7 +4,7 @@ id: '45-checkboxes-python'
 slug: python/
 number: 45
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-03-03
 tags:
   - 'checkboxes'
@@ -16,7 +16,7 @@ category:
 language: python
 ---
 
-# How To Test Checkboxes
+# How to Test Checkboxes
 
 ## Intro
 

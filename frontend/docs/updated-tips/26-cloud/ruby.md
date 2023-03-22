@@ -4,7 +4,7 @@ id: '26-cloud-ruby'
 slug: ruby/
 number: 0
 publish_date: 2015-09-15
-last_update: 
+last_update:
   date: 2023-02-27
 tags:
   - 'sauce labs'
@@ -13,47 +13,47 @@ tags:
   - 'cloud'
   - 'someone elses grid'
 level: 1
-category: 
+category:
   - troubleshooting
 language: ruby
 ---
 
-# How To Run Your Tests On Any Browser & Operating System
+# How to Run Your Tests on Any Browser & Operating System
 
 ## Intro
 
 In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a "legit" version of Windows installed on the VM.
 
 Now what about when the other half of your users use Chrome and Safari on macOS, and maybe other operating systems? What if you need
-to run those tests in parallel and scale up the number of VMs available? Then you're looking at provisioning, running, and 
-maintaining your own farm of machines and standing up something like [Selenium Grid](https://www.selenium.dev/documentation/grid/) 
+to run those tests in parallel and scale up the number of VMs available? Then you're looking at provisioning, running, and
+maintaining your own farm of machines and standing up something like [Selenium Grid](https://www.selenium.dev/documentation/grid/)
 to coordinate tests across them.
 
 And all you wanted to do was run your tests on the browsers you cared about... but there's a better solution to all of this.
 
 ## A Solution
 
-Rather than take on the overhead of a test infrastructure, you can easily outsource things to a third-party cloud provider 
-(a.k.a. Someone Elses Grid). There are a handful of players in this space, but there's one that stands out -- 
+Rather than take on the overhead of a test infrastructure, you can easily outsource things to a third-party cloud provider
+(a.k.a. Someone Elses Grid). There are a handful of players in this space, but there's one that stands out --
 [Sauce Labs](https://saucelabs.com/).
 
-At the heart of Selenium at scale is the use of Selenium Grid. Selenium Grid lets you distribute test execution across 
-several machines and you connect to it with [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/). 
+At the heart of Selenium at scale is the use of Selenium Grid. Selenium Grid lets you distribute test execution across
+several machines and you connect to it with [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/).
 With Selenium WebDriver you specify the browser type, browser version, and operating system.
 
-This is fundamentally how Sauce Labs works. Behind the curtain they are ultimately running Selenium Grid, and they 
+This is fundamentally how Sauce Labs works. Behind the curtain they are ultimately running Selenium Grid, and they
 receive and execute your tests through Selenium WebDriver.
 
 Here is an example.
 
-## Example(s)
+## Example
 
 
-**NOTE**: You'll need an account to use Sauce Labs. You can sign up for a 
+**NOTE**: You'll need an account to use Sauce Labs. You can sign up for a
 [free trial account (no credit-card required)](https://saucelabs.com/sign-up).
 
-First we'll include our dependent libraries (to drive the browser and do assertions), and wire up some simple 
-`setup`, `teardown`, and `run` methods. We recommend exporting your Sauce Labs `SAUCE_USERNAME` and 
+First we'll include our dependent libraries (to drive the browser and do assertions), and wire up some simple
+`setup`, `teardown`, and `run` methods. We recommend exporting your Sauce Labs `SAUCE_USERNAME` and
 `SAUCE_ACCESS_KEY` as environment variables.
 
 Here are instructions for setting environment variables on each Operating System:
@@ -92,17 +92,17 @@ def run
 end
 ```
 
-Our `setup` method is where the magic is happening. We declare the browser options 
-for Chrome and store it in a variable for immediate reuse. We then set the browser version 
-(e.g. `options.browser_version = '109'`, but you can also use `latest` to use the most recent 
-version), specify the operating system we would like to use (e.g. `options.platform_name = 'macOS 13'`), 
+Our `setup` method is where the magic is happening. We declare the browser options
+for Chrome and store it in a variable for immediate reuse. We then set the browser version
+(e.g. `options.browser_version = '109'`, but you can also use `latest` to use the most recent
+version), specify the operating system we would like to use (e.g. `options.platform_name = 'macOS 13'`),
 and set the test name (e.g., `sauce_options[:name] = 'Elemental Selenium - Tip 26 - Hello!'`).
 
 We then connect to Sauce Labs with Selenium WebDriver and feed in our browser options object.
 
-**NOTE**: The URL contains the URI for the Sauce Labs cl service as well as our Sauce user and 
-access credentials. In this case, they are specified through environment variables. But you can 
-just as easily hard-code your info here. We recommend exporting your Sauce Labs `SAUCE_USERNAME` and 
+**NOTE**: The URL contains the URI for the Sauce Labs cl service as well as our Sauce user and
+access credentials. In this case, they are specified through environment variables. But you can
+just as easily hard-code your info here. We recommend exporting your Sauce Labs `SAUCE_USERNAME` and
 `SAUCE_ACCESS_KEY` as environment variables.
 
 Here are instructions for setting environment variables on each Operating System:
@@ -120,7 +120,7 @@ run do
 end
 ```
 
-If we save this and run it (e.g., `ruby cloud.rb` from the command-line) it will execute the test on 
+If we save this and run it (e.g., `ruby cloud.rb` from the command-line) it will execute the test on
 an Chrome 109 browser instance running on macOS 13 (Ventura) in Sauce Labs.
 
 ## Another Browser
@@ -149,7 +149,7 @@ Or...
   options.browser_version = '109'
 ```
 
-**NOTE**: You can find a full list of configuration options along with example code for all of Sauce supported 
+**NOTE**: You can find a full list of configuration options along with example code for all of Sauce supported
 languages at their [Platform Configurator](https://saucelabs.com/products/platform-configurator#/).
 
 ## Expected Behavior
@@ -157,26 +157,26 @@ languages at their [Platform Configurator](https://saucelabs.com/products/platfo
 - Open a specified browser in Sauce Labs
 - Test runs
 - Browser closes
-- Test results (along with a video recording, screenshots, and other debugging information) are available on the 
+- Test results (along with a video recording, screenshots, and other debugging information) are available on the
 [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/).
 
 ## Summary
 
 Hopefully this tip has helped you get your tests up and running against numerous browsers.
 
-There are some other things to consider when using Sauce Labs (e.g., testing your secure apps through 
-[Sauce Connect](https://docs.saucelabs.com/secure-connections/sauce-connect/), setting the pass/fail status 
-for your tests, and dynamically setting the test name). You can find more information about these things 
+There are some other things to consider when using Sauce Labs (e.g., testing your secure apps through
+[Sauce Connect](https://docs.saucelabs.com/secure-connections/sauce-connect/), setting the pass/fail status
+for your tests, and dynamically setting the test name). You can find more information about these things
 in [the Sauce Labs docs](https://docs.saucelabs.com/).
 
 Happy Testing!
 
 ## About The Author
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by 
-thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect 
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by
+thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect
 for writing automated tests against).
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at 
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at
 numerous conferences and meetups around the world about automated acceptance testing.

@@ -17,7 +17,7 @@ category:
 language: python
 ---
 
-# How To Visually Verify Your Locators
+# How to Visually Verify Your Locators
 
 ## Intro
 

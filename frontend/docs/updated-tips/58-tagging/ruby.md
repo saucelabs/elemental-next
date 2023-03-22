@@ -4,7 +4,7 @@ id: '58-tagging-ruby'
 slug: ruby/
 number: 58
 publish_date: 2014-07-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'tagging'
@@ -17,7 +17,7 @@ category:
 language: ruby
 ---
 
-# How To Filter Test Results With Tags
+# How to Filter Test Results with Tags
 
 ## Intro
 
