@@ -4,23 +4,23 @@ id: '4-work-with-multiple-windows-javascript'
 slug: javascript/
 number: 4
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'windows'
   - 'multiple windows'
   - 'new window'
 level: 2
-category: 
+category:
   - remote
 language: javascript
 ---
 
-# Work With Multiple Windows
+# How to Work with Multiple Windows
 
 ## Intro
 
-This tip will explain how to work with multiple windows in Selenium and switch between them. 
+This tip will explain how to work with multiple windows in Selenium and switch between them.
 
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
@@ -114,11 +114,11 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-I hope this was a helpful guide on how to work with and switch between multiple windows using Selenium. 
+I hope this was a helpful guide on how to work with and switch between multiple windows using Selenium.
 
-For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/). 
+For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/).
 
-Happy Testing! 
+Happy Testing!
 
 ## About The Author
 

@@ -14,7 +14,7 @@ category:
 language: javascript
 ---
 
-# How To Work With Frames
+# How to Work with Frames
 
 ## Intro
 
@@ -28,7 +28,7 @@ Rather than getting frustrated when authoring your tests, you can work with the 
 
 Let's explore further with some examples.
 
-## Example
+## Example 1
 
 We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
 

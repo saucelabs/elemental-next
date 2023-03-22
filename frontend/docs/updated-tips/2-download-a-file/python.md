@@ -4,7 +4,7 @@ id: '2-download-a-file-python'
 slug: python/
 number: 2
 publish_date: 2016-09-23
-last_update: 
+last_update:
   date: 2023-03-02
 tags:
   - 'files'
@@ -21,16 +21,16 @@ language: python
 
 ## Intro
 
-Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box
 just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
 
-## Use Case
+## A Solution
 
-With some additional configuration when setting up Selenium we can easily side-step the dialog box. This is done by instructing the browser to download files to a specific location without triggering the dialog box.
+In order to avoid the dialog box, we will be instructing the browser to download files to a specific location without being prompted.
 
-After the file is downloaded we can perform some simple checks to make sure the file is what we expect.
+After the file is downloaded we can then perform some simple checks to make sure the file is what we expect.
 
-Let's dig in with an example.
+Let's continue with an example.
 
 ## Example
 
@@ -111,7 +111,7 @@ Now to wire up our test.
                  for f in files]  # add directory to each filename
         assert len(files) > 0, "no files were downloaded"
         assert os.path.getsize(files[0]) > 0, "downloaded file was empty"
-    
+
 
 if __name__ == "__main__":
     unittest.main()
@@ -139,7 +139,7 @@ When we save this file and run it (e.g., `python download.py` from the command-l
 
 A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/). In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files. Stay tuned.
 
-Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
+Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
 

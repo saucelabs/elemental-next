@@ -3,7 +3,7 @@ title: 'Choosing a Programming Language'
 id: '21-choosing-a-language'
 number: 21
 publish_date: 2015-10-13
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'programming language'
@@ -14,11 +14,11 @@ category:
 language: all
 ---
 
-# How To Pick A Programming Language
+# How to Pick a Programming Language
 
 ## Intro
 
-In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing. 
+In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing.
 
 It might seem like a good idea to choose the same language that the application you're testing is written in, because if you get stuck you can ask the developers on your team for help.
 
@@ -44,7 +44,7 @@ As you're considering which language to go with, consider what open source frame
 
 Choosing a programming language for automated testing is not a decision that should be taken lightly. If you're just starting out (or looking to port your tests) then considering and discussing this will help position you for greater success.
 
-For a second and third opinion on this topic you can read Adam Goucher and Joe Colantonio's takes [here](https://saucelabs.com/resources/blog/stop-being-a-language-snob-debunking-the-but-our-application-is-written-in-x-myth-guest-post)and [here](http://www.joecolantonio.com/2015/05/31/selenium-what-programming-language-you-should-learn-to-get-into-test-automation/).
+For a second and third opinion on this topic you can read Adam Goucher and Joe Colantonio's takes [here](https://saucelabs.com/resources/blog/stop-being-a-language-snob-debunking-the-but-our-application-is-written-in-x-myth-guest-post) and [here](http://www.joecolantonio.com/2015/05/31/selenium-what-programming-language-you-should-learn-to-get-into-test-automation/).
 
 Happy Testing!
 

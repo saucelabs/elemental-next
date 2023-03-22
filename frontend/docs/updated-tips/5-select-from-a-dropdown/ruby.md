@@ -4,18 +4,18 @@ id: '5-select-from-a-dropdown-ruby'
 slug: ruby/
 number: 5
 publish_date: 2015-07-06
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'dropdown'
   - 'forms'
 level: 1
-category: 
+category:
    - fundamentals
 language: ruby
 ---
 
-# How To Select from a Dropdown List
+# How to Select from a Dropdown List
 
 ## Intro
 

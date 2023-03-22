@@ -4,17 +4,17 @@ id: '3-work-with-frames-python'
 slug: python/
 number: 3
 publish_date: 2016-11-14
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'frames'
 level: 1
-category: 
+category:
 - fundamentals
-language: python 
+language: python
 ---
 
-# How To Work with Frames
+# How to Work with Frames
 
 ## Intro
 
@@ -28,7 +28,7 @@ Rather than getting frustrated when authoring your tests, you can work with the 
 
 Let's explore further with some examples.
 
-## Example
+## Example 1
 
 We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
 
@@ -71,7 +71,7 @@ Once we've done that we're able to find the element we need, grab its text, and 
 
 While this example helps illustrate the point of frame switching, it's not very practical.
 
-## A More Practical Example
+## Example 2
 
 Here is a more likely example you'll run into -- working with a WYSIWYG Editor like [TinyMCE](http://www.tinymce.com/). You can see the page we're testing [here](http://the-internet.herokuapp.com/tinymce).
 
@@ -119,11 +119,11 @@ If we save the file and run it (e.g., `python frames.py` from the command-line) 
 + Grab the text from the top of the page and assert that it's not empty
 + Close the browser
 
-## Summary 
+## Summary
 
 Now you're ready to handily defeat frames when they cross your path.
 
-Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
+Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
 

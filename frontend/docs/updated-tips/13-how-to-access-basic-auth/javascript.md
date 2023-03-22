@@ -4,7 +4,7 @@ id: '13-work-with-basic-auth-javascript'
 slug: javascript/
 number: 13
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'authentication'
@@ -14,7 +14,7 @@ category:
 language: javascript
 ---
 
-# How To Access Basic Auth
+# How to Access Basic Auth
 
 ## Intro
 
@@ -32,7 +32,7 @@ By specifying the username and password _in the URL_ when visiting a page with S
 
 Let's take a look at an example.
 
-## Example
+## Example 1
 
 Let's start by requiring our requisite libraries, declare our test class, and wire up some test setup and teardown methods.
 

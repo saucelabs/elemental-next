@@ -4,17 +4,17 @@ id: '3-work-with-frames-ruby'
 slug: ruby/
 number: 3
 publish_date: 2023-02-21
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'frames'
 level: 1
-category: 
+category:
   - fundamentals
 language: ruby
 ---
 
-# How To Work with Frames
+# How to Work with Frames
 
 ## Intro
 

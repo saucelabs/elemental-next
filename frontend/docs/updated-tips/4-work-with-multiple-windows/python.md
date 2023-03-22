@@ -4,23 +4,23 @@ id: '4-work-with-multiple-windows-python'
 slug: /python
 number: 4
 publish_date: 2016-11-14
-last_update: 
+last_update:
   date: 2023-03-14
 tags:
   - "windows"
   - "multiple windows"
   - "new window"
 level: 2
-category: 
+category:
   - remote
 language: python
 ---
 
-# How To Work with Multiple Windows
+# How to Work with Multiple Windows
 
 ## Intro
 
-This tip will explain how to work with multiple windows in Selenium and switch between them. 
+This tip will explain how to work with multiple windows in Selenium and switch between them.
 
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
@@ -113,7 +113,7 @@ Now that we have two windows open we grab all of the window handles and search t
 
 ## Summary
 
-Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip. And thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the code for this tip and [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
+Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip. And thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip and [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
 

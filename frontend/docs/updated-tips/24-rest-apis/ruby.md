@@ -11,7 +11,7 @@ tags:
   - 'test setup'
   - 'guest post'
 level: 2
-category: 
+category:
   - fundamentals
 language: ruby
 ---
@@ -21,13 +21,13 @@ language: ruby
 
 ## Intro
 
-This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST APIs in his testing practice
+>This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST APIs in his testing practice
 
-When we list out the properties that make a test a "good test", some of things that often come up are:
+When we list out the properties that make a test a "good test", some things that often come up are:
 
-* Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail.
-* Independent. A test should not have it's outcome affected by any other test in the test suite.
-* Fast. This doesn't need much explanation. The quicker a test suite runs, the more useful it is.
++ **Precise.** The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail.
++ **Independent.** A test should not have it's outcome affected by any other test in the test suite.
++ **Fast.** This doesn't need much explanation. The quicker a test suite runs, the more useful it is.
 
 Of course there are many other properties that might be included in such a list, but I mention these specifically because they can be particularly challenging to achieve in a Selenium test suite. The reason for this is that Selenium tests often involve setups that may include a sign-up, a login, some navigation, form submission, or other interactions with a website. Only after doing those things are you ready to assert on some aspect of the website.  If you confine your tests to only being allowed to interact with the website, there is little that can be done to alleviate this issue.
 
@@ -37,7 +37,7 @@ REST APIs are increasingly common in the backends of newer websites. If you are 
 
 REST APIs are based on the HTTP protocol, which is the same protocol that powers essentially the entire internet.  Nearly every modern programming language has libraries that can be used to make HTTP requests, thus we can add support for calling into REST APIs to virtually any test suite.
 
-## Example(s)
+## Example
 
 I decided to pick an example that is nearly ubiquitous: sign-up. When we make a new user for a test, we have a "clean slate" which allows us great control over how to shape that user for our test. We eliminate possible corruption of our test user's state from other tests. And if we make that user using a REST API call, we avoid the time penalty of having to fill out a sign-up form (not to mention having to find any emails involved in confirming an email address).
 
