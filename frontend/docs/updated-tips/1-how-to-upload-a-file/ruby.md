@@ -4,20 +4,20 @@ id: "1-upload-a-file-ruby"
 slug: ruby/
 number: 1
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-27
 tags:
   - 'file'
   - 'upload'
   - 'file upload'
 level: 1
-category: 
+category:
   - remote
   - fundamentals
 language: ruby
 ---
 
-# How To Upload a File
+# How to Upload a File
 
 ## Intro
 
