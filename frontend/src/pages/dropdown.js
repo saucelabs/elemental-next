@@ -2,7 +2,7 @@ import React from "react";
 import Data from "@site/src/data";
 import dropdownStyles from './dropdown.module.css';
  
-const Dropdown = ({ filterItem, setTip, difficultyItems }) => {
+const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters}) => {
   return (
     <>
     <div className={dropdownStyles.filterText}>Filter by:</div>  
@@ -27,12 +27,30 @@ const Dropdown = ({ filterItem, setTip, difficultyItems }) => {
             );
             })}
         </div>
-
+        </div>
+        <div className={dropdownStyles.dropdownTags}>
+        <button className={dropdownStyles.drop}
+            onClick={() => setItem(Data)}
+            >
+            Tags
+        </button>
+        <div className={dropdownStyles.menu}>
+            {tagItems?.map((Val, id) => {
+            return (
+                <button className='{dropdownStyles.content}'
+                    onClick={() => tagFilters(Val)}
+                    key={id}
+                >
+                    <div className={dropdownStyles.drop}>
+                        {/* <p>Hello World!</p> */}
+                        {Val}
+                    </div>
+                </button>
+            );
+            })}
         
-        
-            
-
-     </div>
+        </div>
+      </div>
     </>
   );
 };

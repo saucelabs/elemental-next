@@ -52,7 +52,7 @@ const Data = [
         headline: "7: Using a Page Object", text: "Just like with uploading files, we hit the same issue with downloading them. A dialogue box, just out of Selenium’s reach..." ,
         difficulty: "Intermediate", 
         contentUrl: "http://localhost:3000/docs/updated-tips/use-a-page-object/ruby/",
-        tags: ["paje_object", "abstraction"]
+        tags: ["page_object", "abstraction"]
     },
     { 
         id: "8-download-a-file-revisited-ruby", 
@@ -60,7 +60,7 @@ const Data = [
         text: "Previously we looked at how to download files with Selenium by configuring the browser to download them locally. While this works, it requires a custom configuration that is inconsistent browser to browser" , 
         difficulty: "Intermediate",
         contentUrl: "http://localhost:3000/docs/updated-tips/download-a-file-revisited/ruby/",
-        tags: ["files", "downloading"]
+        tags:["files","downloading"]
     },
     { 
         id: "10-retry-test-actions-ruby", 

@@ -9,7 +9,27 @@
     top: 50px;
     z-index: 1;
 
-        font-weight: 700;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+/* identical to box height */
+
+    color: #756C5B;
+
+} 
+
+
+.dropdownTags   {
+    position: relative;
+    display: inline-block;
+    
+    width: 133px;
+    height: 33px;
+    left: 750px;
+    top: 17px;
+    z-index: 1;
+
+    font-weight: 700;
     font-size: 16px;
     line-height: 19px;
 /* identical to box height */
@@ -35,6 +55,11 @@
 
 }
 
+.dropdownTags:hover .menu {
+    display:block;
+
+}
+
 .menu   {
 display: none;
 }
@@ -51,13 +76,15 @@ display: none;
     gap: 10px;
 
     /* position: absolute; */
-    width: 133px;
+    width: 250px;
     height: 33px; 
 
 
     border: 1px solid #000000;
     border-radius: 8px;
     background-color: rgb(255, 255, 255); 
+
+    
     
 }
 

@@ -11,11 +11,20 @@ const Tips = () => {
   const [tip, setTip] = useState(Data);
 
   const difficultyItems = [...new Set(Data.map((Val) => Val.difficulty))];
-  const tagItems = [...new Set(Data.map((Val) => Val.tags))];
+  let tagItems = (Data.map((Val) => Val.tags));
+  tagItems = [...new Set(Array.prototype.concat(...tagItems))];
+  
 
   const filterItem = (curdif) => {
     const newTip = Data.filter((newVal) => {
       return newVal.difficulty === curdif;
+    });
+    setTip(newTip);
+  };
+
+  const tagFilters = (curtag) => {
+    const newTip = Data.filter((newVal) => {
+      return newVal.tags.includes(curtag);
     });
     setTip(newTip);
   };
@@ -30,8 +39,10 @@ const Tips = () => {
             </div>
             <Dropdown
               filterItem={filterItem}
+              tagFilters={tagFilters}
               setTip={setTip}
               difficultyItems={difficultyItems}
+              tagItems={tagItems}
             />
                 <div>
                 <Card tip={tip} />
