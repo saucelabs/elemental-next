@@ -129,5 +129,7 @@ Happy Testing!
 
 ## About The Author
 
-You can follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).
+This is a pseudo guest post from Brian Goad. I've adapted a blog post of his with permission. You can see the original [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).  You can follow him on Twitter at [@bbbco](https://twitter.com/bbbco) and check out his testing blog [here](http://swdandruby.wordpress.com/).
+
+
 
