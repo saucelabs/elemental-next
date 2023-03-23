@@ -22,9 +22,7 @@ language: ruby
 
 Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium.
 
-## Use Case
-
-Previously, you may have sent keystrokes to open a new tab or window with a send keys method and `Command t` (MacOS) or `Control n` (Windows). However, this doesn’t translate well across different operating systems, and requires complex conditionals. This type of approach also doesn’t work reliably across browser versions, since in some versions this command is sent in the context of the web page, and the browser application itself wouldn’t receive the command.
+Previously, you may have sent keystrokes to open a new tab or window with a send keys method and `Command t` (MacOS) or `Control n` (Windows). However, this doesn’t translate well across different operating systems and browser versions.
 
 ## A Solution
 
