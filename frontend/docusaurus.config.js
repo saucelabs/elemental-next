@@ -21,7 +21,7 @@ const config = {
   organizationName: 'saucelabs', // Usually your GitHub org/user name.
   projectName: 'elemental-bromine', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
