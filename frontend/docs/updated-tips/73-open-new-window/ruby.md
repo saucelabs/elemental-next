@@ -35,7 +35,7 @@ With the release of Selenium 4 comes the `new_window` command which allows you t
 | **Ruby**     | [`@driver.switch_to.new_window(:window)`](https://github.com/saucelabs-training/demo-ruby/blob/docs-1.1/training-sessions/selenium4/spec/new_window_spec.rb#L7)           | [`@driver.switch_to.new_window(:tab)`](https://github.com/saucelabs-training/demo-ruby/blob/docs-1.1/training-sessions/selenium4/spec/new_window_spec.rb#L13)           |
 | **C#**       | [`Driver.SwitchTo().NewWindow(WindowType.Window);`](https://github.com/saucelabs-training/demo-csharp/blob/docs-1.1/DotnetCore/Sauce.Demo/Core.Selenium.Examples/Selenium4/NewFeatures/NewWindow.cs#L39) | [`Driver.SwitchTo().NewWindow(WindowType.Tab);`](https://github.com/saucelabs-training/demo-csharp/blob/docs-1.1/DotnetCore/Sauce.Demo/Core.Selenium.Examples/Selenium4/NewFeatures/NewWindow.cs#L48) |
 
->##### *Click on any of the code snippets in the table for more information and script demos.*
+##### *Click on any of the code snippets in the table for more information and script demos.*
 <br>
 
 ## Example
