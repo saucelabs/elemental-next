@@ -1,7 +1,7 @@
 ---
 title: 'Python'
 id: '8-download-a-file-revisited-python'
-slug: /python
+slug: python/
 number: 8
 publish_date: 2016-11-24
 last_update:

@@ -1,7 +1,7 @@
 ---
 title: 'Python'
 id: '4-work-with-multiple-windows-python'
-slug: /python
+slug: python/
 number: 4
 publish_date: 2016-11-14
 last_update:
