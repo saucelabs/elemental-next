@@ -1,6 +1,6 @@
 ---
 title: Javascript
-id: 25-how-to-work-with-tables
+id: 25-how-to-work-with-tables-javascript
 slug: javascript/
 number: 25
 publish_date: 2015-10-13
@@ -13,7 +13,8 @@ tags:
   - css pseudo-classes
 level: 2
 category: 
-  - remote
+  - troubleshooting
+  - fundamentals
 language: javascript
 ---
 # How To Work With Tables
@@ -22,31 +23,33 @@ language: javascript
 
 Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for.
 
-But when the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it and if you're able to pull something together, it will likely not work against older browsers.
+When the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.
 
 ## A Solution
 
-You can easily traverse a table through the use of [CSS pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-classes).
+You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
 
-Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
+But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
 
-A table has...
+>### _**A quick primer on Tables and CSS Pseudo-classes**_
+>
+>Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
+>
+>>A table has:
+>>+ a header (e.g. `<thead>`)
+>>+ a body (e.g. `<tbody>`).
+>>+ rows (e.g. `<tr>`) -- horizontal slats of data
+>>+ columns -- vertical slats of data
+>
+>>Columns are made up of cells, which are:
+>>+ a header (e.g., `<th>`)
+>>+ one or more standard cells (e.g., `<td>` -- which is short for __table data__)
+>
+>CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
 
-+ a header (e.g. `<thead>`)
-+ a body (e.g. `<tbody>`).
-+ rows (e.g. `<tr>`) -- horizontal slats of data
-+ columns -- vertical slats of data
+Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
 
-Columns are made up of cells which are...
-
-+ a header (e.g., `<th>`)
-+ one or more standard cells (e.g., `<td>` -- which is short for __table data__)
-
-CSS pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
-
-Let's try some examples for a common set of table functionality like sorting columns in ascending and descending order.
-
-## An Example
+## Example 1
 
 __NOTE: You can see the application under test [here](http://the-internet.herokuapp.com/tables). It's an example from [the-internet](https://github.com/tourdedave/the-internet). In the example there are 2 tables. We will start with the first table and then work with the second.__
 
@@ -176,11 +179,17 @@ We can easily use this approach to test a different column (e.g., one that doesn
 // ...
 ```
 
-The mechanism for this is the same as before, except that we don't need to clean the text up or convert it before performing our assertion.
+The mechanism for this is the same except that we don't need to clean the text up or convert it before performing our assertion.
 
-## But What About Better Locators?
+## Example 2
 
-Here is what the markup of our original table would look like with some helpful attributes added in. It's also the markup from the second table on [our application under test](http://the-internet.herokuapp.com/tables).
+But what about older browsers?
+
+If we run these against an older browser (e.g., Internet Explorer 8, etc.) it will throw an exception stating `Unable to find element`. This is because older browsers don't support CSS Pseudo-classes.
+
+You've come a long way, so it's best to get value out of what you've just written. To do that you can run these tests on __current browsers__ and submit a request to your front-end developers to update the table markup with some semantic `class` attributes. Later, when these new locators have been implemented on the page, you can revisit these tests and update them accordingly.
+
+Here is markup of what our original table would look like with some helpful attributes added in. It's also the markup from the second example of [our application under test](http://the-internet.herokuapp.com/tables).
 
 ```html
 <table id="table2" class="tablesorter">
@@ -226,7 +235,7 @@ With these new attributes the locators in our sorting tests become a lot simpler
 });
 ```
 
-Not only will these selectors work in current _and_ legacy browsers, but they are also more resilient to changes in the table layout since they are not using hard-coded numbers that rely on the column order.
+Not only will these selectors work in current _and_ older browsers, but they are also more resilient to changes in the table layout since they are not using hard-coded numbers that rely on the column order.
 
 ## Expected Behavior
 
