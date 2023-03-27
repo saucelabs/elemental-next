@@ -11,7 +11,7 @@ tags:
   - 'downloading'
   - 'authentication'
 level: 3
-category: 'testing'
+category: 'fundamentals'
 language: ruby
 ---
 
