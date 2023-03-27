@@ -1,6 +1,6 @@
 ---
 title: Javascript
-id: 40-disabled-element
+id: 40-disabled-element-javascript
 slug: javascript/
 number: 40
 publish_date: 2019-08-09
@@ -21,7 +21,7 @@ language: javascript
 
 ## Intro
 
-On occasion you may have the need to check if an element on a page is disabled or enabled. Sounds simple enough, but how do you do it? It's not a well known function of Selenium so doing a trivial action like this can quickly become a pain.
+On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain.
 
 ## A Solution
 
@@ -29,7 +29,7 @@ If we look at [the API documentation for Selenium's Element class](https://selen
 
 Let's take a look at how to use it.
 
-## An Example
+## Example
 
 For this example we will use [a dropdown list](http://the-internet.herokuapp.com/dropdown) from [the-internet](http://github.com/tourdedave/the-internet). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
 
