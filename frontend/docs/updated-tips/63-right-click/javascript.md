@@ -86,7 +86,9 @@ When we save this file and run it (e.g., `mocha`) from the command-line) here is
 + Assert that the text from the alert is what we expect
 + Close the browser
 
-## Outro
+## Summary
+
+To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
 
 Happy Testing!
 
