@@ -16,9 +16,3 @@ jobs:
         run: |
           cd frontend && npm install
           npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          publish_dir: ./frontend/dist
-          publish_branch: gh-pages
