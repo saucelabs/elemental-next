@@ -17,7 +17,11 @@ category:
 language: javascript
 ---
 
-## The Problem
+# How to Visually Verify Your Locators
+
+## Intro
+
+>This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
 
 It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
 
@@ -27,7 +31,7 @@ By leveraging some simple JavaScript and CSS styling, we can highlight the eleme
 
 Let's take a look at an example.
 
-## An Example
+## Example
 
 For our initial setup let's pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods.
 
@@ -115,10 +119,12 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-Alternatively, you could use the developer tools and inspect the locators in a test one at a time for debugging. This approach is more helpful if you want to have some kind of real time review of what's happening as your tests run.
+If you wanted to take this a step further, you could leverage this approach along with an interactive debugger. You can read more about how to do that [here in Brian's other guest post](http://elementalselenium.com/tips/14-interactive-prompts-revisited)==**`!! Link needs replacing !!`**==.
+
+Alternatively, you could verify your locators by using a browser plugin like FireFinder. You can read more about how to do that [here in this previous tip](http://elementalselenium.com/tips/verifying-locators)==**`!! Link needs replacing !!`**==.
 
 Happy Testing!
 
 ## About The Author
 
-This is a pseudo guest post from Brian Goad. I've adapted a blog post of his with permission. You can see the original [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/). Brian is a Test Engineer at [Digitalsmiths](http://www.digitalsmiths.com/). You can follow him on Twitter at [@bbbco](https://twitter.com/bbbco) and check out his testing blog [here](http://swdandruby.wordpress.com/).
+You can follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).
