@@ -17,6 +17,8 @@ category:
 language: javascript
 ---
 
+# How to Right-click
+
 ## Intro
 
 Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
@@ -29,7 +31,7 @@ You could then select an option from the menu by traversing it with keyboard key
 
 Let's try an example.
 
-## An Example
+## Example
 
 Let's start by pulling in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
 
