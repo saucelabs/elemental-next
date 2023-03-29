@@ -114,8 +114,6 @@ When we save this file and run it (e.g., `python growl.py`) here is what will ha
 
 In order to use this approach, you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay (unless you can get your team to add it to the application under test).
 
-In a future tip I'll step through how to access Selenium logging output so we can wire it up to these notifications.
-
 I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/austenjt), [GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl with Selenium.
 
 Happy Testing!
