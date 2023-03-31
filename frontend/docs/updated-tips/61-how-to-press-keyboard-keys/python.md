@@ -13,11 +13,12 @@ tags:
   - 'tab'
   - 'enter'
 level: 1
-category: 'testing'
+category:
+    - fundamentals
 language: python
 ---
 
-# How To Press Keyboard Keys
+# How to Press Keyboard Keys
 
 ## Intro
 
@@ -26,10 +27,6 @@ On occasion you'll come across functionality that requires the use of keyboard k
 Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter.
 
 But how do you do it and where do you start?
-
-## Use Case
-
-Common use cases to press keyboard keys include simulating a user typing into a variety of inputs. You'll find inputs are also needed in search bars, forms, and as stated above, traversing the user interface.
 
 ## A Solution
 

@@ -11,11 +11,12 @@ tags:
   - 'growl'
   - 'growl notifications'
 level: 2
-category: 'infrastructure'
+category:
+  - troubleshooting
 language: ruby
 ---
 
-# How To Add A Wrapper To Your Selenium Tests
+# How to Add a Wrapper to Your Selenium Tests
 
 ## Intro
 

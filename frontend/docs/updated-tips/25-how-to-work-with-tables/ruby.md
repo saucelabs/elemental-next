@@ -12,17 +12,17 @@ tags:
   - 'css selectors'
   - 'css pseudo-classes'
 level: 2
-category: 'testing'
+category:
+  - troubleshooting
+  - fundamentals
 language: ruby
 ---
 
-# How To Work With HTML Data Tables
+# How to Work with HTML Data Tables
 
 ## Intro
 
 Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for.
-
-## Use Case
 
 When the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.
 

@@ -4,7 +4,7 @@ id: '50-hovers-ruby'
 slug: ruby/
 number: 50
 publish_date: 2015-07-01
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'hover'
@@ -15,13 +15,13 @@ category: 'testing'
 language: ruby
 ---
 
-# How To Work With Hovers
+# How to Work with Hovers
 
 ## Intro
 
 If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution.
 
-## Use Case
+## A Solution
 
 The most popular use case for a hover action is to display additional menu options(submenu.)
 
@@ -31,7 +31,7 @@ By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/ap
 
 Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/tourdedave/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them, they display additional user information and a link to view a full profile.
 
-Let's write a test that will hover over the first avatar and make sure that this additional information appears.
+We're going to write a test that will hover over the first avatar and make sure that this additional information appears.
 
 First, we'll want to include our requisite libraries (e.g., `selenium-webdriver` to control the browser, and `rspec/expectations` and `RSpec::Matchers` for our assertion) and wire up some `setup`, `teardown`, and `run` methods.
 

@@ -3,7 +3,7 @@ title: 'Selenium Resources'
 id: '36-available-resources'
 number: 36
 publish_date: 2015-10-13
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'videos'
@@ -17,17 +17,16 @@ tags:
   - 'resources'
   - 'all the things'
 level: 1
-category: 'community'
+category:
+  - resources
 language: all
 ---
 
-# Where To Look for Selenium Information
+# Where to Look for Selenium Information
 
 ## Intro
 
 There is an abundance of information and resources when it comes to Selenium.
-
-## Use Case
 
 Although Selenium information is out there, it can be challenging to sift through all of it, or to even know where to look for it. If you're struggling with an issue and need help with a solution, access to these resources and communities can be especially essential.
 

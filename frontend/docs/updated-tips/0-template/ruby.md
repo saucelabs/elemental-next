@@ -1,5 +1,5 @@
 ---
-title: 'Template Ruby'
+title: 'Ruby'
 id: '0-template-ruby'
 slug: ruby/
 number: 0
@@ -19,11 +19,7 @@ language: ruby
 
 ## Intro
 
-<!-- Write a short introduction of 2-3 sentences of what your content will be teaching the reader -->
-
-## Use Case
-
-<!-- Write 1-2 pargraphs or a bulleted list of the problem or use case for your tip -->
+<!-- Write 1-3 paragraphs introducing a problem or use case, and what your tip will be teaching the reader -->
 
 ## A Solution
 

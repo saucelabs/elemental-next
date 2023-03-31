@@ -4,22 +4,21 @@ id: '13-work-with-basic-auth-ruby'
 slug: ruby/
 number: 13
 publish_date: 2015-10-14
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'authentication'
 level: 1
-category: 'testing'
+category:
+  - troubleshooting
 language: ruby
 ---
 
-# How To Access Basic Auth
+# How to Access Basic Auth
 
 ## Intro
 
 In this guide, you will learn how to pass credentials to a site when requesting a page that is secured behind Basic HTTP Authentication.
-
-## Use Case
 
 Sometimes you'll work with applications that are secured behind [Basic HTTP Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) (a.k.a. Basic Auth). In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password -- rendering Selenium helpless.
 

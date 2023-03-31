@@ -13,7 +13,8 @@ tags:
   - 'waiting'
   - 'explicit waits'
 level: 2
-category: 'testing'
+category: 
+  - fundamentals
 language: ruby
 ---
 
@@ -22,8 +23,6 @@ language: ruby
 ## Intro
 
 This tip will go over how to implement explicit waits for testing dynamic web pages.
-
-## Use Case
 
 Let's say you want to test some functionality of a web application but it loads things dynamically. You might think about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout (like an [Implicit Wait](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#implicit-waits)) that you likely bump up to address test instabilities as well.
 
