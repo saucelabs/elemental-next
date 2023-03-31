@@ -13,7 +13,8 @@ tags:
   - "css pseudo-classes"
 level: 2
 category:
-  - remote
+  - troubleshooting
+  - fundamentals
 language: python
 ---
 

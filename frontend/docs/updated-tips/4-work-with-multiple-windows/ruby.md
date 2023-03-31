@@ -12,7 +12,7 @@ tags:
   - 'new window'
 level: 2
 category:
-  - remote
+  - fundamentals
 language: ruby
 ---
 
