@@ -11,7 +11,7 @@ tags:
   - 'hovers'
   - 'action builder'
 level: 1
-category: 'testing'
+category: 'fundamentals'
 language: ruby
 ---
 
