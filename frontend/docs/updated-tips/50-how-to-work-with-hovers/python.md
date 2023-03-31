@@ -25,7 +25,7 @@ If you need to work with mouse hovers in your tests, it might not be obvious how
 
 The most popular use case for a hover action is to display additional menu options(submenu.)
 
-By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
+By leveraging Selenium's [Actions](https://www.selenium.dev/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html) we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
 
 ## Example
 
