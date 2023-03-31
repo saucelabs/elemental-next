@@ -87,7 +87,7 @@ When we save this file and run it (e.g., `python hover.py` from the command-line
 
 ## Summary
 
-The code above locates the avatar element and hovers over it. By checking the `.isDisplayed` we are able to see if there is a caption/additional user info before closing the page.
+Hopefully this will help you handle more complex user interactions like hovers.
 
 Happy Testing!
 
