@@ -1,29 +1,39 @@
 ---
-title: "How To Download a File"
-slug: "2-download-a-file"
+title: 'CSharp'
+id: '2-download-a-file-csharp'
+slug: csharp/
 number: 2
-publish_date: 2016-06-11
+publish_date: 2015-07-27
+last_update:
+  date: 2023-03-29
 tags:
-  - "files"
-  - "downloading"
-  - "file download"
+  - 'files'
+  - 'downloading'
+  - 'file download'
 level: 2
-category: "testing"
+category: 
+  - remote
+  - fundamentals
+language: csharp
 ---
 
-## The Problem
+# How To Download a File
 
-Just like with uploading files we hit the same issue with downloading them. A dialog box just out of Selenium's reach.
+## Intro
+
+Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
+
 
 ## A Solution
 
-With some additional configuration when setting up Selenium we can easily side-step the dialog box. This is done by instructing the browser to download files to a specific location without being prompted.
+In order to avoid the dialog box, we will be instructing the browser to download files to a specific location without being prompted.
 
-After the file is downloaded we can perform some simple checks to make sure the file is what we expect.
+After the file is downloaded we can then perform some simple checks to make sure the file is what we expect.
 
-Let's dig in with an example.
+Let's continue with an example.
 
-## An Example
+## Example
 
 Let's start off by declaring our requisite classes for our testing framework (e.g., `using NUnit.Framework`), driving the browser with Selenium (e.g., `using OpenQA.Selenium`, etc.), and leveraging common C# functions (e.g., `using System.IO`, etc.).
 
@@ -52,13 +62,13 @@ public class FileDownload
         FolderPath = @"C:\Temp\" + System.Guid.NewGuid().ToString();
         Directory.CreateDirectory(FolderPath);
 
-        FirefoxProfile Profile = new FirefoxProfile();
-        profile.SetPreference("browser.download.dir", FolderPath);
-        profile.SetPreference("browser.download.folderList", 2);
-        profile.SetPreference("browser.helperApps.neverAsk.saveToDisk",
-                              "image/jpeg, application/pdf, application/octet-stream");
-        profile.SetPreference("pdfjs.disabled", true);
-        Driver = new FirefoxDriver(Profile);
+        FirefoxOptions options = new FirefoxOptions();
+        options.SetPreference("browser.download.dir", FolderPath);
+        options.SetPreference("browser.download.folderList", 2);
+        options.SetPreference("browser.helperApps.neverAsk.saveToDisk",
+                      "image/jpeg, application/pdf, application/octet-stream");
+        options.SetPreference("pdfjs.disabled", true);
+        Driver = new FirefoxDriver(options);
     }
 // ...
 ```
@@ -128,10 +138,20 @@ When you save this file and run it (e.g., `nunit3-console.exe .\FileDownload.sln
 + Close the browser
 + Delete the temp directory
 
-## Outro
+## Summary
 
-A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/). In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files. Stay tuned.
+A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/).
 
 Thanks to Jonathan Taylor for contributing the initial C# code for this tip!
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by 
+thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect 
+for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at 
+numerous conferences and meetups around the world about automated acceptance testing.

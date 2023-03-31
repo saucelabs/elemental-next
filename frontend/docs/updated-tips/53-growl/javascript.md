@@ -1,30 +1,37 @@
 ---
-title: "How To Add Growl Notifications To Your Tests"
-slug: "53-growl"
+title: Javascript
+id: 53-growl-javascript
+slug: javascript/
 number: 53
 publish_date: 2019-08-09
+last_update:
+  date: 2023-03-28
 tags:
-  - "jquery"
-  - "growl"
-  - "growl notifications"
-  - "jquery-growl"
+  - jquery
+  - growl
+  - growl notifications
+  - jquery-growl
 level: 2
-category: "reporting"
+category: 
+  - troubleshooting
+language: javascript
 ---
 
-## The Problem
+# How to Add Growl Notifications to Your Tests
 
-Good test reports are a fundamental component of successful test automation. But running down a test failure by looking at a test report can be a real pain sometimes.
+## Intro
 
-Leaving you with no choice but to roll up your sleeves and get your hands dirty with debug statements, or step through things piece by piece -- all for the sake of trying to track down a transient issue.
+Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece -- all for the sake of trying to track down a transient issue.
 
 ## A Solution
 
-By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing. This way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs 
+By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing.
+
+With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs
 
 Let's step through an example of how to set this up.
 
-## An Example
+## Example
 
 First we'll need to pull in our requisite libraries, declare our test suite, and wire up some setup and teardown methods.
 
@@ -54,7 +61,7 @@ Now for our test. We'll need to visit the page we want to display notifications 
   it("runs and shows growl debugging output", async function() {
     await driver.get("http://the-internet.herokuapp.com");
 
-    // check for jQuery on the page, add it if needbe
+    // check for jQuery on the page, add it if needed
     await driver.executeScript(
       `if (!window.jQuery) { var jquery = document.createElement('script'); jquery.type = 'text/javascript'; jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'; document.getElementsByTagName('head')[0].appendChild(jquery);}`
     );
@@ -113,10 +120,16 @@ When we save this file and run it (e.g., `mocha`) here is what will happen:
 + Notification messages disappear
 + Browser closes
 
-## Outro
+## Summary
 
 In order to use this approach, you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay (unless you can get your team to add it to the application under test).
 
 I'd like to give a big thanks to Jon Austen ([GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl with Selenium.
 
 Happy Testing!
+
+## About the Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

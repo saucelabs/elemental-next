@@ -1,19 +1,25 @@
 ---
-title: "How To Right-click"
-slug: "63-right-click"
+title: Javascript
+id: 63-right-click-javascript
+slug: javascript/
 number: 63
 publish_date: 2019-08-09
+last_update:
+  date: 2023-03-28
 tags:
-  - "right-click"
-  - "right click"
-  - "context menu"
-  - "action builder"
-  - "context click"
+  - right-click
+  - context menu
+  - action builder
+  - context click
 level: 2
-category: "testing"
+category:
+  - fundamentals
+language: javascript
 ---
 
-## The Problem
+# How to Right-click
+
+## Intro
 
 Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
 
@@ -23,9 +29,9 @@ By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/ap
 
 You could then select an option from the menu by traversing it with keyboard keys (if a system dialog) or through `findElement` (if a rendered element). It depends on how the application under test has implemented it.
 
-Let's dig in with an example.
+Let's try an example.
 
-## An Example
+## Example
 
 Let's start by pulling in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
 
@@ -38,6 +44,7 @@ describe("Right click", function() {
   let driver;
 
   beforeEach(async function() {
+  this.timeout(60000)
     driver = await new Builder().forBrowser("firefox").build();
   });
 
@@ -81,6 +88,14 @@ When we save this file and run it (e.g., `mocha`) from the command-line) here is
 + Assert that the text from the alert is what we expect
 + Close the browser
 
-## Outro
+## Summary
+
+To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
 
 Happy Testing!
+
+## About the Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
