@@ -1,5 +1,5 @@
 ---
-title: How To Run Your Tests Locally Against Chrome
+title: Ruby
 id: 29-chrome-driver-ruby
 slug: ruby/
 number: 29
@@ -12,11 +12,13 @@ tags:
   - chrome
   - different browsers
 level: 2
-category: setup
+category:
+  - fundamentals
+  - remote
 language: ruby
 ---
 
-# How To Run Your Tests Locally Against Chrome
+# How to Run Your Tests Locally Against Chrome
 
 ## Intro
 
@@ -32,15 +34,12 @@ With the introduction of WebDriver (circa Selenium 2) a lot of benefits were rea
 
 Let's step through an example using ChromeDriver ([download here](https://chromedriver.chromium.org/downloads)).
 
-## Example 1
+## Example
 
-Before starting, we'll need to download the latest ChromeDriver binary executable from [here](http://chromedriver.storage.googleapis.com/index.html). Once we have it we'll need to tell Selenium where it is. And there are three ways to do this:
+Before starting, we'll need to download the latest ChromeDriver binary executable from [here](http://chromedriver.storage.googleapis.com/index.html). Once we have it we'll need to tell Selenium where it is. Two ways we can do this are to:
 
 + Add it to the System PATH
 + Specify it in the Selenium setup
-+ Launch ChromeDriver and connect to it via Selenium Remote
-
-Let's step through the latter two options.
 
 We'll start by pulling in our requisite libraries (e.g., `selenium-webdriver` to driver the browser and `rspec/expectations` & `RSpec::Matchers` to perform an assertion) and wiring up some simple `setup`, `teardown`, and `run` methods.
 
@@ -83,54 +82,15 @@ end
 
 If we save this file and run it (e.g., `ruby chrome.rb`) it will launch an instance of Chrome, visit the homepage of [the-internet](http://the-internet.herokuapp.com/), and assert that the page title loaded.
 
-## Example 2
-
-Alternatively, we can launch ChromeDriver from the command-line using either commands `chromedriver` or `chromedriver.exe`...
-
-
-```sh
-> chromedriver.exe
-Starting ChromeDriver 2.18.343837 (52eb4041461e46a6b73308ebb19e85787ced4281) on port 9515
-Only local connections are allowed.
-```
-
-...and connect to it with Selenium Remote.
-
-==**`!! Code snippet needs validation !!`**==
-
-```ruby
-# filename: chrome.rb
-# ...
-
-def setup
-  @driver = Selenium::WebDriver.for :remote, url: 'http://localhost:9515', desired_capabilities: :chrome
-end
-
-
-# ...
-```
-
-__NOTE: This approach will perform faster since ChromeDriver is already running and your test just needs to connect to it. Whereas the prior approach needs to start and stop ChromeDriver for _each_ test. The trade-off here is that ChromeDriver will keep running after your tests complete. So you'll either need to ensure it's always up, or come up with a way to shut it down after your tests finish.__
-
 ## Expected Behavior
 
 When we save this file and run it (e.g., `ruby chrome.rb` from the command-line) here is what will happen.
-
-<u>Example 1</u>
 
 + ChromeDriver starts
 + Chrome opens
 + Test runs
 + Chrome closes
 + ChromeDriver stops
-
-<u>Example 2</u>
-
-+ ChromeDriver starts (via command-line execution)
-+ Chrome opens
-+ Test runs
-+ Chrome closes
-+ ChromeDriver continues to run until stopped
 
 ## Summary
 
