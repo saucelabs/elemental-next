@@ -15,6 +15,8 @@ category:
 language: csharp
 ---
 
+## How to Download a File Without a Browser
+
 ## Intro
 
 In a [previous tip](/tips/2-download-a-file) we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
