@@ -121,8 +121,6 @@ Now that we have two windows open we grab all of the window handles and search t
 
 ## Expected Behavior
 
-## Expected Behavior
-
 If you save this file and run it (e.g., `nunit3-console.exe .\MultipleWindows.sln` from the command-line) here is what will happen for either example.
 
 + Open the browser
@@ -136,8 +134,13 @@ If you save this file and run it (e.g., `nunit3-console.exe .\MultipleWindows.sl
 
 I hope this was a helpful guide on how to work with and switch between multiple windows using Selenium.
 
+Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
+
 For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/).
+
 
 ## About The Author
 
-Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
