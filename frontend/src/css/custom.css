@@ -26,13 +26,6 @@
   --ifm-link-color-lighter: #77DEEA;
   --ifm-link-color-lightest:#ACF1F9;
 
-  /* font */
-
-
-  
-
-  
-
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -48,8 +41,6 @@ body{
 body.em{
   font-weight: 500;
 }
-
-
 
 h1,
 .h1 {
