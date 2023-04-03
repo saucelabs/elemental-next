@@ -152,7 +152,7 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 
 Now you're ready to handily defeat frames when they cross your path.
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip. 
 
 Happy Testing!
 
