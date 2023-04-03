@@ -1,18 +1,30 @@
 ---
-title: "How To Work With JavaScript Alerts"
-slug: "51-javascript-alerts"
+title: 'Java'
+id: '51-javascript-alerts-java'
+slug: java/
 number: 51
-publish_date: 2015-11-10
+publish_date: 2019-08-09
+last_update:
+  date: 2023-04-03
 tags:
-  - "javascript"
-  - "javascript alerts"
-  - "javascript popups"
-  - "javascript dialogs"
+  - 'javascript'
+  - 'javascript alerts'
+  - 'javascript popups'
+  - 'javascript dialogs'
 level: 1
-category: "testing"
+category:
+  - fundamentals
+  - tools
+language: java
 ---
 
-## The Problem
+# How to Work with JavaScript Alerts
+
+## Intro
+
+Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes.
+
+A popular use case for alerts is in the case of error prevention for password restrictions.
 
 If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc.) then you need to know how to handle them in your Selenium tests.
 
@@ -20,9 +32,8 @@ If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc
 
 Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.
 
-Let's dig in with an example.
 
-## An Example
+## Example
 
 Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/tourdedave/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
 
@@ -79,6 +90,7 @@ After click the button to trigger the JavaScript Alert we use Selenium's `switch
 
 After accepting the alert, our browser window will automatically regain focus and the page will display the result that we chose. We use this text for our assertion, making sure that the words `You clicked: Ok` are displayed.
 
+
 ## Expected Behavior
 
 When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
@@ -91,8 +103,14 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Assert that the result on the page is what we expect
 + Close the browser
 
-## Outro
+## Summary
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
