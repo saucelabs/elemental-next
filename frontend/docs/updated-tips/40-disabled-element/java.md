@@ -1,27 +1,35 @@
 ---
-title: "How To Test For Disabled Elements"
-slug: "40-disabled-element"
+title: 'Java'
+id: '40-disabled-element-java'
+slug: java/
 number: 40
-publish_date: 2015-11-11
+publish_date: 2015-07-06
+last_update:
+  date: 2023-04-03
 tags:
-  - "dropdown list"
-  - "dropdown lists"
-  - "disabled element"
+  - 'dropdown list'
+  - 'dropdown lists'
+  - 'disabled element'
 level: 2
-category: "testing"
+category:
+  - remote
+  - troubleshooting
+language: java
 ---
 
-## The Problem
+# How to Test For Disabled Elements
 
-On occasion you may have the need to check if an element on a page is disabled or enabled. Sounds simple enough, but how do you do it? It's not a well documented function of Selenium. So doing a trivial action like this can quickly become a pain.
+## Intro
+
+On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain.
 
 ## A Solution
 
-If we look at [the API documentation for Selenium's WebElement class](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html) we can see there is an available method called `isEnabled` that can help us accomplish what we want.
+If we look at [the API documentation for Selenium's IWebElement Interface](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebElement.html) we can see there is an available method called `isEnabled` that can help us accomplish what we want.
 
 Let's take a look at how to use it.
 
-## An Example
+## Example
 
 For this example we will use [the dropdown list](http://github.com/tourdedave/the-internet) from [the-internet](http://the-internet.herokuapp.com/dropdown). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
 
@@ -82,8 +90,14 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Assert that the target element is not enabled
 + Close the browser
 
-## Outro
+## Summary
 
 Hopefully this tip has helped make the simple task of seeing if an element is enabled or disabled more approachable.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

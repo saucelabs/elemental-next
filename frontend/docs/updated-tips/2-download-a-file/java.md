@@ -1,29 +1,41 @@
 ---
-title: "How To Download a File"
-slug: "2-download-a-file"
+title: 'Java'
+id: '2-download-a-file-java'
+slug: java/
 number: 2
-publish_date: 2015-11-15
+publish_date: 2015-07-27
+last_update:
+  date: 2023-04-03
 tags:
-  - "files"
-  - "downloading"
-  - "file download"
+  - 'files'
+  - 'downloading'
+  - 'file download'
 level: 2
-category: "testing"
+category: 
+  - remote
+  - fundamentals
+language: java
 ---
 
-## The Problem
+# Page Title
 
-Just like with [uploading files](/tips/1-upload-a-file) we hit the same issue with downloading them. A dialog box just out of Selenium's reach.
+# How To Download a File
+
+## Intro
+
+Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
+
 
 ## A Solution
 
-With some additional configuration when setting up Selenium we can easily side-step the dialog box. This is done by instructing the browser to download files to a specific location without being prompted.
+In order to avoid the dialog box, we will be instructing the browser to download files to a specific location without being prompted.
 
 After the file is downloaded we can then perform some simple checks to make sure the file is what we expect.
 
-Let's dig in with an example.
+Let's continue with an example.
 
-## An Example
+## Example
 
 Let's start off by importing our requisite classes for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), matchers for assertions (e.g., `org.hamcrest.CoreMatchers`, etc. ), handling local files (e.g., `java.io.File`), and a means to create a uniquely named folder to place downloaded files in (e.g., `java.util.UUID`).
 
@@ -32,11 +44,16 @@ Let's start off by importing our requisite classes for annotations (e.g., `org.j
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.nio.file.Files;
+import java.util.Objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.util.UUID;
@@ -55,24 +72,17 @@ public class Download {
     public void setUp() throws Exception {
         folder = new File(UUID.randomUUID().toString());
         folder.mkdir();
-
+        FirefoxOptions options = new FirefoxOptions();
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("browser.download.dir", folder.getAbsolutePath());
         profile.setPreference("browser.download.folderList", 2);
         profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
                 "image/jpeg, application/pdf, application/octet-stream");
         profile.setPreference("pdfjs.disabled", true);
-        driver = new FirefoxDriver(profile);
+        options.setProfile(profile);
+        driver = new FirefoxDriver(options);
     }
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-        for (File file: folder.listFiles()) {
-            file.delete();
-        }
-        folder.delete();
-    }
 ```
 
 Our `setUp()` method is where the magic is happening in this example. In it we're creating a uniquely named temp directory, configuring a browser profile object (for Firefox in this case), and plying it with the necessary configuration parameters to make it automatically download the file where we want (e.g., the newly created temp directory).
@@ -94,7 +104,7 @@ Now let's take care of our test's `teardown`.
     @After
     public void tearDown() throws Exception {
         driver.quit();
-        for (File file: folder.listFiles()) {
+        for (File file: Objects.requireNonNull(folder.listFiles())) {
             file.delete();
         }
         folder.delete();
@@ -142,10 +152,16 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Close the browser
 + Delete the temp directory
 
-## Outro
+## Summary
 
-A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/). In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files. Stay tuned.
+A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/).
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

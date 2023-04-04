@@ -1,30 +1,37 @@
 ---
-title: "How To Visually Verify Your Locators"
-slug: "65-highlight-elements"
+title: 'Java'
+id: '65-highlight-elements-java'
+slug: java/
 number: 65
-publish_date: 2015-11-11
+publish_date: 2014-09-11
+last_update:
+  date: 2023-04-03
 tags:
-  - "guest post"
-  - "highlight"
-  - "javascript"
-  - "locators"
+  - 'guest post'
+  - 'highlight'
+  - 'javascript'
+  - 'locators'
 level: 2
-category: "testing"
+category:
+  - troubleshooting
+language: java
 ---
 
-This is a pseudo guest post from Brian Goad. I've adapted a blog post of his with permission. You can see the original [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/). Brian is a Test Engineer at [Digitalsmiths](http://www.digitalsmiths.com/). You can follow him on Twitter at [@bbbco](https://twitter.com/bbbco) and check out his testing blog [here](http://swdandruby.wordpress.com/).
+# How to Visually Verify Your Locators
 
-## The Problem
+## Intro
+
+>This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
 
 It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
 
 ## A Solution
 
-By leveraging some simple JavaScript and CSS styling, you can highlight a targeted element on the page so you can visually inspect it to make sure it's the one you want.
+By leveraging some simple JavaScript and CSS styling, we can highlight the element on the page that we're targeting. This way we can visually inspect it to make sure it is the one that we want.
 
 Let's take a look at an example.
 
-## An Example
+## Example
 
 First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
 
@@ -118,10 +125,18 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Revert the styling of the element back (removing the red border)
 + Close the browser
 
-## Outro
+## Summary
 
-This approach can be handy when trying to debug your test. Alternatively, you could verify your locators by using a browser plugin like FireFinder. You can read more about how to do that in [tip 35](/tips/verifying-locators).
+If you wanted to take this a step further, you could leverage this approach along with an interactive debugger. You can read more about how to do that [here in Brian's other guest post](http://elementalselenium.com/tips/14-interactive-prompts-revisited)==**`!! Link needs replacing !!`**==.
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Alternatively, you could verify your locators by using a browser plugin like FireFinder. You can read more about how to do that [here in this previous tip](http://elementalselenium.com/tips/verifying-locators)==**`!! Link needs replacing !!`**==.
+
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

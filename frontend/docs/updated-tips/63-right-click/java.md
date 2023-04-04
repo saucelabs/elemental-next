@@ -1,31 +1,37 @@
 ---
-title: "How To Right-click"
-slug: "63-right-click"
+title: 'Java'
+id: '63-right-click-java'
+slug: java/
 number: 63
-publish_date: 2015-11-11
+publish_date: 2015-10-13
+last_update:
+  date: 2023-04-03
 tags:
-  - "right-click"
-  - "right click"
-  - "context menu"
-  - "action builder"
-  - "context click"
+  - 'right-click'
+  - 'right click'
+  - 'context menu'
+  - 'action builder'
+  - 'context click'
 level: 2
-category: "testing"
+category: 'fundamentals'
+language: java
 ---
 
-## The Problem
+# How to Right-click
+
+## Intro
 
 Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
 
 ## A Solution
 
-By leveraging [Selenium's Action Builder](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html) we can issue a right-click command (a.k.a. a [`contextClick`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#contextClick--)).
+By leveraging [Selenium's Action Builder](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html) we can issue a right-click command (a.k.a. a [`contextClick`](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#contextClick())).
 
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`sendKeys`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#sendKeys-java.lang.CharSequence...-) command). For a full write-up on working with keyboard keys in Selenium, see [tip 61](/tips/61-keyboard-keys).
+We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`sendKeys`](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#sendKeys(java.lang.CharSequence...)) command.
 
-Let's dig in with an example.
+Let's continue with an example.
 
-## An Example
+## Example
 
 Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
 
@@ -94,10 +100,16 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Assert that the text from the alert is what we expect
 + Close the browser
 
-## Outro
+## Summary
 
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with keyboard keys and JavaScript alerts in your Selenium tests, check out tips [61](/tips/61-keyboard-keys) and [51](/tips/51-javascript-alerts).
+To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
