@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[6478],{2656:t=>{t.exports=JSON.parse('{"label":"junit xml","permalink":"/docs/tags/junit-xml","allTagsPath":"/docs/tags","count":1,"items":[{"id":"updated-tips/junit-xml/57-junit-xml-ruby","title":"Ruby","description":"Intro","permalink":"/docs/updated-tips/junit-xml/ruby/"}]}')}}]);
