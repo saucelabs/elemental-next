@@ -87,6 +87,7 @@ end
 ## Expected Behavior
 
 If you run the `Ruby` example referenced above (`ruby new-window.rb`), this test will:
+
 + Open Firefox browser
 + Navigate to the-internet website
 + Open a New Window and move it to a different position on the screen
