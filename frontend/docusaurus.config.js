@@ -11,10 +11,10 @@ const config = {
   favicon: 'img/ES.ico',
 
   // Set the production url of your site here
-  url: 'https://opensource.saucelabs.com/elemental-next/',
+  url: 'https://opensource.saucelabs.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/elemental-next',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.

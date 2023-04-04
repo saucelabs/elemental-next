@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[6502],{2059:d=>{d.exports=JSON.parse('{"label":"DnD","permalink":"/docs/tags/dn-d","allTagsPath":"/docs/tags","count":1,"items":[{"id":"updated-tips/drag-and-drop/39-drag-and-drop-ruby","title":"Ruby","description":"Intro","permalink":"/docs/updated-tips/drag-and-drop/ruby/"}]}')}}]);

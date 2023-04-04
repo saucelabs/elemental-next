@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[7532],{205:e=>{e.exports=JSON.parse('{"label":"headless","permalink":"/docs/tags/headless","allTagsPath":"/docs/tags","count":1,"items":[{"id":"updated-tips/headless-chrome/72-headless-chrome-ruby","title":"Ruby","description":"Intro","permalink":"/docs/updated-tips/headless-chrome/ruby/"}]}')}}]);
