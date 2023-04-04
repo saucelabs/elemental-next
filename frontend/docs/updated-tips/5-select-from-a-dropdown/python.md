@@ -108,6 +108,7 @@ __NOTE: In addition to selecting by text, you can also select by value.__
 
 ```python
   select_list.select_by_value('1')
+```
 
 ## Expected Behavior
 
