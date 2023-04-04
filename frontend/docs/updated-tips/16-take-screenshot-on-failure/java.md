@@ -1,26 +1,36 @@
 ---
-title: "How To Take A Screenshot on Failure"
-slug: "16-take-screenshot-on-failure"
+title: 'Java'
+id: '16-take-screenshot-on-failure-java'
+slug: java/
 number: 16
-publish_date: 2015-11-11
+publish_date: 2015-07-08
+last_update:
+  date: 2023-04-03
 tags:
-  - "reporting"
-  - "screenshot"
+  - 'reporting'
+  - 'screenshot'
 level: 2
-category: "reporting"
+category:
+  - troubleshooting
+language: java
 ---
 
-## The Problem
+# How to Take A Screenshot on Failure
 
-With browser tests it can often be challenging to track down the issue that caused a failure. By itself a failure message along with a stack trace is hardly enough to go on. Especially when you run the test again and it passes.
+## Intro
+
+With browser tests it can often be challenging to track down the issue that caused a failure.
+
+By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
 ## A Solution
 
-A simple way to gain insight into your test failures is to capture screenshots at the moment of a failure. And it's a quick and easy thing to add to your tests.
+A simple way to gain insight into your test failures is to capture screenshots at the moment of failure. This is something that is fairly quick to add to your tests, and allows you to review these error messages.
 
-Let's dig in with an example.
+Here is an example.
 
-## An Example
+
+## Example
 
 Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with a setup method.
 
@@ -109,6 +119,14 @@ When you save this file and run it (`mvn clean test` from the command-line) here
 + Capture a screenshot in the current working directory with the name `failshot_Screenshot_OnError.png`
 + Close the browser
 
-## Outro
+## Summary
+
+Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

@@ -1,22 +1,30 @@
 ---
-title: "How To Work With HTML Data Tables"
-slug: "25-tables"
+title: 'Java'
+id: '25-tables-java'
+slug: java/
 number: 25
-publish_date: 2015-11-11
+publish_date: 2015-10-13
+last_update:
+  date: 2023-04-03
 tags:
-  - "tables"
-  - "sorting"
-  - "css selectors"
-  - "css pseudo-classes"
+  - 'tables'
+  - 'sorting'
+  - 'css selectors'
+  - 'css pseudo-classes'
 level: 2
-category: "testing"
+category:
+  - troubleshooting
+  - fundamentals
+language: java
 ---
 
-## The Problem
+# How to Work with HTML Data Tables
+
+## Intro
 
 Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for.
 
-But when the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.
+When the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.
 
 ## A Solution
 
@@ -24,27 +32,25 @@ You can easily traverse a table through the use of [CSS Pseudo-classes](http://w
 
 But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
 
-## A quick primer on Tables and CSS Pseudo-classes
-
-Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
-
-A table has...
-
-+ a header (e.g. `<thead>`)
-+ a body (e.g. `<tbody>`).
-+ rows (e.g. `<tr>`) -- horizontal slats of data
-+ columns -- vertical slats of data
-
-Columns are made up of cells which are...
-
-+ a header (e.g., `<th>`)
-+ one or more standard cells (e.g., `<td>` -- which is short for __table data__)
-
-CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
+>### _**A quick primer on Tables and CSS Pseudo-classes**_
+>
+>Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
+>
+>>A table has:
+>>+ a header (e.g. `<thead>`)
+>>+ a body (e.g. `<tbody>`).
+>>+ rows (e.g. `<tr>`) -- horizontal slats of data
+>>+ columns -- vertical slats of data
+>
+>>Columns are made up of cells, which are:
+>>+ a header (e.g., `<th>`)
+>>+ one or more standard cells (e.g., `<td>` -- which is short for __table data__)
+>
+>CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
 
 Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
 
-## An Example
+## Example 1
 
 __NOTE: You can see the application under test [here](http://the-internet.herokuapp.com/tables). It's an example from [the-internet](https://github.com/tourdedave/the-internet). In the example there are 2 tables. We will start with the first table and then work with the second.__
 
@@ -189,7 +195,9 @@ We can easily use this locator strategy to test a different column (e.g., one th
 
 The mechanism for this is the same except that we don't need to clean the text up or convert it before performing our assertion. And our assertion is using `compareTo` which returns a number based on the result. A negative number means that it's ascending, a positive number descending, and a `0` means the two values are equal.
 
-## But What About Older Browsers?
+## Example 2
+
+But What About Older Browsers?
 
 Now we have some working tests that will load the page and check sorting for a couple of columns in both ascending and descending order. Great! But if we run these again an older browser (e.g., Internet Explorer 8, etc.) it will throw an exception stating `Unable to find element`. This is because older browsers don't support CSS Pseudo-classes.
 
@@ -247,6 +255,7 @@ With these well-placed, descriptive class attributes our sorting tests become _a
 
 Not only will these selectors work in current _and_ older browsers, but they are also more resilient to changes in the table layout since they are not using hard-coded numbers that rely on the column order.
 
+
 ## Expected Behavior
 
 When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
@@ -258,10 +267,16 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Assert that the column values are sorted in the correct order (ascending or descending)
 + Close the browser
 
-## Outro
+## Summary
 
-CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests; enabling a bit of CSS gymnastics assuming you've come up with a test strategy that rules out older browsers. If you don't have a test strategy or are curious to see how yours compares, check out [tip 18](/tips/18-what-to-test).
+CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests; enabling a bit of CSS gymnastics assuming you've come up with a test strategy that rules out older browsers. If you don't have a test strategy or are curious to see how yours compares, check out [tip 18](/tips/18-what-to-test)==**`!! Internal link needs replacing !!`**==.
 
-For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors), and maybe [the W3C spec CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
+For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors)==**`!! Broken link needs replacing !!`**==, and maybe [the W3C spec CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
