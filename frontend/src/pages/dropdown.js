@@ -7,19 +7,20 @@ const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, c
     <>
     <div className={dropdownStyles.filterText}>Filter by:</div>  
       <div className={dropdownStyles.dropdown}>
-      <button className={dropdownStyles.drop}
-            onClick={() => setItem(Data)}
+      <label htmlFor="menu_arrow"></label>
+      <button type="checkbox" className={dropdownStyles.drop}
+            onClick={() => {setItem(Data);}}
             >
             Difficulty
       </button>
         <div className={dropdownStyles.menu}>
             {difficultyItems?.map((Val, id) => {
             return (
-                <button className='{dropdownStyles.content}'
-                    onClick={() => filterItem(Val)}
+                <button className={dropdownStyles.content}
+                    onClick={() => {filterItem(Val)}}
                     key={id}
                 >
-                    <div className={dropdownStyles.drop}>
+                    <div className='{dropdownStyles.drop}'>
                         {/* <p>Hello World!</p> */}
                         {Val}
                     </div>
@@ -37,11 +38,11 @@ const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, c
         <div className={dropdownStyles.menu}>
             {tagItems?.map((Val, id) => {
             return (
-                <button className='{dropdownStyles.content}'
+                <button className={dropdownStyles.content}
                     onClick={() => tagFilters(Val)}
                     key={id}
                 >
-                    <div className={dropdownStyles.drop}>
+                    <div className='{dropdownStyles.drop}'>
                         {/* <p>Hello World!</p> */}
                         {Val}
                     </div>
@@ -60,11 +61,11 @@ const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, c
         <div className={dropdownStyles.menu}>
             {catItems?.map((Val, id) => {
             return (
-                <button className='{dropdownStyles.content}'
+                <button className={dropdownStyles.content}
                     onClick={() => catFilters(Val)}
                     key={id}
                 >
-                    <div className={dropdownStyles.drop}>
+                    <div className='{dropdownStyles.drop}'>
                         {/* <p>Hello World!</p> */}
                         {Val}
                     </div>
