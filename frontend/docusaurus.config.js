@@ -11,16 +11,16 @@ const config = {
   favicon: 'img/ES.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://opensource.saucelabs.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/elemental-next',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'saucelabs', // Usually your GitHub org/user name.
-  projectName: 'elemental-bromine', // Usually your repo name.
-
+  projectName: 'elemental-next', // Usually your repo name.
+  deploymentBranch: 'gh-pages', // The branch that GitHub pages deploys from.
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
