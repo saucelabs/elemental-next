@@ -7,8 +7,9 @@ const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, c
     <>
     <div className={dropdownStyles.filterText}>Filter by:</div>  
       <div className={dropdownStyles.dropdown}>
-      <button className={dropdownStyles.drop}
-            onClick={() => setItem(Data)}
+      <label htmlFor="menu_arrow"></label>
+      <button type="checkbox" className={dropdownStyles.drop}
+            onClick={() => {setItem(Data);}}
             >
             Difficulty
       </button>
@@ -16,7 +17,7 @@ const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, c
             {difficultyItems?.map((Val, id) => {
             return (
                 <button className={dropdownStyles.content}
-                    onClick={() => filterItem(Val)}
+                    onClick={() => {filterItem(Val)}}
                     key={id}
                 >
                     <div className='{dropdownStyles.drop}'>
