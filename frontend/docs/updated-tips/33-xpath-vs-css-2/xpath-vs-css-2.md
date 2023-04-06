@@ -14,17 +14,15 @@ tags:
   - locators
   - locator strategy
 level: 2
-category: benchmarks
+category: resources
 language: all
 ---
 
-# CSS vs. XPath, under a microscope
+# CSS vs. XPath, Under a Microscope
 
 ## Intro
 
 >**NOTE: This is part 2 of 3. For the first installment, [go here](http://elementalselenium.com/tips/32-xpath-vs-css)==**`!! Internal link needs replacing !!`**==. For the last installment, go [here](http://elementalselenium.com/tips/34-xpath-vs-css-revisited-2)==**`!! Internal link needs replacing !!`**==.**
-
-## Use Case
 
 In a previous tip we reviewed [the performance of CSS vs. XPath against Sauce Labs](http://elementalselenium.com/tips/32-xpath-vs-css)==**`!! Internal link needs replacing !!`**==. While it demonstrated that each locator strategy is reasonably equivalent across browsers, it didn't adequately paint the whole picture for us.
 
