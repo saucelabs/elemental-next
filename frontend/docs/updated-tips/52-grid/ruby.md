@@ -59,7 +59,6 @@ __NOTE: This example only demonstrates a single node on the same machine as the 
 
 Now that the grid is running we can view the available browsers by visiting our Grid's console at `http://localhost:4444/grid/console`.
 
-
 To refine the list of available browsers, we can specify an additional `-browser` parameter when registering the node. For instance, if we wanted to only offer Safari on a node, we could specify it with `-browser browserName=safari`, which would look like this:
 
 ```sh
