@@ -1,21 +1,21 @@
 ---
-title: "Ruby"
-id: "52-grid-ruby"
+title: 'Ruby'
+id: '52-grid-ruby'
 slug: ruby/
 number: 52
 publish_date: 2015-08-25
 last_update:
   date: 2023-02-24
 tags:
-  - "grid"
-  - "selenium grid"
-  - "cross browser"
+  - 'grid'
+  - 'selenium grid'
+  - 'cross browser'
 level: 2
-category: "tools"
+category: 'tools'
 language: ruby
 ---
 
-# How To Use Selenium Grid
+# How to Use Selenium Grid
 
 ## Intro
 
