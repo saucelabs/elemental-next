@@ -1,6 +1,6 @@
 ---
-title: How To Test Your Mobile App
-id: 30-mobile-ruby.md
+title: Ruby
+id: 30-mobile-ruby
 slug: ruby/
 number: 30
 publish_date: 2013-12-17
@@ -12,11 +12,11 @@ tags:
   - appium
   - sauce labs
 level: 2
-category: mobile
+category: remote
 language: ruby
 ---
 
-# How To Test Your Mobile App
+# How to Test Your Mobile App
 
 >==**`!! Information on this page is outdated !!`**==
 >
