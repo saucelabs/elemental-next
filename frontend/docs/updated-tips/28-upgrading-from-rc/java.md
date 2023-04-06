@@ -1,7 +1,7 @@
 ---
-title: How To Upgrade From Selenium RC to WebDriver
-id: 28-upgrading-from-rc
-slug: upgrading-from-rc/
+title: Java
+id: 28-upgrading-from-rc-java
+slug: java/
 number: 28
 publish_date: 2015-10-13
 last_update:
@@ -10,11 +10,11 @@ tags:
   - selenium rc
   - upgrading
 level: 2
-category: upgrading
-language: all
+category: fundamentals
+language: java
 ---
 
-# How To Upgrade From Selenium RC to WebDriver
+# How to Upgrade from Selenium RC to WebDriver
 
 >==**`!! Information on this page is outdated !!`**==
 >
