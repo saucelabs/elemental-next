@@ -14,17 +14,15 @@ tags:
   - locators
   - locator strategy
 level: 2
-category: benchmarks
+category: resources
 language: all
 ---
 
-# CSS vs. XPath, conclusion
+# CSS vs. XPath, Conclusion
 
 ## Intro
 
 >**NOTE: This is part 3 of 3. For the first installment, [go here](http://elementalselenium.com/tips/32-xpath-vs-css)==**`!! Internal link needs replacing !!`**==. For the second installment, go [here](http://elementalselenium.com/tips/33-xpath-vs-css-revisited)==**`!! Internal link needs replacing !!`**==.**
-
-## Use Case
 
 In [the last tip](http://elementalselenium.com/tips/33-xpath-vs-css-revisited)==**`!! Internal link needs replacing !!`**== I provided benchmarks that showed XPath and CSS performance across various browsers. Since then I've received feedback on some things that my test was missing -- most notably more browser coverage (e.g., Internet Explorer 9 and 10) and testing against a larger and deeper page.
 
