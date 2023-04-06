@@ -10,11 +10,11 @@ tags:
   - 'parallelization'
   - 'good test writing'
 level: 2
-category: 'performance'
+category: 'remote'
 language: ruby
 ---
 
-# How To Speed Up Your Tests With Parallelization
+# How to Speed Up Your Tests With Parallelization
 
 ## Intro
 
