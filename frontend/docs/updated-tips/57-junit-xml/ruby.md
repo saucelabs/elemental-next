@@ -4,7 +4,7 @@ id: '57-junit-xml-ruby'
 slug: ruby/
 number: 57
 publish_date: 2015-07-14
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'xml'
@@ -13,21 +13,18 @@ tags:
   - 'continuous integration'
   - 'reporting'
 level: 1
-category: 'reporting'
+category:
+  - tools
 language: ruby
 ---
 
-# How To Prepare Your Tests for Continuous Integration
+# How to Prepare Your Tests for Continuous Integration
 
 ## Intro
 
 If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server.
 
-## Use Case
-
-In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report.
-
-But what does this entail? How do you set it up? And will it work when running things in parallel?
+In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report. But what does this entail? How do you set it up? And will it work when running things in parallel?
 
 ## A Solution
 
@@ -37,7 +34,7 @@ The report will include test results (e.g., failure messages and stack traces) a
 
 Let's go through an example of how to configure a test suite in order to output a JUnit XML report.
 
-## Example(s)
+## Example
 
 In [RSpec](http://rspec.info/), you need a plugin to configure JUnit XML output. There are two popular ones:
 

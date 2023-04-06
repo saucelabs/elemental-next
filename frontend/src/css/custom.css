@@ -4,19 +4,73 @@
  * work well for content-centric websites.
  */
 
-
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #49311b;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
+  
+  /* colors */
+  --ifm-color-primary: #FCC55B;
+  --ifm-color-primary-light: #FDD68A;
+  --ifm-color-primary-lighter: #FCE2AF;
+  --ifm-color-primary-lightest: #FEF0D3;
+  /* --ifm-code-font-size: 95%; */
+  --ifm-color-secondary: #58CF5D;
+  --ifm-color-secondary-light:#81D88F;
+  --ifm-color-secondary-lighter: #A3F1B0;
+  --ifm-color-secondary-lightest:#CAFBD1;
+  --ifm-color-tertiary:#B2305E;
+  --ifm-color-tertiary-light:#DF5385;
+  --ifm-color-tertiary-lighter:#FD8CB4;
+  --ifm-color-tertiary-lightest:#FFC0D6;
+  --ifm-link-color: #22747D;
+  --ifm-link-color-light: #28B4C4;
+  --ifm-link-color-lighter: #77DEEA;
+  --ifm-link-color-lightest:#ACF1F9;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
+
+/* font */
+body{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: normal;
+
+}
+
+body.em{
+  font-weight: 500;
+}
+
+h1,
+.h1 {
+  font-weight: 500;
+  font-size: 48px;
+  font-weight: 500;
+}
+
+h2,
+.h2{
+  font-weight: 500;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+#light{
+  font-weight: 300;
+}
+
+text{
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.subtitle{
+  font-weight: 300;
+  line-height: 36px;
+}
+
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
@@ -30,31 +84,29 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.navbar{
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 9999; 
+  z-index: 9999;
   background-color: white;
   width: 1362px;
   height: 77px;
   -webkit-box-shadow: none;
 
   /* position: absolute;
-  
+
   left: 39px;
   top: 30px; */
 
-  
   font-style: normal;
 }
 /* need to be updated */
 /* .navbar.title{
   font-size: 36px;
-  line-height: 42px;  
+  line-height: 42px;
   color: rgb(236, 223, 36);
 
 } */
-
 
 /* .header_wrapper{
   max-width: 975px;
@@ -65,4 +117,5 @@
   align-items: center;
   justify-content: space-between;
 } */
+
 

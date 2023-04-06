@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[7616],{8740:e=>{e.exports=JSON.parse('{"label":"hello","permalink":"/elemental-next/blog/tags/hello","allTagsPath":"/elemental-next/blog/tags","count":2}')}}]);

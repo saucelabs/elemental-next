@@ -10,17 +10,16 @@ tags:
   - 'reporting'
   - 'screenshot'
 level: 2
-category: 'reporting'
+category:
+  - troubleshooting
 language: ruby
 ---
 
-# How To Take A Screenshot on Failure
+# How to Take A Screenshot on Failure
 
 ## Intro
 
 With browser tests it can often be challenging to track down the issue that caused a failure.
-
-## Use Case
 
 By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
@@ -30,7 +29,7 @@ A simple way to gain insight into your test failures is to capture screenshots a
 
 Here is an example.
 
-## Example(s)
+## Example
 
 Let's start by including our requisite libraries (`selenium-webdriver` to drive the browser and `rspec/expectations` & `RSpec::Matchers` for our assertion) and wire up some simple `setup` and `teardown` methods.
 

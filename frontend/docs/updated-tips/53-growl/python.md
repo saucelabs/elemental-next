@@ -12,25 +12,22 @@ tags:
   - growl notifications
   - jquery-growl
 level: 2
-category: reporting
+category:
+  - troubleshooting
 language: python
 ---
 
-# How To Add Growl Notifications To Your Tests
+# How to Add Growl Notifications to Your Tests
 
 ## Intro
 
-Good test reports are a fundamental component of successful test automation. But running down a test failure by looking at a test report can be a real pain sometimes.
-
-Leaving you with no choice but to roll up your sleeves and get your hands dirty with debug statements, or step through things piece by piece -- all for the sake of trying to track down a transient issue.
-
-## Use Case
-
-By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing. 
+Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece -- all for the sake of trying to track down a transient issue.
 
 ## A Solution
 
-With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs 
+By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing.
+
+With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs
 
 Let's step through an example of how to set this up.
 
@@ -116,8 +113,6 @@ When we save this file and run it (e.g., `python growl.py`) here is what will ha
 ## Summary
 
 In order to use this approach, you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay (unless you can get your team to add it to the application under test).
-
-In a future tip I'll step through how to access Selenium logging output so we can wire it up to these notifications.
 
 I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/austenjt), [GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl with Selenium.
 

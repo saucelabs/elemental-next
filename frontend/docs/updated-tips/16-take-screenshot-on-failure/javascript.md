@@ -4,13 +4,14 @@ id: 16-take-screenshot-on-failure-javascript
 slug: javascript/
 number: 16
 publish_date: 2015-07-08
-last_update: 
+last_update:
   date: 2023-03-09
 tags:
   - reporting
   - screenshot
 level: 2
-category: reporting
+category:
+  - troubleshooting
 language: javascript
 ---
 
@@ -19,8 +20,6 @@ language: javascript
 ## Intro
 
 With browser tests it can often be challenging to track down the issue that caused a failure.
-
-## Use Case
 
 By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
@@ -86,9 +85,9 @@ When we save this file and run it (`mocha` from the command-line) here is what w
 
 ## Summary
 
-For more info on `strftime` (a.k.a. String Formatted Time) go [here](http://apidock.com/ruby/DateTime/strftime).
+Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
 
-But if you want truly unique filenames, then you should use a unique ID in the filename instead of a timestamp (e.g., something like [`uuid`](https://github.com/assaf/uuid)). This will prevent screenshots from getting overwritten when you have two (or more) tests taking screenshots at the same time.
+Happy Testing!
 
 ## About The Author
 

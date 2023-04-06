@@ -4,30 +4,31 @@ id: '45-checkboxes-python'
 slug: python/
 number: 45
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-03-03
 tags:
   - 'checkboxes'
   - 'attribute'
   - 'selected'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
 language: python
 ---
 
-# How To Test Checkboxes
+# How to Test Checkboxes
 
 ## Intro
 
-Checkboxes are an often used element in web applications but how do you work with them in your Selenium tests? 
+Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests.
 
-## Use Case
+Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium.
 
-Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium. So how do you do it?
+## A Solution
 
-There are two ways to approach this -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
+There are two ways to approach this issue -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
 
-Let's step through each approach to see their pros and cons.
+We're going to go through each of these approaches to see their pros and cons.
 
 ## Example
 

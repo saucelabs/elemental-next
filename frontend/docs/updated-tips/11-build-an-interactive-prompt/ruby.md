@@ -10,7 +10,8 @@ tags:
   - 'repl'
   - 'debugging'
 level: 2
-category: 'tools'
+category: 
+  - troubleshooting
 language: ruby
 ---
 
@@ -19,8 +20,6 @@ language: ruby
 ## Intro
 
 Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion.
-
-## Use Case
 
 The typical approach is to walk through the scenario manually and inspect its markup, identify the parts you want to interact with, write up the test script, run it, and watch it. If it passes, then pat yourself on the back. If it fails, make some tweaks and run it again -- repeating until it passes.
 

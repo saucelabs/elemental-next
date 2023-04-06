@@ -11,19 +11,18 @@ tags:
   - 'upload'
   - 'file upload'
 level: 1
-category: 'testing'
+category:
+  - remote
+  - fundamentals
 language: java
 ---
 
-# How to upload a file
+# How to Upload a file
 
 
 ## Intro
 
-Uploading a file is a common piece of functionality found on the web. But when trying to automate it you get prompted with a with a dialog box that is just out of reach for Selenium.
-
-
-## Use Case
+Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium.
 
 In these cases people often look to a third-party tool to manipulate this window (e.g., [AutoIt](http://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/)). While this can help solve your short-term need, it sets you up for failure later by chaining you to a specific platform (e.g., AutoIt only works on Windows), effectively limiting your ability to test this functionality on different browser & operating system combinations.
 
@@ -111,9 +110,9 @@ When we save this file and run it (e.g., `mvn clean test` from the command-line)
 + Close the browser
 ## Summary
 
-This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or Sauce Labs), then you'll want to have a look at [`FileDetector`](https://github.com/SeleniumHQ/selenium/blob/ab1e647d0fc8fc39e6b00ae94321ab228b6728f2/java/client/src/org/openqa/selenium/remote/FileDetector.java). You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload).
+This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or Sauce Labs), then you'll want to have a look at [`FileDetector`](https://github.com/SeleniumHQ/selenium/blob/ab1e647d0fc8fc39e6b00ae94321ab228b6728f2/java/client/src/org/openqa/selenium/remote/FileDetector.java). You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload)==**`!! Broken link!!`**==.
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip!
 
 Happy Testing!
 

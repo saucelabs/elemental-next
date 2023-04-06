@@ -1,35 +1,34 @@
 ---
 title: 'Python'
 id: '4-work-with-multiple-windows-python'
-slug: /python
+slug: python/
 number: 4
 publish_date: 2016-11-14
-last_update: 
+last_update:
   date: 2023-03-14
 tags:
   - "windows"
   - "multiple windows"
   - "new window"
 level: 2
-category: "testing"
+category:
+  - fundamentals
 language: python
 ---
 
-# How To Work with Multiple Windows
+# How to Work with Multiple Windows
 
 ## Intro
 
-This tip will explain how to work with multiple windows in Selenium and switch between them. 
-
-# Use Case
+This tip will explain how to work with multiple windows in Selenium and switch between them.
 
 Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
 
-On the face of it, this is a pretty straightforward concept. But lurking within it is a small gotcha to watch out for that will bite you in some browsers and not others.
+On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.
 
 Let's step through a couple of examples to demonstrate.
 
-## Example
+## Example 1
 
 First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
@@ -114,10 +113,14 @@ Now that we have two windows open we grab all of the window handles and search t
 
 ## Summary
 
-Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip. And thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the code for this tip and [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
+Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip, [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
+
+For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/).
 
 Happy Testing!
 
 ## About The Author
 
-Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

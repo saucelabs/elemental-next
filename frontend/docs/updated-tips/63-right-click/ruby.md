@@ -13,11 +13,11 @@ tags:
   - 'action builder'
   - 'context click'
 level: 2
-category: 'testing'
+category: 'fundamentals'
 language: ruby
 ---
 
-# How To Right-click
+# How to Right-click
 
 ## Intro
 
@@ -31,7 +31,7 @@ We can then select an option from the menu by traversing it with keyboard arrow 
 
 Let's continue with an example.
 
-## Example(s)
+## Example
 
 Let's start by pulling in the necessary libraries (`selenium-webdriver` to control the browser and `rspec/expectations` & `RSpec::Matchers` to perform an assertion) and wiring up some simple `setup`, `teardown`, and `run` methods.
 

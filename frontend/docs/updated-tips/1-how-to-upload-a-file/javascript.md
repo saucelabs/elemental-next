@@ -4,23 +4,23 @@ id: '1-upload-a-file-javascript'
 slug: javascript/
 number: 1
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'file'
   - 'upload'
   - 'file upload'
 level: 1
-category: 'testing'
+category:
+  - remote
+  - fundamentals
 language: javascript
 ---
-# How To Upload A File
+# How to Upload a File
 
 ## Intro
 
 Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium.
-
-## Use Case 
 
 In these cases people often look to a third-party tool to manipulate this window (e.g., [AutoIt](http://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/)). While this can help solve your short-term need, it sets you up for failure later by chaining you to a specific platform (e.g., AutoIt only works on Windows), effectively limiting your ability to test this functionality on different browser & operating system combinations.
 
@@ -50,7 +50,7 @@ Now to create a new test class and add in test setup and teardown for it.
 // filename: test/upload.spec.js
 describe("Upload Test", function() {
     let driver;
-  
+
     beforeEach(async function() {
       this.timeout(60000)
       try{

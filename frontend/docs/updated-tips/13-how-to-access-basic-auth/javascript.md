@@ -4,25 +4,23 @@ id: '13-work-with-basic-auth-javascript'
 slug: javascript/
 number: 13
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'authentication'
 level: 1
-category: 'testing'
+category:
+  - troubleshooting
 language: javascript
 ---
 
-# How To Access Basic Auth
+# How to Access Basic Auth
 
 ## Intro
 
 In this guide, you will learn how to pass credentials to a site when requesting a page that is secured behind Basic HTTP Authentication.
 
-
-## Use Case
-
-Sometimes you'll work with applications that are secured behind [Basic HTTP Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) (a.k.a. Basic Auth). In order to access them you'll need to pass credentials to the site when requesting a page. Otherwise you'll get a system level pop-up prompting you for a username and password -- rendering Selenium helpless.
+Sometimes you'll work with applications that are secured behind [Basic HTTP Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) (a.k.a. Basic Auth). In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password -- rendering Selenium helpless.
 
 Before Selenium 2 we were able to accomplish this by injecting credentials into a custom header, but now a popular way to do it is using something like [BrowserMob Proxy](http://bmp.lightbody.net/). Some people are also solving this issue with browser specific configurations but those methods feel a little heavy and complicated.
 
@@ -34,7 +32,7 @@ By specifying the username and password _in the URL_ when visiting a page with S
 
 Let's take a look at an example.
 
-## Example
+## Example 1
 
 Let's start by requiring our requisite libraries, declare our test class, and wire up some test setup and teardown methods.
 
