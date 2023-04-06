@@ -14,13 +14,14 @@ tags:
   - locators
   - locator strategy
 level: 2
-category: benchmarks
+category: resources
 language: all
 ---
 
 # CSS vs. XPath
 
 >__NOTE: This is part 1 of 3. For the second installment, [go here](http://elementalselenium.com/tips/33-xpath-vs-css-revisited)==**`!! Internal link needs replacing !!`**==. For the last installment, go [here](http://elementalselenium.com/tips/34-xpath-vs-css-revisited-2)==**`!! Internal link needs replacing !!`**==.__
+
 ## Intro
 
 One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS. People in favor of CSS say that it is more readable and faster (especially when running against Internet Explorer). While those in favor of XPath tout its ability to transverse the page (while CSS cannot).
