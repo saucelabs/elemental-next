@@ -1,20 +1,21 @@
 ---
-title: "Ruby"
-id: "41-one-test-multiple-browsers-ruby"
+title: 'Ruby'
+id: '41-one-test-multiple-browsers-ruby'
 slug: ruby/
 number: 41
 publish_date: 2014-03-11
 last_update:
   date: 2023-03-20
 tags:
-  - "multiple browsers"
-  - "cloud"
-  - "sauce labs"
+  - 'multiple browsers'
+  - 'cloud'
+  - 'sauce labs'
 level: 2
-category: "fundamentals"
+category: 'fundamentals'
+language: ruby
 ---
 
-# How To Run A Test On Multiple Browsers
+# How to Run a Test on Multiple Browsers
 
 ## Intro
 
@@ -26,7 +27,7 @@ With the help of Sauce Labs, a collection, and a loop, we can easily specify a l
 
 Let's take a look at an example.
 
-## Example 1
+## Example
 
 To start, we include our dependent libraries (`'selenium-webdriver'` to drive the browser, and `'rspec-expectations'` to perform our assertion) and then wire up `setup` and `teardown` methods.
 
