@@ -4,24 +4,25 @@ id: '50-hovers-javascript'
 slug: javascript/
 number: 50
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'hover'
   - 'hovers'
   - 'action builder'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
 language: javascript
 ---
 
-# How To Work With Hovers
+# How to Work with Hovers
 
 ## Intro
 
 If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution.
 
-## Use Case
+## A Solution
 
 The most popular use case for a hover action is to display additional menu options(submenu.)
 
@@ -31,7 +32,7 @@ By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/ap
 
 Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/tourdedave/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them, they display additional user information and a link to view a full profile.
 
-Let's write a test that will hover over the first avatar and make sure that this additional information appears.
+We're going to write a test that will hover over the first avatar and make sure that this additional information appears.
 
 First we'll include our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
 
@@ -88,7 +89,7 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 ## Summary
 
-The code above locates the avatar element and hovers over it. By checking the `.isDisplayed` we are able to see if there is a caption/additional user info before closing the page.
+Hopefully this will help you handle more complex user interactions like hovers.
 
 Happy Testing!
 

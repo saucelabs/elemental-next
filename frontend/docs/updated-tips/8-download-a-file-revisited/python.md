@@ -1,7 +1,7 @@
 ---
 title: 'Python'
 id: '8-download-a-file-revisited-python'
-slug: /python
+slug: python/
 number: 8
 publish_date: 2016-11-24
 last_update:
@@ -10,17 +10,16 @@ tags:
   - 'files'
   - 'downloading'
 level: 2
-category: 'testing'
+category:
+  - remote
 language: python
 ---
 
-# How To Download a File Without a Browser
+# How to Download a File Without a Browser
 
 ## Intro
 
-In a [previous tip](/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
-
-## Use Case
+In a [previous tip](/tips/2-download-a-file) we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
 
 While the previous method works, it requires a custom configuration that is inconsistent from browser to browser.
 
@@ -32,7 +31,7 @@ Ultimately we shouldn't care if a file was downloaded or not. Instead, we should
 
 With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times (depending on the file size).
 
-Let's dig with an example.
+Let's continue with an example.
 
 ## Example
 

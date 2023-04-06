@@ -4,7 +4,7 @@ id: '51-javascript-alerts-ruby'
 slug: ruby/
 number: 51
 publish_date: 2019-08-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'javascript'
@@ -12,22 +12,21 @@ tags:
   - 'javascript popups'
   - 'javascript dialogs'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
+  - tools
 language: ruby
 ---
 
-# How To Work With JavaScript Alerts
+# How to Work with JavaScript Alerts
 
 ## Intro
 
-Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes. 
-
-## Use Case
+Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes.
 
 A popular use case for alerts is in the case of error prevention for password restrictions.
 
 If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc.) then you need to know how to handle them in your Selenium tests.
-
 
 ## A Solution
 
@@ -97,7 +96,7 @@ If you save this file and run it (e.g., `ruby javascript_alerts.rb` from the com
 
 ## Summary
 
-We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result. 
+We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result.
 
 Happy Testing!
 

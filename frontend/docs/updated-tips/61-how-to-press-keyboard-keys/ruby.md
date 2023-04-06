@@ -4,7 +4,7 @@ id: '61-keyboard-keys-ruby'
 slug: ruby/
 number: 61
 publish_date: 2015-10-12
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'keyboard'
@@ -13,11 +13,12 @@ tags:
   - 'tab'
   - 'enter'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
 language: ruby
 ---
 
-# How To Press Keyboard Keys
+# How to Press Keyboard Keys
 
 ## Intro
 
@@ -27,13 +28,9 @@ Perhaps you'll need to tab to traverse from one portion of the page to another, 
 
 But how do you do it and where do you start?
 
-## Use Case
-
-Common use cases to press keyboard keys include simulating a user typing into a variety of inputs. You'll find inputs are also needed in search bars, forms, and as stated above, traversing the user interface. 
-
 ## A Solution
 
-You can easily issue a key press by using the `sendKeys` command.
+You can easily issue a key press by using the `send_keys` command.
 
 This can be done to a specific element or generically with [Selenium's Action Builder](https://www.selenium.dev/selenium/docs/api/rb/Selenium/WebDriver/ActionBuilder.html). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
 

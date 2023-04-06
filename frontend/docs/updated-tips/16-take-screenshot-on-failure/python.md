@@ -4,23 +4,22 @@ id: '6-take-screenshot-on-failure-python'
 slug: python/
 number: 16
 publish_date: 2016-11-26
-last_update: 
+last_update:
   date: 2023-03-14
 tags:
   - "reporting"
   - "screenshot"
 level: 2
-category: "reporting"
+category:
+  - troubleshooting
 language: python
 ---
 
-# How To Take A Screenshot On Failure
+# How to Take A Screenshot On Failure
 
 ## Intro
 
 With browser tests it can often be challenging to track down the issue that caused a failure.
-
-## Use Case
 
 By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future.
 
@@ -82,7 +81,7 @@ When we save this file and run it (`python screenshot.py` from the command-line)
 
 ## Summary
 
-Having a screenshot to aid in trouble shoot failing tests along with a stack trace helps in having more insight. Using the `import sys` determines when theirs been a test failure.
+Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight. Using the `import sys` determines when there's been a test failure.
 
 If you want truly unique filenames, then you should use a unique ID in the filename instead of a timestamp (e.g., something like [`uuid`](https://github.com/assaf/uuid)). This will prevent screenshots from getting overwritten when you have two (or more) tests taking screenshots at the same time.
 

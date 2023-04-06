@@ -4,7 +4,7 @@ id: '58-tagging-ruby'
 slug: ruby/
 number: 58
 publish_date: 2014-07-09
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
   - 'tagging'
@@ -12,17 +12,18 @@ tags:
   - 'annotations'
   - 'test packs'
 level: 1
-category: 'tagging'
+category:
+  - fundamentals
 language: ruby
 ---
 
-# How To Filter Test Results With Tags
+# How to Filter Test Results with Tags
 
 ## Intro
 
 As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?
 
-## Use Case
+## A Solution
 
 By applying some metadata to your tests, you can specify a filter at runtime to execute a focused group of tests, returning just the ones you want.
 

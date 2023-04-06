@@ -1,0 +1,139 @@
+
+.dropdown   {
+    position: relative;
+    display: inline-block;
+    
+    width: 133px;
+    height: 33px;
+    left: 450px;
+    top: 50px;
+    z-index: 1;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+/* identical to box height */
+
+  
+} 
+
+
+.dropdownTags   {
+    position: relative;
+    display: inline-block;
+    
+    width: 133px;
+    height: 33px;
+    left: 600px;
+    top: 17px;
+    z-index: 1;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+/* identical to box height */
+
+    color: #756C5B;
+
+} 
+
+.dropdownCat  {
+    position: relative;
+    display: inline-block;
+    bottom: 15px;
+    width: 133px;
+    height: 33px;
+    left: 750px;
+ 
+    z-index: 1;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+/* identical to box height */
+    border-radius: 8px; 
+    color: #756C5B;
+
+} 
+
+.filterText {
+    position: absolute;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #756C5B;
+    left: 365px;
+    top: 287px;
+
+}
+   
+
+.dropdown:hover .menu {
+    display:block;
+
+}
+
+.dropdownTags:hover .menu {
+    display:block;
+
+}
+
+.dropdownCat:hover .menu {
+    display:block;
+
+}
+
+.menu   {
+display: none;
+}
+
+.drop {
+    /* box-sizing: border-box; */
+
+/* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 7px 10px;
+    gap: 10px;
+
+    /* position: absolute;*/
+
+    width: 133px;
+    height: 33px; 
+
+    border: 1px solid #000000; 
+    border-radius: 8px; 
+    background-color: transparent;   
+    background-image: url('../assets/Vector2.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px top 40%;
+}
+
+.drop:hover{
+    border:2px solid #000000;
+    background-image: url('../assets/Vector2B.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px top 40%;
+}
+
+.content{
+    border: 0px;
+    /* border-radius: 8px;  */
+    background-color: rgb(255, 255, 255); 
+    width: 133px;
+    height: 33px; 
+}
+
+.content:hover{
+  background-color:  #FDD68A;
+  
+}
+
+.content:focus{
+    border-left: 4px solid #FCC55B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+

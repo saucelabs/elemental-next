@@ -9,19 +9,18 @@ last_update:
 tags:
   - 'frames'
 level: 1
-category: 'testing'
+category:
+  - fundamentals
 language: javascript
 ---
 
-# How To Work With Frames
+# How to Work with Frames
 
 ## Intro
 
 In this tip, you'll learn how to work with frames and write tests against them.
 
-## Use Case
-
-On occasion you'll run into a relic of the front-end world -- frames. And when writing a test against them, you can easily make a mistake if you're not paying attention.
+On occasion, we may encounter relics of the front-end world, such as frames. When writing tests against them, it's easy to make a mistake if we're not paying attention.
 
 ## A Solution
 
@@ -29,7 +28,7 @@ Rather than getting frustrated when authoring your tests, you can work with the 
 
 Let's explore further with some examples.
 
-## Example
+## Example 1
 
 We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
 

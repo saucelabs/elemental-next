@@ -11,17 +11,17 @@ const config = {
   favicon: 'img/ES.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://opensource.saucelabs.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/elemental-next',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'saucelabs', // Usually your GitHub org/user name.
-  projectName: 'elemental-bromine', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
+  projectName: 'elemental-next', // Usually your repo name.
+  deploymentBranch: 'gh-pages', // The branch that GitHub pages deploys from.
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -38,6 +38,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          // sidebarPath: false,
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.

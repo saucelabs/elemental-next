@@ -3,51 +3,144 @@ title: 'Java'
 id: '5-select-from-a-dropdown-java'
 slug: java/
 number: 5
-publish_date: 2019-08-09
-last_update: 
-  date: 2023-02-22
+publish_date: 2015-07-06
+last_update:
+  date: 2023-04-03
 tags:
   - 'dropdown'
   - 'forms'
 level: 1
-category: 'testing'
+category:
+   - fundamentals
 language: java
 ---
 
-# How To Select From a Dropdown
+# How to Select from a Dropdown List
 
 ## Intro
 
-Selecting from a dropdown list *seems* basic. Just grab the list by it's element and select an item within it based on the text you want.
-
-While it sounds pretty straightforward, there is a bit more skill to it.
+Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might *seem* straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
 
-## Use Case
+## Example 1
 
-Common use cases can be a user selecting sizes from a drop down menu when shopping, or different design choices of the same item.
+First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
 
-## Example
+```java
+// filename: Dropdown.java
 
-First let's pull in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.WebElement;
+import java.util.List;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-==**`!! Code examples still need to be added & validated!!`**==
+public class Dropdown {
+    WebDriver driver;
+
+    @Before
+    public void setUp() throws Exception {
+        driver = new FirefoxDriver();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        driver.quit();
+    }
+// ...
+```
+
+Now let's wire up our test.
+
+```java
+// filename: Dropdown.java
+// ...
+    @Test
+    public void dropdownTest() {
+        driver.get("http://the-internet.herokuapp.com/dropdown");
+        WebElement dropdownList = driver.findElement(By.id("dropdown"));
+        List<WebElement> options = dropdownList.findElements(By.tagName("option"));
+        for (int i = 0; i < options.size(); i++) {
+            if (options.get(i).getText().equals("Option 1")) {
+                options.get(i).click();
+            }
+        }
+        String selectedOption = "";
+        for (int i = 0; i < options.size(); i++) {
+            if (options.get(i).isSelected()) {
+                selectedOption = options.get(i).getText();
+            }
+        }
+        assertThat(selectedOption, is("Option 1"));
+    }
+// ...
+```
+
+After visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the dropdown list by it's ID and store it in a variable. We then find each clickable element in the dropdown list (e.g., each `option`) with `findElements` (note the plural).
+
+Grabbing all of the options with `findElements` returns a collection that we iterate over. When the text matches what we want, we click on it.
+
+We finish the test by performing a check to see that our selection was made correctly. This is done by iterating over the dropdown options collection one more time. This time we're getting the text of the item that was selected, storing it in a variable, and making an assertion against it.
+
+While this works, there is a more accessible way to do this.
+
+## Example 2
+
+```java
+// filename: Dropdown.java
+// ...
+    @Test
+    public void dropdownTestRedux() {
+        driver.get("http://the-internet.herokuapp.com/dropdown");
+        Select selectList = new Select(driver.findElement(By.id("dropdown")));
+        selectList.selectByVisibleText("Option 1");
+        assertThat(selectList.getFirstSelectedOption().getText(), is(equalTo("Option 1")));
+    }
+
+}
+```
+
+Similar to the first example, we are finding the dropdown list by it's ID. But instead of iterating over its option elements and clicking based on a conditional we are leveraging a built-in helper function of Selenium. With [`Select`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/Select.html) and it's `selectBy` methods (e.g., [`selectByVisibleText`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/Select.html#selectByVisibleText-java.lang.String-)) we're able to easily choose the item we want.
+
+We then ask the `selectList` what option was selected by using [`getFirstSelectedOption`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/Select.html#getFirstSelectedOption--) and perform our assertion against it's text.
+
+As an aside, in addition to selecting by text you can also select by value.
+
+```java
+        select.selectByValue("1");
+```
 
 ## Expected Behavior
 
-==**`!! Expected behavior still need to be added & validated!!`**==
+When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen for either example:
+
++ Open the browser
++ Visit the example application
++ Find the dropdown list
++ Select the specified item from the dropdown list
++ Assert that the selected option is what you expect 
++ Close the browser
 
 ## Summary
 
-In this tip, we've gone over using Selenium to select from a drop down using the drop down list, or XPath to find an element within the dropdown list.
+Hopefully this tip will help you breeze through selecting items from a dropdown list.
 
-Hopefully this will help you when selecting items from a dropdown list. 
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
 
 Happy Testing!
 
-## About the Author
+## About The Author
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+Hopefully this tip will help you breeze through selecting items from a dropdown list.
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
+
+Happy Testing!
