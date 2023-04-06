@@ -1,38 +1,37 @@
 ---
-title: "Python"
-id: "52-grid"
+title: 'Python'
+id: '52-grid-python'
 slug: python/
 number: 52
 publish_date: 2016-11-17
 last_update:
-    date: 2023-030-15
+  date: 2023-030-15
 tags:
-  - "grid"
-  - "selenium grid"
-  - "cross browser"
+  - 'grid'
+  - 'selenium grid'
+  - 'cross browser'
 level: 2
-category: "infrastructure"
+category: 'tools'
 language: python
 ---
 
-# How To Use Selenium Grid
+# How to Use Selenium Grid
 
 ## Intro
 
-Selenium Grid is part of [the Selenium project](http://www.seleniumhq.org/). It lets you distribute test execution across several machines. You can connect to it with Selenium Remote by specifying the browser, browser version, and operating system you want. You specify these values through Selenium Remote's `Capabilities`.
-
-## Use Case
-
-If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using a third-party solution like [Sauce Labs](https://saucelabs.com/) then what do you do?
+If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using a third-party solution like [Sauce Labs](https://saucelabs.com/) or [Browser Stack](http://www.browserstack.com/) then what do you do?
 
 ## A Solution
 
-With [Selenium Grid](https://github.com/SeleniumHQ/selenium/wiki/Grid2) you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.
+With [Selenium Grid](https://www.selenium.dev/documentation/grid/) you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.
 
-## A brief Selenium Grid primer
+>A brief primer of Selenium Grid
+>
+>Selenium Grid is part of [the Selenium project](https://www.selenium.dev/). It lets you distribute test execution across several machines. You can connect to it with Selenium Remote by specifying the browser, browser version, and operating system you want. You specify these values through Selenium Remote's `Capabilities`.
+>
+>There are two main elements to Selenium Grid -- a hub, and nodes. First you need to stand up a hub. Then you can connect (or "register") nodes to that hub. Nodes are where your tests will run, and the hub is responsible for making sure your tests end up on the right one (e.g., the machine with the operating system and browser you specified in your test).
 
-There are two main elements to Selenium Grid -- a hub, and nodes. First you need to stand up a hub. Then you can connect (or "register") nodes to that hub. Nodes are where your tests will run, and the hub is responsible for making sure your tests end up on the right one (e.g., the machine with the operating system and browser you specified in your test).
-
+Let's continue with an example.
 
 ##  Example
 
@@ -62,8 +61,6 @@ __NOTE: This example only demonstrates a single node on the same machine as the 
 
 Now that the grid is running we can view the available browsers by visiting our Grid's console at `http://localhost:4444/grid/console`.
 
-<img src='/img/grid-console.png'/>
-
 To refine the list of available browsers, we can specify an additional `-browser` parameter when registering the node. For instance, if we wanted to only offer Safari on a node, we could specify it with `-browser browserName=safari`, which would look like this:
 
 ```sh
@@ -76,7 +73,7 @@ We could also repeat this parameter again if we wanted to explicitly specify mor
 java -jar selenium-server-standalone.jar -role node -hub http://localhost:4444/grid/register -browser browserName=safari -browser browserName=chrome -browser browserName=firefox
 ```
 
-There are numerous parameters that we can use at run time. You can see a full list [here](https://github.com/SeleniumHQ/selenium/wiki/Grid2#optional-parameters).
+There are numerous parameters that we can use at run time. You can see a full list [here](https://github.com/SeleniumHQ/selenium/wiki/Grid2#optional-parameters)==**`!! Broken link !!`**==.
 
 ### Part 2: Test Setup
 
@@ -128,11 +125,9 @@ When we save this file and run it (e.g., `python grid.py` from the command-line)
 
 If you're looking to set up Selenium Grid to work with Internet Explorer or Chrome, be sure to read up on how to set them up since there is additional configuration required for each. And if you run into issues, be sure to check out the browser driver documentation for the browser you're working with:
 
-+ [ChromeDriver](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
-+ [EdgeDriver](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/dev-guide/tools/webdriver/)
-+ [FirefoxDriver](https://github.com/SeleniumHQ/selenium/wiki/FirefoxDriver)
-+ [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
-+ [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver)
++ [ChromeDriver](https://chromedriver.chromium.org/)
++ [FirefoxDriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html)
++ [SafariDriver](https://developer.apple.com/documentation/webkit/about_webdriver_for_safari)
 
 Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.
 
