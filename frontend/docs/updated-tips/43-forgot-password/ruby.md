@@ -10,7 +10,7 @@ tags:
   - 'forgot password'
   - 'email'
 level: 2
-category: 'testing'
+category: 'troubleshooting'
 language: ruby
 ---
 
