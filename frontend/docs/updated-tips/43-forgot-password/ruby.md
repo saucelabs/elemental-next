@@ -14,7 +14,7 @@ category: 'troubleshooting'
 language: ruby
 ---
 
-# How To Test Forgot Password
+# How to Test Forgot Password
 
 ## Intro
 
