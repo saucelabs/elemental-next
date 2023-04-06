@@ -72,7 +72,7 @@ WebDriver handles JavaScript alerts in a fundamentally different and incompatibl
 
 The best way to address this is to port your alert handling from Selenium RC to WebDriver -- which is pretty straightforward and should be easy to accomplish assuming you have things well abstracted (re: Step #1 above).
 
-Here is an example of the difference:
+Here is an example of the difference, in `Java`:
 
 ```java
 // Selenium RC
@@ -88,7 +88,7 @@ webdriver.switchTo().alert().dismiss();
 
 There's no need to explicitly wait for the page to load anymore since WebDriver can implicitly do this for us.
 
-Here's an example:
+Here's an example, in `Java`:
 
 ```java
 // Selenium RC
@@ -112,6 +112,8 @@ It's an expensive operation (and overkill) to get __ALL__ of the text from the p
 A better approach is to find the element that has the text you want and check it's text instead. Alternatively, if you want to search the entire page, it's better to get the page's _source_ and parse that.
 
 ```java
+// Example in Java
+
 // Slow and unnecessary
 String text = selenium.getBodyText();
 assertTrue(text.contains("hello"));
@@ -127,6 +129,8 @@ assertTrue(text.contains("hello"));
 WebDriver-backed Selenium is not built for performance. It's meant to be a transitional tool. So things will run slower in it. The worst offender being when you issue JavaScript commands directly to the Selenium Core API. So do your best to avoid things like this.
 
 ```java
+// Example in java
+
 selenium.getEval(
      "selenium.isElementPresent('id=foo') && " +
      "selenium.isVisible('id=foo')");
