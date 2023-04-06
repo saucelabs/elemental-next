@@ -13,9 +13,10 @@ tags:
   - 'sauce'
 level: 2
 category: 'remote'
+language: ruby
 ---
 
-# How To Run A Test On Multiple Browsers, In Parallel
+# How to Run a Test on Multiple Browsers, In Parallel
 
 ## Intro
 
