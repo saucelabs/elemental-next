@@ -10,11 +10,11 @@ tags:
   - headless
   - xvfb
 level: 2
-category: infrastructure
+category: tools
 language: ruby
 ---
 
-# How To Run Your Tests Headlessly with Xvfb
+# How to Run Your Tests Headlessly with Xvfb
 
 ## Intro
 
