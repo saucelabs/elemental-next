@@ -1,16 +1,22 @@
 ---
-title: "How To Remove Third-party Resources"
-slug: "66-blacklist"
+title: 'Ruby'
+id: '66-blacklist-ruby'
+slug: ruby/
 number: 66
 publish_date: 2015-10-20
+last_update:
+  date: 2023-04-06
 tags:
-  - "browsermob-proxy"
-  - "proxy"
+  - 'browsermob-proxy'
+  - 'proxy'
 level: 3
-category: "tools"
+category: 'troubleshooting'
+language: ruby
 ---
 
-## The Problem
+# How to Remove Third-Party Resources
+
+## Intro
 
 There are plenty of external resources that get loaded onto a page that aren't directly relevant to the functionality you're testing (e.g., Facebook widgets, Analytics, JavaScript snippets, etc.). And these external resources have the potential to negatively impact your test runs due to slow load times.
 
@@ -20,9 +26,9 @@ So how do you protect your tests from these things that are outside of your cont
 
 By leveraging a proxy server in our tests we can block the external resources we don't want to load by adding them to a blacklist.
 
-Let's dig in with an example.
+Let's continue with an example.
 
-## An Example
+## Example
 
 __NOTE: For a brief primer on proxy servers check out [tip 64](/tips/64-limit-bandwidth).__
 
@@ -91,6 +97,14 @@ If you save this file and run it (e.g., `ruby blacklist.rb` from the command-lin
 + Browser closes
 + Proxy session closes
 
-## Outro
+## Summary
+
+Hopefully this helps you with blocking external resources that you don't want to load during testing.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

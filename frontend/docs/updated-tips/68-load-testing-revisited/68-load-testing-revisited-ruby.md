@@ -1,16 +1,22 @@
 ---
-title: "How To Do Load Testing with JMeter and Selenium"
-slug: "68-load-testing-revisited"
+title: 'Ruby'
+id: '68-load-testing-revisited-ruby'
+slug: ruby/
 number: 68
 publish_date: 2014-10-08
+last_update:
+  date: 2023-04-06
 tags:
-  - "jmeter"
-  - "load testing"
+  - 'jmeter'
+  - 'load testing'
 level: 3
-category: "testing"
+category: 'tools'
+language: ruby
 ---
 
-## The Problem
+# How to Do Load Testing With Jmeter and Selenium
+
+## Intro
 
 In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP library. While it works, it's only useful for rudimentary test cases.
 
@@ -24,7 +30,7 @@ When we're done, we'll have working JMeter test cases that we can modify and run
 
 Let's dig in with an example.
 
-## An Example
+## Example
 
 We'll first need to `require` our requisite libraries (e.g., `selenium-webdriver` for Selenium, `browsermob/proxy` for our proxy, and `convert` to convert -- a local file to convert the HAR to JMX).
 
@@ -166,7 +172,7 @@ To execute it from the command-line you'll need to specify the path to the JMete
 + The HAR file is converted to a JMeter XML (JMX) file
 + JMeter is launched from the command-line and runs using the new JMX file
 
-## Outro
+## Summary
 
 Alternatively, you could open up the JMeter GUI, load the JMX file, and add on to it/reconfigure it/etc. This is a _much_ better place to start from since it saves you loads of up front busy work creating the load test from scratch.
 
@@ -175,3 +181,9 @@ From here, it would be pretty trivial to add in a data set (e.g., [parameterize 
 If you go this route, be sure to take a look at the JMeter Wiki. It's got loads of good information.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

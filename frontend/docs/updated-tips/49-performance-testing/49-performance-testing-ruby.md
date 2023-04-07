@@ -1,18 +1,24 @@
 ---
-title: "How To Do Performance Testing"
-slug: "49-performance-testing"
+title: 'Ruby'
+id: '49-performance-testing-ruby'
+slug: ruby/
 number: 49
 publish_date: 2014-05-06
+last_update:
+  date: 2023-04-06
 tags:
-  - "performance testing"
-  - "proxy"
-  - "browsermob-proxy"
-  - "yslow"
+  - 'performance testing'
+  - 'proxy'
+  - 'browsermob-proxy'
+  - 'yslow'
 level: 3
-category: "testing"
+category: 'fundamentals'
+language: ruby
 ---
 
-## The Problem
+# How to Do Performance Testing
+
+## Intro
 
 Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild.
 
@@ -24,7 +30,7 @@ By repurposing a Selenium script, we can run it through a proxy server and captu
 
 Let's dig in with an example.
 
-## An Example
+## Example
 
 Before we get started we'll need to [download a copy of BrowserMob Proxy](http://bmp.lightbody.net/). Once we have that, we'll want to include our requisite libraries:
 
@@ -143,7 +149,7 @@ performance_grade.should be > 95
 
 Now when we run this if the overall score drops below a 95 out of 100 then the test will fail.
 
-From here we can wire this up to a Continuous Integration server and run it headlessly (either with [Xvfb](http://elementalselenium.com/tips/38-headless) or [GhostDriver](http://elementalselenium.com/tips/46-headless-ghostdriver)) to perform these checks in an ongoing basis.
+From here we can wire this up to a Continuous Integration server and run it headlessly (either with Xvfb or GhostDriver) to perform these checks in an ongoing basis.
 
 ## Expected Behavior
 
@@ -153,10 +159,16 @@ From here we can wire this up to a Continuous Integration server and run it head
 + Run the HAR file through YSlow to get a numeric grade
 + Assert that the grade is above a certain level
 
-## Outro
+## Summary
 
 You can see the full code example [here](https://gist.github.com/tourdedave/bc4b75fd6cdc1eef7860).
 
 For more insights into what HAR is and the many uses of it, check out [this write-up and video from Ilya Grigorik's blog](http://www.igvita.com/2012/08/28/web-performance-power-tool-http-archive-har/). You can also [check out the HAR spec](http://www.softwareishard.com/blog/har-12-spec/). And there's also [a great presentation from David Burns and David Henderson at GTAC 2009](https://www.youtube.com/watch?v=qQgDDAan4rM) on using Selenium to do performance benchmarking.
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
