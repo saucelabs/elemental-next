@@ -1,20 +1,26 @@
 ---
-title: "How To Test For Broken Images"
-slug: "67-broken-images"
+title: 'Ruby'
+id: '67-broken-images-ruby'
+slug: ruby/
 number: 67
 publish_date: 2015-10-20
+last_update:
+  date: 2023-04-06
 tags:
-  - "broken image"
-  - "broken images"
-  - "proxy"
-  - "browsermob-proxy"
-  - "http library"
-  - "javascript"
+  - 'broken image'
+  - 'broken images'
+  - 'proxy'
+  - 'browsermob-proxy'
+  - 'http library'
+  - 'javascript'
 level: 3
-category: "testing"
+category: 'troubleshooting'
+language: ruby
 ---
 
-## The Problem
+# How to Test for Broken Images
+
+## Intro
 
 Selenium is built to mimic human action (e.g., clicking, typing, dragging, dropping, etc.). So how do you use it to test for broken images?
 
@@ -30,7 +36,7 @@ We can use...
 
 Lets look at an example of each.
 
-## A Proxy Example
+## Example 1 - A Proxy Example
 
 In this example we'll use Browsermob Proxy. For a primer on what this is and how to use it see [tip 64](/tips/64-limit-bandwidth).
 
@@ -94,7 +100,7 @@ If you save this file and run it (e.g., `ruby broken_image_1.rb`) here is what w
 + Store each broken image in a collection
 + Check that the broken images collection is empty
 
-## An HTTP Library Example
+## Example 2 - An HTTP Library Example
 
 For this example, we'll use a simple HTTP library called [`rest-client`](https://github.com/rest-client/rest-client).
 
@@ -146,7 +152,7 @@ If you save this file and run it (e.g., `ruby broken_images_2.rb` from the comma
 
 By using an HTTP library we get the same outcome as we saw with a proxy server. There are additional requests being made but it's substantially faster since it has less overhead.
 
-## A JavaScript Example
+## Example 3 - A JavaScript Example
 
 ```ruby
 # filename: broken_image_3.rb
@@ -196,10 +202,16 @@ If you save this file and run it (e.g., `broken_image_3.rb` from the command-lin
 
 This is the leanest approach since it requires no additional setup or extra requests. It's just a matter of executing some JavaScript code to inspect the images.
 
-## Outro
+## Summary
 
 Your circumstance may vary, so choose the approach that works best for you and your team.
 
 A big thanks to [Brian Goad](https://twitter.com/bbbco) for the JavaScript solution and pointing me towards [the StackOverflow post where he first came across this](http://stackoverflow.com/questions/16784534/find-broken-images-in-page-image-replace-by-another-image/).
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

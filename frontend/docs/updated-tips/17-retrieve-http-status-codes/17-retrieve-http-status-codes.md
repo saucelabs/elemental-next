@@ -1,20 +1,26 @@
 ---
-title: "How To Retrieve HTTP Status Codes"
-slug: "17-retrieve-http-status-codes"
+title: 'Ruby'
+id: '17-retrieve-http-status-codes-ruby'
+slug: ruby/
 number: 17
 publish_date: 2015-10-15
+last_update:
+  date: 2023-04-06
 tags:
-  - "test http status"
-  - "retrieve http status"
-  - "http status codes"
-  - "proxy"
-  - "proxy server"
-  - "browsermob-proxy"
+  - 'test http status'
+  - 'retrieve http status'
+  - 'http status codes'
+  - 'proxy'
+  - 'proxy server'
+  - 'browsermob-proxy'
 level: 3
-category: "tools"
+category: 'troubleshooting'
+language: ruby
 ---
 
-## The Problem
+# How to Retrieve HTTP Status Codes
+
+## Intro
 
 There are times when you are testing a page (or numerous pages) and you want to verify that it responded correctly. A great way to handle this is by checking the HTTP Status Code that the browser received. However this functionality is not available in Selenium WebDriver.
 
@@ -24,7 +30,7 @@ The tried and true approach that Selenium Committers and Practitioners recommend
 
 Let's step through an example using [BrowserMob Proxy](http://bmp.lightbody.net/).
 
-## An Example
+## Example
 
 First we need to download a copy of [BrowserMob Proxy](http://bmp.lightbody.net/).
 
@@ -97,6 +103,15 @@ end
 
 When visiting the page we are passing the Selenium command to the `retrieve_status_code` method which returns the HTTP response code. We store this in a `status_code` variable and use it to check that the response code is what we expect (`404`).
 
+**NOTE:** If you get an error when running your test, be sure to append `log: true` when creating an instance of `Browsermob::Proxy::Server`.
+
+```ruby
+  server = BrowserMob::Proxy::Server.new(
+    File.join(Dir.pwd, 'browsermob-proxy-2.0.0/bin/browsermob-proxy'), log: true)
+```
+
+Now when you run your test, you will see more detailed information as to why the server was unable to start.
+
 ## Expected Behavior
 
 If you save this file and run it (e.g., `ruby status_codes.rb` from the command-line) here is what will happen:
@@ -110,19 +125,14 @@ If you save this file and run it (e.g., `ruby status_codes.rb` from the command-
 + Browser closes
 + Proxy session closes
 
-## Troubleshooting
-
-If you get an error when running your test, be sure to append `log: true` when creating an instance of `Browsermob::Proxy::Server`.
-
-```ruby
-  server = BrowserMob::Proxy::Server.new(
-    File.join(Dir.pwd, 'browsermob-proxy-2.0.0/bin/browsermob-proxy'), log: true)
-```
-
-Now when you run your test, you will see more detailed information as to why the server was unable to start.
-
-## Outro
+## Summary
 
 This tip was inspired by [Jim Evans'](https://twitter.com/jimevansmusic) multi-part blog post series on doing the same thing in C# with Fiddler ([1](http://jimevansmusic.blogspot.com/2013/08/implementing-webdriver-http-status.html), [2](http://jimevansmusic.blogspot.com/2013/08/implementing-http-status-codes-in.html), [3](http://jimevansmusic.blogspot.com/2013/08/implementing-http-status-codes-in_17.html)) which was in response to [Selenium Issue 141](https://code.google.com/p/selenium/issues/detail?id=141). Thanks Jim!
 
 Happy Testing!
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
