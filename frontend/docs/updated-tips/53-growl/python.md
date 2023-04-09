@@ -1,6 +1,6 @@
 ---
 title: Python
-id: how-to-add-growl-notifications-python
+id: 53-growl-python
 slug: python/
 number: 53
 publish_date: 2016-11-22

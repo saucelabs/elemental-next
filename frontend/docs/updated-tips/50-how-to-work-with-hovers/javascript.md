@@ -12,7 +12,7 @@ tags:
   - 'action builder'
 level: 1
 category:
-  - fundamentals
+  - 'fundamentals'
 language: javascript
 ---
 

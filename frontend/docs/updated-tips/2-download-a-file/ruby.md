@@ -11,16 +11,17 @@ tags:
   - 'downloading'
   - 'file download'
 level: 2
-category: 
+category:
   - remote
   - fundamentals
 language: ruby
 ---
+
 # How To Download a File
 
 ## Intro
 
-Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box
 just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
 
 ## A Solution
@@ -33,8 +34,8 @@ Let's continue with an example.
 
 ## Example
 
-Let's start off by pulling in our requisite libraries (e.g., `selenium-webdriver` to drive the browser, `rspec/expectations` 
-and `RSpec::Matchers` for assertions, `uuid` to help create a uniquely named temporary download directory, and `fileutils` 
+Let's start off by pulling in our requisite libraries (e.g., `selenium-webdriver` to drive the browser, `rspec/expectations`
+and `RSpec::Matchers` for assertions, `uuid` to help create a uniquely named temporary download directory, and `fileutils`
 to create & destroy the temp directory) and wiring up our `setup` method.
 
 
@@ -53,18 +54,18 @@ def setup
 
   # Firefox
   options = Selenium::WebDriver::Options.firefox
-  options.add_preference('browser.download.dir', @download_dir)  
-  options.add_preference('browser.download.folderList', 2)  
+  options.add_preference('browser.download.dir', @download_dir)
+  options.add_preference('browser.download.folderList', 2)
   options.add_preference('browser.helperApps.neverAsk.saveToDisk', 'images/jpeg, application/pdf, application/octet-stream')
   options.add_preference('pdfjs.disabled', true)
   @driver = Selenium::WebDriver.for :firefox, options: options
 end
 ```
 
-Our `setup` method is where the magic is happening in this example. In it we're creating a uniquely named 
+Our `setup` method is where the magic is happening in this example. In it we're creating a uniquely named
 temp directory and storing the absolute path of it in an instance variable that we'll use throughout this file.
 
-We're also setting a few browser preferences (for Firefox in this case) and plying it with the necessary configuration 
+We're also setting a few browser preferences (for Firefox in this case) and plying it with the necessary configuration
 parameters to make it automatically download the file where we want. Here's a breakdown of each of them:
 
 + `browser.download.dir` accepts a string. This is how we set the custom download path. It needs to be an absolute path.
@@ -107,8 +108,8 @@ run do
 end
 ```
 
-After loading the page we find the first download link and click it. The click triggers an automatic download to the temp 
-directory created in `setup`. After that, we perform some rudimentary checks to make sure the directory isn't empty and 
+After loading the page we find the first download link and click it. The click triggers an automatic download to the temp
+directory created in `setup`. After that, we perform some rudimentary checks to make sure the directory isn't empty and
 that the file isn't empty either.
 
 ## Expected Behavior
@@ -127,18 +128,18 @@ When you save this file and run it (e.g., `ruby download_file.rb` from the comma
 
 ## Summary
 
-A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is 
-not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it 
+A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is
+not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it
 [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/).
 
 Happy Testing!
 ## About The Author
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by 
-thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect 
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by
+thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect
 for writing automated tests against).
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at 
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at
 numerous conferences and meetups around the world about automated acceptance testing.
 

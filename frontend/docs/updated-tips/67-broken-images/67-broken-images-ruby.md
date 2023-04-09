@@ -14,7 +14,8 @@ tags:
   - 'http library'
   - 'javascript'
 level: 3
-category: 'troubleshooting'
+category:
+  - 'troubleshooting'
 language: ruby
 ---
 

@@ -16,6 +16,7 @@ category:
   - fundamentals
 language: javascript
 ---
+
 # How to Upload a File
 
 ## Intro

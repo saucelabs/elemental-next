@@ -17,7 +17,6 @@ language: ruby
 ---
 
 # Fast and Reliable Test Setup with REST APIs
-==**`!! Tip contains hypothetical code that has not been tested !!`**==
 
 ## Intro
 

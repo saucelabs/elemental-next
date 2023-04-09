@@ -11,7 +11,8 @@ tags:
   - 'hovers'
   - 'action builder'
 level: 1
-category: 'fundamentals'
+category:
+  - 'fundamentals'
 language: csharp
 ---
 

@@ -12,7 +12,8 @@ tags:
   - 'selenium 4'
   - 'no keystrokes needed'
 level: 1
-category: 'testing'
+category:
+  - 'testing'
 language: java
 ---
 

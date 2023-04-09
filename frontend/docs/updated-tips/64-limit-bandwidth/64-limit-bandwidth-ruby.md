@@ -9,7 +9,8 @@ last_update:
 tags:
   - 'browsermob-proxy'
 level: 3
-category: 'troubleshooting'
+category:
+  - 'troubleshooting'
 language: ruby
 ---
 

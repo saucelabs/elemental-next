@@ -1,10 +1,10 @@
 ---
 title: Javascript
-id: 25-how-to-work-with-tables-javascript
+id: 25-tables-javascript
 slug: javascript/
 number: 25
 publish_date: 2015-10-13
-last_update: 
+last_update:
   date: 2023-03-24
 tags:
   - tables
@@ -12,11 +12,12 @@ tags:
   - css selectors
   - css pseudo-classes
 level: 2
-category: 
+category:
   - troubleshooting
   - fundamentals
 language: javascript
 ---
+
 # How To Work With Tables
 
 ## Intro

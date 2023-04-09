@@ -1,6 +1,6 @@
 ---
 title: Java
-id: how-to-add-growl-notifications-java
+id: 53-growl-java
 slug: java/
 number: 53
 publish_date: 2016-11-22

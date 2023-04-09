@@ -10,7 +10,8 @@ tags:
   - 'browsermob-proxy'
   - 'proxy'
 level: 3
-category: 'troubleshooting'
+category:
+  - 'troubleshooting'
 language: ruby
 ---
 

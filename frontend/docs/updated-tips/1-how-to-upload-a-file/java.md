@@ -19,7 +19,6 @@ language: java
 
 # How to Upload a file
 
-
 ## Intro
 
 Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium.

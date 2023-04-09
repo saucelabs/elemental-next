@@ -1,6 +1,6 @@
 ---
 title: CSharp
-id: how-to-add-growl-notifications-csharp
+id: 53-growl-csharp
 slug: csharp/
 number: 53
 publish_date: 2016-11-22
@@ -93,7 +93,7 @@ Next we'll need to visit the page we want to display notifications on and do som
         // trigger a plain jQuery Growl notification to display on the page
         JSDriver.ExecuteScript("$.growl({ title: 'GET', message: '/' });");
 
-        // Adding 5 seconds of extra time to see 'GET' message 
+        // Adding 5 seconds of extra time to see 'GET' message
         Thread.Sleep(5000);
 // ...
 ```
