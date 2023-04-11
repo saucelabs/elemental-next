@@ -10,7 +10,8 @@ tags:
   - 'jmeter'
   - 'load testing'
 level: 3
-category: 'tools'
+category:
+  - 'tools'
 language: ruby
 ---
 
@@ -119,7 +120,7 @@ module HARtoJMX
 
       cookies
 
-      header [ 
+      header [
         { name: 'Accept-Encoding', value: 'gzip,deflate,sdch' },
         { name: 'Accept', value: 'text/javascript, text/html, application/xml, text/xml, */*' }
       ]

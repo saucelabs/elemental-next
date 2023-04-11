@@ -1,6 +1,6 @@
 ---
 title: Ruby
-id: how-to-add-growl-notifications-ruby
+id: 53-growl-ruby
 slug: ruby/
 number: 53
 publish_date: 2016-11-22
@@ -79,7 +79,7 @@ run do
   @driver.execute_script("$('head').append('<link rel=\"stylesheet\" href=\"http://the-internet.herokuapp.com/css/jquery.growl.css\" type=\"text/css\" />');")
 
   sleep 5 # adding 5 seconds sleep
-  
+
   # Step 4: display a message with jquery-growl
   @driver.execute_script("$.growl({ title: 'GET', message: '/' });")
 

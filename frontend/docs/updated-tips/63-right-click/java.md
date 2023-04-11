@@ -13,7 +13,8 @@ tags:
   - 'action builder'
   - 'context click'
 level: 2
-category: 'fundamentals'
+category:
+  - 'fundamentals'
 language: java
 ---
 

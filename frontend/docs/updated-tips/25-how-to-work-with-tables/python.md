@@ -1,6 +1,6 @@
 ---
 title: 'Python'
-id: 'how-to-work-with-html-data-tables-python'
+id: '25-tables-python'
 slug: python/
 number: 25
 publish_date: 2016-11-23

@@ -9,7 +9,8 @@ last_update:
 tags:
   - 'template'
 level: 0
-category: 'fundamentals'
+category:
+  - fundamentals
 language: java
 ---
 
@@ -152,7 +153,7 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 
 Now you're ready to handily defeat frames when they cross your path.
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip. 
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
 

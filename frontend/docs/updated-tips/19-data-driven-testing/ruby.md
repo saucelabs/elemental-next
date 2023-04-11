@@ -16,7 +16,6 @@ category:
 language: ruby
 ---
 
-
 # How to Create a Data-driven Test
 
 ## Intro

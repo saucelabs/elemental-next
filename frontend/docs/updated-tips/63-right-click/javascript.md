@@ -7,13 +7,14 @@ publish_date: 2019-08-09
 last_update:
   date: 2023-03-28
 tags:
-  - right-click
-  - context menu
-  - action builder
-  - context click
+  - 'right-click'
+  - 'right click'
+  - 'context menu'
+  - 'action builder'
+  - 'context click'
 level: 2
 category:
-  - fundamentals
+  - 'fundamentals'
 language: javascript
 ---
 

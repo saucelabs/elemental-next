@@ -15,7 +15,7 @@ category:
 language: csharp
 ---
 
-## How to Download a File Without a Browser
+# How to Download a File Without a Browser
 
 ## Intro
 
@@ -38,7 +38,7 @@ Let's continue with an example.
 To start things off let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), an HTTP library to handle our HEAD request (e.g., `System.Net`), and start our class with some setup and teardown methods.
 
 ```csharp
-// filename: FileDownloadRevisited.cs 
+// filename: FileDownloadRevisited.cs
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;

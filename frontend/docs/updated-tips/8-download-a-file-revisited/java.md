@@ -15,7 +15,7 @@ category:
 language: java
 ---
 
-## How to Download a File Without a Browser
+# How to Download a File Without a Browser
 
 ## Intro
 
