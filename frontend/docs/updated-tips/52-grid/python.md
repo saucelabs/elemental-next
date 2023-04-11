@@ -5,7 +5,7 @@ slug: python/
 number: 52
 publish_date: 2016-11-17
 last_update:
-  date: 2023-030-15
+  date: 2023-03-15
 tags:
   - 'grid'
   - 'selenium grid'
