@@ -6,39 +6,37 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  
   /* colors */
-  --ifm-color-primary: #FCC55B;
-  --ifm-color-primary-light: #FDD68A;
-  --ifm-color-primary-lighter: #FCE2AF;
-  --ifm-color-primary-lightest: #FEF0D3;
+  --ifm-color-primary: #fcc55b;
+  --ifm-color-primary-light: #fdd68a;
+  --ifm-color-primary-lighter: #fce2af;
+  --ifm-color-primary-lightest: #fef0d3;
   /* --ifm-code-font-size: 95%; */
-  --ifm-color-secondary: #58CF5D;
-  --ifm-color-secondary-light:#81D88F;
-  --ifm-color-secondary-lighter: #A3F1B0;
-  --ifm-color-secondary-lightest:#CAFBD1;
-  --ifm-color-tertiary:#B2305E;
-  --ifm-color-tertiary-light:#DF5385;
-  --ifm-color-tertiary-lighter:#FD8CB4;
-  --ifm-color-tertiary-lightest:#FFC0D6;
-  --ifm-link-color: #22747D;
-  --ifm-link-color-light: #28B4C4;
-  --ifm-link-color-lighter: #77DEEA;
-  --ifm-link-color-lightest:#ACF1F9;
+  --ifm-color-secondary: #58cf5d;
+  --ifm-color-secondary-light: #81d88f;
+  --ifm-color-secondary-lighter: #a3f1b0;
+  --ifm-color-secondary-lightest: #cafbd1;
+  --ifm-color-tertiary: #b2305e;
+  --ifm-color-tertiary-light: #df5385;
+  --ifm-color-tertiary-lighter: #fd8cb4;
+  --ifm-color-tertiary-lightest: #ffc0d6;
+  --ifm-link-color: #22747d;
+  --ifm-link-color-light: #28b4c4;
+  --ifm-link-color-lighter: #77deea;
+  --ifm-link-color-lightest: #acf1f9;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* font */
-body{
+body {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   font-weight: normal;
-
 }
 
-body.em{
+body.em {
   font-weight: 500;
 }
 
@@ -50,27 +48,26 @@ h1,
 }
 
 h2,
-.h2{
+.h2 {
   font-weight: 500;
   font-size: 32px;
   font-weight: 500;
 }
 
-#light{
+#light {
   font-weight: 300;
 }
 
-text{
+text {
   font-weight: 300;
   font-size: 24px;
   line-height: 36px;
 }
 
-.subtitle{
+.subtitle {
   font-weight: 300;
   line-height: 36px;
 }
-
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
@@ -117,5 +114,3 @@ text{
   align-items: center;
   justify-content: space-between;
 } */
-
-
