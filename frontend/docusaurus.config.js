@@ -76,12 +76,12 @@ const config = {
             label: 'Tips',
           },
           {
-            href: 'https://github.com/saucelabs/elemental-next',
+            to: 'https://github.com/saucelabs/elemental-next',
             label: 'Contribute',
             position: 'right',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            to: 'https://github.com/facebook/docusaurus',
             label: 'External Resources',
             position: 'right',
           },
@@ -93,44 +93,40 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        // style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Tips Archive:',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'All Tips',
+                to: '/tips',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Community:',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Github',
+                to: 'https://github.com/saucelabs/elemental-next',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'External Resources:',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Selenium Docs',
+                to: 'https://www.selenium.dev/documentation/',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Selenium Slack',
+                to: 'https://seleniumhq.slack.com/join/shared_invite/zt-1neaoa52v-FTzht5cd2eYKwSobbhQkEw#/shared-invite/email',
+              },
+              {
+                label: 'Selenium Guidebook',
+                to: 'https://seleniumguidebook.com',
               },
             ],
           },

@@ -100,6 +100,36 @@ text{
 
   font-style: normal;
 }
+.footer{
+  background-image: url('../assets/tips_background/Vector_1.svg');
+  width: 1441px;
+  height: 772px;
+  background-color: transparent;
+  background-position: 0% 0% 14.05% 0%;
+
+
+}
+
+.footer .container{
+  position:relative;
+  bottom: -565px;
+  width: 600px;
+  font-weight: 300;
+  line-height: 24px;
+
+  
+}
+
+.footer {
+  column-gap: 40px;
+  color: #F0F0EF;
+
+}
+
+.footer a{
+  color: #F0F0EF;
+  text-decoration-line: underline;
+}
 /* need to be updated */
 /* .navbar.title{
   font-size: 36px;
