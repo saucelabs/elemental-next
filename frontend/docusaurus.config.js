@@ -81,7 +81,7 @@ const config = {
             position: 'right',
           },
           {
-            to: 'https://github.com/facebook/docusaurus',
+            to: '/resources',
             label: 'External Resources',
             position: 'right',
           },
