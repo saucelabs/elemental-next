@@ -1,0 +1,29 @@
+.container{
+    width: 750px;
+    height: 196px;
+
+}
+#header {
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 75px;
+}
+
+/* subtitle */
+.subtitle{
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 36px;
+    
+}
+
+#bold   {
+    font-weight: 500;
+}
+#sentence{
+    position: relative;
+    top: 25px;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 36px;
+}
