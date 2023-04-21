@@ -67,6 +67,7 @@ const config = {
         logo: {
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
+          height: 20,
         },
   
         items: [
