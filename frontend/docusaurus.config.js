@@ -72,8 +72,8 @@ const config = {
   
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
+            // type: 'pages',
+            to:'/tips',
             position: 'right',
             label: 'Tips',
           },
