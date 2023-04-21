@@ -85,11 +85,11 @@ const config = {
             label: 'External Resources',
             position: 'right',
           },
-          {
-            to: '/index',
-            label: 'Sign In',
-            position: 'right',
-          },
+          // {
+          //   to: '/index',
+          //   label: 'Sign In',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {
