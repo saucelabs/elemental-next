@@ -63,11 +63,11 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Elemental Selenium',
-        // logo: {
-        //   alt: 'Elemental Selenium Logo',
-        //   src: 'img/ES.svg',
-        // },
+        // title: 'Elemental Selenium',
+        logo: {
+          alt: 'Elemental Selenium Logo',
+          src: 'img/logo.png',
+        },
         items: [
           {
             type: 'doc',
