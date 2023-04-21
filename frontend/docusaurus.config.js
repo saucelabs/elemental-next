@@ -68,6 +68,7 @@ const config = {
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
         },
+  
         items: [
           {
             type: 'doc',
@@ -137,6 +138,9 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: ['ruby'],
+      },
+      colorMode: {
+        disableSwitch: true,
       },
     }),
 };
