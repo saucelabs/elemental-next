@@ -42,6 +42,7 @@ const Tips = () => {
         <Layout
             title= "Elemental Selenium Archives"
             description="Elemental Selenium Archives">
+            <div className={tipsStyles.background1}>
             <div className={tipsStyles.tipsheader}>
                 The Tips
             </div>
@@ -56,6 +57,7 @@ const Tips = () => {
             />
                 <div>
                 <Card tip={tip} />
+                </div>
                 </div>
         </Layout>
     </>

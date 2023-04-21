@@ -7,5 +7,11 @@
     color: #292620;;
 }
 
-
+.background1{
+    background-image: url('../assets/tips_background/Vector4.png');
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    z-index: -1;
+    /* position: fixed; */
+}
 

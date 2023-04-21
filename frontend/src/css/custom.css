@@ -82,18 +82,19 @@ text {
 }
 
 .navbar {
-  position: sticky;
+  left: 40px;
+ 
   top: 0;
   z-index: 9999;
   background-color: white;
-  width: 1362px;
+  width: 1462px;
   height: 77px;
   -webkit-box-shadow: none;
 
-  /* position: absolute;
+  position: absolute;
 
-  left: 39px;
-  top: 30px; */
+  left: -9px;
+  /*top: 30px;  */
 
   font-style: normal;
 }
@@ -103,7 +104,10 @@ text {
   height: 772px;
   background-color: transparent;
   background-position: 0% 0% 14.05% 0%;
-
+  position: sticky;
+  z-index: 0;
+  column-gap: 40px;
+  color: #F0F0EF;
 
 }
 
@@ -113,14 +117,6 @@ text {
   width: 600px;
   font-weight: 300;
   line-height: 24px;
-
-  
-}
-
-.footer {
-  column-gap: 40px;
-  color: #F0F0EF;
-
 }
 
 .footer a{
