@@ -61,12 +61,13 @@ h2,
 text {
   font-weight: 300;
   font-size: 24px;
-  line-height: 36px;
+
 }
 
 .subtitle {
   font-weight: 300;
   line-height: 36px;
+  font-size: 24px;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -84,16 +85,19 @@ text {
 .navbar {
   position: sticky;
   top: 0;
+  transition: top 0.3s;
   z-index: 9999;
   background-color: white;
   width: 1362px;
   height: 77px;
   -webkit-box-shadow: none;
+  width: 100%;
 
-  /* position: absolute;
 
-  left: 39px;
-  top: 30px; */
+  /* position: absolute;*/
+
+  left: 239px;
+  /* top: 30px;  */
 
   font-style: normal;
 }

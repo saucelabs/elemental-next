@@ -9,7 +9,7 @@ const Card = ({ tip }) => {
                 <div 
                 className = {cardStyles.tips} 
                 key={Val.id}>
-                    <div className =  {cardStyles.card} >
+                    <div className =  {cardStyles.card}>
                     <div className = {cardStyles.heading}>
                         <a href = {Val.contentUrl}>{Val.headline}</a>
                     </div>
