@@ -86,7 +86,7 @@ const config = {
             position: 'right',
           },
           {
-            to: '/index',
+            to: '/',
             label: 'Sign In',
             position: 'right',
           },
@@ -99,16 +99,24 @@ const config = {
             title: 'Tips Archive:',
             items: [
               {
-                label: 'All Tips',
-                to: '/tips',
+                label: 'Beginner tips',
+                to: '/',
               },
+              {
+                label: 'Fundamentals',
+                to: '/',
+              },
+              {
+                label: 'Troubleshooting',
+                to: '/',
+              }
             ],
           },
           {
             title: 'Community:',
             items: [
               {
-                label: 'Github',
+                label: 'Elemental Selenium on Github',
                 to: 'https://github.com/saucelabs/elemental-next',
               },
             ],

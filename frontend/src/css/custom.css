@@ -98,19 +98,22 @@ text {
   font-style: normal;
 }
 .footer{
-  background-image: url('../assets/tips_background/Vector_1.svg');
-  width: 1441px;
-  height: 772px;
+  background-image: url('../assets/tips_background/Vector_1.svg' );
+  /* width: 2441px; */
+  min-height: 1100px;
   background-color: transparent;
-  background-position: 0% 0% 14.05% 0%;
+  background-position: bottom;
+  position:sticky;
+  background-repeat: no-repeat;
+  background-size:100%;
 
 
 }
 
 .footer .container{
   position:relative;
-  bottom: -565px;
-  width: 600px;
+  bottom: -870px;
+  width: 750px;
   font-weight: 300;
   line-height: 24px;
 
@@ -118,15 +121,16 @@ text {
 }
 
 .footer {
-  column-gap: 40px;
-  color: #F0F0EF;
+  /* column-gap: 200px; */
+  color: #292620;
 
 }
 
 .footer a{
-  color: #F0F0EF;
+  color: #292620;
   text-decoration-line: underline;
 }
+
 /* need to be updated */
 /* .navbar.title{
   font-size: 36px;
