@@ -108,7 +108,7 @@ const config = {
             title: 'Community:',
             items: [
               {
-                label: 'Github',
+                label: 'Elemental Selenium on Github',
                 to: 'https://github.com/saucelabs/elemental-next',
               },
             ],
