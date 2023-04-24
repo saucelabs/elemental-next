@@ -47,7 +47,7 @@ Project Tree
 - Copy the [content template](#content-template) below into your editor of choice.
 - Add your tip information using `markdown` language. We have a [markdown primer](#markdown-primer) below to help you with any formatting issues.
 -  Other than the `Page Title` header, please do not change the header names, as we use a structured and coherent format to fetch data.
--  You may _slightly_ change the `Example(s)` header, to reflect how many examples you have (e.g. `Example` if there is only one, or `Example 1`, `Example 2` if there are multiple examples).
+-  You may _slightly alter_ the `Example(s)` header, to reflect how many examples you have (e.g. `Example` if there is only one, or `Example 1`, `Example 2` if there are multiple examples).
 -  Edit the metadata to reflect which coding language your tip will be presented in. In the template below, the metadata is reflecting `Ruby` language.
 
 
