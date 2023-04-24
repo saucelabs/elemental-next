@@ -113,7 +113,7 @@ text {
 .footer .container{
   position:relative;
   bottom: -870px;
-  width: 600px;
+  width: 750px;
   font-weight: 300;
   line-height: 24px;
 
@@ -121,7 +121,7 @@ text {
 }
 
 .footer {
-  column-gap: 40px;
+  /* column-gap: 200px; */
   color: #292620;
 
 }
@@ -130,6 +130,7 @@ text {
   color: #292620;
   text-decoration-line: underline;
 }
+
 /* need to be updated */
 /* .navbar.title{
   font-size: 36px;
