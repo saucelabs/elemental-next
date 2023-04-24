@@ -66,4 +66,4 @@ All contributions (including pull requests) must agree to the Developer Certific
 git commit -s -m "adding X to change Y"
 ```
 
-**Have fun, and happy contributing!**
+**Have fun, and happy hacking!**
