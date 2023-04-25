@@ -1,20 +1,17 @@
 name: Deploy On Push To Main
-
 on:
   push:
     branches:
       - main
-
 jobs:
-  Deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      name: Gives access to repository
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          path: frontend/
-      - run: npm install
-      - run: npm run build
-      - run: npm run deploy -outDir
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - working-directory: /frontend
+    - run: npm install
+    - run: npm run build
+    - run: npm run deploy -outDir
