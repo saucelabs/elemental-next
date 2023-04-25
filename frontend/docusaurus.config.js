@@ -78,7 +78,7 @@ const config = {
             label: 'Tips',
           },
           {
-            to: 'https://github.com/saucelabs/elemental-next',
+            to: '/contribute',
             label: 'Contribute',
             position: 'right',
           },
@@ -87,11 +87,12 @@ const config = {
             label: 'External Resources',
             position: 'right',
           },
-          // {
-          //   to: '/index',
-          //   label: 'Sign In',
-          //   position: 'right',
-          // },
+          {
+            to: '/signup',
+            label: 'Join the mailing list',
+            position: 'right',
+            className: 'button button--secondary button--med'
+          },
         ],
       },
       footer: {
