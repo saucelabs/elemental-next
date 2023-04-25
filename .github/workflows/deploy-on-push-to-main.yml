@@ -11,4 +11,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: cd frontend && npm run deploy -outDir
+    - run: cd frontend && npm install
+    - run: npm run build
+    - run: run deploy -outDir
+      
