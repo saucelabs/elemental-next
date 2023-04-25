@@ -4,11 +4,11 @@ on:
     branches:
       - main
 permissions: write-all
-env:
-  GH_TOKEN: ${{ secrets.USE_SSH }}
 
 jobs:
   build:
+    env:
+      GH_TOKEN: ${{ secrets.USE_SSH }}  
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
