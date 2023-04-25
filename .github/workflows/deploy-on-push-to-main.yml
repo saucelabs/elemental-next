@@ -5,7 +5,7 @@ on:
       - main
 permissions: write-all
 env:
-  GH_TOKEN: ${{ secrets.GIT_USER }}
+  GH_TOKEN: ${{ secrets.USE_SSH }}
 
 jobs:
   build:
