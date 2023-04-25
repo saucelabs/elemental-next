@@ -6,15 +6,15 @@ on:
 permissions: write-all
 
 jobs:
-  build:
-    env:
-      GH_TOKEN: ${{ secrets.USE_SSH }}  
+  build:  
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+      env:
+        GH_TOKEN: ${{ secrets.USE_SSH }}
     - run: cd frontend && npm install
     - run: cd frontend && npm run deploy -outDir
       
