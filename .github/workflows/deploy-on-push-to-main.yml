@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: 18
       env:
-        GH_TOKEN: ${{ secrets.USE_SSH }}
+        GIT_USER: ${{ secrets.USE_SSH }}
     - run: cd frontend && npm install
     - run: cd frontend && npm run deploy -outDir
       
