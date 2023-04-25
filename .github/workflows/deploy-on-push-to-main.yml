@@ -14,7 +14,9 @@ jobs:
       with:
         node-version: 18
       env:
-        GIT_USER: ${{ secrets.USE_SSH }}
-    - run: cd frontend && npm install
-    - run: cd frontend && npm run deploy -outDir
+        GIT_USER: ${{ GITHUB_ACTOR }}
+    - run: | 
+        cd frontend
+        npm install
+        npm run deploy -outDir
       
