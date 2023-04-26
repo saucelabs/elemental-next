@@ -25,7 +25,7 @@ jobs:
       - name: Build website
         run: |
           cd frontend
-          npm build
+          npm run build
 
       - name: Deploy website to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
