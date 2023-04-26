@@ -1,44 +1,36 @@
-name: Deploy On Push To Main
+name: Deploy Docusaurus Site
+
 on:
-  pull_request:
   push:
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/cache@v3
-        id: cache-npm-packages
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          node-version: '18.x'
 
-      - name: Install Dependencies
-        if: steps.cache-npm-packages.outputs.cache-hit != 'true'
-        run: |
+      - name: Install dependencies
+        run: | 
           cd frontend
           npm install
-      - uses: actions/cache@v3
-        id: cache-build
-        with:
-          path: |
-            frontend/build
-          key: ${{ runner.os }}-${{ github.sha }}
 
-      - name: Deploy
-        if: steps.cache-build.outputs.cache-hit != 'true'
-        env:
-          github_token: ${{ github.actor }}
+      - name: Build website
         run: |
           cd frontend
           npm run deploy -outDir
+
+      - name: Deploy website to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: build
+          
       
