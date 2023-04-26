@@ -13,8 +13,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-      env:
-        GIT_USER: ${{ secrets.USE_SSH }}
+        key: ${{ runner.os }}-${{ github.sha }}
     - run: | 
         cd frontend
         npm install
