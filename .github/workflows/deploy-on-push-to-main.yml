@@ -36,6 +36,8 @@ jobs:
 
       - name: Deploy
         if: steps.cache-build.outputs.cache-hit != 'true'
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd frontend
           npm run deploy -outDir
