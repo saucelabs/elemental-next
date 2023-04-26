@@ -1,21 +1,42 @@
 name: Deploy On Push To Main
 on:
+  pull_request:
   push:
-    branches:
-      - main
-permissions: write-all
+  workflow_dispatch:
 
 jobs:
-  build:  
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-        key: ${{ runner.os }}-${{ github.sha }}
-    - run: | 
-        cd frontend
-        npm install
-        npm run deploy -outDir
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - uses: actions/cache@v3
+        id: cache-npm-packages
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache-npm-packages.outputs.cache-hit != 'true'
+        run: |
+          cd frontend
+          npm install
+      - uses: actions/cache@v3
+        id: cache-build
+        with:
+          path: |
+            frontend/build
+          key: ${{ runner.os }}-${{ github.sha }}
+
+      - name: Deploy
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          cd frontend
+          npm run deploy -outDir
       
