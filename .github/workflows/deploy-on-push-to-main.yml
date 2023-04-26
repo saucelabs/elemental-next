@@ -25,12 +25,11 @@ jobs:
       - name: Build website
         run: |
           cd frontend
-          npm run deploy -outDir
+          npm build
 
       - name: Deploy website to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
-          folder: build
-          
+          folder: frontend/build
       
