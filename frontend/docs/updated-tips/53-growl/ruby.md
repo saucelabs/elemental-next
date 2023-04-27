@@ -1,5 +1,5 @@
 ---
-title: Ruby
+title: '53: Growl'
 id: 53-growl-ruby
 slug: ruby/
 number: 53
