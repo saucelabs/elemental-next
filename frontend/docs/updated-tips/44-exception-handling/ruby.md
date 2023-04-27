@@ -1,7 +1,8 @@
 ---
-title: Ruby
+title: '44: Ruby'
 id: 44-exception-handling-ruby
-slug: ruby/
+sidebar_label: Ruby
+text: 'It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable (e.g., `NoSuchElementError` or `StaleElementReferenceError`). They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them.'
 number: 44
 publish_date: 2015-07-01
 last_update:
@@ -15,7 +16,7 @@ tags:
   - stale element reference error
 level: 2
 category:
-  - troubleshooting
+  - 'troubleshooting'
 language: ruby
 ---
 
