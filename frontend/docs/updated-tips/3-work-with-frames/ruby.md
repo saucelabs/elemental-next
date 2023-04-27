@@ -1,5 +1,5 @@
 ---
-title:'3: Work With Frames'
+title: '3: Work With Frames'
 id: '3-work-with-frames-ruby'
 sidebar_label: Ruby
 text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
