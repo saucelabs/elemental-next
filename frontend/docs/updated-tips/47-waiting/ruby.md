@@ -1,5 +1,5 @@
 ---
-title: Ruby
+title: '47: Waiting'
 id: 47-waiting-ruby
 slug: ruby/
 number: 47
