@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '39: Drag and Drop'
 id: '39-drag-and-drop-ruby'
 slug: ruby/
 number: 39
