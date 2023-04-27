@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '65: Highlight Elements'
 id: '65-highlight-elements-ruby'
 slug: ruby/
 number: 65
