@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '57: Junit XML'
 id: '57-junit-xml-ruby'
 slug: ruby/
 number: 57
