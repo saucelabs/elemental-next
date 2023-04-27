@@ -1,7 +1,8 @@
 ---
-title: 'Ruby'
+title: '15: Ruby'
 id: '15-download-secure-files-ruby'
-slug: ruby/
+sidebar_label: Ruby 
+text: 'Previously, we've gone over how to test file downloads without a browser by leveraging Selenium Webdriver and an HTTP library in tandem. This approach is great for testing general file downloads, but what if the file you want to download is behind authentication?'
 number: 15
 publish_date: 2015-08-20
 last_update:
@@ -11,7 +12,8 @@ tags:
   - 'downloading'
   - 'authentication'
 level: 3
-category: 'fundamentals'
+category:
+    'fundamentals'
 language: ruby
 ---
 
