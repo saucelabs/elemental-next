@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '45: How To Test Checkboxes'
 id: '45-checkboxes-ruby'
 slug: ruby/
 number: 45
