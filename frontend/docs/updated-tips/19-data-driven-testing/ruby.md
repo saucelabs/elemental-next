@@ -1,5 +1,5 @@
 ---
-title: '19: Ruby'
+title: '19: Data Driven Testing'
 id: '19-data-driven-testing-ruby'
 sidebar_label: Ruby 
 text: 'here are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process.'
