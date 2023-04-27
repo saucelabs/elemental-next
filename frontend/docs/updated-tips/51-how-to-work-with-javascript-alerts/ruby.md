@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '51: How To Work With JavaScript Alerts'
 id: '51-javascript-alerts-ruby'
 slug: ruby/
 number: 51
