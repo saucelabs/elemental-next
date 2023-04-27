@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '2: Ruby'
 id: '2-download-a-file-ruby'
-slug: ruby/
+sidebar_label: Ruby
+text: 'Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box
+just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.'
 number: 2
 publish_date: 2015-07-27
 last_update:
@@ -12,8 +14,8 @@ tags:
   - 'file download'
 level: 2
 category:
-  - remote
-  - fundamentals
+  - 'remote'
+  - 'fundamentals'
 language: ruby
 ---
 
