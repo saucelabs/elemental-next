@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '61: How To Press Keyboard Keys'
 id: '61-keyboard-keys-ruby'
 slug: ruby/
 number: 61
