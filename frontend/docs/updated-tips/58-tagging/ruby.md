@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '58: Tagging'
 id: '58-tagging-ruby'
 slug: ruby/
 number: 58
