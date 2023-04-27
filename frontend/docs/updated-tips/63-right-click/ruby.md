@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '63: Right Click'
 id: '63-right-click-ruby'
 slug: ruby/
 number: 63
