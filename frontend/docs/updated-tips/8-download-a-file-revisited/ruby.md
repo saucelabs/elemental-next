@@ -1,5 +1,5 @@
 ---
-title:'8: Ruby'
+title: '8: Ruby'
 id: '8-download-a-file-revisited-ruby'
 sidebar_label: Ruby 
 text: 'In a [previous tip](/tips/2-download-a-file) we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser.'
