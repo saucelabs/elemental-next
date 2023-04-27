@@ -1,7 +1,8 @@
 ---
 title: '69: Safari'
 id: '69-safari-ruby'
-slug: ruby/
+sidebar_label: Ruby 
+text: "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
 number: 69
 publish_date: 2015-08-25
 last_update:
@@ -13,7 +14,7 @@ tags:
   - "different browsers"
 level: 1
 category:
-  - tools
+  - 'tools'
 language: ruby
 ---
 

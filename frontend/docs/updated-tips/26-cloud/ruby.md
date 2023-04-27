@@ -1,8 +1,8 @@
 ---
-title: '26: Ruby'
+title: '26: Cloud'
 id: '26-cloud-ruby'
 sidebar_label: Ruby 
-text: 'In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a "legit" version of Windows installed on the VM.'
+text: "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
 number: 0
 publish_date: 2015-09-15
 last_update:
