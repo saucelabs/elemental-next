@@ -1,9 +1,8 @@
 ---
-title:'12: Ruby'
+title: '12: Opt Out of AB Tests'
 id: '12-opt-out-of-ab-tests-ruby'
 sidebar_label: Ruby 
-text: '
-Occasionally when running tests you may see unexpected behavior due to [A/B testing (a.k.a. split testing)](http://en.wikipedia.org/wiki/A/B_testing) of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests.'
+text: "Occasionally when running tests you may see unexpected behavior due to A/B testing of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests."
 number: 12
 publish_date: 2015-10-15
 last_update:
