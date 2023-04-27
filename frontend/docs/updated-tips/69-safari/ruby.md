@@ -1,5 +1,5 @@
 ---
-title: "Ruby"
+title: '69: Safari'
 id: '69-safari-ruby'
 slug: ruby/
 number: 69
