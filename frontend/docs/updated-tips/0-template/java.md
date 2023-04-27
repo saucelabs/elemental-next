@@ -1,7 +1,9 @@
 ---
-title: 'Java'
+title: '0: Template'
 id: '0-template-java'
-slug: java/
+# slug: java/
+sidebar_label: Java
+text: "This is a template."
 number: 0
 publish_date: 2023-02-17
 last_update:
