@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '55: Wrapper'
 id: '55-wrapper-ruby'
 slug: ruby/
 number: 55
