@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '66: Blacklist'
 id: '66-blacklist-ruby'
 slug: ruby/
 number: 66
