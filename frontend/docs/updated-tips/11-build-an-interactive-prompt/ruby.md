@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title:'11: Ruby'
 id: '11-build-an-interactive-prompt-ruby'
 sidebar_label: Ruby 
 text: 'Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion.'
