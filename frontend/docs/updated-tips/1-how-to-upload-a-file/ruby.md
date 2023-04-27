@@ -1,7 +1,8 @@
 ---
-title: 'Ruby'
-id: "1-upload-a-file-ruby"
-slug: ruby/
+title: '1: Ruby'
+id: '1-upload-a-file-ruby'
+sidebar_label: Ruby
+text:"Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium..."
 number: 1
 publish_date: 2019-08-09
 last_update:
@@ -12,8 +13,8 @@ tags:
   - 'file upload'
 level: 1
 category:
-  - remote
-  - fundamentals
+  - 'remote'
+  - 'fundamentals'
 language: ruby
 ---
 
