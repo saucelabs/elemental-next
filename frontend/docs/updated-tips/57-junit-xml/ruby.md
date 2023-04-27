@@ -1,5 +1,5 @@
 ---
-title: '57: Ruby'
+title: '57: Junit XML'
 id: '57-junit-xml-ruby'
 sidebar_label: Ruby
 text: 'If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server.'

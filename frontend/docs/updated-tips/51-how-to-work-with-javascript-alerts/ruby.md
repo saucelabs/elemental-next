@@ -1,5 +1,5 @@
 ---
-title: '51: Ruby'
+title: '51: How To Work With JavaScript Alerts'
 id: '51-javascript-alerts-ruby'
 sidebar_label: Ruby 
 text: 'Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.'

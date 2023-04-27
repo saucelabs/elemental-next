@@ -1,8 +1,8 @@
 ---
-title: '64: Ruby'
+title: '64: Limit Bandwidth'
 id: '64-limit-bandwidth-ruby'
 sidebar_label: Ruby 
-text: 'With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?'
+text: "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?"
 number: 64
 publish_date: 2015-10-16
 last_update:
