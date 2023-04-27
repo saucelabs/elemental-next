@@ -1,5 +1,5 @@
 ---
-title: '1: Ruby'
+title: '1: How To Upload A File'
 id: '1-upload-a-file-ruby'
 sidebar_label: Ruby
 text: 'Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window (e.g., [AutoIt](http://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/)).'
