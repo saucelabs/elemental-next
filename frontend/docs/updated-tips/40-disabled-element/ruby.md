@@ -1,7 +1,8 @@
 ---
-title: 'Ruby'
+title: '40: Disabled Element'
 id: '40-disabled-element-ruby'
-slug: ruby/
+sidebar_label: Ruby 
+text: 'On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain.'
 number: 40
 publish_date: 2015-07-06
 last_update:
@@ -12,8 +13,8 @@ tags:
   - 'disabled element'
 level: 2
 category:
-  - remote
-  - troubleshooting
+  - 'remote'
+  - 'troubleshooting'
 language: ruby
 ---
 
