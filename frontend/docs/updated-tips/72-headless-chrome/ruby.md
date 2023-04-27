@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '72: Headless Chrome'
 id: '72-headless-chrome-ruby'
 slug: ruby/
 number: 72
