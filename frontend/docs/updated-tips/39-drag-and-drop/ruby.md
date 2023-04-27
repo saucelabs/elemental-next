@@ -1,7 +1,8 @@
 ---
 title: '39: Drag and Drop'
 id: '39-drag-and-drop-ruby'
-slug: ruby/
+sidebar_label: Ruby 
+# slug: ruby/
 number: 39
 publish_date: 2014-02-25
 last_update:

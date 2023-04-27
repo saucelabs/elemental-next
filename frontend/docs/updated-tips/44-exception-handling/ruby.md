@@ -1,7 +1,9 @@
 ---
 title: '44: Exception Handling'
 id: 44-exception-handling-ruby
-slug: ruby/
+sidebar_label: Ruby 
+text: "It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable e.g. NoSuchElementError. They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them."
+# slug: ruby/
 number: 44
 publish_date: 2015-07-01
 last_update:
