@@ -1,6 +1,8 @@
 ---
-title: 'What to Test'
+title: '18: Ruby'
 id: '18-what-to-test'
+sidebar_label: Ruby
+text: 'There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?'
 number: 18
 publish_date: 2015-10-13
 last_update:
@@ -9,7 +11,7 @@ tags:
   - 'test strategy'
 level: 1
 category:
-  - fundamentals
+  - 'fundamentals'
 language: all
 ---
 
