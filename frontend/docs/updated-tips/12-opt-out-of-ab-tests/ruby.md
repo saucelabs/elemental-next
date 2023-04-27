@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title:'12: Ruby'
 id: '12-opt-out-of-ab-tests-ruby'
 sidebar_label: Ruby 
 text: '
