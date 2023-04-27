@@ -1,5 +1,5 @@
 ---
-title: Ruby
+title: '44: Exception Handling'
 id: 44-exception-handling-ruby
 slug: ruby/
 number: 44
