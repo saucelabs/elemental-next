@@ -1,6 +1,8 @@
 ---
 title: 'Selenium Resources'
 id: '36-available-resources'
+sidebar_label: Ruby
+text: "This is the official Selenium documentation site. There is a lot of helpful information here. Use the sidebar menu on the left to navigate."
 number: 36
 publish_date: 2015-10-13
 last_update:

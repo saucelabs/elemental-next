@@ -1,8 +1,8 @@
 ---
-title: '45: Ruby'
+title: '45: How To Test Checkboxes'
 id: '45-checkboxes-ruby'
 sidebar_label: Ruby 
-text: 'Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests. Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium.'
+text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
 publish_date: 2015-10-13
 last_update:

@@ -1,5 +1,5 @@
 ---
-title: '29: Ruby'
+title: '29: Chrome Driver'
 id: 29-chrome-driver-ruby
 sidebar_label: Ruby 
 text: "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."

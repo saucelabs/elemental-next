@@ -1,5 +1,5 @@
 ---
-title: '39: Ruby'
+title: '39: Drag and Drop'
 id: '39-drag-and-drop-ruby'
 sidebar_label: Ruby
 text: 'Exercising a page's drag-and-drop functionality used to be simple with [Selenium's Action Builder](http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/WebDriver/ActionBuilder.html), but sadly, [it won't work with HTML5 drag and drop](https://code.google.com/p/selenium/issues/detail?id=6315).'
