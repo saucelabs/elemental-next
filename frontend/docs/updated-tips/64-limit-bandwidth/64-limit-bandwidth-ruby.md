@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '64: Limit Bandwidth'
 id: '64-limit-bandwidth-ruby'
 slug: ruby/
 number: 64
