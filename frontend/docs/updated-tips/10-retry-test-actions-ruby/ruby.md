@@ -1,7 +1,8 @@
 ---
 title: 'Ruby'
 id: '10-retry-test-actions-ruby'
-slug: ruby/
+sidebar_label: Ruby 
+text: 'We all write tests with the best intention of having them pass and, when they fail, to reveal legitimate issues in the application we're testing. But that's not always easy to accomplish. Especially when your application is dependent upon third-party service providers (e.g. payment providers, social networks, etc).'
 number: 10
 publish_date: 2013-07-30
 last_update:
@@ -10,7 +11,7 @@ tags:
   - 'reliability'
 level: 2
 category:
-  - troubleshooting
+  - 'troubleshooting'
 language: ruby
 ---
 
