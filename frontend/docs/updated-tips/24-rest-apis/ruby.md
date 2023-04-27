@@ -1,8 +1,8 @@
 ---
-title: '24: Ruby'
+title: '24: REST APIs'
 id: '24-rest-apis-ruby'
 sidebar_label: Ruby 
-text: 'When we list out the properties that make a test a "good test", some things that often come up are:+ **Precise.** The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail.+ **Independent.** A test should not have it's outcome affected by any other test in the test suite.+ **Fast.** This doesn't need much explanation. The quicker a test suite runs, the more useful it is.'
+text: "When we list out the properties that make a test a good test, some things that often come up are: Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail."
 number: 24
 publish_date: 2013-11-5
 last_update:

@@ -1,7 +1,7 @@
 ---
 title: '21: Choosing a Programming Language'
 id: '21-choosing-a-language'
-text: 'In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing.'
+text: "In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing."
 number: 21
 publish_date: 2015-10-13
 last_update:
