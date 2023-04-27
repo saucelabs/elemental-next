@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '67: Broken Images'
 id: '67-broken-images-ruby'
 slug: ruby/
 number: 67
