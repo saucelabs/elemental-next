@@ -1,5 +1,5 @@
 ---
-title: '17: Ruby'
+title: '17: Retrieve HTTP Status Codes'
 id: '17-retrieve-http-status-codes-ruby'
 sidebar_label: Ruby
 text: 'There are times when you are testing a page (or numerous pages) and you want to verify that it responded correctly. A great way to handle this is by checking the HTTP Status Code that the browser received. However this functionality is not available in Selenium WebDriver.'
