@@ -1,7 +1,8 @@
 ---
-title: 'Ruby'
+title: '23: Ruby'
 id: '23-dynamic-pages-ruby'
-slug: ruby/
+sidebar_label: Ruby 
+text: 'Let's say you want to test some functionality of a web application but it loads things dynamically. You might think about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout (like an [Implicit Wait](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#implicit-waits)) that you likely bump up to address test instabilities as well.'
 number: 23
 publish_date: 2015-10-13
 last_update:
@@ -14,7 +15,7 @@ tags:
   - 'explicit waits'
 level: 2
 category: 
-  - fundamentals
+  - 'fundamentals'
 language: ruby
 ---
 
