@@ -2,8 +2,8 @@
 title:'7: Use A Page Object'
 id: '7-use-a-page-object-ruby'
 sidebar_label: Ruby 
-text: 'One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time.
-This is largely due to the fact that things in the app you're testing change, breaking your tests.'
+text: "One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time.
+This is largely due to the fact that things in the app you're testing change, breaking your tests."
 number: 7
 publish_date: 2013-07-09
 last_update:
