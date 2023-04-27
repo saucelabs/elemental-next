@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '48: Load Testing'
 id: '48-load-testing-ruby'
 slug: ruby/
 number: 48
