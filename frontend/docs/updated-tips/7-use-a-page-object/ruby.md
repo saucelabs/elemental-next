@@ -1,5 +1,5 @@
 ---
-title:'7: Ruby'
+title:'7: Use A Page Object'
 id: '7-use-a-page-object-ruby'
 sidebar_label: Ruby 
 text: 'One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time.
