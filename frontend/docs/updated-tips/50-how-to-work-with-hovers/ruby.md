@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '50: How To Work With Hovers'
 id: '50-hovers-ruby'
 slug: ruby/
 number: 50
