@@ -1,5 +1,5 @@
 ---
-title: 'Ruby'
+title: '73: Open New Window'
 id: '73-open-new-window-ruby'
 slug: ruby/
 number: 73
