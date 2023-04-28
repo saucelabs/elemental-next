@@ -1,7 +1,7 @@
 ---
-
 title: '60: List Tags'
 id: '60-list-tags-ruby'
+contentUrl: "docs/updated-tips/list-tags/60-list-tags-ruby"
 sidebar_label: Ruby
 text: "Tagging is a powerful tool for targeted test execution, as well as a lightweight form of documentation. But what happens when you want to see a summary of the tags you're using across all of your tests? Unfortunately, most solution don't offer this kind of functionality out of the box, leaving you to manually sift through your tests to get a sense of the different tags you're using."
 number: 60

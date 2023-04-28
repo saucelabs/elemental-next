@@ -1,8 +1,9 @@
 ---
-title: '39: Drag and Drop'
+title: '39: How to Test HTML5 Drag and Drop'
 id: '39-drag-and-drop-ruby'
+contentUrl: "docs/updated-tips/drag-and-drop/39-drag-and-drop-ruby"
 sidebar_label: Ruby
-text: 'Exercising a page's drag-and-drop functionality used to be simple with [Selenium's Action Builder](http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/WebDriver/ActionBuilder.html), but sadly, [it won't work with HTML5 drag and drop](https://code.google.com/p/selenium/issues/detail?id=6315).'
+text: "Exercising a page's drag-and-drop functionality used to be simple with Selenium's Action Builder, but sadly, it won't work with HTML5 drag and drop."
 number: 39
 publish_date: 2014-02-25
 last_update:

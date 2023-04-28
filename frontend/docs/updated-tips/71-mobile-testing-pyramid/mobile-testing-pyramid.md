@@ -1,7 +1,10 @@
 ---
 title: 'The Mobile Testing Pyramid'
 id: '71-mobile-testing-pyramid'
-slug: mobile-testing-pyramid/
+# slug: mobile-testing-pyramid/
+contentUrl: "docs/updated-tips/mobile-testing-pyramid/71-mobile-testing-pyramid"
+sidebar_label: Ruby 
+text: "There are loads of trade-offs when it comes to mobile testing. But by learning to use all layers of the mobile testing pyramid to your advantage you can gain the fast feedback that is required in modern CI/CD environments."
 number: 71
 publish_date: 2017-08-10
 last_update:

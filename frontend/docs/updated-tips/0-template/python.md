@@ -1,6 +1,7 @@
 ---
 title: '0: Template'
 id: '0-template-python'
+contentUrl: "docs/updated-tips/template/0-template-python"
 # slug: python/
 sidebar_label: Python
 text: "This is a template."

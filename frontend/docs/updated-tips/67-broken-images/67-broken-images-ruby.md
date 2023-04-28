@@ -1,6 +1,7 @@
 ---
 title: '67: Broken Images'
 id: '67-broken-images-ruby'
+contentUrl: "docs/updated-tips/broken-images/67-broken-images-ruby"
 sidebar_label: Ruby 
 text: "Selenium is built to mimic human action (e.g., clicking, typing, dragging, dropping, etc.). So how do you use it to test for broken images?"
 number: 67

@@ -1,8 +1,9 @@
 ---
 title: '57: Junit XML'
 id: '57-junit-xml-ruby'
+contentUrl: "docs/updated-tips/junit-xml/57-junit-xml-ruby"
 sidebar_label: Ruby
-text: 'If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server.'
+text: "If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a Continuous Integration server."
 number: 57
 publish_date: 2015-07-14
 last_update:

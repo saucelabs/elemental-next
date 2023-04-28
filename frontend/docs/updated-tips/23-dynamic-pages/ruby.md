@@ -1,6 +1,7 @@
 ---
 title: '23: Dynamic Pages'
 id: '23-dynamic-pages-ruby'
+contentUrl: "docs/updated-tips/dynamic-pages/23-dynamic-pages-ruby"
 sidebar_label: Ruby 
 text: "Let's say you want to test some functionality of a web application but it loads things dynamically. You might think about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout that you likely bump up to address test instabilities as well."
 number: 23

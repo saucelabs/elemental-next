@@ -1,6 +1,7 @@
 ---
 title: '45: How To Test Checkboxes'
 id: '45-checkboxes-ruby'
+contentUrl: "docs/updated-tips/how-to-test-checkboxes/45-checkboxes-ruby"
 sidebar_label: Ruby 
 text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45

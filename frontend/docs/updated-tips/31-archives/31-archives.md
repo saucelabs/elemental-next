@@ -1,6 +1,7 @@
 ---
 title: 'Accessing Previous Tips Archive'
 id: '31-archives'
+contentUrl: "docs/updated-tips/archives/"
 sidebar_label: Ruby
 text: "Let me guess you subscribed to a free, weekly Selenium tip newsletter and aren't sure of how to access
 previously written tips or are unaware that this is even a possibility."

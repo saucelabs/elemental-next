@@ -1,6 +1,7 @@
 ---
 title: '64: Limit Bandwidth'
 id: '64-limit-bandwidth-ruby'
+contentUrl: "docs/updated-tips/limit-bandwidth/64-limit-bandwidth-ruby"
 sidebar_label: Ruby 
 text: "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?"
 number: 64

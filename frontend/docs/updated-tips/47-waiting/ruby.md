@@ -1,6 +1,7 @@
 ---
-title: '47: Waiting'
+title: '47: Implicit vs Explicit Waits'
 id: 47-waiting-ruby
+contentUrl: "docs/updated-tips/waiting/47-waiting-ruby"
 sidebar_label: Ruby 
 text: "In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages."
 number: 47

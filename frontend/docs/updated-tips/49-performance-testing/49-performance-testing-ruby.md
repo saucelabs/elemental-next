@@ -1,6 +1,7 @@
 ---
-title: '49: Performance Testing'
+title: '49: How to Do Performance Testing'
 id: '49-performance-testing-ruby'
+contentUrl: "docs/updated-tips/performance-testing/49-performance-testing-ruby"
 sidebar_label: Ruby 
 text: "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
 # slug: ruby/

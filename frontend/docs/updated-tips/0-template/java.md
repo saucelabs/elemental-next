@@ -1,6 +1,7 @@
 ---
 title: '0: Template'
 id: '0-template-java'
+contentUrl: "docs/updated-tips/template/0-template-java"
 # slug: java/
 sidebar_label: Java
 text: "This is a template."

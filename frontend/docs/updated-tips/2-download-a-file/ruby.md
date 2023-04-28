@@ -1,6 +1,7 @@
 ---
 title: '2: Download A File'
 id: '2-download-a-file-ruby'
+contentUrl: "docs/updated-tips/download-a-file/2-download-a-file-ruby"
 sidebar_label: Ruby
 text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
 number: 2
