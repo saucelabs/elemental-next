@@ -1,6 +1,7 @@
 ---
 title: '40: Disabled Element'
 id: '40-disabled-element-ruby'
+contentUrl: "docs/updated-tips/disabled-element/40-disabled-element-ruby"
 sidebar_label: Ruby 
 text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
 number: 40

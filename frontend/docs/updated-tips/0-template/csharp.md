@@ -1,8 +1,9 @@
 ---
 title: '0: Template'
 id: '0-template-csharp'
+contentUrl: "/docs/updated-tips/0-template/c-sharp"
 # slug: csharp/
-sidebar_label: Csharp
+sidebar_label: CSharp
 text: "This is a template."
 number: 0
 publish_date: 2023-02-17

@@ -1,6 +1,7 @@
 ---
 title: '5: Select From A Dropdown'
 id: '5-select-from-a-dropdown-ruby'
+contentUrl: "docs/updated-tips/select-from-a-dropdown/5-select-from-a-dropdown-ruby"
 sidebar_label: Ruby
 text: "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
 number: 5

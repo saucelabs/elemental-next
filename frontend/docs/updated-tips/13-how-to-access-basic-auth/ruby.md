@@ -1,6 +1,7 @@
 ---
 title: '13: Work With Basic Auth'
 id: '13-work-with-basic-auth-ruby'
+contentUrl: "docs/updated-tips/how-to-access-basic-auth/13-work-with-basic-auth-ruby"
 sidebar_label: Ruby 
 text: "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
 number: 13

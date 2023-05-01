@@ -1,6 +1,7 @@
 ---
 title: '8: Download A File Revisited'
 id: '8-download-a-file-revisited-ruby'
+contentUrl: "docs/updated-tips/download-a-file-revisited/8-download-a-file-revisited-ruby"
 sidebar_label: Ruby 
 text: "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
 number: 8
