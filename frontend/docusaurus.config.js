@@ -89,8 +89,8 @@ const config = {
           },
  
           {
-            to: '/',
-            label: 'Sign In',
+            to: '/signup',
+            label: 'Join the mailing list',
             position: 'right',
             className: 'button button--secondary button--med'
           },
