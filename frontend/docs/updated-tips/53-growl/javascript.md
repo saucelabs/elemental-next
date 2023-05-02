@@ -1,7 +1,9 @@
 ---
-title: Javascript
+title: "53: Growl"
 id: 53-growl-javascript
-slug: javascript/
+contentUrl: "docs/growl/53-growl-javascript"
+sidebar_label: Javascript
+text: "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
 number: 53
 publish_date: 2019-08-09
 last_update:
@@ -12,7 +14,7 @@ tags:
   - growl notifications
   - jquery-growl
 level: 2
-category: 
+category:
   - troubleshooting
 language: javascript
 ---
@@ -113,12 +115,12 @@ If we wanted to see color-coded notifications, then we could use one of the foll
 
 When we save this file and run it (e.g., `mocha`) here is what will happen:
 
-+ Browser opens
-+ Load the page
-+ Add jQuery, jQuery Growl, and jQuery Growl notifications to the page
-+ Display a set of notification messages in the top-right corner of the page
-+ Notification messages disappear
-+ Browser closes
+- Browser opens
+- Load the page
+- Add jQuery, jQuery Growl, and jQuery Growl notifications to the page
+- Display a set of notification messages in the top-right corner of the page
+- Notification messages disappear
+- Browser closes
 
 ## Summary
 

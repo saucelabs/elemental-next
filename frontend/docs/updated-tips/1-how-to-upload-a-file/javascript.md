@@ -1,15 +1,17 @@
 ---
-title: 'Javascript'
-id: '1-upload-a-file-javascript'
-slug: javascript/
+title: "1: How To Upload A File"
+id: "1-upload-a-file-javascript"
+contentUrl: "docs/how-to-upload-a-file/1-upload-a-file-javascript"
+sidebar_label: Javascript
+text: "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
 number: 1
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'file'
-  - 'upload'
-  - 'file upload'
+  - "file"
+  - "upload"
+  - "file upload"
 level: 1
 category:
   - remote
@@ -33,7 +35,7 @@ Let's step through an example.
 
 ## Example
 
-__NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__
+**NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).**
 
 First let's pull in our requisite libraries for assertions, constructing a path to a file, and driving the browser with Selenium.
 
@@ -97,12 +99,12 @@ Next we visit the page with the upload form, input the string value of `filePath
 
 When we save this file and run it (e.g., `mocha` from the command-line) this is what will happen:
 
-+ Open the browser
-+ Visit the upload form page
-+ Inject the file path into the form and submit it
-+ Page displays the uploaded filename
-+ Grab the text from the page and assert it's what we expect
-+ Close the browser
+- Open the browser
+- Visit the upload form page
+- Inject the file path into the form and submit it
+- Page displays the uploaded filename
+- Grab the text from the page and assert it's what we expect
+- Close the browser
 
 ## Summary
 
@@ -115,4 +117,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-

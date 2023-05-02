@@ -1,8 +1,8 @@
 ---
-title: '49: How to Do Performance Testing'
-id: '49-performance-testing-ruby'
-contentUrl: "docs/updated-tips/performance-testing/49-performance-testing-ruby"
-sidebar_label: Ruby 
+title: "49: How to Do Performance Testing"
+id: "49-performance-testing-ruby"
+contentUrl: "docs/performance-testing/49-performance-testing-ruby"
+sidebar_label: Ruby
 text: "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
 # slug: ruby/
 number: 49
@@ -10,12 +10,12 @@ publish_date: 2014-05-06
 last_update:
   date: 2023-04-06
 tags:
-  - 'performance testing'
-  - 'proxy'
-  - 'browsermob-proxy'
-  - 'yslow'
+  - "performance testing"
+  - "proxy"
+  - "browsermob-proxy"
+  - "yslow"
 level: 3
-category: 'fundamentals'
+category: "fundamentals"
 language: ruby
 ---
 
@@ -37,10 +37,10 @@ Let's dig in with an example.
 
 Before we get started we'll need to [download a copy of BrowserMob Proxy](http://bmp.lightbody.net/). Once we have that, we'll want to include our requisite libraries:
 
-+ `selenium-webdriver` to control the browser
-+ `browsermob/proxy` to configure/user BrowserMob Proxy
-+ `rspec=expectations` and `RSpec::Matchers` for assertions
-+ `json` to consume JSON data for the performance checks
+- `selenium-webdriver` to control the browser
+- `browsermob/proxy` to configure/user BrowserMob Proxy
+- `rspec=expectations` and `RSpec::Matchers` for assertions
+- `json` to consume JSON data for the performance checks
 
 After that, we can create methods to configure the proxy server (`configure_proxy`), set the browser profile to use the proxy server (`browser_profile`), pull these together so the test will have a working browser that uses the proxy server (`setup`), and tear things down after running the test (`teardown`).
 
@@ -156,11 +156,11 @@ From here we can wire this up to a Continuous Integration server and run it head
 
 ## Expected Behavior
 
-+ Load the browser
-+ Capture all requests through the proxy server
-+ Save the captured requests to a HTTP Archive (HAR) file on disk
-+ Run the HAR file through YSlow to get a numeric grade
-+ Assert that the grade is above a certain level
+- Load the browser
+- Capture all requests through the proxy server
+- Save the captured requests to a HTTP Archive (HAR) file on disk
+- Run the HAR file through YSlow to get a numeric grade
+- Assert that the grade is above a certain level
 
 ## Summary
 

@@ -1,17 +1,17 @@
 ---
-title: '55: Wrapper'
-id: '55-wrapper-ruby'
-contentUrl: "docs/updated-tips/wrapper/55-wrapper-ruby"
-sidebar_label: Ruby 
+title: "55: Wrapper"
+id: "55-wrapper-ruby"
+contentUrl: "docs/wrapper/55-wrapper-ruby"
+sidebar_label: Ruby
 text: "There may come a time where you want to access Selenium logs in real time. Although there is a way to do this where you have to explicitly request the logs after each test action, what if we wanted information for every test action?"
 number: 55
 publish_date: 2014-06-17
 last_update:
   date: 2023-03-06
 tags:
-  - 'wrapper'
-  - 'growl'
-  - 'growl notifications'
+  - "wrapper"
+  - "growl"
+  - "growl notifications"
 level: 2
 category:
   - troubleshooting

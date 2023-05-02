@@ -1,22 +1,22 @@
 ---
-title: '26: Cloud'
-id: '26-cloud-ruby'
-contentUrl: "docs/updated-tips/cloud/26-cloud-ruby"
-sidebar_label: Ruby 
+title: "26: Cloud"
+id: "26-cloud-ruby"
+contentUrl: "docs/cloud/26-cloud-ruby"
+sidebar_label: Ruby
 text: "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
 number: 0
 publish_date: 2015-09-15
 last_update:
   date: 2023-02-27
 tags:
-  - 'sauce labs'
-  - 'test infrastructure'
-  - 'to the cloud'
-  - 'cloud'
-  - 'someone elses grid'
+  - "sauce labs"
+  - "test infrastructure"
+  - "to the cloud"
+  - "cloud"
+  - "someone elses grid"
 level: 1
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -50,7 +50,6 @@ Here is an example.
 
 ## Example
 
-
 **NOTE**: You'll need an account to use Sauce Labs. You can sign up for a
 [free trial account (no credit-card required)](https://saucelabs.com/sign-up).
 
@@ -60,9 +59,9 @@ First we'll include our dependent libraries (to drive the browser and do asserti
 
 Here are instructions for setting environment variables on each Operating System:
 
-* [Windows](https://www.architectryan.com/2018/08/31/how-to-change-environment-variables-on-windows-10/)
-* [macOS](https://apple.stackexchange.com/questions/106778/how-do-i-set-environment-variables-on-os-x)
-* [Linux](https://askubuntu.com/questions/58814/how-do-i-add-environment-variables)
+- [Windows](https://www.architectryan.com/2018/08/31/how-to-change-environment-variables-on-windows-10/)
+- [macOS](https://apple.stackexchange.com/questions/106778/how-do-i-set-environment-variables-on-os-x)
+- [Linux](https://askubuntu.com/questions/58814/how-do-i-add-environment-variables)
 
 ```ruby
 # filename: cloud.rb
@@ -109,9 +108,9 @@ just as easily hard-code your info here. We recommend exporting your Sauce Labs 
 
 Here are instructions for setting environment variables on each Operating System:
 
-* [Windows](https://www.architectryan.com/2018/08/31/how-to-change-environment-variables-on-windows-10/)
-* [macOS](https://apple.stackexchange.com/questions/106778/how-do-i-set-environment-variables-on-os-x)
-* [Linux](https://askubuntu.com/questions/58814/how-do-i-add-environment-variables)
+- [Windows](https://www.architectryan.com/2018/08/31/how-to-change-environment-variables-on-windows-10/)
+- [macOS](https://apple.stackexchange.com/questions/106778/how-do-i-set-environment-variables-on-os-x)
+- [Linux](https://askubuntu.com/questions/58814/how-do-i-add-environment-variables)
 
 Now we're ready to add a test to run in Sauce Labs.
 
@@ -160,7 +159,7 @@ languages at their [Platform Configurator](https://saucelabs.com/products/platfo
 - Test runs
 - Browser closes
 - Test results (along with a video recording, screenshots, and other debugging information) are available on the
-[test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/).
+  [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/).
 
 ## Summary
 

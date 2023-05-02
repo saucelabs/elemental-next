@@ -1,7 +1,9 @@
 ---
-title: Javascript
-id: 40-disabled-element-javascript
-slug: javascript/
+title: "40: Disabled Element"
+id: "40-disabled-element-javascript"
+contentUrl: "docs/disabled-element/40-disabled-element-javascript"
+sidebar_label: Javascript
+text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
 number: 40
 publish_date: 2019-08-09
 last_update:
@@ -87,12 +89,12 @@ Also, since we grabbed all of the dropdown list options, we can easily test the 
 
 When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
-+ Open a browser
-+ Visit the page
-+ Grab all dropdown list elements
-+ Assert that the first element in the list is not enabled
-+ Assert that the second element in the list is enabled
-+ Close the browser
+- Open a browser
+- Visit the page
+- Grab all dropdown list elements
+- Assert that the first element in the list is not enabled
+- Assert that the second element in the list is enabled
+- Close the browser
 
 ## Summary
 

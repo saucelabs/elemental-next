@@ -1,20 +1,22 @@
 ---
-title: Javascript
-id: 63-right-click-javascript
-slug: javascript/
+title: "63: Right Click"
+id: "63-right-click-javascript"
+contentUrl: "docs/right-click/63-right-click-javascript"
+sidebar_label: Javascript
+text: "Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?"
 number: 63
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-28
 tags:
-  - 'right-click'
-  - 'right click'
-  - 'context menu'
-  - 'action builder'
-  - 'context click'
+  - "right-click"
+  - "right click"
+  - "context menu"
+  - "action builder"
+  - "context click"
 level: 2
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: javascript
 ---
 
@@ -82,12 +84,12 @@ We'll use an example from [the-internet](https://github.com/tourdedave/the-inter
 
 When we save this file and run it (e.g., `mocha`) from the command-line) here is what will happen:
 
-+ Open the browser and visit the page
-+ Find and right-click the area which will render a custom context menu
-+ JavaScript alert appears
-+ Grab the text of the JavaScript alert
-+ Assert that the text from the alert is what we expect
-+ Close the browser
+- Open the browser and visit the page
+- Find and right-click the area which will render a custom context menu
+- JavaScript alert appears
+- Grab the text of the JavaScript alert
+- Assert that the text from the alert is what we expect
+- Close the browser
 
 ## Summary
 

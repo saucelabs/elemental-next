@@ -1,13 +1,15 @@
 ---
-title: 'Javascript'
-id: '13-work-with-basic-auth-javascript'
-slug: javascript/
+title: "13: Work With Basic Auth"
+id: "13-work-with-basic-auth-javascript"
+contentUrl: "docs/how-to-access-basic-auth/13-work-with-basic-auth-javascript"
+sidebar_label: Javascript
+text: "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
 number: 13
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'authentication'
+  - "authentication"
 level: 1
 category:
   - troubleshooting
@@ -108,7 +110,7 @@ Here's what that script would look like.
 });
 ```
 
-__NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of *each* type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).__
+**NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of _each_ type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).**
 
 ## Expected Behavior
 
@@ -116,20 +118,20 @@ When you save these files and run them (e.g., `mocha`), here is what will happen
 
 <u>basic-auth-1.spec.js</u>
 
-+ Open the browser
-+ Visit the page using Basic Auth
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
+- Open the browser
+- Visit the page using Basic Auth
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
 
 And when you save the second example and run it (e.g., `basic-auth-2.spec.js`), here is what will happen:
 
-+ Open the browser
-+ Visit the page using Basic Auth as part of the test setup
-+ Visit the page without the Basic Auth credentials (successfully)
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
+- Open the browser
+- Visit the page using Basic Auth as part of the test setup
+- Visit the page without the Basic Auth credentials (successfully)
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
 
 ## Summary
 
@@ -142,4 +144,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-

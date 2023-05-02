@@ -1,21 +1,21 @@
 ---
-title: '47: Implicit vs Explicit Waits'
+title: "47: Implicit vs Explicit Waits"
 id: 47-waiting-ruby
-contentUrl: "docs/updated-tips/waiting/47-waiting-ruby"
-sidebar_label: Ruby 
+contentUrl: "docs/waiting/47-waiting-ruby"
+sidebar_label: Ruby
 text: "In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages."
 number: 47
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-15
 tags:
-  - 'waiting'
-  - 'dynamic pages'
-  - 'explicit waits'
-  - 'implicit waits'
+  - "waiting"
+  - "dynamic pages"
+  - "explicit waits"
+  - "implicit waits"
 level: 2
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -120,29 +120,30 @@ run do
 end
 ```
 
->### On Not Mixing Explicit and Implicit Waits
+> ### On Not Mixing Explicit and Implicit Waits
 >
->If your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., transient failures as you scale your test suite). For more details about this, check out [this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978) from [Jim Evans](https://twitter.com/jimevansmusic) (a member of the Selenium core team).
+> If your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., transient failures as you scale your test suite). For more details about this, check out [this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978) from [Jim Evans](https://twitter.com/jimevansmusic) (a member of the Selenium core team).
 >
->The best thing is to only use explicit waits. We already have them in place, so we can go ahead and simply remove the implicit wait from our `setup` method.
+> The best thing is to only use explicit waits. We already have them in place, so we can go ahead and simply remove the implicit wait from our `setup` method.
 >
->```ruby
->def setup
+> ```ruby
+> def setup
 >  @driver = Selenium::WebDriver.for :firefox
->end
->```
-> And there you go!
+> end
+> ```
 >
+> And there you go!
+
 ## Expected Behavior
 
 If we save the file and run it (e.g., `ruby waiting.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Click the Start button
-+ Wait for the progress bar to disappear and finish text to appear
-+ Assert that the finish text appears on the page
-+ Close the browser
+- Open the browser
+- Visit the page
+- Click the Start button
+- Wait for the progress bar to disappear and finish text to appear
+- Assert that the finish text appears on the page
+- Close the browser
 
 ## Summary
 

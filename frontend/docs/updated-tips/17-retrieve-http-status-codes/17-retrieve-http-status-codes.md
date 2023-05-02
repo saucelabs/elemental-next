@@ -1,7 +1,7 @@
 ---
-title: '17: Retrieve HTTP Status Codes'
-id: '17-retrieve-http-status-codes-ruby'
-contentUrl: "docs/updated-tips/retrieve-http-status-codes/"
+title: "17: Retrieve HTTP Status Codes"
+id: "17-retrieve-http-status-codes-ruby"
+contentUrl: "docs/retrieve-http-status-codes/"
 sidebar_label: Ruby
 text: "There are times when you are testing a page (or numerous pages) and you want to verify that it responded correctly. A great way to handle this is by checking the HTTP Status Code that the browser received. However this functionality is not available in Selenium WebDriver."
 number: 17
@@ -9,14 +9,14 @@ publish_date: 2015-10-15
 last_update:
   date: 2023-04-06
 tags:
-  - 'test http status'
-  - 'retrieve http status'
-  - 'http status codes'
-  - 'proxy'
-  - 'proxy server'
-  - 'browsermob-proxy'
+  - "test http status"
+  - "retrieve http status"
+  - "http status codes"
+  - "proxy"
+  - "proxy server"
+  - "browsermob-proxy"
 level: 3
-category: 'troubleshooting'
+category: "troubleshooting"
 language: ruby
 ---
 
@@ -118,14 +118,14 @@ Now when you run your test, you will see more detailed information as to why the
 
 If you save this file and run it (e.g., `ruby status_codes.rb` from the command-line) here is what will happen:
 
-+ Proxy server starts
-+ Proxy server session created
-+ Browser opens
-+ Visit the URL
-+ Retrieve the HTTP Status Code from loading the page
-+ Check that the status code is what was expected
-+ Browser closes
-+ Proxy session closes
+- Proxy server starts
+- Proxy server session created
+- Browser opens
+- Visit the URL
+- Retrieve the HTTP Status Code from loading the page
+- Check that the status code is what was expected
+- Browser closes
+- Proxy session closes
 
 ## Summary
 

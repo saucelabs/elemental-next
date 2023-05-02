@@ -1,7 +1,9 @@
 ---
-title: Javascript
-id: 16-take-screenshot-on-failure-javascript
-slug: javascript/
+title: "16: Take Screenshot on Failure"
+id: "16-take-screenshot-on-failure-javascript"
+contentUrl: "docs/take-screenshot-on-failure/16-take-screenshot-on-failure-javascript"
+sidebar_label: Javascript
+text: "With browser tests it can often be challenging to track down the issue that caused a failure. By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future."
 number: 16
 publish_date: 2015-07-08
 last_update:
@@ -77,11 +79,11 @@ Now to wire up a test which will fail.
 
 When we save this file and run it (`mocha` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Load the homepage of [the-internet](http://github.com/tourdedave/the-internet)
-+ Fail on the assertion
-+ Capture a screenshot in the current working directory
-+ Close the browser
+- Open the browser
+- Load the homepage of [the-internet](http://github.com/tourdedave/the-internet)
+- Fail on the assertion
+- Capture a screenshot in the current working directory
+- Close the browser
 
 ## Summary
 

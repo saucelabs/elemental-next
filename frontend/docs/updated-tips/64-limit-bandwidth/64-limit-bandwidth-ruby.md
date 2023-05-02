@@ -1,18 +1,18 @@
 ---
-title: '64: Limit Bandwidth'
-id: '64-limit-bandwidth-ruby'
-contentUrl: "docs/updated-tips/limit-bandwidth/64-limit-bandwidth-ruby"
-sidebar_label: Ruby 
+title: "64: Limit Bandwidth"
+id: "64-limit-bandwidth-ruby"
+contentUrl: "docs/limit-bandwidth/64-limit-bandwidth-ruby"
+sidebar_label: Ruby
 text: "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?"
 number: 64
 publish_date: 2015-10-16
 last_update:
   date: 2023-04-06
 tags:
-  - 'browsermob-proxy'
+  - "browsermob-proxy"
 level: 3
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -26,18 +26,18 @@ With Selenium you have the luxury of cross browser testing. But what happens whe
 
 With the help of a proxy server like [BrowserMob Proxy](http://bmp.lightbody.net/) we can simulate bandwidth limitations and run our tests to see if they fall down. In order to do this we'll also need to adjust our Selenium's default timeout.
 
->### A Brief Primer on BrowserMob Proxy
+> ### A Brief Primer on BrowserMob Proxy
 >
->BrowserMob Proxy is a server which sits between your browser and the application you're testing. You connect to it by configuring a browser profile to pass through it. As listed on [the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#features-and-usage), here are some of the benefits it offers:
+> BrowserMob Proxy is a server which sits between your browser and the application you're testing. You connect to it by configuring a browser profile to pass through it. As listed on [the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#features-and-usage), here are some of the benefits it offers:
 >
->+ blacklisting and whitelisting certain URL patterns
->+ simulating various bandwidth and latency
->+ remapping DNS lookups
->+ flushing DNS caching
->+ controlling DNS and request timeouts
->+ automatic BASIC authorization
+> - blacklisting and whitelisting certain URL patterns
+> - simulating various bandwidth and latency
+> - remapping DNS lookups
+> - flushing DNS caching
+> - controlling DNS and request timeouts
+> - automatic BASIC authorization
 
-__NOTE:__ You can also capture HTTP status codes with it as well. See [tip 17](/tips/17-retrieve-http-status-codes) for details on how to do that.
+**NOTE:** You can also capture HTTP status codes with it as well. See [tip 17](/tips/17-retrieve-http-status-codes) for details on how to do that.
 
 Let's continue with an example.
 
@@ -105,16 +105,16 @@ end
 
 If you save this file and run it (e.g., `ruby bandwidth_limit.rb` from the command-line) here is what will happen:
 
-+ Proxy server starts
-+ Proxy server session created
-+ Browser opens (connecting to the proxy server session with a large default timeout)
-+ Proxy bandwidth constraints applied
-+ Visit the page (which loads slowly)
-+ Page eventually loads
-+ Grab the text from the page heading
-+ Perform an assertion against the text to make sure it loaded
-+ Browser closes
-+ Proxy session closes
+- Proxy server starts
+- Proxy server session created
+- Browser opens (connecting to the proxy server session with a large default timeout)
+- Proxy bandwidth constraints applied
+- Visit the page (which loads slowly)
+- Page eventually loads
+- Grab the text from the page heading
+- Perform an assertion against the text to make sure it loaded
+- Browser closes
+- Proxy session closes
 
 ## Summary
 

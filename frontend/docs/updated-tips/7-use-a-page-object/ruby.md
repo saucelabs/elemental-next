@@ -1,7 +1,7 @@
 ---
 title:'7: Use A Page Object'
 id: '7-use-a-page-object-ruby'
-contentUrl: "docs/updated-tips/use-a-page-object/7-use-a-page-object-ruby"
+contentUrl: "docs/use-a-page-object/7-use-a-page-object-ruby"
 sidebar_label: Ruby 
 text: "One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time.
 This is largely due to the fact that things in the app you're testing change, breaking your tests."
@@ -181,16 +181,16 @@ end
 ```
 
 It's worth noting that while we are peforming an assertion in the Page Object in our `verify_page`
-action __assertions should only be performed in your test scripts__ (just like the run action above).
+action **assertions should only be performed in your test scripts** (just like the run action above).
 Using a `verify_page` action is just a helpful exception to the rule.
 
 ## Expected Behavior
 
-+ Load Dynamic Loading page on The Internet
-+ Click on start
-+ Wait for the finish message to appear
-+ Grab the text from it
-+ Assert that the text we want is within it
+- Load Dynamic Loading page on The Internet
+- Click on start
+- Wait for the finish message to appear
+- Grab the text from it
+- Assert that the text we want is within it
 
 ## Summary
 

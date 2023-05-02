@@ -1,16 +1,16 @@
 ---
-title: '8: Download A File Revisited'
-id: '8-download-a-file-revisited-csharp'
-contentUrl: "docs/updated-tips/download-a-file-revisited/8-download-a-file-revisited-csharp"
-sidebar_label: Csharp 
+title: "8: Download A File Revisited"
+id: "8-download-a-file-revisited-csharp"
+contentUrl: "docs/download-a-file-revisited/8-download-a-file-revisited-csharp"
+sidebar_label: Csharp
 text: "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
 number: 8
 publish_date: 2015-08-20
 last_update:
   date: 2023-03-29
 tags:
-  - 'files'
-  - 'downloading'
+  - "files"
+  - "downloading"
 level: 2
 category:
   - remote
@@ -92,14 +92,14 @@ Once we receive the response we check its header for the content type (e.g., `As
 
 When you save this and run it (e.g., `nunit3-console.exe .\FileDownloadRevisited.sln` from the command-line) here is what will will happen:
 
-+ Open the browser
-+ Load the page
-+ Grab the URL of the first download link
-+ Perform a `HEAD` request against it with an HTTP library
-+ Store the response headers
-+ Check the response headers to see that the file type is correct
-+ Check the response headers to see that the file is not empty
-+ Close the browser
+- Open the browser
+- Load the page
+- Grab the URL of the first download link
+- Perform a `HEAD` request against it with an HTTP library
+- Store the response headers
+- Check the response headers to see that the file type is correct
+- Check the response headers to see that the file is not empty
+- Close the browser
 
 ## Summary
 

@@ -1,19 +1,19 @@
 ---
-title: '16: Take Screenshot on Failure'
-id: '16-take-screenshot-on-failure-ruby'
-contentUrl: "docs/updated-tips/take-screenshot-on-failure/16-take-screenshot-on-failure-ruby"
-sidebar_label: Ruby 
+title: "16: Take Screenshot on Failure"
+id: "16-take-screenshot-on-failure-ruby"
+contentUrl: "docs/take-screenshot-on-failure/16-take-screenshot-on-failure-ruby"
+sidebar_label: Ruby
 text: "With browser tests it can often be challenging to track down the issue that caused a failure. By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future."
 number: 16
 publish_date: 2015-07-08
 last_update:
   date: 2023-02-28
 tags:
-  - 'reporting'
-  - 'screenshot'
+  - "reporting"
+  - "screenshot"
 level: 2
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -85,12 +85,12 @@ end
 
 If we save this file and run it (`ruby screenshot.rb` from the command-line) here is what would happen:
 
-+ Open the browser
-+ Load the homepage of [the-internet](http://github.com/tourdedave/the-internet)
-+ Check the text of the page header and fail
-+ Output a failure message in the terminal
-+ Capture a timestamped screenshot in the current working directory
-+ Close the browser
+- Open the browser
+- Load the homepage of [the-internet](http://github.com/tourdedave/the-internet)
+- Check the text of the page header and fail
+- Output a failure message in the terminal
+- Capture a timestamped screenshot in the current working directory
+- Close the browser
 
 ## Summary
 

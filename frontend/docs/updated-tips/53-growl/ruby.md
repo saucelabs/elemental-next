@@ -1,21 +1,21 @@
 ---
-title: '53: Growl'
+title: "53: Growl"
 id: 53-growl-ruby
-contentUrl: "docs/updated-tips/growl/53-growl-ruby"
-sidebar_label: Ruby 
+contentUrl: "docs/growl/53-growl-ruby"
+sidebar_label: Ruby
 text: "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
 number: 53
 publish_date: 2016-11-22
 last_update:
   date: 2023-03-25
 tags:
-  - 'jquery'
-  - 'growl'
-  - 'growl notifications'
-  - 'jquery-growl'
+  - "jquery"
+  - "growl"
+  - "growl notifications"
+  - "jquery-growl"
 level: 2
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -99,12 +99,12 @@ And if we wanted to see color-coded notifications, then we could use one of the 
 
 ## Expected Behavior
 
-+ Browser opens
-+ Load the page
-+ Add jQuery, jQuery Growl, and jQuery Growl notifications to the page
-+ Display a set of notification messages in the top-right corner of the page
-+ Notification messages disappear
-+ Browser closes
+- Browser opens
+- Load the page
+- Add jQuery, jQuery Growl, and jQuery Growl notifications to the page
+- Display a set of notification messages in the top-right corner of the page
+- Notification messages disappear
+- Browser closes
 
 ## Summary
 

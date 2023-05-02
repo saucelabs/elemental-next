@@ -1,7 +1,7 @@
 ---
-title: '18: How To Figure Out What to Update'
-id: '18-what-to-test'
-contentUrl: "docs/updated-tips/how-to-figure-out-what-to-update/18-what-to-test"
+title: "18: How To Figure Out What to Update"
+id: "18-what-to-test"
+contentUrl: "docs/how-to-figure-out-what-to-update/18-what-to-test"
 sidebar_label: Ruby
 text: "There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?"
 number: 18
@@ -9,10 +9,10 @@ publish_date: 2015-10-13
 last_update:
   date: 2023-02-22
 tags:
-  - 'test strategy'
+  - "test strategy"
 level: 1
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: all
 ---
 
@@ -31,7 +31,7 @@ A great way to increase your chances of automated web testing success is to map 
 3. What browsers are your users using?
 4. What things have broken in the application before?
 
-__NOTE: for organizations that don't deal *directly* in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.__
+**NOTE: for organizations that don't deal _directly_ in dollars and cents (e.g. non-profits, federal agencies, etc.) you should focus on how the application generates value for the end user.**
 
 After answering these questions you'll have a better understanding of the critical functionality and relevant browsers for the application you're testing. This will help you focus your test automation efforts on the things that matter most.
 
@@ -45,7 +45,7 @@ Every company's application makes money (or generates value) through a core set 
 
 ### Question 2 - Usage Data
 
-There can be a big difference between how you think your application is used  and how your users actually use it. Odds are your application offers a robust set of functionality that grows well beyond the core functionality of the funnel.
+There can be a big difference between how you think your application is used and how your users actually use it. Odds are your application offers a robust set of functionality that grows well beyond the core functionality of the funnel.
 
 Your answers to this question will help you determine what features are highly used and lightly used. Add the highly used items onto your automation backlog based on order of use below the answers to question 1.
 

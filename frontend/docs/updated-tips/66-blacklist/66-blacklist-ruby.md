@@ -1,19 +1,19 @@
 ---
-title: '66: Blacklist'
-id: '66-blacklist-ruby'
-contentUrl: "docs/updated-tips/blacklist/66-blacklist-ruby"
-sidebar_label: Ruby 
+title: "66: Blacklist"
+id: "66-blacklist-ruby"
+contentUrl: "docs/blacklist/66-blacklist-ruby"
+sidebar_label: Ruby
 text: "There are plenty of external resources that get loaded onto a page that aren't directly relevant to the functionality you're testing (e.g., Facebook widgets, Analytics, JavaScript snippets, etc.). And these external resources have the potential to negatively impact your test runs due to slow load times."
 number: 66
 publish_date: 2015-10-20
 last_update:
   date: 2023-04-06
 tags:
-  - 'browsermob-proxy'
-  - 'proxy'
+  - "browsermob-proxy"
+  - "proxy"
 level: 3
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -33,7 +33,7 @@ Let's continue with an example.
 
 ## Example
 
-__NOTE: For a brief primer on proxy servers check out [tip 64](/tips/64-limit-bandwidth).__
+**NOTE: For a brief primer on proxy servers check out [tip 64](/tips/64-limit-bandwidth).**
 
 To get started we'll need to download a copy of Browsermob Proxy ([link](http://bmp.lightbody.net/)) and write our script. In it we'll pull in our requisite libraries (e.g., `browsermob/proxy` to control the proxy server, `selenium-webdriver` to drive the browser, and `rspec/expectations` and it's matchers to perform assertions).
 
@@ -91,14 +91,14 @@ We start the test by creating a new HTTP Archive (HAR) for tracking the page req
 
 If you save this file and run it (e.g., `ruby blacklist.rb` from the command-line) here is what will happen:
 
-+ Proxy server starts
-+ Proxy server session created
-+ Browser opens
-+ Visit the page
-+ Find the entry we want from the HTTP Archive
-+ Check that the HTTP status code for the entry has the correct status code from the blacklist
-+ Browser closes
-+ Proxy session closes
+- Proxy server starts
+- Proxy server session created
+- Browser opens
+- Visit the page
+- Find the entry we want from the HTTP Archive
+- Check that the HTTP status code for the entry has the correct status code from the blacklist
+- Browser closes
+- Proxy session closes
 
 ## Summary
 

@@ -1,7 +1,7 @@
 ---
 title:'9: Use A Base Page Object'
-id: '9-use-a-base-page-object-ruby'
-contentUrl: "docs/updated-tips/use-a-base-page-object/9-use-a-base-page-object-ruby"
+id: "9-use-a-base-page-object-ruby"
+contentUrl: "docs/use-a-base-page-object/9-use-a-base-page-object-ruby"
 sidebar_label: Ruby
 text: "In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code."
 number: 9
@@ -9,10 +9,10 @@ publish_date: 2013-07-23
 last_update:
   date: 2023-03-25
 tags:
-  - 'page object'
-  - 'abstraction'
+  - "page object"
+  - "abstraction"
 level: 3
-category: 'tools'
+category: "tools"
 language: ruby
 ---
 
@@ -23,9 +23,10 @@ language: ruby
 In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code.
 
 Another issue is that we are using Selenium actions directly in the Page Object, which could present some long-term impacts like, such as:
-+ the inability to drive your tests with a different driver
-+ test maintenance issues when Selenium actions change
-+ slower test writing due to the lack of a Domain Specific Language (DSL)
+
+- the inability to drive your tests with a different driver
+- test maintenance issues when Selenium actions change
+- slower test writing due to the lack of a Domain Specific Language (DSL)
 
 ## A Solution
 
@@ -234,11 +235,11 @@ run {
 
 ## Expected Behavior
 
-+ Load Google
-+ Search for _elemental selenium tips_
-+ Wait for the first search result to render
-+ Grab the text from it
-+ Assert that the text we want is within it
+- Load Google
+- Search for _elemental selenium tips_
+- Wait for the first search result to render
+- Grab the text from it
+- Assert that the text we want is within it
 
 ## Summary
 

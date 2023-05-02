@@ -1,8 +1,8 @@
 ---
-title: '69: Safari'
-id: '69-safari-ruby'
-contentUrl: "docs/updated-tips/safari/69-safari-ruby"
-sidebar_label: Ruby 
+title: "69: Safari"
+id: "69-safari-ruby"
+contentUrl: "docs/safari/69-safari-ruby"
+sidebar_label: Ruby
 text: "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
 number: 69
 publish_date: 2015-08-25
@@ -15,7 +15,7 @@ tags:
   - "different browsers"
 level: 1
 category:
-  - 'tools'
+  - "tools"
 language: ruby
 ---
 
@@ -24,7 +24,6 @@ language: ruby
 ## Intro
 
 Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
-
 
 ## A Solution
 
@@ -43,7 +42,6 @@ After that, make sure it's enabled. To do that:
 1. open `Safari`
 2. go to `Develop`
 3. click on `Allow Remote Automations`
-
 
 Now if we open up an interactive Ruby terminal (e.g., `irb`) and launch a Selenium instance, here's what we'd see.
 
@@ -88,10 +86,10 @@ end
 
 When you save the file and run it (e.g., `ruby safari.rb` from the command-line), here is what will happen:
 
-+ Safari opens
-+ The home page of [the-internet](http://github.com/tourdedave/the-internet) loads
-+ The title of the page is checked to make sure it's what we expect
-+ Safari closes
+- Safari opens
+- The home page of [the-internet](http://github.com/tourdedave/the-internet) loads
+- The title of the page is checked to make sure it's what we expect
+- Safari closes
 
 ## Summary
 

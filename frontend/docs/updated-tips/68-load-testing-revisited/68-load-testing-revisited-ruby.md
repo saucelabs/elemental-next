@@ -1,19 +1,19 @@
 ---
-title: '68: Load Testing Revisited'
-id: '68-load-testing-revisited-ruby'
-contentUrl: "docs/updated-tips/load-testing-revisited/68-load-testing-revisited-ruby"
-sidebar_label: Ruby 
+title: "68: Load Testing Revisited"
+id: "68-load-testing-revisited-ruby"
+contentUrl: "docs/load-testing-revisited/68-load-testing-revisited-ruby"
+sidebar_label: Ruby
 text: "In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP library. While it works, it's only useful for rudimentary test cases. For more involved test cases and more powerful load generation, we're going to need something stronger."
 number: 68
 publish_date: 2014-10-08
 last_update:
   date: 2023-04-06
 tags:
-  - 'jmeter'
-  - 'load testing'
+  - "jmeter"
+  - "load testing"
 level: 3
 category:
-  - 'tools'
+  - "tools"
 language: ruby
 ---
 
@@ -170,10 +170,10 @@ To execute it from the command-line you'll need to specify the path to the JMete
 
 ## Expected Behavior
 
-+ Selenium runs the test in Firefox while connected to the proxy server
-+ The HTTP Archive (HAR) is exported to a file on disk
-+ The HAR file is converted to a JMeter XML (JMX) file
-+ JMeter is launched from the command-line and runs using the new JMX file
+- Selenium runs the test in Firefox while connected to the proxy server
+- The HTTP Archive (HAR) is exported to a file on disk
+- The HAR file is converted to a JMeter XML (JMX) file
+- JMeter is launched from the command-line and runs using the new JMX file
 
 ## Summary
 

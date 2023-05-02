@@ -1,20 +1,20 @@
 ---
 title:'4: Work With Multiple Windows'
-id: '4-work-with-multiple-windows-ruby'
-contentUrl: "docs/updated-tips/work-with-multiple-windows/4-work-with-multiple-windows-ruby"
-sidebar_label: Ruby 
+id: "4-work-with-multiple-windows-ruby"
+contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-ruby"
+sidebar_label: Ruby
 text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
 publish_date: 2015-08-21
 last_update:
   date: 2023-02-27
 tags:
-  - 'windows'
-  - 'multiple windows'
-  - 'new window'
+  - "windows"
+  - "multiple windows"
+  - "new window"
 level: 2
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: ruby
 ---
 
@@ -106,14 +106,14 @@ Now that we have two windows open we grab all of the window handles and search t
 
 ## Expected Behavior
 
-+ Open the browser
-+ Visit the page
-+ Find the window handle for the current window
-+ Click a link that opens a new window
-+ Find the window handle out of all available window handles
-+ Switch between the windows
-+ Assert that the correct window is in focus
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find the window handle for the current window
+- Click a link that opens a new window
+- Find the window handle out of all available window handles
+- Switch between the windows
+- Assert that the correct window is in focus
+- Close the browser
 
 ## Summary
 

@@ -1,7 +1,7 @@
 ---
-title: '5: Select From A Dropdown'
-id: '5-select-from-a-dropdown-ruby'
-contentUrl: "docs/updated-tips/select-from-a-dropdown/5-select-from-a-dropdown-ruby"
+title: "5: Select From A Dropdown"
+id: "5-select-from-a-dropdown-ruby"
+contentUrl: "docs/select-from-a-dropdown/5-select-from-a-dropdown-ruby"
 sidebar_label: Ruby
 text: "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
 number: 5
@@ -9,11 +9,11 @@ publish_date: 2015-07-06
 last_update:
   date: 2023-02-22
 tags:
-  - 'dropdown'
-  - 'forms'
+  - "dropdown"
+  - "forms"
 level: 1
 category:
-   - 'fundamentals'
+  - "fundamentals"
 language: ruby
 ---
 
@@ -21,7 +21,7 @@ language: ruby
 
 ## Intro
 
-Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might *seem* straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
+Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might _seem_ straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
 
@@ -99,7 +99,7 @@ We then ask the `select_list` what option was selected by using the [`selected_o
 
 Then we perform our assertion against this variable (just like in the previous example).
 
-__NOTE: In addition to selecting by text, you can also select by value using the code below.__
+**NOTE: In addition to selecting by text, you can also select by value using the code below.**
 
 ```ruby
   select_list.select_by(:value, '1')
@@ -109,12 +109,12 @@ __NOTE: In addition to selecting by text, you can also select by value using the
 
 If you save this file with either of these examples and run it (e.g., `ruby dropdown.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the example application
-+ Find the dropdown list
-+ Select the requested item from the dropdown list
-+ Assert that the selected option is the one you expect
-+ Close the browser
+- Open the browser
+- Visit the example application
+- Find the dropdown list
+- Select the requested item from the dropdown list
+- Assert that the selected option is the one you expect
+- Close the browser
 
 ## Summary
 

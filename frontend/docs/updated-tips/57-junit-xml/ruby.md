@@ -1,7 +1,7 @@
 ---
-title: '57: Junit XML'
-id: '57-junit-xml-ruby'
-contentUrl: "docs/updated-tips/junit-xml/57-junit-xml-ruby"
+title: "57: Junit XML"
+id: "57-junit-xml-ruby"
+contentUrl: "docs/junit-xml/57-junit-xml-ruby"
 sidebar_label: Ruby
 text: "If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a Continuous Integration server."
 number: 57
@@ -9,14 +9,14 @@ publish_date: 2015-07-14
 last_update:
   date: 2023-02-22
 tags:
-  - 'xml'
-  - 'junit xml'
-  - 'ci'
-  - 'continuous integration'
-  - 'reporting'
+  - "xml"
+  - "junit xml"
+  - "ci"
+  - "continuous integration"
+  - "reporting"
 level: 1
 category:
-  - 'tools'
+  - "tools"
 language: ruby
 ---
 
@@ -40,8 +40,8 @@ Let's go through an example of how to configure a test suite in order to output 
 
 In [RSpec](http://rspec.info/), you need a plugin to configure JUnit XML output. There are two popular ones:
 
-+ [yarjuf (Yet Another RSpec JUnit Formatter)](https://github.com/natritmeyer/yarjuf)
-+ [RSpec JUnit Formatter](https://github.com/sj26/rspec_junit_formatter)
+- [yarjuf (Yet Another RSpec JUnit Formatter)](https://github.com/natritmeyer/yarjuf)
+- [RSpec JUnit Formatter](https://github.com/sj26/rspec_junit_formatter)
 
 Let's step through how to use the latter of the two.
 
@@ -67,6 +67,7 @@ If we want to run our tests in parallel (using something like [parallel_tests](h
 Thankfully parallel_tests has a RSpec command helper file as well (e.g., `.parallel_rspec`).
 
 ==**`!! Code snippet needs validation !!`**==
+
 ```ruby
 # filename: .parallel_rspec
 
@@ -79,6 +80,7 @@ Now with numerous tests being run through `parallel_tests` the final result will
 And if we didn't want this to run all of the time (like if we only wanted JUnit XML output to get generated when running our tests on a CI server) then we can add a conditional to our `.parallel_rspec` file.
 
 ==**`!! Code snippet needs validation !!`**==
+
 ```ruby
 # filename: .parallel_rspec
 

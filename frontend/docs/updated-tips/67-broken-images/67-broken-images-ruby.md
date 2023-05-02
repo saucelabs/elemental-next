@@ -1,23 +1,23 @@
 ---
-title: '67: Broken Images'
-id: '67-broken-images-ruby'
-contentUrl: "docs/updated-tips/broken-images/67-broken-images-ruby"
-sidebar_label: Ruby 
+title: "67: Broken Images"
+id: "67-broken-images-ruby"
+contentUrl: "docs/broken-images/67-broken-images-ruby"
+sidebar_label: Ruby
 text: "Selenium is built to mimic human action (e.g., clicking, typing, dragging, dropping, etc.). So how do you use it to test for broken images?"
 number: 67
 publish_date: 2015-10-20
 last_update:
   date: 2023-04-06
 tags:
-  - 'broken image'
-  - 'broken images'
-  - 'proxy'
-  - 'browsermob-proxy'
-  - 'http library'
-  - 'javascript'
+  - "broken image"
+  - "broken images"
+  - "proxy"
+  - "browsermob-proxy"
+  - "http library"
+  - "javascript"
 level: 3
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -33,9 +33,9 @@ Out of the box, Selenium is not equipped to handle this. But regardless, there a
 
 We can use...
 
-+ a proxy server
-+ an HTTP library
-+ JavaScript
+- a proxy server
+- an HTTP library
+- JavaScript
 
 Lets look at an example of each.
 
@@ -95,13 +95,13 @@ end
 
 If you save this file and run it (e.g., `ruby broken_image_1.rb`) here is what will happen:
 
-+ Proxy server starts
-+ Proxy server session created
-+ Browser opens
-+ Visit the page
-+ Iterate through each image in the HTTP Archive and see if it has a `404` status code
-+ Store each broken image in a collection
-+ Check that the broken images collection is empty
+- Proxy server starts
+- Proxy server session created
+- Browser opens
+- Visit the page
+- Iterate through each image in the HTTP Archive and see if it has a `404` status code
+- Store each broken image in a collection
+- Check that the broken images collection is empty
 
 ## Example 2 - An HTTP Library Example
 
@@ -146,12 +146,12 @@ end
 
 If you save this file and run it (e.g., `ruby broken_images_2.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Find all images on the page
-+ Iterate through each image
-+ Perform a `GET` request on the image and grab it's response status code
-+ Assert that the status code is `200`
-+ Close the browser
+- Open the browser
+- Find all images on the page
+- Iterate through each image
+- Perform a `GET` request on the image and grab it's response status code
+- Assert that the status code is `200`
+- Close the browser
 
 By using an HTTP library we get the same outcome as we saw with a proxy server. There are additional requests being made but it's substantially faster since it has less overhead.
 
@@ -197,11 +197,11 @@ end
 
 If you save this file and run it (e.g., `broken_image_3.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Find all images on the page
-+ Iterate through each image and inspect that it finished loading and has a defined width
-+ Store images that fail inspection in a collection
-+ Assert that the collection is empty
+- Open the browser
+- Find all images on the page
+- Iterate through each image and inspect that it finished loading and has a defined width
+- Store images that fail inspection in a collection
+- Assert that the collection is empty
 
 This is the leanest approach since it requires no additional setup or extra requests. It's just a matter of executing some JavaScript code to inspect the images.
 

@@ -1,18 +1,18 @@
 ---
-title: '13: Work With Basic Auth'
-id: '13-work-with-basic-auth-ruby'
-contentUrl: "docs/updated-tips/how-to-access-basic-auth/13-work-with-basic-auth-ruby"
-sidebar_label: Ruby 
+title: "13: Work With Basic Auth"
+id: "13-work-with-basic-auth-ruby"
+contentUrl: "docs/how-to-access-basic-auth/13-work-with-basic-auth-ruby"
+sidebar_label: Ruby
 text: "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
 number: 13
 publish_date: 2015-10-14
 last_update:
   date: 2023-02-22
 tags:
-  - 'authentication'
+  - "authentication"
 level: 1
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -105,26 +105,25 @@ run do
 end
 ```
 
-NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).__
+NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).\_\_
 
 ## Expected Behavior
 
 When you save the first example and run it (e.g., `ruby basic_auth.rb`), here is what will happen:
 
-+ Open the browser
-+ Visit the page using Basic Auth
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
+- Open the browser
+- Visit the page using Basic Auth
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
 
 And when you save the second example and run it (e.g., `ruby basic_auth_setup.rb`), here is what will happen:
 
-+ Open the browser
-+ Visit the page using Basic Auth in the setup
-+ Navigate to the Basic Auth page (without providing credentials)
-+ Get the page text
-+ Assert that the text is what we expect
-
+- Open the browser
+- Visit the page using Basic Auth in the setup
+- Navigate to the Basic Auth page (without providing credentials)
+- Get the page text
+- Assert that the text is what we expect
 
 ## Summary
 

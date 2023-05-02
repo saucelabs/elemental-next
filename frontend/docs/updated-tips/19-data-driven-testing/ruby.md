@@ -1,20 +1,20 @@
 ---
-title: '19: Data Driven Testing'
-id: '19-data-driven-testing-ruby'
-contentUrl: "docs/updated-tips/data-driven-testing/19-data-driven-testing-ruby"
-sidebar_label: Ruby 
+title: "19: Data Driven Testing"
+id: "19-data-driven-testing-ruby"
+contentUrl: "docs/data-driven-testing/19-data-driven-testing-ruby"
+sidebar_label: Ruby
 text: "There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process."
 number: 19
 publish_date: 2015-07-14
 last_update:
   date: 2023-02-28
 tags:
-  - 'data-driven testing'
-  - 'csv'
-  - 'authentication'
+  - "data-driven testing"
+  - "csv"
+  - "authentication"
 level: 2
 category:
-  - 'remote'
+  - "remote"
 language: ruby
 ---
 
@@ -119,11 +119,11 @@ We wrap the notification message assertion in a `rescue` block so that when an e
 
 If you save this file and run it (e.g., `ruby data_driven.rb` from the command-line) the script will parse the CSV file and perform the following for each entry:
 
-+ Open the browser
-+ Load the login page
-+ Submit the login form with user data
-+ Grab the notification message and assert it against the expected value
-+ Close the browser
+- Open the browser
+- Load the login page
+- Submit the login form with user data
+- Grab the notification message and assert it against the expected value
+- Close the browser
 
 ## Summary
 

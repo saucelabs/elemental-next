@@ -1,7 +1,7 @@
 ---
-title: '60: List Tags'
-id: '60-list-tags-ruby'
-contentUrl: "docs/updated-tips/list-tags/60-list-tags-ruby"
+title: "60: List Tags"
+id: "60-list-tags-ruby"
+contentUrl: "docs/list-tags/60-list-tags-ruby"
 sidebar_label: Ruby
 text: "Tagging is a powerful tool for targeted test execution, as well as a lightweight form of documentation. But what happens when you want to see a summary of the tags you're using across all of your tests? Unfortunately, most solution don't offer this kind of functionality out of the box, leaving you to manually sift through your tests to get a sense of the different tags you're using."
 number: 60
@@ -9,12 +9,12 @@ publish_date: 2014-07-22
 last_update:
   date: 2023-03-25
 tags:
-  - 'tagging'
-  - 'tags'
-  - 'annotations'
-  - 'test_packs'
+  - "tagging"
+  - "tags"
+  - "annotations"
+  - "test_packs"
 level: 3
-category: 'troubleshooting'
+category: "troubleshooting"
 language: ruby
 ---
 
@@ -183,8 +183,8 @@ Finished in 0.00106 seconds (files took 0.09029 seconds to load)
 
 ## Expected Behavior
 
-+ Iterate over each test, collecting tags and their test data
-+ Display a report in the terminal of tags in use (sorted based on run-time preference)
+- Iterate over each test, collecting tags and their test data
+- Display a report in the terminal of tags in use (sorted based on run-time preference)
 
 ## Summary
 

@@ -1,15 +1,17 @@
 ---
-title: 'Javascript'
-id: '4-work-with-multiple-windows-javascript'
-slug: javascript/
+title:'4: Work With Multiple Windows'
+id: "4-work-with-multiple-windows-javascript"
+contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-javascript"
+sidebar_label: Javascript
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'windows'
-  - 'multiple windows'
-  - 'new window'
+  - "windows"
+  - "multiple windows"
+  - "new window"
 level: 2
 category:
   - fundamentals
@@ -56,15 +58,15 @@ Now let's write a test that exercises new window functionality from an applicati
 ```javascript
 // filename: test/multiple-windows.spec.js
 // ...
-  it("non-deterministic switching", async function() {
-    await driver.get("http://the-internet.herokuapp.com/windows");
-    await driver.findElement(By.css(".example a")).click();
-    const windowHandles = await driver.getAllWindowHandles();
-    await driver.switchTo().window(windowHandles[0]);
-    assert((await driver.getTitle()) !== "New Window");
-    await driver.switchTo().window(windowHandles[windowHandles.length - 1]);
-    assert((await driver.getTitle()) === "New Window");
-  });
+it("non-deterministic switching", async function () {
+  await driver.get("http://the-internet.herokuapp.com/windows");
+  await driver.findElement(By.css(".example a")).click();
+  const windowHandles = await driver.getAllWindowHandles();
+  await driver.switchTo().window(windowHandles[0]);
+  assert((await driver.getTitle()) !== "New Window");
+  await driver.switchTo().window(windowHandles[windowHandles.length - 1]);
+  assert((await driver.getTitle()) === "New Window");
+});
 // ...
 ```
 
@@ -103,14 +105,14 @@ Now that we have two windows open we grab all of the window handles again (e.g.,
 
 When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Find the window handle for the current window
-+ Click a link that opens a new window
-+ Find the window handle out of all available window handles
-+ Switch between the windows
-+ Assert that the correct window is in focus
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find the window handle for the current window
+- Click a link that opens a new window
+- Find the window handle out of all available window handles
+- Switch between the windows
+- Assert that the correct window is in focus
+- Close the browser
 
 ## Summary
 

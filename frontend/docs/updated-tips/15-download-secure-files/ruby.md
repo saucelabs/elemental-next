@@ -1,20 +1,19 @@
 ---
-title: '15: Download Secure Files'
-id: '15-download-secure-files-ruby'
-contentUrl: "docs/updated-tips/download-secure-files/15-download-secure-files-ruby"
-sidebar_label: Ruby 
+title: "15: Download Secure Files"
+id: "15-download-secure-files-ruby"
+contentUrl: "docs/download-secure-files/15-download-secure-files-ruby"
+sidebar_label: Ruby
 text: "Previously, we've gone over how to test file downloads without a browser by leveraging Selenium Webdriver and an HTTP library in tandem. This approach is great for testing general file downloads, but what if the file you want to download is behind authentication?"
 number: 15
 publish_date: 2015-08-20
 last_update:
   date: 2023-03-27
 tags:
-  - 'files'
-  - 'downloading'
-  - 'authentication'
+  - "files"
+  - "downloading"
+  - "authentication"
 level: 3
-category:
-    'fundamentals'
+category: "fundamentals"
 language: ruby
 ---
 
@@ -119,14 +118,14 @@ By using `find_elements` (plural) we get _all_ of the download links (returned i
 
 If we save this file and run it (e.g., `ruby secure_download.rb` from the command-line), here is what will happen.
 
-+ Browser opens
-+ The secure file downloads page loads
-+ The authenticated cookie information is retrieved
-+ All download URLs on the page are found
-+ HTTP library performs a HEAD request against the download link using the retrieved cookie information
-+ The response headers are checked to make sure the file is the correct type and not empty
-+ The previous two steps are repeated until all download links are verified
-+ Browser closes
+- Browser opens
+- The secure file downloads page loads
+- The authenticated cookie information is retrieved
+- All download URLs on the page are found
+- HTTP library performs a HEAD request against the download link using the retrieved cookie information
+- The response headers are checked to make sure the file is the correct type and not empty
+- The previous two steps are repeated until all download links are verified
+- Browser closes
 
 ## Summary
 

@@ -1,16 +1,18 @@
 ---
-title: 'JavaScript'
-id: '51-javascript-alerts-javascript'
-slug: javascript/
+title: "51: How To Work With JavaScript Alerts"
+id: "51-javascript-alerts-javascript"
+contentUrl: "docs/how-to-work-with-javascript-alerts/51-javascript-alerts-javascript"
+sidebar_label: Javascript
+text: "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
 number: 51
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'javascript'
-  - 'javascript alerts'
-  - 'javascript popups'
-  - 'javascript dialogs'
+  - "javascript"
+  - "javascript alerts"
+  - "javascript popups"
+  - "javascript dialogs"
 level: 1
 category:
   - fundamentals
@@ -82,13 +84,13 @@ After accepting the alert, our main browser window will automatically regain foc
 
 When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript Confirmation Alert appears
-+ Accept the JavaScript Confirmation Alert
-+ Assert that the result on the page is what we expect
-+ Close the browser
+- Open the browser
+- Load the page
+- Click the second button on the page
+- JavaScript Confirmation Alert appears
+- Accept the JavaScript Confirmation Alert
+- Assert that the result on the page is what we expect
+- Close the browser
 
 ## Summary
 
@@ -101,4 +103,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-

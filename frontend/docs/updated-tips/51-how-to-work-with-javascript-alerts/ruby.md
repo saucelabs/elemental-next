@@ -1,22 +1,22 @@
 ---
-title: '51: How To Work With JavaScript Alerts'
-id: '51-javascript-alerts-ruby'
-contentUrl: "docs/updated-tips/how-to-work-with-javascript-alerts/51-javascript-alerts-ruby"
-sidebar_label: Ruby 
-text: 'Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.'
+title: "51: How To Work With JavaScript Alerts"
+id: "51-javascript-alerts-ruby"
+contentUrl: "docs/how-to-work-with-javascript-alerts/51-javascript-alerts-ruby"
+sidebar_label: Ruby
+text: "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
 number: 51
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'javascript'
-  - 'javascript alerts'
-  - 'javascript popups'
-  - 'javascript dialogs'
+  - "javascript"
+  - "javascript alerts"
+  - "javascript popups"
+  - "javascript dialogs"
 level: 1
 category:
-  - 'fundamentals'
-  - 'tools'
+  - "fundamentals"
+  - "tools"
 language: ruby
 ---
 
@@ -87,14 +87,13 @@ After accepting the alert, our main browser window will automatically regain foc
 
 If you save this file and run it (e.g., `ruby javascript_alerts.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript Confirmation Alert appears
-+ Accept the JavaScript Confirmation Alert
-+ Assert that the result on the page is what we expect
-+ Close the browser
-
+- Open the browser
+- Load the page
+- Click the second button on the page
+- JavaScript Confirmation Alert appears
+- Accept the JavaScript Confirmation Alert
+- Assert that the result on the page is what we expect
+- Close the browser
 
 ## Summary
 

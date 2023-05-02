@@ -1,8 +1,8 @@
 ---
-title: '29: Chrome Driver'
+title: "29: Chrome Driver"
 id: 29-chrome-driver-ruby
-contentUrl: "docs/updated-tips/chrome-driver/29-chrome-driver-ruby"
-sidebar_label: Ruby 
+contentUrl: "docs/chrome-driver/29-chrome-driver-ruby"
+sidebar_label: Ruby
 text: "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
 number: 29
 publish_date: 2015-08-25
@@ -15,8 +15,8 @@ tags:
   - different browsers
 level: 2
 category:
-  - 'fundamentals'
-  - 'remote'
+  - "fundamentals"
+  - "remote"
 language: ruby
 ---
 
@@ -24,13 +24,13 @@ language: ruby
 
 ## Intro
 
-It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started. 
+It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started.
 
 With the introduction of WebDriver (circa Selenium 2) a lot of benefits were realized (e.g. more effective & faster browser execution, no more single host origin issues, etc). But with it came some architectural & configuration differences that may not be widely known. Namely -- browser drivers.
 
 ## A Solution
 
-[WebDriver](https://www.selenium.dev/documentation/webdriver/) works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser. 
+[WebDriver](https://www.selenium.dev/documentation/webdriver/) works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser.
 
 [ChromeDriver](https://chromedriver.chromium.org/downloads) is Google Chrome's browser driver. In this specific use case is of using WebDriver with Chrome in testing locally.
 
@@ -40,8 +40,8 @@ Let's step through an example using ChromeDriver ([download here](https://chrome
 
 Before starting, we'll need to download the latest ChromeDriver binary executable from [here](http://chromedriver.storage.googleapis.com/index.html). Once we have it we'll need to tell Selenium where it is. Two ways we can do this are to:
 
-+ Add it to the System PATH
-+ Specify it in the Selenium setup
+- Add it to the System PATH
+- Specify it in the Selenium setup
 
 We'll start by pulling in our requisite libraries (e.g., `selenium-webdriver` to driver the browser and `rspec/expectations` & `RSpec::Matchers` to perform an assertion) and wiring up some simple `setup`, `teardown`, and `run` methods.
 
@@ -88,11 +88,11 @@ If we save this file and run it (e.g., `ruby chrome.rb`) it will launch an insta
 
 When we save this file and run it (e.g., `ruby chrome.rb` from the command-line) here is what will happen.
 
-+ ChromeDriver starts
-+ Chrome opens
-+ Test runs
-+ Chrome closes
-+ ChromeDriver stops
+- ChromeDriver starts
+- Chrome opens
+- Test runs
+- Chrome closes
+- ChromeDriver stops
 
 ## Summary
 

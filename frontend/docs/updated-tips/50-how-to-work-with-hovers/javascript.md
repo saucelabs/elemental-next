@@ -1,18 +1,20 @@
 ---
-title: 'Javascript'
-id: '50-hovers-javascript'
-slug: javascript/
+title: "50: How To Work With Hovers"
+id: "50-hovers-javascript"
+contentUrl: "docs/how-to-work-with-hovers/50-hovers-javascript"
+sidebar_label: Javascript
+text: "If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution."
 number: 50
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'hover'
-  - 'hovers'
-  - 'action builder'
+  - "hover"
+  - "hovers"
+  - "action builder"
 level: 1
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: javascript
 ---
 
@@ -81,11 +83,11 @@ We then check to see if the additional user information is displayed with `.isDi
 
 When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Hover over the first avatar
-+ Assert that the caption appeared on the page
-+ Close the browser
+- Open the browser
+- Visit the page
+- Hover over the first avatar
+- Assert that the caption appeared on the page
+- Close the browser
 
 ## Summary
 
@@ -98,4 +100,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-

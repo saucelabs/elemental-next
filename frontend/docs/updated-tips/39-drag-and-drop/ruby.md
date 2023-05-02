@@ -1,7 +1,7 @@
 ---
-title: '39: How to Test HTML5 Drag and Drop'
-id: '39-drag-and-drop-ruby'
-contentUrl: "docs/updated-tips/drag-and-drop/39-drag-and-drop-ruby"
+title: "39: How to Test HTML5 Drag and Drop"
+id: "39-drag-and-drop-ruby"
+contentUrl: "docs/drag-and-drop/39-drag-and-drop-ruby"
 sidebar_label: Ruby
 text: "Exercising a page's drag-and-drop functionality used to be simple with Selenium's Action Builder, but sadly, it won't work with HTML5 drag and drop."
 number: 39
@@ -9,13 +9,13 @@ publish_date: 2014-02-25
 last_update:
   date: 2023-03-02
 tags:
-  - 'drag and drop'
-  - 'DnD'
-  - 'javascript'
-  - 'bug'
+  - "drag and drop"
+  - "DnD"
+  - "javascript"
+  - "bug"
 level: 2
 category:
-  - 'remote'
+  - "remote"
 language: ruby
 ---
 
@@ -76,15 +76,14 @@ After loading the page we read in the `dnd.js` file and store it in a local vari
 
 Since there are only two elements to drag and drop on the page, they should have switched places. So, `column-a` should now contain the text 'B', and `column-b` should contain the text 'A'.
 
-
 ## Expected Behavior
 
 When you run the ruby file, here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Text in Column A and Column B will switches places
-+ Close the browser
+- Open the browser
+- Visit the page
+- Text in Column A and Column B will switches places
+- Close the browser
 
 ## Summary
 

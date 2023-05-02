@@ -1,14 +1,16 @@
 ---
-title: 'Javascript'
-id: '5-select-from-a-dropdown-javascript'
-slug: javascript/
+title: "5: Select From A Dropdown"
+id: "5-select-from-a-dropdown-javascript"
+contentUrl: "docs/select-from-a-dropdown/5-select-from-a-dropdown-javascript"
+sidebar_label: Javascript
+text: "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
 number: 5
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'dropdown'
-  - 'forms'
+  - "dropdown"
+  - "forms"
 level: 1
 category:
   - fundamentals
@@ -19,7 +21,7 @@ language: javascript
 
 ## Intro
 
-Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might *seem* straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
+Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might _seem_ straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
 
@@ -50,24 +52,24 @@ Now lets' wire up our test.
 ```javascript
 // filename: spec/dropdown.spec.js
 // ...
-  it("select the hard way", async function() {
-    await driver.get("http://the-internet.herokuapp.com/dropdown");
-    const options = await driver.findElements(By.css("#dropdown option"));
-    let selection;
-    for (const option in options) {
-      if ((await options[option].getText()) === "Option 1") {
-        await options[option].click();
-        break;
-      }
+it("select the hard way", async function () {
+  await driver.get("http://the-internet.herokuapp.com/dropdown");
+  const options = await driver.findElements(By.css("#dropdown option"));
+  let selection;
+  for (const option in options) {
+    if ((await options[option].getText()) === "Option 1") {
+      await options[option].click();
+      break;
     }
-    for (const option in options) {
-      if (await options[option].isSelected()) {
-        selection = await options[option].getText();
-        break;
-      }
+  }
+  for (const option in options) {
+    if (await options[option].isSelected()) {
+      selection = await options[option].getText();
+      break;
     }
-    assert(selection === "Option 1");
-  });
+  }
+  assert(selection === "Option 1");
+});
 // ...
 ```
 
@@ -107,12 +109,12 @@ We then determine what has been selected in the dropdown list by using one more 
 
 If you save this file with either of these examples and run it (e.g., `mocha` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the example application
-+ Find the dropdown list
-+ Select the requested item from the dropdown list
-+ Assert that the selected option is the one you expect
-+ Close the browser
+- Open the browser
+- Visit the example application
+- Find the dropdown list
+- Select the requested item from the dropdown list
+- Assert that the selected option is the one you expect
+- Close the browser
 
 ## Summary
 

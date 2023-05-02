@@ -1,7 +1,9 @@
 ---
-title: Javascript
-id: 65-hightlight-elements-javascript
-slug: javascript/
+title: '65: Highlight Elements'
+id: '65-highlight-elements-javascript'
+contentUrl: "docs/highlight-elements/65-highlight-elements-javascript"
+sidebar_label: Javascript 
+text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
 number: 65
 publish_date: 2019-08-09
 last_update:

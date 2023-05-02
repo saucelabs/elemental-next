@@ -1,19 +1,19 @@
 ---
-title: '11: Build An Interactive Prompt'
-id: '11-build-an-interactive-prompt-ruby'
-contentUrl: "docs/updated-tips/build-an-interactive-prompt/11-build-an-interactive-prompt-ruby"
-sidebar_label: Ruby 
-text: 'Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion.'
+title: "11: Build An Interactive Prompt"
+id: "11-build-an-interactive-prompt-ruby"
+contentUrl: "docs/build-an-interactive-prompt/11-build-an-interactive-prompt-ruby"
+sidebar_label: Ruby
+text: "Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion."
 number: 11
 publish_date: 2013-08-06
 last_update:
   date: 2023-02-28
 tags:
-  - 'repl'
-  - 'debugging'
+  - "repl"
+  - "debugging"
 level: 2
-category: 
-  - 'troubleshooting'
+category:
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -81,20 +81,19 @@ end
 
 The `print` command is used instead of `puts` because we want `>> ` to appear on the same line as the input that we are issuing. This gives us the look and feel of a prompt. And we use `gets.chomp` to take in input. `gets` is responsible for receiving the input. And `chomp` removes the carriage return character (e.g. '\n') from the input.
 
-Before executing the input we perform a check to see if the letter __q__ is issued. If so, the script will post a message to the terminal, close the browser, and exit the prompt.
+Before executing the input we perform a check to see if the letter **q** is issued. If so, the script will post a message to the terminal, close the browser, and exit the prompt.
 
 We then execute the input provided with `eval` and rescue exceptions, posting their message to the terminal when they occur.
 
 Here is an example command you may issue to start: `@driver.get 'https://www.google.com'`.
 
-
 ## Expected Behavior
 
-+ Firefox loads
-+ An interactive prompt is presented
-+ Issue a Selenium command and see it execute in the browser
-+ Issue a command that it does not recognize (or that errors), and see a message stating the issue in the prompt
-+ Issue __q__, the browser will close and the prompt will terminate
+- Firefox loads
+- An interactive prompt is presented
+- Issue a Selenium command and see it execute in the browser
+- Issue a command that it does not recognize (or that errors), and see a message stating the issue in the prompt
+- Issue **q**, the browser will close and the prompt will terminate
 
 ## Summary
 

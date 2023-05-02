@@ -1,15 +1,15 @@
 ---
-title: '13: Work With Basic Auth'
-id: '13-work-with-basic-auth-csharp'
-contentUrl: "docs/updated-tips/how-to-access-basic-auth/13-work-with-basic-auth-csharp"
-sidebar_label: Csharp 
+title: "13: Work With Basic Auth"
+id: "13-work-with-basic-auth-csharp"
+contentUrl: "docs/how-to-access-basic-auth/13-work-with-basic-auth-csharp"
+sidebar_label: Csharp
 text: "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
 number: 13
 publish_date: 2015-10-14
 last_update:
   date: 2023-03-29
 tags:
-  - 'authentication'
+  - "authentication"
 level: 1
 category:
   - troubleshooting
@@ -37,7 +37,7 @@ By specifying the username and password _in the URL_ when visiting a page with S
 First we'll include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
 
 ```csharp
-// filename: BasicAuth1.cs 
+// filename: BasicAuth1.cs
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -84,7 +84,7 @@ Alternatively we could have accessed this page as part of the test setup (after 
 Here's what that script would look like.
 
 ```csharp
-// filename: BasicAuth2.cs 
+// filename: BasicAuth2.cs
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -117,26 +117,26 @@ class BasicAuth2
 }
 ```
 
-__NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).__
+**NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).**
 
 ## Expected Behavior
 
 When you save the first example and run it here is what will happen:
 
-+ Open the browser
-+ Visit the page using Basic Auth
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
+- Open the browser
+- Visit the page using Basic Auth
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
 
 And when you save the second example and run it here is what will happen:
 
-+ Open the browser
-+ Visit the page using Basic Auth in the setup
-+ Navigate to the Basic Auth page (without providing credentials)
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
+- Open the browser
+- Visit the page using Basic Auth in the setup
+- Navigate to the Basic Auth page (without providing credentials)
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
 
 ## Summary
 

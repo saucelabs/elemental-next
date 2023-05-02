@@ -1,20 +1,20 @@
 ---
-title: '45: How To Test Checkboxes'
-id: '45-checkboxes-ruby'
-contentUrl: "docs/updated-tips/how-to-test-checkboxes/45-checkboxes-ruby"
-sidebar_label: Ruby 
+title: "45: How To Test Checkboxes"
+id: "45-checkboxes-ruby"
+contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-ruby"
+sidebar_label: Ruby
 text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
 publish_date: 2015-10-13
 last_update:
   date: 2023-02-22
 tags:
-  - 'checkboxes'
-  - 'attribute'
-  - 'selected'
+  - "checkboxes"
+  - "attribute"
+  - "selected"
 level: 1
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: ruby
 ---
 
@@ -38,8 +38,8 @@ For reference, here is the markup from [the page we will be testing against](htt
 
 ```html
 <form>
-  <input type="checkbox"> unchecked<br>
-  <input type="checkbox" checked=""> checked
+  <input type="checkbox" /> unchecked<br />
+  <input type="checkbox" checked="" /> checked
 </form>
 ```
 
@@ -126,11 +126,11 @@ When checking to see if a checkbox has been selected, it's a straightforward mat
 
 When you save and run the file (e.g., `ruby checkboxes.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Find all of the checkboxes on the page
-+ Assert that the last checkbox (the one that is supposed to be checked on initial page load) is checked
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find all of the checkboxes on the page
+- Assert that the last checkbox (the one that is supposed to be checked on initial page load) is checked
+- Close the browser
 
 ## Summary
 

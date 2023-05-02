@@ -1,8 +1,7 @@
 ---
-title: '0: Template'
-id: '0-template-java'
-contentUrl: "docs/updated-tips/template/0-template-java"
-# slug: java/
+title: "0: Template"
+id: "0-template-java"
+contentUrl: "docs/template/0-template-java"
 sidebar_label: Java
 text: "This is a template."
 number: 0
@@ -10,9 +9,9 @@ publish_date: 2023-02-17
 last_update:
   date: 2023-02-24
 tags:
-  - 'template'
+  - "template"
 level: 0
-category: 'template'
+category: "template"
 language: java
 ---
 

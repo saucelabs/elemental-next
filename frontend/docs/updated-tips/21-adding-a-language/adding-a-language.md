@@ -1,18 +1,18 @@
 ---
-title: '21: Choosing a Programming Language'
-id: '21-choosing-a-language'
-contentUrl: "docs/updated-tips/adding-a-language/21-choosing-a-language"
+title: "21: Choosing a Programming Language"
+id: "21-choosing-a-language"
+contentUrl: "docs/adding-a-language/21-choosing-a-language"
 text: "In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing."
 number: 21
 publish_date: 2015-10-13
 last_update:
   date: 2023-02-22
 tags:
-  - 'programming language'
-  - 'frameworks'
+  - "programming language"
+  - "frameworks"
 level: 1
 category:
-  - 'resources'
+  - "resources"
 language: all
 ---
 
@@ -28,7 +28,7 @@ But if you're not proficient in this language (or new to software development), 
 
 ## A Solution
 
-A great way to determine which language to go with is to answer one simple question: __Who will own the automated tests?__
+A great way to determine which language to go with is to answer one simple question: **Who will own the automated tests?**
 
 The answer to this, and the discussion that unfolds from it, will help you more effectively choose a programming language for test automation.
 

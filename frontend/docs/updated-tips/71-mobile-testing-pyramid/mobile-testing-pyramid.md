@@ -1,19 +1,19 @@
 ---
-title: 'The Mobile Testing Pyramid'
-id: '71-mobile-testing-pyramid'
+title: "The Mobile Testing Pyramid"
+id: "71-mobile-testing-pyramid"
 # slug: mobile-testing-pyramid/
-contentUrl: "docs/updated-tips/mobile-testing-pyramid/71-mobile-testing-pyramid"
-sidebar_label: Ruby 
+contentUrl: "docs/mobile-testing-pyramid/71-mobile-testing-pyramid"
+sidebar_label: Ruby
 text: "There are loads of trade-offs when it comes to mobile testing. But by learning to use all layers of the mobile testing pyramid to your advantage you can gain the fast feedback that is required in modern CI/CD environments."
 number: 71
 publish_date: 2017-08-10
 last_update:
   date: 2023-03-15
 tags:
-  - 'mobile'
-  - 'pyramid'
+  - "mobile"
+  - "pyramid"
 level: 2
-category: 
+category:
   - resources
 language: all
 ---
@@ -22,7 +22,7 @@ language: all
 
 ## Intro
 
->This is a guest post from Kwo Ding. You can follow him on LinkedIn [here](https://www.linkedin.com/in/kwoding/). You can also see a recording of him delivering this material at SauceCon ([link](https://www.youtube.com/watch?v=ACP6N1L62AU)).
+> This is a guest post from Kwo Ding. You can follow him on LinkedIn [here](https://www.linkedin.com/in/kwoding/). You can also see a recording of him delivering this material at SauceCon ([link](https://www.youtube.com/watch?v=ACP6N1L62AU)).
 
 When most people start mobile testing, they tend to start with a few real devices and perform exploratory testing manually. Over time, the number of devices grow, but in order to reach fast feedback and lessen the amount of manual testing, a better usage of available tools is necessary.
 
@@ -43,7 +43,6 @@ The mobile test pyramid has 3 levels:
 - Real devices
 - Mobile simulators & emulators
 - Desktop browsers (using mobile simulation)
-
 
 Identical to the generic test pyramid, the broader the layer in the pyramid, the more tests you should have which cover a wider range of complexity.
 

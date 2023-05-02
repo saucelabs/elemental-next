@@ -1,13 +1,15 @@
 ---
-title: 'Javascript'
-id: '3-work-with-frames-javascript'
-slug: javascript/
+title: "3: Work With Frames"
+id: "3-work-with-frames-javascript"
+contentUrl: "docs/work-with-frames/3-work-with-frames-javascript"
+sidebar_label: Javascript
+text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
 number: 3
 publish_date: 2023-02-23
 last_update:
   date: 2023-03-06
 tags:
-  - 'frames'
+  - "frames"
 level: 1
 category:
   - fundamentals
@@ -55,17 +57,15 @@ Now onto our test. In it we'll step through [an example of nested frames](http:/
 
 ```javascript
 // filename: test/frames.spec.js
-  it("nested_frames", async function() {
-    await driver.get("http://the-internet.herokuapp.com/nested_frames");
-    await driver
-      .switchTo()
-      .frame(await driver.findElement(By.name("frame-top")));
-    await driver
-      .switchTo()
-      .frame(await driver.findElement(By.name("frame-middle")));
-    let content = await driver.findElement(By.id("content")).getText();
-    assert.equal(content, "MIDDLE");
-  });
+it("nested_frames", async function () {
+  await driver.get("http://the-internet.herokuapp.com/nested_frames");
+  await driver.switchTo().frame(await driver.findElement(By.name("frame-top")));
+  await driver
+    .switchTo()
+    .frame(await driver.findElement(By.name("frame-middle")));
+  let content = await driver.findElement(By.id("content")).getText();
+  assert.equal(content, "MIDDLE");
+});
 // ...
 ```
 
@@ -97,10 +97,10 @@ Here is a more likely example you'll run into -- working with a WYSIWYG (What Yo
 
 Once the page loads we switch into the frame that contains TinyMCE and...
 
-+ grab the original text and store it
-+ clear and input new text
-+ grab the new text value
-+ assert that the original and new texts are not the same
+- grab the original text and store it
+- clear and input new text
+- grab the new text value
+- assert that the original and new texts are not the same
 
 Keep in mind that if we need to access a part of the page outside of the frame we are currently in we'll need to switch to it. Thankfully Selenium has method that enables us to quickly jump back to the top level of the page -- `switchTo.defaultContent()`.
 
@@ -123,23 +123,23 @@ If we save the file and run it (e.g., `mocha` from the command-line) here is wha
 
 <u>Example 1</u>
 
-+ Open the browser
-+ Visit the page
-+ Switch to the nested frame
-+ Grab the text from the frame and assert that Selenium is in the correct place
-+ Close the browser
+- Open the browser
+- Visit the page
+- Switch to the nested frame
+- Grab the text from the frame and assert that Selenium is in the correct place
+- Close the browser
 
 <u>Example 2</u>
 
-+ Open the browser
-+ Visit the page
-+ Switch to the frame that contains the TinyMCE editor
-+ Grab and clear the text in the editor
-+ Input and grab new text in the edtitor
-+ Assert that the original and new text entries don't match
-+ Switch to the top level of the page
-+ Grab the text from the top of the page and assert that it's not empty
-+ Close the browser
+- Open the browser
+- Visit the page
+- Switch to the frame that contains the TinyMCE editor
+- Grab and clear the text in the editor
+- Input and grab new text in the edtitor
+- Assert that the original and new text entries don't match
+- Switch to the top level of the page
+- Grab the text from the top of the page and assert that it's not empty
+- Close the browser
 
 ## Summary
 
@@ -152,5 +152,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-

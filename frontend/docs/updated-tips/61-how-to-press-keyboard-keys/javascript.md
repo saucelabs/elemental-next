@@ -1,17 +1,19 @@
 ---
-title: 'Javascript'
-id: '61-keyboard-keys-javascript'
-slug: javascript/
+title: "61: How To Press Keyboard Keys"
+id: "61-keyboard-keys-javascript"
+contentUrl: "docs/how-to-press-keyboard-keys/61-keyboard-keys-javascript"
+sidebar_label: Javascript
+text: "On occasion you'll come across functionality that requires the use of keyboard key presses in your tests. Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter. But how do you do it and where do you start?"
 number: 61
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'keyboard'
-  - 'keys'
-  - 'key presses'
-  - 'tab'
-  - 'enter'
+  - "keyboard"
+  - "keys"
+  - "key presses"
+  - "tab"
+  - "enter"
 level: 1
 category:
   - fundamentals
@@ -96,19 +98,19 @@ Alternatively, we can issue a key press without finding the element first by usi
 });
 ```
 
-__NOTE: In order for this approach to work in browsers other than Firefox, we need to specify `{bridge: true}` when calling `driver.actions` (e.g., `driver.actions({ bridge: true })`). You can see [the documentation](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) for further details.__
+**NOTE: In order for this approach to work in browsers other than Firefox, we need to specify `{bridge: true}` when calling `driver.actions` (e.g., `driver.actions({ bridge: true })`). You can see [the documentation](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) for further details.**
 
 ## Expected Behavior
 
 When we save this file and run it (e.g. `mocha` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Find the element and send the space key to it
-+ Find the result text on the page and check that it's what we expect
-+ Send the tab key to the element that's currently in focus
-+ Find the result text on the page and check that it's what we expect
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find the element and send the space key to it
+- Find the result text on the page and check that it's what we expect
+- Send the tab key to the element that's currently in focus
+- Find the result text on the page and check that it's what we expect
+- Close the browser
 
 ## Summary
 

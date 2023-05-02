@@ -1,20 +1,20 @@
 ---
-title: '22: Locator Strategy'
-id: '22-locator-strategy-ruby'
-contentUrl: "docs/updated-tips/locator-strategy/22-locator-strategy-ruby"
-sidebar_label: Ruby 
+title: "22: Locator Strategy"
+id: "22-locator-strategy-ruby"
+contentUrl: "docs/locator-strategy/22-locator-strategy-ruby"
+sidebar_label: Ruby
 text: "In web design CSS (Cascading Style Sheets) is used to apply styles to the markup (HTML) on a page. CSS is able to do this by declaring which bits of the the markup it wants to interact with through the use of selectors."
 number: 22
 publish_date: 2013-10-22
-last_update: 
+last_update:
   date: 2023-02-22
 tags:
-  - 'locators'
-  - 'locator strategy'
-  - 'css selectors'
+  - "locators"
+  - "locator strategy"
+  - "css selectors"
 level: 1
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: ruby
 ---
 
@@ -40,7 +40,7 @@ With the markup below (taken from [here](http://the-internet.herokuapp.com/downl
 <div id="content" class="large-12 columns">
   <div class="example">
     <h3>File Downloader</h3>
-    <a href="download/hello-world.pdf">hello-world.pdf</a><br>
+    <a href="download/hello-world.pdf">hello-world.pdf</a><br />
     <a href="download/avatar.jpg">avatar.jpg</a>
   </div>
 </div>
@@ -89,6 +89,7 @@ run do
   puts link
 end
 ```
+
 Note the `css: '#content a'`. The `#content` is a selector for an HTML element with `id="content"`. With it we are able to chain together the previously used `a` (separated by spaces) to grab the first link from within the content div on the page.
 
 ## Example 3
@@ -113,22 +114,21 @@ You can find a full list of CSS Selectors [here](http://www.w3schools.com/cssref
 
 <u>Example 1</u>
 
-+ Open the browser
-+ Visit the page
-+ Grab the first link and output the URL to terminal
+- Open the browser
+- Visit the page
+- Grab the first link and output the URL to terminal
 
 <u>Example 1</u>
 
-+ Open the browser
-+ Visit the page
-+ Grab the first link within the content div on the page and output the URL to terminal
+- Open the browser
+- Visit the page
+- Grab the first link within the content div on the page and output the URL to terminal
 
 <u>Example 1</u>
 
-+ Open the browser
-+ Visit the page
-+ Grab the first link from within the example div, which is within the content div, and output the URL to terminal
-
+- Open the browser
+- Visit the page
+- Grab the first link from within the example div, which is within the content div, and output the URL to terminal
 
 ## Summary
 
@@ -136,7 +136,7 @@ In a perfect world all pages would be written with sound markup and uniquely nam
 
 As far as finding CSS Selectors, the simplest way to find them is to inspect the elements on a page. The best way to do this is from within your web browser. Fortunately popular browsers of today come pre-loaded with development tools that make this simple to accomplish.
 
-When viewing the page right click on the element you want to interact with and click __Inspect Element__. This will bring up a small window with all of the HTML for the page but zoomed into your selection highlighted. From here you can see if there are unique attributes you can work with (e.g. `id`, `class`, etc). At the bottom of the window a set of selectors will be listed showing you the selector for your selection and a heirarchy of the selectors on the page that lead up to your selection.
+When viewing the page right click on the element you want to interact with and click **Inspect Element**. This will bring up a small window with all of the HTML for the page but zoomed into your selection highlighted. From here you can see if there are unique attributes you can work with (e.g. `id`, `class`, etc). At the bottom of the window a set of selectors will be listed showing you the selector for your selection and a heirarchy of the selectors on the page that lead up to your selection.
 
 From here you should able to construct a CSS Selector to use in a test.
 

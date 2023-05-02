@@ -1,19 +1,19 @@
 ---
-title: '8: Download A File Revisited'
-id: '8-download-a-file-revisited-ruby'
-contentUrl: "docs/updated-tips/download-a-file-revisited/8-download-a-file-revisited-ruby"
-sidebar_label: Ruby 
+title: "8: Download A File Revisited"
+id: "8-download-a-file-revisited-ruby"
+contentUrl: "docs/download-a-file-revisited/8-download-a-file-revisited-ruby"
+sidebar_label: Ruby
 text: "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
 number: 8
 publish_date: 2015-08-20
 last_update:
   date: 03-08-2023
 tags:
-  - 'files'
-  - 'downloading'
+  - "files"
+  - "downloading"
 level: 2
 category:
-  - 'remote'
+  - "remote"
 language: ruby
 ---
 
@@ -82,13 +82,13 @@ Once we receive the response we can check it's header for the `content_type` and
 
 If you save this and run it (e.g., `ruby download_revisited.rb` from the command-line) here is what will will happen:
 
-+ Open the browser
-+ Load the page
-+ Grab the URL of the first download link
-+ Perform a `HEAD` request against it with an HTTP library
-+ Store the response
-+ Check the response headers to see that the file type is correct
-+ Check the response headers to see that the file is not empty
+- Open the browser
+- Load the page
+- Grab the URL of the first download link
+- Perform a `HEAD` request against it with an HTTP library
+- Store the response
+- Check the response headers to see that the file type is correct
+- Check the response headers to see that the file is not empty
 
 ## Summary
 

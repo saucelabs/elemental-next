@@ -1,7 +1,7 @@
 ---
-title: '58: Tagging'
-id: '58-tagging-ruby'
-contentUrl: "docs/updated-tips/tagging/58-tagging-ruby"
+title: "58: Tagging"
+id: "58-tagging-ruby"
+contentUrl: "docs/tagging/58-tagging-ruby"
 sidebar_label: Ruby
 text: "As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?"
 number: 58
@@ -9,13 +9,13 @@ publish_date: 2014-07-09
 last_update:
   date: 2023-02-22
 tags:
-  - 'tagging'
-  - 'tags'
-  - 'annotations'
-  - 'test packs'
+  - "tagging"
+  - "tags"
+  - "annotations"
+  - "test packs"
 level: 1
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: ruby
 ---
 
@@ -31,11 +31,11 @@ By applying some metadata to your tests, you can specify a filter at runtime to 
 
 Here are some tagging ideas to help get you started:
 
-+ `wip` (e.g., work in progress)
-+ `smoke` (e.g., smoke tests)
-+ `moneymakers` (e.g., the user paths that correlate to the bottom line of the business)
-+ `component name`
-+ `story number` (e.g., traceability to your development stories)
+- `wip` (e.g., work in progress)
+- `smoke` (e.g., smoke tests)
+- `moneymakers` (e.g., the user paths that correlate to the bottom line of the business)
+- `component name`
+- `story number` (e.g., traceability to your development stories)
 
 Let's start with an example.
 
@@ -130,9 +130,9 @@ Otherwise, you'll have to specify tags using the standard key/value syntax (e.g.
 
 ## Expected Behavior
 
-+ Run the test suite
-+ The test suite identifies which tests to run based on the tags provided
-+ Executes the filtered set of tests, ignoring the rest
+- Run the test suite
+- The test suite identifies which tests to run based on the tags provided
+- Executes the filtered set of tests, ignoring the rest
 
 ## Summary
 

@@ -1,22 +1,22 @@
 ---
-title: '23: Dynamic Pages'
-id: '23-dynamic-pages-ruby'
-contentUrl: "docs/updated-tips/dynamic-pages/23-dynamic-pages-ruby"
-sidebar_label: Ruby 
+title: "23: Dynamic Pages"
+id: "23-dynamic-pages-ruby"
+contentUrl: "docs/dynamic-pages/23-dynamic-pages-ruby"
+sidebar_label: Ruby
 text: "Let's say you want to test some functionality of a web application but it loads things dynamically. You might think about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout that you likely bump up to address test instabilities as well."
 number: 23
 publish_date: 2015-10-13
 last_update:
   date: 2023-02-28
 tags:
-  - 'dynamic pages'
-  - 'ajax'
-  - 'javascript'
-  - 'waiting'
-  - 'explicit waits'
+  - "dynamic pages"
+  - "ajax"
+  - "javascript"
+  - "waiting"
+  - "explicit waits"
 level: 2
-category: 
-  - 'fundamentals'
+category:
+  - "fundamentals"
 language: ruby
 ---
 
@@ -93,6 +93,7 @@ run do
   expect(@driver.find_element(id: 'finish').displayed?).to eql true
 end
 ```
+
 ## Example 2
 
 Explicit waits are a useful tool to have in your toolbelt since they enable you to finely tune your tests and avoid static sleeps and arbitrary timeouts. But rather than litter your test code with the verbose Selenium incantation, it's best to pull this code out into a method that accepts a timeout argument and the action you want to wait for as a block.
@@ -116,12 +117,12 @@ end
 
 When you save the file and run it (e.g., `ruby dynamic_loading.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Click the Start button
-+ Wait for the loading bar to disappear and display the finish text
-+ Assert that the finish text element is displayed
-+ Close the browser
+- Open the browser
+- Visit the page
+- Click the Start button
+- Wait for the loading bar to disappear and display the finish text
+- Assert that the finish text element is displayed
+- Close the browser
 
 ## Summary
 

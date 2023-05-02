@@ -1,22 +1,22 @@
 ---
-title: '44: How To Handle Exceptions'
+title: "44: How To Handle Exceptions"
 sidebar_label: Ruby
-contentUrl: "docs/updated-tips/exception-handling/ruby"
+contentUrl: "docs/exception-handling/ruby"
 text: "It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable . They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them."
 number: 44
 publish_date: 2015-07-01
 last_update:
   date: 2023-03-15
 tags:
-  - 'exceptions'
-  - 'exception handling'
-  - 'errors'
-  - 'error handling'
-  - 'no such element error'
-  - 'stale element reference error'
+  - "exceptions"
+  - "exception handling"
+  - "errors"
+  - "error handling"
+  - "no such element error"
+  - "stale element reference error"
 level: 2
 category:
-  - 'troubleshooting'
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -145,7 +145,7 @@ def rescue_exceptions
 end
 ```
 
-__NOTE: `NoSuchElementError` and `StaleElementReferenceError` are the two most common errors you'll run into when using Selenium.__
+**NOTE: `NoSuchElementError` and `StaleElementReferenceError` are the two most common errors you'll run into when using Selenium.**
 
 ## Example 2
 
@@ -167,7 +167,7 @@ Also add this line to your run code, just before the `expect` line:
 wait_for(10) { @driver.find_element(css: '.icon-2x').displayed? }
 ```
 
-__The full script with `wait` added will be as follows:__
+**The full script with `wait` added will be as follows:**
 
 ```ruby
 # exception-with-wait.rb
@@ -225,13 +225,13 @@ end
 
 If you save the file and run it (e.g, `ruby exception_handling.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Log in
-+ Check to see that the login form is NOT displayed
-+ Catch the exception from Selenium and return `false` instead
-+ Complete the assertion using the boolean response (e.g., `false`)
-+ Close the browser
+- Open the browser
+- Visit the page
+- Log in
+- Check to see that the login form is NOT displayed
+- Catch the exception from Selenium and return `false` instead
+- Complete the assertion using the boolean response (e.g., `false`)
+- Close the browser
 
 ## Summary
 

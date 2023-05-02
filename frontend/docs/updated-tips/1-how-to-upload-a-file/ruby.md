@@ -1,7 +1,7 @@
 ---
-title: '1: How To Upload A File'
-id: '1-upload-a-file-ruby'
-contentUrl: "docs/updated-tips/how-to-upload-a-file/1-upload-a-file-ruby"
+title: "1: How To Upload A File"
+id: "1-upload-a-file-ruby"
+contentUrl: "docs/how-to-upload-a-file/1-upload-a-file-ruby"
 sidebar_label: Ruby
 text: "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
 number: 1
@@ -9,13 +9,13 @@ publish_date: 2019-08-09
 last_update:
   date: 2023-02-27
 tags:
-  - 'file'
-  - 'upload'
-  - 'file upload'
+  - "file"
+  - "upload"
+  - "file upload"
 level: 1
 category:
-  - 'remote'
-  - 'fundamentals'
+  - "remote"
+  - "fundamentals"
 language: ruby
 ---
 
@@ -35,7 +35,7 @@ Let's step through an example.
 
 ## Example(s)
 
-__NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__
+**NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).**
 
 First let's include our requisite libraries (e.g., `selenium-webdriver` to drive the browser, and `rspec/expectations` & `RSpec::Matchers` for our assertion) and wire-up some simple `setup`, `teardown`, and `run` methods.
 
@@ -64,6 +64,7 @@ end
 Now we're ready to write our file upload test.
 
 ==**`!! Code snippet needs validation !!`**==
+
 ```ruby
 run do
   filename = 'some-file.txt'
@@ -86,12 +87,12 @@ Next we visit the page with the upload form, input the `file` text (e.g., the fu
 
 When we save this file and run it (e.g., `ruby upload.rb` from the command-line) this is what will happen:
 
-+ Open the browser
-+ Visit the upload form page
-+ Inject the file path into the form and submit it
-+ Page displays the uploaded filename
-+ Grab the text from the page and assert it's what we expect
-+ Close the browser
+- Open the browser
+- Visit the upload form page
+- Inject the file path into the form and submit it
+- Page displays the uploaded filename
+- Grab the text from the page and assert it's what we expect
+- Close the browser
 
 ## Summary
 

@@ -1,17 +1,17 @@
 ---
-title: 'Java'
-id: '2-download-a-file-java'
+title: "Java"
+id: "2-download-a-file-java"
 slug: java/
 number: 2
 publish_date: 2015-07-27
 last_update:
   date: 2023-04-03
 tags:
-  - 'files'
-  - 'downloading'
-  - 'file download'
+  - "files"
+  - "downloading"
+  - "file download"
 level: 2
-category: 
+category:
   - remote
   - fundamentals
 language: java
@@ -23,9 +23,8 @@ language: java
 
 ## Intro
 
-Just like with [uploading files](/docs/updated-tips/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box 
+Just like with [uploading files](/docs/how-to-upload-a-file/) we hit the same issue with downloading them -- a dialog box
 just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
-
 
 ## A Solution
 
@@ -89,10 +88,10 @@ Our `setUp()` method is where the magic is happening in this example. In it we'r
 
 Here's a breakdown of each of the browser preferences being set:
 
-+ `browser.download.dir` accepts a string. This is how we set the custom download path. It needs to be an absolute path.
-+ `browser.download.folderList` takes a number. It tells Firefox which download directory to use. `2` tells it to use a custom download path, wheras `1` would use the browser's default path, and `0` would place them on the Desktop.
-+ `browser.helperApps.neverAsk.saveToDisk` tells Firefox when not to prompt for a file download. It accepts a string of [the file's MIME type](http://en.wikipedia.org/wiki/Internet_media_type). If you want to specify more than one, you do it with a comma-separated string.
-+ `pdfjs.disabled` is for when downloading PDFs. This overrides the sensible default in Firefox that previews PDFs in the browser. It accepts a boolean.
+- `browser.download.dir` accepts a string. This is how we set the custom download path. It needs to be an absolute path.
+- `browser.download.folderList` takes a number. It tells Firefox which download directory to use. `2` tells it to use a custom download path, wheras `1` would use the browser's default path, and `0` would place them on the Desktop.
+- `browser.helperApps.neverAsk.saveToDisk` tells Firefox when not to prompt for a file download. It accepts a string of [the file's MIME type](http://en.wikipedia.org/wiki/Internet_media_type). If you want to specify more than one, you do it with a comma-separated string.
+- `pdfjs.disabled` is for when downloading PDFs. This overrides the sensible default in Firefox that previews PDFs in the browser. It accepts a boolean.
 
 This profile object is then passed into our instance of Selenium (e.g., `driver = new FirefoxDriver(profile);`).
 
@@ -142,15 +141,15 @@ After visiting the page we find the first download link and click it. The click 
 
 When you save this file and run it (e.g., `mvn clean test` from the command-line) here is will happen:
 
-+ Create a uniquely named temp directory in the present working directory
-+ Open the browser
-+ Visit the page
-+ Find and click the first download link on the page
-+ Automatically download the file to the temp directory without prompting
-+ Check that the temp directory is not empty
-+ Check that the downloaded file is not empty
-+ Close the browser
-+ Delete the temp directory
+- Create a uniquely named temp directory in the present working directory
+- Open the browser
+- Visit the page
+- Find and click the first download link on the page
+- Automatically download the file to the temp directory without prompting
+- Check that the temp directory is not empty
+- Check that the downloaded file is not empty
+- Close the browser
+- Delete the temp directory
 
 ## Summary
 

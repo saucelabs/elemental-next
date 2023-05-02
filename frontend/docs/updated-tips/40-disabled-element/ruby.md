@@ -1,21 +1,21 @@
 ---
-title: '40: Disabled Element'
-id: '40-disabled-element-ruby'
-contentUrl: "docs/updated-tips/disabled-element/40-disabled-element-ruby"
-sidebar_label: Ruby 
+title: "40: Disabled Element"
+id: "40-disabled-element-ruby"
+contentUrl: "docs/disabled-element/40-disabled-element-ruby"
+sidebar_label: Ruby
 text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
 number: 40
 publish_date: 2015-07-06
 last_update:
   date: 2023-03-02
 tags:
-  - 'dropdown list'
-  - 'dropdown lists'
-  - 'disabled element'
+  - "dropdown list"
+  - "dropdown lists"
+  - "disabled element"
 level: 2
 category:
-  - 'remote'
-  - 'troubleshooting'
+  - "remote"
+  - "troubleshooting"
 language: ruby
 ---
 
@@ -79,11 +79,11 @@ Once we have the element we want we see if it's enabled (with `.enabled?`) and a
 
 If you save this file and run it (e.g., `ruby dropdown_disabled.rb` from the command-line) here is what will happen:
 
-+ Open a browser
-+ Visit the page
-+ Grab all dropdown list elements and find the one we want by its text
-+ Assert that the element is not enabled
-+ Close the browser
+- Open a browser
+- Visit the page
+- Grab all dropdown list elements and find the one we want by its text
+- Assert that the element is not enabled
+- Close the browser
 
 ## Summary
 
