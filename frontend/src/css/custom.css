@@ -103,8 +103,11 @@ text {
 }
 
 .navbar__logo img {
-  height: 24px;
-}
+  height: 21px;
+  width: 161px;
+  top: 33px;
+  left: 39px;
+} 
 
 .navbar a:hover{
   color:black;
@@ -136,7 +139,7 @@ text {
 
 .footer .container{
   position:relative;
-  bottom: -870px;
+  bottom: -895px;
   width: 750px;
   font-weight: 300;
   line-height: 24px;
