@@ -65,9 +65,9 @@ const config = {
       navbar: {
         // title: 'Elemental Selenium',
         logo: {
+          href: '/',
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
-          height: 20,
         },
   
         items: [
@@ -76,6 +76,7 @@ const config = {
             to:'/tips',
             position: 'right',
             label: 'Tips',
+            
           },
           {
             to: '/resources',
@@ -89,8 +90,8 @@ const config = {
           },
  
           {
-            to: '/',
-            label: 'Sign In',
+            to: '/signup',
+            label: 'Join the mailing list',
             position: 'right',
             className: 'button button--secondary button--med'
           },
