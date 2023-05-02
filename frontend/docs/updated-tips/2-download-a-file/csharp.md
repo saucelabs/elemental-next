@@ -1,7 +1,9 @@
 ---
-title: 'CSharp'
-id: '2-download-a-file-csharp'
-slug: csharp/
+title: '2: Download A File'
+id: '2-download-a-file-Csharp'
+contentUrl: "docs/updated-tips/download-a-file/2-download-a-file-Csharp"
+sidebar_label: Csharp
+text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
 number: 2
 publish_date: 2015-07-27
 last_update:

@@ -1,7 +1,9 @@
 ---
-title: 'CSharp'
+title: '65: Highlight Elements'
 id: '65-highlight-elements-csharp'
-slug: csharp/
+contentUrl: "docs/updated-tips/highlight-elements/65-highlight-elements-csharp"
+sidebar_label: Ruby 
+text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
 number: 65
 publish_date: 2014-09-11
 last_update:

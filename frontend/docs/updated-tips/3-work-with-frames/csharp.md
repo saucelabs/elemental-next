@@ -1,7 +1,9 @@
 ---
-title: 'CSharp'
+title: '3: Work With Frames'
 id: '3-work-with-frames-csharp'
-slug: csharp/
+contentUrl: "docs/updated-tips/work-with-frames/3-work-with-frames-csharp"
+sidebar_label: Csharp
+text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
 number: 3
 publish_date: 2023-02-21
 last_update:

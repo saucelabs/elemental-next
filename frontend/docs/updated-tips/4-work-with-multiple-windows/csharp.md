@@ -1,7 +1,9 @@
 ---
-title: 'CSharp'
+title:'4: Work With Multiple Windows'
 id: '4-work-with-multiple-windows-csharp'
-slug: csharp/
+contentUrl: "docs/updated-tips/work-with-multiple-windows/4-work-with-multiple-windows-csharp"
+sidebar_label: Csharp 
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
 publish_date: 2015-08-21
 last_update:

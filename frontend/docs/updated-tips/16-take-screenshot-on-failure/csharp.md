@@ -1,7 +1,9 @@
 ---
-title: 'CSharp'
+title: '16: Take Screenshot on Failure'
 id: '16-take-screenshot-on-failure-csharp'
-slug: csharp/
+contentUrl: "docs/updated-tips/take-screenshot-on-failure/16-take-screenshot-on-failure-csharp"
+sidebar_label: Csharp 
+text: "With browser tests it can often be challenging to track down the issue that caused a failure. By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future."
 number: 16
 publish_date: 2015-07-08
 last_update:
