@@ -78,13 +78,13 @@ const config = {
             label: 'Tips',
           },
           {
-            to: '/contribute',
-            label: 'Contribute',
+            to: '/resources',
+            label: 'External Resources',
             position: 'right',
           },
           {
-            to: 'https://github.com/facebook/docusaurus',
-            label: 'External Resources',
+            to: '/community',
+            label: 'Get Involved',
             position: 'right',
           },
           {
