@@ -4,7 +4,7 @@ Thank you for your interest in Elemental Next! Your contributions are highly wel
 
 ## Ways to Contribute 🤝:
 
-- [Add a new tip 📝](#add-a-new-tip)
+- [Add a new tip 📝](#add-a-new-tip-)
 - [Report a bug 🐛](#report-a-bug)
 - [Suggest a feature 💡](#suggest-a-feature)
 - [Contributing code 👩🏽‍💻](#contributing-code)
