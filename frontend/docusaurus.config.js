@@ -76,6 +76,7 @@ const config = {
             to:'/tips',
             position: 'right',
             label: 'Tips',
+            
           },
           {
             to: '/resources',

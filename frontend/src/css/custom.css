@@ -108,7 +108,10 @@ text {
   top: 33px;
   left: 39px;
 } 
-
+.navbar__items {
+  gap: 10px;
+  padding: 6px 8px
+}
 .navbar a:hover{
   color:black;
   font-weight: 600;
