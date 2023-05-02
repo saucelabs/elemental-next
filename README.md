@@ -7,13 +7,13 @@ In 2023, Team Elemental took Elemental Selenium, which had been untouched for ma
 
 ## Table of Contents 📑
 
-- [How To Contribute](#how-to-contribute) 🤝
-- [Running locally](#running-locally) 🏃🏾‍♀️
-  - [Prerequisites](#prerequisites) 🔍
-  - [Installation](#installation) 💻
-- [Local Development](#local-development) 🛠️
-  - [Building the Website](#building-the-website) 🏗️
-  - [Deploying the Website](#deploying-the-website) 🚀
+- [How To Contribute](#how-to-contribute-) 🤝
+- [Running locally 🏃🏾‍♀️](#running-locally-)
+  - [Prerequisites 🔍](#prerequisites-)
+  - [Installation 💻](#installation-)
+- [Local Development 🛠️](#local-development-)
+  - [Building the Website 🏗️](#building-the-website-)
+  - [Deploying the Website 🚀](#deploying-the-website-)
 
 # How to Contribute 🙌
 
