@@ -65,6 +65,7 @@ const config = {
       navbar: {
         // title: 'Elemental Selenium',
         logo: {
+          href: '/',
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
         },
