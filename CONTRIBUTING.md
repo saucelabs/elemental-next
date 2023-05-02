@@ -8,8 +8,8 @@ Thank you for your interest in Elemental Next! Your contributions are highly wel
 - [Report a bug 🐛](#-report-a-bug)
 - [Suggest a feature 💡](#-suggest-a-feature)
 - [Contributing code 👩🏽‍💻](#-contributing-code)
-  - [Commit messages ✍️](#-commit-messages)
-  - [Sign your work / Developer certificate of origin 🖊️](#-sign-your-work--developer-certificate-of-origin)
+  - [Commit messages ✍️](#--commit-messages)
+  - [Sign your work / Developer certificate of origin 🖊️](#--sign-your-work--developer-certificate-of-origin)
 
 Below are a few guidelines we would like you to follow. If you need help, please reach out to us by opening an issue.
 
