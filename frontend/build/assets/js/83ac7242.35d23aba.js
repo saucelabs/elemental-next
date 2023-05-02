@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[2763],{3729:(e,n,t)=>{t.r(n),t.d(n,{default:()=>u});var r=t(7294);const u=function(){return r.createElement("h1",null,"Sign Up")}}}]);
