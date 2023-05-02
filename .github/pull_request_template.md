@@ -40,4 +40,4 @@ Please check off the following items as applicable:
 
 >### 🎉 Inclusive Content Reminder
 >
->We truly value diversity and strive to create a welcoming and inclusive community. Please review our [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md) to make doubly sure your contribution meets and upholds our principles and values.
+>We truly value diversity and strive to create a welcoming and inclusive community. Please review our [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md) and [CONTRIBUTING](CONTRIBUTING.md) guidelines to make doubly sure your contribution meets and upholds our principles and values.
