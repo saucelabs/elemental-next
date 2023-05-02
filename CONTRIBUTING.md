@@ -4,12 +4,12 @@ Thank you for your interest in Elemental Next! Your contributions are highly wel
 
 ## Ways to Contribute 🤝:
 
-- [Add a new tip](#add-a-new-tip) 📝
-- [Report a bug](#report-a-bug) 🐛
-- [Suggest a feature](#suggest-a-feature) 💡
-- [Contributing code](#contributing-code) 👩‍💻
-  - [Commit messages](#commit-messages) ✍️
-  - [Sign your work / Developer certificate of origin](#sign-your-work--developer-certificate-of-origin) 🖋️
+- [Add a new tip 📝](#add-a-new-tip)
+- [Report a bug 🐛](#report-a-bug)
+- [Suggest a feature 💡](#suggest-a-feature)
+- [Contributing code 👩🏽‍💻](#contributing-code)
+  - [Commit messages ✍️](#commit-messages)
+  - [Sign your work / Developer certificate of origin 🖊️](#sign-your-work--developer-certificate-of-origin)
 
 Below are a few guidelines we would like you to follow. If you need help, please reach out to us by opening an issue.
 
@@ -23,7 +23,7 @@ Reporting bugs is a great way to contribute and help improve the project, and fi
 
 To report a new bug you should open an issue that summarizes the bug and set the label to "bug".
 
-If you want to provide a fix along with your bug report, that's great! In this case please send us a pull request as described in section [Contributing Code](#contributing-code).
+If you want to provide a fix along with your bug report, that's great! In this case please send us a pull request as described in section [Contribute Code](#contribute-code).
 
 ## 💡 Suggest a feature
 
