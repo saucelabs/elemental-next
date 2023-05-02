@@ -13,7 +13,7 @@ Thank you for your interest in Elemental Next! Your contributions are highly wel
 
 Below are a few guidelines we would like you to follow. If you need help, please reach out to us by opening an issue.
 
-## 📝 Add a new tip
+## Add a new tip 📝
 
 Adding a new tip tutorial is the best way to have our community engage and share knowlege with each other. In order to maintain coherence and best practices among submtting information, we've created a [tip template](TIP-TEMPLATE.MD) to guide you.
 
