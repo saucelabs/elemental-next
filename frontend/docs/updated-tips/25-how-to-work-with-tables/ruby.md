@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '25: How To Work With Tables'
 id: '25-tables-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/how-to-work-with-tables/25-tables-ruby"
+sidebar_label: Ruby
+text: "Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for."
 number: 25
 publish_date: 2015-10-13
 last_update:
@@ -13,8 +15,8 @@ tags:
   - 'css pseudo-classes'
 level: 2
 category:
-  - troubleshooting
-  - fundamentals
+  - 'troubleshooting'
+  - 'fundamentals'
 language: ruby
 ---
 

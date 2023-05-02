@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '72: Headless Chrome'
 id: '72-headless-chrome-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/headless-chrome/72-headless-chrome-ruby"
+sidebar_label: Ruby 
+text: "If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
 number: 72
 publish_date: 2017-09-25
 last_update:
@@ -11,7 +13,7 @@ tags:
   - 'chrome'
 level: 2
 category: 
-  - remote
+  - 'remote'
 language: ruby
 ---
 

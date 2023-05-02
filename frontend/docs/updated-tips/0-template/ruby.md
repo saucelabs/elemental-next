@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: '1: Template'
 id: '0-template-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/template/0-template-ruby"
+# slug: ruby/
+sidebar_label: Ruby
+text: "This is a template."
 number: 0
 publish_date: 2023-02-17
 last_update:

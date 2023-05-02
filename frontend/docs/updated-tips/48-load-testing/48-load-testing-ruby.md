@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '48: Load Testing'
 id: '48-load-testing-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/load-testing/48-load-testing-ruby"
+sidebar_label: Ruby 
+text: "How do you do load testing in Selenium? While there are plenty of resources citing that while it _can_ be done, there are better tools for the job. Tools like JMeter are often recommended, but they can be intimidating and challenging to get started."
 number: 48
 publish_date: 2014-04-30
 last_update:

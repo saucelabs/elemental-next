@@ -5,7 +5,7 @@ const Data = [
         text: "Uploading a file is a common piece of functionality found on the web. But when trying to automate it you get prompted with a with a dialog box...", 
         difficulty: "Beginner", 
         category: ["fundamentals", "remote"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/how-to-upload-a-file/ruby/",
+        contentUrl: "docs/updated-tips/how-to-upload-a-file/1-upload-a-file-ruby",
         tags: ["files", "upload", "file_upload"]
     },
     { 

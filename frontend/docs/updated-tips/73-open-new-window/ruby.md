@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '73: Open New Window'
 id: '73-open-new-window-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/open-new-window/73-open-new-window-ruby"
+sidebar_label: Ruby 
+text: "Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium."
 number: 73
 publish_date: 2023-02-17
 last_update:

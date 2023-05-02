@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '55: Wrapper'
 id: '55-wrapper-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/wrapper/55-wrapper-ruby"
+sidebar_label: Ruby 
+text: "There may come a time where you want to access Selenium logs in real time. Although there is a way to do this where you have to explicitly request the logs after each test action, what if we wanted information for every test action?"
 number: 55
 publish_date: 2014-06-17
 last_update:

@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '50: How To Work With Hovers'
 id: '50-hovers-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/how-to-work-with-hovers/50-hovers-ruby"
+sidebar_label: Ruby 
+text: "If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution."
 number: 50
 publish_date: 2015-07-01
 last_update:

@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '11: Build An Interactive Prompt'
 id: '11-build-an-interactive-prompt-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/build-an-interactive-prompt/11-build-an-interactive-prompt-ruby"
+sidebar_label: Ruby 
+text: 'Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion.'
 number: 11
 publish_date: 2013-08-06
 last_update:
@@ -11,7 +13,7 @@ tags:
   - 'debugging'
 level: 2
 category: 
-  - troubleshooting
+  - 'troubleshooting'
 language: ruby
 ---
 

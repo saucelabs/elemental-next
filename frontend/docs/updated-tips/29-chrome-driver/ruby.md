@@ -1,7 +1,9 @@
 ---
-title: Ruby
+title: '29: Chrome Driver'
 id: 29-chrome-driver-ruby
-slug: ruby/
+contentUrl: "docs/updated-tips/chrome-driver/29-chrome-driver-ruby"
+sidebar_label: Ruby 
+text: "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
 number: 29
 publish_date: 2015-08-25
 last_update:
@@ -13,8 +15,8 @@ tags:
   - different browsers
 level: 2
 category:
-  - fundamentals
-  - remote
+  - 'fundamentals'
+  - 'remote'
 language: ruby
 ---
 

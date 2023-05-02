@@ -1,19 +1,21 @@
 ---
-title: Ruby
+title: '47: Implicit vs Explicit Waits'
 id: 47-waiting-ruby
-slug: ruby/
+contentUrl: "docs/updated-tips/waiting/47-waiting-ruby"
+sidebar_label: Ruby 
+text: "In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages."
 number: 47
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-15
 tags:
-  - waiting
-  - dynamic pages
-  - explicit waits
-  - implicit waits
+  - 'waiting'
+  - 'dynamic pages'
+  - 'explicit waits'
+  - 'implicit waits'
 level: 2
 category:
-  - troubleshooting
+  - 'troubleshooting'
 language: ruby
 ---
 

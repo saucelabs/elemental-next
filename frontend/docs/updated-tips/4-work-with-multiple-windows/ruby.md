@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title:'4: Work With Multiple Windows'
 id: '4-work-with-multiple-windows-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/work-with-multiple-windows/4-work-with-multiple-windows-ruby"
+sidebar_label: Ruby 
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
 publish_date: 2015-08-21
 last_update:
@@ -12,7 +14,7 @@ tags:
   - 'new window'
 level: 2
 category:
-  - fundamentals
+  - 'fundamentals'
 language: ruby
 ---
 

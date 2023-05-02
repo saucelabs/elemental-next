@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '24: REST APIs'
 id: '24-rest-apis-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/rest-apis/24-rest-apis-ruby"
+sidebar_label: Ruby 
+text: "When we list out the properties that make a test a good test, some things that often come up are: Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail."
 number: 24
 publish_date: 2013-11-5
 last_update:
@@ -12,7 +14,7 @@ tags:
   - 'guest post'
 level: 2
 category:
-  - fundamentals
+  - 'fundamentals'
 language: ruby
 ---
 
@@ -20,7 +22,7 @@ language: ruby
 
 ## Intro
 
->This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST APIs in his testing practice
+This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST APIs in his testing practice
 
 When we list out the properties that make a test a "good test", some things that often come up are:
 

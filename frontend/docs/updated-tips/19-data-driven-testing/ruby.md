@@ -1,7 +1,9 @@
 ---
-title: 'Ruby'
+title: '19: Data Driven Testing'
 id: '19-data-driven-testing-ruby'
-slug: ruby/
+contentUrl: "docs/updated-tips/data-driven-testing/19-data-driven-testing-ruby"
+sidebar_label: Ruby 
+text: "There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process."
 number: 19
 publish_date: 2015-07-14
 last_update:
@@ -12,7 +14,7 @@ tags:
   - 'authentication'
 level: 2
 category:
-  - remote
+  - 'remote'
 language: ruby
 ---
 

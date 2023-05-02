@@ -1,7 +1,10 @@
 ---
-title: 'Python'
+title: '0: Template'
 id: '0-template-python'
-slug: python/
+contentUrl: "docs/updated-tips/template/0-template-python"
+# slug: python/
+sidebar_label: Python
+text: "This is a template."
 number: 0
 publish_date: 2023-02-17
 last_update:
