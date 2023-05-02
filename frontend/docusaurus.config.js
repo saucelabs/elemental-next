@@ -63,22 +63,19 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Elemental Selenium',
-        // logo: {
-        //   alt: 'Elemental Selenium Logo',
-        //   src: 'img/ES.svg',
-        // },
+        // title: 'Elemental Selenium',
+        logo: {
+          alt: 'Elemental Selenium Logo',
+          src: 'img/logo.png',
+          height: 20,
+        },
+  
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
+            // type: 'pages',
+            to:'/tips',
             position: 'right',
             label: 'Tips',
-          },
-          {
-            to: 'https://github.com/saucelabs/elemental-next',
-            label: 'Contribute',
-            position: 'right',
           },
           {
             to: '/resources',
@@ -86,9 +83,16 @@ const config = {
             position: 'right',
           },
           {
+            to: '/community',
+            label: 'Get Involved',
+            position: 'right',
+          },
+ 
+          {
             to: '/',
             label: 'Sign In',
             position: 'right',
+            className: 'button button--secondary button--med'
           },
         ],
       },
@@ -145,6 +149,9 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: ['ruby'],
+      },
+      colorMode: {
+        disableSwitch: true,
       },
     }),
 };
