@@ -20,8 +20,8 @@
 Please check off the following items as applicable:
 - [ ] New or changed code; builds and runs locally without errors.
 - [ ] Content changes have been checked for spelling and grammar errors. 
-- [ ] Contribution adheres to the [CODE OF CONDUCT](CODE_OF_CONDUCT.MD).
-- [ ] Contribution follows the [CONTRIBUTING](CONTRIBUTING.MD) guidelines.
+- [ ] Contribution adheres to the [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md).
+- [ ] Contribution follows the [CONTRIBUTING](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md) guidelines.
 
 ## 📸 Screenshots (if applicable)
 
@@ -40,4 +40,4 @@ Please check off the following items as applicable:
 
 >### 🎉 Inclusive Content Reminder
 >
->We truly value diversity and strive to create a welcoming and inclusive community. Please review our [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md) and [CONTRIBUTING](CONTRIBUTING.md) guidelines to make doubly sure your contribution meets and upholds our principles and values.
+>We truly value diversity and strive to create a welcoming and inclusive community. Please review our [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md) and [CONTRIBUTING](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md) guidelines to make doubly sure your contribution meets and upholds our principles and values.
