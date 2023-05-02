@@ -1,34 +1,34 @@
-# Welcome to Elemental Next!
+# 🎉 Welcome to Elemental Next! 🚀
 
 In 2023, Team Elemental took Elemental Selenium, which had been untouched for many years, and open sourced the project to enable Selenium users and enthusiasts to contribute directly in opinionated, hands-on ways.
 
-**Elemental Next** is what we are calling the Elemental Selenium revamp -- open sourced, renewed, and ready for community contributions!
+🔥 **Elemental Next** 🔥 is what we are calling the Elemental Selenium revamp -- open sourced, renewed, and ready for community contributions!
 
 
-## Table of Contents
+## Table of Contents 📑
 
-- [How To Contribute](#how-to-contribute)
-- [Running locally](#running-locally)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Local Development](#local-development)
-  - [Building the Website](#building-the-website)
-  - [Deploying the Website](#deploying-the-website)
+- [How To Contribute 🤝](#how-to-contribute-)
+- [Running locally 🏃🏾‍♀️](#running-locally-)
+  * [Prerequisites 🔍](#prerequisites-)
+  * [Installation 💻](#installation-)
+- [Local Development 🛠️](#local-development-)
+  * [Building the Website 🏗️](#building-the-website-)
+  * [Deploying the Website 🚀](#deploying-the-website-)
 
-# How to Contribute
+# How to Contribute 🙌
 
 There are many ways to contribute to the project -- from adding new tips tutorials, to helping with frontend or backend, or engaging with the community.
 
-For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md).
+For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md). 👀
 
-# Running Locally
+# Running Locally 🏃🏾‍♀️
 
 ## Prerequisites
 
-- [`git`](https://git-scm.com/downloads)
-- [Node.js](https://nodejs.org/en/download/) `version >= 16` or above (which can be checked by running node -v). You can use nvm for managing multiple Node versions on a single machine installed
+- [`git`](https://git-scm.com/downloads) 📥
+- [Node.js](https://nodejs.org/en/download/) `version >= 16` or above (which can be checked by running node -v). You can use nvm for managing multiple Node versions on a single machine installed 📈
 
-## Installation
+## Installation 💻
 
 - Clone this repo:
 
@@ -48,7 +48,7 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
   npm install
   ```
 
-# Local Development
+# Local Development 🛠️
 
 - Start the website locally:
 
@@ -58,7 +58,7 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
 
   This command starts a local development server and opens a browser window or tab (http://localhost:3000). Most changes perform live updates to your server without having to refresh your browser.
 
-## Building the Website
+## Building the Website 🏗️
 
 - Build the website:
 
@@ -76,7 +76,7 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
 
   This command builds the site and serves it on your machine's host (http://localhost:3000).
 
-## Deploying the Website
+## Deploying the Website 🚀
 
 - Deploy the website:
 
@@ -84,7 +84,7 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
   npm run deploy -outDir
   ```
 
-**We are currently deploying this website to GitHub Pages.**
+🚨 **We are currently deploying this website to GitHub Pages.** 🚨
 
 The <code>docusaurus deploy</code> command helps us deploy our site from the source branch to the deployment branch <code>gh-pages</code> in one command: clone, build, and commit.
 

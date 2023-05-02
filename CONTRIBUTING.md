@@ -1,35 +1,35 @@
-# Contributing to Elemental Next
+# 👉 Contributing to Elemental Next
 
 Thank you for your interest in Elemental Next! Your contributions are highly welcome and encouraged, as this is a community project.
 
-## Ways to Contribute:
+## Ways to Contribute 🤝:
 
-- [Add a new tip](#add-a-new-tip)
-- [Report a bug](#report-a-bug)
-- [Suggest a feature](#suggest-a-feature)
-- [Contribute code](#contribute-code)
-  - [Commit messages](#commit-messages)
-  - [Sign your work / Developer certificate of origin](#sign-your-work--developer-certificate-of-origin)
+- [Add a new tip 📝](#-add-a-new-tip)
+- [Report a bug 🐛](#-report-a-bug)
+- [Suggest a feature 💡](#-suggest-a-feature)
+- [Contributing code 👩🏽‍💻](#-contributing-code)
+  - [Commit messages ✍️](#commit-messages-)
+  - [Sign your work / Developer certificate of origin 🖊️](#sign-your-work--developer-certificate-of-origin-)
 
 Below are a few guidelines we would like you to follow. If you need help, please reach out to us by opening an issue.
 
-## Add a new tip
+## 📝 Add a new tip
 
 Adding a new tip tutorial is the best way to have our community engage and share knowlege with each other. In order to maintain coherence and best practices among submtting information, we've created a [tip template](TIP-TEMPLATE.MD) to guide you.
 
-## Report a bug
+## 🐛 Report a bug
 
 Reporting bugs is a great way to contribute and help improve the project, and fix any errors that might effect functionality and usability. Before creating a bug report, please check that an [issue](/issues) reporting the same problem does not already exist. If there is such an issue, you may add your information as a comment to the existing issue.
 
 To report a new bug you should open an issue that summarizes the bug and set the label to "bug".
 
-If you want to provide a fix along with your bug report, that's great! In this case please send us a pull request as described in section [Contribute Code](#contribute-code).
+If you want to provide a fix along with your bug report, that's great! In this case please send us a pull request as described in section [Contributing Code](#contributing-code).
 
-## Suggest a feature
+## 💡 Suggest a feature
 
 To request a new feature you should open an [issue](../../issues/new) and summarize the desired functionality and its use case. Set the issue label to "feature".
 
-## Contribute code
+## 👩🏽‍💻 Contributing code
 
 This is an outline of what the workflow for code contributions looks like.
 
@@ -52,13 +52,13 @@ It is always best to discuss your plans beforehand, to ensure that your contribu
 
 Thanks for your contributions!
 
-### Commit messages
+### Commit messages ✍️
 
 Your commit messages ideally can answer two questions: what changed and why. The subject line should feature the “what” and the body of the commit should describe the “why”.
 
 When creating a pull request, its description should reference the corresponding issue id.
 
-### Sign your work / Developer certificate of origin
+### Sign your work / Developer certificate of origin 🖊️
 
 All contributions (including pull requests) must agree to the Developer Certificate of Origin (DCO) version 1.1. This is exactly the same one created and used by the Linux kernel developers and posted on http://developercertificate.org/. This is a developer's certification that he or she has the right to submit the patch for inclusion into the project. Simply submitting a contribution implies this agreement, however, please include a "Signed-off-by" tag in every patch (this tag is a conventional way to confirm that you agree to the DCO) - you can automate this with a [Git hook](https://stackoverflow.com/questions/15015894/git-add-signed-off-by-line-using-format-signoff-not-working)
 
@@ -66,4 +66,4 @@ All contributions (including pull requests) must agree to the Developer Certific
 git commit -s -m "adding X to change Y"
 ```
 
-**Have fun, and happy hacking!**
+**Have fun, and happy hacking!** 🔥
