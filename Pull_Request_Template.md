@@ -10,6 +10,13 @@ Please let us know which type of contribution you are submitting:
 - [ ] Adding or suggesting a new feature
 - [ ] Other (please describe below)
 
+## ✅ Checklist
+
+Please check off the following items as applicable:
+- [ ] The code builds and runs locally without errors.
+- [ ] The code has some errors that will be addressed in later iterations.
+- [ ] This is a Draft PR, and I need some help with it.
+
 ## 🚀 Description
 
 Please provide a brief overview of the changes you've made and the problem it's solving. We're excited to see what you've come up with!
@@ -17,13 +24,6 @@ Please provide a brief overview of the changes you've made and the problem it's 
 ## 🤝 Related Issue
 
 Is this pull request related to an open issue? If so, please provide the issue number and a brief description.
-
-## ✅ Checklist
-
-Please check off the following items as applicable:
-- [ ] The code builds and runs locally without errors.
-- [ ] The code has some errors that will be addressed in later iterations.
-- [ ] This is a Draft PR, and I need some help with it.
 
 ## 🔎 Testing
 
