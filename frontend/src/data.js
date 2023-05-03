@@ -5,7 +5,7 @@ const Data = [
         text: "Uploading a file is a common piece of functionality found on the web. But when trying to automate it you get prompted with a with a dialog box...", 
         difficulty: "Beginner", 
         category: ["fundamentals", "remote"],
-        contentUrl: "docs/updated-tips/how-to-upload-a-file/1-upload-a-file-ruby",
+        contentUrl: "docs/how-to-upload-a-file/1-upload-a-file-ruby",
         tags: ["files", "upload", "file_upload"]
     },
     { 
@@ -14,7 +14,7 @@ const Data = [
         text: "Just like with uploading files, we hit the same issue with downloading them. A dialogue box, just out of Selenium’s reach..." , 
         difficulty: "Intermediate", 
         category: ["fundamentals", "remote"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/download-a-file/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/download-a-file/ruby/",
         tags: ["files", "download", "file_download"]
     },
     { 
@@ -23,7 +23,7 @@ const Data = [
         text: "On occasion you'll run into a relic of the front-end world -- frames. And when writing a test against them, you can easily get tripped up...", 
         difficulty: "Beginner", 
         category: ["fundamentals"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/work-with-frames/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/work-with-frames/ruby/",
         tags: ["frames"]
     },
     { 
@@ -32,7 +32,7 @@ const Data = [
         text: "Occasionally you'll run into a link or action in the application you're testing that will open a new window. To make it work, you’ll need to switch between them...", 
         difficulty: "Intermediate",
         category: ["remote"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/work-with-multiple-windows/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/work-with-multiple-windows/ruby/",
         tags: ["windows", "multiple_windows", "new_window"]
     },
     { 
@@ -41,7 +41,7 @@ const Data = [
         text: "Selecting from a dropdown list seems like one of those simple things. However, there is a bit more finesse to it." , 
         difficulty: "Beginner", 
         category: ["fundamentals"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/select-from-a-dropdown/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/select-from-a-dropdown/ruby/",
         tags: ["dropwdown", "forms"]
     },
     { 
@@ -58,7 +58,7 @@ const Data = [
         headline: "7: Using a Page Object", text: "Just like with uploading files, we hit the same issue with downloading them. A dialogue box, just out of Selenium’s reach..." ,
         difficulty: "Intermediate", 
         category: ["tools"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/use-a-page-object/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/use-a-page-object/ruby/",
         tags: ["page_object", "abstraction"]
     },
     { 
@@ -67,7 +67,7 @@ const Data = [
         text: "Previously we looked at how to download files with Selenium by configuring the browser to download them locally. While this works, it requires a custom configuration that is inconsistent browser to browser" , 
         difficulty: "Intermediate",
         category: ["remote"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/download-a-file-revisited/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/download-a-file-revisited/ruby/",
         tags:["files","downloading"]
     },
     { 
@@ -76,7 +76,7 @@ const Data = [
         text: "Selecting from a dropdown list seems like one of those simple things. However, there is a bit more finesse to it", 
         difficulty: "Intermediate", 
         category: ["troubleshooting"],
-        contentUrl: "http://localhost:3000/elemental-next/docs/updated-tips/retry-test-actions-ruby/ruby/",
+        contentUrl: "http://localhost:3000/elemental-next/docs/retry-test-actions-ruby/ruby/",
         tags: ["reliability"]
     }
 ]
