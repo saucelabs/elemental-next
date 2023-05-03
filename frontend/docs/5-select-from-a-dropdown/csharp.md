@@ -1,7 +1,7 @@
 ---
-title: '5: Select From A Dropdown'
-id: '5-select-from-a-dropdown-csharp'
-contentUrl: "docs/updated-tips/select-from-a-dropdown/5-select-from-a-dropdown-csharp"
+title: "5: Select From A Dropdown"
+id: "5-select-from-a-dropdown-csharp"
+contentUrl: "docs/select-from-a-dropdown/5-select-from-a-dropdown-csharp"
 sidebar_label: Csharp
 text: "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
 number: 5
@@ -9,11 +9,11 @@ publish_date: 2015-07-06
 last_update:
   date: 2023-03-29
 tags:
-  - 'dropdown'
-  - 'forms'
+  - "dropdown"
+  - "forms"
 level: 1
 category:
-   - fundamentals
+  - fundamentals
 language: csharp
 ---
 
@@ -21,7 +21,7 @@ language: csharp
 
 ## Intro
 
-Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might *seem* straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
+Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might _seem_ straightforward -- just grab the list by its element and select an item within it, based on the text you want -- there's a bit more skill to it.
 
 Let's take a look at a couple of different approaches.
 
@@ -121,12 +121,12 @@ As an aside, in addition to selecting by text you can also select by value.
 
 When you save this file and run it (e.g., `nunit3-console.exe .\Dropdown.sln` from the command-line) here is what will happen for either example:
 
-+ Open the browser
-+ Visit the example application
-+ Find the dropdown list
-+ Select the specified item from the dropdown list
-+ Assert that the selected option is what you expect 
-+ Close the browser
+- Open the browser
+- Visit the example application
+- Find the dropdown list
+- Select the specified item from the dropdown list
+- Assert that the selected option is what you expect
+- Close the browser
 
 ## Summary
 

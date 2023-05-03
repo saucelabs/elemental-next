@@ -1,18 +1,18 @@
 ---
-title: '51: How To Work With JavaScript Alerts'
-id: '51-javascript-alerts-csharp'
-contentUrl: "docs/updated-tips/how-to-work-with-javascript-alerts/51-javascript-alerts-csharp"
-sidebar_label: Csharp 
-text: 'Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.'
+title: "51: How To Work With JavaScript Alerts"
+id: "51-javascript-alerts-csharp"
+contentUrl: "docs/how-to-work-with-javascript-alerts/51-javascript-alerts-csharp"
+sidebar_label: Csharp
+text: "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
 number: 51
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-30
 tags:
-  - 'javascript'
-  - 'javascript alerts'
-  - 'javascript popups'
-  - 'javascript dialogs'
+  - "javascript"
+  - "javascript alerts"
+  - "javascript popups"
+  - "javascript dialogs"
 level: 1
 category:
   - fundamentals
@@ -33,7 +33,6 @@ If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc
 ## A Solution
 
 Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.
-
 
 ## Example
 
@@ -94,14 +93,14 @@ After accepting the alert our browser window will automatically regain focus and
 
 When you save this file and run it (e.g., `nunit3-console.exe .\JavaScriptAlerts.sln` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript confirmation alert appears
-+ JavaScript confirmation alert is accepted and goes away
-+ Browser window is returned to focus
-+ Assert that the result on the page is what we expect
-+ Close the browser
+- Open the browser
+- Load the page
+- Click the second button on the page
+- JavaScript confirmation alert appears
+- JavaScript confirmation alert is accepted and goes away
+- Browser window is returned to focus
+- Assert that the result on the page is what we expect
+- Close the browser
 
 ## Summary
 

@@ -1,17 +1,17 @@
 ---
-title: '45: How To Test Checkboxes'
-id: '45-checkboxes-csharp'
-contentUrl: "docs/updated-tips/how-to-test-checkboxes/45-checkboxes-csharp"
-sidebar_label: Csharp 
+title: "45: How To Test Checkboxes"
+id: "45-checkboxes-csharp"
+contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-csharp"
+sidebar_label: Csharp
 text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-30
 tags:
-  - 'checkboxes'
-  - 'attribute'
-  - 'selected'
+  - "checkboxes"
+  - "attribute"
+  - "selected"
 level: 1
 category:
   - fundamentals
@@ -38,8 +38,8 @@ For reference, here is the markup from [the page we'll be testing against](http:
 
 ```html
 <form>
-  <input type="checkbox"> unchecked<br>
-  <input type="checkbox" checked=""> checked
+  <input type="checkbox" /> unchecked<br />
+  <input type="checkbox" checked="" /> checked
 </form>
 ```
 
@@ -147,11 +147,11 @@ In this case, when referencing the return value it's a simple matter of checking
 
 When you save and run the test file (e.g., `nunit3-console.exe .\Checkboxes.sln` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Find all of the checkboxes on the page
-+ Assert that the second checkbox (the one that is supposed to be checked on initial page load) is checked
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find all of the checkboxes on the page
+- Assert that the second checkbox (the one that is supposed to be checked on initial page load) is checked
+- Close the browser
 
 ## Summary
 
@@ -164,4 +164,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-

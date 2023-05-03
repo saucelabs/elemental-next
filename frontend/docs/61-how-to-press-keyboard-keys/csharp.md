@@ -1,19 +1,19 @@
 ---
-title: '61: How To Press Keyboard Keys'
-id: '61-keyboard-keys-csharp'
-contentUrl: "docs/updated-tips/how-to-press-keyboard-keys/61-keyboard-keys-csharp"
-sidebar_label: Csharp 
+title: "61: How To Press Keyboard Keys"
+id: "61-keyboard-keys-csharp"
+contentUrl: "docs/how-to-press-keyboard-keys/61-keyboard-keys-csharp"
+sidebar_label: Csharp
 text: "On occasion you'll come across functionality that requires the use of keyboard key presses in your tests. Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter. But how do you do it and where do you start?"
 number: 61
 publish_date: 2015-10-12
 last_update:
   date: 2023-03-30
 tags:
-  - 'keyboard'
-  - 'keys'
-  - 'key presses'
-  - 'tab'
-  - 'enter'
+  - "keyboard"
+  - "keys"
+  - "key presses"
+  - "tab"
+  - "enter"
 level: 1
 category:
   - fundamentals
@@ -104,13 +104,13 @@ Alternatively, we can issue a key press without finding the element by using the
 
 When you save this file and run it (e.g. `nunit3-console.exe .\KeyboardKeys.sln` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Find the element and send the space key to it
-+ Find the result text on the page and asset it's what we expect
-+ Send the left arrow key to the element that's currently in focus
-+ Find the result text on the page and assert it's what we expect
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find the element and send the space key to it
+- Find the result text on the page and asset it's what we expect
+- Send the left arrow key to the element that's currently in focus
+- Find the result text on the page and assert it's what we expect
+- Close the browser
 
 ## Summary
 
