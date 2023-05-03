@@ -13,15 +13,14 @@
 ## 🤝 Related Issue
 
 -  This PR is related to Issue #
--  This is a linked PR that will close Issue #
 
 ## ✅ Checklist
 
 Please check off the following items as applicable:
-- [ ] New or changed code; builds and runs locally without errors.
-- [ ] Content changes have been checked for spelling and grammar errors. 
-- [ ] Contribution adheres to the [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md).
-- [ ] Contribution follows the [CONTRIBUTING](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md) guidelines.
+- [ ] Code builds and runs locally without errors.
+- [ ] Content has been checked for spelling and grammar errors. 
+- [ ] Follows the [CODE OF CONDUCT](https://github.com/saucelabs/elemental-next/blob/main/CODE_OF_CONDUCT.md).
+- [ ] Follows the [CONTRIBUTING](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md) guidelines.
 
 ## 📸 Screenshots (if applicable)
 
