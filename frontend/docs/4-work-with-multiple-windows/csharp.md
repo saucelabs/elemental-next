@@ -1,15 +1,17 @@
 ---
-title: 'CSharp'
-id: '4-work-with-multiple-windows-csharp'
-slug: csharp/
+title:'4: Work With Multiple Windows'
+id: "4-work-with-multiple-windows-csharp"
+contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-csharp"
+sidebar_label: Csharp
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
 publish_date: 2015-08-21
 last_update:
   date: 2023-03-29
 tags:
-  - 'windows'
-  - 'multiple windows'
-  - 'new window'
+  - "windows"
+  - "multiple windows"
+  - "new window"
 level: 2
 category:
   - fundamentals
@@ -27,7 +29,6 @@ Occasionally you'll run into a link or action in the application you're testing 
 On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.
 
 Let's step through a couple of examples to demonstrate.
-
 
 ## Example 1
 
@@ -123,12 +124,12 @@ Now that we have two windows open we grab all of the window handles and search t
 
 If you save this file and run it (e.g., `nunit3-console.exe .\MultipleWindows.sln` from the command-line) here is what will happen for either example.
 
-+ Open the browser
-+ Visit the page
-+ Click to open a new window
-+ Switch between the windows
-+ Check the page title to make sure the correct window is in focus
-+ Close the browser
+- Open the browser
+- Visit the page
+- Click to open a new window
+- Switch between the windows
+- Check the page title to make sure the correct window is in focus
+- Close the browser
 
 ## Summary
 
@@ -137,7 +138,6 @@ I hope this was a helpful guide on how to work with and switch between multiple 
 Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
 
 For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/).
-
 
 ## About The Author
 

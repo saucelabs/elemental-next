@@ -1,15 +1,17 @@
 ---
-title: 'CSharp'
+title: "1: How To Upload A File"
 id: "1-upload-a-file-csharp"
-slug: csharp/
+contentUrl: "docs/how-to-upload-a-file/1-upload-a-file-csharp"
+sidebar_label: Csharp
+text: "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
 number: 1
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-28
 tags:
-  - 'file'
-  - 'upload'
-  - 'file upload'
+  - "file"
+  - "upload"
+  - "file upload"
 level: 1
 category:
   - remote
@@ -33,7 +35,7 @@ Let's step through an example.
 
 ## Example
 
-__NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__
+**NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).**
 
 First let's pull in our requisite classes for our testing framework (e.g., `using NUnit.Framework;`), driving the browser with Selenium (e.g., `using OpenQA.Selenium;`), and launching an instance of Firefox (e.g., `using OpenQA.Selenium.Firefox;`).
 
@@ -95,7 +97,7 @@ Now to wire up our test.
 
 We create an `UploadFileFromDisk()` method and add a `[Test]` attribute so it is run as a test. In it we leverage a file from local disk by specifying the file (e.g., `SomeFile.txt`) and its path (e.g., currently set to `C:\Temp\`, adapt as needed to suit your needs).
 
-__NOTE: The value for `FilePath` starts with a `@` symbol. This denotes that what follows after it is a string literal. If we didn't have it, we would need to escape our backslashes (e.g, `"C:\\Temp\\").__
+**NOTE: The value for `FilePath` starts with a `@` symbol. This denotes that what follows after it is a string literal. If we didn't have it, we would need to escape our backslashes (e.g, `"C:\\Temp\\").**
 
 Next we visit the page with the upload form, input the string value of `FilePath` (e.g., the full path to the file plus the filename with its extension), and submit the form. After the file is uploaded to the page it will display the filename it just processed. We use this text to perform our assertion (making sure the uploaded file is what we expect).
 
@@ -103,12 +105,12 @@ Next we visit the page with the upload form, input the string value of `FilePath
 
 When we save this file and run it (e.g., `nunit3-console.exe .\FileUpload.sln` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the upload form page
-+ Inject the file path into the form and submit it
-+ Page displays the uploaded filename
-+ Grab the text from the page and assert it's what we expect
-+ Close the browser
+- Open the browser
+- Visit the upload form page
+- Inject the file path into the form and submit it
+- Page displays the uploaded filename
+- Grab the text from the page and assert it's what we expect
+- Close the browser
 
 ## Summary
 
@@ -123,4 +125,3 @@ Happy Testing!
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-

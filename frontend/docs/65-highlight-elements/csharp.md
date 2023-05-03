@@ -1,16 +1,18 @@
 ---
-title: 'CSharp'
-id: '65-highlight-elements-csharp'
-slug: csharp/
+title: "65: Highlight Elements"
+id: "65-highlight-elements-csharp"
+contentUrl: "docs/highlight-elements/65-highlight-elements-csharp"
+sidebar_label: Ruby
+text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
 number: 65
 publish_date: 2014-09-11
 last_update:
   date: 2023-03-30
 tags:
-  - 'guest post'
-  - 'highlight'
-  - 'javascript'
-  - 'locators'
+  - "guest post"
+  - "highlight"
+  - "javascript"
+  - "locators"
 level: 2
 category:
   - troubleshooting
@@ -21,7 +23,7 @@ language: csharp
 
 ## Intro
 
->This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
+> This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
 
 It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
 
@@ -89,9 +91,9 @@ By setting a duration we can control how long to highlight an element on the pag
 
 There are three things going on here.
 
-+ We store the style of the element so we can revert it back when we're done
-+ We change the style of the element so it visually stands out (e.g., a red dashed border)
-+ We revert the style of the element back after 3 seconds (or longer if specified)
+- We store the style of the element so we can revert it back when we're done
+- We change the style of the element so it visually stands out (e.g., a red dashed border)
+- We revert the style of the element back after 3 seconds (or longer if specified)
 
 We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `ExecuteScript` command.
 
@@ -115,13 +117,13 @@ Now to use this in our test is a simple matter to finding an element and passing
 
 When you save this file and run it (e.g., `nunit3-console.exe .\HighlightElements.sln` from the command-line) here is what will happen.
 
-+ Open the browser
-+ Load the page
-+ Find the element to highlight
-+ Change the styling of the element so it has a red dashed-line border
-+ Wait 3 seconds
-+ Revert the styling of the element back (removing the red border)
-+ Close the browser
+- Open the browser
+- Load the page
+- Find the element to highlight
+- Change the styling of the element so it has a red dashed-line border
+- Wait 3 seconds
+- Revert the styling of the element back (removing the red border)
+- Close the browser
 
 ## Summary
 

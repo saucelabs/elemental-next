@@ -1,20 +1,22 @@
 ---
-title: 'CSharp'
-id: '63-right-click-csharp'
-slug: csharp/
+title: "63: Right Click"
+id: "63-right-click-csharp"
+contentUrl: "docs/right-click/63-right-click-csharp"
+sidebar_label: Csharp
+text: "Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?"
 number: 63
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-30
 tags:
-  - 'right-click'
-  - 'right click'
-  - 'context menu'
-  - 'action builder'
-  - 'context click'
+  - "right-click"
+  - "right click"
+  - "context menu"
+  - "action builder"
+  - "context click"
 level: 2
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: csharp
 ---
 
@@ -94,14 +96,14 @@ Clicking the context menu item will trigger a JavaScript alert which will say `Y
 
 When you save this file and run it (e.g., `nunit3-console.exe .\RightClick.sln` from the command-line) here is what will happen.
 
-+ Open the browser
-+ Visit the page
-+ Find and right-click the area of the page that renders a custom context menu
-+ Navigate to the context menu option with keyboard keys and select it
-+ JavaScript alert appears
-+ Grab the text of the JavaScript alert
-+ Assert that the text from the alert is what we expect
-+ Close the browser
+- Open the browser
+- Visit the page
+- Find and right-click the area of the page that renders a custom context menu
+- Navigate to the context menu option with keyboard keys and select it
+- JavaScript alert appears
+- Grab the text of the JavaScript alert
+- Assert that the text from the alert is what we expect
+- Close the browser
 
 ## Summary
 

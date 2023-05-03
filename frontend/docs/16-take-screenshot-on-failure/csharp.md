@@ -1,14 +1,16 @@
 ---
-title: 'CSharp'
-id: '16-take-screenshot-on-failure-csharp'
-slug: csharp/
+title: "16: Take Screenshot on Failure"
+id: "16-take-screenshot-on-failure-csharp"
+contentUrl: "docs/take-screenshot-on-failure/16-take-screenshot-on-failure-csharp"
+sidebar_label: Csharp
+text: "With browser tests it can often be challenging to track down the issue that caused a failure. By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future."
 number: 16
 publish_date: 2015-07-08
 last_update:
   date: 2023-03-30
 tags:
-  - 'reporting'
-  - 'screenshot'
+  - "reporting"
+  - "screenshot"
 level: 2
 category:
   - troubleshooting
@@ -101,11 +103,11 @@ Now let's wire up our test with a forced failure.
 
 When you save this file and run it (`nunit3-console.exe .\Screenshot.sln` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Test Fails
-+ Selenium Captures a screenshot in `C:\Temp` with the name `failshot_Screenshot.ScreenShotOnFailure.png`
-+ Close the browser
+- Open the browser
+- Visit the page
+- Test Fails
+- Selenium Captures a screenshot in `C:\Temp` with the name `failshot_Screenshot.ScreenShotOnFailure.png`
+- Close the browser
 
 ## Summary
 

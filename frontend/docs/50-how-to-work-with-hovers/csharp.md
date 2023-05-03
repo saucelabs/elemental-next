@@ -1,18 +1,20 @@
 ---
-title: 'CSharp'
-id: '50-hovers-csharp'
-slug: csharp/
+title: "50: How To Work With Hovers"
+id: "50-hovers-csharp"
+contentUrl: "docs/how-to-work-with-hovers/50-hovers-csharp"
+sidebar_label: Csharp
+text: "If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution."
 number: 50
 publish_date: 2015-07-01
 last_update:
   date: 2023-03-30
 tags:
-  - 'hover'
-  - 'hovers'
-  - 'action builder'
+  - "hover"
+  - "hovers"
+  - "action builder"
 level: 1
 category:
-  - 'fundamentals'
+  - "fundamentals"
 language: csharp
 ---
 
@@ -86,11 +88,11 @@ After visiting the page we find the first avatar and store it in a variable (`Av
 
 When you save this file and run it (e.g., `nunit3-console.exe .\Hovers.sln` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Visit the page
-+ Hover over the first avatar
-+ Assert that the caption displayed for that avatar
-+ Close the browser
+- Open the browser
+- Visit the page
+- Hover over the first avatar
+- Assert that the caption displayed for that avatar
+- Close the browser
 
 ## Summary
 
