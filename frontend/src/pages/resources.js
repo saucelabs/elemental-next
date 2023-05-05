@@ -21,7 +21,7 @@ function Resource() {
               <div className={resourcesStyles.flex_container}>
                 <table>
                   <tr>
-                    <td width="90px;" height="93.7px;">
+                    <td wheight="93.7px;">
                       <img src={selenium}/>
                     </td>
                     <td width="80px;">
@@ -34,7 +34,7 @@ function Resource() {
                     </td>
                   </tr>
                   <tr>
-                    <td width="90px;" height="93.7px;">
+                    <td height="93.7px;">
                       <img src={guidebook}/>
                     </td>
                     <td>
@@ -47,7 +47,7 @@ function Resource() {
                     </td>
                   </tr>
                   <tr>
-                    <td width="90px;" height="93.7px;">
+                    <td height="93.7px;" >
                       <img src={guidebook}/>
 
                     </td>
@@ -61,7 +61,7 @@ function Resource() {
                     </td>
                   </tr>
                   <tr>
-                    <td width="90px;" height="93.7px;">
+                    <td height="93.7px;"> 
                       <img src={internet}/>
 
                     </td>
@@ -75,7 +75,7 @@ function Resource() {
                     </td>
                   </tr>
                   <tr>
-                    <td width="90px;" height="93.7px;">
+                    <td height="93.7px;">
                       <img src={github}/>
 
                     </td>
