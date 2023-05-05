@@ -1,26 +1,20 @@
 import React from 'react';
-import cardStyles from './card.module.css';
 
 const Card = ({ tip }) => {
-    return  (
-    <>
-        {tip.map((Val) => {
-            return (
-                <div 
-                className = {cardStyles.tips} 
-                key={Val.id}>
-                    <div className =  {cardStyles.card}>
-                    <div className = {cardStyles.heading}>
-                        <a href = {Val.contentUrl}>{Val.headline}</a>
-                    </div>
-                    <div className={cardStyles.text}>
-                        <p> {Val.text} </p>
-                    </div>
-                    </div>
-                </div>
-            )
-        })}
-    </>
-    );  
-}
+  return (
+    <div className='cards-container'>
+      {tip.map((Val) => {
+        return (
+          <div className='card' key={Val.id}>
+            <h2>
+              <a href={Val.contentUrl}>{Val.title}</a>
+            </h2>
+            <p> {Val.text} </p>
+            <p> {Val.tags} </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 export default Card;
