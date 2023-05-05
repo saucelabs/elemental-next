@@ -1,7 +1,9 @@
 ---
-title: CSharp
+title: "53: Growl"
 id: 53-growl-csharp
-slug: csharp/
+contentUrl: "docs/growl/53-growl-csharp"
+sidebar_label: Csharp
+text: "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
 number: 53
 publish_date: 2016-11-22
 last_update:
@@ -117,13 +119,13 @@ The `Thread.Sleep(5000);` is there for demonstration purposes. It will keep the 
 
 When you save this file and run it (e.g., `nunit3-console.exe .\Growl.sln` from the command-line) this is what will happen:
 
-+ Browser opens
-+ Visit the page
-+ Make sure jQuery is on the page, add it if it's not
-+ Add jQuery Growl and its styles to the page
-+ Display a set of notification messages in the top-right corner of the page with jQuery Growl
-+ Notification messages disappear after 5 seconds
-+ Browser closes
+- Browser opens
+- Visit the page
+- Make sure jQuery is on the page, add it if it's not
+- Add jQuery Growl and its styles to the page
+- Display a set of notification messages in the top-right corner of the page with jQuery Growl
+- Notification messages disappear after 5 seconds
+- Browser closes
 
 ## Summary
 

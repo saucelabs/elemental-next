@@ -1,7 +1,9 @@
 ---
-title: "CSharp"
-id: '69-safari-csharp'
-slug: csharp/
+title: "69: Safari"
+id: "69-safari-csharp"
+contentUrl: "docs/safari/69-safari-csharp"
+sidebar_label: Csharp
+text: "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
 number: 69
 publish_date: 2015-08-25
 last_update:
@@ -22,7 +24,6 @@ language: csharp
 ## Intro
 
 Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
-
 
 ## A Solution
 
@@ -81,10 +82,10 @@ When we run the test, we should see a successful communication between Selenium 
 
 When you save the file and run it (e.g., `nunit3-console.exe .\Safari.sln` from the command-line), here is what will happen.
 
-+ Safari opens
-+ The home page of [the-internet](http://github.com/tourdedave/the-internet) loads
-+ The title of the page is checked to make sure it's what we expect
-+ Safari closes
+- Safari opens
+- The home page of [the-internet](http://github.com/tourdedave/the-internet) loads
+- The title of the page is checked to make sure it's what we expect
+- Safari closes
 
 ## Summary
 

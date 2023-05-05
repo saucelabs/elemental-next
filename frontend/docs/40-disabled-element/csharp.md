@@ -1,15 +1,17 @@
 ---
-title: 'CSharp'
-id: '40-disabled-element-csharp'
-slug: csharp/
+title: "40: Disabled Element"
+id: "40-disabled-element-csharp"
+contentUrl: "docs/disabled-element/40-disabled-element-csharp"
+sidebar_label: Csharp
+text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
 number: 40
 publish_date: 2015-07-06
 last_update:
   date: 2023-03-30
 tags:
-  - 'dropdown list'
-  - 'dropdown lists'
-  - 'disabled element'
+  - "dropdown list"
+  - "dropdown lists"
+  - "disabled element"
 level: 2
 category:
   - remote
@@ -82,11 +84,11 @@ After visiting the page we find the dropdown list with the `SelectElement` funct
 
 When you save this file and run it (e.g., `nunit3-console.exe .\DisabledElements.sln` from the command-line) here is what will happen:
 
-+ Open a browser
-+ Visit the page
-+ Grab the dropdown list
-+ Assert that the target element is not enabled
-+ Close the browser
+- Open a browser
+- Visit the page
+- Grab the dropdown list
+- Assert that the target element is not enabled
+- Close the browser
 
 ## Summary
 
