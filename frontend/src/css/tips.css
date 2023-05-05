@@ -1,5 +1,9 @@
-.main-wrapper {
-  background-color: var(--ifm-color-primary-lightest);
+body.tips-background {
+  background: url('../../static/img/backgrounds/tips-background.png') no-repeat center center fixed;
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
+  background-size: cover;
 }
 
 .tipsheader {

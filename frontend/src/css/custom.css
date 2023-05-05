@@ -6,6 +6,7 @@
 
 @import 'card.css';
 @import 'dropdown.css';
+@import 'footer.css';
 @import 'index.css';
 @import 'resources.css';
 @import 'tips.css';
@@ -132,35 +133,6 @@ text {
 
 .navbar .button {
   font-weight: 700;
-}
-
-.footer {
-  background-image: url('../../static/img/tips_background/Vector_1.svg');
-  /* width: 2441px; */
-  min-height: 1100px;
-  background-color: transparent;
-  background-position: bottom;
-  position: sticky;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.footer .container {
-  position: relative;
-  bottom: -895px;
-  width: 750px;
-  font-weight: 300;
-  line-height: 24px;
-}
-
-.footer {
-  /* column-gap: 200px; */
-  color: #292620;
-}
-
-.footer a {
-  color: #292620;
-  text-decoration-line: underline;
 }
 
 /* need to be updated */

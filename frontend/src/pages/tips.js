@@ -35,22 +35,22 @@ const Tips = () => {
   };
 
   return (
-    <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives' className='tips-container'>
-      <h1 className='tipsheader'>The Tips</h1>
-      <Dropdown
-        filterItem={filterItem}
-        tagFilters={tagFilters}
-        catFilters={catFilters}
-        setTip={setTip}
-        s
-        difficultyItems={difficultyItems}
-        tagItems={tagItems}
-        catItems={catItems}
-      />
-      <div>
+    <body className='tips-background'>
+      <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives'>
+        <h1 className='tipsheader'>The Tips</h1>
+        <Dropdown
+          filterItem={filterItem}
+          tagFilters={tagFilters}
+          catFilters={catFilters}
+          setTip={setTip}
+          s
+          difficultyItems={difficultyItems}
+          tagItems={tagItems}
+          catItems={catItems}
+        />
         <Card tip={tip} />
-      </div>
-    </Layout>
+      </Layout>
+    </body>
   );
 };
 
