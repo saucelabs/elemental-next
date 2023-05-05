@@ -4,6 +4,12 @@
  * work well for content-centric websites.
  */
 
+@import 'card.css';
+@import 'dropdown.css';
+@import 'index.css';
+@import 'resources.css';
+@import 'tips.css';
+
 /* You can override the default Infima variables here. */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
@@ -28,9 +34,7 @@
   --ifm-link-color-lightest: #acf1f9;
 
   /*fonts*/
-  --ifm-font-family-base: 'Roboto',sans-serif;
-
-
+  --ifm-font-family-base: 'Roboto', sans-serif;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -41,8 +45,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   font-weight: normal;
-  font-family: var(--ifm-font-family-base)
-
+  font-family: var(--ifm-font-family-base);
 }
 
 body.em {
@@ -53,14 +56,12 @@ h1,
 .h1 {
   font-weight: 500;
   font-size: 48px;
-  font-weight: 500;
 }
 
 h2,
 .h2 {
   font-weight: 500;
   font-size: 32px;
-  font-weight: 500;
 }
 
 #light {
@@ -70,7 +71,6 @@ h2,
 text {
   font-weight: 300;
   font-size: 24px;
-
 }
 
 .subtitle {
@@ -102,7 +102,6 @@ text {
   -webkit-box-shadow: none;
   width: 100%;
 
-
   /* position: absolute;*/
 
   left: 239px;
@@ -116,18 +115,18 @@ text {
   width: 161px;
   top: 33px;
   left: 39px;
-} 
+}
 .navbar__items {
   gap: 10px;
-  padding: 6px 8px
+  padding: 6px 8px;
 }
-.navbar a:hover{
-  color:black;
+.navbar a:hover {
+  color: black;
   font-weight: 600;
 }
 
-.navbar a:active{
-  color:black;
+.navbar a:active {
+  color: black;
   font-weight: 700;
 }
 
@@ -135,37 +134,31 @@ text {
   font-weight: 700;
 }
 
-
-.footer{
-  background-image: url('../assets/tips_background/Vector_1.svg' );
+.footer {
+  background-image: url('../../static/img/tips_background/Vector_1.svg');
   /* width: 2441px; */
   min-height: 1100px;
   background-color: transparent;
   background-position: bottom;
-  position:sticky;
+  position: sticky;
   background-repeat: no-repeat;
-  background-size:100%;
-
-
+  background-size: 100%;
 }
 
-.footer .container{
-  position:relative;
+.footer .container {
+  position: relative;
   bottom: -895px;
   width: 750px;
   font-weight: 300;
   line-height: 24px;
-
-  
 }
 
 .footer {
   /* column-gap: 200px; */
   color: #292620;
-
 }
 
-.footer a{
+.footer a {
   color: #292620;
   text-decoration-line: underline;
 }
