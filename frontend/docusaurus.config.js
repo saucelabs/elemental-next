@@ -69,14 +69,13 @@ const config = {
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
         },
-  
+
         items: [
           {
             // type: 'pages',
-            to:'/tips',
+            to: '/tips',
             position: 'right',
             label: 'Tips',
-            
           },
           {
             to: '/resources',
@@ -88,12 +87,12 @@ const config = {
             label: 'Get Involved',
             position: 'right',
           },
- 
+
           {
             to: '/signup',
             label: 'Join the mailing list',
             position: 'right',
-            className: 'button button--secondary button--med'
+            className: 'button button--secondary button--med',
           },
         ],
       },
@@ -114,7 +113,7 @@ const config = {
               {
                 label: 'Troubleshooting',
                 to: '/',
-              }
+              },
             ],
           },
           {
@@ -144,7 +143,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Elemental Bromine, Inc. Built with Docusaurus.`,
+        copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
       },
       prism: {
         theme: lightCodeTheme,
