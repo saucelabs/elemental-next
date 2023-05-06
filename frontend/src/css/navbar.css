@@ -1,0 +1,24 @@
+.navbar {
+  align-items: center;
+}
+
+.navbar__logo img {
+  max-width: 40%;
+  height: auto;
+  padding-left: 20px;
+  padding-top: 4px;
+}
+
+.navbar a:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.navbar a:active {
+  color: black;
+  font-weight: 700;
+}
+
+.navbar .button {
+  font-weight: 700;
+}
