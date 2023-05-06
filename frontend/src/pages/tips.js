@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import Data from '@site/src/scripts/data';
 import Card from '@site/src/components/card';
-import Dropdown from './dropdown';
+import Dropdown from '@site/src/components/dropdown';
 
 const Tips = () => {
   const [tip, setTip] = useState(Data);
@@ -38,7 +38,7 @@ const Tips = () => {
     <body className='tips-background'>
       <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives'>
         <div className='tips-wrapper'>
-          <h2 className='tips-header'>The Tips</h2>
+          <h1 className='tips-header'>The Tips</h1>
           <Dropdown
             filterItem={filterItem}
             tagFilters={tagFilters}
