@@ -1,14 +1,14 @@
-.cards-container {
+/* .cards-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 20px;
-}
+} */
 
 .card {
-  width: 700px;
+  width: 50%;
   background-color: white;
   box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
   padding: 15px;
