@@ -6,7 +6,9 @@
 
 @import 'card.css';
 @import 'dropdown.css';
+@import 'footer.css';
 @import 'index.css';
+@import 'navbar.css';
 @import 'resources.css';
 @import 'tips.css';
 
@@ -90,93 +92,3 @@ text {
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
-
-.navbar {
-  position: sticky;
-  top: 0;
-  transition: top 0.3s;
-  z-index: 9999;
-  background-color: white;
-  width: 1362px;
-  height: 77px;
-  -webkit-box-shadow: none;
-  width: 100%;
-
-  /* position: absolute;*/
-
-  left: 239px;
-  /* top: 30px;  */
-
-  font-style: normal;
-}
-
-.navbar__logo img {
-  height: 21px;
-  width: 161px;
-  top: 33px;
-  left: 39px;
-}
-.navbar__items {
-  gap: 10px;
-  padding: 6px 8px;
-}
-.navbar a:hover {
-  color: black;
-  font-weight: 600;
-}
-
-.navbar a:active {
-  color: black;
-  font-weight: 700;
-}
-
-.navbar .button {
-  font-weight: 700;
-}
-
-.footer {
-  background-image: url('../../static/img/tips_background/Vector_1.svg');
-  /* width: 2441px; */
-  min-height: 1100px;
-  background-color: transparent;
-  background-position: bottom;
-  position: sticky;
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.footer .container {
-  position: relative;
-  bottom: -895px;
-  width: 750px;
-  font-weight: 300;
-  line-height: 24px;
-}
-
-.footer {
-  /* column-gap: 200px; */
-  color: #292620;
-}
-
-.footer a {
-  color: #292620;
-  text-decoration-line: underline;
-}
-
-/* need to be updated */
-/* .navbar.title{
-  font-size: 36px;
-  line-height: 42px;
-  color: rgb(236, 223, 36);
-
-} */
-
-/* .header_wrapper{
-  max-width: 975px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-} */
