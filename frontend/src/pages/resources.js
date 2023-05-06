@@ -11,7 +11,7 @@ import github from '../../static/img/resource_page/github.png';
 function Resource() {
   return (
     <>
-      <div className='container'>
+      <div className='resources-container'>
         <span id='header'>External Resources</span>
         <div className='subtitle'>
           The goal of Elemental Selenium is to host information for testers and professionals using Selenium to{' '}
