@@ -1,9 +1,19 @@
 .dropdown-container {
   display: inline-flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 50%;
-  align-self: center;
   position: relative;
+}
+
+.dropdown-container p {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-titles);
+}
+
+.dropdown-title {
+  font-family: var(--ifm-font-family-base);
+  font-weight: 700;
 }
 
 .drop {
@@ -28,14 +38,14 @@
 .dropdownDate {
   display: inline-block;
   z-index: 1;
-  color: #756c5b;
+  color: var(--color-titles);
 }
 
 .dropdownCat {
   display: inline-block;
   z-index: 1;
   border-radius: 8px;
-  color: #756c5b;
+  color: var(--color-titles);
 }
 
 .menu {
