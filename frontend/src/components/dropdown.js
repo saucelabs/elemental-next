@@ -3,9 +3,9 @@ import Data from '@site/src/scripts/data';
 
 const Dropdown = ({ filterItem, setTip, difficultyItems, tagItems, tagFilters, catItems, catFilters }) => {
   return (
-    <>
-      <div className='filterText'>Filter by:</div>
-      <div className='dropdown'>
+    <div className='dropdown-container'>
+      <p>Filter by:</p>
+      {/* <div className='dropdown'>
         <label htmlFor='menu_arrow'></label>
         <button
           type='checkbox'
@@ -31,8 +31,8 @@ const Dropdown = ({ filterItem, setTip, difficultyItems, tagItems, tagFilters, c
             );
           })}
         </div>
-      </div>
-      <div className='dropdownTags'>
+      </div> */}
+      <div className='dropdownDate'>
         <button className='drop' onClick={() => setItem(Data)}>
           Tags
         </button>
@@ -53,14 +53,14 @@ const Dropdown = ({ filterItem, setTip, difficultyItems, tagItems, tagFilters, c
         <div className='menu'>
           {catItems?.map((Val, id) => {
             return (
-              <button className='content' onClick={() => catFilters(Val)} key={id}>
-                <div className='drop'>{Val}</div>
+              <button className='cat-list' onClick={() => catFilters(Val)} key={id}>
+                <div>{Val}</div>
               </button>
             );
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

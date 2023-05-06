@@ -39,12 +39,19 @@
   --ifm-font-family-base: 'Roboto', sans-serif;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --color-titles: #756c5b;
 }
 
 /* font */
+html {
+  font-size: 62.5%;
+}
+
 body {
   font-weight: 400;
   font-size: 16px;
+  font-size: 1.6rem;
   line-height: 24px;
   font-weight: normal;
   font-family: var(--ifm-font-family-base);
@@ -58,12 +65,15 @@ h1,
 .h1 {
   font-weight: 500;
   font-size: 48px;
+  font-size: 4.8rem;
+  line-height: 56px;
 }
 
 h2,
 .h2 {
   font-weight: 500;
   font-size: 32px;
+  font-size: 3.2rem;
 }
 
 #light {
@@ -79,6 +89,7 @@ text {
   font-weight: 300;
   line-height: 36px;
   font-size: 24px;
+  font-size: 2.4rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */

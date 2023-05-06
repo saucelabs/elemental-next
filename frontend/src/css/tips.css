@@ -1,16 +1,29 @@
 body.tips-background {
-  background: url('../../static/img/backgrounds/tips-background.png') no-repeat center center fixed;
+  background: url('../../static/img/backgrounds/tips-background.svg') no-repeat center center fixed;
   /* -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover; */
   background-size: cover;
+  position: relative;
 }
 
-.tipsheader {
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 56px;
-  padding-top: 100px;
-  padding-left: 350px;
-  color: #292620;
+.tips-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-wrap: nowrap;
+  padding-left: 25%;
+}
+
+.tips-header {
+  font-size: 6.4rem;
+  font-weight: 700;
+  padding: 5.6rem 0 5.6rem 0;
+}
+
+.tips-footer {
+  position: absolute;
+  bottom: 0;
 }

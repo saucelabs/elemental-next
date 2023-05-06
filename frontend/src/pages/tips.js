@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import Data from '@site/src/scripts/data';
 import Card from '@site/src/components/card';
-import Dropdown from './dropdown';
+import Dropdown from '@site/src/components/dropdown';
 
 const Tips = () => {
   const [tip, setTip] = useState(Data);
@@ -37,18 +37,21 @@ const Tips = () => {
   return (
     <body className='tips-background'>
       <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives'>
-        <h1 className='tipsheader'>The Tips</h1>
-        <Dropdown
-          filterItem={filterItem}
-          tagFilters={tagFilters}
-          catFilters={catFilters}
-          setTip={setTip}
-          s
-          difficultyItems={difficultyItems}
-          tagItems={tagItems}
-          catItems={catItems}
-        />
-        <Card tip={tip} />
+        <div className='tips-wrapper'>
+          <h1 className='tips-header'>The Tips</h1>
+          <Dropdown
+            filterItem={filterItem}
+            tagFilters={tagFilters}
+            catFilters={catFilters}
+            setTip={setTip}
+            s
+            difficultyItems={difficultyItems}
+            tagItems={tagItems}
+            catItems={catItems}
+          />
+          <Card tip={tip} />
+        </div>
+        <img className='tips-footer' src='img/backgrounds/tips-footer.svg' alt='' />
       </Layout>
     </body>
   );
