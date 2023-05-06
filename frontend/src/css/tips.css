@@ -1,16 +1,27 @@
 body.tips-background {
-  background: url('../../static/img/backgrounds/tips-background.png') no-repeat center center fixed;
+  background: url('../../static/img/backgrounds/tips-background.svg') no-repeat center center fixed;
   /* -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover; */
   background-size: cover;
+  position: relative;
 }
 
-.tipsheader {
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 56px;
-  padding-top: 100px;
-  padding-left: 350px;
+.tips-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.tips-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.tips-header {
+  font-weight: 700;
   color: #292620;
 }

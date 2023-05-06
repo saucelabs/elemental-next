@@ -37,18 +37,21 @@ const Tips = () => {
   return (
     <body className='tips-background'>
       <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives'>
-        <h1 className='tipsheader'>The Tips</h1>
-        <Dropdown
-          filterItem={filterItem}
-          tagFilters={tagFilters}
-          catFilters={catFilters}
-          setTip={setTip}
-          s
-          difficultyItems={difficultyItems}
-          tagItems={tagItems}
-          catItems={catItems}
-        />
-        <Card tip={tip} />
+        <div className='tips-wrapper'>
+          <h2 className='tips-header'>The Tips</h2>
+          <Dropdown
+            filterItem={filterItem}
+            tagFilters={tagFilters}
+            catFilters={catFilters}
+            setTip={setTip}
+            s
+            difficultyItems={difficultyItems}
+            tagItems={tagItems}
+            catItems={catItems}
+          />
+          <Card tip={tip} />
+        </div>
+        <img className='tips-footer' src='img/backgrounds/tips-footer.svg' alt='' />
       </Layout>
     </body>
   );
