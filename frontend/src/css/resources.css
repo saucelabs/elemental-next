@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   gap: 24px;
   padding-top: 84px;
 }
@@ -20,6 +20,7 @@
   line-height: 36px;
   width: 750px;
 }
+
 
 #bold {
   font-weight: 500;
@@ -62,3 +63,7 @@ td {
 td {
   background-color: white;
 }
+.footer {
+  display: inline-block;
+  margin-top: 10%;
+ }
