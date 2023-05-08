@@ -59,6 +59,7 @@ const processMD = (mdFile) => {
         tags: tags,
         level: data.level,
         category: categories,
+        language: data.language,
         contentUrl: data.contentUrl,
         text: data.text
     };
@@ -83,7 +84,7 @@ const getFrontmatter = (dir) => {
         } else if (ext === ".md" || ext === ".mdx") {
             const processedData = processMD(filePath);
             // Check if the processed front matter data has both a title and an id
-            if (processedData.title && processedData.id) {
+            if (processedData.title && processedData.id && processedData.language == 'ruby') {
                 acc.push(processedData);
                 // If the processed front matter data is missing a title or an id, log a message and skip it
             } else {
