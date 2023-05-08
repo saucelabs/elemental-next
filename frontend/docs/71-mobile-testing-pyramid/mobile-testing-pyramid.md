@@ -6,6 +6,7 @@ contentUrl: "docs/mobile-testing-pyramid/71-mobile-testing-pyramid"
 sidebar_label: Ruby 
 text: "There are loads of trade-offs when it comes to mobile testing. But by learning to use all layers of the mobile testing pyramid to your advantage you can gain the fast feedback that is required in modern CI/CD environments."
 number: 71
+hide_table_of_contents: true
 publish_date: 2017-08-10
 last_update:
   date: 2023-03-15

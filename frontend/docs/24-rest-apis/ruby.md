@@ -5,6 +5,7 @@ contentUrl: "docs/rest-apis/24-rest-apis-ruby"
 sidebar_label: Ruby 
 text: "When we list out the properties that make a test a good test, some things that often come up are: Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail."
 number: 24
+hide_table_of_contents: true
 publish_date: 2013-11-5
 last_update:
   date: 2023-03-09

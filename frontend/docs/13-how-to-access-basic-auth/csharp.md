@@ -5,6 +5,7 @@ contentUrl: "docs/how-to-access-basic-auth/13-work-with-basic-auth-csharp"
 sidebar_label: Csharp
 text: "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
 number: 13
+hide_table_of_contents: true
 publish_date: 2015-10-14
 last_update:
   date: 2023-03-29

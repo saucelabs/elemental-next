@@ -5,6 +5,7 @@ contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-ruby"
 sidebar_label: Ruby 
 text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
+hide_table_of_contents: true
 publish_date: 2015-08-21
 last_update:
   date: 2023-02-27

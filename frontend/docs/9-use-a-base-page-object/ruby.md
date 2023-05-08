@@ -5,6 +5,7 @@ contentUrl: "docs/use-a-base-page-object/9-use-a-base-page-object-ruby"
 sidebar_label: Ruby
 text: "In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code."
 number: 9
+hide_table_of_contents: true
 publish_date: 2013-07-23
 last_update:
   date: 2023-03-25

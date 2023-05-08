@@ -5,6 +5,7 @@ contentUrl: "docs/how-to-work-with-javascript-alerts/51-javascript-alerts-csharp
 sidebar_label: Csharp
 text: "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
 number: 51
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-30

@@ -6,6 +6,7 @@ sidebar_label: Ruby
 text: "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
 # slug: ruby/
 number: 49
+hide_table_of_contents: true
 publish_date: 2014-05-06
 last_update:
   date: 2023-04-06

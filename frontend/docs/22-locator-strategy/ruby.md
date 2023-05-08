@@ -5,6 +5,7 @@ contentUrl: "docs/locator-strategy/22-locator-strategy-ruby"
 sidebar_label: Ruby 
 text: "In web design CSS (Cascading Style Sheets) is used to apply styles to the markup (HTML) on a page. CSS is able to do this by declaring which bits of the the markup it wants to interact with through the use of selectors."
 number: 22
+hide_table_of_contents: true
 publish_date: 2013-10-22
 last_update: 
   date: 2023-02-22

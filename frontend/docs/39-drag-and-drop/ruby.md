@@ -5,6 +5,7 @@ contentUrl: "docs/drag-and-drop/39-drag-and-drop-ruby"
 sidebar_label: Ruby
 text: "Exercising a page's drag-and-drop functionality used to be simple with Selenium's Action Builder, but sadly, it won't work with HTML5 drag and drop."
 number: 39
+hide_table_of_contents: true
 publish_date: 2014-02-25
 last_update:
   date: 2023-03-02
