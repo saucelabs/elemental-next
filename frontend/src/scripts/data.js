@@ -1,6 +1,6 @@
 const Data = [
   {
-    "title": "1: Template",
+    "title": "0: Template",
     "id": "0-template-ruby",
     "number": 0,
     "publish_date": "2023-02-17T00:00:00.000Z",
