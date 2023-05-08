@@ -5,6 +5,7 @@ contentUrl: "docs/download-a-file-revisited/8-download-a-file-revisited-csharp"
 sidebar_label: Csharp
 text: "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
 number: 8
+hide_table_of_contents: true
 publish_date: 2015-08-20
 last_update:
   date: 2023-03-29

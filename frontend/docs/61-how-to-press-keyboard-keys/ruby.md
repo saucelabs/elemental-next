@@ -5,6 +5,7 @@ contentUrl: "docs/how-to-press-keyboard-keys/61-keyboard-keys-ruby"
 sidebar_label: Ruby 
 text: "On occasion you'll come across functionality that requires the use of keyboard key presses in your tests. Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter. But how do you do it and where do you start?"
 number: 61
+hide_table_of_contents: true
 publish_date: 2015-10-12
 last_update:
   date: 2023-02-22

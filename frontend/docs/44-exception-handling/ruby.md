@@ -4,6 +4,7 @@ sidebar_label: Ruby
 contentUrl: "docs/exception-handling/ruby"
 text: "It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable . They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them."
 number: 44
+hide_table_of_contents: true
 publish_date: 2015-07-01
 last_update:
   date: 2023-03-15

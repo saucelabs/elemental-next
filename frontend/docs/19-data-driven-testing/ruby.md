@@ -5,6 +5,7 @@ contentUrl: "docs/data-driven-testing/19-data-driven-testing-ruby"
 sidebar_label: Ruby 
 text: "There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process."
 number: 19
+hide_table_of_contents: true
 publish_date: 2015-07-14
 last_update:
   date: 2023-02-28

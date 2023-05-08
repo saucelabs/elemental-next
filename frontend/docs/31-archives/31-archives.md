@@ -6,6 +6,7 @@ sidebar_label: Ruby
 text: "Let me guess you subscribed to a free, weekly Selenium tip newsletter and aren't sure of how to access
 previously written tips or are unaware that this is even a possibility."
 number: 31
+hide_table_of_contents: true
 publish_date: 2014-12-23
 last_update:
   date: 2023-02-27

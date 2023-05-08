@@ -5,6 +5,7 @@ contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-csharp"
 sidebar_label: Csharp
 text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
+hide_table_of_contents: true
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-30

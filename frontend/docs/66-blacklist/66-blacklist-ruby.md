@@ -5,6 +5,7 @@ contentUrl: "docs/blacklist/66-blacklist-ruby"
 sidebar_label: Ruby 
 text: "There are plenty of external resources that get loaded onto a page that aren't directly relevant to the functionality you're testing (e.g., Facebook widgets, Analytics, JavaScript snippets, etc.). And these external resources have the potential to negatively impact your test runs due to slow load times."
 number: 66
+hide_table_of_contents: true
 publish_date: 2015-10-20
 last_update:
   date: 2023-04-06

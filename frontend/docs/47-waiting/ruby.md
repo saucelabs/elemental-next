@@ -5,6 +5,7 @@ contentUrl: "docs/waiting/47-waiting-ruby"
 sidebar_label: Ruby 
 text: "In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages."
 number: 47
+hide_table_of_contents: true
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-15

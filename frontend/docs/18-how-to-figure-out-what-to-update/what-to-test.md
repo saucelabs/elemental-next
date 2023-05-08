@@ -5,6 +5,7 @@ contentUrl: "docs/how-to-figure-out-what-to-update/18-what-to-test"
 sidebar_label: Ruby
 text: "There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?"
 number: 18
+hide_table_of_contents: true
 publish_date: 2015-10-13
 last_update:
   date: 2023-02-22
