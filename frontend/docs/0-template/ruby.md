@@ -13,7 +13,7 @@ tags:
   - 'template'
 level: 0
 category: 'template'
-language: ruby
+template-language: ruby
 ---
 
 # Page Title

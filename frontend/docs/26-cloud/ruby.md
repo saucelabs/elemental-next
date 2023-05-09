@@ -4,7 +4,7 @@ id: '26-cloud-ruby'
 contentUrl: "docs/cloud/26-cloud-ruby"
 sidebar_label: Ruby 
 text: "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
-number: 0
+number: 26
 hide_table_of_contents: true
 publish_date: 2015-09-15
 last_update:

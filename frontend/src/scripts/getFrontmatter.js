@@ -96,10 +96,11 @@ const getFrontmatter = (dir) => {
 };
 
 // Call the getFrontmatter function to get an array of all processed front matter data objects
-const allData = getFrontmatter(targetDir);
+let allData = getFrontmatter(targetDir);
+let sortedData = allData.sort((a, b) => Number(a.number) - Number(b.number));
 
 // Write the processed front matter data to a JavaScript file for use in the website
-fs.writeFile(path.join(__dirname, "data.js"), `const Data = ${JSON.stringify(allData, null, 2)};\n\nexport default Data;\n`, (err) => {
+fs.writeFile(path.join(__dirname, "data.js"), `const Data = ${JSON.stringify(sortedData, null, 2)};\n\nexport default Data;\n`, (err) => {
     if (err) {
         console.error(err);
         return;
