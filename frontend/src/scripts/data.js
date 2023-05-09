@@ -63,6 +63,27 @@ const Data = [
     "text": "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
   },
   {
+    "title": "4: Work With Multiple Windows",
+    "id": "4-work-with-multiple-windows-ruby",
+    "number": 4,
+    "publish_date": "2015-08-21T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-27T00:00:00.000Z"
+    },
+    "tags": [
+      "windows",
+      "multiple windows",
+      "new window"
+    ],
+    "level": 2,
+    "category": [
+      "fundamentals"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/work-with-multiple-windows/4-work-with-multiple-windows-ruby",
+    "text": "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
+  },
+  {
     "title": "5: Select From A Dropdown",
     "id": "5-select-from-a-dropdown-ruby",
     "number": 5,
@@ -83,6 +104,26 @@ const Data = [
     "text": "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
   },
   {
+    "title": "7: Use A Page Object",
+    "id": "7-use-a-page-object-ruby",
+    "number": 7,
+    "publish_date": "2013-07-09T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-08T00:00:00.000Z"
+    },
+    "tags": [
+      "page object",
+      "abstraction"
+    ],
+    "level": 2,
+    "category": [
+      "tools"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/use-a-page-object/7-use-a-page-object-ruby",
+    "text": "One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time. This is largely due to the fact that things in the app you're testing change, breaking your tests."
+  },
+  {
     "title": "8: Download A File Revisited",
     "id": "8-download-a-file-revisited-ruby",
     "number": 8,
@@ -101,6 +142,26 @@ const Data = [
     "language": "ruby",
     "contentUrl": "docs/download-a-file-revisited/8-download-a-file-revisited-ruby",
     "text": "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
+  },
+  {
+    "title": "9: Use A Base Page Object",
+    "id": "9-use-a-base-page-object-ruby",
+    "number": 9,
+    "publish_date": "2013-07-23T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-25T00:00:00.000Z"
+    },
+    "tags": [
+      "page object",
+      "abstraction"
+    ],
+    "level": 3,
+    "category": [
+      "tools"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/use-a-base-page-object/9-use-a-base-page-object-ruby",
+    "text": "In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code."
   },
   {
     "title": "11: Build An Interactive Prompt",
