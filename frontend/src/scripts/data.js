@@ -1,24 +1,5 @@
 const Data = [
   {
-    "title": "0: Template",
-    "id": "0-template-ruby",
-    "number": 0,
-    "publish_date": "2023-02-17T00:00:00.000Z",
-    "last_update": {
-      "date": "2023-02-24T00:00:00.000Z"
-    },
-    "tags": [
-      "template"
-    ],
-    "level": 0,
-    "category": [
-      "template"
-    ],
-    "language": "ruby",
-    "contentUrl": "docs/template/0-template-ruby",
-    "text": "This is a template."
-  },
-  {
     "title": "1: How To Upload A File",
     "id": "1-upload-a-file-ruby",
     "number": 1,
@@ -39,6 +20,148 @@ const Data = [
     "language": "ruby",
     "contentUrl": "docs/how-to-upload-a-file/1-upload-a-file-ruby",
     "text": "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
+  },
+  {
+    "title": "2: Download A File",
+    "id": "2-download-a-file-ruby",
+    "number": 2,
+    "publish_date": "2015-07-27T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-08T00:00:00.000Z"
+    },
+    "tags": [
+      "files",
+      "downloading",
+      "file download"
+    ],
+    "level": 2,
+    "category": [
+      "remote",
+      "fundamentals"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/download-a-file/2-download-a-file-ruby",
+    "text": "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
+  },
+  {
+    "title": "3: Work With Frames",
+    "id": "3-work-with-frames-ruby",
+    "number": 3,
+    "publish_date": "2023-02-21T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-22T00:00:00.000Z"
+    },
+    "tags": [
+      "frames"
+    ],
+    "level": 1,
+    "category": [
+      "fundamentals"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/work-with-frames/3-work-with-frames-ruby",
+    "text": "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
+  },
+  {
+    "title": "4: Work With Multiple Windows",
+    "id": "4-work-with-multiple-windows-ruby",
+    "number": 4,
+    "publish_date": "2015-08-21T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-27T00:00:00.000Z"
+    },
+    "tags": [
+      "windows",
+      "multiple windows",
+      "new window"
+    ],
+    "level": 2,
+    "category": [
+      "fundamentals"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/work-with-multiple-windows/4-work-with-multiple-windows-ruby",
+    "text": "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
+  },
+  {
+    "title": "5: Select From A Dropdown",
+    "id": "5-select-from-a-dropdown-ruby",
+    "number": 5,
+    "publish_date": "2015-07-06T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-22T00:00:00.000Z"
+    },
+    "tags": [
+      "dropdown",
+      "forms"
+    ],
+    "level": 1,
+    "category": [
+      "fundamentals"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/select-from-a-dropdown/5-select-from-a-dropdown-ruby",
+    "text": "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
+  },
+  {
+    "title": "7: Use A Page Object",
+    "id": "7-use-a-page-object-ruby",
+    "number": 7,
+    "publish_date": "2013-07-09T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-08T00:00:00.000Z"
+    },
+    "tags": [
+      "page object",
+      "abstraction"
+    ],
+    "level": 2,
+    "category": [
+      "tools"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/use-a-page-object/7-use-a-page-object-ruby",
+    "text": "One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time. This is largely due to the fact that things in the app you're testing change, breaking your tests."
+  },
+  {
+    "title": "8: Download A File Revisited",
+    "id": "8-download-a-file-revisited-ruby",
+    "number": 8,
+    "publish_date": "2015-08-20T00:00:00.000Z",
+    "last_update": {
+      "date": "03-08-2023"
+    },
+    "tags": [
+      "files",
+      "downloading"
+    ],
+    "level": 2,
+    "category": [
+      "remote"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/download-a-file-revisited/8-download-a-file-revisited-ruby",
+    "text": "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
+  },
+  {
+    "title": "9: Use A Base Page Object",
+    "id": "9-use-a-base-page-object-ruby",
+    "number": 9,
+    "publish_date": "2013-07-23T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-25T00:00:00.000Z"
+    },
+    "tags": [
+      "page object",
+      "abstraction"
+    ],
+    "level": 3,
+    "category": [
+      "tools"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/use-a-base-page-object/9-use-a-base-page-object-ruby",
+    "text": "In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code."
   },
   {
     "title": "11: Build An Interactive Prompt",
@@ -187,28 +310,6 @@ const Data = [
     "text": "There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process."
   },
   {
-    "title": "2: Download A File",
-    "id": "2-download-a-file-ruby",
-    "number": 2,
-    "publish_date": "2015-07-27T00:00:00.000Z",
-    "last_update": {
-      "date": "2023-03-08T00:00:00.000Z"
-    },
-    "tags": [
-      "files",
-      "downloading",
-      "file download"
-    ],
-    "level": 2,
-    "category": [
-      "remote",
-      "fundamentals"
-    ],
-    "language": "ruby",
-    "contentUrl": "docs/download-a-file/2-download-a-file-ruby",
-    "text": "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
-  },
-  {
     "title": "22: Locator Strategy",
     "id": "22-locator-strategy-ruby",
     "number": 22,
@@ -299,7 +400,7 @@ const Data = [
   {
     "title": "26: Cloud",
     "id": "26-cloud-ruby",
-    "number": 0,
+    "number": 26,
     "publish_date": "2015-09-15T00:00:00.000Z",
     "last_update": {
       "date": "2023-02-27T00:00:00.000Z"
@@ -341,25 +442,6 @@ const Data = [
     "language": "ruby",
     "contentUrl": "docs/chrome-driver/29-chrome-driver-ruby",
     "text": "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
-  },
-  {
-    "title": "3: Work With Frames",
-    "id": "3-work-with-frames-ruby",
-    "number": 3,
-    "publish_date": "2023-02-21T00:00:00.000Z",
-    "last_update": {
-      "date": "2023-02-22T00:00:00.000Z"
-    },
-    "tags": [
-      "frames"
-    ],
-    "level": 1,
-    "category": [
-      "fundamentals"
-    ],
-    "language": "ruby",
-    "contentUrl": "docs/work-with-frames/3-work-with-frames-ruby",
-    "text": "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
   },
   {
     "title": "39: How to Test HTML5 Drag and Drop",
@@ -488,26 +570,6 @@ const Data = [
     "language": "ruby",
     "contentUrl": "docs/performance-testing/49-performance-testing-ruby",
     "text": "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
-  },
-  {
-    "title": "5: Select From A Dropdown",
-    "id": "5-select-from-a-dropdown-ruby",
-    "number": 5,
-    "publish_date": "2015-07-06T00:00:00.000Z",
-    "last_update": {
-      "date": "2023-02-22T00:00:00.000Z"
-    },
-    "tags": [
-      "dropdown",
-      "forms"
-    ],
-    "level": 1,
-    "category": [
-      "fundamentals"
-    ],
-    "language": "ruby",
-    "contentUrl": "docs/select-from-a-dropdown/5-select-from-a-dropdown-ruby",
-    "text": "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
   },
   {
     "title": "50: How To Work With Hovers",
@@ -877,26 +939,6 @@ const Data = [
     "language": "ruby",
     "contentUrl": "docs/open-new-window/73-open-new-window-ruby",
     "text": "Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium."
-  },
-  {
-    "title": "8: Download A File Revisited",
-    "id": "8-download-a-file-revisited-ruby",
-    "number": 8,
-    "publish_date": "2015-08-20T00:00:00.000Z",
-    "last_update": {
-      "date": "03-08-2023"
-    },
-    "tags": [
-      "files",
-      "downloading"
-    ],
-    "level": 2,
-    "category": [
-      "remote"
-    ],
-    "language": "ruby",
-    "contentUrl": "docs/download-a-file-revisited/8-download-a-file-revisited-ruby",
-    "text": "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
   }
 ];
 

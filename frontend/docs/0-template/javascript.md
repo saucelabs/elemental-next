@@ -13,7 +13,7 @@ tags:
   - 'template'
 level: 0
 category: 'template'
-language: javascript
+template-language: javascript
 ---
 
 # Page Title

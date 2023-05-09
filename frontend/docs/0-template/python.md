@@ -13,7 +13,7 @@ tags:
   - 'template'
 level: 0
 category: 'template'
-language: python
+template-language: python
 ---
 
 # Page Title

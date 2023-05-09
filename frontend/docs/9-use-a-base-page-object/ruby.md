@@ -1,5 +1,5 @@
 ---
-title:'9: Use A Base Page Object'
+title: '9: Use A Base Page Object'
 id: '9-use-a-base-page-object-ruby'
 contentUrl: "docs/use-a-base-page-object/9-use-a-base-page-object-ruby"
 sidebar_label: Ruby
