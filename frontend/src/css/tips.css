@@ -1,10 +1,9 @@
 body.tips-background {
-  background: url('../../static/img/backgrounds/tips-background.svg') no-repeat center center fixed;
-  /* -webkit-background-size: cover;
+  background: url('../../static/img/backgrounds/tips-background.svg') no-repeat top center fixed;
+  -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover; */
+  -o-background-size: cover;
   background-size: cover;
-  position: relative;
 }
 
 .tips-wrapper {
@@ -26,4 +25,5 @@ body.tips-background {
 .tips-footer {
   position: absolute;
   bottom: 0;
+  width: 100vw;
 }
