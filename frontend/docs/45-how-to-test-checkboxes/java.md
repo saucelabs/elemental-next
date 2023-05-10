@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '45-checkboxes-java'
-slug: java/
+title: "45: How To Test Checkboxes"
+id: "45-checkboxes-java"
+contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-java"
+sidebar_label: Java
+text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
+hide_table_of_contents: true
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-30

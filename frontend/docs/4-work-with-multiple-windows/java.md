@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '4-work-with-multiple-windows-java'
-slug: java/
+title:'4: Work With Multiple Windows'
+id: "4-work-with-multiple-windows-java"
+contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-java"
+sidebar_label: Java
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
+hide_table_of_contents: true
 publish_date: 2015-08-21
 last_update:
   date: 2023-04-03

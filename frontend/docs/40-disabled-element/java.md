@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '40-disabled-element-java'
-slug: java/
+title: "40: Disabled Element"
+id: "40-disabled-element-java"
+contentUrl: "docs/disabled-element/40-disabled-element-java"
+sidebar_label: Java
+text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
 number: 40
+hide_table_of_contents: true
 publish_date: 2015-07-06
 last_update:
   date: 2023-04-03

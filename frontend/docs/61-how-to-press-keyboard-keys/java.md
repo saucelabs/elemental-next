@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '61-keyboard-keys-java'
-slug: java/
+title: "61: How To Press Keyboard Keys"
+id: "61-keyboard-keys-java"
+contentUrl: "docs/how-to-press-keyboard-keys/61-keyboard-keys-java"
+sidebar_label: Java
+text: "On occasion you'll come across functionality that requires the use of keyboard key presses in your tests. Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter. But how do you do it and where do you start?"
 number: 61
+hide_table_of_contents: true
 publish_date: 2015-10-12
 last_update:
   date: 2023-04-03

@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '2-download-a-file-java'
-slug: java/
+title: "2: Download A File"
+id: "2-download-a-file-java"
+contentUrl: "docs/download-a-file/2-download-a-file-java"
+sidebar_label: Java
+text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
 number: 2
+hide_table_of_contents: true
 publish_date: 2015-07-27
 last_update:
   date: 2023-04-03
