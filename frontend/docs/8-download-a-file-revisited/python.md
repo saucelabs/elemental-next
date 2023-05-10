@@ -1,8 +1,11 @@
 ---
-title: 'Python'
+title: '8: Download A File Revisited'
 id: '8-download-a-file-revisited-python'
-slug: python/
+contentUrl: "docs/download-a-file-revisited/8-download-a-file-revisited-python"
+sidebar_label: Python 
+text: "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
 number: 8
+hide_table_of_contents: true
 publish_date: 2016-11-24
 last_update:
   date: 03-14-2023

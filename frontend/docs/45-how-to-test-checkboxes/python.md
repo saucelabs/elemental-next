@@ -1,8 +1,11 @@
 ---
-title: 'Python'
+title: '45: How To Test Checkboxes'
 id: '45-checkboxes-python'
-slug: python/
+contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-python"
+sidebar_label: Ruby 
+text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-03
