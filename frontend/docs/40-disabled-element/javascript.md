@@ -1,8 +1,11 @@
 ---
-title: Javascript
-id: 40-disabled-element-javascript
-slug: javascript/
+title: '40: Disabled Element'
+id: '40-disabled-element-javascript'
+contentUrl: "docs/disabled-element/40-disabled-element-javascript"
+sidebar_label: Javascript 
+text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
 number: 40
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-27

@@ -1,8 +1,11 @@
 ---
-title: 'Python'
+title: '4: Work With Multiple Windows'
 id: '4-work-with-multiple-windows-python'
-slug: python/
+contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-python"
+sidebar_label: Python 
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
+hide_table_of_contents: true
 publish_date: 2016-11-14
 last_update:
   date: 2023-03-14

@@ -1,8 +1,11 @@
 ---
-title: Python
-id: 63-right-click-python
-slug: python/
+title: '63: Right Click'
+id: '63-right-click-python'
+contentUrl: "docs/right-click/63-right-click-python"
+sidebar_label: Python 
+text: "Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?"
 number: 63
+hide_table_of_contents: true
 publish_date: 2016-11-20
 last_update:
   date: 2023-03-15

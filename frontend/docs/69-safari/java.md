@@ -1,8 +1,11 @@
 ---
-title: "Java"
-id: '69-safari-java'
-slug: java/
+title: "69: Safari"
+id: "69-safari-java"
+contentUrl: "docs/safari/69-safari-java"
+sidebar_label: Java
+text: "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
 number: 69
+hide_table_of_contents: true
 publish_date: 2015-08-25
 last_update:
   date: 2023-04-03

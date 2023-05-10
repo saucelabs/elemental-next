@@ -2,7 +2,7 @@
 title: "65: Highlight Elements"
 id: "65-highlight-elements-csharp"
 contentUrl: "docs/highlight-elements/65-highlight-elements-csharp"
-sidebar_label: Ruby
+sidebar_label: Csharp
 text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
 number: 65
 hide_table_of_contents: true

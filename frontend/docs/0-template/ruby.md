@@ -2,7 +2,6 @@
 title: '0: Template'
 id: '0-template-ruby'
 contentUrl: 'docs/template/0-template-ruby'
-# slug: ruby/
 sidebar_label: Ruby
 text: 'This is a template.'
 number: 0

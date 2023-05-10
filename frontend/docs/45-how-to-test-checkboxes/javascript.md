@@ -1,8 +1,11 @@
 ---
-title: 'Javascript'
+title: '45: How To Test Checkboxes'
 id: '45-checkboxes-javascript'
-slug: javascript/
+contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-javascript"
+sidebar_label: Javascript 
+text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
