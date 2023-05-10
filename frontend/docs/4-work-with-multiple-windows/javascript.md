@@ -1,8 +1,11 @@
 ---
-title: 'Javascript'
+title: '4: Work With Multiple Windows'
 id: '4-work-with-multiple-windows-javascript'
-slug: javascript/
+contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-javascript"
+sidebar_label: Javascript 
+text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22
