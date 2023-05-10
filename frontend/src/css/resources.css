@@ -1,10 +1,9 @@
-.resources-wrapper {
-  background: url('../../static/img/backgrounds/resources-background.svg') no-repeat center center fixed;
-  /* -webkit-background-size: cover;
+body.resources-background {
+  background: url('../../static/img/backgrounds/resources-background.svg') no-repeat bottom right fixed;
+  -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover; */
+  -o-background-size: cover;
   background-size: cover;
-  position: relative;
 }
 
 .resources-container {
@@ -42,7 +41,6 @@ td a {
 
 table td {
   margin-bottom: 5rem;
-  background-color: white;
 }
 
 td img {
