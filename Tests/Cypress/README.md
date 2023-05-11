@@ -17,7 +17,7 @@ git clone https://github.com/saucelabs/elemental-next
 Once you've cloned the repository, navigate to the Tests folder and install the dependencies:
 
 ```
-cd Cypress
+cd cypress
 npm install
 ```
 
@@ -33,17 +33,21 @@ This will launch the Test Runner, where you can select which tests to run. To ru
 
 ## 📄 Test File Structure
 
-Each test file should be stored in the `Cypress/integration` directory and named with a `.spec.js` extension. For example, `brokenlinks.spec.js` or `signup.spec.js`. 
+Each test file should be stored in the `cypress/e2e` directory. The name of the file should note that it is an e2e test, and end with a `.cy.js` extension. For example, `brokenlinks-e2e.cy.js` or `signup-e2e.cy.js`. 
+
+For manual testing, each test file should be stored in the `cypress/manual` directory. The  name of the file should note that it is an e2e test, and end with a `.cy.js` extension. For example, `brokenlinks-manual.cy.js` or `signup-manual.cy.js`.
 
 ```
 .
 ├── Elemental Next
 └── Tests/
-    └── Cypress/
-        └── integration/
-            ├── signup.spec.js
-            ├── brokenlinks.spec.js
-            └── dropdown.spec.js
+    └── cypress/
+        ├── e2e/
+        │   ├── brokenlinks-e2e.cy.js
+        │   └── signup.e2e.cy.js
+        └── manual/
+            ├── brokenlinks-manual.cy.js
+            └── signup-manual.cy.js
 ```
 
 ## 🎉 Test Results
