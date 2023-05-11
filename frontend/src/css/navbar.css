@@ -10,6 +10,7 @@
 
 .navbar__link {
   font-size: 2rem;
+  padding: 6px 8px;
 }
 
 .navbar a:hover {

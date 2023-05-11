@@ -16,8 +16,55 @@
   }
 }
 
+
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.h1{
+  position: absolute;
+  left: 40px;
+  top: 184px;
+}
+
+.index {
+  position: absolute;
+  left: 72px;
+  top: 283px;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 36px;
+  max-width: 35%;
+}
+
+form {
+  position: absolute;
+  left: 72px;
+  top: 400px;
+  
+}
+input {
+  /* row-gap: 20px; */
+  padding: 10px 8px;
+  width: 287px;
+  height: 40px;
+  background-color: #F0F0EF;
+  border-radius: 10px;
+  border: none;
+  
+}
+button {
+  width: 178px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 20px;
+}
+.link {
+  position: absolute;
+  left: 72px;
+  top: 470px;
+  text-decoration: underline;
 }

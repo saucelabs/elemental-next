@@ -1,0 +1,35 @@
+.icard {
+    width: 75%;
+    height: 393px;
+    background-color: #FFFFFF;
+    border-top: 8px solid #1E660C;
+    box-shadow: 0px 4px 10px 2px rgba(113, 74, 0, 0.25);
+    border-radius: 15px;
+    margin-right: 20px;
+    padding: 20px;
+  }
+
+.icard p{
+    font-weight: 300;
+}
+
+.tip-cards{
+    display: flex;
+    flex-direction: row;
+    padding-left: 417px;
+    padding-top: 575px;
+}
+
+.icard a{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+
+    color: #4D3C1B;
+
+}
+
+.icard a:hover{
+    
+
+}
