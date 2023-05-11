@@ -1,8 +1,11 @@
 ---
-title: "Python"
-id: "29-chrome-driver-python"
-slug: python/
+title: '29: Chrome Driver'
+id: 29-chrome-driver-python
+contentUrl: "docs/chrome-driver/29-chrome-driver-python"
+sidebar_label: Python 
+text: "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
 number: 29
+hide_table_of_contents: true
 publish_date: 2016-11-26
 last_update:
   date: 2023-03-09

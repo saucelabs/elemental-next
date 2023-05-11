@@ -1,8 +1,11 @@
 ---
-title: 'Javascript'
+title: '2: Download A File'
 id: '2-download-a-file-javascript'
-slug: javascript/
+contentUrl: "docs/download-a-file/2-download-a-file-javascript"
+sidebar_label: Javascript
+text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
 number: 2
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22

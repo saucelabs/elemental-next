@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '65-highlight-elements-java'
-slug: java/
+title: "65: Highlight Elements"
+id: "65-highlight-elements-java"
+contentUrl: "docs/highlight-elements/65-highlight-elements-java"
+sidebar_label: Java
+text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
 number: 65
+hide_table_of_contents: true
 publish_date: 2014-09-11
 last_update:
   date: 2023-04-03

@@ -1,8 +1,11 @@
 ---
-title: Python
-id: 12-opt-out-of-ab-tests-python
-slug: python/
+title: '12: Opt Out of AB Tests'
+id: '12-opt-out-of-ab-tests-python'
+contentUrl: "docs/opt-out-of-ab-tests/12-opt-out-of-ab-tests-python"
+sidebar_label: Python 
+text: "Occasionally when running tests you may see unexpected behavior due to A/B testing of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests."
 number: 12
+hide_table_of_contents: true
 publish_date: 2016-11-19
 last_update:
   date: 2023-03-14

@@ -1,8 +1,11 @@
 ---
-title: 'Javascript'
+title: '13: Work With Basic Auth'
 id: '13-work-with-basic-auth-javascript'
-slug: javascript/
+contentUrl: "docs/how-to-access-basic-auth/13-work-with-basic-auth-javascript"
+sidebar_label: Javascript 
+text: "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
 number: 13
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-02-22

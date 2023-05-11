@@ -1,8 +1,11 @@
 ---
-title: Javascript
+title: '53: Growl'
 id: 53-growl-javascript
-slug: javascript/
+contentUrl: "docs/growl/53-growl-javascript"
+sidebar_label: Javascript 
+text: "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
 number: 53
+hide_table_of_contents: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-28

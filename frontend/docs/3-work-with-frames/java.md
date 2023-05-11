@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '3-work-with-frames-java'
-slug: java/
+title: "3: Work With Frames"
+id: "3-work-with-frames-java"
+contentUrl: "docs/work-with-frames/3-work-with-frames-java"
+sidebar_label: Java
+text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
 number: 3
+hide_table_of_contents: true
 publish_date: 2015-11-09
 last_update:
   date: 2023-04-02

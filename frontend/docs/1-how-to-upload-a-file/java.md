@@ -1,8 +1,11 @@
 ---
-title: 'Java'
-id: '1-upload-a-file-java'
-slug: java/
+title: "1: How To Upload A File"
+id: "1-upload-a-file-java"
+contentUrl: "docs/how-to-upload-a-file/1-upload-a-file-java"
+sidebar_label: Java
+text: "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
 number: 1
+hide_table_of_contents: true
 publish_date: 2023-02-17
 last_update:
   date: 2023-03-12

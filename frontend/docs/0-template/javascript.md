@@ -2,7 +2,6 @@
 title: '0: Template'
 id: '0-template-javascript'
 contentUrl: "docs/template/0-template-javascript"
-# slug: javascript/
 sidebar_label: Javascript
 text: "This is a template."
 number: 0

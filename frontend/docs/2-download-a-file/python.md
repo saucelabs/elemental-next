@@ -1,8 +1,11 @@
 ---
-title: Python
+title: '2: Download A File'
 id: '2-download-a-file-python'
-slug: python/
+contentUrl: "docs/download-a-file/2-download-a-file-python"
+sidebar_label: Python
+text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
 number: 2
+hide_table_of_contents: true
 publish_date: 2016-09-23
 last_update:
   date: 2023-03-02

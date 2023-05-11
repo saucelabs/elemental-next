@@ -1,5 +1,6 @@
 .dropdown-container {
   display: inline-flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 50%;
   position: relative;

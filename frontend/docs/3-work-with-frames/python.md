@@ -1,8 +1,11 @@
 ---
-title: 'Python'
+title: '3: Work With Frames'
 id: '3-work-with-frames-python'
-slug: python/
+contentUrl: "docs/work-with-frames/3-work-with-frames-python"
+sidebar_label: Python
+text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
 number: 3
+hide_table_of_contents: true
 publish_date: 2016-11-14
 last_update:
   date: 2023-02-22

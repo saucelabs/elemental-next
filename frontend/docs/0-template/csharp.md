@@ -2,7 +2,6 @@
 title: '0: Template'
 id: '0-template-csharp'
 contentUrl: "/docs/0-template/c-sharp"
-# slug: csharp/
 sidebar_label: CSharp
 text: "This is a template."
 number: 0

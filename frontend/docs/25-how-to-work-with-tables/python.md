@@ -1,8 +1,11 @@
 ---
-title: 'Python'
+title: '25: How To Work With Tables'
 id: '25-tables-python'
-slug: python/
+contentUrl: "docs/how-to-work-with-tables/25-tables-python"
+sidebar_label: Python
+text: "Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for."
 number: 25
+hide_table_of_contents: true
 publish_date: 2016-11-23
 last_update:
   date: 2023-02-22
