@@ -1,21 +1,16 @@
 import React from 'react';
 
-const Icard = ({ tip }) => {
+const Icard = ({ contentUrl, title, level, text }) => {
   return (
     <div className='cards-container'>
-      {tip.map((Val) => {
-        return (
-          <div className='Icard' key={Val.id}>
+          <div className='icard' >
             <h2>
-              <a href={Val.contentUrl}>{Val.title}</a>
+              <a href={contentUrl}>{title}</a>
             </h2>
-            <p> {Val.level}</p>
-            <p> {Val.text} </p>
-            <p> {Val.tags} </p>
+            <p> {level}</p>
+            <p> {text} </p>
           </div>
-        );
-      })}
     </div>
   );
 };
-export default iCard;
+export default Icard;

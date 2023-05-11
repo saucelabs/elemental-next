@@ -66,4 +66,5 @@ button {
   position: absolute;
   left: 72px;
   top: 470px;
+  text-decoration: underline;
 }
