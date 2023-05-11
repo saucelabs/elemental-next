@@ -1,6 +1,13 @@
 import React from 'react';
 
-const Card = ({ tip }) => {
+const Card = ({ tip , tagItems, tagFilters}) => {
+  const Tag = word =>
+    // {tagItems?.map((Val, id) => {
+      // <button className="tags" onClick={() => tagFilters(Val)} key={id}>{word}</button>
+      <button className="tags">{word}</button>
+      
+      
+    // })}
   return (
     <div className='cards-container'>
       {tip.map((Val) => {
@@ -10,7 +17,8 @@ const Card = ({ tip }) => {
               <a href={Val.contentUrl}>{Val.title}</a>
             </h2>
             <p> {Val.text}</p>
-            <p> {Val.tags} </p>
+            
+            <div> {Val.tags.map(Tag)} </div>
             {/* // Self-invoking function */}
             <div className='level'>
               {(() =>{
