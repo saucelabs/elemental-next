@@ -1,6 +1,7 @@
 .navbar {
   align-items: center;
   padding: 4rem 2rem 4rem 2rem;
+  box-shadow: none;
 }
 
 .navbar__logo img {
@@ -30,3 +31,7 @@
   border-radius: 8px;
   margin-left: 1.8rem;
 }
+
+/* .navbar-sidebar__item .menu ul li a .menu__link {
+  color: black;
+} */
