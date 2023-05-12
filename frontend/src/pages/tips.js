@@ -44,7 +44,6 @@ const Tips = () => {
             tagFilters={tagFilters}
             catFilters={catFilters}
             setTip={setTip}
-            s
             difficultyItems={difficultyItems}
             tagItems={tagItems}
             catItems={catItems}
