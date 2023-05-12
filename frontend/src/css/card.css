@@ -7,10 +7,12 @@
 }
 
 .card {
+  position:relative;
   width: 50%;
   background-color: white;
   box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
   padding: 15px;
+  padding-bottom: 40px;
   margin-bottom: 26px;
   border: 2px solid transparent;
 }
@@ -38,3 +40,23 @@ a:visited {
 /* .level {
   position: bottom, left;
 } */
+.tags {
+  width: auto;
+  height: 15%;
+  background: #FFFFFF;
+  border: 1.5px solid #292620;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  /* display:inline-flex; */
+  flex-direction: row;
+  color: #292620;
+  position:relative;
+  /* bottom:0px;
+  right:0px; */
+ 
+
+}
+
