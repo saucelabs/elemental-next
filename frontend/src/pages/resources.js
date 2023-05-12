@@ -91,10 +91,9 @@ const Resource = () => {
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <body className='resources-background'>
-      <Layout title={`${siteConfig.title}`} description='Description will go into a meta tag in <head />'>
-        <Resource />
-      </Layout>
-    </body>
+    <Layout title={`${siteConfig.title}`} description='Description will go into a meta tag in <head />'>
+      <Resource />
+      <img className='resources-footer' src='./img/backgrounds/resources-footer.svg' alt='' />
+    </Layout>
   );
 }

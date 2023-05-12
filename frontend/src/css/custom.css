@@ -8,6 +8,7 @@
 @import 'icard.css';
 @import 'dropdown.css';
 @import 'footer.css';
+@import 'home.css';
 @import 'index.css';
 @import 'navbar.css';
 @import 'resources.css';
@@ -38,6 +39,11 @@
 
   /*fonts*/
   --ifm-font-family-base: 'Roboto', sans-serif;
+  --primary-text: #714a00;
+  --secondary-text: #18583a;
+  --dark: #292620;
+  --warm-grey: #5b5852;
+  --warm-grey2: #908c84;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
@@ -115,4 +121,6 @@ td {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-a:hover { text-decoration: none; }
+a:hover {
+  text-decoration: none;
+}
