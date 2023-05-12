@@ -38,9 +38,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          // sidebarPath: false,
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
@@ -58,6 +56,7 @@ const config = {
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         // title: 'Elemental Selenium',
+        hideOnScroll: false,
         logo: {
           href: '/',
           alt: 'Elemental Selenium Logo',
@@ -66,26 +65,25 @@ const config = {
 
         items: [
           {
-            // type: 'pages',
-            to: '/tips',
             label: 'Tips',
+            to: '/tips',
             position: 'right',
           },
           {
-            to: '/resources',
             label: 'External Resources',
+            to: '/resources',
             position: 'right',
           },
           {
-            to: '/community',
             label: 'Get Involved',
+            to: '/community',
             position: 'right',
           },
 
           {
             to: '/signup',
-            label: 'Join the mailing list',
             position: 'right',
+            label: 'Join the mailing list',
             className: 'button button--secondary button--med',
           },
         ],
