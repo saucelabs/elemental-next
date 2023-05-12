@@ -33,21 +33,18 @@ This will launch the Test Runner, where you can select which tests to run. To ru
 
 ## 📄 Test File Structure
 
-Each test file should be stored in the `cypress/e2e` directory. The name of the file should note that it is an e2e test, and end with a `.cy.js` extension. For example, `brokenlinks-e2e.cy.js` or `signup-e2e.cy.js`. 
-
-For manual testing, each test file should be stored in the `cypress/manual` directory. The  name of the file should note that it is an e2e test, and end with a `.cy.js` extension. For example, `brokenlinks-manual.cy.js` or `signup-manual.cy.js`.
+Each test file should be stored in the `cypress/e2e` directory. The name of the file should note what the test is for and end with a `.cy.js` extension. For example, `brokenlinks-landing.cy.js` will test for broken links on the landing page, and `signup.cy.js` will test that the signup feature works correctly.
 
 ```
 .
 ├── Elemental Next
 └── Tests/
-    └── cypress/
-        ├── e2e/
-        │   ├── brokenlinks-e2e.cy.js
-        │   └── signup.e2e.cy.js
-        └── manual/
-            ├── brokenlinks-manual.cy.js
-            └── signup-manual.cy.js
+    └── cypress-tests/
+        └── cypress/
+            └── e2e/
+                ├── brokenlinks-landing.cy.js
+                └── signup.cy.js
+
 ```
 
 ## 🎉 Test Results
