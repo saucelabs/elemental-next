@@ -38,15 +38,17 @@
 
 .dropdownDate {
   display: inline-block;
-  z-index: 1;
   color: var(--color-titles);
 }
 
 .dropdownCat {
-  display: inline-block;
-  z-index: 1;
   border-radius: 8px;
   color: var(--color-titles);
+  padding: 1rem 0 1rem 0;
+}
+
+.dropdownCat:hover {
+  z-index: 999;
 }
 
 .menu {
@@ -68,26 +70,32 @@
   justify-items: start;
   background-color: white;
   position: absolute;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 250px;
+}
+
+.cat-list {
+  margin: 0;
+  line-height: 3rem;
 }
 
 .cat-list {
   background-color: white;
   font-family: var(--ifm-font-family-base);
-  font-size: 14px;
+  font-size: 1.4rem;
   border: none;
-  padding: 8px;
+  text-align: left;
 }
 
 .cat-list:hover {
   background-color: var(--ifm-color-secondary-lightest);
   font-weight: 700;
   width: 100%;
-  text-align: left;
 }
 
 .content {
   border: 0px;
-  /* border-radius: 8px;  */
   background-color: rgb(255, 255, 255);
   width: 133px;
   height: 33px;
