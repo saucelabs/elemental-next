@@ -5,6 +5,7 @@
  */
 
 @import 'card.css';
+@import 'community.css';
 @import 'icard.css';
 @import 'dropdown.css';
 @import 'footer.css';
@@ -93,13 +94,39 @@ h2,
   font-weight: 300;
 }
 
-text {
-  font-weight: 300;
-  font-size: 24px;
+td,
+th,
+tr,
+table {
+  border: 0 !important;
+  border-spacing: 0 !important;
+  margin-bottom: 20rem;
 }
 
-td {
-  background-color: transparent;
+table {
+  position: relative;
+  top: 50px;
+  width: 100%;
+}
+
+td a {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 56px;
+  color: black;
+}
+
+table td {
+  margin-bottom: 5rem;
+}
+
+td img {
+  padding-right: 2rem;
+}
+
+table th,
+table td {
+  padding-left: 0;
 }
 
 .subtitle {
