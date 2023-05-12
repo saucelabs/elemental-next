@@ -3,18 +3,24 @@
   flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px;
-  z-index: 999;
+  z-index: 99;
 }
 
 .card {
-  position:relative;
-  width: 50%;
+  position: relative;
+  width: 70%;
   background-color: white;
   box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
   padding: 15px;
   padding-bottom: 40px;
   margin-bottom: 26px;
   border: 2px solid transparent;
+}
+
+@media screen and (max-width: 996px) {
+  .card {
+    width: 90%;
+  }
 }
 
 .card:hover {
@@ -37,26 +43,27 @@ a:visited {
   text-decoration: none;
 }
 
-/* .level {
+.level {
   position: bottom, left;
-} */
+  margin-top: 2rem;
+}
+
+.tags-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .tags {
   width: auto;
   height: 15%;
-  background: #FFFFFF;
-  border: 1.5px solid #292620;
+  background: #ffffff;
+  border: 1.5px solid black;
   border-radius: 10px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: var(--ifm-font-size-base);
   line-height: 24px;
   padding: 4px 8px;
-  /* display:inline-flex; */
-  flex-direction: row;
-  color: #292620;
-  position:relative;
-  /* bottom:0px;
-  right:0px; */
- 
-
+  margin: 2rem 0 0 1rem;
 }
-

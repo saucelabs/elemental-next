@@ -38,7 +38,7 @@ function Home() {
         </p>
         <form className='home-form'>
           <input type='email' id='email' placeholder='email-address@send-me-tips.com'></input>
-          <button className='button button--secondary button--lg'>Join the mailing list</button>
+          <button className='home-button'>Join the mailing list</button>
         </form>
         <a href='tips' className='home-link'>
           {' '}

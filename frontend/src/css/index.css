@@ -42,12 +42,15 @@ input {
   border-radius: 10px;
   border: none;
 }
-button {
+.home-button {
   width: 178px;
   height: 40px;
   font-size: 16px;
   font-weight: 700;
   margin: 20px;
+  background-color: var(--ifm-color-secondary);
+  border-radius: 8px;
+  border: none;
 }
 .link {
   position: absolute;

@@ -4,7 +4,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import selenium from '../../static/img/resource_page/selenium.png';
 import guidebook from '../../static/img/resource_page/guidebook.png';
 import internet from '../../static/img/resource_page/internet.png';
-import webdriver from '../../static/img/resource_page/webdriver.png';
 import github from '../../static/img/resource_page/github.png';
 
 const Resource = () => {
@@ -24,7 +23,9 @@ const Resource = () => {
           </td>
           <td></td>
           <td>
-            <a href='https://www.selenium.dev/documentation/'>Selenium Documentation &#10132;</a>
+            <a href='https://www.selenium.dev/documentation/' target='_blank' rel='noopener noreferrer'>
+              Selenium Documentation &#10132;
+            </a>
             <br />
             <p>
               An open source web app perfect for writing tests against, you can find the-internet all over our tips.
@@ -37,7 +38,9 @@ const Resource = () => {
           </td>
           <td></td>
           <td>
-            <a href='https://seleniumguidebook.com/'>Selenium Guidebook &#10132;</a>
+            <a href='https://seleniumguidebook.com/' target='_blank' rel='noopener noreferrer'>
+              Selenium Guidebook &#10132;
+            </a>
             <br />
             <p>
               An open source web app perfect for writing tests against, you can find the-internet all over our tips.{' '}
@@ -50,7 +53,9 @@ const Resource = () => {
           </td>
           <td></td>
           <td>
-            <a href='https://github.com/saucelabs/the-internet/'>The Internet &#10132;</a>
+            <a href='https://github.com/saucelabs/the-internet/' target='_blank' rel='noopener noreferrer'>
+              The Internet &#10132;
+            </a>
             <br />
             <p>
               An open source web app perfect for writing tests against, you can find the-internet all over our tips.{' '}
@@ -63,7 +68,11 @@ const Resource = () => {
           </td>
           <td></td>
           <td>
-            <a href='https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/'>
+            <a
+              href='https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Hands-On Selenium WebDriver with Java &#10132;
             </a>
             <br />
@@ -76,7 +85,7 @@ const Resource = () => {
           </td>
           <td></td>
           <td>
-            <a href='https://github.com/bonigarcia/selenium-webdriver-java/'>
+            <a href='https://github.com/bonigarcia/selenium-webdriver-java/' target='_blank' rel='noopener noreferrer'>
               Examples from Hands-On Selenium WebDriver with Java &#10132;
             </a>
             <br />
@@ -91,9 +100,11 @@ const Resource = () => {
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={`${siteConfig.title}`} description='Description will go into a meta tag in <head />'>
-      <Resource />
-      <img className='resources-footer' src='./img/backgrounds/resources-footer.svg' alt='' />
-    </Layout>
+    <>
+      <Layout title={`${siteConfig.title}`} description='Description will go into a meta tag in <head />'>
+        <Resource />
+        <img className='resources-footer' src='./img/backgrounds/resources-footer.svg' alt='' />
+      </Layout>
+    </>
   );
 }
