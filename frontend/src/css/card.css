@@ -3,6 +3,7 @@
   flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px;
+  z-index: 999;
 }
 
 .card {
