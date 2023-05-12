@@ -7,7 +7,7 @@ import Dropdown from '@site/src/components/dropdown';
 const Tips = () => {
   const [tip, setTip] = useState(Data);
 
-  const difficultyItems = [...new Set(Data.map((Val) => Val.difficulty))];
+  const difficultyItems = [...new Set(Data.map((Val) => Val.level))];
   let tagItems = Data.map((Val) => Val.tags);
   tagItems = [...new Set(Array.prototype.concat(...tagItems))];
   let catItems = Data.map((Val) => Val.category);
@@ -15,7 +15,7 @@ const Tips = () => {
 
   const filterItem = (curdif) => {
     const newTip = Data.filter((newVal) => {
-      return newVal.difficulty === curdif;
+      return newVal.level === curdif;
     });
     setTip(newTip);
   };
