@@ -1,0 +1,14 @@
+{
+  "name": "cypress-tests",
+  "version": "1.0.0",
+  "description": "Welcome to the 🔍 test suite for the Elemental Next project, using the 🌲 Cypress testing framework! Our mission is to make sure that all of the key features of the project are working like a charm. 💪",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.12.0"
+  }
+}
