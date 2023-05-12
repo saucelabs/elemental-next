@@ -16,6 +16,12 @@ body.tips-background {
   padding-left: 25%;
 }
 
+@media screen and (max-width: 996px) {
+  .tips-wrapper {
+    padding-left: 10%;
+  }
+}
+
 .tips-header {
   font-size: 6.4rem;
   font-weight: 700;
@@ -27,5 +33,3 @@ body.tips-background {
   bottom: 0;
   width: 100vw;
 }
-
-
