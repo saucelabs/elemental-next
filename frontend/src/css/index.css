@@ -34,7 +34,6 @@ form {
   top: 400px;
 }
 input {
-  /* row-gap: 20px; */
   padding: 10px 8px;
   width: 287px;
   height: 40px;
@@ -57,4 +56,19 @@ input {
   left: 72px;
   top: 470px;
   text-decoration: underline;
+}
+
+.input-container {
+  display: inline;
+}
+
+.dropdown-language {
+  padding: 10px 8px;
+  margin-bottom: 2rem;
+  width: 287px;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-weight: 600;
 }
