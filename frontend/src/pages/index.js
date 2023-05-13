@@ -31,15 +31,47 @@ function Home() {
   return (
     <Layout title={`Elemental Selenium`} description='Elemental Selenium, your reliable opinionated tips'>
       <div className='home-wrapper'>
-        <h1 className='home-header'> Make sure your code lands</h1>
-        <p>
+        <h1 className='home-header' data-drip-attribute='headline'>
+          {' '}
+          Make sure your code lands
+        </h1>
+        <p data-drip-attribute='description'>
           A <i>free</i> weekly email of tips to help make Selenium one of the most robust browser automation tools out
           there.
         </p>
-        <form className='home-form'>
-          <input type='email' id='email' placeholder='email-address@send-me-tips.com'></input>
-          <button className='home-button'>Join the mailing list</button>
+
+        {/* Drip Sign Up */}
+        <form
+          action='https://www.getdrip.com/forms/59166497/submissions'
+          method='post'
+          data-drip-embedded-form='59166497'
+          className='home-form'
+        >
+          <div className='input-container'>
+            <input type='email' id='email' placeholder='email-address@send-me-tips.com' name='fields[email]'></input>
+            <input
+              type='submit'
+              value='Join the mailing list'
+              className='home-button'
+              data-drip-attribute='sign-up-button'
+            />
+          </div>
+
+          <div>
+            <select name='fields[programming_language]' className='dropdown-language'>
+              <option disabled='' selected='' value=''>
+                Language
+              </option>
+              <option value='C#'>C#</option>
+              <option value='Java'>Java</option>
+              <option value='JavaScript'>JavaScript</option>
+              <option value='Python'>Python</option>
+              <option value='Ruby'>Ruby</option>
+            </select>
+          </div>
+          <input type='hidden' name='tags[]' value='elemental selenium' tabindex='-1' />
         </form>
+
         <a href='tips' className='home-link'>
           {' '}
           Skip it, take me to the tips
