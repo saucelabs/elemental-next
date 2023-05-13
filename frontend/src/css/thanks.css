@@ -1,0 +1,28 @@
+.thanks-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #cafbd1;
+  width: 55rem;
+  height: 50rem;
+  margin-left: 20%;
+  border: none;
+  border-radius: 10px;
+  padding: 3.5rem;
+  margin-top: 20rem;
+}
+
+.thanks-container h1 {
+  text-align: center;
+}
+
+.thanks-container a {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.thanks-footer {
+  bottom: 0;
+  width: 100vw;
+}
