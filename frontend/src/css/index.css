@@ -28,29 +28,6 @@
   top: 184px;
 }
 
-form {
-  position: absolute;
-  left: 72px;
-  top: 400px;
-}
-input {
-  padding: 10px 8px;
-  width: 287px;
-  height: 40px;
-  background-color: #f0f0ef;
-  border-radius: 10px;
-  border: none;
-}
-.home-button {
-  width: 178px;
-  height: 40px;
-  font-size: 16px;
-  font-weight: 700;
-  margin: 20px;
-  background-color: var(--ifm-color-secondary);
-  border-radius: 8px;
-  border: none;
-}
 .link {
   position: absolute;
   left: 72px;
