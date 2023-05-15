@@ -6,7 +6,6 @@
 
 @import 'card.css';
 @import 'community.css';
-@import 'drip.css';
 @import 'icard.css';
 @import 'dropdown.css';
 @import 'footer.css';
@@ -14,6 +13,7 @@
 @import 'index.css';
 @import 'navbar.css';
 @import 'resources.css';
+@import 'signup.css';
 @import 'thanks.css';
 @import 'tips.css';
 
