@@ -49,15 +49,6 @@ function Home() {
           >
             <div className='input-container'>
               <input type='email' id='email' placeholder='email-address@send-me-tips.com' name='fields[email]'></input>
-              <input
-                type='submit'
-                value='Join the mailing list'
-                className='home-button'
-                data-drip-attribute='sign-up-button'
-              />
-            </div>
-
-            <div>
               <select name='fields[programming_language]' className='dropdown-language'>
                 <option disabled='' selected='' value=''>
                   Language
@@ -68,8 +59,14 @@ function Home() {
                 <option value='Python'>Python</option>
                 <option value='Ruby'>Ruby</option>
               </select>
+              <input
+                type='submit'
+                value='Join the mailing list'
+                className='home-button'
+                data-drip-attribute='sign-up-button'
+              />
+              <input type='hidden' name='tags[]' value='elemental selenium' tabindex='-1' />
             </div>
-            <input type='hidden' name='tags[]' value='elemental selenium' tabindex='-1' />
           </form>
 
           <a href='tips' className='home-link'>
