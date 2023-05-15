@@ -39,8 +39,12 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          path: 'docs',
+          breadcrumbs: true,
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -55,7 +59,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        // title: 'Elemental Selenium',
+        title: null,
         hideOnScroll: false,
         logo: {
           href: '/',
@@ -84,7 +88,7 @@ const config = {
             to: '/signup',
             position: 'right',
             label: 'Join the mailing list',
-            className: 'button button--secondary button--med',
+            className: 'nav-button',
           },
         ],
       },
