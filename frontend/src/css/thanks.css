@@ -5,11 +5,23 @@
   background-color: #cafbd1;
   width: 55rem;
   height: 50rem;
-  margin-left: 20%;
+  margin-left: 30%;
   border: none;
   border-radius: 10px;
   padding: 3.5rem;
   margin-top: 20rem;
+}
+
+@media screen and (max-width: 996px) {
+  .thanks-container {
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    border: none;
+    border-radius: 10px;
+    padding: 3.5rem;
+    margin-top: 10rem;
+  }
 }
 
 .thanks-container h1 {
