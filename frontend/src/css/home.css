@@ -44,3 +44,9 @@
   border-radius: 8px;
   border: none;
 }
+
+.home-button:hover {
+  -moz-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  -webkit-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  box-shadow: 0 0 10px var(--ifm-color-secondary);
+}

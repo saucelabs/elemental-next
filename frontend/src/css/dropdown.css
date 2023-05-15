@@ -37,35 +37,36 @@
 }
 
 .dropdownDate {
-  display: inline-block;
+  border-radius: 8px;
   color: var(--color-titles);
+  padding: 0 0 1rem 0;
 }
 
 .dropdownCat {
   border-radius: 8px;
   color: var(--color-titles);
-  padding: 1rem 0 1rem 0;
+  padding: 0 0 1rem 0;
 }
 
 .dropdownCat:hover {
   z-index: 999;
 }
 
-.menu {
+.dropdown-options {
   display: none;
 }
 
-.dropdown:hover .menu {
+.dropdown:hover .dropdown-options {
   display: block;
 }
 
-/* .dropdownTags:hover .menu {
+/* .dropdownTags:hover .dropdown-options {
   display: grid;
   justify-items: start;
   background-color: white;
 } */
 
-.dropdownCat:hover .menu {
+.dropdownCat:hover .dropdown-options {
   display: grid;
   justify-items: start;
   background-color: white;
