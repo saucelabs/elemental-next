@@ -16,7 +16,7 @@ const Dropdown = ({ filterItem, setTip, difficultyItems, tagItems, tagFilters, c
         >
           Difficulty
         </button>
-        <div className='menu'>
+        <div className='dropdown-options'>
           {difficultyItems?.map((Val, id) => {
             return (
               <button
@@ -36,7 +36,7 @@ const Dropdown = ({ filterItem, setTip, difficultyItems, tagItems, tagFilters, c
         <button className='drop' onClick={() => setItem(Data)}>
           Tags
         </button>
-        <div className='menu'>
+        <div className='dropdown-options'>
           {tagItems?.map((Val, id) => {
             return (
               <button className='content' onClick={() => tagFilters(Val)} key={id}>
@@ -50,7 +50,7 @@ const Dropdown = ({ filterItem, setTip, difficultyItems, tagItems, tagFilters, c
         <button className='drop' onClick={() => setItem(Data)}>
           Categories
         </button>
-        <div className='menu'>
+        <div className='dropdown-options'>
           {catItems?.map((Val, id) => {
             return (
               <button className='cat-list' onClick={() => catFilters(Val)} key={id}>
