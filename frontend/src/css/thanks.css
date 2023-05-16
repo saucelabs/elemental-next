@@ -10,6 +10,8 @@
   border-radius: 10px;
   padding: 3.5rem;
   margin-top: 20rem;
+  margin-bottom: 30rem;
+  z-index: 1;
 }
 
 @media screen and (max-width: 996px) {
@@ -21,6 +23,7 @@
     border-radius: 10px;
     padding: 3.5rem;
     margin-top: 10rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -35,6 +38,7 @@
 }
 
 .thanks-footer {
+  position: absolute;
   bottom: 0;
   width: 100vw;
 }
