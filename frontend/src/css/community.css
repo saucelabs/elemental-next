@@ -7,6 +7,14 @@
   flex-wrap: nowrap;
   padding-left: 12%;
   max-width: 80%;
+  z-index: 1;
+  margin-bottom: 30rem;
+}
+
+@media screen and (max-width: 996px) {
+  .community-wrapper {
+    margin-bottom: 2rem;
+  }
 }
 
 .community-header {
@@ -17,6 +25,7 @@
 }
 
 .community-footer {
+  position: absolute;
   bottom: 0;
   width: 100vw;
 }

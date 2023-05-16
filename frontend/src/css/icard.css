@@ -3,6 +3,14 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
+  z-index: 2;
+  margin: 10rem;
+}
+
+@media screen and (max-width: 996px) {
+  .icards-container {
+    margin: 1rem;
+  }
 }
 
 .icard {
