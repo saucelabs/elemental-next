@@ -99,6 +99,7 @@ const getFrontmatter = (dir) => {
 let allData = getFrontmatter(targetDir);
 let sortedData = allData.sort((a, b) => Number(a.number) - Number(b.number));
 
+
 // Write the processed front matter data to a JavaScript file for use in the website
 fs.writeFile(path.join(__dirname, "data.js"), `const Data = ${JSON.stringify(sortedData, null, 2)};\n\nexport default Data;\n`, (err) => {
     if (err) {

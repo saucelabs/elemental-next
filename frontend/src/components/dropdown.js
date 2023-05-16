@@ -3,13 +3,13 @@ import Data from '@site/src/scripts/data';
  
 
 
- const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, catItems, catFilters}) => {
+ const Dropdown = ({ filterItem, setTip, difficultyItems ,tagItems, tagFilters, catItems, catFilters, sortByDate, orderBy}) => {
    return (
      <>
-     <div className='filterText'>Filter by:</div>  
+     <div className='dropdown-container'>
+      <p>Filter by:</p>  
        <div className='dropdown'>
-       <label htmlFor="menu_arrow"></label>
-       <button type="checkbox" className='drop'
+       <button className='drop'
              onClick={() => {setItem(Data);}}
              >
              Difficulty
@@ -17,7 +17,7 @@ import Data from '@site/src/scripts/data';
          <div className='menu'>
              {difficultyItems?.map((Val, id) => {
              return (
-                 <button className='content'
+                 <button className='difficulty-list'
                      onClick={() => filterItem(Val)}
                      key={id}
                  >
@@ -39,7 +39,7 @@ import Data from '@site/src/scripts/data';
          <div className='menu'>
              {tagItems?.map((Val, id) => {
              return (
-                 <button className='content'
+                 <button className='content-tags'
                      onClick={() => tagFilters(Val)}
                      key={id}
                  >
@@ -62,7 +62,7 @@ import Data from '@site/src/scripts/data';
          <div className='menu'>
              {catItems?.map((Val, id) => {
              return (
-                 <button className='content'
+                 <button className='cat-list'
                      onClick={() => catFilters(Val)}
                      key={id}
                  >
@@ -75,6 +75,29 @@ import Data from '@site/src/scripts/data';
              })}
 
          </div>
+       </div>
+       <div className='dropdownDate'>
+         <button className='drop'
+             onClick={() => setItem(Data)}>
+             Order Posted
+         </button>
+         <div className='menu'>
+             {orderBy?.map((Val, id) => {
+             return (
+                 <button className='date-list'
+                     onClick={() => sortByDate(Val)}
+                     key={id}
+                 >
+                     <div>
+                         {/* <p>Hello World!</p> */}
+                         {Val}
+                     </div>
+                 </button>
+             );
+             })}
+
+         </div>
+       </div>
        </div>
      </>
    );
