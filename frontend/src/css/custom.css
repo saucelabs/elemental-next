@@ -13,6 +13,8 @@
 @import 'index.css';
 @import 'navbar.css';
 @import 'resources.css';
+@import 'signup.css';
+@import 'thanks.css';
 @import 'tips.css';
 
 /* You can override the default Infima variables here. */

@@ -5,7 +5,7 @@
 }
 
 .navbar__logo img {
-  max-width: 40%;
+  max-width: 250px;
   height: auto;
 }
 
@@ -32,6 +32,32 @@
   margin-left: 1.8rem;
 }
 
-/* .navbar-sidebar__item .menu ul li a .menu__link {
-  color: black;
-} */
+.nav-button {
+  width: 178px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--ifm-color-secondary);
+  border-radius: 8px;
+  border: none;
+  margin-left: 2rem;
+}
+
+.nav-button:hover {
+  -moz-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  -webkit-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  box-shadow: 0 0 10px var(--ifm-color-secondary);
+}
+
+.navbar-sidebar__item .nav-button {
+  width: 178px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--ifm-color-secondary);
+  border-radius: 8px;
+  border: none;
+  margin-left: 2rem;
+}

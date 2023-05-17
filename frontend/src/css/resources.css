@@ -1,4 +1,5 @@
 .resources-footer {
+  position: absolute;
   bottom: 0;
   width: 100vw;
 }
@@ -12,6 +13,14 @@
   flex-wrap: nowrap;
   padding-left: 12%;
   max-width: 80%;
+  margin-bottom: 30rem;
+  z-index: 1;
+}
+
+@media screen and (max-width: 996px) {
+  .resources-container {
+    margin-bottom: 2rem;
+  }
 }
 
 .resources-container a:hover {
