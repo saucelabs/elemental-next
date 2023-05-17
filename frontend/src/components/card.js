@@ -12,7 +12,6 @@ const Card = ({ tip, tagItems, tagFilters }) => {
               <a href={Val.contentUrl}>{Val.title}</a>
             </h2>
             <p> {Val.text}</p>
-
             <div className='tags-container'> {Val.tags.map(Tag)} </div>
             {/* // Self-invoking function */}
             <div className='level'>
