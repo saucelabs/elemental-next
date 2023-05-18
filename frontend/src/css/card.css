@@ -1,0 +1,69 @@
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 99;
+}
+
+.card {
+  position: relative;
+  width: 70%;
+  background-color: white;
+  box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
+  padding: 15px;
+  padding-bottom: 40px;
+  margin-bottom: 26px;
+  border: 2px solid transparent;
+}
+
+@media screen and (max-width: 996px) {
+  .card {
+    width: 90%;
+  }
+}
+
+.card:hover {
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.card a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card p {
+  color: #5e5d5b;
+}
+
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.level {
+  position: bottom, left;
+  margin-top: 2rem;
+}
+
+.tags-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tags {
+  width: auto;
+  height: 15%;
+  background: #ffffff;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: var(--ifm-font-size-base);
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 2rem 0 0 1rem;
+}
