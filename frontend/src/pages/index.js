@@ -50,7 +50,7 @@ function Home() {
             <div className='input-container'>
               <input type='email' id='email' placeholder='email-address@send-me-tips.com' name='fields[email]'></input>
               <select name='fields[programming_language]' className='dropdown-language'>
-                <option disabled='' selected='' value=''>
+                <option disabled='' defaultValue='' value=''>
                   Language
                 </option>
                 <option value='C#'>C#</option>
@@ -65,7 +65,7 @@ function Home() {
                 className='home-button'
                 data-drip-attribute='sign-up-button'
               />
-              <input type='hidden' name='tags[]' value='elemental selenium' tabindex='-1' />
+              <input type='hidden' name='tags[]' value='elemental selenium' tabIndex='-1' />
             </div>
           </form>
 
