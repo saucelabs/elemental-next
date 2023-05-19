@@ -617,7 +617,7 @@ const Data = [
   },
   {
     "title": "52: How To Use Selenium Grid",
-    "id": "52-how-to-use-selenium-grid-java",
+    "id": "52-how-to-use-selenium-grid-ruby",
     "number": 52,
     "publish_date": "2015-08-25T00:00:00.000Z",
     "last_update": {
@@ -627,14 +627,13 @@ const Data = [
       "grid",
       "selenium grid",
       "cross browser",
-      "javascript dialogs"
     ],
     "level": 2,
     "category": [
       "tools"
     ],
-    "language": "java",
-    "contentUrl": "docs/grid/52-how-to-use-selenium-grid-java",
+    "language": "ruby",
+    "contentUrl": "docs/grid/52-how-to-use-selenium-grid-ruby",
     "text": "With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with."
   },  
   {
