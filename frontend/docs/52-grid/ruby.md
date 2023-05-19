@@ -1,14 +1,14 @@
 ---
 title: '52: How To Use Selenium Grid'
-id: '52-how-to-use-selenium-grid-javascript'
-contentUrl: "docs/grid/52-how-to-use-selenium-grid-java"
-sidebar_label: Javascript 
+id: '52-how-to-use-selenium-grid-ruby'
+contentUrl: "docs/grid/52-how-to-use-selenium-grid-ruby"
+sidebar_label: Ruby 
 text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
 number: 52
 publish_date: 2015-08-25
 hide_table_of_contents: true
 last_update:
-  date: 2023-04-11
+  date: 2023-02-24
 tags:
   - 'grid'
   - 'selenium grid'
@@ -16,7 +16,7 @@ tags:
 level: 2
 category:
   - 'tools'
-language: javascript
+language: ruby
 ---
 
 # How to Use Selenium Grid
@@ -93,41 +93,46 @@ There are numerous parameters that we can use at run time. You can see a full li
 
 Now let's wire up a simple test script to use our new Grid.
 
-```javascript
-// filename: test/grid.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+First, we'll need to require our necessary libraries (e.g., `selenium-webdriver` to connect to the Grid and control the browser,
+and `rspec/expectations` & `RSpec::Matchers` for an assertion), wire up some simple `setup`, `teardown`, and `run` methods, 
+and add a simple test.
 
-describe("Grid", function() {
-  let driver;
+```ruby
+# filename: grid.rb
 
-  beforeEach(async function() {
-    const url = "http://localhost:4444";
-    driver = await new Builder()
-      .usingServer(url)
-      .forBrowser("chrome")
-      .build();
-  });
+require 'selenium-webdriver'
+require 'rspec/expectations'
+include RSpec::Matchers
 
-  afterEach(async function() {
-    await driver.quit();
-  });
+def setup
+  options = Selenium::WebDriver::Options.chrome
+  @driver = Selenium::WebDriver.for :remote, url: 'http://localhost:4444', options: options
+end
 
-  it("hello world", async function() {
-    await driver.get("http://the-internet.herokuapp.com/");
-    assert((await driver.getTitle()) === "The Internet");
-  });
-});
+def teardown
+  @driver.quit
+end
+
+def run
+  setup
+  yield
+  teardown
+end
+
+run do
+  @driver.get 'http://the-internet.herokuapp.com'
+  expect(@driver.title).to eq('The Internet')
+end
 ```
 
-Notice in `beforeEach` we're using a URL to connect to the Grid (e.g., `usingServer(url)`). And we are telling the Grid which 
-browser we want to use by using the `forBrowser` method.
+Notice in this configuration we're using a remote WebDriver in Selenium (e.g., `Selenium::WebDriver.for :remote,`) to connect to the Grid. 
+And we are telling the Grid which browser we want to use with the browser options (e.g., `options = Selenium::WebDriver::Options.chrome`).
 
 You can see a full list of the available browser options at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/browsers/).
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `ruby grid.rb` from the command-line) here is what will happen:
 
 + Connect to the Grid Hub
 + Hub determines which Node has the necessary browser/platform combination
