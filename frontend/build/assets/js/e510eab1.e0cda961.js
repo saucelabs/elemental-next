@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[6244],{7522:e=>{e.exports=JSON.parse('{"label":"facebook","permalink":"/elemental-next/blog/tags/facebook","allTagsPath":"/elemental-next/blog/tags","count":1}')}}]);

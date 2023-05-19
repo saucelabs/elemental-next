@@ -1,0 +1,43 @@
+.community-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-wrap: nowrap;
+  padding-left: 12%;
+  max-width: 80%;
+  z-index: 1;
+  margin-bottom: 30rem;
+}
+
+@media screen and (max-width: 996px) {
+  .community-wrapper {
+    margin-bottom: 2rem;
+  }
+}
+
+.community-header {
+  font-size: 6.4rem;
+  font-weight: 700;
+  padding: 5.6rem 0 5.6rem 0;
+  margin: 0;
+}
+
+.community-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}
+
+.community-wrapper a {
+  cursor: pointer;
+}
+
+.community-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.community-wrapper table td {
+  background-color: white;
+}
