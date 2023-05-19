@@ -8,6 +8,11 @@
   max-width: 250px;
   height: auto;
 }
+@media screen and (max-width: 360px) {
+  .navbar__logo img {
+    max-width: 200px;
+  }
+}
 
 .navbar__link {
   font-size: 2rem;
