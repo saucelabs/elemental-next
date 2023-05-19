@@ -11,17 +11,17 @@ const config = {
   favicon: 'img/ES.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://opensource.saucelabs.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/elemental-next',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'saucelabs', // Usually your GitHub org/user name.
-  projectName: 'elemental-bromine', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
+  projectName: 'elemental-next', // Usually your repo name.
+  deploymentBranch: 'gh-pages', // The branch that GitHub pages deploys from.
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -39,15 +39,12 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
+          path: 'docs',
+          breadcrumbs: true,
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -62,84 +59,95 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Elemental Selenium',
-        // logo: {
-        //   alt: 'Elemental Selenium Logo',
-        //   src: 'img/ES.svg',
-        // },
+        title: null,
+        hideOnScroll: false,
+        logo: {
+          href: '/',
+          alt: 'Elemental Selenium Logo',
+          src: 'img/logo.png',
+        },
+
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'right',
             label: 'Tips',
-          },
-          {
-            href: 'https://github.com/saucelabs/elemental-next',
-            label: 'Contribute',
+            to: '/tips',
             position: 'right',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
             label: 'External Resources',
+            to: '/resources',
             position: 'right',
           },
           {
-            to: '/index',
-            label: 'Sign In',
+            label: 'Get Involved',
+            to: '/community',
             position: 'right',
+          },
+
+          {
+            to: '/signup',
+            position: 'right',
+            label: 'Join the mailing list',
+            className: 'nav-button',
           },
         ],
       },
       footer: {
-        style: 'dark',
+        // style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Tips Archive:',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Beginner tips',
+                to: '/',
+              },
+              {
+                label: 'Fundamentals',
+                to: '/',
+              },
+              {
+                label: 'Troubleshooting',
+                to: '/',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Community:',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Elemental Selenium on Github',
+                to: 'https://github.com/saucelabs/elemental-next',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'External Resources:',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Selenium Docs',
+                to: 'https://www.selenium.dev/documentation/',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Selenium Slack',
+                to: 'https://seleniumhq.slack.com/join/shared_invite/zt-1neaoa52v-FTzht5cd2eYKwSobbhQkEw#/shared-invite/email',
+              },
+              {
+                label: 'Selenium Guidebook',
+                to: 'https://seleniumguidebook.com',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Elemental Bromine, Inc. Built with Docusaurus.`,
+        copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: ['ruby'],
+      },
+      colorMode: {
+        disableSwitch: true,
       },
     }),
 };

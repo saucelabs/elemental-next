@@ -1,0 +1,63 @@
+.navbar {
+  align-items: center;
+  padding: 4rem 2rem 4rem 2rem;
+  box-shadow: none;
+}
+
+.navbar__logo img {
+  max-width: 250px;
+  height: auto;
+}
+
+.navbar__link {
+  font-size: 2rem;
+  padding: 6px 8px;
+}
+
+.navbar a:hover {
+  color: black;
+  font-weight: 600;
+}
+
+.navbar a:active {
+  color: black;
+  font-weight: 700;
+}
+
+.navbar .button {
+  font-weight: 700;
+  font-size: 1.6rem;
+  padding: 1rem 1.8rem 1rem 1.8rem;
+  border-radius: 8px;
+  margin-left: 1.8rem;
+}
+
+.nav-button {
+  width: 178px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--ifm-color-secondary);
+  border-radius: 8px;
+  border: none;
+  margin-left: 2rem;
+}
+
+.nav-button:hover {
+  -moz-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  -webkit-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  box-shadow: 0 0 10px var(--ifm-color-secondary);
+}
+
+.navbar-sidebar__item .nav-button {
+  width: 178px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  background-color: var(--ifm-color-secondary);
+  border-radius: 8px;
+  border: none;
+  margin-left: 2rem;
+}
