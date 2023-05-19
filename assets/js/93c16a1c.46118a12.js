@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[9571],{5931:(e,n,t)=>{t.r(n),t.d(n,{default:()=>u});var r=t(7294);const u=function(){return r.createElement("h1",null,"Join Us")}}}]);
