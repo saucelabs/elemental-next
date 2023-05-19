@@ -110,3 +110,5 @@ elemental-next
 - **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque-tests` folder.
 
 - **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium-tests` folder.
+
+![build workflow](https://github.com/saucelabs/elemental-next/actions/workflows/test-build.yml/badge.svg)
