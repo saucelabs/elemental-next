@@ -1,0 +1,35 @@
+name: Deploy Docusaurus Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: | 
+          cd frontend
+          npm install
+
+      - name: Build website
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Deploy website to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: frontend/build
+      
