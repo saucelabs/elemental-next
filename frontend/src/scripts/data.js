@@ -616,6 +616,27 @@ const Data = [
     "text": "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
   },
   {
+    "title": "52: How To Use Selenium Grid",
+    "id": "52-how-to-use-selenium-grid-ruby",
+    "number": 52,
+    "publish_date": "2015-08-25T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-22T00:00:00.000Z"
+    },
+    "tags": [
+      "grid",
+      "selenium grid",
+      "cross browser",
+    ],
+    "level": 2,
+    "category": [
+      "tools"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/grid/52-how-to-use-selenium-grid-ruby",
+    "text": "With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with."
+  },  
+  {
     "title": "53: Growl",
     "id": "53-growl-ruby",
     "number": 53,

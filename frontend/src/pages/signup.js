@@ -37,7 +37,7 @@ function Signup() {
                 data-drip-attribute='sign-up-button'
               />
             </div>
-            <input type='hidden' name='tags[]' value='elemental selenium' tabindex='-1' />
+            <input type='hidden' name='tags[]' value='elemental selenium' tabIndex='-1' />
           </form>
           <em className='signup-disclaimer'>Your information will only be used for sending you a tip every Tuesday.</em>
         </div>
