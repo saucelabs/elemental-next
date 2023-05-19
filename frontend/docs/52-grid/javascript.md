@@ -1,14 +1,14 @@
 ---
 title: '52: How To Use Selenium Grid'
-id: '52-how-to-use-selenium-grid-java'
+id: '52-how-to-use-selenium-grid-javascript'
 contentUrl: "docs/grid/52-how-to-use-selenium-grid-java"
-sidebar_label: Java
+sidebar_label: Javascript 
 text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
 number: 52
-hide_table_of_contents: true
 publish_date: 2015-08-25
+hide_table_of_contents: true
 last_update:
-  date: 2023-02-22
+  date: 2023-04-11
 tags:
   - 'grid'
   - 'selenium grid'
@@ -16,7 +16,7 @@ tags:
 level: 2
 category:
   - 'tools'
-language: java
+language: javascript
 ---
 
 # How to Use Selenium Grid
@@ -91,52 +91,46 @@ There are numerous parameters that we can use at run time. You can see a full li
 
 ### Part 2: Test Setup
 
-Now let's wire up a simple test to use our new Grid.
+Now let's wire up a simple test script to use our new Grid.
 
-```java
-// filename: Grid.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import java.net.URL;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+```javascript
+// filename: test/grid.spec.js
+const assert = require("assert");
+const { Builder, By } = require("selenium-webdriver");
 
-public class Grid {
-    WebDriver driver;
+describe("Grid", function() {
+  let driver;
 
-    @Before
-    public void setUp() throws Exception {
-        FirefoxOptions capabilities = new FirefoxOptions();
-        String url = "http://localhost:4444";
-        driver = new RemoteWebDriver(new URL(url), capabilities);
-    }
+  beforeEach(async function() {
+    const url = "http://localhost:4444";
+    const caps = {
+      browserName: "chrome"
+    };
+    driver = await new Builder()
+      .usingServer(url)
+      .withCapabilities(caps)
+      .build();
+  });
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
+  afterEach(async function() {
+    await driver.quit();
+  });
 
-    @Test
-    public void gridTest() {
-        driver.get("http://the-internet.herokuapp.com/");
-        assertThat(driver.getTitle(), is(equalTo("The Internet")));
-    }
-
-}
+  it("hello world", async function() {
+    await driver.get("http://the-internet.herokuapp.com/");
+    assert((await driver.getTitle()) === "The Internet");
+  });
+});
 ```
 
-Notice in this configuration we're using a remote WebDriver in Selenium Remote (e.g., `new RemoteWebDriver()`) to connect to the grid. 
-And we are telling the grid which browser we want to use with the browser options (e.g., `new FirefoxOptions();`).
+Notice in `beforeEach` we're using a URL to connect to the Grid (e.g., `usingServer(url)`). And we are telling the Grid which 
+browser we want to use by defining the browser options through the `caps` object.
 
 You can see a full list of the available browser options at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/browsers/).
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
 + Connect to the Grid Hub
 + Hub determines which Node has the necessary browser/platform combination
@@ -159,8 +153,6 @@ Also, it's worth noting that while Selenium Grid is a great option for scaling y
 parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a 
 way to execute your tests in parallel.
 
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
 Happy Testing!
 
 ## About The Author
@@ -171,3 +163,4 @@ testing professionals. He also created and maintains the-internet (an open-sourc
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, 
 Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around 
 the world about automated acceptance testing.
+
