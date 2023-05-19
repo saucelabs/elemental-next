@@ -129,8 +129,8 @@ public class Grid {
 }
 ```
 
-Notice in this configuration we're using a remote WebDriver in Selenium Remote (e.g., `new RemoteWebDriver()`) to connect to the grid. 
-And we are telling the grid which browser we want to use with the browser options (e.g., `new FirefoxOptions();`).
+Notice in this configuration we're using a remote WebDriver in Selenium (e.g., `new RemoteWebDriver()`) to connect to the Grid. 
+And we are telling the Grid which browser we want to use with the browser options (e.g., `new FirefoxOptions();`).
 
 You can see a full list of the available browser options at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/browsers/).
 
