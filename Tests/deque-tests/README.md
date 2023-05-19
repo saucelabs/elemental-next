@@ -31,7 +31,7 @@ The Deque Axe Chrome extension is a powerful tool for conducting accessibility t
 
 ## Contributing 👩‍💻👨‍💻
 
-If you encounter any issues or have suggestions for improving the Deque Axe Chrome extension, please feel free to contribute by submitting a pull request or reporting an issue in the [GitHub repository](https://github.com/dequelabs/axe-core). We welcome your input!
+If you encounter any issues or have suggestions for improving accessibility testing, please feel free to contribute by submitting a pull request or reporting an issue. Before contributing, please visit our [CONTRIBUTING](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md) document. We welcome your input!
 
 ## Resources 📚
 
