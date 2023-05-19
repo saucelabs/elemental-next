@@ -37,8 +37,8 @@ Each test file should be stored in the `cypress/e2e` directory. The name of the 
 
 ```
 .
-├── Elemental Next
-└── Tests/
+├── elemental-next
+└── tests/
     └── cypress-tests/
         └── cypress/
             └── e2e/
