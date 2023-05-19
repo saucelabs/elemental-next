@@ -17,13 +17,13 @@
 
 @media screen and (max-width: 996px) {
   .signup-container {
-    width: 80%;
+    width: 90%;
     height: auto;
-    margin-left: 10%;
+    margin-left: 5%;
     border: none;
     border-radius: 10px;
     padding: 3.5rem;
-    margin-top: 10rem;
+    margin-top: 5rem;
     margin-bottom: 2rem;
   }
 }
@@ -73,4 +73,19 @@
 .signup-disclaimer {
   text-align: center;
   margin-top: 5rem;
+}
+
+/* Small mobile */
+
+@media screen and (max-width: 360px) {
+  .signup-container {
+    width: 95%;
+    margin-left: 3%;
+  }
+  .signup-container input[type='email'],
+  .signup-button,
+  .dropdown-language {
+    width: 90vw;
+    margin-left: 3%;
+  }
 }
