@@ -19,11 +19,13 @@ function Thanks() {
           </h2>
           <p>
             Every Tuesday you’ll get an email containing one tip or trick in the coding language you’ve selected. If
-            you’d like more, head on over to the <a href='/tips'>tips page</a> and read them all at any time!
+            you’d like more, head on over to the{' '}
+            <a href='https://opensource.saucelabs.com/elemental-next/tips'>tips page</a> and read them all at any time!
           </p>
           <p>
-            While you’re there, consider <a href='/community'>joining our community</a> and maybe next Tuesday the tip
-            in everyone’s inbox will be yours!
+            While you’re there, consider{' '}
+            <a href='https://opensource.saucelabs.com/elemental-next/community'>joining our community</a> and maybe next
+            Tuesday the tip in everyone’s inbox will be yours!
           </p>
         </div>
         <img className='thanks-footer' src='./img/backgrounds/signup-footer.svg' alt='' />
