@@ -14,6 +14,7 @@ In 2023, Team Elemental took Elemental Selenium, which had been untouched for ma
 - [Local Development 🛠️](#local-development-)
   * [Building the Website 🏗️](#building-the-website-)
   * [Deploying the Website 🚀](#deploying-the-website-)
+- [Testing 🧪](#testing)
 
 # How to Contribute 🙌
 
@@ -89,3 +90,25 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
 The <code>docusaurus deploy</code> command helps us deploy our site from the source branch to the deployment branch <code>gh-pages</code> in one command: clone, build, and commit.
 
 The <code>-outDir</code> flag ships only the <code>frontend</code> content folder to the <code>gh-pages</code>.
+
+# Testing 🧪
+
+Testing is an essential part of ensuring the quality and reliability of Elemental Next, and is very important to us. We've got a great lineup of testing tools that make the testing process achievable. Check them out!
+
+
+```
+elemental-next
+└── tests
+    ├── cypress-tests
+    ├── deque-tests
+    └── selenium-tests
+```
+
+
+- **Cypress**: We use Cypress for end-to-end (E2E) testing, which allows us to simulate real user interactions and verify the functionality of the application. You can find the E2E testing files in the `tests/cypress-tests` folder.
+
+- **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque-tests` folder.
+
+- **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium-tests` folder.
+
+![build workflow](https://github.com/saucelabs/elemental-next/actions/workflows/test-build.yml/badge.svg)
