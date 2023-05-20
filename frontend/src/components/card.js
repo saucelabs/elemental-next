@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Card = ({ contentUrl, last_update, level, tags, text, title }) => {
+  function formatDate(date) {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(date).toLocaleDateString(undefined, options);
+  }
+
   return (
     <div className='cards-container'>
       <div className='card'>
@@ -27,7 +32,7 @@ const Card = ({ contentUrl, last_update, level, tags, text, title }) => {
             return <div className='tags'>{tag + ' '}</div>;
           })}{' '}
         </div>
-        <p>{last_update}</p>
+        <p>Last updated: {formatDate(last_update)}</p>
       </div>
     </div>
   );
