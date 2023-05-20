@@ -112,3 +112,4 @@ elemental-next
 - **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium-tests` folder.
 
 ![build workflow](https://github.com/saucelabs/elemental-next/actions/workflows/test-build.yml/badge.svg)
+![cypress workflow](https://github.com/saucelabs/elemental-next/actions/workflows/cypress-tests.yml/badge.svg)
