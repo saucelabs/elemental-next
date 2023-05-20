@@ -97,7 +97,7 @@ const Tips = () => {
             <Card
               tags={card.tags}
               contentUrl={card.contentUrl}
-              last_update={card.last_update.date}
+              publish_date={card.publish_date}
               level={card.level}
               text={card.text}
               title={card.title}
