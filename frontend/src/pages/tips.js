@@ -6,13 +6,25 @@ import Card from '@site/src/components/card';
 import Dropdown from '@site/src/components/dropdown';
 
 const Tips = () => {
+  /* The following functions track the currently selected value for each filter */
+  // useState hooks allow to store and update the selected filters and options
+  // state variable that holds the currently selected value for each filter
+  // setSelected<> function allows to update the value of selected<> and trigger a re-render of the component
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedOrder, setSelectedOrder] = useState('');
+
+  /* The following functions store the available options for each filter */
+  // state variable holds an array of options for the filter option dropdown
+  // set<>Options function allows to update the value of <>Options and trigger a re-render of the component
   const [difficultyOptions, setDifficultyOptions] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  // Store the filtered cards based on the selected difficulty, category, and order
   const [filteredCards, setFilteredCards] = useState([]);
 
+  // useEffect hook updates the filtered cards whenever there is a change
   useEffect(() => {
     // Extract unique difficulty levels from the data and create difficulty options
     const uniqueDifficulties = [...new Set(Data.map((card) => card.level))];
@@ -37,11 +49,17 @@ const Tips = () => {
     setCategoryOptions(categoryOptions);
   }, []);
 
+  /*
+   * Dependencies:[selectedDifficulty, selectedCategory, selectedTags, selectedOrder]
+   * effect will re-run whenever any of these dependencies changes
+   * ensuring filtered cards are updated whenever the selected filters or options changes
+   */
   useEffect(() => {
     let filtered = Data.filter((card) => {
       const difficultyMatch = selectedDifficulty === '' || card.level === parseInt(selectedDifficulty);
       const categoryMatch = selectedCategory === '' || card.category.includes(selectedCategory);
-      return difficultyMatch && categoryMatch;
+      const tagMatch = selectedTags.length === 0 || selectedTags.some((tag) => card.tags.includes(tag));
+      return difficultyMatch && categoryMatch && tagMatch;
     });
 
     if (selectedOrder === 'oldest') {
@@ -51,7 +69,7 @@ const Tips = () => {
     }
 
     setFilteredCards(filtered);
-  }, [selectedDifficulty, selectedCategory, selectedOrder]);
+  }, [selectedDifficulty, selectedCategory, selectedTags, selectedOrder]);
 
   const handleDifficultyChange = (event) => {
     setSelectedDifficulty(event.target.value);
@@ -65,6 +83,15 @@ const Tips = () => {
     setSelectedOrder(event.target.value);
   };
 
+  const handleTagClick = (tag) => {
+    const isSelected = selectedTags.includes(tag);
+    if (isSelected) {
+      setSelectedTags(selectedTags.filter((selectedTag) => selectedTag !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
   return (
     <body className='tips-background'>
       <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives'>
@@ -73,17 +100,6 @@ const Tips = () => {
           <div className='dropdown-container'>
             <p>Filter by:</p>
             <Dropdown
-              className='dropdown-options'
-              options={difficultyOptions}
-              selectedOption={selectedDifficulty}
-              onSelectChange={handleDifficultyChange}
-            />
-            <Dropdown
-              options={categoryOptions}
-              selectedOption={selectedCategory}
-              onSelectChange={handleCategoryChange}
-            />
-            <Dropdown
               options={[
                 { value: '', label: 'Order Posted' },
                 { value: 'oldest', label: 'Oldest First' },
@@ -91,6 +107,16 @@ const Tips = () => {
               ]}
               selectedOption={selectedOrder}
               onSelectChange={handleOrderChange}
+            />
+            <Dropdown
+              options={categoryOptions}
+              selectedOption={selectedCategory}
+              onSelectChange={handleCategoryChange}
+            />
+            <Dropdown
+              options={difficultyOptions}
+              selectedOption={selectedDifficulty}
+              onSelectChange={handleDifficultyChange}
             />
           </div>
           {filteredCards.map((card) => (
@@ -101,6 +127,8 @@ const Tips = () => {
               level={card.level}
               text={card.text}
               title={card.title}
+              selectedTags={selectedTags}
+              handleTagClick={handleTagClick} // Pass the handleTagClick function as a prop
             />
           ))}
         </div>
