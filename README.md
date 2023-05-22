@@ -102,14 +102,14 @@ Testing is an essential part of ensuring the quality and reliability of Elementa
 ```
 elemental-next
 └── tests
-    ├── cypress-tests
-    ├── deque-tests
-    └── selenium-tests
+    ├── cypress
+    ├── deque
+    └── selenium
 ```
 
 
-- **Cypress**: We use Cypress for end-to-end (E2E) testing, which allows us to simulate real user interactions and verify the functionality of the application. You can find the E2E testing files in the `tests/cypress-tests` folder.
+- **Cypress**: We use Cypress for end-to-end (E2E) testing, which allows us to simulate real user interactions and verify the functionality of the application. You can find the E2E testing files in the `tests/cypress` folder.
 
-- **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque-tests` folder.
+- **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque` folder.
 
-- **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium-tests` folder.
+- **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium` folder.
