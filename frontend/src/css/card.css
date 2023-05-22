@@ -68,3 +68,8 @@ a:visited {
   padding: 4px 8px;
   margin: 2rem 0 0 1rem;
 }
+
+.tags.selected {
+  background-color: black;
+  color: white;
+}
