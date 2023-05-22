@@ -1,8 +1,8 @@
-# 🎉 Welcome to Elemental Next! 🚀
+# 🎉 Welcome to Elemental Selenium! 🚀
 
 In 2023, Team Elemental took Elemental Selenium, which had been untouched for many years, and open sourced the project to enable Selenium users and enthusiasts to contribute directly in opinionated, hands-on ways.
 
-🔥 **Elemental Next** 🔥 is what we are calling the Elemental Selenium revamp -- open sourced, renewed, and ready for community contributions!
+🔥 **Elemental Selenium** 🔥 is now open sourced, renewed, and ready for community contributions!
 
 
 ## Table of Contents 📑
@@ -93,7 +93,7 @@ The <code>-outDir</code> flag ships only the <code>frontend</code> content folde
 
 # Testing 🧪
 
-Testing is an essential part of ensuring the quality and reliability of Elemental Next, and is very important to us. We've got a great lineup of testing tools that make the testing process achievable. Check them out!
+Testing is an essential part of ensuring the quality and reliability of Elemental Selenium, and is very important to us. We've got a great lineup of testing tools that make the testing process achievable. Check them out!
 
 
 ```
