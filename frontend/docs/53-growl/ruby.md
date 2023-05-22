@@ -6,7 +6,7 @@ sidebar_label: Ruby
 text: "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
 number: 53
 hide_table_of_contents: true
-publish_date: 2016-11-22
+publish_date: 2014-06-03
 last_update:
   date: 2023-03-25
 tags:

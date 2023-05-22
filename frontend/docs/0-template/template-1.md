@@ -2,7 +2,7 @@
 title: 'This is a Template 1'
 id: template1
 sidebar_label: Template-1
-description: A template file for elemental next files
+description: A template file for Elemental Selenium files
 hide_table_of_contents: true
 keywords:
 - selenium

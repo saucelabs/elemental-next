@@ -6,7 +6,7 @@ sidebar_label: Ruby
 text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
 number: 3
 hide_table_of_contents: true
-publish_date: 2023-02-21
+publish_date: 2015-08-25
 last_update:
   date: 2023-02-22
 tags:

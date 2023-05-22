@@ -39,11 +39,10 @@ Each test file should be stored in the `cypress/e2e` directory. The name of the 
 .
 ├── elemental-next
 └── tests/
-    └── cypress-tests/
-        └── cypress/
-            └── e2e/
-                ├── brokenlinks-landing.cy.js
-                └── signup.cy.js
+    └── cypress/
+        └── e2e/
+            ├── brokenlinks-landing.cy.js
+            └── signup.cy.js
 
 ```
 

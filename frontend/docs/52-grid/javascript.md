@@ -5,7 +5,7 @@ contentUrl: "docs/grid/52-how-to-use-selenium-grid-java"
 sidebar_label: Javascript 
 text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
 number: 52
-publish_date: 2015-08-25
+publish_date: 2019-08-09
 hide_table_of_contents: true
 last_update:
   date: 2023-04-11

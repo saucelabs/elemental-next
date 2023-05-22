@@ -1,6 +1,6 @@
-# 👉 Contributing to Elemental Next
+# 👉 Contributing to Elemental Selenium
 
-Thank you for your interest in Elemental Next! Your contributions are highly welcome and encouraged, as this is a community project.
+Thank you for your interest in Elemental Selenium! Your contributions are highly welcome and encouraged, as this is a community project.
 
 ## Ways to Contribute 🤝:
 
