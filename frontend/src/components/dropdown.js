@@ -1,5 +1,6 @@
 import React from 'react';
 
+// reusable component that renders the dropdown filters on tips page
 const Dropdown = ({ options, selectedOption, onSelectChange }) => {
   return (
     <div className='dropdown'>
