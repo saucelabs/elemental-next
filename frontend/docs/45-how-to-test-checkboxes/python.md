@@ -6,7 +6,7 @@ sidebar_label: Ruby
 text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
 number: 45
 hide_table_of_contents: true
-publish_date: 2019-08-09
+publish_date: 2016-11-18
 last_update:
   date: 2023-03-03
 tags:

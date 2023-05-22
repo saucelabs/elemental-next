@@ -6,7 +6,7 @@ sidebar_label: Csharp
 text: "Occasionally when running tests you may see unexpected behavior due to A/B testing of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests."
 number: 12
 hide_table_of_contents: true
-publish_date: 2015-10-15
+publish_date: 2016-06-12
 last_update:
   date: 2023-03-29
 tags:

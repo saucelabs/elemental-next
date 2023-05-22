@@ -6,7 +6,7 @@ sidebar_label: Java
 text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
 number: 52
 hide_table_of_contents: true
-publish_date: 2015-08-25
+publish_date: 2015-11-11
 last_update:
   date: 2023-02-22
 tags:
