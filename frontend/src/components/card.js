@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ contentUrl, level, publish_date, tags, text, title }) => {
+const Card = ({ contentUrl, level, publish_date, tags, text, title, selectedTags, handleTagClick }) => {
   function formatDate(date) {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     return new Date(date).toLocaleDateString(undefined, options);
@@ -26,11 +26,17 @@ const Card = ({ contentUrl, level, publish_date, tags, text, title }) => {
             }
           })()}
         </div>
-        {/* Display tags */}
+        {/* Display and filter tags */}
         <div className='tags-container'>
-          {tags.map((tag) => {
-            return <div className='tags'>{tag + ' '}</div>;
-          })}{' '}
+          {tags.map((tag) => (
+            <div
+              key={tag}
+              className={`tags ${selectedTags.includes(tag) ? 'selected' : ''}`}
+              onClick={() => handleTagClick(tag)}
+            >
+              {tag + ' '}
+            </div>
+          ))}
         </div>
         <p>First published: {formatDate(publish_date)}</p>
       </div>
