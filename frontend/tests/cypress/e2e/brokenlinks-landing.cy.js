@@ -20,7 +20,7 @@ describe('Broken Links Test', () => {
 
           url: link.prop('href'),
 
-          failOnStatusCode: false
+          failOnStatusCode: true
 
         })
 
