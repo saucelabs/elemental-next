@@ -26,6 +26,10 @@
   position: relative;
 }
 
+.dropdown select:hover {
+  border: 2px solid black;
+}
+
 .dropdown-selection {
   z-index: 999;
   display: grid;
