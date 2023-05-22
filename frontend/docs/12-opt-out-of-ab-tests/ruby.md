@@ -1,8 +1,8 @@
 ---
 title: '12: Opt Out of AB Tests'
 id: '12-opt-out-of-ab-tests-ruby'
-contentUrl: "docs/opt-out-of-ab-tests/12-opt-out-of-ab-tests-ruby"
-sidebar_label: Ruby 
+contentUrl: 'docs/opt-out-of-ab-tests/12-opt-out-of-ab-tests-ruby'
+sidebar_label: Ruby
 text: "Occasionally when running tests you may see unexpected behavior due to A/B testing of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests."
 number: 12
 hide_table_of_contents: true
@@ -15,7 +15,7 @@ tags:
   - 'opt-out'
 level: 2
 category:
-  - 'troubleshoting'
+  - 'troubleshooting'
 language: ruby
 ---
 
@@ -28,11 +28,12 @@ Occasionally when running tests you may see unexpected behavior due to [A/B test
 ## A Solution
 
 First, here is a primer on Split Testing.
->### Split Testing
->Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement. A simple example would be testing variations of an e-mail landing page to see if more people sign up. In such a split test there would be the control (how the application looks and behaves now) and variants (e.g., 2 or 3 changes that could include changing text or images on the page, element positioning, color of the submit button, etc).
->
->Once the variants are configured, they are put into rotation, and the experiment starts. During this experiment each user will see a different version of the feature and their engagement with it will be tracked. Split tests live for the length of the experiment or until a winner is found (e.g., tracking indicates that a variant converted higher than the control). If no winner is found, new variants may be created and another experiment tried. If a winner is found, then the winning variant becomes the new control and the feature gets updated accordingly.
 
+> ### Split Testing
+>
+> Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement. A simple example would be testing variations of an e-mail landing page to see if more people sign up. In such a split test there would be the control (how the application looks and behaves now) and variants (e.g., 2 or 3 changes that could include changing text or images on the page, element positioning, color of the submit button, etc).
+>
+> Once the variants are configured, they are put into rotation, and the experiment starts. During this experiment each user will see a different version of the feature and their engagement with it will be tracked. Split tests live for the length of the experiment or until a winner is found (e.g., tracking indicates that a variant converted higher than the control). If no winner is found, new variants may be created and another experiment tried. If a winner is found, then the winning variant becomes the new control and the feature gets updated accordingly.
 
 Thankfully there are some standard opt-out mechanisms built into A/B testing platforms. They tend to come in the form of an appended URL or forging a cookie.
 
@@ -42,9 +43,9 @@ Let's start with an example for each approach with a popular A/B testing platfor
 
 Our example page is from [the-internet](http://github.com/tourdedave/the-internet) and can be seen [here](http://the-internet.herokuapp.com/abtest). There are three different versions of the page that are available. On each page the heading text will vary:
 
-+ Control: `A/B Test Control`
-+ Variation 1: `A/B Test Variation 1`
-+ Opt-out: `No A/B Test`
+- Control: `A/B Test Control`
+- Variation 1: `A/B Test Variation 1`
+- Opt-out: `No A/B Test`
 
 Let's kick things off by loading our requisite libraries (e.g., `selenium-webdriver` to control the browser and `rspec/expectations` and it's matchers for our assertions) and adding some simple `setup`, `teardown`, and `run` methods to handle our test configuration.
 
@@ -113,12 +114,12 @@ By appending `?optimizely_opt_out=true` we achieve the same outcome as before. K
 
 If you save this file and run it (e.g., `ruby split_test.rb` from the command-line) here is what will happen:
 
-+ Open the browser
-+ Opt-out of the split tests (either by cookie or appended URL)
-+ Visit the split testing page
-+ Grab the header text
-+ Confirm that the session is opted out of the split tests
-+ Close the browser
+- Open the browser
+- Opt-out of the split tests (either by cookie or appended URL)
+- Visit the split testing page
+- Grab the header text
+- Confirm that the session is opted out of the split tests
+- Close the browser
 
 ## Summary
 
