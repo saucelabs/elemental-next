@@ -2,7 +2,7 @@
 title: 'This is a Second Template'
 id: template2
 sidebar_label: Template-2
-description: A template file for elemental next files
+description: A template file for Elemental Selenium files
 hide_table_of_contents: false
 keywords:
 - selenium

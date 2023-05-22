@@ -6,7 +6,7 @@ sidebar_label: Java
 text: "Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for."
 number: 25
 hide_table_of_contents: true
-publish_date: 2015-10-13
+publish_date: 2015-11-11
 last_update:
   date: 2023-04-03
 tags:

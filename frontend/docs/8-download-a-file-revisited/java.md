@@ -6,7 +6,7 @@ sidebar_label: Java
 text: "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
 number: 8
 hide_table_of_contents: true
-publish_date: 2015-08-20
+publish_date: 2015-11-10
 last_update:
   date: 2023-04-03
 tags:

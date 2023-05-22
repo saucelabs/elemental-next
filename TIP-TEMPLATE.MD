@@ -1,6 +1,6 @@
 # Tip Template Intro
 
-Thanks for your interest in contributing a helpful tip to the Elemental Next project!
+Thanks for your interest in contributing a helpful tip to the Elemental Selenium project!
 
 Together, we can continue to grow this great resource of Selenium tips, tricks, and know-how to help others learn and grasp Selenium.
 
@@ -24,7 +24,7 @@ Ready to submit your tip? Here we go!
 ```
 Project Tree
 .
-└── Elemental Next/
+└── elemental-next/
     └── frontend/
         └── docs/
             └── updated-tips/

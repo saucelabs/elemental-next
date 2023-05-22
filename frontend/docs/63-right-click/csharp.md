@@ -6,7 +6,7 @@ sidebar_label: Csharp
 text: "Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?"
 number: 63
 hide_table_of_contents: true
-publish_date: 2015-10-13
+publish_date: 2016-06-13
 last_update:
   date: 2023-03-30
 tags:

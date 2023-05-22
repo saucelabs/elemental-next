@@ -6,7 +6,7 @@ sidebar_label: Csharp
 text: "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
 number: 5
 hide_table_of_contents: true
-publish_date: 2015-07-06
+publish_date: 2016-06-13
 last_update:
   date: 2023-03-29
 tags:
