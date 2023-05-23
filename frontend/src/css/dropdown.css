@@ -6,6 +6,12 @@
   position: relative;
 }
 
+@media screen and (max-width: 996px) {
+  .dropdown-container {
+    width: 90vw;
+  }
+}
+
 .dropdown-container p {
   font-size: 1.6rem;
   font-weight: 700;

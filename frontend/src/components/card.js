@@ -13,32 +13,34 @@ const Card = ({ contentUrl, level, publish_date, tags, text, title, selectedTags
           <a href={contentUrl}>{title}</a>
         </h2>
         <p>{text}</p>
-        {/* Display traffic light = tip difficulty level */}
-        <div className='level'>
-          {(() => {
-            switch (level) {
-              case 1:
-                return <img src={'img/traffic_filter/level1.svg'} alt='Beginner' />;
-              case 2:
-                return <img src={'img/traffic_filter/level2.svg'} alt='Intermediate' />;
-              case 3:
-                return <img src={'img/traffic_filter/level3.svg'} alt='Advanced' />;
-            }
-          })()}
+        <div className='card-level-tags-container'>
+          {/* Display traffic light = tip difficulty level */}
+          <div className='level'>
+            {(() => {
+              switch (level) {
+                case 1:
+                  return <img src={'img/traffic_filter/level1.svg'} alt='Beginner' />;
+                case 2:
+                  return <img src={'img/traffic_filter/level2.svg'} alt='Intermediate' />;
+                case 3:
+                  return <img src={'img/traffic_filter/level3.svg'} alt='Advanced' />;
+              }
+            })()}
+          </div>
+          {/* Display and filter tags */}
+          <div className='tags-container'>
+            {tags.map((tag) => (
+              <div
+                key={tag}
+                className={`tags ${selectedTags.includes(tag) ? 'selected' : ''}`}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag + ' '}
+              </div>
+            ))}
+          </div>
         </div>
-        {/* Display and filter tags */}
-        <div className='tags-container'>
-          {tags.map((tag) => (
-            <div
-              key={tag}
-              className={`tags ${selectedTags.includes(tag) ? 'selected' : ''}`}
-              onClick={() => handleTagClick(tag)}
-            >
-              {tag + ' '}
-            </div>
-          ))}
-        </div>
-        <p>First published: {formatDate(publish_date)}</p>
+        <p>Published: {formatDate(publish_date)}</p>
       </div>
     </div>
   );
