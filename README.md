@@ -1,3 +1,6 @@
+![build workflow](https://github.com/saucelabs/elemental-next/actions/workflows/test-build.yml/badge.svg)
+![cypress workflow](https://github.com/saucelabs/elemental-next/actions/workflows/cypress-tests.yml/badge.svg)
+
 # 🎉 Welcome to Elemental Selenium! 🚀
 
 In 2023, Team Elemental took Elemental Selenium, which had been untouched for many years, and open sourced the project to enable Selenium users and enthusiasts to contribute directly in opinionated, hands-on ways.
@@ -99,17 +102,14 @@ Testing is an essential part of ensuring the quality and reliability of Elementa
 ```
 elemental-next
 └── tests
-    ├── cypress-tests
-    ├── deque-tests
-    └── selenium-tests
+    ├── cypress
+    ├── deque
+    └── selenium
 ```
 
 
-- **Cypress**: We use Cypress for end-to-end (E2E) testing, which allows us to simulate real user interactions and verify the functionality of the application. You can find the E2E testing files in the `tests/cypress-tests` folder.
+- **Cypress**: We use Cypress for end-to-end (E2E) testing, which allows us to simulate real user interactions and verify the functionality of the application. You can find the E2E testing files in the `tests/cypress` folder.
 
-- **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque-tests` folder.
+- **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque` folder.
 
-- **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium-tests` folder.
-
-![build workflow](https://github.com/saucelabs/elemental-next/actions/workflows/test-build.yml/badge.svg)
-![cypress workflow](https://github.com/saucelabs/elemental-next/actions/workflows/cypress-tests.yml/badge.svg)
+- **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium` folder.
