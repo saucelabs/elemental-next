@@ -18,9 +18,13 @@ jobs:
         run: | 
           cd frontend
           npm install
+          
+      - name: Build website
+        run: |
+          cd frontend
+          npm run build
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run build
           start: npm start
