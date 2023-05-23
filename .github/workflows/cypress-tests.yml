@@ -1,9 +1,9 @@
-name: Cypress Test
+name: Cypress Tests
 
 on: push
 
 jobs:
-  build-and-deploy:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,9 +19,8 @@ jobs:
           cd frontend
           npm install
 
-      - name: Run Cypress
-        run: | 
-          cd frontend
-          npx cypress open
-        
-        
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm start
