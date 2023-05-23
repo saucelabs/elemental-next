@@ -6,7 +6,7 @@
 
 .card {
   position: relative;
-  width: 70%;
+  width: 70vw;
   background-color: white;
   box-shadow: 4px 4px 4px rgba(41, 38, 32, 0.04);
   padding: 15px;
@@ -15,7 +15,7 @@
 
 @media screen and (max-width: 996px) {
   .card {
-    width: 90%;
+    width: 90vw;
   }
 }
 
@@ -46,10 +46,15 @@ a:visited {
   margin-top: 2rem;
 }
 
+.level img {
+  width: 72px;
+}
+
 .card-level-tags-container {
   display: inline-flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .tags-container {
