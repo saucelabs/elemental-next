@@ -96,6 +96,10 @@ h2,
   font-weight: 300;
 }
 
+img {
+  max-width: unset;
+}
+
 td,
 th,
 tr,
