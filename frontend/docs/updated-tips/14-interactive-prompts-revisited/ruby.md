@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: 'Interactive Prompts Revisited'
 id: '14-interactive-prompts-revisited-ruby'
-slug: ruby/
+contentUrl: 'docs/interactive-prompts-revisited-ruby/14-interactive-prompts-revisited-ruby'
+sidebar_label: Ruby
+text: 'In a previoius tip we covered how a REPL can help you determine what code to write in your scripts by testing locators and actions through an interactive prompt. This is great for simple tasks, but its starts to falter when debugging more complex scripts.'
+hide_table_of_contents: true
 number: 14
 publish_date: 2013-08-27
 last_update:
