@@ -54,10 +54,13 @@ Project Tree
 ## Content Template
 
 ```
+
 ---
 title: 'Ruby'
 id: '0-template-ruby'
-slug: ruby/
+contentUrl: "docs/template-ruby/0-template-ruby"
+sidebar_label: Ruby
+text: "This is a template."
 number: 0
 publish_date: 2023-02-17
 last_update:
@@ -96,6 +99,7 @@ language: ruby
 ## About The Author
 
 <!-- Write a short bio, 2-3 sentences and include any links to contact you (LinkedIn, Twitter, website, etc) -->
+
 
 ```
 
