@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: 'How to Speed Up Your Tests With Parallelization'
 id: '27-parallel-tests-ruby'
-slug: ruby/
+contentUrl: 'docs/template/27-parallel-tests-ruby'
+sidebar_label: Ruby
+text: 'Compared to Unit and Integration Tests, Selenium is slow. A single test can easily take minutes to run. And when you have a lot of them, it can quickly compound your suite to take hours to complete (just for a single browser) -- hampering your ability to get fast feedback.'
+hide_table_of_contents: true
 number: 27
 publish_date: 2013-11-26
 last_update:
