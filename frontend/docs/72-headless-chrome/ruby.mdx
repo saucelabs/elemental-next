@@ -1,5 +1,5 @@
 ---
-title: '72: Headless Chrome'
+title: 'Headless Chrome'
 id: '72-headless-chrome-ruby'
 contentUrl: "docs/headless-chrome/72-headless-chrome-ruby"
 sidebar_label: Ruby
@@ -24,7 +24,7 @@ language: ruby
 
 >This is a guest post from [Chris Kenst](https://twitter.com/ckenst).
 
-If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a third party library like Xvfb ([tip 38](/tips/38-headless)) ==**`!! Link needs replacing !!`**== or PhantomJS ([tip 46](/tips/46-headless-ghostdriver)) ==**`!! Link needs replacing !!`**== but those can be hard to install and aren't guaranteed to be supported in the long run (like PhantomJS).
+If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a third party library like Xvfb or PhantomJS but those can be hard to install and aren't guaranteed to be supported in the long run (like PhantomJS).
 
 ## A Solution
 
@@ -91,7 +91,7 @@ When we save our file and run it (e.g. `ruby headless_chrome.rb`) here is what w
 
 ## Summary
 
-Hopefully this tip has helped you get your tests running smoothly locally (or on your CI Server). Between this and the two other headless testing tips available ([here](/tips/38-headless)==**`!! Link needs replacing !!`**== and [here](/tips/46-headless-ghostdriver))==**`!! Link needs replacing !!`**== this is the best option since it's easy to setup, officially supported by the browser vendor, and has a consistent rendering experience to what an end-user would experience in a full instance of Chrome.
+Hopefully this tip has helped you get your tests running smoothly locally (or on your CI Server). This is the best option since it's easy to setup, officially supported by the browser vendor, and has a consistent rendering experience to what an end-user would experience in a full instance of Chrome.
 
 Happy Testing!
 

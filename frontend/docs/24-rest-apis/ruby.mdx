@@ -1,5 +1,5 @@
 ---
-title: '24: REST APIs'
+title: 'REST APIs'
 id: '24-rest-apis-ruby'
 contentUrl: "docs/rest-apis/24-rest-apis-ruby"
 sidebar_label: Ruby
@@ -63,7 +63,6 @@ That tells us we will have to send an `HTTP POST` request to the URL `/v1/create
 
 The following module has a `create_test_user` method which we will incorporate into our test setups. It contains some helpful inline comments that describe each of the actions being taken.
 
-==**`!! Code snippet needs validation !!`**==
 ```ruby
 # filename: rest_api_interface.rb
 
@@ -119,7 +118,6 @@ end
 
 With this we are now ready to make, and then use, test users from within our Selenium code.
 
-==**`!! Code snippet needs validation !!`**==
 ```ruby
 require 'selenium-webdriver'
 require 'rest_api_interface'
@@ -151,7 +149,6 @@ end
 
 With support code like the above, we are free to write code that can assume we are logged in with a clean user. Like the following (which will output the user that is logged in).
 
-==**`!! Code snippet needs validation !!`**==
 ```ruby
 run do
   puts @driver.find_element(:css, '#user_id').text
