@@ -1,9 +1,9 @@
 ---
 title: '73: Open New Window'
 id: '73-open-new-window-java'
-contentUrl: "docs/open-new-window/73-open-new-window-java"
+contentUrl: 'docs/open-new-window/73-open-new-window-java'
 sidebar_label: Java
-text: "Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium."
+text: 'Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium.'
 number: 73
 hide_table_of_contents: true
 publish_date: 2023-02-17
@@ -32,14 +32,15 @@ Previously, you may have sent keystrokes to open a new tab or window with a send
 
 With the release of Selenium 4 comes the `newWindow` command which allows you to create a new window or new tab (without needing a keyboard input), then select that tab, and navigate to a website:
 
-| **Language** | **New Window**                                    | **New Tab**                                    |
-|--------------|---------------------------------------------------|------------------------------------------------|
+| **Language** | **New Window**                                                                                                                                                                                                  | **New Tab**                                                                                                                                                                                                  |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Java**     | [`driver.switchTo().newWindow(WindowType.WINDOW);`](https://github.com/saucelabs-training/demo-java/blob/docs-1.2/selenium-examples/src/test/java/com/saucedemo/selenium/se4newfeatures/NewWindowTest.java#L13) | [`driver.switchTo().newWindow(WindowType.TAB);`](https://github.com/saucelabs-training/demo-java/blob/docs-1.2/selenium-examples/src/test/java/com/saucedemo/selenium/se4newfeatures/NewWindowTest.java#L21) |
-| **Python**   | [`driver.switch_to.new_window('window')`](https://github.com/saucelabs-training/demo-python/blob/docs-1.1/examples/selenium/new_features/test_new_window.py#L5)           | [`driver.switch_to.new_window('tab')`](https://github.com/saucelabs-training/demo-python/blob/docs-1.1/examples/selenium/new_features/test_new_window.py#L12)           |
-| **Ruby**     | [`@driver.switch_to.new_window(:window)`](https://github.com/saucelabs-training/demo-ruby/blob/docs-1.1/training-sessions/selenium4/spec/new_window_spec.rb#L7)           | [`@driver.switch_to.new_window(:tab)`](https://github.com/saucelabs-training/demo-ruby/blob/docs-1.1/training-sessions/selenium4/spec/new_window_spec.rb#L13)           |
-| **C#**       | [`Driver.SwitchTo().NewWindow(WindowType.Window);`](https://github.com/saucelabs-training/demo-csharp/blob/docs-1.1/DotnetCore/Sauce.Demo/Core.Selenium.Examples/Selenium4/NewFeatures/NewWindow.cs#L39) | [`Driver.SwitchTo().NewWindow(WindowType.Tab);`](https://github.com/saucelabs-training/demo-csharp/blob/docs-1.1/DotnetCore/Sauce.Demo/Core.Selenium.Examples/Selenium4/NewFeatures/NewWindow.cs#L48) |
+| **Python**   | [`driver.switch_to.new_window('window')`](https://github.com/saucelabs-training/demo-python/blob/docs-1.1/examples/selenium/new_features/test_new_window.py#L5)                                                 | [`driver.switch_to.new_window('tab')`](https://github.com/saucelabs-training/demo-python/blob/docs-1.1/examples/selenium/new_features/test_new_window.py#L12)                                                |
+| **Ruby**     | [`@driver.switch_to.new_window(:window)`](https://github.com/saucelabs-training/demo-ruby/blob/docs-1.1/training-sessions/selenium4/spec/new_window_spec.rb#L7)                                                 | [`@driver.switch_to.new_window(:tab)`](https://github.com/saucelabs-training/demo-ruby/blob/docs-1.1/training-sessions/selenium4/spec/new_window_spec.rb#L13)                                                |
+| **C#**       | [`Driver.SwitchTo().NewWindow(WindowType.Window);`](https://github.com/saucelabs-training/demo-csharp/blob/docs-1.1/DotnetCore/Sauce.Demo/Core.Selenium.Examples/Selenium4/NewFeatures/NewWindow.cs#L39)        | [`Driver.SwitchTo().NewWindow(WindowType.Tab);`](https://github.com/saucelabs-training/demo-csharp/blob/docs-1.1/DotnetCore/Sauce.Demo/Core.Selenium.Examples/Selenium4/NewFeatures/NewWindow.cs#L48)        |
 
-##### *Click on any of the code snippets in the table for more information and script demos.*
+##### _Click on any of the code snippets in the table for more information and script demos._
+
 <br />
 
 ## Example
@@ -49,7 +50,6 @@ To open a new window, you call the driver you instantiated with a method that al
 After using the new window (or tab) method, use the `driver.get` method to navigate to a website or URL. See the examples in the table of the previous section to see how this would be implemented.
 
 Now you can add any other actions or assertions you’d like to do on the page. In the `Java` example below, you can see how a test and multiple windows are created and handled:
-
 
 ```java
 // filename: new-window.java
@@ -95,13 +95,12 @@ public class NewWindow {
 
 If you run the `Java` example referenced above (`new-window.java`), this test will:
 
-+ Open Firefox browser
-+ Navigate to the-internet website
-+ Open a New Window and move it to a different position on the screen
-+ Navigate to the Typos page on the-internet website
-+ Check the number of windows open
-+ Close all browsers
-
+- Open Firefox browser
+- Navigate to the-internet website
+- Open a New Window and move it to a different position on the screen
+- Navigate to the Typos page on the-internet website
+- Check the number of windows open
+- Close all browsers
 
 ## Summary
 
@@ -113,4 +112,6 @@ Happy Testing!
 
 ## About The Author
 
-This tip is brought to you by contributors at [Sauce Labs](https://saucelabs.com/). To learn more about "website and mobile testing at every stage of development", [click here](https://saucelabs.com/).
+This tip is brought to you by [Lindsay Walker](https://www.linkedin.com/in/lindsayjowalker/)
+
+![Lindsay Walker profile picture](/img/authors/lindsay-walker.jpeg#author-img 'a title')
