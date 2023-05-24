@@ -1,7 +1,9 @@
 ---
-title: CSS vs. XPath 2
-id: 33-css-vs-xpath-2
-slug: css-vs-xpath-2/
+title: 'CSS vs. XPath 2'
+id: '33-css-vs-xpath-2-ruby'
+contentUrl: 'docs/css-vs-xpath-2/33-css-vs-xpath-2-ruby'
+text: 'To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do that by running everything from a local machine while using a performance benchmarking utility.'
+hide_table_of_contents: true
 number: 33
 publish_date: 2014-01-14
 last_update:
