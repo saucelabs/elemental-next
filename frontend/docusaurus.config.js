@@ -56,7 +56,7 @@ const config = {
 
   themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
@@ -114,11 +114,15 @@ const config = {
             ],
           },
           {
-            title: 'Community:',
+            title: 'Get Involved:',
             items: [
               {
                 label: 'Elemental Selenium on Github',
                 to: 'https://github.com/saucelabs/elemental-next',
+              },
+              {
+                label: 'Elemental Selenium Team on Slack',
+                to: 'https://saucelabs.com/resources/community/slack',
               },
             ],
           },
@@ -130,12 +134,12 @@ const config = {
                 to: 'https://www.selenium.dev/documentation/',
               },
               {
-                label: 'Selenium Slack',
-                to: 'https://seleniumhq.slack.com/join/shared_invite/zt-1neaoa52v-FTzht5cd2eYKwSobbhQkEw#/shared-invite/email',
+                label: 'Selenium Community',
+                to: 'https://www.selenium.dev/support/',
               },
               {
-                label: 'Selenium Guidebook',
-                to: 'https://seleniumguidebook.com',
+                label: 'The Team Behind',
+                to: 'https://saucelabs.com/resources/topic-hub/open-source-fellowship',
               },
             ],
           },
@@ -150,7 +154,7 @@ const config = {
       colorMode: {
         disableSwitch: true,
       },
-    }),
+    },
 };
 
 module.exports = config;

@@ -36,10 +36,13 @@ function Home() {
             {' '}
             Make sure your code lands
           </h1>
-          <p data-drip-attribute='description'>
-            A <i>free</i> weekly email of tips to help make Selenium one of the most robust browser automation tools out
-            there.
-          </p>
+          <h2 className='home-subtitle' data-drip-attribute='description'>
+            A <i>free</i> weekly email of tips to help make
+            <br />
+            Selenium one of the most robust browser
+            <br />
+            automation tools out there.
+          </h2>
 
           {/* Drip Sign Up */}
           <form
