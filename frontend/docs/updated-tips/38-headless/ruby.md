@@ -1,7 +1,10 @@
 ---
-title: Ruby
-id: 38-headless-ruby
-slug: ruby/
+title: 'How to Run Your Tests Headlessly with Xvfb'
+id: '38-headless-ruby'
+contentUrl: 'docs/headless-ruby/38-headless-ruby'
+sidebar_label: Ruby
+text: 'If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in.'
+hide_table_of_contents: true
 number: 38
 publish_date: 2015-10-14
 last_update:
