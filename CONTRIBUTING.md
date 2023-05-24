@@ -19,7 +19,7 @@ Adding a new tip tutorial is the best way to have our community engage and share
 
 ## 🐛 Report a bug
 
-Reporting bugs is a great way to contribute and help improve the project, and fix any errors that might effect functionality and usability. Before creating a bug report, please check that an [issue](/issues) reporting the same problem does not already exist. If there is such an issue, you may add your information as a comment to the existing issue.
+Reporting bugs is a great way to contribute and help improve the project, and fix any errors that might effect functionality and usability. Before creating a bug report, please check that an [Issue](../../issues) reporting the same problem does not already exist. If there is such an issue, you may add your information as a comment to the existing issue.
 
 To report a new bug you should open an issue that summarizes the bug and set the label to "bug".
 
