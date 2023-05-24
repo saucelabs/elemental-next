@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: 'How to Run a Test on Multiple Browsers'
 id: '41-one-test-multiple-browsers-ruby'
-slug: ruby/
+contentUrl: 'docs/one-test-multiple-browsers-ruby/41-one-test-multiple-browsers-ruby'
+sidebar_label: Ruby
+text: 'You'll occasionally have something that you want to test across multiple browsers. It would be nice to run your test once and have it execute against all of the browsers you care about. Unfortunately this functionality doesn't come out of the box with most testing frameworks.'
+hide_table_of_contents: true
 number: 41
 publish_date: 2014-03-11
 last_update:
