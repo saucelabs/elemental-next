@@ -45,7 +45,7 @@ const Community = () => {
                 <img src='img/resource_page/slack.svg' alt='' />
               </td>
               <td>
-                <a href='https://saucelabs.com/resources/community' target='_blank' rel='noopener noreferrer'>
+                <a href='https://saucelabs.com/resources/community/slack' target='_blank' rel='noopener noreferrer'>
                   Sauce Labs Community Slack
                 </a>
               </td>
