@@ -100,6 +100,7 @@ const Tips = () => {
           <div className='dropdown-container'>
             <p>Filters:</p>
             <Dropdown
+              ariaLabel='Order Posted'
               options={[
                 { value: '', label: 'Order Posted' },
                 { value: 'oldest', label: 'Oldest First' },
@@ -109,11 +110,13 @@ const Tips = () => {
               onSelectChange={handleOrderChange}
             />
             <Dropdown
+              ariaLabel='Category'
               options={categoryOptions}
               selectedOption={selectedCategory}
               onSelectChange={handleCategoryChange}
             />
             <Dropdown
+              ariaLabel='Difficulty Level'
               options={difficultyOptions}
               selectedOption={selectedDifficulty}
               onSelectChange={handleDifficultyChange}
