@@ -1,15 +1,19 @@
 ---
-title: 'Ruby'
-id: '0-template-ruby'
-slug: ruby/
-number: 0
-publish_date: 2023-02-17
-last_update:
-  date: 2023-02-24
+title: "How to Access Selenium Logs in Real-Time"
+id: '54-logging'
+contentUrl: 'docs/logging/54-logging'
+sidebar_label: Ruby
+text: 'Logging is a deep rabbit hole to fall down in Selenium. The documentation isn't complete and the approach for each of the browser and language bindings is inconsistent and hard to find examples for.'
+hide_table_of_contents: true
+number: 54
+publish_date: 2014-06-10
 tags:
-  - 'template'
-level: 0
-category: 'fundamentals'
+  - "logging"
+  - "logs"
+  - "growl"
+  - "growl notifications"
+level: 3
+category: "troubleshooting"
 language: ruby
 ---
 
