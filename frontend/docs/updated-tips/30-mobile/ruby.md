@@ -1,7 +1,10 @@
 ---
-title: Ruby
+title: How to Test Your Mobile App
 id: 30-mobile-ruby
-slug: ruby/
+contentUrl: 'docs/mobile-ruby/30-mobile-ruby'
+sidebar_label: Ruby
+text: 'Mobile is kind of a big deal. And if you haven't needed to test a mobile app yet, it's only a matter of time. But where do you start? And how do you do it in a way that is complimentary to your exisitng automation and experience?'
+hide_table_of_contents: true
 number: 30
 publish_date: 2013-12-17
 last_update:
