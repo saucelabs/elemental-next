@@ -98,7 +98,7 @@ const Tips = () => {
         <div className='tips-wrapper'>
           <h1 className='tips-header'>The Tips</h1>
           <div className='dropdown-container'>
-            <p>Filter by:</p>
+            <p>Filters:</p>
             <Dropdown
               options={[
                 { value: '', label: 'Order Posted' },

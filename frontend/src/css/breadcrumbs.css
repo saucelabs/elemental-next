@@ -1,0 +1,14 @@
+.breadcrumbs__link svg {
+  vertical-align: none;
+}
+
+.breadcrumbs__link {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: black;
+  font-weight: 700;
+  background: none;
+}

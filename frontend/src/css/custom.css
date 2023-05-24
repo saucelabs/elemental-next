@@ -4,6 +4,7 @@
  * work well for content-centric websites.
  */
 
+@import 'breadcrumbs.css';
 @import 'card.css';
 @import 'community.css';
 @import 'icard.css';
@@ -94,6 +95,10 @@ h2,
 
 #light {
   font-weight: 300;
+}
+
+img {
+  max-width: unset;
 }
 
 td,
