@@ -1,7 +1,10 @@
 ---
-title: Java
+title: How to Upgrade from Selenium RC to WebDriver
 id: 28-upgrading-from-rc-java
-slug: java/
+contentUrl: 'docs/upgrading-from-rc/28-upgrading-from-rc-java
+sidebar_label: Ruby
+text: 'As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC'
+hide_table_of_contents: true
 number: 28
 publish_date: 2015-10-13
 last_update:
