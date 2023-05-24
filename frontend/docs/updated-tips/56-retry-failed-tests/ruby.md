@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: 'How to Automatically Retry Failed Tests'
 id: '56-retry-failed-tests-ruby'
-slug: ruby/
+contentUrl: 'docs/retry-failed-tests-ruby/56-retry-failed-tests-ruby'
+sidebar_label: Ruby
+text: 'You want reliable tests. But no matter how hard you try, you're going to run into intermittent test failures. These can be frustrating time wasters that distract you and your team and begin to erode the trust placed in the automated tests.'
+hide_table_of_contents: true
 number: 56
 publish_date: 2014-06-24
 last_update:
