@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: 'How to Run a Test on Multiple Browsers, In Parallel'
 id: '42-one-test-multiple-browsers-parallel-ruby'
-slug: ruby/
+contentUrl: 'docs/one-test-multiple-browsers-parallel-ruby/42-one-test-multiple-browsers-parallel-ruby'
+sidebar_label: Ruby
+text: 'In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy, it is still a bit lacking.'
+hide_table_of_contents: true
 number: 42
 publish_date: 2014-03-18
 last_update:
