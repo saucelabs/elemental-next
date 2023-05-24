@@ -1,7 +1,10 @@
 ---
-title: CSS vs. XPath 3
-id: 34-css-vs-xpath-3
-slug: css-vs-xpath-3/
+title: 'CSS vs. XPath 3'
+id: '34-css-vs-xpath-3'
+contentUrl: 'docs/css-vs-xpath-3/34-css-vs-xpath-3'
+sidebar_label: Ruby
+text: 'In the last tip I provided benchmarks that showed XPath and CSS performance across various browsers. Since then I've received feedback on some things that my test was missing -- most notably more browser coverage and testing against a larger and deeper page.'
+hide_table_of_contents: true
 number: 34
 publish_date: 2014-01-21
 last_update:
