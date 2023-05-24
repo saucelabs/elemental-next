@@ -1,7 +1,10 @@
 ---
-title: 'Ruby'
+title: 'How to Test Forgot Password'
 id: '43-forgot-password-ruby'
-slug: ruby/
+contentUrl: 'docs/forgot-password-ruby/43-forgot-password-ruby'
+sidebar_label: Ruby
+text: 'Testing e-mail can be a tricky process. Especially when dealing with things like forgot password. A lot of times this is something that gets checked manually. Or worse, it gets overlooked and ends up broken in production.'
+hide_table_of_contents: true
 number: 43
 publish_date: 2015-10-15
 last_update:
