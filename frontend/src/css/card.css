@@ -82,3 +82,9 @@ a:visited {
   background-color: black;
   color: white;
 }
+
+img[src*='#author-img'] {
+  width: 150px;
+  border: 3px solid var(--ifm-color-secondary);
+  border-radius: 50%;
+}
