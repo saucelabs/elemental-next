@@ -1,5 +1,5 @@
 ---
-title: "How to Access Selenium Logs in Real-Time"
+title: 'How to Access Selenium Logs in Real-Time'
 id: '54-logging'
 contentUrl: 'docs/logging/54-logging'
 sidebar_label: Ruby
@@ -8,12 +8,12 @@ hide_table_of_contents: true
 number: 54
 publish_date: 2014-06-10
 tags:
-  - "logging"
-  - "logs"
-  - "growl"
-  - "growl notifications"
+  - 'logging'
+  - 'logs'
+  - 'growl'
+  - 'growl notifications'
 level: 3
-category: "troubleshooting"
+category: 'troubleshooting'
 language: ruby
 ---
 
