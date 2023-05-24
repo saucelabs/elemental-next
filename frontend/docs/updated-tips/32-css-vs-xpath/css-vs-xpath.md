@@ -1,9 +1,9 @@
 ---
-title: CSS vs. Xpath
-id: 32-css-vs-xpath
+title: 'CSS vs. Xpath'
+id: '32-css-vs-xpath'
 contentUrl: 'docs/css-vs-xpath/32-css-vs-xpath'
 sidebar_label: Ruby
-text: 'One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS..'
+text: 'One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS.'
 hide_table_of_contents: true
 number: 32
 publish_date: 2014-01-07
