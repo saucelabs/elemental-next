@@ -18,6 +18,21 @@
     height: 33px;
     width: 133px;
   }
+  /* .navbar .DocSearch-Button {
+    display: none;
+  } */
+}
+
+.navbar .DocSearch-Button {
+  align-items: center;
+  border: 0;
+  border-radius: 10px !important;
+  width: 45px;
+  height: 40px;
+}
+
+.navbar .DocSearch-Button-Placeholder {
+  display: none;
 }
 
 .DocSearch-Button svg {
