@@ -126,7 +126,7 @@ const Tips = () => {
                 onSelectChange={handleDifficultyChange}
               />
             </div>
-            <DocSearch appId='YOUR_APP_ID' indexName='YOUR_INDEX_NAME' apiKey='YOUR_SEARCH_API_KEY' />
+            <DocSearch appId='RO95H65NEO' indexName='Elemental Selenium' apiKey='8d249abc4671e5554fe8f451ffa5db50' />
           </div>
           {filteredCards.map((card) => (
             <Card
