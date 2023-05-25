@@ -1,7 +1,7 @@
 ---
-title:'Work With Multiple Windows'
-id: "4-work-with-multiple-windows-java"
-contentUrl: "docs/work-with-multiple-windows/4-work-with-multiple-windows-java"
+title: 'Work With Multiple Windows'
+id: '4-work-with-multiple-windows-java'
+contentUrl: 'docs/work-with-multiple-windows/4-work-with-multiple-windows-java'
 sidebar_label: Java
 text: "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
 number: 4
@@ -30,7 +30,6 @@ Occasionally you'll run into a link or action in the application you're testing 
 On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.
 
 Let's step through a couple of examples to demonstrate.
-
 
 ## Example 1
 
@@ -127,17 +126,16 @@ After loading the page we store the window handle in a variable (e.g., `firstWin
 
 Now that we have two windows open we grab all of the window handles and search through them to find the new window handle (e.g., the handle that doesn't match the one we've already stored). We store the new window result in another variable (e.g., `newWindow`) and then switch between the windows, checking page title each time to make sure the correct window is in focus.
 
-
 ## Expected Behavior
 
 If you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen for either example:
 
-+ Open the browser
-+ Visit the page
-+ Click to open a new window
-+ Switch between the windows
-+ Check the page title to make sure the correct window is in focus
-+ Close the browser
+- Open the browser
+- Visit the page
+- Click to open a new window
+- Switch between the windows
+- Check the page title to make sure the correct window is in focus
+- Close the browser
 
 ## Summary
 

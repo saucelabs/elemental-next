@@ -1,7 +1,7 @@
 ---
-title:'Rety Test Actions'
+title: 'Retry Test Actions'
 id: '10-retry-test-actions-ruby'
-contentUrl: "docs/retry-test-actions-ruby/10-retry-test-actions-ruby"
+contentUrl: 'docs/retry-test-actions-ruby/10-retry-test-actions-ruby'
 sidebar_label: Ruby
 text: "We all write tests with the best intention of having them pass and, when they fail, to reveal legitimate issues in the application we're testing. But that's not always easy to accomplish. Especially when your application is dependent upon third-party service providers (e.g. payment providers, social networks, etc)."
 number: 10
@@ -31,9 +31,9 @@ If it finds what it needs, the tests passes. If it doesn't, the test fails -- an
 
 ## Example
 
-The example application is a page that displays a notification message at the top of the page. It will either say __Action successful__ or __Action unsuccessful, please try again__. You can see it [here](http://the-internet.herokuapp.com/notification_message).
+The example application is a page that displays a notification message at the top of the page. It will either say **Action successful** or **Action unsuccessful, please try again**. You can see it [here](http://the-internet.herokuapp.com/notification_message).
 
-Our goal in this example is verify an __Action successful__ message.
+Our goal in this example is verify an **Action successful** message.
 
 The beginning of our test script starts off simply with accessing our libraries (Selenium and RSpec) and creating our setup, teardown, and run actions.
 
@@ -95,19 +95,18 @@ run {
 
 In this approach we have abstracted out the text grab of the notification message into a method which sets what it finds into an instance variable. And we've added a new method called `retry_if_notification_message_contains` that accepts an argument of `fail_message`. In it we accept a yield in 2 places and have constructed a simple loop that runs 3 times or until the notification message does not match the `fail_message`, whichever comes first. And the yields will execute whatever code is passed both before and during the loop.
 
-In the run block we pass our navigation and text grab actions as a block into `retry_if_notification_message_contains`, passing the failure message of __please try again__ as the argument for `fail_message` to receive.
+In the run block we pass our navigation and text grab actions as a block into `retry_if_notification_message_contains`, passing the failure message of **please try again** as the argument for `fail_message` to receive.
 
 And we top everything off with an assertion.
 
-
 ## Expected Behavior
 
-+ Load the page
-+ Grab the notification message text
-+ Compare it to the failure message
-+ If it matches, retry
-+ If 3 retries attempted, end loop, and fail test
-+ If it doesn't match, pass the test
+- Load the page
+- Grab the notification message text
+- Compare it to the failure message
+- If it matches, retry
+- If 3 retries attempted, end loop, and fail test
+- If it doesn't match, pass the test
 
 ## Summary
 

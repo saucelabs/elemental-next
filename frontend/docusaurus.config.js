@@ -154,6 +154,27 @@ const config = {
       colorMode: {
         disableSwitch: true,
       },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'RO95H65NEO',
+
+        // Public API key: it is safe to commit it
+        apiKey: '8d249abc4671e5554fe8f451ffa5db50',
+
+        indexName: 'Elemental Selenium',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+        externalUrlRegex: 'external\\.com|domain\\.com',
+
+        // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
+        replaceSearchResultPathname: {
+          from: '/docs/', // or as RegExp: /\/docs\//
+          to: '/',
+        },
+      },
     },
 };
 
