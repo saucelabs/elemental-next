@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
+import { DocSearch } from '@docsearch/react';
+
+import '@docsearch/css';
 
 import Data from '@site/src/scripts/data';
 import Card from '@site/src/components/card';
@@ -98,29 +101,32 @@ const Tips = () => {
         <div className='tips-wrapper'>
           <h1 className='tips-header'>The Tips</h1>
           <div className='dropdown-container'>
-            <p>Filters:</p>
-            <Dropdown
-              ariaLabel='Order Posted'
-              options={[
-                { value: '', label: 'Order Posted' },
-                { value: 'oldest', label: 'Oldest First' },
-                { value: 'newest', label: 'Newest First' },
-              ]}
-              selectedOption={selectedOrder}
-              onSelectChange={handleOrderChange}
-            />
-            <Dropdown
-              ariaLabel='Category'
-              options={categoryOptions}
-              selectedOption={selectedCategory}
-              onSelectChange={handleCategoryChange}
-            />
-            <Dropdown
-              ariaLabel='Difficulty Level'
-              options={difficultyOptions}
-              selectedOption={selectedDifficulty}
-              onSelectChange={handleDifficultyChange}
-            />
+            <div className='dropdown-container-left'>
+              <p>Filters:</p>
+              <Dropdown
+                ariaLabel='Order Posted'
+                options={[
+                  { value: '', label: 'Order Posted' },
+                  { value: 'oldest', label: 'Oldest First' },
+                  { value: 'newest', label: 'Newest First' },
+                ]}
+                selectedOption={selectedOrder}
+                onSelectChange={handleOrderChange}
+              />
+              <Dropdown
+                ariaLabel='Category'
+                options={categoryOptions}
+                selectedOption={selectedCategory}
+                onSelectChange={handleCategoryChange}
+              />
+              <Dropdown
+                ariaLabel='Difficulty Level'
+                options={difficultyOptions}
+                selectedOption={selectedDifficulty}
+                onSelectChange={handleDifficultyChange}
+              />
+            </div>
+            <DocSearch appId='YOUR_APP_ID' indexName='YOUR_INDEX_NAME' apiKey='YOUR_SEARCH_API_KEY' />
           </div>
           {filteredCards.map((card) => (
             <Card
