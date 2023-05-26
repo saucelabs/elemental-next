@@ -1,8 +1,8 @@
 ---
-title: 'Fetching MD Files'
-id: 'main'
-contentUrl: 'docs/dropdown/main'
-sidebar_label: Ruby
+title: 'Main File 2'
+id: 'file2'
+contentUrl: 'docs/testing-dropdown/file2'
+sidebar_label: Java
 text: 'Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium.'
 number: 73
 hide_table_of_contents: true
@@ -17,9 +17,7 @@ tags:
 level: 1
 category:
   - 'testing'
-language: ruby
+language: java
 ---
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
-
-<DropdownMarkdown folderName='dropdown' />
+# I am file 2
