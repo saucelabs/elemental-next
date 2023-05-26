@@ -939,6 +939,26 @@ const Data = [
     "text": "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
   },
   {
+    "title": "How To Run Your Tests Headlessly with Chrome",
+    "id": "72-headless-chrome",
+    "number": 72,
+    "publish_date": "2017-09-25T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-06T00:00:00.000Z"
+    },
+    "tags": [
+      "headless",
+      "chrome"
+    ],
+    "level": 2,
+    "category": [
+      "remote"
+    ],
+    "language": "ruby",
+    "contentUrl": "docs/how-to-run-your-tests-headlessly-with-chrome/72-headless-chrome/main",
+    "text": "If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
+  },
+  {
     "title": "Headless Chrome",
     "id": "72-headless-chrome-ruby",
     "number": 72,
