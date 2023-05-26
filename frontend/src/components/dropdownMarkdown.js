@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MDXProvider } from '@mdx-js/react';
 
 const DropdownMarkdown = ({ folderName }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('ruby');
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.value);
+  };
 
   const renderSelectedFile = () => {
     if (selectedFile) {
@@ -16,19 +20,20 @@ const DropdownMarkdown = ({ folderName }) => {
     return null;
   };
 
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.value);
-  };
+  useEffect(() => {
+    renderSelectedFile();
+  }, [selectedFile]);
 
   return (
     <div>
-      <select onChange={handleFileChange}>
-        <option value=''>Select a file</option>
-        <option value='file1'>File 1</option>
-        <option value='file2'>File 2</option>
-        <option value='file3'>File 3</option>
-      </select>
       {renderSelectedFile()}
+      <select onChange={handleFileChange} value={selectedFile}>
+        <option value='csharp'>CSharp</option>
+        <option value='ruby'>Ruby</option>
+        <option value='java'>Java</option>
+        <option value='javascript'>JavaScript</option>
+        <option value='python'>Python</option>
+      </select>
     </div>
   );
 };
