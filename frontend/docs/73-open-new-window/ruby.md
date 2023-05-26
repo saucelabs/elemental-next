@@ -1,36 +1,15 @@
 ---
-title: 'Open New Window'
-id: '73-open-new-window-java'
-contentUrl: 'docs/open-new-window/73-open-new-window-java'
-sidebar_label: Java
-text: 'Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium.'
-number: 73
-hide_table_of_contents: true
-publish_date: 2023-02-17
-last_update:
-  date: 2023-03-15
-tags:
-  - 'new window'
-  - 'new tab'
-  - 'selenium 4'
-  - 'no keystrokes needed'
+language: ruby
 level: 1
-category:
-  - 'testing'
-language: java
+hide_sidebar: true
+publish_date: 2023-02-17
+last_update: 
+  date: 2023-02-24
 ---
-
-# Open a New Window or Tab
-
-## Intro
-
-Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium.
-
-Previously, you may have sent keystrokes to open a new tab or window with a send keys method and `Command t` (MacOS) or `Control n` (Windows). However, this doesn’t translate well across different operating systems and browser versions.
 
 ## A Solution
 
-With the release of Selenium 4 comes the `newWindow` command which allows you to create a new window or new tab (without needing a keyboard input), then select that tab, and navigate to a website:
+With the release of Selenium 4 comes the `new_window` command which allows you to create a new window or new tab (without needing a keyboard input), then select that tab, and navigate to a website:
 
 | **Language** | **New Window**                                                                                                                                                                                                  | **New Tab**                                                                                                                                                                                                  |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -49,51 +28,48 @@ To open a new window, you call the driver you instantiated with a method that al
 
 After using the new window (or tab) method, use the `driver.get` method to navigate to a website or URL. See the examples in the table of the previous section to see how this would be implemented.
 
-Now you can add any other actions or assertions you’d like to do on the page. In the `Java` example below, you can see how a test and multiple windows are created and handled:
+Now you can add any other actions or assertions you’d like to do on the page. In the `Ruby` example below, you can see how a test and multiple windows are created and handled:
 
-```java
-// filename: new-window.java
+```ruby
+#filename new-window.rb
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import junit.framework.TestCase;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WindowType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+require 'selenium-webdriver'
+require 'rspec/expectations'
 
+include RSpec::Matchers
 
-public class NewWindow {
-    WebDriver driver;
+def setup
+  @driver = Selenium::WebDriver.for :firefox
+end
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+def teardown
+  @driver.quit
+end
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
+def run
+  setup
+  yield
+  teardown
+end
 
+run do
+  @driver.get("https://the-internet.herokuapp.com")
+  @driver.switch_to.new_window(:window)
+  @driver.manage.window.position = Selenium::WebDriver::Point.new(100, 400)
+  @driver.get("https://the-internet.herokuapp.com/typos")
 
-    @Test
-    public void multipleWindows() throws InterruptedException {
-        driver.get("http://the-internet.herokuapp.com/windows");
-        driver.switchTo().newWindow(WindowType.WINDOW);
-        driver.manage().window().setPosition(new Point(100, 400));
-        driver.get("https://the-internet.herokuapp.com/typos");
-
-        TestCase Assertions = null;
-        TestCase.assertEquals(2, driver.getWindowHandles().toArray().length);
-    }
-}
+  windows_count = @driver.window_handles.length
+  if windows_count == 2
+    puts "Test passed: Found 2 windows open"
+  else
+    raise "Expected 2 windows, but found #{windows_count}"
+end
+end
 ```
 
 ## Expected Behavior
 
-If you run the `Java` example referenced above (`new-window.java`), this test will:
+If you run the `Ruby` example referenced above (`ruby new-window.rb`), this test will:
 
 - Open Firefox browser
 - Navigate to the-internet website
