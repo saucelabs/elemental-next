@@ -14,7 +14,7 @@ const Data = [
     "category": [
       "template"
     ],
-    "contentUrl": "/docs/template/template",
+    "contentUrl": "/elemental-next/docs/template/template",
     "text": "This is a template."
   },
   {
@@ -53,7 +53,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/how-to-run-your-tests-headlessly-with-chrome/72-headless-chrome/main",
+    "contentUrl": "docs/headless-chrome/72-headless-chrome",
     "text": "If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
   },
   {
