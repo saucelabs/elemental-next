@@ -13,7 +13,9 @@ const DropdownMarkdown = ({ folderName }) => {
       const SelectedFile = require(`../../docs/${folderName}/${selectedFile}.md`).default;
       return (
         <MDXProvider>
-          <SelectedFile />
+          <div className='dropdown-markdown-content'>
+           <SelectedFile />
+          </div>
         </MDXProvider>
       );
     }
@@ -25,15 +27,15 @@ const DropdownMarkdown = ({ folderName }) => {
   }, [selectedFile]);
 
   return (
-    <div>
-      {renderSelectedFile()}
-      <select onChange={handleFileChange} value={selectedFile}>
+    <div className='dropdown-markdown-wrapper'>
+      <select className='dropdown-markdown' onChange={handleFileChange} value={selectedFile}>
         <option value='csharp'>CSharp</option>
         <option value='ruby'>Ruby</option>
         <option value='java'>Java</option>
         <option value='javascript'>JavaScript</option>
         <option value='python'>Python</option>
       </select>
+      {renderSelectedFile()}
     </div>
   );
 };
