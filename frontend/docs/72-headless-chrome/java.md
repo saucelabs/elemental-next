@@ -8,7 +8,7 @@ last_update:
 ---
 
 Oh no! It seems like we are missing code here.
-Help the community by [contributing with a code example](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md)
+Help the community <button className='hello'><a href="https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">ADD EXAMPLE</a></button>
 
 ## A Solution
 
@@ -30,4 +30,4 @@ Help the community by [contributing with a code example](https://github.com/sauc
 
 <!-- Write a short bio, 2-3 sentences and include any links to contact you (LinkedIn, Twitter, website, etc) -->
 
-<!-- ![Author Name profile picture](/img/authors/<author-img> 'a title') -->
+<!-- ![Author Name profile picture](/img/authors/<replace-with-your-img-file-name>#author-img 'a title') -->
