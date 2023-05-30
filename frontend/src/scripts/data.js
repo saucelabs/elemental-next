@@ -14,8 +14,29 @@ const Data = [
     "category": [
       "template"
     ],
-    "contentUrl": "/elemental-next/docs/template/template",
+    "contentUrl": "/docs/template/template",
     "text": "This is a template."
+  },
+  {
+    "title": "Safari",
+    "id": "69-safari-driver",
+    "number": 69,
+    "publish_date": "2015-08-25T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-13T00:00:00.000Z"
+    },
+    "tags": [
+      "safari",
+      "drivers",
+      "safaridriver",
+      "different browsers"
+    ],
+    "level": 1,
+    "category": [
+      "tools"
+    ],
+    "contentUrl": "docs/safari/69-safari-driver",
+    "text": "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
   },
   {
     "title": "The Mobile Testing Pyramid",

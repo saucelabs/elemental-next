@@ -1,10 +1,10 @@
 ---
 language: python
-level: #add level 1, 2 or 3
+level:
 hide_sidebar: true
-publish_date: 2020-00-00 #add date YYYY-MM-DD
+publish_date: 2020-12-00
 last_update:
-  date: 2020-00-00 #add date YYYY-MM-DD
+  date: 2020-12-00
 ---
 
 Oh no! It seems like we are missing code here.

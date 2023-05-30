@@ -1,32 +1,11 @@
 ---
-title: 'Highlight Elements'
-id: '65-highlight-elements-ruby'
-contentUrl: "docs/highlight-elements/65-highlight-elements-ruby"
-sidebar_label: Ruby
-text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
-number: 65
-hide_table_of_contents: true
+language: ruby
+level: 2
+hide_sidebar: true
 publish_date: 2014-09-11
 last_update:
   date: 2023-03-06
-tags:
-  - 'guest post'
-  - 'highlight'
-  - 'javascript'
-  - 'locators'
-level: 2
-category:
-  - 'troubleshooting'
-language: ruby
 ---
-
-# How to Visually Verify Your Locators
-
-## Intro
-
->This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
-
-It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
 
 ## A Solution
 

@@ -1,30 +1,11 @@
 ---
-title: "Safari"
-id: "69-safari-csharp"
-contentUrl: "docs/safari/69-safari-csharp"
-sidebar_label: Csharp
-text: "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
-number: 69
-hide_table_of_contents: true
-publish_date: 2016-06-13
-last_update:
-  date: 2023-03-30
-tags:
-  - "safari"
-  - "drivers"
-  - "safaridriver"
-  - "different browsers"
+language: java
 level: 1
-category:
-  - tools
-language: csharp
+hide_sidebar: true
+publish_date: 2015-08-25
+last_update:
+  date: 2023-04-03
 ---
-
-# Safari Browser
-
-## Intro
-
-Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
 
 ## A Solution
 
@@ -46,47 +27,43 @@ After that, make sure it's enabled. To do that:
 
 Let's wire up a simple test so we can see that everything works as expected.
 
-```csharp
-// filename: Safari.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Safari;
+## Expected Behavior
 
-public class Safari
-{
-    IWebDriver Driver;
+Let's wire up a simple test so we can see that everything works as expected.
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new SafariDriver();
+```java
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class Safari {
+    WebDriver driver;
+
+    @Before
+    public void setUp() throws Exception {
+        driver = new SafariDriver();
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
+    @After
+    public void tearDown() throws Exception {
+        driver.quit();
     }
 
-    [Test]
-    public void SimpleTest()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com");
-        Assert.That(Driver.Title.Equals("The Internet"));
+    @Test
+    public void dropdownTest() {
+        driver.get("http://the-internet.herokuapp.com/");
+        String title = driver.getTitle();
+        assertThat(title, is(equalTo("The Internet")));
     }
+
 }
 ```
 
 When we run the test, we should see a successful communication between Selenium and Safari.
-
-## Expected Behavior
-
-When you save the file and run it (e.g., `nunit3-console.exe .\Safari.sln` from the command-line), here is what will happen.
-
-- Safari opens
-- The home page of [the-internet](http://github.com/tourdedave/the-internet) loads
-- The title of the page is checked to make sure it's what we expect
-- Safari closes
 
 ## Summary
 
@@ -94,12 +71,13 @@ Keep in mind that Safari can load without you realizing it (since it doesn't obt
 
 And if you're running Safari on a remote node (or set of nodes), you'll need to install and enable the SafariDriver browser extension on each of them.
 
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial code for this tip.
+
 Happy Testing!
+
 
 ## About The Author
 
 Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
 
 Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

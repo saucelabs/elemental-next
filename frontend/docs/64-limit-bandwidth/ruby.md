@@ -1,27 +1,11 @@
 ---
-title: 'Limit Bandwidth'
-id: '64-limit-bandwidth-ruby'
-contentUrl: "docs/limit-bandwidth/64-limit-bandwidth-ruby"
-sidebar_label: Ruby
-text: "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?"
-number: 64
-hide_table_of_contents: true
+language: ruby
+level: 3
+hide_sidebar: true
 publish_date: 2015-10-16
 last_update:
   date: 2023-04-06
-tags:
-  - 'browsermob-proxy'
-level: 3
-category:
-  - 'troubleshooting'
-language: ruby
 ---
-
-# How to Simulate Slow Connections
-
-## Intro
-
-With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?
 
 ## A Solution
 

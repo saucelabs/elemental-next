@@ -1,32 +1,11 @@
 ---
-title: 'Highlight Elements'
-id: '65-highlight-elements-python'
-contentUrl: "docs/highlight-elements/65-highlight-elements-python"
-sidebar_label: Python
-text: "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
-number: 65
-hide_table_of_contents: true
+language: python
+level: 2
+hide_sidebar: true
 publish_date: 2016-11-23
 last_update:
   date: 2023-03-15
-tags:
-  - guest post
-  - highlight
-  - javascript
-  - locators
-level: 2
-category:
-  - troubleshooting
-language: python
 ---
-
-# How to Visually Verify Your Locators
-
-## Intro
-
->This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
-
-It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
 
 ## A Solution
 

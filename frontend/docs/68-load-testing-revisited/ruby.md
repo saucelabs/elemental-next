@@ -1,30 +1,11 @@
 ---
-title: 'Load Testing Revisited'
-id: '68-load-testing-revisited-ruby'
-contentUrl: "docs/load-testing-revisited/68-load-testing-revisited-ruby"
-sidebar_label: Ruby
-text: "In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP library. While it works, it's only useful for rudimentary test cases. For more involved test cases and more powerful load generation, we're going to need something stronger."
-number: 68
-hide_table_of_contents: true
+language: ruby
+level: 3
+hide_sidebar: true
 publish_date: 2014-10-08
 last_update:
   date: 2023-04-06
-tags:
-  - 'jmeter'
-  - 'load testing'
-level: 3
-category:
-  - 'tools'
-language: ruby
 ---
-
-# How to Do Load Testing With Jmeter and Selenium
-
-## Intro
-
-In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP library. While it works, it's only useful for rudimentary test cases.
-
-For more involved test cases and more powerful load generation, we're going to need something stronger.
 
 ## A Solution
 

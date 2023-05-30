@@ -1,32 +1,11 @@
 ---
-title: 'Broken Images'
-id: '67-broken-images-ruby'
-contentUrl: "docs/broken-images/67-broken-images-ruby"
-sidebar_label: Ruby
-text: "Selenium is built to mimic human action (e.g., clicking, typing, dragging, dropping, etc.). So how do you use it to test for broken images?"
-number: 67
-hide_table_of_contents: true
+language: ruby
+level: 3
+hide_sidebar: true
 publish_date: 2015-10-20
 last_update:
   date: 2023-04-06
-tags:
-  - 'broken image'
-  - 'broken images'
-  - 'proxy'
-  - 'browsermob-proxy'
-  - 'http library'
-  - 'javascript'
-level: 3
-category:
-  - 'troubleshooting'
-language: ruby
 ---
-
-# How to Test for Broken Images
-
-## Intro
-
-Selenium is built to mimic human action (e.g., clicking, typing, dragging, dropping, etc.). So how do you use it to test for broken images?
 
 ## A Solution
 
