@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[7120],{9931:s=>{s.exports=JSON.parse('{"label":"REST APIs","permalink":"/docs/tags/rest-ap-is","allTagsPath":"/docs/tags","count":1,"items":[{"id":"rest-apis/24-rest-apis-ruby","title":"REST APIs","description":"Intro","permalink":"/docs/rest-apis/24-rest-apis-ruby"}]}')}}]);

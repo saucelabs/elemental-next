@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[2957],{2216:e=>{e.exports=JSON.parse('{"label":"broken image","permalink":"/docs/tags/broken-image","allTagsPath":"/docs/tags","count":1,"items":[{"id":"broken-images/67-broken-images-ruby","title":"Broken Images","description":"Intro","permalink":"/docs/broken-images/67-broken-images-ruby"}]}')}}]);

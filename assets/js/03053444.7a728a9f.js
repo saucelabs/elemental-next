@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[147],{6413:o=>{o.exports=JSON.parse('{"label":"to the cloud","permalink":"/docs/tags/to-the-cloud","allTagsPath":"/docs/tags","count":1,"items":[{"id":"cloud/26-cloud-ruby","title":"Cloud","description":"Intro","permalink":"/docs/cloud/26-cloud-ruby"}]}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[557],{7978:r=>{r.exports=JSON.parse('{"label":"wrapper","permalink":"/docs/tags/wrapper","allTagsPath":"/docs/tags","count":1,"items":[{"id":"wrapper/55-wrapper-ruby","title":"Wrapper","description":"Intro","permalink":"/docs/wrapper/55-wrapper-ruby"}]}')}}]);

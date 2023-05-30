@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[2501],{684:e=>{e.exports=JSON.parse('{"label":"cloud","permalink":"/elemental-next/docs/tags/cloud","allTagsPath":"/elemental-next/docs/tags","count":1,"items":[{"id":"cloud/26-cloud-ruby","title":"Cloud","description":"Intro","permalink":"/elemental-next/docs/cloud/26-cloud-ruby"}]}')}}]);
