@@ -1,35 +1,11 @@
 ---
-title: 'How To Press Keyboard Keys'
-id: '61-keyboard-keys-python'
-contentUrl: "docs/how-to-press-keyboard-keys/61-keyboard-keys-python"
-sidebar_label: Python
-text: "On occasion you'll come across functionality that requires the use of keyboard key presses in your tests. Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter. But how do you do it and where do you start?"
-number: 61
-hide_table_of_contents: true
+language: python
+level: 1
+hide_sidebar: true
 publish_date: 2016-11-19
 last_update:
     date: 2023-03-03
-tags:
-  - 'keyboard'
-  - 'keys'
-  - 'key presses'
-  - 'tab'
-  - 'enter'
-level: 1
-category:
-    - fundamentals
-language: python
 ---
-
-# How to Press Keyboard Keys
-
-## Intro
-
-On occasion you'll come across functionality that requires the use of keyboard key presses in your tests.
-
-Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter.
-
-But how do you do it and where do you start?
 
 ## A Solution
 

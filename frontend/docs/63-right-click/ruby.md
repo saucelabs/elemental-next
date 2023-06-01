@@ -1,31 +1,11 @@
 ---
-title: 'Right Click'
-id: '63-right-click-ruby'
-contentUrl: "docs/right-click/63-right-click-ruby"
-sidebar_label: Ruby
-text: "Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?"
-number: 63
-hide_table_of_contents: true
+language: ruby
+level: 2
+hide_sidebar: true
 publish_date: 2015-10-13
 last_update:
   date: 2023-03-06
-tags:
-  - 'right-click'
-  - 'right click'
-  - 'context menu'
-  - 'action builder'
-  - 'context click'
-level: 2
-category:
-  - 'fundamentals'
-language: ruby
 ---
-
-# How to Right-click
-
-## Intro
-
-Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
 
 ## A Solution
 
