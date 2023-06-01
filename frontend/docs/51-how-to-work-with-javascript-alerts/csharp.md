@@ -1,24 +1,10 @@
 ---
-title: "How To Work With JavaScript Alerts"
-id: "51-javascript-alerts-csharp"
-contentUrl: "docs/how-to-work-with-javascript-alerts/51-javascript-alerts-csharp"
-sidebar_label: Csharp
-text: "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
-number: 51
-hide_table_of_contents: true
+language: csharp
+level: 1
+hide_sidebar: true
 publish_date: 2016-06-13
 last_update:
   date: 2023-03-30
-tags:
-  - "javascript"
-  - "javascript alerts"
-  - "javascript popups"
-  - "javascript dialogs"
-level: 1
-category:
-  - fundamentals
-  - tools
-language: csharp
 ---
 
 # How to Work with JavaScript Alerts

@@ -1,33 +1,11 @@
 ---
-title: 'Junit XML'
-id: '57-junit-xml-ruby'
-contentUrl: "docs/junit-xml/57-junit-xml-ruby"
-sidebar_label: Ruby
-text: "If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a Continuous Integration server."
-number: 57
-hide_table_of_contents: true
+language: ruby
+level: 1
+hide_sidebar: true
 publish_date: 2015-07-14
 last_update:
   date: 2023-02-22
-tags:
-  - 'xml'
-  - 'junit xml'
-  - 'ci'
-  - 'continuous integration'
-  - 'reporting'
-level: 1
-category:
-  - 'tools'
-language: ruby
 ---
-
-# How to Prepare Your Tests for Continuous Integration
-
-## Intro
-
-If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) (CI) server.
-
-In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report. But what does this entail? How do you set it up? And will it work when running things in parallel?
 
 ## A Solution
 

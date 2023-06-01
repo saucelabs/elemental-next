@@ -1,31 +1,11 @@
 ---
-title: 'How To Use Selenium Grid'
-id: '52-how-to-use-selenium-grid-python'
-contentUrl: "docs/grid/52-how-to-use-selenium-grid-python"
-sidebar_label: Python
-text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
-number: 52
-publish_date: 2016-11-17
-hide_table_of_contents: true
-last_update:
-  date: 2023-02-24
-tags:
-  - 'grid'
-  - 'selenium grid'
-  - 'cross browser'
+language: java
 level: 2
-category:
-  - 'tools'
-language: python
+hide_sidebar: true
+publish_date: 2015-11-11
+last_update:
+  date: 2023-02-22
 ---
-
-# How to Use Selenium Grid
-
-## Intro
-
-If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using
-a third-party solution like [Sauce Labs](https://saucelabs.com/) or [BrowserStack](http://www.browserstack.com/) then what
-do you do?
 
 ## A Solution
 
@@ -91,45 +71,52 @@ There are numerous parameters that we can use at run time. You can see a full li
 
 ### Part 2: Test Setup
 
-Now let's wire up a simple test script to use our new Grid.
+Now let's wire up a simple test to use our new Grid.
 
-First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+```java
+// filename: Grid.java
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import java.net.URL;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-```python
-# filename: grid.py
-import unittest
-from selenium import webdriver
+public class Grid {
+    WebDriver driver;
 
+    @Before
+    public void setUp() throws Exception {
+        FirefoxOptions capabilities = new FirefoxOptions();
+        String url = "http://localhost:4444";
+        driver = new RemoteWebDriver(new URL(url), capabilities);
+    }
 
-class Grid(unittest.TestCase):
+    @After
+    public void tearDown() throws Exception {
+        driver.quit();
+    }
 
-    def setUp(self):
-        firefox_options = webdriver.FirefoxOptions()
-        self.driver = webdriver.Remote(
-            command_executor='http://localhost:4444/wd/hub',
-            options=firefox_options
-        )
+    @Test
+    public void gridTest() {
+        driver.get("http://the-internet.herokuapp.com/");
+        assertThat(driver.getTitle(), is(equalTo("The Internet")));
+    }
 
-    def tearDown(self):
-        self.driver.quit()
-
-    def test_page_loaded(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com')
-        assert driver.title == 'The Internet'
-
-if __name__ == "__main__":
-    unittest.main()
+}
 ```
 
-Notice in `setUp` we're using remote WebDriver in Selenium (e.g., `webdriver.Remote`) to connect to the Grid.
-And we are telling the Grid which browser we want to use with the browser options (e.g., `firefox_options = webdriver.FirefoxOptions()`).
+Notice in this configuration we're using a remote WebDriver in Selenium (e.g., `new RemoteWebDriver()`) to connect to the Grid.
+And we are telling the Grid which browser we want to use with the browser options (e.g., `new FirefoxOptions();`).
 
 You can see a full list of the available browser options at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/browsers/).
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python grid.py` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
 
 + Connect to the Grid Hub
 + Hub determines which Node has the necessary browser/platform combination
@@ -151,6 +138,8 @@ browser you're working with:
 Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you
 parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a
 way to execute your tests in parallel.
+
+Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
 

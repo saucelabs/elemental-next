@@ -1,31 +1,12 @@
 ---
-title: 'How To Use Selenium Grid'
-id: '52-how-to-use-selenium-grid-ruby'
-contentUrl: "docs/grid/52-how-to-use-selenium-grid-ruby"
-sidebar_label: Ruby
-text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
-number: 52
+language: ruby
+level: 2
+hide_sidebar: true
 publish_date: 2015-08-25
 hide_table_of_contents: true
 last_update:
   date: 2023-02-24
-tags:
-  - 'grid'
-  - 'selenium grid'
-  - 'cross browser'
-level: 2
-category:
-  - 'tools'
-language: ruby
 ---
-
-# How to Use Selenium Grid
-
-## Intro
-
-If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using
-a third-party solution like [Sauce Labs](https://saucelabs.com/) or [BrowserStack](http://www.browserstack.com/) then what
-do you do?
 
 ## A Solution
 

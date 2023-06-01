@@ -1,35 +1,11 @@
 ---
-title: 'How To Work With JavaScript Alerts'
-id: '51-javascript-alerts-python'
-contentUrl: "docs/how-to-work-with-javascript-alerts/51-javascript-alerts-python"
-sidebar_label: Python
-text: 'Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.'
-number: 51
-hide_table_of_contents: true
+language: python
+level: 1
+hide_sidebar: true
 publish_date: 2016-11-19
 last_update:
   date: 2023-03-03
-tags:
-  - 'javascript'
-  - 'javascript alerts'
-  - 'javascript popups'
-  - 'javascript dialogs'
-level: 1
-category:
-  - fundamentals
-  - tools
-language: python
 ---
-
-# How to Work with JavaScript Alerts
-
-## Intro
-
-Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes.
-
-A popular use case for alerts is in the case of error prevention for password restrictions.
-
-If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc.) then you need to know how to handle them in your Selenium tests.
 
 ## A Solution
 

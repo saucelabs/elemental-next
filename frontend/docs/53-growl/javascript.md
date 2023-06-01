@@ -1,30 +1,11 @@
 ---
-title: 'Growl'
-id: 53-growl-javascript
-contentUrl: "docs/growl/53-growl-javascript"
-sidebar_label: Javascript
-text: "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
-number: 53
-hide_table_of_contents: true
+language: javascript
+level: 2
+hide_sidebar: true
 publish_date: 2019-08-09
 last_update:
   date: 2023-03-28
-tags:
-  - jquery
-  - growl
-  - growl notifications
-  - jquery-growl
-level: 2
-category:
-  - troubleshooting
-language: javascript
 ---
-
-# How to Add Growl Notifications to Your Tests
-
-## Intro
-
-Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece -- all for the sake of trying to track down a transient issue.
 
 ## A Solution
 

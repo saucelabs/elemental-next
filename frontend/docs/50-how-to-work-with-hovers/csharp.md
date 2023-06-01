@@ -1,29 +1,11 @@
 ---
-title: "How To Work With Hovers"
-id: "50-hovers-csharp"
-contentUrl: "docs/how-to-work-with-hovers/50-hovers-csharp"
-sidebar_label: Csharp
-text: "If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution."
-number: 50
-hide_table_of_contents: true
+language: csharp
+level: 1
+hide_sidebar: true
 publish_date: 2016-06-13
 last_update:
   date: 2023-03-30
-tags:
-  - "hover"
-  - "hovers"
-  - "action builder"
-level: 1
-category:
-  - "fundamentals"
-language: csharp
 ---
-
-# How to Work with Hovers
-
-## Intro
-
-If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution.
 
 ## A Solution
 

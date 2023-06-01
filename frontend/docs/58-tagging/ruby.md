@@ -1,23 +1,10 @@
 ---
-title: 'Tagging'
-id: '58-tagging-ruby'
-contentUrl: "docs/tagging/58-tagging-ruby"
-sidebar_label: Ruby
-text: "As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?"
-number: 58
-hide_table_of_contents: true
+language: ruby
+level: 1
+hide_sidebar: true
 publish_date: 2014-07-09
 last_update:
   date: 2023-02-22
-tags:
-  - 'tagging'
-  - 'tags'
-  - 'annotations'
-  - 'test packs'
-level: 1
-category:
-  - 'fundamentals'
-language: ruby
 ---
 
 # How to Filter Test Results with Tags

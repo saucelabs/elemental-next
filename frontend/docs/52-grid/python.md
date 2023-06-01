@@ -1,31 +1,11 @@
 ---
-title: 'How To Use Selenium Grid'
-id: '52-how-to-use-selenium-grid-javascript'
-contentUrl: "docs/grid/52-how-to-use-selenium-grid-java"
-sidebar_label: Javascript
-text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
-number: 52
-publish_date: 2019-08-09
-hide_table_of_contents: true
-last_update:
-  date: 2023-04-11
-tags:
-  - 'grid'
-  - 'selenium grid'
-  - 'cross browser'
+language: python
 level: 2
-category:
-  - 'tools'
-language: javascript
+hide_sidebar: true
+publish_date: 2016-11-17
+last_update:
+  date: 2023-02-24
 ---
-
-# How to Use Selenium Grid
-
-## Intro
-
-If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using
-a third-party solution like [Sauce Labs](https://saucelabs.com/) or [BrowserStack](http://www.browserstack.com/) then what
-do you do?
 
 ## A Solution
 
@@ -93,41 +73,43 @@ There are numerous parameters that we can use at run time. You can see a full li
 
 Now let's wire up a simple test script to use our new Grid.
 
-```javascript
-// filename: test/grid.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
-describe("Grid", function() {
-  let driver;
+```python
+# filename: grid.py
+import unittest
+from selenium import webdriver
 
-  beforeEach(async function() {
-    const url = "http://localhost:4444";
-    driver = await new Builder()
-      .usingServer(url)
-      .forBrowser("chrome")
-      .build();
-  });
 
-  afterEach(async function() {
-    await driver.quit();
-  });
+class Grid(unittest.TestCase):
 
-  it("hello world", async function() {
-    await driver.get("http://the-internet.herokuapp.com/");
-    assert((await driver.getTitle()) === "The Internet");
-  });
-});
+    def setUp(self):
+        firefox_options = webdriver.FirefoxOptions()
+        self.driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            options=firefox_options
+        )
+
+    def tearDown(self):
+        self.driver.quit()
+
+    def test_page_loaded(self):
+        driver = self.driver
+        driver.get('http://the-internet.herokuapp.com')
+        assert driver.title == 'The Internet'
+
+if __name__ == "__main__":
+    unittest.main()
 ```
 
-Notice in `beforeEach` we're using a URL to connect to the Grid (e.g., `usingServer(url)`). And we are telling the Grid which
-browser we want to use by using the `forBrowser` method.
+Notice in `setUp` we're using remote WebDriver in Selenium (e.g., `webdriver.Remote`) to connect to the Grid.
+And we are telling the Grid which browser we want to use with the browser options (e.g., `firefox_options = webdriver.FirefoxOptions()`).
 
 You can see a full list of the available browser options at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/browsers/).
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python grid.py` from the command-line) here is what will happen:
 
 + Connect to the Grid Hub
 + Hub determines which Node has the necessary browser/platform combination
