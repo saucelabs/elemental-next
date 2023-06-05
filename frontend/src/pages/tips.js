@@ -34,7 +34,7 @@ const Tips = () => {
     const difficultyOptions = [
       { value: '', label: 'Difficulty Level' },
       ...uniqueDifficulties.map((level) => ({
-        value: level.toString(),
+        value: level != null ? level.toString() : '',
         label: `Level ${level}`,
       })),
     ];

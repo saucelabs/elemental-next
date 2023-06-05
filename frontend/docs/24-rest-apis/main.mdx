@@ -1,0 +1,37 @@
+---
+title: 'REST APIs'
+id: '24-rest-apis'
+contentUrl: "docs/rest-apis/24-rest-apis"
+sidebar_label: REST APIs
+text: "When we list out the properties that make a test a good test, some things that often come up are: Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail."
+number: 24
+hide_table_of_contents: true
+level: 2
+publish_date: 2013-11-5
+last_update:
+  date: 2023-03-09
+tags:
+  - 'REST APIs'
+  - 'test setup'
+  - 'guest post'
+category:
+  - 'fundamentals'
+---
+
+# Fast and Reliable Test Setup with REST APIs
+
+## Intro
+
+This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST APIs in his testing practice
+
+When we list out the properties that make a test a "good test", some things that often come up are:
+
++ **Precise.** The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail.
++ **Independent.** A test should not have it's outcome affected by any other test in the test suite.
++ **Fast.** This doesn't need much explanation. The quicker a test suite runs, the more useful it is.
+
+Of course there are many other properties that might be included in such a list, but I mention these specifically because they can be particularly challenging to achieve in a Selenium test suite. The reason for this is that Selenium tests often involve setups that may include a sign-up, a login, some navigation, form submission, or other interactions with a website. Only after doing those things are you ready to assert on some aspect of the website.  If you confine your tests to only being allowed to interact with the website, there is little that can be done to alleviate this issue.
+
+import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+
+<DropdownMarkdown folderName='24-rest-apis' />
