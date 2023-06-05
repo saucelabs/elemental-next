@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[3099],{9538:e=>{e.exports=JSON.parse('{"label":"exceptions","permalink":"/docs/tags/exceptions","allTagsPath":"/docs/tags","count":1,"items":[{"id":"exception-handling/ruby","title":"How To Handle Exceptions","description":"Intro","permalink":"/docs/exception-handling/ruby"}]}')}}]);

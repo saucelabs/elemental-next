@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[26492],{62659:e=>{e.exports=JSON.parse('{"label":"jquery","permalink":"/docs/tags/jquery","allTagsPath":"/docs/tags","count":1,"items":[{"id":"growl/53-growl","title":"Growl","description":"Intro","permalink":"/docs/growl/53-growl"}]}')}}]);

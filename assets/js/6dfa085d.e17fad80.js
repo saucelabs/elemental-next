@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[19432],{1815:s=>{s.exports=JSON.parse('{"label":"test setup","permalink":"/docs/tags/test-setup","allTagsPath":"/docs/tags","count":1,"items":[{"id":"rest-apis/24-rest-apis","title":"REST APIs","description":"Intro","permalink":"/docs/rest-apis/24-rest-apis"}]}')}}]);

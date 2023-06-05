@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[57763],{27745:e=>{e.exports=JSON.parse('{"label":"frames","permalink":"/docs/tags/frames","allTagsPath":"/docs/tags","count":1,"items":[{"id":"work-with-frames/3-work-with-frames","title":"Work With Frames","description":"Intro","permalink":"/docs/work-with-frames/3-work-with-frames"}]}')}}]);
