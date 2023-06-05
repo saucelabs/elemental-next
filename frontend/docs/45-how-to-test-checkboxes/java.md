@@ -1,31 +1,11 @@
 ---
-title: "How To Test Checkboxes"
-id: "45-checkboxes-java"
-contentUrl: "docs/how-to-test-checkboxes/45-checkboxes-java"
-sidebar_label: Java
-text: "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
-number: 45
-hide_table_of_contents: true
+language: java
+level: 1
+hide_sidebar: true
 publish_date: 2015-11-11
 last_update:
   date: 2023-03-30
-tags:
-  - 'checkboxes'
-  - 'attribute'
-  - 'selected'
-level: 1
-category:
-  - fundamentals
-language: java
 ---
-
-# How to Test Checkboxes
-
-## Intro
-
-Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests.
-
-Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium.
 
 ## A Solution
 

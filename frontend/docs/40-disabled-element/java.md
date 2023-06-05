@@ -1,30 +1,11 @@
 ---
-title: "Disabled Element"
-id: "40-disabled-element-java"
-contentUrl: "docs/disabled-element/40-disabled-element-java"
-sidebar_label: Java
-text: "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
-number: 40
-hide_table_of_contents: true
+language: java
+level: 2
+hide_sidebar: true
 publish_date: 2015-11-11
 last_update:
   date: 2023-04-03
-tags:
-  - 'dropdown list'
-  - 'dropdown lists'
-  - 'disabled element'
-level: 2
-category:
-  - remote
-  - troubleshooting
-language: java
 ---
-
-# How to Test For Disabled Elements
-
-## Intro
-
-On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain.
 
 ## A Solution
 

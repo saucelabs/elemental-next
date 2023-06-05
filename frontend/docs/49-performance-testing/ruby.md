@@ -1,32 +1,11 @@
 ---
-title: 'How to Do Performance Testing'
-id: '49-performance-testing-ruby'
-contentUrl: "docs/performance-testing/49-performance-testing-ruby"
-sidebar_label: Ruby
-text: "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
-# slug: ruby/
-number: 49
-hide_table_of_contents: true
+language: ruby
+level: 3
+hide_sidebar: true
 publish_date: 2014-05-06
 last_update:
   date: 2023-04-06
-tags:
-  - 'performance testing'
-  - 'proxy'
-  - 'browsermob-proxy'
-  - 'yslow'
-level: 3
-category: 'fundamentals'
-language: ruby
 ---
-
-# How to Do Performance Testing
-
-## Intro
-
-Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild.
-
-But how do you catch performance issues before they reach production?
 
 ## A Solution
 
