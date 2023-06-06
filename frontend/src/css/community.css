@@ -11,17 +11,15 @@
   margin-bottom: 30rem;
 }
 
+.community-header {
+  max-width: 40vw;
+  margin-bottom: 10rem;
+}
+
 @media screen and (max-width: 996px) {
   .community-wrapper {
     margin-bottom: 2rem;
   }
-}
-
-.community-header {
-  font-size: 6.4rem;
-  font-weight: 700;
-  padding: 5.6rem 0 5.6rem 0;
-  margin: 0;
 }
 
 .community-footer {
