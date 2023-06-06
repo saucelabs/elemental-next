@@ -50,8 +50,6 @@ node_modules/
 jspm_packages/
 build/
 
-package-lock.json
-
 # TypeScript v1 declaration files
 typings/
 
