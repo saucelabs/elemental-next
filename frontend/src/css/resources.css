@@ -17,6 +17,31 @@
   z-index: 1;
 }
 
+.resources-header {
+  max-width: 40vw;
+  margin-bottom: 10rem;
+}
+
+.resource-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.content-image {
+  max-width: 8rem;
+  margin-right: 20px;
+}
+
+.content-paragraph {
+  font-size: 16px;
+}
+
 @media screen and (max-width: 996px) {
   .resources-container {
     margin-bottom: 2rem;
@@ -27,8 +52,4 @@
   text-decoration: underline;
   cursor: pointer;
   color: black;
-}
-
-.resources-container table td {
-  background-color: white;
 }
