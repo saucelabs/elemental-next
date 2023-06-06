@@ -40,6 +40,10 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          sidebarCollapsible: false,
+          sidebarItemsGenerator: async function () {
+            return await import('./sidebars.js');
+          },
           path: 'docs',
           breadcrumbs: true,
           // Remove this to remove the "edit this page" links.
@@ -67,7 +71,6 @@ const config = {
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
         },
-
         items: [
           {
             label: 'Tips',
