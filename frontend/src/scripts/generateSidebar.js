@@ -74,9 +74,9 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: data.title,
+          label: 'Upload',
           collapsed: false,
-          items: ['data.contentURL'],
+          items: ['how-to-upload-a-file/1-upload-a-file'],
         },
       ],
     },
