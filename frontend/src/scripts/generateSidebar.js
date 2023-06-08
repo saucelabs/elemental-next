@@ -11,8 +11,13 @@ function generateSidebar() {
   const sidebar = {
     docs: [
       {
+        type: 'link',
+        label: '<- All Tips',
+        href: 'https://elementalselenium.com/tips',
+      },
+      {
         type: 'category',
-        label: 'Tips',
+        label: '<- All Tips',
         collapsed: true,
         items: [],
       },
@@ -42,7 +47,7 @@ function generateSidebar() {
         /*  If frontmatter has id, it should be included in the sidebar */
         if (data.id) {
           const contentUrl = data.contentUrl.replace('docs/', '');
-          sidebar.docs[0].items.push({
+          sidebar.docs[1].items.push({
             type: 'doc',
             label: data.title,
             id: `${contentUrl}`,

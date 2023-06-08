@@ -1,8 +1,13 @@
 module.exports = {
   "docs": [
     {
+      "type": "link",
+      "label": "<- All Tips",
+      "href": "https://elementalselenium.com/tips"
+    },
+    {
       "type": "category",
-      "label": "Tips",
+      "label": "<- All Tips",
       "collapsed": true,
       "items": [
         {
