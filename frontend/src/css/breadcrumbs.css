@@ -1,7 +1,3 @@
-.breadcrumbs__link svg {
-  vertical-align: none;
-}
-
 .breadcrumbs__link {
   font-size: 1.3rem;
   font-weight: 400;
@@ -11,4 +7,23 @@
   color: black;
   font-weight: 700;
   background: none;
+}
+
+/* do not display the component default house symbol as homepage */
+.breadcrumbs__link svg {
+  /* position: relative;
+  vertical-align: center;
+  height: 2rem;
+  width: 1.5rem; */
+  display: none;
+}
+
+/* deletes the > after the house svg */
+.breadcrumbs__item:first-child:after {
+  display: none;
+}
+
+/* this negative margin compensates not displaying default house svg */
+.breadcrumbs__item {
+  margin-left: -0.7rem;
 }

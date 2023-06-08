@@ -67,7 +67,6 @@ const config = {
           alt: 'Elemental Selenium Logo',
           src: 'img/logo.png',
         },
-
         items: [
           {
             label: 'Tips',
