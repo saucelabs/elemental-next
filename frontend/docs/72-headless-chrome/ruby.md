@@ -6,15 +6,6 @@ publish_date: 2017-09-25
 last_update:
     date: 2023-03-06
 ---
-
-# How To Run Your Tests Headlessly with Chrome
-
-## Intro
-
-> This is a guest post from [Chris Kenst](https://twitter.com/ckenst).
-
-If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a third party library like Xvfb or PhantomJS but those can be hard to install and aren't guaranteed to be supported in the long run (like PhantomJS).
-
 ## A Solution
 
 Enter Headless Chrome ([link](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md))
