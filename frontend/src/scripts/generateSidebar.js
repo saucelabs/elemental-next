@@ -17,7 +17,7 @@ function generateSidebar() {
       },
       {
         type: 'category',
-        label: '<- All Tips',
+        label: 'More Tips',
         collapsed: true,
         items: [],
       },
