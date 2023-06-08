@@ -43,10 +43,9 @@ function generateSidebar() {
         if (data.id) {
           const contentUrl = data.contentUrl.replace('docs/', '');
           sidebar.docs[0].items.push({
-            type: 'category',
+            type: 'doc',
             label: data.title,
-            collapsed: false,
-            items: [`${contentUrl}`],
+            id: `${contentUrl}`,
           });
         }
       }
@@ -73,10 +72,9 @@ module.exports = {
       collapsed: true,
       items: [
         {
-          type: 'category',
-          label: 'Upload',
-          collapsed: false,
-          items: ['how-to-upload-a-file/1-upload-a-file'],
+          type: 'doc',
+          label: 'How To Upload A File',
+          id: 'how-to-upload-a-file/1-upload-a-file',
         },
       ],
     },

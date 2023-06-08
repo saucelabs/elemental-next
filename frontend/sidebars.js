@@ -6,428 +6,269 @@ module.exports = {
       "collapsed": true,
       "items": [
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Upload A File",
-          "collapsed": false,
-          "items": [
-            "how-to-upload-a-file/1-upload-a-file"
-          ]
+          "id": "how-to-upload-a-file/1-upload-a-file"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Retry Test Actions",
-          "collapsed": false,
-          "items": [
-            "retry-test-actions/10-retry-test-actions"
-          ]
+          "id": "retry-test-actions/10-retry-test-actions"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Build An Interactive Prompt",
-          "collapsed": false,
-          "items": [
-            "build-an-interactive-prompt/11-build-an-interactive-prompt"
-          ]
+          "id": "build-an-interactive-prompt/11-build-an-interactive-prompt"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Opt Out of AB Tests",
-          "collapsed": false,
-          "items": [
-            "opt-out-of-ab-tests/12-opt-out-of-ab-tests"
-          ]
+          "id": "opt-out-of-ab-tests/12-opt-out-of-ab-tests"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Work With Basic Auth",
-          "collapsed": false,
-          "items": [
-            "how-to-access-basic-auth/13-work-with-basic-auth"
-          ]
+          "id": "how-to-access-basic-auth/13-work-with-basic-auth"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Download Secure Files",
-          "collapsed": false,
-          "items": [
-            "download-secure-files/15-download-secure-files"
-          ]
+          "id": "download-secure-files/15-download-secure-files"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Take Screenshot on Failure",
-          "collapsed": false,
-          "items": [
-            "take-screenshot-on-failure/16-take-screenshot-on-failure"
-          ]
+          "id": "take-screenshot-on-failure/16-take-screenshot-on-failure"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Retrieve HTTP Status Codes",
-          "collapsed": false,
-          "items": [
-            "retrieve-http-status-codes/17-retrieve-http-status-codes"
-          ]
+          "id": "retrieve-http-status-codes/17-retrieve-http-status-codes"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Figure Out What to Update",
-          "collapsed": false,
-          "items": [
-            "how-to-figure-out-what-to-update/18-what-to-test"
-          ]
+          "id": "how-to-figure-out-what-to-update/18-what-to-test"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Data Driven Testing",
-          "collapsed": false,
-          "items": [
-            "data-driven-testing/19-data-driven-testing"
-          ]
+          "id": "data-driven-testing/19-data-driven-testing"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Download a File",
-          "collapsed": false,
-          "items": [
-            "download-a-file/2-download-a-file"
-          ]
+          "id": "download-a-file/2-download-a-file"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Choosing a Programming Language",
-          "collapsed": false,
-          "items": [
-            "adding-a-language/21-choosing-a-language"
-          ]
+          "id": "adding-a-language/21-choosing-a-language"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Locator Strategy",
-          "collapsed": false,
-          "items": [
-            "locator-strategy/22-locator-strategy"
-          ]
+          "id": "locator-strategy/22-locator-strategy"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Dynamic Pages",
-          "collapsed": false,
-          "items": [
-            "dynamic-pages/23-dynamic-pages"
-          ]
+          "id": "dynamic-pages/23-dynamic-pages"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "REST APIs",
-          "collapsed": false,
-          "items": [
-            "rest-apis/24-rest-apis"
-          ]
+          "id": "rest-apis/24-rest-apis"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Work With Tables",
-          "collapsed": false,
-          "items": [
-            "how-to-work-with-tables/25-tables"
-          ]
+          "id": "how-to-work-with-tables/25-tables"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Cloud",
-          "collapsed": false,
-          "items": [
-            "cloud/26-cloud"
-          ]
+          "id": "cloud/26-cloud"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Chrome Driver",
-          "collapsed": false,
-          "items": [
-            "chrome-driver/29-chrome-driver"
-          ]
+          "id": "chrome-driver/29-chrome-driver"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Work With Frames",
-          "collapsed": false,
-          "items": [
-            "work-with-frames/3-work-with-frames"
-          ]
+          "id": "work-with-frames/3-work-with-frames"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Accessing Previous Tips Archive",
-          "collapsed": false,
-          "items": [
-            "archives/31-archives"
-          ]
+          "id": "archives/31-archives"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Selenium Resources",
-          "collapsed": false,
-          "items": [
-            "available-resources/36-available-resources"
-          ]
+          "id": "available-resources/36-available-resources"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How to Test HTML5 Drag and Drop",
-          "collapsed": false,
-          "items": [
-            "drag-and-drop/39-drag-and-drop"
-          ]
+          "id": "drag-and-drop/39-drag-and-drop"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Work With Multiple Windows",
-          "collapsed": false,
-          "items": [
-            "work-with-multiple-windows/4-work-with-multiple-windows"
-          ]
+          "id": "work-with-multiple-windows/4-work-with-multiple-windows"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Disabled Element",
-          "collapsed": false,
-          "items": [
-            "disabled-element/40-disabled-element"
-          ]
+          "id": "disabled-element/40-disabled-element"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Handle Exceptions",
-          "collapsed": false,
-          "items": [
-            "exception-handling/44-exception-handling"
-          ]
+          "id": "exception-handling/44-exception-handling"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Test Checkboxes",
-          "collapsed": false,
-          "items": [
-            "how-to-test-checkboxes/45-checkboxes"
-          ]
+          "id": "how-to-test-checkboxes/45-checkboxes"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Implicit vs Explicit Waits",
-          "collapsed": false,
-          "items": [
-            "waiting/47-waiting"
-          ]
+          "id": "waiting/47-waiting"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Load Testing",
-          "collapsed": false,
-          "items": [
-            "load-testing/48-load-testing"
-          ]
+          "id": "load-testing/48-load-testing"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How to Do Performance Testing",
-          "collapsed": false,
-          "items": [
-            "performance-testing/49-performance-testing"
-          ]
+          "id": "performance-testing/49-performance-testing"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Select From A Dropdown",
-          "collapsed": false,
-          "items": [
-            "select-from-a-dropdown/5-select-from-a-dropdown"
-          ]
+          "id": "select-from-a-dropdown/5-select-from-a-dropdown"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Work With Hovers",
-          "collapsed": false,
-          "items": [
-            "how-to-work-with-hovers/50-hovers"
-          ]
+          "id": "how-to-work-with-hovers/50-hovers"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Work With JavaScript Alerts",
-          "collapsed": false,
-          "items": [
-            "how-to-work-with-javascript-alerts/51-javascript-alerts"
-          ]
+          "id": "how-to-work-with-javascript-alerts/51-javascript-alerts"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Use Selenium Grid",
-          "collapsed": false,
-          "items": [
-            "grid/52-how-to-use-selenium-grid"
-          ]
+          "id": "grid/52-how-to-use-selenium-grid"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Growl",
-          "collapsed": false,
-          "items": [
-            "growl/53-growl"
-          ]
+          "id": "growl/53-growl"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Wrapper",
-          "collapsed": false,
-          "items": [
-            "wrapper/55-wrapper"
-          ]
+          "id": "wrapper/55-wrapper"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Junit XML",
-          "collapsed": false,
-          "items": [
-            "junit-xml/57-junit-xml"
-          ]
+          "id": "junit-xml/57-junit-xml"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Tagging",
-          "collapsed": false,
-          "items": [
-            "tagging/58-tagging"
-          ]
+          "id": "tagging/58-tagging"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "List Tags",
-          "collapsed": false,
-          "items": [
-            "list-tags/60-list-tags"
-          ]
+          "id": "list-tags/60-list-tags"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Press Keyboard Keys",
-          "collapsed": false,
-          "items": [
-            "how-to-press-keyboard-keys/61-keyboard-keys"
-          ]
+          "id": "how-to-press-keyboard-keys/61-keyboard-keys"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Right Click",
-          "collapsed": false,
-          "items": [
-            "right-click/63-right-click"
-          ]
+          "id": "right-click/63-right-click"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Limit Bandwidth",
-          "collapsed": false,
-          "items": [
-            "limit-bandwidth/64-limit-bandwidth"
-          ]
+          "id": "limit-bandwidth/64-limit-bandwidth"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Highlight Elements",
-          "collapsed": false,
-          "items": [
-            "highlight-elements/65-highlight-elements"
-          ]
+          "id": "highlight-elements/65-highlight-elements"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Blacklist",
-          "collapsed": false,
-          "items": [
-            "blacklist/66-blacklist"
-          ]
+          "id": "blacklist/66-blacklist"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Broken Images",
-          "collapsed": false,
-          "items": [
-            "broken-images/67-broken-images"
-          ]
+          "id": "broken-images/67-broken-images"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Load Testing Revisited",
-          "collapsed": false,
-          "items": [
-            "load-testing-revisited/68-load-testing-revisited"
-          ]
+          "id": "load-testing-revisited/68-load-testing-revisited"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "SafariDriver",
-          "collapsed": false,
-          "items": [
-            "safari/69-safari-driver"
-          ]
+          "id": "safari/69-safari-driver"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Use A Page Object",
-          "collapsed": false,
-          "items": [
-            "use-a-page-object/7-use-a-page-object"
-          ]
+          "id": "use-a-page-object/7-use-a-page-object"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "The Mobile Testing Pyramid",
-          "collapsed": false,
-          "items": [
-            "mobile-testing-pyramid/71-mobile-testing-pyramid"
-          ]
+          "id": "mobile-testing-pyramid/71-mobile-testing-pyramid"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "How To Run Your Tests Headlessly with Chrome",
-          "collapsed": false,
-          "items": [
-            "headless-chrome/72-headless-chrome"
-          ]
+          "id": "headless-chrome/72-headless-chrome"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Open a New Window or Tab",
-          "collapsed": false,
-          "items": [
-            "open-new-window/73-open-new-window"
-          ]
+          "id": "open-new-window/73-open-new-window"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Download A File Revisited",
-          "collapsed": false,
-          "items": [
-            "download-a-file-revisited/8-download-a-file-revisited"
-          ]
+          "id": "download-a-file-revisited/8-download-a-file-revisited"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Use A Base Page Object",
-          "collapsed": false,
-          "items": [
-            "use-a-base-page-object/9-use-a-base-page-object"
-          ]
+          "id": "use-a-base-page-object/9-use-a-base-page-object"
         },
         {
-          "type": "category",
+          "type": "doc",
           "label": "Template",
-          "collapsed": false,
-          "items": [
-            "template/template"
-          ]
+          "id": "template/template"
         }
       ]
     }
