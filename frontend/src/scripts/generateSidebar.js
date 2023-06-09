@@ -59,6 +59,9 @@ function generateSidebar() {
 
   readFiles(docsDir);
 
+  // Filter out the "Template" object from sidebar.docs[1].items
+  sidebar.docs[1].items = sidebar.docs[1].items.filter((item) => item.label !== 'Template');
+
   /* writes the generated sidebar object to the sidebars.js */
   fs.writeFileSync(
     path.resolve(__dirname, '../../sidebars.js'),

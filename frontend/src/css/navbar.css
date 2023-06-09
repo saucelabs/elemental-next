@@ -29,6 +29,12 @@
   font-weight: 700;
 }
 
+.navbar-sidebar .nav-button {
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
 .nav-button {
   width: 178px;
   height: 40px;
@@ -46,14 +52,9 @@
   box-shadow: 0 0 10px var(--ifm-color-secondary);
 }
 
-/* .navbar-sidebar__item .nav-button {
-  width: 178px;
-  height: 40px;
-  font-size: 1.6rem;
-  font-weight: 700;
-  text-align: center;
-  background-color: var(--ifm-color-secondary);
-  border-radius: 8px;
-  border: none;
-  margin-left: 2rem;
-} */
+.navbar-sidebar .nav-button:hover {
+  -moz-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  -webkit-box-shadow: 0 0 10px var(--ifm-color-secondary);
+  box-shadow: 0 0 10px var(--ifm-color-secondary);
+  background: var(--ifm-color-secondary);
+}
