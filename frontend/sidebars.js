@@ -269,11 +269,6 @@ module.exports = {
           "type": "doc",
           "label": "Use A Base Page Object",
           "id": "use-a-base-page-object/9-use-a-base-page-object"
-        },
-        {
-          "type": "doc",
-          "label": "Template",
-          "id": "template/template"
         }
       ]
     }
