@@ -45,6 +45,10 @@
 @media screen and (max-width: 996px) {
   .resources-container {
     margin-bottom: 2rem;
+    padding-left: 2.5rem;
+  }
+  .resources-header {
+    max-width: 90vw;
   }
 }
 

@@ -19,6 +19,12 @@
 @media screen and (max-width: 996px) {
   .community-wrapper {
     margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    max-width: 95vw;
+  }
+  .community-header {
+    max-width: 95vw;
+    margin-bottom: 5rem;
   }
 }
 
