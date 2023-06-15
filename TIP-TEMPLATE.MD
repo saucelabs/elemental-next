@@ -27,19 +27,20 @@ Project Tree
 └── elemental-next/
     └── frontend/
         └── docs/
-            └── updated-tips/
-                ├── 1-how-to-upload-a-file/
-                │   ├── csharp.md
-                │   ├── java.md
-                │   ├── javascript.md
-                │   ├── python.md
-                │   └── ruby.md
-                └── 2-download-a-file/
-                    ├── csharp.md
-                    ├── java.md
-                    ├── javascript.md
-                    ├── python.md
-                    └── ruby.md
+            └── 1-how-to-upload-a-file
+                ├── csharp.md
+                ├── java.md
+                ├── javascript.md
+                ├── main.mdx // has a dropdown component that allows user to choose language
+                ├── python.md
+                └── ruby.md
+            └── 2-download-a-file
+                ├── csharp.md
+                ├── java.md
+                ├── javascript.md
+                ├── main.mdx
+                ├── python.md
+                └── ruby.md
 ```
 
 ## How to Use Template
