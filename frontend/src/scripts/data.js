@@ -1,23 +1,5 @@
 const Data = [
   {
-    "title": "Template",
-    "id": "template",
-    "number": 0,
-    "publish_date": "2023-05-26T00:00:00.000Z",
-    "last_update": {
-      "date": "2023-05-26T00:00:00.000Z"
-    },
-    "tags": [
-      "template"
-    ],
-    "level": null,
-    "category": [
-      "template"
-    ],
-    "contentUrl": "/docs/template/template",
-    "text": "This is a template."
-  },
-  {
     "title": "How To Upload A File",
     "id": "1-upload-a-file",
     "number": 1,
@@ -307,7 +289,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/retrieve-http-status-codes",
+    "contentUrl": "docs/retrieve-http-status-codes/17-retrieve-http-status-codes",
     "text": "There are times when you are testing a page (or numerous pages) and you want to verify that it responded correctly. A great way to handle this is by checking the HTTP Status Code that the browser received. However this functionality is not available in Selenium WebDriver."
   },
   {
@@ -510,7 +492,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/archives/",
+    "contentUrl": "docs/archives/31-archives",
     "text": "Let me guess you subscribed to a free, weekly Selenium tip newsletter and aren't sure of how to access previously written tips or are unaware that this is even a possibility."
   },
   {
@@ -537,7 +519,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/available-resources/36-availavble-resources",
+    "contentUrl": "docs/available-resources/36-available-resources",
     "text": "This is the official Selenium documentation site. There is a lot of helpful information here. Use the sidebar menu on the left to navigate."
   },
   {
@@ -602,7 +584,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/exception-handling",
+    "contentUrl": "docs/exception-handling/44-exception-handling",
     "text": "It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable . They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them."
   },
   {
