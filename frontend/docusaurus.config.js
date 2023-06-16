@@ -160,7 +160,7 @@ const config = {
         // Public API key: it is safe to commit it
         apiKey: '8d249abc4671e5554fe8f451ffa5db50',
 
-        indexName: 'Elemental Selenium',
+        indexName: 'elementalselenium_',
 
         // Optional: see doc section below
         contextualSearch: true,

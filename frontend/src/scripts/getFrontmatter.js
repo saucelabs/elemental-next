@@ -45,24 +45,25 @@ Returns object containing the processed front matter data based on
     - 'template'
   category: 'template'
 */
-
-  const processedData = {
-    title: data.title,
-    id: data.id ? data.id.replace(/"/g, '') : '',
-    // slug: data.slug,
-    number: data.number,
-    publish_date: data.publish_date,
-    last_update: data.last_update || '',
-    date: data.date,
-    tags: tags,
-    level: data.level,
-    category: categories,
-    language: data.language,
-    contentUrl: data.contentUrl,
-    text: data.text,
-  };
-
-  return processedData;
+  if (data.title !== 'Template') {
+    const processedData = {
+      title: data.title,
+      id: data.id ? data.id.replace(/"/g, '') : '',
+      // slug: data.slug,
+      number: data.number,
+      publish_date: data.publish_date,
+      last_update: data.last_update || '',
+      date: data.date,
+      tags: tags,
+      level: data.level,
+      category: categories,
+      language: data.language,
+      contentUrl: data.contentUrl,
+      text: data.text,
+    };
+    return processedData;
+  }
+  return undefined;
 };
 
 /*
@@ -80,7 +81,7 @@ const getFrontmatter = (dir) => {
       acc.push(...nestedFiles);
     } else if ((ext === '.md' || ext === '.mdx') && file === 'main.mdx') {
       const processedData = processMD(filePath);
-      if (processedData.title && processedData.id) {
+      if (processedData && processedData.title && processedData.id) {
         acc.push(processedData);
       } else {
         console.log(`Skipping ${filePath} because it doesn't have title and/or id frontmatter`);
