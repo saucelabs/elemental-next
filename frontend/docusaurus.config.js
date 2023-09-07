@@ -57,7 +57,15 @@ const config = {
   themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      // Replace with your project's social card
+      headTags: [
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'google-site-verification',
+            content: 'googlee2afebcc27f8c950.html',
+          },
+        },
+      ],
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: null,
