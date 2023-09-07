@@ -32,6 +32,15 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'google-site-verification',
+        content: 'googlee2afebcc27f8c950.html',
+      },
+    },
+  ],
 
   presets: [
     [
@@ -57,15 +66,6 @@ const config = {
   themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      headTags: [
-        {
-          tagName: 'meta',
-          attributes: {
-            name: 'google-site-verification',
-            content: 'googlee2afebcc27f8c950.html',
-          },
-        },
-      ],
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: null,
