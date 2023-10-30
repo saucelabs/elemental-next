@@ -11,19 +11,19 @@ function Home() {
   const [tips, setTips] = useState([
     {
       title: '1: How To Upload A File',
-      contentURl: 'docs/how-to-upload-a-file/1-upload-a-file-ruby',
+      contentUrl: 'docs/how-to-upload-a-file/1-upload-a-file',
       level: 1,
       text: 'Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window.',
     },
     {
       title: '2: Download A File',
-      contentUrl: 'docs/download-a-file/2-download-a-file-ruby',
+      contentUrl: 'docs/download-a-file/2-download-a-file',
       level: 2,
       text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.",
     },
     {
       title: '3: Work With Frames',
-      contentUrl: 'docs/work-with-frames/3-work-with-frames-ruby',
+      contentUrl: 'docs/work-with-frames/3-work-with-frames',
       level: 1,
       text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames.",
     },
