@@ -19,7 +19,7 @@ const content = [
   {
     id: 3,
     title: 'Hands-On Selenium WebDriver with Java',
-    paragraph: 'Written by the original author of Elemental Selenium, Dave Haeffner',
+    paragraph: 'Written by one of the Selenium maintainers, Boni Garcia',
     link: 'https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/',
     img: 'img/resource_page/guidebook.png',
   },
