@@ -1,0 +1,47 @@
+.community-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-wrap: nowrap;
+  padding-left: 12%;
+  max-width: 80%;
+  z-index: 1;
+  margin-bottom: 30rem;
+}
+
+.community-header {
+  max-width: 40vw;
+  margin-bottom: 10rem;
+}
+
+@media screen and (max-width: 996px) {
+  .community-wrapper {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    max-width: 95vw;
+  }
+  .community-header {
+    max-width: 95vw;
+    margin-bottom: 5rem;
+  }
+}
+
+.community-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}
+
+.community-wrapper a {
+  cursor: pointer;
+}
+
+.community-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.community-wrapper table td {
+  background-color: white;
+}
