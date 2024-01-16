@@ -456,6 +456,25 @@ const Data = [
     "text": "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
   },
   {
+    "title": "How To Speed Up Your Tests with Parallelization",
+    "id": "27-parallel",
+    "number": 27,
+    "publish_date": "2013-11-26T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-27T00:00:00.000Z"
+    },
+    "tags": [
+      "parallelization",
+      "good test writing",
+    ],
+    "level": 2,
+    "category": [
+      "remote"
+    ],
+    "contentUrl": "docs/parallel/27-parallel",
+    "text": "Compared to Unit and Integration Tests, Selenium is slow. A single test can easily take minutes to run. And when you have a lot of them, it can quickly compound your suite to take hours to complete (just for a single browser) -- hampering your ability to get fast feedback."
+  },
+  {
     "title": "Chrome Driver",
     "id": "29-chrome-driver",
     "number": 29,
