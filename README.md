@@ -1,5 +1,4 @@
 ![build workflow](https://github.com/saucelabs/elemental-next/actions/workflows/test-build.yml/badge.svg)
-![cypress workflow](https://github.com/saucelabs/elemental-next/actions/workflows/cypress-tests.yml/badge.svg)
 
 # 🎉 Welcome to Elemental Selenium! 🚀
 
