@@ -97,6 +97,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Speed Up Your Tests With Parallelization",
+          "id": "parallel/27-parallel"
+        },
+        {
+          "type": "doc",
           "label": "Chrome Driver",
           "id": "chrome-driver/29-chrome-driver"
         },
