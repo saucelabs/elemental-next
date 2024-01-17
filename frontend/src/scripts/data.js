@@ -475,6 +475,25 @@ const Data = [
     "text": "Compared to Unit and Integration Tests, Selenium is slow. A single test can easily take minutes to run. And when you have a lot of them, it can quickly compound your suite to take hours to complete (just for a single browser) -- hampering your ability to get fast feedback."
   },
   {
+    "title": "How to Upgrade from Selenium RC to WebDriver",
+    "id": "28-upgrading-from-rc",
+    "number": 28,
+    "publish_date": "2015-10-13T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-15sT00:00:00.000Z"
+    },
+    "tags": [
+      "selenium rc",
+      "upgrading"
+    ],
+    "level": 2,
+    "category": [
+      "fundamentals"
+    ],
+    "contentUrl": "docs/upgrading-from-rc/28-upgrading-from-rc",
+    "text": "As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC."
+  },
+  {
     "title": "Chrome Driver",
     "id": "29-chrome-driver",
     "number": 29,
