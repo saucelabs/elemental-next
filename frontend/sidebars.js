@@ -132,6 +132,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "CSS vs. XPath 2",
+          "id": "css-vs-xpath-2/33-css-vs-xpath-2"
+        },
+        {
+          "type": "doc",
           "label": "Selenium Resources",
           "id": "available-resources/36-available-resources"
         },
