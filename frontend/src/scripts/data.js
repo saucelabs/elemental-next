@@ -516,6 +516,27 @@ const Data = [
     "text": "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
   },
   {
+    "title": "How to Test Your Mobile App",
+    "id": "30-mobile",
+    "number": 30,
+    "publish_date": "2013-12-17T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-15T00:00:00.000Z"
+    },
+    "tags": [
+      "mobile testing",
+      "mobile",
+      "appium",
+      "sauce labs"
+    ],
+    "level": 2,
+    "category": [
+      "remote"
+    ],
+    "contentUrl": "docs/mobile/30-mobile",
+    "text": "Mobile is kind of a big deal. And if you haven't needed to test a mobile app yet, it's only a matter of time. But where do you start? And how do you do it in a way that is complimentary to your existing automation and experience?"
+  },
+  {
     "title": "Accessing Previous Tips Archive",
     "id": "31-archives",
     "number": 31,

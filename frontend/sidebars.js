@@ -117,6 +117,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Test Your Mobile App",
+          "id": "mobile/30-mobile"
+        },
+        {
+          "type": "doc",
           "label": "Accessing Previous Tips Archive",
           "id": "archives/31-archives"
         },
