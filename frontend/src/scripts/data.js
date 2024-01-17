@@ -651,6 +651,25 @@ const Data = [
     "text": "This is the official Selenium documentation site. There is a lot of helpful information here. Use the sidebar menu on the left to navigate."
   },
   {
+    "title": "How to Run Your Tests Headless with Xvfb",
+    "id": "38-headless",
+    "number": 38,
+    "publish_date": "2015-10-14T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-02-24T00:00:00.000Z"
+    },
+    "tags": [
+      "headless",
+      "xvfb"
+    ],
+    "level": 2,
+    "category": [
+      "tools"
+    ],
+    "contentUrl": "docs/headless/38-headless",
+    "text": "If you want to run your tests headless on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
+  },
+  {
     "title": "How to Test HTML5 Drag and Drop",
     "id": "39-drag-and-drop",
     "number": 39,
