@@ -147,6 +147,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Run Your Tests Headless with Xvfb",
+          "id": "headless/38-headless"
+        },
+        {
+          "type": "doc",
           "label": "How to Test HTML5 Drag and Drop",
           "id": "drag-and-drop/39-drag-and-drop"
         },
