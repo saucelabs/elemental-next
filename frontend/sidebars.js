@@ -102,6 +102,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Upgrade from Selenium RC to WebDriver",
+          "id": "upgrading-from-rc/28-upgrading-from-rc"
+        },
+        {
+          "type": "doc",
           "label": "Chrome Driver",
           "id": "chrome-driver/29-chrome-driver"
         },
