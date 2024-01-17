@@ -578,6 +578,29 @@ const Data = [
     "text": "One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS."
   },
   {
+    "title": "CSS vs. Xpath 2",
+    "id": "33-css-vs-xpath-2",
+    "number": 33,
+    "publish_date": "2014-01-14T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-15T00:00:00.000Z"
+    },
+    "tags": [
+      "selectors",
+      "xpath",
+      "css",
+      "css selectors",
+      "locators",
+      "locator strategy"
+    ],
+    "level": 2,
+    "category": [
+      "resources"
+    ],
+    "contentUrl": "docs/css-vs-xpath-2/33-css-vs-xpath-2",
+    "text": "To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do that by running everything from a local machine while using a performance benchmarking utility."
+  },
+  {
     "title": "Selenium Resources",
     "id": "36-available-resources",
     "number": 36,
