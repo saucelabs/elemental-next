@@ -601,6 +601,29 @@ const Data = [
     "text": "To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do that by running everything from a local machine while using a performance benchmarking utility."
   },
   {
+    "title": "CSS vs. XPath 3",
+    "id": "34-css-vs-xpath-3",
+    "number": 34,
+    "publish_date": "2014-01-21T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-15T00:00:00.000Z"
+    },
+    "tags": [
+      "selectors",
+      "xpath",
+      "css",
+      "css selectors",
+      "locators",
+      "locator strategy"
+    ],
+    "level": 2,
+    "category": [
+      "resources"
+    ],
+    "contentUrl": "docs/css-vs-xpath-3/34-css-vs-xpath-3",
+    "text": "In the last tip I provided benchmarks that showed XPath and CSS performance across various browsers. Since then I've received feedback on some things that my test was missing -- most notably more browser coverage and testing against a larger and deeper page."
+  },
+  {
     "title": "Selenium Resources",
     "id": "36-available-resources",
     "number": 36,
