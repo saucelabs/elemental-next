@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[13840],{36033:s=>{s.exports=JSON.parse('{"label":"xvfb","permalink":"/docs/tags/xvfb","allTagsPath":"/docs/tags","count":1,"items":[{"id":"headless/38-headless","title":"How to Run Your Tests Headless with Xvfb","description":"Intro","permalink":"/docs/headless/38-headless"}]}')}}]);
