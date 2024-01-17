@@ -7,18 +7,6 @@ level: 2
 language: ruby
 ---
 
-# CSS vs. XPath, Conclusion
-
->**NOTE: This is part 3 of 3. For the first installment, [go here](https://elementalselenium.com/docs/css-vs-xpath/32-css-vs-xpath). 
-> For the second installment, go [here](https://elementalselenium.com/docs/css-vs-xpath-2/33-css-vs-xpath-2).**
-
-## Intro
-
-In [the last tip](https://elementalselenium.com/docs/css-vs-xpath-2/33-css-vs-xpath-2) I provided benchmarks that 
-showed XPath and CSS performance across various browsers. Since then I've received feedback on some things that my 
-test was missing -- most notably more browser coverage (e.g., Internet Explorer 9 and 10) and testing against a 
-larger and deeper page.
-
 ## A Solution
 
 In order to make sure these benchmarks are as thorough as possible I've put together 
