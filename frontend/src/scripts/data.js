@@ -555,6 +555,29 @@ const Data = [
     "text": "Let me guess you subscribed to a free, weekly Selenium tip newsletter and aren't sure of how to access previously written tips or are unaware that this is even a possibility."
   },
   {
+    "title": "CSS vs. Xpath",
+    "id": "32-css-vs-xpath",
+    "number": 32,
+    "publish_date": "2014-01-07T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-15T00:00:00.000Z"
+    },
+    "tags": [
+      "selectors",
+      "xpath",
+      "css",
+      "css selectors",
+      "locators",
+      "locator strategy"
+    ],
+    "level": 2,
+    "category": [
+      "resources"
+    ],
+    "contentUrl": "docs/css-vs-xpath/32-css-vs-xpath",
+    "text": "One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS."
+  },
+  {
     "title": "Selenium Resources",
     "id": "36-available-resources",
     "number": 36,
