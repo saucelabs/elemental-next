@@ -713,7 +713,7 @@ const Data = [
   },
   {
     "title": "How to Run a Test on Multiple Browsers",
-    "id": "How to Run a Test on Multiple Browsers",
+    "id": "41-one-test-multiple-browsers",
     "number": 41,
     "publish_date": "2014-03-11T00:00:00.000Z",
     "last_update": {
@@ -730,6 +730,27 @@ const Data = [
     ],
     "contentUrl": "docs/one-test-multiple-browsers/41-one-test-multiple-browsers",
     "text": "You'll occasionally have something that you want to test across multiple browsers. It would be nice to run your test once and have it execute against all of the browsers you care about. Unfortunately this functionality doesn't come out of the box with most testing frameworks."
+  },
+  {
+    "title": "How to Run a Test on Multiple Browsers, In Parallel",
+    "id": "42-one-test-multiple-browsers-parallel",
+    "number": 42,
+    "publish_date": "2014-03-18T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-20T00:00:00.000Z"
+    },
+    "tags": [
+      "multiple browsers",
+      "cloud",
+      "sauce labs",
+      "multiple browsers"
+    ],
+    "level": 2,
+    "category": [
+      "fundamentals"
+    ],
+    "contentUrl": "docs/one-test-multiple-browsers-parallel/42-one-test-multiple-browsers-parallel",
+    "text": "In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy, it is still a bit lacking."
   },
   {
     "title": "How To Handle Exceptions",
