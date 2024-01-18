@@ -242,6 +242,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Automatically Retry Failed Tests",
+          "id": "retry-failed-tests/56-retry-failed-tests"
+        },
+        {
+          "type": "doc",
           "label": "Junit XML",
           "id": "junit-xml/57-junit-xml"
         },
