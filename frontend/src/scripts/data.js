@@ -979,6 +979,27 @@ const Data = [
     "text": "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
   },
   {
+    "title": "How to Access Selenium Logs in Real-Time",
+    "id": "54-logging",
+    "number": 54,
+    "publish_date": "2014-06-10T00:00:00.000Z",
+    "last_update": {
+      "date": "2014-06-10T00:00:00.000Z"
+    },
+    "tags": [
+      "logging",
+      "logs",
+      "growl",
+      "growl notifications",
+    ],
+    "level": 3,
+    "category": [
+      "troubleshooting"
+    ],
+    "contentUrl": "docs/logging/54-logging",
+    "text": "Logging is a deep rabbit hole to fall down in Selenium. The documentation isn't complete and the approach for each of the browser and language bindings is inconsistent and hard to find examples for."
+  },
+  {
     "title": "Wrapper",
     "id": "55-wrapper",
     "number": 55,
