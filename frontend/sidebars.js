@@ -167,6 +167,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Run a Test on Multiple Browsers",
+          "id": "one-test-multiple-browsers/41-one-test-multiple-browsers"
+        },
+        {
+          "type": "doc",
           "label": "How To Handle Exceptions",
           "id": "exception-handling/44-exception-handling"
         },
