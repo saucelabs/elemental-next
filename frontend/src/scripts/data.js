@@ -231,6 +231,27 @@ const Data = [
     "text": "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
   },
   {
+    "title": "Interactive Prompts Revisited",
+    "id": "14-interactive-prompts-revisited",
+    "number": 14,
+    "publish_date": "2013-08-27T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-04-06T00:00:00.000Z"
+    },
+    "tags": [
+      "repl",
+      "pry",
+      "debugging",
+      "guest post"
+    ],
+    "level": 3,
+    "category": [
+      "troubleshooting"
+    ],
+    "contentUrl": "docs/interactive-prompts-revisited/14-interactive-prompts-revisited",
+    "text": "In a previous tip we covered how a REPL can help you determine what code to write in your scripts by testing locators and actions through an interactive prompt. This is great for simple tasks, but its starts to falter when debugging more complex scripts."
+  },
+  {
     "title": "Download Secure Files",
     "id": "15-download-secure-files",
     "number": 15,

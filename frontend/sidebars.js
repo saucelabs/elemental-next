@@ -37,6 +37,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "Interactive Prompts Revisited",
+          "id": "interactive-prompts-revisited/14-interactive-prompts-revisited"
+        },
+        {
+          "type": "doc",
           "label": "Download Secure Files",
           "id": "download-secure-files/15-download-secure-files"
         },
