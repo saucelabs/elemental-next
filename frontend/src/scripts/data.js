@@ -999,6 +999,26 @@ const Data = [
     "text": "There may come a time where you want to access Selenium logs in real time. Although there is a way to do this where you have to explicitly request the logs after each test action, what if we wanted information for every test action?"
   },
   {
+    "title": "How to Automatically Retry Failed Tests",
+    "id": "56-retry-failed-tests",
+    "number": 56,
+    "publish_date": "2014-06-24T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-04-06T00:00:00.000Z"
+    },
+    "tags": [
+      "retry",
+      "failure retry",
+      "reliability"
+    ],
+    "level": 3,
+    "category": [
+      "troubleshooting"
+    ],
+    "contentUrl": "docs/retry-failed-tests/56-retry-failed-tests",
+    "text": "You want reliable tests. But no matter how hard you try, you're going to run into intermittent test failures. These can be frustrating time wasters that distract you and your team and begin to erode the trust placed in the automated tests."
+  },
+  {
     "title": "Junit XML",
     "id": "57-junit-xml",
     "number": 57,
