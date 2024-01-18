@@ -237,6 +237,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Access Selenium Logs in Real-Time",
+          "id": "logging/54-logging"
+        },
+        {
+          "type": "doc",
           "label": "Wrapper",
           "id": "wrapper/55-wrapper"
         },
