@@ -177,6 +177,11 @@ module.exports = {
         },
         {
           "type": "doc",
+          "label": "How to Test Forgot Password",
+          "id": "forgot-password/43-forgot-password"
+        },
+        {
+          "type": "doc",
           "label": "How To Handle Exceptions",
           "id": "exception-handling/44-exception-handling"
         },

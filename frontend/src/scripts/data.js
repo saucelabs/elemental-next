@@ -753,6 +753,25 @@ const Data = [
     "text": "In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy, it is still a bit lacking."
   },
   {
+    "title": "How to Test Forgot Password",
+    "id": "43-forgot-password",
+    "number": 43,
+    "publish_date": "2015-10-15T00:00:00.000Z",
+    "last_update": {
+      "date": "2023-03-20T00:00:00.000Z"
+    },
+    "tags": [
+      "forgot password",
+      "email"
+    ],
+    "level": 2,
+    "category": [
+      "fundamentals"
+    ],
+    "contentUrl": "docs/forgot-password/43-forgot-password",
+    "text": "Testing e-mail can be a tricky process. Especially when dealing with things like forgot password. A lot of times this is something that gets checked manually. Or worse, it gets overlooked and ends up broken in production."
+  },
+  {
     "title": "How To Handle Exceptions",
     "id": "44-exception-handling",
     "number": 44,
