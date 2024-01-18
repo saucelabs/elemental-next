@@ -1,0 +1,35 @@
+---
+title: 'How to Run a Test on Multiple Browsers, In Parallel'
+id: '42-one-test-multiple-browsers-parallel'
+contentUrl: "docs/one-test-multiple-browsers-parallel/42-one-test-multiple-browsers-parallel"
+sidebar_label: "How to Run a Test on Multiple Browsers, In Parallel"
+text: "In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy, it is still a bit lacking."
+hide_table_of_contents: true
+number: 42
+publish_date: 2014-03-18
+last_update:
+    date: 2023-03-20
+tags:
+  - 'parallelization'
+  - 'multiple browsers'
+  - 'cloud'
+  - 'sauce'
+level: 2
+category:
+  - 'remote'
+---
+
+# How to Run a Test on Multiple Browsers, In Parallel
+
+## Intro
+
+In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy,
+it is still a bit lacking.
+
+Right now, the test is only being run one at a time (a.k.a. in series) for each browser in our list. If this were
+a longer running test and/or if there were more browsers we cared about, then this could quickly stack up to longer
+test run times.
+
+import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+
+<DropdownMarkdown folderName='42-one-test-multiple-browsers-parallel' />
