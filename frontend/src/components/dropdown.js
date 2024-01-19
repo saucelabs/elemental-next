@@ -6,7 +6,7 @@ const Dropdown = ({ options, selectedOption, onSelectChange }) => {
     <div className='dropdown'>
       <select value={selectedOption} onChange={onSelectChange}>
         {options.map((option) => (
-          <option key={option.value} value={option.value} ariaLabel={option.value}>
+          <option key={option.value} value={option.value} aria-label={option.value}>
             {option.label}
           </option>
         ))}
