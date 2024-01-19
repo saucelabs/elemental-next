@@ -19,7 +19,6 @@
   "dependencies": {
     "@docsearch/react": "3.3.5",
     "@docusaurus/core": "2.3.1",
-    "@docusaurus/plugin-content-docs": "^2.4.0",
     "@docusaurus/preset-classic": "2.3.1",
     "@mdx-js/react": "^1.6.22",
     "ariakit": "^2.0.0-next.43",

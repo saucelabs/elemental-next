@@ -19,7 +19,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'saucelabs', // Usually your GitHub org/user name.
+  organizationName: 'saucelabs', // Usually your GitHub org/username.
   projectName: 'elemental-next', // Usually your repo name.
   deploymentBranch: 'gh-pages', // The branch that GitHub pages deploys from.
   onBrokenLinks: 'warn',
