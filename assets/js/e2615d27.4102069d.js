@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[9117],{62797:o=>{o.exports=JSON.parse('{"label":"email","permalink":"/docs/tags/email","allTagsPath":"/docs/tags","count":1,"items":[{"id":"forgot-password/43-forgot-password","title":"How to Test Forgot Password","description":"Intro","permalink":"/docs/forgot-password/43-forgot-password"}]}')}}]);

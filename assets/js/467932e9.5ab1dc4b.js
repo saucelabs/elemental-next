@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[71623],{6102:t=>{t.exports=JSON.parse('{"label":"xml","permalink":"/tips/tags/xml","allTagsPath":"/tips/tags","count":1,"items":[{"id":"junit-xml/57-junit-xml","title":"Junit XML","description":"Intro","permalink":"/tips/junit-xml/57-junit-xml"}]}')}}]);

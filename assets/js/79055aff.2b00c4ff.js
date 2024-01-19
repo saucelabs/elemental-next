@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[18256],{70092:e=>{e.exports=JSON.parse('{"label":"logs","permalink":"/docs/tags/logs","allTagsPath":"/docs/tags","count":1,"items":[{"id":"logging/54-logging","title":"How to Access Selenium Logs in Real-Time","description":"Intro","permalink":"/docs/logging/54-logging"}]}')}}]);

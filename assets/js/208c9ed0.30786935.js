@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[28882],{41322:r=>{r.exports=JSON.parse('{"label":"safaridriver","permalink":"/docs/tags/safaridriver","allTagsPath":"/docs/tags","count":1,"items":[{"id":"safari/69-safari-driver","title":"SafariDriver","description":"Intro","permalink":"/docs/safari/69-safari-driver"}]}')}}]);

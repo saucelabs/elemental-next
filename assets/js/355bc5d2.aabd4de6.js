@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[78472],{75339:o=>{o.exports=JSON.parse('{"label":"hovers","permalink":"/docs/tags/hovers","allTagsPath":"/docs/tags","count":1,"items":[{"id":"how-to-work-with-hovers/50-hovers","title":"How To Work With Hovers","description":"Intro","permalink":"/docs/how-to-work-with-hovers/50-hovers"}]}')}}]);

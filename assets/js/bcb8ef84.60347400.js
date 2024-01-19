@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[16520],{2494:e=>{e.exports=JSON.parse('{"label":"new tab","permalink":"/docs/tags/new-tab","allTagsPath":"/docs/tags","count":1,"items":[{"id":"open-new-window/73-open-new-window","title":"Open a New Window or Tab","description":"Intro","permalink":"/docs/open-new-window/73-open-new-window"}]}')}}]);
