@@ -6,7 +6,7 @@ const grayMatter = require('gray-matter');
  * Generates the sidebar.js file based on main.mdx files in folders in the docs directory
  */
 function generateSidebar() {
-  const docsDir = path.resolve(__dirname, '../../docs');
+  const docsDir = path.resolve(__dirname, '../../tips');
 
   const sidebar = {
     docs: [
@@ -46,7 +46,7 @@ function generateSidebar() {
 
         /*  If frontmatter has id, it should be included in the sidebar */
         if (data.id) {
-          const contentUrl = data.contentUrl.replace('docs/', '');
+          const contentUrl = data.contentUrl.replace('tips/', '');
           sidebar.docs[1].items.push({
             type: 'doc',
             label: data.title,

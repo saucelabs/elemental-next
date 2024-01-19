@@ -17,7 +17,7 @@ const Data = [
       "remote",
       "fundamentals"
     ],
-    "contentUrl": "docs/how-to-upload-a-file/1-upload-a-file",
+    "contentUrl": "tips/how-to-upload-a-file/1-upload-a-file",
     "text": "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
   },
   {
@@ -38,7 +38,7 @@ const Data = [
       "remote",
       "fundamentals"
     ],
-    "contentUrl": "docs/download-a-file/2-download-a-file",
+    "contentUrl": "tips/download-a-file/2-download-a-file",
     "text": "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
   },
   {
@@ -56,7 +56,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/work-with-frames/3-work-with-frames",
+    "contentUrl": "tips/work-with-frames/3-work-with-frames",
     "text": "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
   },
   {
@@ -76,7 +76,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/work-with-multiple-windows/4-work-with-multiple-windows",
+    "contentUrl": "tips/work-with-multiple-windows/4-work-with-multiple-windows",
     "text": "This tip will explain how to work with multiple windows in Selenium and switch between them. Occasionally you'll run into a link or action in the application you're testing that will open a new window."
   },
   {
@@ -95,7 +95,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/select-from-a-dropdown/5-select-from-a-dropdown",
+    "contentUrl": "tips/select-from-a-dropdown/5-select-from-a-dropdown",
     "text": "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list might seem straightforward just grab the list by its element and select an item within it, based on the text you want there's a bit more skill to it."
   },
   {
@@ -114,7 +114,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/use-a-page-object/7-use-a-page-object",
+    "contentUrl": "tips/use-a-page-object/7-use-a-page-object",
     "text": "One of the biggest challenges with Selenium tests is that they can be brittle and challenging to maintain over time. This is largely due to the fact that things in the app you're testing change, breaking your tests."
   },
   {
@@ -133,7 +133,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/download-a-file-revisited/8-download-a-file-revisited",
+    "contentUrl": "tips/download-a-file-revisited/8-download-a-file-revisited",
     "text": "In a previous tip we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done. While the previous method works, it requires a custom configuration that is inconsistent from browser to browser."
   },
   {
@@ -152,7 +152,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/use-a-base-page-object/9-use-a-base-page-object",
+    "contentUrl": "tips/use-a-base-page-object/9-use-a-base-page-object",
     "text": "In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code."
   },
   {
@@ -170,7 +170,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/retry-test-actions/10-retry-test-actions",
+    "contentUrl": "tips/retry-test-actions/10-retry-test-actions",
     "text": "We all write tests with the best intention of having them pass and, when they fail, to reveal legitimate issues in the application we're testing. But that's not always easy to accomplish. Especially when your application is dependent upon third-party service providers (e.g. payment providers, social networks, etc)."
   },
   {
@@ -189,7 +189,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/build-an-interactive-prompt/11-build-an-interactive-prompt",
+    "contentUrl": "tips/build-an-interactive-prompt/11-build-an-interactive-prompt",
     "text": "Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion."
   },
   {
@@ -209,7 +209,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/opt-out-of-ab-tests/12-opt-out-of-ab-tests",
+    "contentUrl": "tips/opt-out-of-ab-tests/12-opt-out-of-ab-tests",
     "text": "Occasionally when running tests you may see unexpected behavior due to A/B testing of the application you're working with. In order to keep your tests running without issue we need a clean way to opt-out of these split tests."
   },
   {
@@ -227,7 +227,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/how-to-access-basic-auth/13-work-with-basic-auth",
+    "contentUrl": "tips/how-to-access-basic-auth/13-work-with-basic-auth",
     "text": "Sometimes you'll work with applications that are secured behind Basic HTTP Authentication. In order to access them you'll need to pass credentials to the site when requesting a page otherwise you'll get a system level pop-up prompting you for a username and password rendering Selenium helpless."
   },
   {
@@ -248,7 +248,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/interactive-prompts-revisited/14-interactive-prompts-revisited",
+    "contentUrl": "tips/interactive-prompts-revisited/14-interactive-prompts-revisited",
     "text": "In a previous tip we covered how a REPL can help you determine what code to write in your scripts by testing locators and actions through an interactive prompt. This is great for simple tasks, but its starts to falter when debugging more complex scripts."
   },
   {
@@ -268,7 +268,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/download-secure-files/15-download-secure-files",
+    "contentUrl": "tips/download-secure-files/15-download-secure-files",
     "text": "Previously, we've gone over how to test file downloads without a browser by leveraging Selenium Webdriver and an HTTP library in tandem. This approach is great for testing general file downloads, but what if the file you want to download is behind authentication?"
   },
   {
@@ -287,7 +287,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/take-screenshot-on-failure/16-take-screenshot-on-failure",
+    "contentUrl": "tips/take-screenshot-on-failure/16-take-screenshot-on-failure",
     "text": "With browser tests it can often be challenging to track down the issue that caused a failure. By itself, a failure message along with a stack trace is hardly enough to go on, especially when you run the test again and it passes. You may or may not be able to recreate that initial error message, and might be left wondering what it was, and whether or not it will cause issues in the future."
   },
   {
@@ -310,7 +310,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/retrieve-http-status-codes/17-retrieve-http-status-codes",
+    "contentUrl": "tips/retrieve-http-status-codes/17-retrieve-http-status-codes",
     "text": "There are times when you are testing a page (or numerous pages) and you want to verify that it responded correctly. A great way to handle this is by checking the HTTP Status Code that the browser received. However this functionality is not available in Selenium WebDriver."
   },
   {
@@ -328,7 +328,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/how-to-figure-out-what-to-update/18-what-to-test",
+    "contentUrl": "tips/how-to-figure-out-what-to-update/18-what-to-test",
     "text": "There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?"
   },
   {
@@ -348,7 +348,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/data-driven-testing/19-data-driven-testing",
+    "contentUrl": "tips/data-driven-testing/19-data-driven-testing",
     "text": "There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process."
   },
   {
@@ -367,7 +367,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/adding-a-language/21-choosing-a-language",
+    "contentUrl": "tips/adding-a-language/21-choosing-a-language",
     "text": "In order to work well with Selenium you need to choose a programming language to write your acceptance tests in. This guide will help you determine which language to choose for testing."
   },
   {
@@ -387,7 +387,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/locator-strategy/22-locator-strategy",
+    "contentUrl": "tips/locator-strategy/22-locator-strategy",
     "text": "In web design CSS (Cascading Style Sheets) is used to apply styles to the markup (HTML) on a page. CSS is able to do this by declaring which bits of the the markup it wants to interact with through the use of selectors."
   },
   {
@@ -409,7 +409,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/dynamic-pages/23-dynamic-pages",
+    "contentUrl": "tips/dynamic-pages/23-dynamic-pages",
     "text": "Let's say you want to test some functionality of a web application but it loads things dynamically. You might think about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout that you likely bump up to address test instabilities as well."
   },
   {
@@ -429,7 +429,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/rest-apis/24-rest-apis",
+    "contentUrl": "tips/rest-apis/24-rest-apis",
     "text": "When we list out the properties that make a test a good test, some things that often come up are: Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail."
   },
   {
@@ -451,7 +451,7 @@ const Data = [
       "troubleshooting",
       "fundamentals"
     ],
-    "contentUrl": "docs/how-to-work-with-tables/25-tables",
+    "contentUrl": "tips/how-to-work-with-tables/25-tables",
     "text": "Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for."
   },
   {
@@ -473,7 +473,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/cloud/26-cloud",
+    "contentUrl": "tips/cloud/26-cloud",
     "text": "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
   },
   {
@@ -492,7 +492,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/parallel/27-parallel",
+    "contentUrl": "tips/parallel/27-parallel",
     "text": "Compared to Unit and Integration Tests, Selenium is slow. A single test can easily take minutes to run. And when you have a lot of them, it can quickly compound your suite to take hours to complete (just for a single browser) -- hampering your ability to get fast feedback."
   },
   {
@@ -511,7 +511,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/upgrading-from-rc/28-upgrading-from-rc",
+    "contentUrl": "tips/upgrading-from-rc/28-upgrading-from-rc",
     "text": "As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC."
   },
   {
@@ -533,7 +533,7 @@ const Data = [
       "fundamentals",
       "remote"
     ],
-    "contentUrl": "docs/chrome-driver/29-chrome-driver",
+    "contentUrl": "tips/chrome-driver/29-chrome-driver",
     "text": "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
   },
   {
@@ -554,7 +554,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/mobile/30-mobile",
+    "contentUrl": "tips/mobile/30-mobile",
     "text": "Mobile is kind of a big deal. And if you haven't needed to test a mobile app yet, it's only a matter of time. But where do you start? And how do you do it in a way that is complimentary to your existing automation and experience?"
   },
   {
@@ -572,7 +572,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/archives/31-archives",
+    "contentUrl": "tips/archives/31-archives",
     "text": "Let me guess you subscribed to a free, weekly Selenium tip newsletter and aren't sure of how to access previously written tips or are unaware that this is even a possibility."
   },
   {
@@ -595,7 +595,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/css-vs-xpath/32-css-vs-xpath",
+    "contentUrl": "tips/css-vs-xpath/32-css-vs-xpath",
     "text": "One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS."
   },
   {
@@ -618,7 +618,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/css-vs-xpath-2/33-css-vs-xpath-2",
+    "contentUrl": "tips/css-vs-xpath-2/33-css-vs-xpath-2",
     "text": "To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do that by running everything from a local machine while using a performance benchmarking utility."
   },
   {
@@ -641,7 +641,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/css-vs-xpath-3/34-css-vs-xpath-3",
+    "contentUrl": "tips/css-vs-xpath-3/34-css-vs-xpath-3",
     "text": "In the last tip I provided benchmarks that showed XPath and CSS performance across various browsers. Since then I've received feedback on some things that my test was missing -- most notably more browser coverage and testing against a larger and deeper page."
   },
   {
@@ -668,7 +668,7 @@ const Data = [
     "category": [
       "resources"
     ],
-    "contentUrl": "docs/available-resources/36-available-resources",
+    "contentUrl": "tips/available-resources/36-available-resources",
     "text": "This is the official Selenium documentation site. There is a lot of helpful information here. Use the sidebar menu on the left to navigate."
   },
   {
@@ -687,7 +687,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/headless/38-headless",
+    "contentUrl": "tips/headless/38-headless",
     "text": "If you want to run your tests headless on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
   },
   {
@@ -708,7 +708,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/drag-and-drop/39-drag-and-drop",
+    "contentUrl": "tips/drag-and-drop/39-drag-and-drop",
     "text": "Exercising a page's drag-and-drop functionality used to be simple with Selenium's Action Builder, but sadly, it won't work with HTML5 drag and drop."
   },
   {
@@ -729,7 +729,7 @@ const Data = [
       "remote",
       "troubleshooting"
     ],
-    "contentUrl": "docs/disabled-element/40-disabled-element",
+    "contentUrl": "tips/disabled-element/40-disabled-element",
     "text": "On occasion you may have the need to check if an element on a page is disabled or enabled. Unfortunately, this is not a well-documented function of Selenium, so doing a trivial action like this can quickly become a pain."
   },
   {
@@ -749,7 +749,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/one-test-multiple-browsers/41-one-test-multiple-browsers",
+    "contentUrl": "tips/one-test-multiple-browsers/41-one-test-multiple-browsers",
     "text": "You'll occasionally have something that you want to test across multiple browsers. It would be nice to run your test once and have it execute against all of the browsers you care about. Unfortunately this functionality doesn't come out of the box with most testing frameworks."
   },
   {
@@ -770,7 +770,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/one-test-multiple-browsers-parallel/42-one-test-multiple-browsers-parallel",
+    "contentUrl": "tips/one-test-multiple-browsers-parallel/42-one-test-multiple-browsers-parallel",
     "text": "In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy, it is still a bit lacking."
   },
   {
@@ -789,7 +789,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/forgot-password/43-forgot-password",
+    "contentUrl": "tips/forgot-password/43-forgot-password",
     "text": "Testing e-mail can be a tricky process. Especially when dealing with things like forgot password. A lot of times this is something that gets checked manually. Or worse, it gets overlooked and ends up broken in production."
   },
   {
@@ -812,7 +812,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/exception-handling/44-exception-handling",
+    "contentUrl": "tips/exception-handling/44-exception-handling",
     "text": "It doesn't take long when using Selenium before you run into errors from Selenium that may seem inexplicable . They can be a bit of a shock if you're not sure what they are, how to handle them, or where to find documentation on how to address them."
   },
   {
@@ -832,7 +832,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/how-to-test-checkboxes/45-checkboxes",
+    "contentUrl": "tips/how-to-test-checkboxes/45-checkboxes",
     "text": "Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests."
   },
   {
@@ -853,7 +853,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/waiting/47-waiting",
+    "contentUrl": "tips/waiting/47-waiting",
     "text": "In order to make our Selenium tests resilient, we need to make them wait for certain elements to load. Elements that we want to interact with. This is especially true with JavaScript heavy pages."
   },
   {
@@ -871,7 +871,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/load-testing/48-load-testing",
+    "contentUrl": "tips/load-testing/48-load-testing",
     "text": "How do you do load testing in Selenium? While there are plenty of resources citing that while it _can_ be done, there are better tools for the job. Tools like JMeter are often recommended, but they can be intimidating and challenging to get started."
   },
   {
@@ -892,7 +892,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/performance-testing/49-performance-testing",
+    "contentUrl": "tips/performance-testing/49-performance-testing",
     "text": "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
   },
   {
@@ -912,7 +912,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/how-to-work-with-hovers/50-hovers",
+    "contentUrl": "tips/how-to-work-with-hovers/50-hovers",
     "text": "If you need to work with mouse hovers in your tests, it might not be obvious how to do this with Selenium. A quick search through the official Selenium documentation can also be confusing, and might leave you scouring online forums and search engines for the solution."
   },
   {
@@ -934,7 +934,7 @@ const Data = [
       "fundamentals",
       "tools"
     ],
-    "contentUrl": "docs/how-to-work-with-javascript-alerts/51-javascript-alerts",
+    "contentUrl": "tips/how-to-work-with-javascript-alerts/51-javascript-alerts",
     "text": "Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach."
   },
   {
@@ -954,7 +954,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/grid/52-how-to-use-selenium-grid",
+    "contentUrl": "tips/grid/52-how-to-use-selenium-grid",
     "text": "With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with."
   },
   {
@@ -975,7 +975,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/growl/53-growl",
+    "contentUrl": "tips/growl/53-growl",
     "text": "Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece all for the sake of trying to track down a transient issue."
   },
   {
@@ -996,7 +996,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/logging/54-logging",
+    "contentUrl": "tips/logging/54-logging",
     "text": "Logging is a deep rabbit hole to fall down in Selenium. The documentation isn't complete and the approach for each of the browser and language bindings is inconsistent and hard to find examples for."
   },
   {
@@ -1016,7 +1016,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/wrapper/55-wrapper",
+    "contentUrl": "tips/wrapper/55-wrapper",
     "text": "There may come a time where you want to access Selenium logs in real time. Although there is a way to do this where you have to explicitly request the logs after each test action, what if we wanted information for every test action?"
   },
   {
@@ -1036,7 +1036,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/retry-failed-tests/56-retry-failed-tests",
+    "contentUrl": "tips/retry-failed-tests/56-retry-failed-tests",
     "text": "You want reliable tests. But no matter how hard you try, you're going to run into intermittent test failures. These can be frustrating time wasters that distract you and your team and begin to erode the trust placed in the automated tests."
   },
   {
@@ -1058,7 +1058,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/junit-xml/57-junit-xml",
+    "contentUrl": "tips/junit-xml/57-junit-xml",
     "text": "If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a Continuous Integration server."
   },
   {
@@ -1079,7 +1079,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/tagging/58-tagging",
+    "contentUrl": "tips/tagging/58-tagging",
     "text": "As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?"
   },
   {
@@ -1100,7 +1100,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/list-tags/60-list-tags",
+    "contentUrl": "tips/list-tags/60-list-tags",
     "text": "Tagging is a powerful tool for targeted test execution, as well as a lightweight form of documentation. But what happens when you want to see a summary of the tags you're using across all of your tests? Unfortunately, most solution don't offer this kind of functionality out of the box, leaving you to manually sift through your tests to get a sense of the different tags you're using."
   },
   {
@@ -1122,7 +1122,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/how-to-press-keyboard-keys/61-keyboard-keys",
+    "contentUrl": "tips/how-to-press-keyboard-keys/61-keyboard-keys",
     "text": "On occasion you'll come across functionality that requires the use of keyboard key presses in your tests. Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter. But how do you do it and where do you start?"
   },
   {
@@ -1144,7 +1144,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "docs/right-click/63-right-click",
+    "contentUrl": "tips/right-click/63-right-click",
     "text": "Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?"
   },
   {
@@ -1162,7 +1162,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/limit-bandwidth/64-limit-bandwidth",
+    "contentUrl": "tips/limit-bandwidth/64-limit-bandwidth",
     "text": "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?"
   },
   {
@@ -1183,7 +1183,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/highlight-elements/65-highlight-elements",
+    "contentUrl": "tips/highlight-elements/65-highlight-elements",
     "text": "It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?"
   },
   {
@@ -1202,7 +1202,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/blacklist/66-blacklist",
+    "contentUrl": "tips/blacklist/66-blacklist",
     "text": "There are plenty of external resources that get loaded onto a page that aren't directly relevant to the functionality you're testing (e.g., Facebook widgets, Analytics, JavaScript snippets, etc.). And these external resources have the potential to negatively impact your test runs due to slow load times."
   },
   {
@@ -1225,7 +1225,7 @@ const Data = [
     "category": [
       "troubleshooting"
     ],
-    "contentUrl": "docs/broken-images/67-broken-images",
+    "contentUrl": "tips/broken-images/67-broken-images",
     "text": "Selenium is built to mimic human action (e.g., clicking, typing, dragging, dropping, etc.). So how do you use it to test for broken images?"
   },
   {
@@ -1244,7 +1244,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/load-testing-revisited/68-load-testing-revisited",
+    "contentUrl": "tips/load-testing-revisited/68-load-testing-revisited",
     "text": "In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP library. While it works, it's only useful for rudimentary test cases. For more involved test cases and more powerful load generation, we're going to need something stronger."
   },
   {
@@ -1265,7 +1265,7 @@ const Data = [
     "category": [
       "tools"
     ],
-    "contentUrl": "docs/safari/69-safari-driver",
+    "contentUrl": "tips/safari/69-safari-driver",
     "text": "Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension."
   },
   {
@@ -1285,7 +1285,7 @@ const Data = [
       "resources"
     ],
     "language": "all",
-    "contentUrl": "docs/mobile-testing-pyramid/71-mobile-testing-pyramid",
+    "contentUrl": "tips/mobile-testing-pyramid/71-mobile-testing-pyramid",
     "text": "There are loads of trade-offs when it comes to mobile testing. But by learning to use all layers of the mobile testing pyramid to your advantage you can gain the fast feedback that is required in modern CI/CD environments."
   },
   {
@@ -1304,7 +1304,7 @@ const Data = [
     "category": [
       "remote"
     ],
-    "contentUrl": "docs/headless-chrome/72-headless-chrome",
+    "contentUrl": "tips/headless-chrome/72-headless-chrome",
     "text": "If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
   },
   {
@@ -1325,7 +1325,7 @@ const Data = [
     "category": [
       "testing"
     ],
-    "contentUrl": "docs/open-new-window/73-open-new-window",
+    "contentUrl": "tips/open-new-window/73-open-new-window",
     "text": "Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using Selenium."
   }
 ];

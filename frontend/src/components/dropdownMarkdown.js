@@ -10,7 +10,7 @@ const DropdownMarkdown = ({ folderName }) => {
 
   const renderSelectedFile = () => {
     if (selectedFile) {
-      const SelectedFile = require(`../../docs/${folderName}/${selectedFile}.md`).default;
+      const SelectedFile = require(`../../tips/${folderName}/${selectedFile}.md`).default;
       return (
         <MDXProvider>
           <div className='dropdown-markdown-content'>

@@ -1,0 +1,42 @@
+---
+title: 'CSS vs. XPath 2'
+id: '33-css-vs-xpath-2'
+contentUrl: "tips/css-vs-xpath-2/33-css-vs-xpath-2"
+sidebar_label: 'CSS vs. Xpath 2'
+text: "To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do that by running everything from a local machine while using a performance benchmarking utility."
+number: 33
+hide_table_of_contents: true
+level: 2
+publish_date: 2014-01-14
+last_update:
+    date: 2023-03-15
+tags:
+  - selectors
+  - xpath
+  - css
+  - css selectors
+  - locators
+  - locator strategy
+category:
+  - 'resources'
+---
+
+# CSS vs. XPath, Under a Microscope
+
+>**NOTE: This is part 2 of 3. For the first installment,
+> [go here](https://elementalselenium.com/docs/css-vs-xpath/32-css-vs-xpath).
+> For the last installment, go [here](https://elementalselenium.com/docs/xpath-vs-css-revisited-2/34-xpath-vs-css-revisited-2).**
+
+## Intro
+
+In a previous tip we reviewed [the performance of CSS vs. XPath against Sauce Labs](https://elementalselenium.com/docs/css-vs-xpath/32-css-vs-xpath).
+While it demonstrated that each locator strategy is reasonably equivalent across browsers, it didn't adequately paint
+the whole picture for us.
+
+Given that it was an end-to-end test there were a lot of variables at play -- Sauce startup, browser start up, and
+latency to and from the application under test. The unfortunate takeaway from that experiment could be that one driver
+may be faster than the other (e.g. IE vs Firefox), when in fact, that's not the case at all.
+
+import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+
+<DropdownMarkdown folderName='33-css-vs-xpath-2' />

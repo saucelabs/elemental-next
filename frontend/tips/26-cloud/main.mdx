@@ -1,0 +1,38 @@
+---
+title: 'Cloud'
+id: '26-cloud'
+contentUrl: "tips/cloud/26-cloud"
+sidebar_label: Cloud
+text: "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
+number: 26
+hide_table_of_contents: true
+level: 1
+publish_date: 2015-09-15
+last_update:
+  date: 2023-02-27
+tags:
+  - 'sauce labs'
+  - 'test infrastructure'
+  - 'to the cloud'
+  - 'cloud'
+  - 'someone elses grid'
+category:
+  - 'troubleshooting'
+---
+
+# How to Run Your Tests on Any Browser & Operating System
+
+## Intro
+
+In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a "legit" version of Windows installed on the VM.
+
+Now what about when the other half of your users use Chrome and Safari on macOS, and maybe other operating systems? What if you need
+to run those tests in parallel and scale up the number of VMs available? Then you're looking at provisioning, running, and
+maintaining your own farm of machines and standing up something like [Selenium Grid](https://www.selenium.dev/documentation/grid/)
+to coordinate tests across them.
+
+And all you wanted to do was run your tests on the browsers you cared about... but there's a better solution to all of this.
+
+import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+
+<DropdownMarkdown folderName='26-cloud' />
