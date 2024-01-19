@@ -3,7 +3,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 /* Set the target directory for the script to read files from */
-const targetDir = process.env.DOCS_DIR || 'docs/';
+const targetDir = process.env.DOCS_DIR || 'tips/';
 
 /* Creates processedData object that contains the front matter data properties */
 const processMD = (mdFile) => {
