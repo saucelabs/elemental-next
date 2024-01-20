@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[45840],{18171:e=>{e.exports=JSON.parse('{"label":"someone elses grid","permalink":"/tips/tags/someone-elses-grid","allTagsPath":"/tips/tags","count":1,"items":[{"id":"cloud/26-cloud","title":"Cloud","description":"Intro","permalink":"/tips/cloud/26-cloud"}]}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[6078],{5453:a=>{a.exports=JSON.parse('{"label":"bug","permalink":"/tips/tags/bug","allTagsPath":"/tips/tags","count":1,"items":[{"id":"drag-and-drop/39-drag-and-drop","title":"How to Test HTML5 Drag and Drop","description":"Intro","permalink":"/tips/drag-and-drop/39-drag-and-drop"}]}')}}]);

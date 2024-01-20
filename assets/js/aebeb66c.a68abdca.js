@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[96298],{32911:s=>{s.exports=JSON.parse('{"label":"archives","permalink":"/tips/tags/archives","allTagsPath":"/tips/tags","count":1,"items":[{"id":"archives/31-archives","title":"Accessing Previous Tips Archive","description":"Intro","permalink":"/tips/archives/31-archives"}]}')}}]);
