@@ -1,18 +1,3 @@
----
-language: java
-level: 1
-hide_sidebar: true
-publish_date: 2015-11-07
-last_update:
-  date: 2023-03-12
----
-
-## A Solution
-
-A work-around for this problem is to side-step the system dialog box entirely. We can do this by using Selenium to insert the full path of the file we want to upload (as text) _into_ the form and then submit the form.
-
-Let's step through an example.
-
 ## Example
 
 __NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__

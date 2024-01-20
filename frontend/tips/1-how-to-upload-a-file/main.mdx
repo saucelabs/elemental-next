@@ -31,7 +31,12 @@ can help solve your short-term need, it sets you up for failure later by chainin
 AutoIt only works on Windows), effectively limiting your ability to test this functionality on different browser &
 operating system combinations.
 
+## A Solution
 
+A work-around for this problem is to side-step the system dialog box entirely. We can do this by using Selenium to
+insert the full path of the file we want to upload (as text) into the form and then submit the form.
+
+Let's step through an example.
 
 
 import DisplayTips from "../../src/components/displayTips";
