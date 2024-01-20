@@ -1,12 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2015-08-21
-last_update:
-  date: 2023-02-27
----
-
 ## Example 1
 
 First, let's pull in our requisite libraries (e.g., `selenium-webdriver` to control the browser and `rspec/expectations` & `RSpec::Matchers` for our assertions) and add some simple `setup`, `teardown`, and `run` methods.
@@ -102,10 +93,3 @@ For more information about switching windows (and tabs) visit the official Selen
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

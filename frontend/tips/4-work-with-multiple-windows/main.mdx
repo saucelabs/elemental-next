@@ -24,12 +24,35 @@ category:
 
 This tip will explain how to work with multiple windows in Selenium and switch between them.
 
-Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.
+Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order
+to work with both the new and originating windows you'll need to switch between them.
 
-On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for that you may find in some browsers and not others.
+On the face of it, this is a pretty straightforward concept. But there may be a small challenge to watch out for
+that you may find in some browsers and not others.
 
 Let's step through a couple of examples to demonstrate.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
 
-<DropdownMarkdown folderName='4-work-with-multiple-windows' />
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"1-how-to-upload-a-file"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
