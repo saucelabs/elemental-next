@@ -352,7 +352,7 @@ const Data = [
     "text": "There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process."
   },
   {
-    "title": "Choosing a Programming Language",
+    "title": "How To Pick a Programming Language",
     "id": "21-choosing-a-language",
     "number": 21,
     "publish_date": "2015-10-13T00:00:00.000Z",

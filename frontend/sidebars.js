@@ -72,7 +72,7 @@ module.exports = {
         },
         {
           "type": "doc",
-          "label": "Choosing a Programming Language",
+          "label": "How To Pick a Programming Language",
           "id": "adding-a-language/21-choosing-a-language"
         },
         {
