@@ -22,10 +22,36 @@ category:
 
 ## Intro
 
-Previously, we've gone over how to test file downloads without a browser by leveraging Selenium Webdriver and an HTTP library in tandem.
+Previously, we've gone over how to test file downloads without a browser by leveraging Selenium Webdriver and an
+HTTP library in tandem.
 
-This approach is great for testing general file downloads, but what if the file you want to download is behind authentication?
+This approach is great for testing general file downloads, but what if the file you want to download is behind
+authentication?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='15-download-secure-files' />
+To access secure files with our HTTP library we'll need to pull the authenticated session information out of
+Selenium's cookie store and pass it into the HTTP library when we perform the request.
+
+Let's continue with some examples.
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"15-download-secure-files"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+

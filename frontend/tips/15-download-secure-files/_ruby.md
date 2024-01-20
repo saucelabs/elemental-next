@@ -1,18 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2015-08-20
-last_update:
-  date: 2023-03-27
----
-
-## A Solution
-
-To access secure files with our HTTP library we'll need to pull the authenticated session information out of Selenium's cookie store and pass it into the HTTP library when we perform the request.
-
-Let's continue with some examples.
-
 ## Example 1
 
 First let's require our libraries (`selenium-webdriver` to drive the browser, `rspec/expectations` & `RSpec::Matchers` for our assertions, and `rest-client` for our HTTP requests) and wire up some simple `setup`, `teardown`, and `run` methods.
@@ -116,11 +101,3 @@ From here, it's simple enough to add in additional content types and file types.
 Hopefully this helps save you some time, enabling you to build a more lean and fast set of download tests.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
