@@ -1,18 +1,3 @@
----
-language: python
-level: 1
-hide_sidebar: true
-publish_date: 2016-11-14
-last_update:
-  date: 2023-02-22
----
-
-## A Solution
-
-Rather than getting frustrated when authoring your tests, you can work with the elements in a frame by telling Selenium to switch to that frame first. Then the rest of your test should be more straightforward.
-
-Let's explore further with some examples.
-
 ## Example 1
 
 We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
@@ -111,11 +96,3 @@ Now you're ready to handily defeat frames when they cross your path.
 Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
-
-## About the Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
