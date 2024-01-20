@@ -24,15 +24,39 @@ category:
 
 ## Intro
 
-In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a "legit" version of Windows installed on the VM.
+In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your
+computer with a "legit" version of Windows installed on the VM.
 
-Now what about when the other half of your users use Chrome and Safari on macOS, and maybe other operating systems? What if you need
-to run those tests in parallel and scale up the number of VMs available? Then you're looking at provisioning, running, and
-maintaining your own farm of machines and standing up something like [Selenium Grid](https://www.selenium.dev/documentation/grid/)
+Now what about when the other half of your users use Chrome and Safari on macOS, and maybe other operating systems?
+What if you need to run those tests in parallel and scale up the number of VMs available? Then you're looking at
+provisioning, running, and maintaining your own farm of machines and standing up something like [Selenium Grid](https://www.selenium.dev/documentation/grid/)
 to coordinate tests across them.
 
-And all you wanted to do was run your tests on the browsers you cared about... but there's a better solution to all of this.
+And all you wanted to do was run your tests on the browsers you cared about... but there's a better solution to all
+of this.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='26-cloud' />
+Rather than take on the overhead of a test infrastructure, you can easily outsource things to a third-party cloud
+provider (a.k.a. Someone Elses Grid). There are a handful of players in this space, but there's one that stands out --
+[Sauce Labs](https://saucelabs.com/).
+
+At the heart of Selenium at scale is the use of Selenium Grid. Selenium Grid lets you distribute test execution across
+several machines and you connect to it with [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/).
+With Selenium WebDriver you specify the browser type, browser version, and operating system.
+
+This is fundamentally how Sauce Labs works. Behind the curtain they are ultimately running Selenium Grid, and they
+receive and execute your tests through Selenium WebDriver.
+
+Here is an example.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"26-cloud"} languages={contentLanguages} />
+
+

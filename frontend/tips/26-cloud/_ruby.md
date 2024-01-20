@@ -7,21 +7,6 @@ last_update:
   date: 2023-02-27
 ---
 
-## A Solution
-
-Rather than take on the overhead of a test infrastructure, you can easily outsource things to a third-party cloud provider
-(a.k.a. Someone Elses Grid). There are a handful of players in this space, but there's one that stands out --
-[Sauce Labs](https://saucelabs.com/).
-
-At the heart of Selenium at scale is the use of Selenium Grid. Selenium Grid lets you distribute test execution across
-several machines and you connect to it with [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/).
-With Selenium WebDriver you specify the browser type, browser version, and operating system.
-
-This is fundamentally how Sauce Labs works. Behind the curtain they are ultimately running Selenium Grid, and they
-receive and execute your tests through Selenium WebDriver.
-
-Here is an example.
-
 ## Example
 
 
@@ -146,15 +131,3 @@ for your tests, and dynamically setting the test name). You can find more inform
 in [the Sauce Labs docs](https://docs.saucelabs.com/).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by
-thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect
-for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at
-numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
