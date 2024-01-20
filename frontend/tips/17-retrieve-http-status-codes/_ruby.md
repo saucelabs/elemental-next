@@ -1,12 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2015-10-15
-last_update:
-  date: 2023-04-06
----
-
 ## A Solution
 
 The tried and true approach that Selenium Committers and Practitioners recommend is to use a proxy server. With it, you will be able to watch and manipulate network traffic to and from the application you're testing. Thus giving you access to a whole host of functionality that isn't available otherwise.
@@ -113,9 +104,3 @@ If you save this file and run it (e.g., `ruby status_codes.rb` from the command-
 This tip was inspired by [Jim Evans'](https://twitter.com/jimevansmusic) multi-part blog post series on doing the same thing in C# with Fiddler ([1](http://jimevansmusic.blogspot.com/2013/08/implementing-webdriver-http-status.html), [2](http://jimevansmusic.blogspot.com/2013/08/implementing-http-status-codes-in.html), [3](http://jimevansmusic.blogspot.com/2013/08/implementing-http-status-codes-in_17.html)) which was in response to [Selenium Issue 141](https://code.google.com/p/selenium/issues/detail?id=141). Thanks Jim!
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
