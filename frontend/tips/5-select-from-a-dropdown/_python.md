@@ -1,12 +1,3 @@
----
-language: python
-level: 1
-hide_sidebar: true
-publish_date: 2015-07-06
-last_update:
-  date: 2023-03-02
----
-
 ## Example 1
 
 

@@ -1,12 +1,3 @@
----
-language: java
-level: 1
-hide_sidebar: true
-publish_date: 2015-11-09
-last_update:
-  date: 2023-04-03
----
-
 ## Example 1
 
 First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
@@ -120,13 +111,3 @@ Hopefully this tip will help you breeze through selecting items from a dropdown 
 Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip! Want me to cover more tips in Java or other programming languages? Send me a pull request for an existing tip and I will! All code examples are open source and available [here](http://github.com/tourdedave/elemental-selenium-tips).
 
 Happy Testing!
-
-## About The Author
-
-Hopefully this tip will help you breeze through selecting items from a dropdown list.
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

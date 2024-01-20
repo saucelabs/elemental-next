@@ -1,12 +1,3 @@
----
-language: javascript
-level: 1
-hide_sidebar: true
-publish_date: 2019-08-09
-last_update:
-  date: 2023-02-22
----
-
 ## Example 1
 
 First let's pull in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
@@ -105,11 +96,3 @@ In this tip, we've gone over using Selenium to select from a drop down using the
 Hopefully this will help you when selecting items from a dropdown list.
 
 Happy Testing!
-
-## About the Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
