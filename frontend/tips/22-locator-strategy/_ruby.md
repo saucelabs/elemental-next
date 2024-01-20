@@ -1,16 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2013-10-22
-last_update:
-  date: 2023-02-22
----
-
-## A Solution
-
-While each locator strategy serves its purpose there is one approach that is better. It is one that is cross-browser performant, simpler to maintain, and powerful -- that's CSS Selectors.
-
 ## Example 1
 
 With the markup below (taken from [here](http://the-internet.herokuapp.com/download)) we can demonstrate grabbing the first link from a series of links with varying degrees of precision via CSS Selectors.
@@ -122,11 +109,3 @@ From here you should able to construct a CSS Selector to use in a test.
 To that end, stay tuned for future tips where we'll cover more advanced CSS Selector techniques and strategies for dealing with older browsers.
 
 Until then, Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

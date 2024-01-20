@@ -22,12 +22,40 @@ category:
 
 ## Intro
 
-In web design CSS (Cascading Style Sheets) is used to apply styles to the markup (HTML) on a page. CSS is able to do this by declaring which bits of the the markup it wants to interact with through the use of selectors. Selenium operates in a similar manner but instead of changing the style of elements it interacts with them by clicking, getting values from, typing, sending keys, etc.
+In web design CSS (Cascading Style Sheets) is used to apply styles to the markup (HTML) on a page. CSS is able to do
+this by declaring which bits of the the markup it wants to interact with through the use of selectors. Selenium
+operates in a similar manner but instead of changing the style of elements it interacts with them by clicking,
+getting values from, typing, sending keys, etc.
 
-At the heart of Selenium is the ability to interact with a page through its elements by way of various locator strategies. Identifier, Id, Name, Link, DOM, XPath, and CSS -- oh my!
+At the heart of Selenium is the ability to interact with a page through its elements by way of various locator
+strategies. Identifier, Id, Name, Link, DOM, XPath, and CSS -- oh my!
 
-This is the life-blood of your automated tests and there are numerous elements to choose from. But which ones do you use? And when do you use them and why?
+This is the life-blood of your automated tests and there are numerous elements to choose from. But which ones do
+you use? And when do you use them and why?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='22-locator-strategy' />
+While each locator strategy serves its purpose there is one approach that is better. It is one that is
+cross-browser performant, simpler to maintain, and powerful -- that's CSS Selectors.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"22-locator-strategy"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
