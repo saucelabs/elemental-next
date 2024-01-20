@@ -1,16 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2015-10-14
-last_update:
-  date: 2023-02-22
----
-
-## A Solution
-
-By specifying the username and password _in the URL_ when visiting a page with Selenium, we can a side-step the system level dialog box and avoid setting up a proxy server. This approach will work for both HTTP or HTTPS pages.
-
 ## Example 1
 
 Let's start by requiring our requisite libraries (e.g., `selenium-webdriver` to drive the browser and `rspec/expectations` & `RSpec::Matchers` to handle our assertions) and implementing some helper methods (e.g., `setup`, `teardown`, and `run`) to handle our test configuration.
@@ -110,11 +97,3 @@ And when you save the second example and run it (e.g., `ruby basic_auth_setup.rb
 Hopefully these examples will help save you from getting any setbacks from Basic Auth when you come across it.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
