@@ -1,12 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2015-09-15
-last_update:
-  date: 2023-02-27
----
-
 ## Example
 
 
