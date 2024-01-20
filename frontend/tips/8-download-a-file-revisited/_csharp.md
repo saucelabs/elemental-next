@@ -1,20 +1,3 @@
----
-language: csharp
-level: 2
-hide_sidebar: true
-publish_date: 2016-06-12
-last_update:
-  date: 2023-03-29
----
-
-## A Solution
-
-Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded. And we can do that by using an HTTP client alongside Selenium in our test.
-
-With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll receive header information for the file which contains information like the content type and content length (amongst other things). With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times (depending on the file size).
-
-Let's continue with an example.
-
 ## Example
 
 To start things off let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), an HTTP library to handle our HEAD request (e.g., `System.Net`), and start our class with some setup and teardown methods.
@@ -86,11 +69,3 @@ When you save this and run it (e.g., `nunit3-console.exe .\FileDownloadRevisited
 Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

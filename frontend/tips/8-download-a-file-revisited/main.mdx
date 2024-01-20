@@ -21,12 +21,46 @@ category:
 
 ## Intro
 
-In a [previous tip](/tips/2-download-a-file) we went through how to download files with Selenium by configuring the browser to download them locally and verifying their file size when done.
+In a [previous tip](/tips/2-download-a-file) we went through how to download files with Selenium by configuring the browser to download
+them locally and verifying their file size when done.
 
 While the previous method works, it requires a custom configuration that is inconsistent from browser to browser.
 
-Ultimately, we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded, which we can do by using an HTTP client alongside Selenium in our test.
+Ultimately, we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded,
+which we can do by using an HTTP client alongside Selenium in our test.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='8-download-a-file-revisited' />
+Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded.
+And we can do that by using an HTTP client alongside Selenium in our test.
+
+With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll
+receive header information for the file which contains information like the content type and content length
+(amongst other things). With this information we can easily confirm the file is what we expect without onerous
+configuration, local disk usage, or lengthy download times (depending on the file size).
+
+Let's continue with an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"8-download-a-file-revisited"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
