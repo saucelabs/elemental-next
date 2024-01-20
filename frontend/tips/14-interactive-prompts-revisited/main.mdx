@@ -38,6 +38,9 @@ view the objects or methods available to you while debugging in your script.
 Sometimes you just need to be able to _pry_ into the code, jump in, open it up and explore the area in order to
 solve the error you are experiencing.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
 
-<DropdownMarkdown folderName='14-interactive-prompts-revisited' />
+<DisplayTips contentPath={"14-interactive-prompts-revisited"} languages={contentLanguages} />

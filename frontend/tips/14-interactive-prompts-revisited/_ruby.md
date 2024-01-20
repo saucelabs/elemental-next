@@ -1,12 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2013-08-27
-last_update:
-  date: 2023-04-06
-level: 3
-language: ruby
----
-
 ## A Solution
 
 A common utility most programmers in the Ruby community are familiar with is the Interactive Ruby Shell (IRB). 
