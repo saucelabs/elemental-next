@@ -28,6 +28,33 @@ This is largely due to the fact that things in the app you're testing change, br
 But the reality of a software project is that change is a constant. So we need to account for this reality somehow
 in our test code in order to be successful.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='7-use-a-page-object' />
+Enter Page Objects.
+
+Rather than write your test code directly against your app, you can model the behavior of your application into
+simple objects -- and write your tests against them instead. That way when your app changes and your tests break,
+you only have to update your test code in one place to fix it.
+
+And with this approach, we not only get the benefit of controlled chaos, we also get the benefit of reusable behavior.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"7-use-a-page-object"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

@@ -1,22 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2013-07-09
-last_update:
-  date: 2023-03-08
----
-
-## A Solution
-
-Enter Page Objects.
-
-Rather than write your test code directly against your app, you can model the behavior of your application into
-simple objects -- and write your tests against them instead. That way when your app changes and your tests break,
-you only have to update your test code in one place to fix it.
-
-And with this approach, we not only get the benefit of controlled chaos, we also get the benefit of reusable behavior.
-
 ## Example
 
 In this example we are going to take the following sample code and upgrade it with the use of a Page Object.
@@ -179,15 +160,3 @@ Stay tuned for a future tip where we implement a Base Page Object class to abstr
 and roll our own Domain Specific Language (DSL) for our test suite.
 
 Until then, Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by
-thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect
-for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at
-numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
