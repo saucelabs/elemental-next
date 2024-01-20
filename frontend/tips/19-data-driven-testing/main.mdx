@@ -22,10 +22,38 @@ category:
 
 ## Intro
 
-There are times when you run across functionality you want to test repeatedly with various inputs to see how the system behaves. We're going to go over a way to do this that will take some of the burden out of the process.
+There are times when you run across functionality you want to test repeatedly with various inputs to see how the
+system behaves. We're going to go over a way to do this that will take some of the burden out of the process.
 
-Sometimes performing these tests are because you want to test the expected outcomes. Other times, because you want to see if the system breaks in an odd way. But, wiring up all of these permutations into a set of automated tests can be burdensome and rife with copied code, which can make it hard to maintain over time.
+Sometimes performing these tests are because you want to test the expected outcomes. Other times, because you
+want to see if the system breaks in an odd way. But, wiring up all of these permutations into a set of automated
+tests can be burdensome and rife with copied code, which can make it hard to maintain over time.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='19-data-driven-testing' />
+Enter Data-driven Testing.
+
+By storing your desired inputs and expected outcomes in a central repository of some kind (e.g. a comma separated
+file, database, etc) you can easily wire up tests to use each of them instead of writing numerous tests and
+hard-coding these values directly in your test code.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"19-data-driven-testing"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

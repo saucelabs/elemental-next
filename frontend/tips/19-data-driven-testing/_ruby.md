@@ -1,18 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2015-07-14
-last_update:
-  date: 2023-02-28
----
-
-## A Solution
-
-Enter Data-driven Testing.
-
-By storing your desired inputs and expected outcomes in a central repository of some kind (e.g. a comma separated file, database, etc) you can easily wire up tests to use each of them instead of writing numerous tests and hard-coding these values directly in your test code.
-
 ## Example
 
 Let's start with an example -- testing a login form on a website (e.g., with [this example](http://the-internet.herokuapp.com/login) on [the-internet](https://github.com/tourdedave/the-internet)).
@@ -111,11 +96,3 @@ If you save this file and run it (e.g., `ruby data_driven.rb` from the command-l
 By storing data in a central repository to use for your tests and using Data-driven testing, you can simplify running repeated tests with various outputs.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
