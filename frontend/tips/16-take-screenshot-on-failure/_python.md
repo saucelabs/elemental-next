@@ -1,18 +1,3 @@
----
-language: python
-level: 2
-hide_sidebar: true
-publish_date: 2016-11-26
-last_update:
-  date: 2023-03-14
----
-
-## A Solution
-
-A simple way to gain insight into your test failures is to capture screenshots at the moment of failure. And it's a quick and easy thing to add to your tests.
-
-Let's start with an example.
-
 ## Example
 
 Let's start by importing our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import sys` to determine when there's a test failure), declare our test class, and write test `setUp` and `tearDown` methods.
@@ -68,11 +53,3 @@ When we save this file and run it (`python screenshot.py` from the command-line)
 Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight. Using the `import sys` determines when there's been a test failure.
 
 If you want truly unique filenames, then you should use a unique ID in the filename instead of a timestamp (e.g., something like [`uuid`](https://github.com/assaf/uuid)). This will prevent screenshots from getting overwritten when you have two (or more) tests taking screenshots at the same time.
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

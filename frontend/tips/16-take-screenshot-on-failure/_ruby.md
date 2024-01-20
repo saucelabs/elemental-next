@@ -1,18 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2015-07-08
-last_update:
-  date: 2023-02-28
----
-
-## A Solution
-
-A simple way to gain insight into your test failures is to capture screenshots at the moment of failure. This is something that is fairly quick to add to your tests, and allows you to review these error messages.
-
-Here is an example.
-
 ## Example
 
 Let's start by including our requisite libraries (`selenium-webdriver` to drive the browser and `rspec/expectations` & `RSpec::Matchers` for our assertion) and wire up some simple `setup` and `teardown` methods.
@@ -79,11 +64,3 @@ If we save this file and run it (`ruby screenshot.rb` from the command-line) her
 For more info on `strftime` (a.k.a. String Formatted Time) go [here](http://apidock.com/ruby/DateTime/strftime).
 
 But if you want truly unique filenames, then you should use a unique ID in the filename instead of a timestamp (e.g., something like [`uuid`](https://github.com/assaf/uuid)). This will prevent screenshots from getting overwritten when you have two (or more) tests taking screenshots at the same time.
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
