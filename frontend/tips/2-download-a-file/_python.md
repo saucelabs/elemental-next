@@ -1,20 +1,3 @@
----
-language: python
-level: 2
-hide_sidebar: true
-publish_date: 2016-09-23
-last_update:
-  date: 2023-03-02
----
-
-## A Solution
-
-In order to avoid the dialog box, we will be instructing the browser to download files to a specific location without being prompted.
-
-After the file is downloaded we can then perform some simple checks to make sure the file is what we expect.
-
-Let's continue with an example.
-
 ## Example
 
 Let's start by pulling in our requisite libraries for interacting with the operating system (e.g., `import os`), creating a temporary directory and cleaning it up, using our testing framework (e.g., `import unittest`), and driving the browser with Selenium (e.g., `from selenium import webdriver`).
@@ -125,11 +108,3 @@ A similar approach can be applied to some other browsers with varying configurat
 Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
