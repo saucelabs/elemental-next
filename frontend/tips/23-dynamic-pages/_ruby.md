@@ -1,20 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2015-10-13
-last_update:
-  date: 2023-02-28
----
-
-## A Solution
-
-By using a flexible wait strategy you can easily meet the rigors of testing dynamic web applications.
-
-Thankfully Selenium comes with one built in -- [Explicit Waits](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#explicit-waits). With them you specify a timeout and an action. Selenium will repeatedly try that action until it can either complete it successfully (at which point it will move onto the next step of the test), or it will throw a timeout exception (causing your test to error).
-
-Let's continue with an example.
-
 ## Example 1
 
 Let's use from [the-internet](https://github.com/tourdedave/the-internet) which load content dynamically ([link](http://the-internet.herokuapp.com/dynamic_loading)). On it there is a `Start` button that when clicked will trigger a loading bar to appear for 5 seconds. After that time it will disappear and a new element with the text `'Hello World!'` will appear.
@@ -105,11 +88,3 @@ When you save the file and run it (e.g., `ruby dynamic_loading.rb` from the comm
 Hopefully this tip will help you build more efficient and resilient tests when faced with dynamic pages that are constructed in various ways.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

@@ -26,10 +26,40 @@ category:
 
 This tip will go over how to implement explicit waits for testing dynamic web pages.
 
-Let's say you want to test some functionality of a web application but it loads things dynamically. You might think about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout (like an [Implicit Wait](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#implicit-waits)) that you likely bump up to address test instabilities as well.
+Let's say you want to test some functionality of a web application but it loads things dynamically. You might think
+about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout
+(like an [Implicit Wait](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#implicit-waits)) that you likely bump up to address test instabilities as well.
 
-This _may_ work in the short term, but your tests are now slower and leaving you (and your team) feeling like your test automation is on shaky ground -- uncertain of when the next break/fix cycle will happen.
+This _may_ work in the short term, but your tests are now slower and leaving you (and your team) feeling like your
+test automation is on shaky ground -- uncertain of when the next break/fix cycle will happen.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='23-dynamic-pages' />
+By using a flexible wait strategy you can easily meet the rigors of testing dynamic web applications.
+
+Thankfully Selenium comes with one built in -- [Explicit Waits](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#explicit-waits). With them you specify a timeout and an action.
+Selenium will repeatedly try that action until it can either complete it successfully (at which point it will move
+onto the next step of the test), or it will throw a timeout exception (causing your test to error).
+
+Let's continue with an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"23-dynamic-pages"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
