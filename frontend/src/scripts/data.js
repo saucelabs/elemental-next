@@ -314,7 +314,7 @@ const Data = [
     "text": "There are times when you are testing a page (or numerous pages) and you want to verify that it responded correctly. A great way to handle this is by checking the HTTP Status Code that the browser received. However this functionality is not available in Selenium WebDriver."
   },
   {
-    "title": "How To Figure Out What to Update",
+    "title": "How To Figure Out What to Test",
     "id": "18-what-to-test",
     "number": 18,
     "publish_date": "2015-10-13T00:00:00.000Z",
@@ -328,7 +328,7 @@ const Data = [
     "category": [
       "fundamentals"
     ],
-    "contentUrl": "tips/how-to-figure-out-what-to-update/18-what-to-test",
+    "contentUrl": "tips/how-to-figure-out-what-to-test/18-what-to-test",
     "text": "There is a lot to figure out when it comes to automated web testing, but where do you start? If you've already started, how do you know you're on the right track? And how do you avoid testing everything in every browser without missing important issues?"
   },
   {

@@ -57,8 +57,8 @@ module.exports = {
         },
         {
           "type": "doc",
-          "label": "How To Figure Out What to Update",
-          "id": "how-to-figure-out-what-to-update/18-what-to-test"
+          "label": "How To Figure Out What to Test",
+          "id": "how-to-figure-out-what-to-test/18-what-to-test"
         },
         {
           "type": "doc",
