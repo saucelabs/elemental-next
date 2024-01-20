@@ -24,10 +24,70 @@ category:
 
 ## Intro
 
-Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for.
+Odds are at some point you've come across the use of tables in a web application to display data or information to a
+user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and
+something you will want to write an automated test for.
 
-When the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.
+When the table has no helpful, semantic markup (e.g. easy to use `id` or `class` attributes) it quickly becomes more
+difficult to work with and write tests against it. And if you're able to pull something together, it will likely not
+work against older browsers.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='25-how-to-work-with-tables' />
+You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
+
+But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't
+work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end
+developer to update the table with helpful attributes.
+
+> ### _**A quick primer on Tables and CSS Pseudo-classes**_
+>
+> Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against
+> it. So here's a quick primer.
+>
+> > A table has:
+> >
+> > - a header (e.g. `<thead>`)
+> > - a body (e.g. `<tbody>`).
+> > - rows (e.g. `<tr>`) -- horizontal slats of data
+> > - columns -- vertical slats of data
+>
+> > Columns are made up of cells, which are:
+> >
+> > - a header (e.g., `<th>`)
+> > - one or more standard cells (e.g., `<td>` -- which is short for **table data**)
+>
+> CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on
+> a relative number (e.g. the **third** `<td>` cell from a row in the table body). This works well with tables since
+> we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in
+> our test -- which would give us all of the data for the third column.
+
+Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
+
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"25-how-to-work-with-tables"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+

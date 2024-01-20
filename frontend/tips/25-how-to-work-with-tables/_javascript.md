@@ -1,36 +1,3 @@
----
-language: javascript
-level: 2
-hide_sidebar: true
-publish_date: 2015-10-13
-last_update:
-  date: 2023-03-24
----
-
-## A Solution
-
-You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
-
-But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
-
->### _**A quick primer on Tables and CSS Pseudo-classes**_
->
->Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
->
->>A table has:
->>+ a header (e.g. `<thead>`)
->>+ a body (e.g. `<tbody>`).
->>+ rows (e.g. `<tr>`) -- horizontal slats of data
->>+ columns -- vertical slats of data
->
->>Columns are made up of cells, which are:
->>+ a header (e.g., `<th>`)
->>+ one or more standard cells (e.g., `<td>` -- which is short for __table data__)
->
->CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
-
-Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
-
 ## Example 1
 
 __NOTE: You can see the application under test [here](http://the-internet.herokuapp.com/tables). It's an example from [the-internet](https://github.com/tourdedave/the-internet). In the example there are 2 tables. We will start with the first table and then work with the second.__
@@ -237,11 +204,3 @@ CSS Pseudo-classes are a great resource and unlock a lot of potential for your t
 For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors), and maybe [the W3C spec CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
