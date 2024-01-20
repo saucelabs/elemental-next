@@ -1,18 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2013-07-30
-last_update:
-  date: 2023-02-27
----
-
-## A Solution
-
-Rather than have your tests fail intermittently for reasons that don't actually reflect an issue in your application (or that are really difficult to track down), we'd like to trigger a context specific retry for a specific set of actions (rather than the whole test) that will back-off after a few attempts.
-
-If it finds what it needs, the tests passes. If it doesn't, the test fails -- and you know you have a legitimate problem on your hands.
-
 ## Example
 
 The example application is a page that displays a notification message at the top of the page. It will either say **Action successful** or **Action unsuccessful, please try again**. You can see it [here](http://the-internet.herokuapp.com/notification_message).

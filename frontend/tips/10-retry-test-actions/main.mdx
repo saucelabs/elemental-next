@@ -20,8 +20,35 @@ category:
 
 ## Intro
 
-We all write tests with the best intention of having them pass and, when they fail, to reveal legitimate issues in the application we're testing. But that's not always easy to accomplish. Especially when your application is dependent upon third-party service providers (e.g. payment providers, social networks, etc).
+We all write tests with the best intention of having them pass and, when they fail, to reveal legitimate issues in
+the application we're testing. But that's not always easy to accomplish. Especially when your application is dependent
+upon third-party service providers (e.g. payment providers, social networks, etc).
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='10-retry-test-actions' />
+Rather than have your tests fail intermittently for reasons that don't actually reflect an issue in your application
+(or that are really difficult to track down), we'd like to trigger a context specific retry for a specific set of
+actions (rather than the whole test) that will back-off after a few attempts.
+
+If it finds what it needs, the tests passes. If it doesn't, the test fails -- and you know you have a legitimate
+problem on your hands.
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"10-retry-test-actions"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
