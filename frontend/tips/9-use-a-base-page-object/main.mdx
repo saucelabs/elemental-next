@@ -20,13 +20,40 @@ category: 'tools'
 
 ## Intro
 
-In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up with duplicate code.
+In a previous tip, we went through creating a simple Page Object to capture the behavior of a page we were interacting
+with. While this was a good start, it leaves a lot of room for improvement. One of the biggest issues is that there
+are common actions we will likely need across multiple Page Objects and, with our current approach, we would end up
+with duplicate code.
 
-Another issue is that we are using Selenium actions directly in the Page Object, which could present some long-term impacts like, such as:
+Another issue is that we are using Selenium actions directly in the Page Object, which could present some long-term
+impacts like, such as:
 + the inability to drive your tests with a different driver
 + test maintenance issues when Selenium actions change
 + slower test writing due to the lack of a Domain Specific Language (DSL)
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='9-use-a-base-page-object' />
+With a Base Page Object (a.k.a. a facade layer) we can abstract all common actions into a central location and
+leverage them in any Page Object we see fit.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"9-use-a-base-page-object"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
