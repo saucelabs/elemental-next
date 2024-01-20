@@ -1,20 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2013-08-06
-last_update:
-  date: 2023-02-28
----
-
-## A Solution
-
-One way to simplify things, and make it easier for testers to transition from Selenium IDE, is to build an interactive prompt -- also known as a read-eval-print-loop (REPL).
-
-Upon loading the prompt it will launch a browser and accept Selenium commands just the same as they are written in test code. And if a command is issued that errors (or that it doesn't recognize) the prompt will provide that information and continue to function.
-
-This will enable us to continue through specific Selenium actions and locators to verify that they work before putting them into test code.
-
 ## Example
 
 In the first half of our example we include our libraries and our usual setup, teardown, and run actions.
@@ -78,11 +61,3 @@ Here is an example command you may issue to start: `@driver.get 'https://www.goo
 ## Summary
 
 Hopefully this REPL will help save you some time and frustration -- making it easier to write and debug your tests.
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

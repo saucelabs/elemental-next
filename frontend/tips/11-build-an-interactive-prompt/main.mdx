@@ -21,12 +21,44 @@ category:
 
 ## Intro
 
-Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate, it becomes challenging to work through it to completion.
+Working with Selenium straight in code has its advantages. However, if you run into a complicated scenario to automate,
+it becomes challenging to work through it to completion.
 
-The typical approach is to walk through the scenario manually and inspect its markup, identify the parts you want to interact with, write up the test script, run it, and watch it. If it passes, then pat yourself on the back. If it fails, make some tweaks and run it again -- repeating until it passes.
+The typical approach is to walk through the scenario manually and inspect its markup, identify the parts you want to
+interact with, write up the test script, run it, and watch it. If it passes, then pat yourself on the back. If it
+fails, make some tweaks and run it again -- repeating until it passes.
 
 This is a real pain, and it's even more frustrating when debugging tests that fail intermittently.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='11-build-an-interactive-prompt' />
+One way to simplify things, and make it easier for testers to transition from Selenium IDE, is to build an interactive
+prompt -- also known as a read-eval-print-loop (REPL).
+
+Upon loading the prompt it will launch a browser and accept Selenium commands just the same as they are written in
+test code. And if a command is issued that errors (or that it doesn't recognize) the prompt will provide that
+information and continue to function.
+
+This will enable us to continue through specific Selenium actions and locators to verify that they work before
+putting them into test code.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"11-build-an-interactive-prompt"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
