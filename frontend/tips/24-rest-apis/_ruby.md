@@ -1,18 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2013-11-5
-last_update:
-  date: 2023-03-09
----
-
-## A Solution
-
-REST APIs are increasingly common in the backends of newer websites. If you are fortunate enough to have such an architecture in the site you are testing it may make sense to make use of those REST APIs in your Selenium test suite. By using calls to the REST APIs in the backend to perform parts of a test setup, and using Selenium to perform the assertion within the website normally, we can end up with tests that are faster, more focused, and more reliable.
-
-REST APIs are based on the HTTP protocol, which is the same protocol that powers essentially the entire internet.  Nearly every modern programming language has libraries that can be used to make HTTP requests, thus we can add support for calling into REST APIs to virtually any test suite.
-
 ## Example
 
 I decided to pick an example that is nearly ubiquitous: sign-up. When we make a new user for a test, we have a "clean slate" which allows us great control over how to shape that user for our test. We eliminate possible corruption of our test user's state from other tests. And if we make that user using a REST API call, we avoid the time penalty of having to fill out a sign-up form (not to mention having to find any emails involved in confirming an email address).
