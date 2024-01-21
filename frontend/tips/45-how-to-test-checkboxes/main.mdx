@@ -22,10 +22,41 @@ category:
 
 ## Intro
 
-Checkboxes are an often used element in web applications. This guide will show you how to work with them in your Selenium tests.
+Checkboxes are an often used element in web applications. This guide will show you how to work with them in your
+Selenium tests.
 
-Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but this doesn't exist in Selenium.
+Intuitively you may reach for a method that has the word 'checked' in it -- like `.checked` or `.is_checked` but
+this doesn't exist in Selenium.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='45-how-to-test-checkboxes' />
+There are two ways to approach this issue -- by seeing if an element has a `checked` attribute (a.k.a. performing
+an attribute lookup), or by asking an element if it has been _selected_.
+
+We're going to go through each of these approaches to see their pros and cons.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"45-how-to-test-checkboxes"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+

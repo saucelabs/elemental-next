@@ -1,18 +1,3 @@
----
-language: java
-level: 1
-hide_sidebar: true
-publish_date: 2015-11-11
-last_update:
-  date: 2023-03-30
----
-
-## A Solution
-
-There are two ways to approach this issue -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
-
-We're going to go through each of these approaches to see their pros and cons.
-
 ## Example
 
 For reference, here is the markup from [the page we'll be testing against](http://the-internet.herokuapp.com/checkboxes) (from [the-internet](https://github.com/tourdedave/the-internet)).
@@ -141,11 +126,3 @@ Attribute lookups are meant for pulling information out of the page for review. 
 Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

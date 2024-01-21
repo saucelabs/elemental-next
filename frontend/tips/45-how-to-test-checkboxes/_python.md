@@ -1,18 +1,3 @@
----
-language: python
-level: 1
-hide_sidebar: true
-publish_date: 2016-11-18
-last_update:
-  date: 2023-03-03
----
-
-## A Solution
-
-There are two ways to approach this issue -- by seeing if an element has a `checked` attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been _selected_.
-
-We're going to go through each of these approaches to see their pros and cons.
-
 ## Example
 
 For reference, here is the markup from [the page we will be testing against](http://the-internet.herokuapp.com/checkboxes) (an example from [the-internet](https://github.com/tourdedave/the-internet)).
@@ -149,12 +134,3 @@ When we save and run the file (e.g., `python checkboxes.py` from the command-lin
 Attribute lookups are generally meant for pulling information out of the page for review however in this case they lend themselves to seeing if a checkbox is checked. There is a method which was built for this use case that is more readable and has a predictable set of return values. `isSelected` should be the thing you reach for, knowing that an attribute lookup is there as a solid backup if you find you need it.
 
 Happy Testing!
-
-## About the Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing;
-including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
