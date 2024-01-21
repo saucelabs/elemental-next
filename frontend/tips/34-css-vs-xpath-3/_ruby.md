@@ -1,22 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2014-01-21
-last_update:
-  date: 2023-03-15
-level: 2
-language: ruby
----
-
-## A Solution
-
-In order to make sure these benchmarks are as thorough as possible I've put together 
-[an example that demonstrates a large and deep page](http://the-internet.herokuapp.com/large), and retooled 
-[my test script](https://github.com/diemol/selenium-benchmark/blob/master/lib/page-objects/large_dom.rb) accordingly. 
-Otherwise, everything is pretty much the same as last time (e.g., dual runs to weed out anomalies, 100 test executions 
-for time in seconds, etc.).
-
-Let's dig into the results.
-
 ## The Results
 
 ### In Table Form

@@ -33,6 +33,21 @@ showed XPath and CSS performance across various browsers. Since then I've receiv
 test was missing -- most notably more browser coverage (e.g., Internet Explorer 9 and 10) and testing against a
 larger and deeper page.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='34-css-vs-xpath-3' />
+In order to make sure these benchmarks are as thorough as possible I've put together
+[an example that demonstrates a large and deep page](http://the-internet.herokuapp.com/large), and retooled
+[my test script](https://github.com/diemol/selenium-benchmark/blob/master/lib/page-objects/large_dom.rb) accordingly.
+Otherwise, everything is pretty much the same as last time (e.g., dual runs to weed out anomalies, 100 test executions
+for time in seconds, etc.).
+
+Let's dig into the results.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"34-css-vs-xpath-3"} languages={contentLanguages} />
