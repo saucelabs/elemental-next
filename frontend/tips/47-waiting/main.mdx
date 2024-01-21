@@ -29,7 +29,37 @@ But should we be using static sleeps, implicit waits, explicit waits?
 
 Static sleeps are something to be avoided, because they force your tests to wait a _hard-coded_ amount of time to perform an action -- this is not recommended. But what about implicit waits, explicit waits... and what about using them together?
 
+## A Solution
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+The short answer? Use explicit waits.
 
-<DropdownMarkdown folderName='47-waiting' />
+Adding an implicit wait to your Selenium tests is simple enough and may seem intuitive. But there are cases where it
+simply doesn't help you like you think it will. And while you can combine explicit and implicit waits together
+(e.g., override an implicit wait with an explicit wait to make a Selenium action wait longer) -- you shouldn't.
+I'll discuss more on that later.
+
+Let's continue with some examples.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"47-waiting"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+

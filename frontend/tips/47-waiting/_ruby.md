@@ -1,20 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2015-10-13
-last_update:
-  date: 2023-03-15
----
-
-## A Solution
-
-The short answer? Use explicit waits.
-
-Adding an implicit wait to your Selenium tests is simple enough and may seem intuitive. But there are cases where it simply doesn't help you like you think it will. And while you can combine explicit and implicit waits together (e.g., override an implicit wait with an explicit wait to make a Selenium action wait longer) -- you shouldn't. I'll discuss more on that later.
-
-Let's continue with some examples.
-
 ## Example
 
 Let's step through some examples that deal with [dynamically loaded content](http://the-internet.herokuapp.com/dynamic_loading) available on [the-internet](https://github.com/tourdedave/the-internet). There are two examples, each is constructed slightly differently, but they have the same behavior (e.g., when you click the button on the page a loading bar appears for 5 seconds then disappears and displays some text).
@@ -129,11 +112,3 @@ While an implicit wait can be useful, providing you an initial blanket of cover,
 Regardless of the approach you choose, be sure never to mix implicit and explicit waits together.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
