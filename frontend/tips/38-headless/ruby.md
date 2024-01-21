@@ -1,25 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2015-10-14
-last_update:
-  date: 2023-02-24
-level: 2
-language: ruby
----
-
-## A Solution
-
-In order to run your tests using a browser that's loaded on your CI Server you will need to configure your tests 
-to launch the browser virtually (e.g., using something like Xvfb).
-
->### An Xvfb primer
->
->[Xvfb](http://en.wikipedia.org/wiki/Xvfb) (short for X virtual framebuffer) is an in-memory display server for 
-> UNIX-like operating system (e.g., Linux). It enables you to run graphical applications without a display 
-> (e.g., browser tests on a CI server) while also having the ability to take screenshots.
-
-Let's take a look at an example.
-
 ## Example
 
 Before we can use Xvfb, we need to install it (along with the browser we want if it's not already loaded).

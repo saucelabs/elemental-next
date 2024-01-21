@@ -24,6 +24,28 @@ category:
 If you want to run your tests headless on a Continuous Integration (CI) server you'll quickly realize that you
 can't with an out-of-the-box setup since there is no display output for the browser to launch in.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='38-headless' />
+In order to run your tests using a browser that's loaded on your CI Server you will need to configure your tests
+to launch the browser virtually (e.g., using something like Xvfb).
+
+>### An Xvfb primer
+>
+>[Xvfb](http://en.wikipedia.org/wiki/Xvfb) (short for X virtual framebuffer) is an in-memory display server for
+> UNIX-like operating system (e.g., Linux). It enables you to run graphical applications without a display
+> (e.g., browser tests on a CI server) while also having the ability to take screenshots.
+
+Let's take a look at an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"38-headless"} languages={contentLanguages} />
+
+
+
+
+
