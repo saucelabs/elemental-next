@@ -7,11 +7,6 @@ category: resources
 language: ruby
 ---
 
-## A Solution
-
-Let's cut through the noise by running our own performance tests across all major browsers to see how CSS and 
-XPath stack up and fall down. Then we will be able to determine a more helpful locator strategy.
-
 ## Example
 
 To test the differences between CSS and XPath, we will use two sets of tests. The first set will work with 
@@ -100,13 +95,3 @@ then leveraging a hybrid approach is simple to implement.
 It's just a matter of finding what works for you and your team and not listening to all the hype.
 
 Good luck and Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read 
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's 
-perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken 
-at numerous conferences and meetups around the world about automated acceptance testing.
