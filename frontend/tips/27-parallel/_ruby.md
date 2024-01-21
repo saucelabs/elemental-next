@@ -1,21 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2013-11-26
-last_update:
-    date: 2023-03-10
----
-
-## A Solution
-
-Rather than run your tests in series (which is what you get out of the box with Selenium) you can dramatically speed 
-things up by running them in parallel. Couple this with 
-[the ability to run your tests in any browser](https://elementalselenium.com/docs/cloud/26-cloud) and you're on to 
-some solid footing with your test automation.
-
-But keep in mind that doing this requires some consideration into how you structure your tests, but the pay off is well worth the effort.
-
 ### A brief primer on Good Test Writing
 
 In order to write tests that work well in parallel there are some simple guidelines to follow:
@@ -277,9 +259,3 @@ Hopefully this tip has helped steer you on a path towards better test writing an
 Stay tuned for future tips where we'll cover how to take full advantage of your test suite by wiring it into a Continuous Integration server and making the requisite changes to your test runner.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
