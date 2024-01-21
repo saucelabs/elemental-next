@@ -22,8 +22,39 @@ category: 'troubleshooting'
 
 ## Intro
 
-Tagging is a powerful tool for targeted test execution, as well as a lightweight form of documentation. But what happens when you want to see a summary of the tags you're using across all of your tests? Unfortunately, most solution don't offer this kind of functionality out of the box, leaving you to manually sift through your tests to get a sense of the different tags you're using.
+Tagging is a powerful tool for targeted test execution, as well as a lightweight form of documentation. But what
+happens when you want to see a summary of the tags you're using across all of your tests? Unfortunately, most
+solution don't offer this kind of functionality out of the box, leaving you to manually sift through your tests
+to get a sense of the different tags you're using.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='60-list-tags' />
+By leveraging the before and after hooks in our test framework, we can interrogate each test in one fell swoop to
+get the tags and generate a simple report.
+
+Here is an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"60-list-tags"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+
+
+
