@@ -1,12 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2014-01-07
-last_update:
-  date: 2023-03-15
-category: resources
-language: ruby
----
-
 ## Example
 
 To test the differences between CSS and XPath, we will use two sets of tests. The first set will work with 
