@@ -1,12 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2014-06-17
-last_update:
-  date: 2023-03-06
----
-
 ## A Solution
 
 Instead of hard-coding logging requests all over the place, we can leverage an event listener to give us the information we want -- automatically and for each Selenium action.
@@ -146,11 +137,3 @@ Now if we run our test (`ruby wrapper_test.rb`) then we will see notification me
 To see a video demo of this test, [click here](https://vimeo.com/98736887).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
