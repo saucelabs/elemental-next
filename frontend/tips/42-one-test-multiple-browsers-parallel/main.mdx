@@ -30,6 +30,31 @@ Right now, the test is only being run one at a time (a.k.a. in series) for each 
 a longer running test and/or if there were more browsers we cared about, then this could quickly stack up to longer
 test run times.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='42-one-test-multiple-browsers-parallel' />
+Let's remedy this by taking [the previous tip's example](https://elementalselenium.com/docs/one-test-multiple-browsers/41-one-test-multiple-browsers)
+and parallelize it with the help of [threads](http://www.tutorialspoint.com/ruby/ruby_multithreading.htm).
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"42-one-test-multiple-browsers-parallel"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+
