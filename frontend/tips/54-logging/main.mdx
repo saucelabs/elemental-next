@@ -25,6 +25,30 @@ Logging is a deep rabbit hole to fall down in Selenium. [The documentation](http
 isn't complete and the approach for each of the browser and language bindings is inconsistent and hard to find examples
 for.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='54-logging' />
+By accessing what we want through the [WebDriver Wire Protocol](https://code.google.com/p/selenium/wiki/JsonWireProtocol), we can get at the logs we want in a browser
+agnostic way that also gets us the information in real time.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"54-logging"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+

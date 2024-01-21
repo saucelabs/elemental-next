@@ -1,15 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2014-06-10
-level: 3
-language: ruby
----
-
-## A Solution
-
-By accessing what we want through the [WebDriver Wire Protocol](https://code.google.com/p/selenium/wiki/JsonWireProtocol), we can get at the logs we want in a browser 
-agnostic way that also gets us the information in real time.
-
 ## Example
 
 First, we'll need to [download a copy of Selenium Server](https://www.selenium.dev/downloads/) and launch it.
@@ -171,13 +159,3 @@ the browser window.
 Hopefully that was a helpful tip on how to get browser-agnostic, real-time logging information.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's 
-read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's 
-perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at 
-numerous conferences and meetups around the world about automated acceptance testing.
