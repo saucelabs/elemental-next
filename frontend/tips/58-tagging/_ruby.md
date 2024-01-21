@@ -1,32 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2014-07-09
-last_update:
-  date: 2023-02-22
----
-
-# How to Filter Test Results with Tags
-
-## Intro
-
-As your test suite grows you'll likely employ some kind of folder structure to help make sense of everything -- grouping similar tests together. But what do you do when you want to run a set of tests that span across your organizational structure? Especially when your organizational structure isn't set in stone?
-
-## A Solution
-
-By applying some metadata to your tests, you can specify a filter at runtime to execute a focused group of tests, returning just the ones you want.
-
-Here are some tagging ideas to help get you started:
-
-+ `wip` (e.g., work in progress)
-+ `smoke` (e.g., smoke tests)
-+ `moneymakers` (e.g., the user paths that correlate to the bottom line of the business)
-+ `component name`
-+ `story number` (e.g., traceability to your development stories)
-
-Let's start with an example.
-
 ## Example
 
 In RSpec, this metadata and filtered execution is referred to as [tags](https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option) (or tagging).
@@ -127,11 +98,3 @@ Otherwise, you'll have to specify tags using the standard key/value syntax (e.g.
 By utilizing metadata tags and filtering a set of tests, you have learned to effectively create a dynamic test suite that takes into account all of your tests.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
