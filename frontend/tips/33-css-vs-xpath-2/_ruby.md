@@ -1,18 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2014-01-14
-last_update:
-  date: 2023-03-15
-level: 2
-language: ruby
----
-
-## A Solution
-
-To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do 
-that by running everything from a local machine while using a performance benchmarking utility. We'll also want to 
-focus on a specific Selenium action rather than the entire test run, and run things numerous times.
-
 ## Example
 
 For this example, I set up a local Windows XP virtual machine. This was quick work thanks to the images made available 

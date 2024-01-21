@@ -37,6 +37,16 @@ Given that it was an end-to-end test there were a lot of variables at play -- Sa
 latency to and from the application under test. The unfortunate takeaway from that experiment could be that one driver
 may be faster than the other (e.g. IE vs Firefox), when in fact, that's not the case at all.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='33-css-vs-xpath-2' />
+To get a real taste of what the performance difference is between CSS and XPath, we will need to dig deeper. We'll do
+that by running everything from a local machine while using a performance benchmarking utility. We'll also want to
+focus on a specific Selenium action rather than the entire test run, and run things numerous times.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"33-css-vs-xpath-2"} languages={contentLanguages} />
