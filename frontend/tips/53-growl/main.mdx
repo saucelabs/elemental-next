@@ -23,8 +23,43 @@ category:
 
 ## Intro
 
-Good test reports are a fundamental component of successful test automation, but running down a test failure by looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or go through things piece by piece -- all for the sake of trying to track down a transient issue.
+Good test reports are a fundamental component of successful test automation, but running down a test failure by
+looking at a test report can be a real pain sometimes. Oftentimes, you're left to decipher debug statements, or
+go through things piece by piece -- all for the sake of trying to track down a transient issue.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='53-growl' />
+By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to
+the page you're testing.
+
+With Growl way you can see helpful information and more-likely correlate it to the test actions that are being
+taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs
+
+Let's step through an example of how to set this up.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"53-growl"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+

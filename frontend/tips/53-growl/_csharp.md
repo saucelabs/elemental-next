@@ -1,20 +1,3 @@
----
-language: csharp
-level: 2
-hide_sidebar: true
-publish_date: 2016-06-13
-last_update:
-  date: 2023-03-30
----
-
-## A Solution
-
-By leveraging something like [jQuery Growl](http://ksylvest.github.io/jquery-growl/) you can output non-interactive debugging statements directly to the page you're testing.
-
-With Growl way you can see helpful information and more-likely correlate it to the test actions that are being taken. This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs
-
-Let's step through an example of how to set this up.
-
 ## Example
 
 First let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), access to C#'s Thread.Sleep function (e.g., `System.Threading`), and start our class off with some setup and teardown methods.
@@ -117,10 +100,3 @@ I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/auste
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
