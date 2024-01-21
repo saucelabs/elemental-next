@@ -1,28 +1,3 @@
----
-publish_date: 2013-12-17
-last_update:
-  date: 2023-03-15
-level: 2
-hide_sidebar: true
-language: ruby
----
-
-## A Solution
-
-Give [Appium](https://appium.io/) a try. It's open source, works for both iPhone & Android, and works through the use 
-of the Selenium WebDriver API (without having to recompile the app in order to test it).
-
-That is to say -- you can write tests pretty much the same way as you do now, there are just some additional things 
-to think about -- like new functionality (e.g. pinch, swipe, etc.) and setup (e.g. serving your app, running 
-simulators and a server locally, or sending things off to the cloud).
-
-To simplify things, let's step through 2 examples using Sauce Labs to test native apps -- one for iPhone and 
-another for Android. If you need a primer on what Sauce Labs is and how to use it, check out 
-[this tip](https://elementalselenium.com/docs/cloud/26-cloud).
-
-__NOTE: These examples were borrowed from 
-[the Appium project](https://github.com/appium/appium/tree/master/sample-code/examples/ruby) and modified for simplicity.__
-
 ## A brief primer on Native App Testing In Sauce Labs
 
 In order to test your app in Sauce Labs you will need to zip it up and serve it somehow. Here are some options on how to do that:
@@ -243,7 +218,3 @@ And if you're curious about other mobile automation frameworks, Alister Scott
 has [a good breakdown of them](http://watirmelon.com/2013/11/04/the-current-state-of-ios-automated-functional-testing/).
 
 Happy Testing!
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.

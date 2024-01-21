@@ -31,6 +31,41 @@ with Appium. You can find them [here](https://saucelabs.com/resources/articles/a
 Mobile is kind of a big deal. And if you haven't needed to test a mobile app yet, it's only a matter of time.
 But where do you start? And how do you do it in a way that is complimentary to your existing automation and experience?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='30-mobile' />
+Give [Appium](https://appium.io/) a try. It's open source, works for both iPhone & Android, and works through the use
+of the Selenium WebDriver API (without having to recompile the app in order to test it).
+
+That is to say -- you can write tests pretty much the same way as you do now, there are just some additional things
+to think about -- like new functionality (e.g. pinch, swipe, etc.) and setup (e.g. serving your app, running
+simulators and a server locally, or sending things off to the cloud).
+
+To simplify things, let's step through 2 examples using Sauce Labs to test native apps -- one for iPhone and
+another for Android. If you need a primer on what Sauce Labs is and how to use it, check out
+[this tip](https://elementalselenium.com/docs/cloud/26-cloud).
+
+__NOTE: These examples were borrowed from
+[the Appium project](https://github.com/appium/appium/tree/master/sample-code/examples/ruby) and modified for simplicity.__
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"30-mobile"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
