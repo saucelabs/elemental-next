@@ -26,7 +26,32 @@ You want reliable tests. But no matter how hard you try, you're going to run int
 These can be frustrating time wasters that distract you and your team and begin to erode the trust placed in the
 automated tests. Once that begins, it's a slippery slope.
 
+## A Solution
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+Rather than rerun your entire test suite to suss out transient failures -- you can log which tests fail, and retry
+just those a second time.
 
-<DropdownMarkdown folderName='56-retry-failed-tests' />
+Let's continue with an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"56-retry-failed-tests"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+

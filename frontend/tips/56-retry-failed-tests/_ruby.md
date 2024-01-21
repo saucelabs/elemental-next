@@ -1,19 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2014-06-24
-last_update:
-    date: 2023-04-06
-level: 3
-language: ruby
----
-
-## A Solution
-
-Rather than rerun your entire test suite to suss out transient failures -- you can log which tests fail, and retry 
-just those a second time.
-
-Let's continue with an example.
-
 ## Example
 
 Let's assume we have a bunch of tests written in [RSpec](http://rspec.info/), which would look something like this:
@@ -151,13 +135,3 @@ we perform a check against the exit code to see if there were any failures. If t
 Hat-tip to [rspec-rerun](https://github.com/dblock/rspec-rerun) for the initial implementation, and to [the write-up that led me there](http://artsy.github.io/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's 
-read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app 
-that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken 
-at numerous conferences and meetups around the world about automated acceptance testing.
