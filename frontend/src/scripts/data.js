@@ -515,7 +515,7 @@ const Data = [
     "text": "As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC."
   },
   {
-    "title": "Chrome Driver",
+    "title": "ChromeDriver",
     "id": "29-chrome-driver",
     "number": 29,
     "publish_date": "2015-08-25T00:00:00.000Z",

@@ -112,7 +112,7 @@ module.exports = {
         },
         {
           "type": "doc",
-          "label": "Chrome Driver",
+          "label": "ChromeDriver",
           "id": "chrome-driver/29-chrome-driver"
         },
         {
