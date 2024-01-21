@@ -22,10 +22,49 @@ category:
 
 ## Intro
 
-If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using
-a third-party solution like [Sauce Labs](https://saucelabs.com/) or [BrowserStack](http://www.browserstack.com/) then what
-do you do?
+If you're looking to run your tests on different browser and operating system combinations but you're unable to
+justify using a third-party solution like [Sauce Labs](https://saucelabs.com/) then what do you do?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='52-grid' />
+With [Selenium Grid](https://www.selenium.dev/documentation/grid/) you can stand up a simple infrastructure of various browsers on different operating systems
+to not only distribute test load, but also give you a diversity of browsers to work with.
+
+> A brief primer of Selenium Grid
+>
+> Selenium Grid is part of [the Selenium project](https://www.selenium.dev/). It lets you distribute test execution across several
+> machines. You can connect to it with a remote WebDriver by specifying the browser, browser version, and operating
+> system you want. You specify these values through Selenium `Capabilities`.
+>
+> There are two main elements to Selenium Grid -- a Hub, and Nodes. First you need to stand up a Hub. Then you can
+> connect (or "register") Nodes to that Hub.
+> Nodes are where your tests will run, and the Hub is responsible for making sure your tests end up on the right
+> one (e.g., the machine with the operating system and browser you specified in your test).
+
+
+Let's continue with an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"52-grid"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+

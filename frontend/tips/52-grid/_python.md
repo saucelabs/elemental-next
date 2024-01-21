@@ -1,26 +1,3 @@
----
-language: javascript
-level: 2
-hide_sidebar: true
-publish_date: 2019-08-09
-last_update:
-  date: 2023-04-11
----
-
-## A Solution
-
-With [Selenium Grid](https://www.selenium.dev/documentation/grid/) you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.
-
->A brief primer of Selenium Grid
->
->Selenium Grid is part of [the Selenium project](https://www.selenium.dev/). It lets you distribute test execution across several machines. You can connect to it with a remote WebDriver by specifying the browser, browser version, and operating system you want. You specify these values through Selenium `Capabilities`.
->
->There are two main elements to Selenium Grid -- a Hub, and Nodes. First you need to stand up a Hub. Then you can connect (or "register") Nodes to that Hub.
->Nodes are where your tests will run, and the Hub is responsible for making sure your tests end up on the right one (e.g., the machine with the operating
->system and browser you specified in your test).
-
-Let's continue with an example.
-
 ## Example
 
 ### Part 1: Grid Setup
@@ -73,41 +50,43 @@ There are numerous parameters that we can use at run time. You can see a full li
 
 Now let's wire up a simple test script to use our new Grid.
 
-```javascript
-// filename: test/grid.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
-describe("Grid", function() {
-  let driver;
+```python
+# filename: grid.py
+import unittest
+from selenium import webdriver
 
-  beforeEach(async function() {
-    const url = "http://localhost:4444";
-    driver = await new Builder()
-      .usingServer(url)
-      .forBrowser("chrome")
-      .build();
-  });
 
-  afterEach(async function() {
-    await driver.quit();
-  });
+class Grid(unittest.TestCase):
 
-  it("hello world", async function() {
-    await driver.get("http://the-internet.herokuapp.com/");
-    assert((await driver.getTitle()) === "The Internet");
-  });
-});
+    def setUp(self):
+        firefox_options = webdriver.FirefoxOptions()
+        self.driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            options=firefox_options
+        )
+
+    def tearDown(self):
+        self.driver.quit()
+
+    def test_page_loaded(self):
+        driver = self.driver
+        driver.get('http://the-internet.herokuapp.com')
+        assert driver.title == 'The Internet'
+
+if __name__ == "__main__":
+    unittest.main()
 ```
 
-Notice in `beforeEach` we're using a URL to connect to the Grid (e.g., `usingServer(url)`). And we are telling the Grid which
-browser we want to use by using the `forBrowser` method.
+Notice in `setUp` we're using remote WebDriver in Selenium (e.g., `webdriver.Remote`) to connect to the Grid.
+And we are telling the Grid which browser we want to use with the browser options (e.g., `firefox_options = webdriver.FirefoxOptions()`).
 
 You can see a full list of the available browser options at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/browsers/).
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python grid.py` from the command-line) here is what will happen:
 
 + Connect to the Grid Hub
 + Hub determines which Node has the necessary browser/platform combination
@@ -132,13 +111,3 @@ way to execute your tests in parallel.
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of
-testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International,
-Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around
-the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
