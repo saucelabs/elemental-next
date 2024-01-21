@@ -1,19 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2014-03-11
-last_update:
-    date: 2023-03-20
-level: 2
-language: ruby
----
-
-## A Solution
-
-With the help of Sauce Labs, a collection, and a loop, we can easily specify a list of browsers and run a test 
-against each of them.
-
-Let's take a look at an example.
-
 ## Example
 
 To start, we include our dependent libraries (`'selenium-webdriver'` to drive the browser, and `'rspec-expectations'` 
@@ -94,13 +78,3 @@ And when we run it, we should see three jobs appear in Sauce Labs.
 Hopefully this tip has helped make multi-browser testing more approachable to you.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's 
-read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's 
-perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, 
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at 
-numerous conferences and meetups around the world about automated acceptance testing.
