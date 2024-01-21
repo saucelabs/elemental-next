@@ -1,20 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2015-07-14
-last_update:
-  date: 2023-02-22
----
-
-## A Solution
-
-CI servers work with a standardized report format called JUnit XML which is a standard offering across testing frameworks. If it's not something available off the shelf for your framework, odds are there's a plug-in to enable it.
-
-The report will include test results (e.g., failure messages and stack traces) and test metrics (e.g., start time, end time, number of tests, etc.). Your CI server (once configured to do so) will consume this report after each test run and tell you when things pass and fail. It will also offer trend data over time to help determine the stability of your test suite.
-
-Let's go through an example of how to configure a test suite in order to output a JUnit XML report.
-
 ## Example
 
 In [RSpec](http://rspec.info/), you need a plugin to configure JUnit XML output. There are two popular ones:
@@ -70,11 +53,3 @@ Now all we need to do is specify an environment variable at run time in order to
 ## Summary
 
 Now you're ready to plug your Selenium tests into a CI Server and let them report the results.
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

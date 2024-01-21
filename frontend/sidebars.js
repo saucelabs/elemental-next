@@ -252,7 +252,7 @@ module.exports = {
         },
         {
           "type": "doc",
-          "label": "Junit XML",
+          "label": "How To Prepare Your Tests For Continuous Integration",
           "id": "junit-xml/57-junit-xml"
         },
         {

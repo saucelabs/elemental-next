@@ -1040,7 +1040,7 @@ const Data = [
     "text": "You want reliable tests. But no matter how hard you try, you're going to run into intermittent test failures. These can be frustrating time wasters that distract you and your team and begin to erode the trust placed in the automated tests."
   },
   {
-    "title": "Junit XML",
+    "title": "How To Prepare Your Tests For Continuous Integration",
     "id": "57-junit-xml",
     "number": 57,
     "publish_date": "2015-07-14T00:00:00.000Z",

@@ -1,8 +1,8 @@
 ---
-title: 'Junit XML'
+title: 'How To Prepare Your Tests For Continuous Integration'
 id: '57-junit-xml'
 contentUrl: "tips/junit-xml/57-junit-xml"
-sidebar_label: Junit XML
+sidebar_label: "How To Prepare Your Tests For Continuous Integration"
 text: "If you want your Selenium tests to automatically run and report failures to you and your team, you'll want to wire them up to a Continuous Integration server."
 number: 57
 hide_table_of_contents: true
@@ -28,6 +28,39 @@ If you want your Selenium tests to automatically run and report failures to you 
 
 In order to make the most of the Continuous Integration setup, you'll need to make sure your test suite outputs a machine readable test report. But what does this entail? How do you set it up? And will it work when running things in parallel?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='57-junit-xml' />
+CI servers work with a standardized report format called JUnit XML which is a standard offering across testing
+frameworks. If it's not something available off the shelf for your framework, odds are there's a plug-in to enable it.
+
+The report will include test results (e.g., failure messages and stack traces) and test metrics (e.g., start time,
+end time, number of tests, etc.). Your CI server (once configured to do so) will consume this report after each
+test run and tell you when things pass and fail. It will also offer trend data over time to help determine the
+stability of your test suite.
+
+Let's go through an example of how to configure a test suite in order to output a JUnit XML report.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"57-junit-xml"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+
+
