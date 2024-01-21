@@ -1,21 +1,3 @@
----
-hide_table_of_contents: true
-publish_date: 2015-10-15
-last_update:
-    date: 2023-03-20
-level: 2
-language: ruby
----
-
-## A Solution
-
-By leveraging a third-party library we can perform an end-to-end test by accessing a forgot password email from a 
-Gmail account headless (to get the information we need) and then put it to use with Selenium to make sure it works 
-correctly.
-
-Let's dig in with an example that uses [the forgot password example](http://the-internet.herokuapp.com/forgot_password) 
-on [the-internet](https://github.com/saucelabs/the-internet).
-
 ## Example
 
 First let's include our dependent libraries (e.g., `selenium-webdriver` to control the browser, `rspec/expectations` 
@@ -126,13 +108,3 @@ message body that you need to parse for and aren't sure of the regular expressio
 [Rubular](http://rubular.com/) a try.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's 
-read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app 
-that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at 
-numerous conferences and meetups around the world about automated acceptance testing.
