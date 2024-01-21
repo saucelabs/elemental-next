@@ -1,18 +1,3 @@
----
-language: csharp
-level: 2
-hide_sidebar: true
-publish_date: 2016-06-13
-last_update:
-  date: 2023-03-30
----
-
-## A Solution
-
-If we look at [the API documentation for Selenium's IWebElement Interface](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_IWebElement.htm) we can see there is an available method called `Enabled` that can help us accomplish what we want.
-
-Let's take a look at how to use it.
-
 ## Example
 
 For this example we will use [the dropdown list](http://github.com/tourdedave/the-internet) from [the-internet](http://the-internet.herokuapp.com/dropdown). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is in fact disabled.
@@ -77,11 +62,3 @@ When you save this file and run it (e.g., `nunit3-console.exe .\DisabledElements
 Hopefully this tip has helped make the task of seeing whether or not an element is enabled or disabled more approachable.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

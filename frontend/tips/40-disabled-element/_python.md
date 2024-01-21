@@ -1,17 +1,4 @@
----
-level: 2
-language: python
-hide_sidebar: true
-publish_date: 2016-11-18
-last_update:
-  date: 2023-04-06
----
-
-## A Solution
-
-If we look at [the API documentation for Selenium's Element class](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webelement.html) we can see there is an available method called `Enabled` that can help us accomplish what we want.
-
-Let's take a look at how to use it.
+## Example
 
 For this example we will use [a dropdown list](http://the-internet.herokuapp.com/dropdown) from [the-internet](http://github.com/tourdedave/the-internet). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
 First let's require our dependent libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
@@ -81,11 +68,3 @@ When we save this file and run it (e.g., `python disabled_elements.py` from the 
 Hopefully this tip has helped make the task of seeing whether or not an element is enabled or disabled more approachable.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
