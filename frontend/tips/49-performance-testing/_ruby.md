@@ -1,18 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2014-05-06
-last_update:
-  date: 2023-04-06
----
-
-## A Solution
-
-By repurposing a Selenium script, we can run it through a proxy server and capture the HTTP traffic. With this traffic, we can run some simple checks to see if the application's performance has degraded.
-
-Let's dig in with an example.
-
 ## Example
 
 Before we get started we'll need to [download a copy of BrowserMob Proxy](http://bmp.lightbody.net/). Once we have that, we'll want to include our requisite libraries:
@@ -149,11 +134,3 @@ You can see the full code example [here](https://gist.github.com/tourdedave/bc4b
 For more insights into what HAR is and the many uses of it, check out [this write-up and video from Ilya Grigorik's blog](http://www.igvita.com/2012/08/28/web-performance-power-tool-http-archive-har/). You can also [check out the HAR spec](http://www.softwareishard.com/blog/har-12-spec/). And there's also [a great presentation from David Burns and David Henderson at GTAC 2009](https://www.youtube.com/watch?v=qQgDDAan4rM) on using Selenium to do performance benchmarking.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
