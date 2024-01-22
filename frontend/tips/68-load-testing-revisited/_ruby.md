@@ -1,20 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2014-10-08
-last_update:
-  date: 2023-04-06
----
-
-## A Solution
-
-JMeter is the defacto open source load testing solution that is used in industry. The hardest part of using it is authoring the test cases (e.g., in the JMeter GUI). Thankfully we can sidestep that by repurposing our Selenium tests into initial JMeter scripts. To do this we'll need a proxy server, the HTTP Archive (HAR) each test generates, and a HAR to JMeter XML (JMX) converter.
-
-When we're done, we'll have working JMeter test cases that we can modify and run (either from the GUI or the command-line).
-
-Let's dig in with an example.
-
 ## Example
 
 We'll first need to `require` our requisite libraries (e.g., `selenium-webdriver` for Selenium, `browsermob/proxy` for our proxy, and `convert` to convert -- a local file to convert the HAR to JMX).
@@ -167,10 +150,3 @@ If you go this route, be sure to take a look at the JMeter Wiki. It's got loads 
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

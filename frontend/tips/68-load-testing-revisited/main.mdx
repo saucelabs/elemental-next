@@ -21,12 +21,45 @@ category:
 
 ## Intro
 
-In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP library. While it works, it's only useful for rudimentary test cases.
+In [a previous tip](http://elementalselenium.com/tips/48-load-testing) I demonstrated a way to accomplish a simple load test with a Selenium script and an HTTP
+library. While it works, it's only useful for rudimentary test cases.
 
 For more involved test cases and more powerful load generation, we're going to need something stronger.
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<!-- Add the name of the folder -->
+JMeter is the defacto open source load testing solution that is used in industry. The hardest part of using it is
+authoring the test cases (e.g., in the JMeter GUI). Thankfully we can sidestep that by repurposing our Selenium
+tests into initial JMeter scripts. To do this we'll need a proxy server, the HTTP Archive (HAR) each test generates,
+and a HAR to JMeter XML (JMX) converter.
 
-<DropdownMarkdown folderName='68-load-testing-revisited' />
+When we're done, we'll have working JMeter test cases that we can modify and run (either from the GUI or the
+command-line).
+
+Let's dig in with an example.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"68-load-testing-revisited"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+
+
+
