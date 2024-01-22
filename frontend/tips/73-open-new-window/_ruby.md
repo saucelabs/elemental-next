@@ -1,0 +1,69 @@
+## Example
+
+To open a new window, you call the driver you instantiated with a method that allows you to switch to a new window or tab.
+
+After using the new window (or tab) method, use the `driver.get` method to navigate to a website or URL. See the examples in the table of the previous section to see how this would be implemented.
+
+Now you can add any other actions or assertions you’d like to do on the page. In the `Ruby` example below, you can see how a test and multiple windows are created and handled:
+
+```ruby
+#filename new-window.rb
+
+require 'selenium-webdriver'
+require 'rspec/expectations'
+
+include RSpec::Matchers
+
+def setup
+  @driver = Selenium::WebDriver.for :firefox
+end
+
+def teardown
+  @driver.quit
+end
+
+def run
+  setup
+  yield
+  teardown
+end
+
+run do
+  @driver.get("https://the-internet.herokuapp.com")
+  @driver.switch_to.new_window(:window)
+  @driver.manage.window.position = Selenium::WebDriver::Point.new(100, 400)
+  @driver.get("https://the-internet.herokuapp.com/typos")
+
+  windows_count = @driver.window_handles.length
+  if windows_count == 2
+    puts "Test passed: Found 2 windows open"
+  else
+    raise "Expected 2 windows, but found #{windows_count}"
+end
+end
+```
+
+## Expected Behavior
+
+If you run the `Ruby` example referenced above (`ruby new-window.rb`), this test will:
+
+- Open Firefox browser
+- Navigate to the-internet website
+- Open a New Window and move it to a different position on the screen
+- Navigate to the Typos page on the-internet website
+- Check the number of windows open
+- Close all browsers
+
+## Summary
+
+There are many possible use cases for this new way of opening and focusing on new browser tabs and windows across OS and browser combinations.
+
+From testing the way a user can interact with two windows side-by-side, to testing performance and behavior of multiple windows, this new command makes it simpler to test on multiple web pages.
+
+Happy Testing!
+
+## About The Author
+
+This tip is brought to you by [Lindsay Walker](https://www.linkedin.com/in/lindsayjowalker/)
+
+![Lindsay Walker profile picture](/img/authors/lindsay-walker.jpeg#author-img 'a title')
