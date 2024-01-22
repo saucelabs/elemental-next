@@ -1,17 +1,3 @@
----
-language: ruby
-level: 2
-hide_table_of_contents: true
-publish_date: 2017-09-25
-last_update:
-    date: 2023-03-06
----
-## A Solution
-
-Enter Headless Chrome ([link](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md))
-
-Starting with Chrome 59 (Chrome 60 for Windows) we can pass Chrome a few configuration options to enable headless mode.
-
 ## Example
 
 Before we start make sure you’ve at least got Chrome 59 installed and are using the latest [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/) version.

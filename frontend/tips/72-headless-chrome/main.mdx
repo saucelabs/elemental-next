@@ -17,14 +17,29 @@ category:
   - 'remote'
 ---
 
-# How To Run Your Tests Headlessly with Chrome
+# How To Run Your Tests Headless with Chrome
 
 ## Intro
 
 > This is a guest post from [Chris Kenst](https://twitter.com/ckenst).
 
-If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a third party library like Xvfb or PhantomJS but those can be hard to install and aren't guaranteed to be supported in the long run (like PhantomJS).
+If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you
+can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a
+third party library like Xvfb or PhantomJS but those can be hard to install and aren't guaranteed to be supported
+in the long run (like PhantomJS).
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='72-headless-chrome' />
+Enter Headless Chrome ([link](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md))
+
+Starting with Chrome 59 (Chrome 60 for Windows) we can pass Chrome a few configuration options to enable headless mode.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"72-headless-chrome"} languages={contentLanguages} />
+
+
