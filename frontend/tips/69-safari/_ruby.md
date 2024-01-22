@@ -1,18 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2015-08-25
-last_update:
-  date: 2023-03-13
----
-
-## A Solution
-
-Running your Selenium tests on a different browser tends to require additional setup, and [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver) is no exception.
-
-The following example will go through how to do it and make sure it's working.
-
 ## Example
 
 Run the following command on the terminal:
@@ -81,9 +66,3 @@ Keep in mind that Safari can load without you realizing it (since it doesn't obt
 And if you're running Safari on a remote node (or set of nodes), you'll need to install and enable the SafariDriver browser extension on each of them.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
