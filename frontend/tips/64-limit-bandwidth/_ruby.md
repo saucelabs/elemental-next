@@ -1,31 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2015-10-16
-last_update:
-  date: 2023-04-06
----
-
-## A Solution
-
-With the help of a proxy server like [BrowserMob Proxy](http://bmp.lightbody.net/) we can simulate bandwidth limitations and run our tests to see if they fall down. In order to do this we'll also need to adjust our Selenium's default timeout.
-
->### A Brief Primer on BrowserMob Proxy
->
->BrowserMob Proxy is a server which sits between your browser and the application you're testing. You connect to it by configuring a browser profile to pass through it. As listed on [the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#features-and-usage), here are some of the benefits it offers:
->
->+ blacklisting and whitelisting certain URL patterns
->+ simulating various bandwidth and latency
->+ remapping DNS lookups
->+ flushing DNS caching
->+ controlling DNS and request timeouts
->+ automatic BASIC authorization
-
-__NOTE:__ You can also capture HTTP status codes with it as well. See [tip 17](/tips/17-retrieve-http-status-codes) for details on how to do that.
-
-Let's continue with an example.
-
 ## Example
 
 First we'll need to download BrowserMob Proxy from [here](http://bmp.lightbody.net/).
@@ -108,11 +80,3 @@ It may not be clear in [`browsermob-proxy-rb`](https://github.com/jarib/browserm
 Alternatively, you can BrowserMob Proxy through it's Rest API. You can find out more about that on [the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#rest-api).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
