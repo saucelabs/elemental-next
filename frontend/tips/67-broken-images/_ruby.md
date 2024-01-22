@@ -1,24 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2015-10-20
-last_update:
-  date: 2023-04-06
----
-
-## A Solution
-
-Out of the box, Selenium is not equipped to handle this. But regardless, there are several ways to accomplish this.
-
-We can use...
-
-+ a proxy server
-+ an HTTP library
-+ JavaScript
-
-Lets look at an example of each.
-
 ## Example 1 - A Proxy Example
 
 In this example we'll use Browsermob Proxy. For a primer on what this is and how to use it see [tip 64](/tips/64-limit-bandwidth).
@@ -192,11 +171,3 @@ Your circumstance may vary, so choose the approach that works best for you and y
 A big thanks to [Brian Goad](https://twitter.com/bbbco) for the JavaScript solution and pointing me towards [the StackOverflow post where he first came across this](http://stackoverflow.com/questions/16784534/find-broken-images-in-page-image-replace-by-another-image/).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
