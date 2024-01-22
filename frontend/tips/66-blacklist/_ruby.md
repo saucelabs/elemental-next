@@ -1,18 +1,3 @@
----
-language: ruby
-level: 3
-hide_sidebar: true
-publish_date: 2015-10-20
-last_update:
-  date: 2023-04-06
----
-
-## A Solution
-
-By leveraging a proxy server in our tests we can block the external resources we don't want to load by adding them to a blacklist.
-
-Let's continue with an example.
-
 ## Example
 
 __NOTE: For a brief primer on proxy servers check out [tip 64](/tips/64-limit-bandwidth).__
@@ -88,10 +73,3 @@ Hopefully this helps you with blocking external resources that you don't want to
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

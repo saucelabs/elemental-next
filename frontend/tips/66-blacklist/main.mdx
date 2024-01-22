@@ -21,10 +21,40 @@ category:
 
 ## Intro
 
-There are plenty of external resources that get loaded onto a page that aren't directly relevant to the functionality you're testing (e.g., Facebook widgets, Analytics, JavaScript snippets, etc.). And these external resources have the potential to negatively impact your test runs due to slow load times.
+There are plenty of external resources that get loaded onto a page that aren't directly relevant to the
+functionality you're testing (e.g., Facebook widgets, Analytics, JavaScript snippets, etc.). And these external
+resources have the potential to negatively impact your test runs due to slow load times.
 
 So how do you protect your tests from these things that are outside of your control?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='66-blacklist' />
+By leveraging a proxy server in our tests we can block the external resources we don't want to load by adding them
+to a blacklist.
+
+Let's continue with an example.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"66-blacklist"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
+
+
+
