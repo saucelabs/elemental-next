@@ -40,11 +40,10 @@ And with this approach, we not only get the benefit of controlled chaos, we also
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"7-use-a-page-object"} languages={contentLanguages} />
+<DisplayTips contentPath={"7-use-a-page-object"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

@@ -45,11 +45,10 @@ Let's continue with an example.
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"23-dynamic-pages"} languages={contentLanguages} />
+<DisplayTips contentPath={"23-dynamic-pages"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

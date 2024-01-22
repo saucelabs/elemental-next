@@ -36,11 +36,10 @@ Let's continue with an example.
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"66-blacklist"} languages={contentLanguages} />
+<DisplayTips contentPath={"66-blacklist"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

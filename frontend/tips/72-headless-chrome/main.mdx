@@ -36,10 +36,9 @@ Starting with Chrome 59 (Chrome 60 for Windows) we can pass Chrome a few configu
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"72-headless-chrome"} languages={contentLanguages} />
+<DisplayTips contentPath={"72-headless-chrome"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 

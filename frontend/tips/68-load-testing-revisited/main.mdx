@@ -41,11 +41,10 @@ Let's dig in with an example.
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"68-load-testing-revisited"} languages={contentLanguages} />
+<DisplayTips contentPath={"68-load-testing-revisited"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

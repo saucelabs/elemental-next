@@ -39,11 +39,10 @@ Let's take a look at an example.
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"38-headless"} languages={contentLanguages} />
+<DisplayTips contentPath={"38-headless"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 

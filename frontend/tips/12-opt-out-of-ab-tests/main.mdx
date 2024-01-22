@@ -52,15 +52,14 @@ Let's start with an example for each approach with a popular A/B testing platfor
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
+
+<DisplayTips contentPath={"12-opt-out-of-ab-tests"} languages={[
     { label: 'Python', value: 'python' },
     { label: 'C#', value: 'csharp' },
     { label: 'Java', value: 'java' },
     { label: 'JavaScript', value: 'javascript' },
     { label: 'Ruby', value: 'ruby' },
-];
-
-<DisplayTips contentPath={"12-opt-out-of-ab-tests"} languages={contentLanguages} />
+]} />
 
 
 ## About The Author

@@ -37,11 +37,10 @@ Let's take a look at an example.
 
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"44-exception-handling"} languages={contentLanguages} />
+<DisplayTips contentPath={"44-exception-handling"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

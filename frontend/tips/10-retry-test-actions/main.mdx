@@ -34,11 +34,10 @@ If it finds what it needs, the tests passes. If it doesn't, the test fails -- an
 problem on your hands.
 
 import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
 
-<DisplayTips contentPath={"10-retry-test-actions"} languages={contentLanguages} />
+<DisplayTips contentPath={"10-retry-test-actions"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author
