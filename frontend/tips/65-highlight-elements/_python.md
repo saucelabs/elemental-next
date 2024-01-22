@@ -1,18 +1,3 @@
----
-language: python
-level: 2
-hide_sidebar: true
-publish_date: 2016-11-23
-last_update:
-  date: 2023-03-15
----
-
-## A Solution
-
-By leveraging some simple JavaScript and CSS styling, we can highlight the element on the page that we're targeting. This way we can visually inspect it to make sure it is the one that we want.
-
-Let's take a look at an example.
-
 ## Example
 
 For our initial setup let's pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import time` to add a delay in our script so we're able to see the notification messages), declare our test class, and wire up some test `setUp` and `tearDown` methods.

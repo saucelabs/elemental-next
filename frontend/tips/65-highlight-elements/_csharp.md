@@ -1,18 +1,3 @@
----
-language: csharp
-level: 2
-hide_sidebar: true
-publish_date: 2016-06-13
-last_update:
-  date: 2023-03-30
----
-
-## A Solution
-
-By leveraging some simple JavaScript and CSS styling, we can highlight the element on the page that we're targeting. This way we can visually inspect it to make sure it is the one that we want.
-
-Let's take a look at an example.
-
 ## Example
 
 First let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), access to C# collections (e.g., `System.Collections.Generic`), and start our class off with some setup and teardown methods.

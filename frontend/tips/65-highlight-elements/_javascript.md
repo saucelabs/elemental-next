@@ -1,18 +1,3 @@
----
-language: javascript
-level: 2
-hide_sidebar: true
-publish_date: 2019-08-09
-last_update:
-  date: 2023-03-28
----
-
-## A Solution
-
-By leveraging some simple JavaScript and CSS styling, we can highlight the element on the page that we're targeting. This way we can visually inspect it to make sure it is the one that we want.
-
-Let's take a look at an example.
-
 ## Example
 
 For our initial setup let's pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods.

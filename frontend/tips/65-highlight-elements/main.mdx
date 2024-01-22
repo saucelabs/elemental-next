@@ -23,10 +23,30 @@ category:
 
 ## Intro
 
->This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
+>This is a pseudo guest post from Brian Goad. I've adapted one of his blog posts with his permission. You can
+>see the original blog post [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/).
 
-It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?
+It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But
+how do you interrogate your locators to make sure they are doing what you expect?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='65-highlight-elements' />
+By leveraging some simple JavaScript and CSS styling, we can highlight the element on the page that we're targeting.
+This way we can visually inspect it to make sure it is the one that we want.
+
+Let's take a look at an example.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"65-highlight-elements"} languages={contentLanguages} />
+
+

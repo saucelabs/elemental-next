@@ -1,18 +1,3 @@
----
-language: ruby
-level: 2
-hide_sidebar: true
-publish_date: 2014-09-11
-last_update:
-  date: 2023-03-06
----
-
-## A Solution
-
-By leveraging some simple JavaScript and CSS styling, we can highlight the element on the page that we're targeting. This way we can visually inspect it to make sure it is the one that we want.
-
-Let's take a look at an example.
-
 ## Example
 
 For our initial setup let's pull in the `selenium-webdriver` gem and wire up some simple `setup`, `teardown`, and `run` methods.
