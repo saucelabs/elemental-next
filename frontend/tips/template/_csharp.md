@@ -1,12 +1,3 @@
----
-language: csharp
-level: #add level 1, 2 or 3
-hide_sidebar: true
-publish_date: 2020-00-00 #add date YYYY-MM-DD
-last_update:
-  date: 2020-00-00 #add date YYYY-MM-DD
----
-
 Oh no! It seems like we are missing code here.
 Help the community
 <button className='hello'><a href="https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">ADD EXAMPLE</a></button>
