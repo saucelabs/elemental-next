@@ -1,20 +1,3 @@
----
-language: csharp
-level: 2
-hide_sidebar: true
-publish_date: 2016-06-13
-last_update:
-  date: 2023-03-30
----
-
-## A Solution
-
-By leveraging [Selenium's Action Builder](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm) we can issue a right-click command (a.k.a. a [`ContextClick`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_ContextClick.htm)).
-
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`SendKeys`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_SendKeys_1.htm) command).
-
-Let's continue with an example.
-
 ## Example
 
 Let's start by importing our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
@@ -91,11 +74,3 @@ When you save this file and run it (e.g., `nunit3-console.exe .\RightClick.sln` 
 To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

@@ -1,20 +1,3 @@
----
-level: 2
-language: java
-hide_sidebar: true
-publish_date: 2015-11-11
-last_update:
-  date: 2023-04-03
----
-
-## A Solution
-
-By leveraging [Selenium's Action Builder](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html) we can issue a right-click command (a.k.a. a [`contextClick`](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#contextClick())).
-
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`sendKeys`](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#sendKeys(java.lang.CharSequence...)) command.
-
-Let's continue with an example.
-
 ## Example
 
 Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
@@ -92,10 +75,3 @@ Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initia
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

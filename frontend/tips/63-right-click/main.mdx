@@ -24,8 +24,41 @@ category:
 
 ## Intro
 
-Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
+Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu).
+These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='63-right-click' />
+By leveraging [Selenium's Action Builder](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm) we can issue a right-click command (a.k.a. a [`ContextClick`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_ContextClick.htm)).
+
+We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the
+Action Builder's [`SendKeys`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_SendKeys_1.htm) command).
+
+Let's continue with an example.
+
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"63-right-click"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+
