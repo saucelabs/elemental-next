@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@docsearch/react": "3.3.5",
-    "@docusaurus/core": "2.3.1",
-    "@docusaurus/preset-classic": "2.3.1",
+    "@docusaurus/core": "3.1.0",
+    "@docusaurus/preset-classic": "3.1.0",
     "ariakit": "^2.0.0-next.43",
     "clsx": "^1.2.1",
     "gray-matter": "^4.0.3",
