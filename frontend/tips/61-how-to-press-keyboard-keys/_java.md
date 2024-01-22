@@ -1,20 +1,3 @@
----
-language: java
-level: 1
-hide_sidebar: true
-publish_date: 2015-11-09
-last_update:
-  date: 2023-04-03
----
-
-## A Solution
-
-You can easily issue a key press by using the `send_keys` command. This can be done to a specific element, or generically with Selenium's Action Builder (which has been documented on [the Selenium Actions page for Building Advanced User Interactions](https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html)).
-
-Either approach will send a key press. The latter approach will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
-
-Let's try out a couple of examples.
-
 ## Example
 
 First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
@@ -98,10 +81,3 @@ Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initia
 
 Happy Testing!
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

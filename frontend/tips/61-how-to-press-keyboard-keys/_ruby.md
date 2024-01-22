@@ -1,22 +1,3 @@
----
-language: ruby
-level: 1
-hide_sidebar: true
-publish_date: 2015-10-12
-last_update:
-  date: 2023-02-22
----
-
-## A Solution
-
-You can easily issue a key press by using the `send_keys` command.
-
-This can be done to a specific element or generically with [Selenium's Action Builder](https://www.selenium.dev/selenium/docs/api/rb/Selenium/WebDriver/ActionBuilder.html). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
-
-When sending keys be sure to specify the key-press as a symbol (e.g. space is `:space`, tab is `:tab`, etc.). You can see a full list of keyboard key symbols [here](https://github.com/SeleniumHQ/selenium/blob/master/rb/lib/selenium/webdriver/common/keys.rb).
-
-Let's try out a couple of examples.
-
 ## Example
 
 First we'll set up our requisite libraries to drive the browser (e.g., `selenium-webdriver`) and perform an assertion (e.g., `rspec/expections` and `RSpec::Matchers`). After that, we'll create some simple `setup`, `teardown`, and `run` methods.
@@ -84,11 +65,3 @@ If we save this and run it (e.g. `ruby key_presses.rb` from the command-line) he
 If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. If you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')

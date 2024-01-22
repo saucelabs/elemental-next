@@ -1,20 +1,3 @@
----
-language: python
-level: 1
-hide_sidebar: true
-publish_date: 2016-11-19
-last_update:
-    date: 2023-03-03
----
-
-## A Solution
-
-You can easily issue a key press by using the `send_keys` command.
-
-This can be done to a specific element, or generically with Selenium's Action Builder (which has been documented on [the Selenium project's Wiki page for Advanced User Interactions](https://github.com/SeleniumHQ/selenium/wiki/Advanced-User-Interactions)). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
-
-Let's step through a couple of examples.
-
 ## An Example
 
 First we'll include our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
@@ -90,12 +73,3 @@ When we save this file and run it (e.g. `python keyboard_keys.py` from the comma
 If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should reach for.
 
 Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
-

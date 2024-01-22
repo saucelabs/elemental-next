@@ -26,10 +26,47 @@ category:
 
 On occasion you'll come across functionality that requires the use of keyboard key presses in your tests.
 
-Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter.
+Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or
+overlay with the escape key, or even submit a form with Enter.
 
 But how do you do it and where do you start?
 
-import DropdownMarkdown from '../../src/components/dropdownMarkdown';
+## A Solution
 
-<DropdownMarkdown folderName='61-how-to-press-keyboard-keys' />
+You can easily issue a key press by using the `SendKeys` command. This can be done to a specific element, or
+generically with Selenium's Action Builder (which has been documented on
+[the Selenium Actions page for Building Advanced User Interactions](https://www.selenium.dev/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm)).
+
+Either approach will send a key press. The latter approach will send it to the element that's currently in
+focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will
+send the key press directly to the element found.
+
+You can see a full list of Selenium's available keyboard keys [here](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Keys.htm).
+
+Let's try out a couple of examples.
+
+
+import DisplayTips from "../../src/components/displayTips";
+const contentLanguages = [
+    { label: 'Python', value: 'python' },
+    { label: 'C#', value: 'csharp' },
+    { label: 'Java', value: 'java' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'Ruby', value: 'ruby' },
+];
+
+<DisplayTips contentPath={"61-how-to-press-keyboard-keys"} languages={contentLanguages} />
+
+
+## About The Author
+
+Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
+by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
+perfect for writing automated tests against).
+
+Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
+ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
+at numerous conferences and meetups around the world about automated acceptance testing.
+
+![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+

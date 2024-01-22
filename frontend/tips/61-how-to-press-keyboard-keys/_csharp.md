@@ -1,22 +1,3 @@
----
-language: csharp
-level: 1
-hide_sidebar: true
-publish_date: 2016-06-13
-last_update:
-  date: 2023-03-30
----
-
-## A Solution
-
-You can easily issue a key press by using the `SendKeys` command. This can be done to a specific element, or generically with Selenium's Action Builder (which has been documented on [the Selenium Actions page for Building Advanced User Interactions](https://www.selenium.dev/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm)).
-
-Either approach will send a key press. The latter approach will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
-
-You can see a full list of Selenium's available keyboard keys [here](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Keys.htm).
-
-Let's try out a couple of examples.
-
 ## Example
 
 First let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
@@ -93,10 +74,3 @@ When you save this file and run it (e.g. `nunit3-console.exe .\KeyboardKeys.sln`
 
 If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. If you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
 
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool, ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
