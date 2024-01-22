@@ -38,12 +38,11 @@ to launch the browser virtually (e.g., using something like Xvfb).
 Let's take a look at an example.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"38-headless"} languages={contentLanguages} />
+<DisplayTips contentPath={"38-headless"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 

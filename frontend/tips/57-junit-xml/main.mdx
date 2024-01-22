@@ -42,12 +42,11 @@ Let's go through an example of how to configure a test suite in order to output 
 
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"57-junit-xml"} languages={contentLanguages} />
+<DisplayTips contentPath={"57-junit-xml"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

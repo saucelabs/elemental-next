@@ -44,12 +44,11 @@ onto the next step of the test), or it will throw a timeout exception (causing y
 Let's continue with an example.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"23-dynamic-pages"} languages={contentLanguages} />
+<DisplayTips contentPath={"23-dynamic-pages"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

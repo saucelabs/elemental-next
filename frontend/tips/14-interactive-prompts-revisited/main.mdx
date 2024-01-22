@@ -38,9 +38,8 @@ view the objects or methods available to you while debugging in your script.
 Sometimes you just need to be able to _pry_ into the code, jump in, open it up and explore the area in order to
 solve the error you are experiencing.
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"14-interactive-prompts-revisited"} languages={contentLanguages} />
+<DisplayTips contentPath={"14-interactive-prompts-revisited"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />

@@ -46,16 +46,15 @@ You can see a full list of Selenium's available keyboard keys [here](http://sele
 Let's try out a couple of examples.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips contentPath={"61-how-to-press-keyboard-keys"} languages={[
     { label: 'Python', value: 'python' },
     { label: 'C#', value: 'csharp' },
     { label: 'Java', value: 'java' },
     { label: 'JavaScript', value: 'javascript' },
     { label: 'Ruby', value: 'ruby' },
-];
-
-<DisplayTips contentPath={"61-how-to-press-keyboard-keys"} languages={contentLanguages} />
+]} />
 
 
 ## About The Author

@@ -35,16 +35,15 @@ something that is fairly quick to add to your tests, and allows you to review th
 Here is an example.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips contentPath={"16-take-screenshot-on-failure"} languages={[
     { label: 'Python', value: 'python' },
     { label: 'C#', value: 'csharp' },
     { label: 'Java', value: 'java' },
     { label: 'JavaScript', value: 'javascript' },
     { label: 'Ruby', value: 'ruby' },
-];
-
-<DisplayTips contentPath={"16-take-screenshot-on-failure"} languages={contentLanguages} />
+]} />
 
 
 ## About The Author

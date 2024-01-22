@@ -40,12 +40,11 @@ cross-browser performant, simpler to maintain, and powerful -- that's CSS Select
 
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"22-locator-strategy"} languages={contentLanguages} />
+<DisplayTips contentPath={"22-locator-strategy"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

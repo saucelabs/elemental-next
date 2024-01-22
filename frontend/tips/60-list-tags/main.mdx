@@ -35,12 +35,11 @@ get the tags and generate a simple report.
 Here is an example.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"60-list-tags"} languages={contentLanguages} />
+<DisplayTips contentPath={"60-list-tags"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

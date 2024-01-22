@@ -36,12 +36,11 @@ By adding some simple exception handling we can catch Selenium's errors and make
 Let's take a look at an example.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"44-exception-handling"} languages={contentLanguages} />
+<DisplayTips contentPath={"44-exception-handling"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

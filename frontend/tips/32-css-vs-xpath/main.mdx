@@ -45,12 +45,11 @@ XPath stack up and fall down. Then we will be able to determine a more helpful l
 
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"32-css-vs-xpath"} languages={contentLanguages} />
+<DisplayTips contentPath={"32-css-vs-xpath"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

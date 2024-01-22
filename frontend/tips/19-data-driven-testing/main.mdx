@@ -38,12 +38,11 @@ file, database, etc) you can easily wire up tests to use each of them instead of
 hard-coding these values directly in your test code.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"19-data-driven-testing"} languages={contentLanguages} />
+<DisplayTips contentPath={"19-data-driven-testing"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

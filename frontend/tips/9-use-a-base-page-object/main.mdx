@@ -37,12 +37,11 @@ With a Base Page Object (a.k.a. a facade layer) we can abstract all common actio
 leverage them in any Page Object we see fit.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"9-use-a-base-page-object"} languages={contentLanguages} />
+<DisplayTips contentPath={"9-use-a-base-page-object"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

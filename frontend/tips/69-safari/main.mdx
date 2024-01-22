@@ -34,13 +34,12 @@ The following example will go through how to do it and make sure it's working.
 
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips contentPath={"69-safari"} languages={[
     { label: 'Java', value: 'java' },
     { label: 'Ruby', value: 'ruby' },
-];
-
-<DisplayTips contentPath={"69-safari"} languages={contentLanguages} />
+]} />
 
 
 ## About The Author

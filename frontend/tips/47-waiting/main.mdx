@@ -42,12 +42,11 @@ Let's continue with some examples.
 
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"47-waiting"} languages={contentLanguages} />
+<DisplayTips contentPath={"47-waiting"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

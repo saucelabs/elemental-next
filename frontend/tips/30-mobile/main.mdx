@@ -49,12 +49,11 @@ __NOTE: These examples were borrowed from
 
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"30-mobile"} languages={contentLanguages} />
+<DisplayTips contentPath={"30-mobile"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

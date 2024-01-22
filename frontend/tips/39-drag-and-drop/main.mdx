@@ -32,12 +32,11 @@ As a workaround, we can simulate dragging and dropping by executing JavaScript w
 example.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"39-drag-and-drop"} languages={contentLanguages} />
+<DisplayTips contentPath={"39-drag-and-drop"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

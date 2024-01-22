@@ -44,9 +44,8 @@ that by running everything from a local machine while using a performance benchm
 focus on a specific Selenium action rather than the entire test run, and run things numerous times.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"33-css-vs-xpath-2"} languages={contentLanguages} />
+<DisplayTips contentPath={"33-css-vs-xpath-2"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />

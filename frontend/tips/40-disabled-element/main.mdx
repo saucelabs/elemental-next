@@ -34,16 +34,15 @@ method called `Enabled` that can help us accomplish what we want.
 Let's take a look at how to use it.
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips contentPath={"40-disabled-element"} languages={[
     { label: 'Python', value: 'python' },
     { label: 'C#', value: 'csharp' },
     { label: 'Java', value: 'java' },
     { label: 'JavaScript', value: 'javascript' },
     { label: 'Ruby', value: 'ruby' },
-];
-
-<DisplayTips contentPath={"40-disabled-element"} languages={contentLanguages} />
+]} />
 
 
 ## About The Author

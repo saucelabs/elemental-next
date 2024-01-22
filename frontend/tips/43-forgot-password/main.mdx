@@ -34,12 +34,11 @@ Let's dig in with an example that uses [the forgot password example](http://the-
 on [the-internet](https://github.com/saucelabs/the-internet).
 
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
-    { label: 'Ruby', value: 'ruby' },
-];
+import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"43-forgot-password"} languages={contentLanguages} />
+<DisplayTips contentPath={"43-forgot-password"} languages={[
+    { label: 'Ruby', value: 'ruby' },
+]} />
 
 
 ## About The Author

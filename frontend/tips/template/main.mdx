@@ -26,13 +26,12 @@ category: 'template'
 
 <!-- Add the name of the folder and only include the included languages/content -->
 
-import DisplayTips from "../../src/components/displayTips";
-const contentLanguages = [
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips contentPath={"template"} languages={[
     { label: 'Python', value: 'python' },
     { label: 'C#', value: 'csharp' },
     { label: 'Java', value: 'java' },
     { label: 'JavaScript', value: 'javascript' },
     { label: 'Ruby', value: 'ruby' },
-];
-
-<DisplayTips contentPath={"template"} languages={contentLanguages} />
+]} />
