@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[7205],{13722:a=>{a.exports=JSON.parse('{"label":"ajax","permalink":"/tips/tags/ajax","allTagsPath":"/tips/tags","count":1,"items":[{"id":"dynamic-pages/23-dynamic-pages","title":"Dynamic Pages","description":"Intro","permalink":"/tips/dynamic-pages/23-dynamic-pages"}],"unlisted":false}')}}]);

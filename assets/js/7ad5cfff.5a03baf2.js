@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[5684],{50539:t=>{t.exports=JSON.parse('{"label":"csv","permalink":"/tips/tags/csv","allTagsPath":"/tips/tags","count":1,"items":[{"id":"data-driven-testing/19-data-driven-testing","title":"Data Driven Testing","description":"Intro","permalink":"/tips/data-driven-testing/19-data-driven-testing"}]}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[6702],{95533:t=>{t.exports=JSON.parse('{"label":"context menu","permalink":"/tips/tags/context-menu","allTagsPath":"/tips/tags","count":1,"items":[{"id":"right-click/63-right-click","title":"Right Click","description":"Intro","permalink":"/tips/right-click/63-right-click"}],"unlisted":false}')}}]);
