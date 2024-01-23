@@ -13,8 +13,7 @@
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
-    "generate-sidebar": "node src/scripts/generateSidebar.js"
+    "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
     "@docsearch/react": "3.3.5",
