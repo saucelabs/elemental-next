@@ -1,6 +1,7 @@
 ---
 title: 'How To Use Selenium Grid'
 id: '52-how-to-use-selenium-grid'
+slug: /52-how-to-use-selenium-grid
 contentUrl: "tips/grid/52-how-to-use-selenium-grid"
 sidebar_label: How To Use Selenium Grid
 text: 'With Selenium Grid you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.'
@@ -8,8 +9,6 @@ number: 52
 publish_date: 2015-08-25
 hide_table_of_contents: true
 level: 2
-last_update:
-  date: 2023-02-24
 tags:
   - 'grid'
   - 'selenium grid'
@@ -30,13 +29,9 @@ justify using a third-party solution like [Sauce Labs](https://saucelabs.com/) t
 With [Selenium Grid](https://www.selenium.dev/documentation/grid/) you can stand up a simple infrastructure of various browsers on different operating systems
 to not only distribute test load, but also give you a diversity of browsers to work with.
 
-> A brief primer of Selenium Grid
->
-> Selenium Grid is part of [the Selenium project](https://www.selenium.dev/). It lets you distribute test execution across several
+> A brief primer of Selenium GridSelenium Grid is part of [the Selenium project](https://www.selenium.dev/). It lets you distribute test execution across several
 > machines. You can connect to it with a remote WebDriver by specifying the browser, browser version, and operating
-> system you want. You specify these values through Selenium `Capabilities`.
->
-> There are two main elements to Selenium Grid -- a Hub, and Nodes. First you need to stand up a Hub. Then you can
+> system you want. You specify these values through Selenium `Capabilities`.There are two main elements to Selenium Grid -- a Hub, and Nodes. First you need to stand up a Hub. Then you can
 > connect (or "register") Nodes to that Hub.
 > Nodes are where your tests will run, and the Hub is responsible for making sure your tests end up on the right
 > one (e.g., the machine with the operating system and browser you specified in your test).
@@ -48,11 +43,11 @@ Let's continue with an example.
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips contentPath={"52-grid"} languages={[
-    { label: 'Python', value: 'python' },
-    { label: 'Java', value: 'java' },
-    { label: 'JavaScript', value: 'javascript' },
-    { label: 'Ruby', value: 'ruby' },
-]} />
+    {label: 'Python', value: 'python'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+]}/>
 
 
 ## About The Author
