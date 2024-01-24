@@ -4,9 +4,7 @@ const Data = [
     "id": "1-upload-a-file",
     "number": 1,
     "publish_date": "2015-07-19T00:00:00.000Z",
-    "last_update": {
-      "date": "2023-02-27T00:00:00.000Z"
-    },
+    "last_update": "",
     "tags": [
       "file",
       "upload",
@@ -17,7 +15,7 @@ const Data = [
       "remote",
       "fundamentals"
     ],
-    "contentUrl": "tips/how-to-upload-a-file/1-upload-a-file",
+    "contentUrl": "tips/1-upload-a-file",
     "text": "Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted with a dialog box that is just out of reach for Selenium. In these cases people often look to a third-party tool to manipulate this window."
   },
   {
@@ -477,16 +475,16 @@ const Data = [
     "text": "In order to test features in a previous version of Chrome, you would need to run a virtual machine (VM) on your computer with a legit version of Windows installed on the VM."
   },
   {
-    "title": "How To Speed Up Your Tests with Parallelization",
+    "title": "How to Speed Up Your Tests With Parallelization",
     "id": "27-parallel",
     "number": 27,
     "publish_date": "2013-11-26T00:00:00.000Z",
     "last_update": {
-      "date": "2023-02-27T00:00:00.000Z"
+      "date": "2023-03-10T00:00:00.000Z"
     },
     "tags": [
       "parallelization",
-      "good test writing",
+      "good test writing"
     ],
     "level": 2,
     "category": [
@@ -501,7 +499,7 @@ const Data = [
     "number": 28,
     "publish_date": "2015-10-13T00:00:00.000Z",
     "last_update": {
-      "date": "2023-03-15sT00:00:00.000Z"
+      "date": "2023-03-15T00:00:00.000Z"
     },
     "tags": [
       "selenium rc",
@@ -512,7 +510,7 @@ const Data = [
       "fundamentals"
     ],
     "contentUrl": "tips/upgrading-from-rc/28-upgrading-from-rc",
-    "text": "As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC."
+    "text": "As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC"
   },
   {
     "title": "ChromeDriver",
@@ -599,7 +597,7 @@ const Data = [
     "text": "One of the most heated and subjective conversations in the Selenium community is which locator strategy is better, often circling around two -- XPath and CSS."
   },
   {
-    "title": "CSS vs. Xpath 2",
+    "title": "CSS vs. XPath 2",
     "id": "33-css-vs-xpath-2",
     "number": 33,
     "publish_date": "2014-01-14T00:00:00.000Z",
@@ -750,7 +748,7 @@ const Data = [
       "fundamentals"
     ],
     "contentUrl": "tips/one-test-multiple-browsers/41-one-test-multiple-browsers",
-    "text": "You'll occasionally have something that you want to test across multiple browsers. It would be nice to run your test once and have it execute against all of the browsers you care about. Unfortunately this functionality doesn't come out of the box with most testing frameworks."
+    "text": "You'll occasionally have something that you want to test across multiple browsers. It would be nice to run your test once and have it execute against all the browsers you care about. Unfortunately this functionality doesn't come out of the box with most testing frameworks."
   },
   {
     "title": "How to Run a Test on Multiple Browsers, In Parallel",
@@ -761,14 +759,14 @@ const Data = [
       "date": "2023-03-20T00:00:00.000Z"
     },
     "tags": [
+      "parallelization",
       "multiple browsers",
       "cloud",
-      "sauce labs",
-      "multiple browsers"
+      "sauce"
     ],
     "level": 2,
     "category": [
-      "fundamentals"
+      "remote"
     ],
     "contentUrl": "tips/one-test-multiple-browsers-parallel/42-one-test-multiple-browsers-parallel",
     "text": "In the previous tip I covered how to run a single test against multiple browsers. While this could come in handy, it is still a bit lacking."
@@ -787,7 +785,7 @@ const Data = [
     ],
     "level": 2,
     "category": [
-      "fundamentals"
+      "troubleshooting"
     ],
     "contentUrl": "tips/forgot-password/43-forgot-password",
     "text": "Testing e-mail can be a tricky process. Especially when dealing with things like forgot password. A lot of times this is something that gets checked manually. Or worse, it gets overlooked and ends up broken in production."
@@ -983,14 +981,12 @@ const Data = [
     "id": "54-logging",
     "number": 54,
     "publish_date": "2014-06-10T00:00:00.000Z",
-    "last_update": {
-      "date": "2014-06-10T00:00:00.000Z"
-    },
+    "last_update": "",
     "tags": [
       "logging",
       "logs",
       "growl",
-      "growl notifications",
+      "growl notifications"
     ],
     "level": 3,
     "category": [
