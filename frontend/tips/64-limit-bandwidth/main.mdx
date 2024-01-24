@@ -2,7 +2,6 @@
 title: 'Limit Bandwidth'
 id: '64-limit-bandwidth'
 slug: /64-limit-bandwidth
-contentUrl: "tips/limit-bandwidth/64-limit-bandwidth"
 sidebar_label: Limit Bandwidth
 text: "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a _slow_ connection?"
 number: 64
@@ -27,8 +26,7 @@ your application behaves on a _slow_ connection?
 With the help of a proxy server like [BrowserMob Proxy](http://bmp.lightbody.net/) we can simulate bandwidth limitations and run our
 tests to see if they fall down. In order to do this we'll also need to adjust our Selenium's default timeout.
 
->### A Brief Primer on BrowserMob ProxyBrowserMob Proxy is a server which sits between your browser and the application you're testing. You connectto it by configuring a browser profile to pass through it. As listed on
->[the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#features-and-usage), here are some
+>### A Brief Primer on BrowserMob ProxyBrowserMob Proxy is a server which sits between your browser and the application you're testing. You connectto it by configuring a browser profile to pass through it. As listed on[the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#features-and-usage), here are some
 >of the benefits it offers:+ blacklisting and whitelisting certain URL patterns+ simulating various bandwidth and latency+ remapping DNS lookups+ flushing DNS caching+ controlling DNS and request timeouts+ automatic BASIC authorization
 
 __NOTE:__ You can also capture HTTP status codes with it as well. See [tip 17](/tips/17-retrieve-http-status-codes) for details on how to do that.
