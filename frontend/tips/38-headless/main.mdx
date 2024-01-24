@@ -1,14 +1,13 @@
 ---
 title: 'How to Run Your Tests Headless with Xvfb'
 id: '38-headless'
+slug: /38-headless
 contentUrl: "tips/headless/38-headless"
 sidebar_label: "Headless Xvfb"
 text: "If you want to run your tests headless on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
 hide_table_of_contents: true
 number: 38
 publish_date: 2015-10-14
-last_update:
-    date: 2023-02-24
 tags:
   - headless
   - xvfb
@@ -30,9 +29,9 @@ In order to run your tests using a browser that's loaded on your CI Server you w
 to launch the browser virtually (e.g., using something like Xvfb).
 
 >### An Xvfb primer
->
->[Xvfb](http://en.wikipedia.org/wiki/Xvfb) (short for X virtual framebuffer) is an in-memory display server for
-> UNIX-like operating system (e.g., Linux). It enables you to run graphical applications without a display
+
+>[Xvfb](http://en.wikipedia.org/wiki/Xvfb) (short for X virtual framebuffer) is an in-memory display
+> server forUNIX-like operating system (e.g., Linux). It enables you to run graphical applications without a display
 > (e.g., browser tests on a CI server) while also having the ability to take screenshots.
 
 Let's take a look at an example.
@@ -41,8 +40,8 @@ Let's take a look at an example.
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips contentPath={"38-headless"} languages={[
-    { label: 'Ruby', value: 'ruby' },
-]} />
+    {label: 'Ruby', value: 'ruby'},
+]}/>
 
 
 
