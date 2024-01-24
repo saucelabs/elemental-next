@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[2798],{81884:e=>{e.exports=JSON.parse('{"label":"mobile testing","permalink":"/tips/tags/mobile-testing","allTagsPath":"/tips/tags","count":1,"items":[{"id":"mobile/30-mobile","title":"How to Test Your Mobile App","description":"Intro","permalink":"/tips/mobile/30-mobile"}],"unlisted":false}')}}]);
