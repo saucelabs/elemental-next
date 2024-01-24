@@ -73,7 +73,7 @@ function Home() {
                     </div>
                 </form>
 
-                <a href='tips' className='home-link'>
+                <a href='/tips' className='home-link'>
                     {' '}
                     Skip it, take me to the tips
                 </a>
