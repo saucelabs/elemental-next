@@ -29,6 +29,7 @@ const Tips = () => {
 
     const globalData = useGlobalData();
     const metadata = globalData.metadata.default.aggregateFrontMatter
+    console.log(metadata)
 
     // useEffect hook updates the filtered cards whenever there is a change
     useEffect(() => {
@@ -132,11 +133,11 @@ const Tips = () => {
                     <DocSearch appId='7W1XUFVKCS' indexName='elementalselenium1'
                                apiKey='00cd55a788fdabb22f72cba843ff820a'/>
                 </div>
-                {filteredCards.map((card) => (
+                {filteredCards.map((card, index) => (
                     <Card
+                        key={index}
                         tags={card.tags}
                         contentUrl={`tips${card.slug}`}
-                        publish_date={card.publish_date}
                         level={card.level}
                         text={card.text}
                         title={`${card.number} - ${card.title}`}
