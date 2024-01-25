@@ -206,7 +206,7 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
-                additionalLanguages: ['ruby'],
+                additionalLanguages: ['ruby', 'java', 'csharp'],
             },
             colorMode: {
                 disableSwitch: true,
