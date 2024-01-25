@@ -29,7 +29,6 @@ const Tips = () => {
 
     const globalData = useGlobalData();
     const metadata = globalData.metadata.default.aggregateFrontMatter
-    console.log(metadata)
 
     // useEffect hook updates the filtered cards whenever there is a change
     useEffect(() => {
