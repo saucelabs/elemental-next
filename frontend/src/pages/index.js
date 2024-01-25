@@ -79,8 +79,8 @@ function Home() {
                 </a>
             </div>
             <div className='icards-container'>
-                {tips.map((tip) => (
-                    <Icard contentUrl={tip.contentUrl} level={tip.level} title={tip.title} text={tip.text}/>
+                {tips.map((tip, index) => (
+                    <Icard key={index} contentUrl={tip.contentUrl} level={tip.level} title={tip.title} text={tip.text}/>
                 ))}
             </div>
             <img className='home-footer' src='./img/backgrounds/home-footer.svg' alt=''/>
