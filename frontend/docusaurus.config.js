@@ -11,7 +11,7 @@ function generateSidebarItems(items) {
     const result = [
         {
             type: 'category',
-            label: 'More Tips',
+            label: 'Tips',
             collapsed: false,
             collapsible: false,
             items: [],
