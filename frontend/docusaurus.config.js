@@ -90,6 +90,24 @@ const config = {
         ],
     ],
 
+    // Source: https://discord.com/channels/398180168688074762/867060369087922187/1193336693084934144
+    // This plugin loops over all docs and collects the frontMatter from each one. Then it is set as global data.
+    plugins: [
+        function metadata(context, options) {
+            return {
+                name: 'metadata',
+                async contentLoaded({content, actions, allContent}) {
+                    const {setGlobalData} = actions;
+                    let tempFrontMatter = []
+                    allContent['docusaurus-plugin-content-docs'].default.loadedVersions[0].docs.map((doc) => {
+                        tempFrontMatter.push(doc.frontMatter)
+                    })
+                    setGlobalData({aggregateFrontMatter: tempFrontMatter})
+                }
+            }
+        }
+    ],
+
     themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         {
