@@ -1,0 +1,23 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.limitedImg {
+    max-width: 90px;
+}
+
+.imgColumn {
+    width: 200px;
+}
+
+.centeredImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hyperlinkH2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}

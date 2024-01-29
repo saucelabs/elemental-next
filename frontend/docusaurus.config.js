@@ -29,7 +29,7 @@ function generateSidebarItems(items) {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Elemental Selenium',
-    tagline: 'The Place for Tips',
+    tagline: 'A free, once-weekly e-mail on how to do test automation like a Pro',
     favicon: 'img/ES.ico',
 
     // Set the production url of your site here

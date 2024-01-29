@@ -1,12 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '@theme/Layout';
-import {DocSearch} from '@docsearch/react';
 import useGlobalData from '@docusaurus/useGlobalData';
 
-import '@docsearch/css';
-
-import Card from '@site/src/components/card';
-import Dropdown from '@site/src/components/dropdown';
+import Link from "@docusaurus/Link";
 
 const Tips = () => {
     /* The following functions track the currently selected value for each filter */
@@ -99,55 +95,80 @@ const Tips = () => {
     };
 
     return (
-        <body className='tips-background'>
-        <Layout title='Elemental Selenium Archives' description='Elemental Selenium Archives'>
-            <div className='tips-wrapper'>
-                <h1 className='tips-header'>The Tips</h1>
-                <div className='dropdown-container'>
-                    <div className='dropdown-container-left'>
-                        <p>Filters:</p>
-                        <Dropdown
-                            ariaLabel='Order Posted'
-                            options={[
-                                {value: '', label: 'Order Posted'},
-                                {value: 'oldest', label: 'Oldest First'},
-                                {value: 'newest', label: 'Newest First'},
-                            ]}
-                            selectedOption={selectedOrder}
-                            onSelectChange={handleOrderChange}
-                        />
-                        <Dropdown
-                            ariaLabel='Category'
-                            options={categoryOptions}
-                            selectedOption={selectedCategory}
-                            onSelectChange={handleCategoryChange}
-                        />
-                        <Dropdown
-                            ariaLabel='Difficulty Level'
-                            options={difficultyOptions}
-                            selectedOption={selectedDifficulty}
-                            onSelectChange={handleDifficultyChange}
-                        />
-                    </div>
-                    <DocSearch appId='7W1XUFVKCS' indexName='elementalselenium1'
-                               apiKey='00cd55a788fdabb22f72cba843ff820a'/>
+        <Layout
+            title='Tips'
+            description='Tips for test automation Pros'
+        >
+            <header className={"hero padding-bottom--md"}>
+                <div className="container">
+                    <h1 className="hero__title">The Tips</h1>
                 </div>
-                {filteredCards.map((card, index) => (
-                    <Card
-                        key={index}
-                        tags={card.tags}
-                        contentUrl={`tips${card.slug}`}
-                        level={card.level}
-                        text={card.text}
-                        title={`${card.number} - ${card.title}`}
-                        selectedTags={selectedTags}
-                        handleTagClick={handleTagClick} // Pass the handleTagClick function as a prop
-                    />
-                ))}
-            </div>
-            <img className='tips-footer' src='img/backgrounds/tips-footer.svg' alt=''/>
+            </header>
+            <main>
+                <div className="container">
+                    <div className="row align-items-center">
+                        {filteredCards.map((card, index) => (
+                            <div key={index} className="col col--3 col--6@md col--12@xs">
+                                <div className="card">
+                                    <div className="card__header">
+                                        <h3>
+                                            <Link to={`tips${card.slug}`}>
+                                                {`${card.number} - ${card.title}`}
+                                            </Link>
+                                        </h3>
+                                    </div>
+                                    <div className="card__body">
+                                        <p>
+                                            {card.text}
+                                        </p>
+                                    </div>
+                                    {/*<div className="card__footer">*/}
+                                    {/*    {card.tags}*/}
+                                    {/*</div>*/}
+                                </div>
+                            </div>
+
+                            // <Card
+                            //     contentUrl={`tips${card.slug}`}
+                            //     level={card.level}
+                            //     selectedTags={selectedTags}
+                            //     handleTagClick={handleTagClick} // Pass the handleTagClick function as a prop
+                            // />
+                        ))}
+                    </div>
+                </div>
+            </main>
+            {/*<div className='tips-wrapper'>*/}
+            {/*    <div className='dropdown-container'>*/}
+            {/*        <div className='dropdown-container-left'>*/}
+            {/*            <p>Filters:</p>*/}
+            {/*            <Dropdown*/}
+            {/*                ariaLabel='Order Posted'*/}
+            {/*                options={[*/}
+            {/*                    {value: '', label: 'Order Posted'},*/}
+            {/*                    {value: 'oldest', label: 'Oldest First'},*/}
+            {/*                    {value: 'newest', label: 'Newest First'},*/}
+            {/*                ]}*/}
+            {/*                selectedOption={selectedOrder}*/}
+            {/*                onSelectChange={handleOrderChange}*/}
+            {/*            />*/}
+            {/*            <Dropdown*/}
+            {/*                ariaLabel='Category'*/}
+            {/*                options={categoryOptions}*/}
+            {/*                selectedOption={selectedCategory}*/}
+            {/*                onSelectChange={handleCategoryChange}*/}
+            {/*            />*/}
+            {/*            <Dropdown*/}
+            {/*                ariaLabel='Difficulty Level'*/}
+            {/*                options={difficultyOptions}*/}
+            {/*                selectedOption={selectedDifficulty}*/}
+            {/*                onSelectChange={handleDifficultyChange}*/}
+            {/*            />*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<img className='tips-footer' src='img/backgrounds/tips-footer.svg' alt=''/>*/}
         </Layout>
-        </body>
     );
 };
 

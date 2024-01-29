@@ -1,0 +1,45 @@
+/* Form styling */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-form input[type="email"],
+.signup-form select {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup-form input[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+    .signup-form {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .signup-form input[type="email"],
+    .signup-form select,
+    .signup-form input[type="submit"] {
+        width: 100%;
+    }
+}

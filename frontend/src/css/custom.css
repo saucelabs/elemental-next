@@ -4,160 +4,40 @@
  * work well for content-centric websites.
  */
 
-@import 'breadcrumbs.css';
-@import 'card.css';
-@import 'community.css';
-@import 'icard.css';
-@import 'dropdown.css';
-@import 'dropdown-markdown.css';
-@import 'footer.css';
-@import 'home.css';
-@import 'index.css';
-@import 'navbar.css';
-@import 'resources.css';
-@import 'search.css';
-@import 'sidebar.css';
-@import 'signup.css';
-@import 'thanks.css';
-@import 'tips.css';
+@import 'signupForm.css';
 
 /* You can override the default Infima variables here. */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-
 :root {
-  /* colors */
-  --ifm-color-primary: #fcc55b;
-  --ifm-color-primary-light: #fdd68a;
-  --ifm-color-primary-lighter: #fce2af;
-  --ifm-color-primary-lightest: #fef0d3;
-  /* --ifm-code-font-size: 95%; */
-  --ifm-color-secondary: #58cf5d;
-  --ifm-color-secondary-light: #81d88f;
-  --ifm-color-secondary-lighter: #a3f1b0;
-  --ifm-color-secondary-lightest: #cafbd1;
-  --ifm-color-tertiary: #b2305e;
-  --ifm-color-tertiary-light: #df5385;
-  --ifm-color-tertiary-lighter: #fd8cb4;
-  --ifm-color-tertiary-lightest: #ffc0d6;
-  --ifm-link-color: #22747d;
-  --ifm-link-color-light: #28b4c4;
-  --ifm-link-color-lighter: #77deea;
-  --ifm-link-color-lightest: #acf1f9;
-
-  /*fonts*/
-  --ifm-font-family-base: 'Roboto', sans-serif;
-  --primary-text: #714a00;
-  --secondary-text: #18583a;
-  --dark: #292620;
-  --warm-grey: #5b5852;
-  --warm-grey2: #908c84;
-
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-
-  --color-titles: #756c5b;
-}
-
-/* font */
-html {
-  font-size: 62.5%;
-}
-
-html,
-body {
-  overflow-x: hidden;
-}
-
-body {
-  position: relative;
-  font-weight: 400;
-  font-size: 16px;
-  font-size: 1.6rem;
-  line-height: 24px;
-  font-weight: normal;
-  font-family: var(--ifm-font-family-base);
-}
-
-body.em {
-  font-weight: 500;
-}
-
-h1,
-.h1 {
-  font-weight: 500;
-  font-size: 64px;
-  /* font-size: 4.8rem; */
-  line-height: 75px;
-}
-
-h2,
-.h2 {
-  font-weight: 500;
-  font-size: 32px;
-  font-size: 3.2rem;
-}
-
-#light {
-  font-weight: 300;
-}
-
-img {
-  max-width: unset;
-}
-
-td,
-th,
-tr,
-table {
-  border: 0 !important;
-  border-spacing: 0 !important;
-  margin-bottom: 20rem;
-}
-
-table {
-  position: relative;
-  top: 50px;
-  width: 100%;
-}
-
-td a {
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 56px;
-  color: black;
-}
-
-table td {
-  margin-bottom: 5rem;
-}
-
-td img {
-  padding-right: 2rem;
-}
-
-table th,
-table td {
-  padding-left: 0;
-}
-
-.subtitle {
-  font-weight: 300;
-  line-height: 36px;
-  font-size: 24px;
-  font-size: 2.4rem;
+    --ifm-color-primary: #2e8555;
+    --ifm-color-primary-dark: #29784c;
+    --ifm-color-primary-darker: #277148;
+    --ifm-color-primary-darkest: #205d3b;
+    --ifm-color-primary-light: #33925d;
+    --ifm-color-primary-lighter: #359962;
+    --ifm-color-primary-lightest: #3cad6e;
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+    --ifm-color-primary: #25c2a0;
+    --ifm-color-primary-dark: #21af90;
+    --ifm-color-primary-darker: #1fa588;
+    --ifm-color-primary-darkest: #1a8870;
+    --ifm-color-primary-light: #29d5b0;
+    --ifm-color-primary-lighter: #32d8b4;
+    --ifm-color-primary-lightest: #4fddbf;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-a:hover {
-  text-decoration: none;
+.navbar__logo img {
+    max-width: 300px;
+    height: auto;
+}
+
+@media screen and (max-width: 360px) {
+    .navbar__logo img {
+        max-width: 200px;
+    }
 }
