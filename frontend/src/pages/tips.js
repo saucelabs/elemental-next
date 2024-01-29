@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import useGlobalData from '@docusaurus/useGlobalData';
 import Link from "@docusaurus/Link";
-import styles from './pages.module.css';
 
 function CardTags({tags}) {
     return (
@@ -24,22 +23,40 @@ function CardTags({tags}) {
 }
 
 function CardLevel({level}) {
+    const buttonClass = clsx('button button--outline button--sm margin-right--xs');
     return (
         <>
             {(() => {
                 switch (level) {
                     case 1:
                         return <button
-                            className="button button--outline button--success button--sm margin-right--xs">beginner</button>;
+                            className={clsx(buttonClass, "button--success")}>
+                            <small>BEGINNER</small>
+                        </button>;
                     case 2:
                         return <button
-                            className="button button--outline button--info button--sm margin-right--xs">intermediate</button>;
+                            className={clsx(buttonClass, "button--info")}>
+                            <small>INTERMEDIATE</small>
+                        </button>;
                     case 3:
                         return <button
-                            className="button button--outline button--primary button--sm margin-right--xs">advanced</button>;
+                            className={clsx(buttonClass, "button--primary")}>
+                            <small>ADVANCED</small>
+                        </button>;
                 }
             })()}
         </>
+    );
+}
+
+function CardCategory({category}) {
+    const categoryUpperCase = category.toString().toUpperCase();
+    return (
+        <button
+            className="button button--outline button--warning button--sm margin-right--xs"
+        >
+            <small>{categoryUpperCase}</small>
+        </button>
     );
 }
 
@@ -147,8 +164,8 @@ const Tips = () => {
                 <div className="container">
                     <div className="row">
                         {filteredCards.map((card, index) => (
-                            <div key={index} className="col col--6 col--12@xs">
-                                <div className="card">
+                            <div key={index} className="col col--12 col--12@xs">
+                                <div className="card shadow--md margin-vert--xs">
                                     <div className="card__header">
                                         <h3>
                                             <Link to={`tips${card.slug}`}>
@@ -158,11 +175,7 @@ const Tips = () => {
                                         <div className="row">
                                             <div className={clsx("col col--6")}>
                                                 <CardLevel level={card.level}/>
-                                                <button
-                                                    className="button button--outline button--warning button--sm margin-right--xs"
-                                                >
-                                                    {card.category}
-                                                </button>
+                                                <CardCategory category={card.category}/>
                                             </div>
                                         </div>
                                     </div>
