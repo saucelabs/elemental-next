@@ -1,8 +1,44 @@
 import React, {useState, useEffect} from 'react';
+import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import useGlobalData from '@docusaurus/useGlobalData';
-
 import Link from "@docusaurus/Link";
+import styles from './pages.module.css';
+
+function CardTags({tags}) {
+    return (
+        <>
+            {tags.sort().map((tagObject, index) => {
+                // const id = `showcase_card_tag_${tagObject.tag}`;
+                return (
+                    <button
+                        key={index}
+                        className="button button--outline button--secondary button--sm padding--xs margin--xs"
+                    >
+                        {tagObject}
+                    </button>
+                );
+            })}
+        </>
+    );
+}
+
+function CardLevel({level}) {
+    return (
+        <>
+            {(() => {
+                switch (level) {
+                    case 1:
+                        return <button className="button button--outline button--success button--sm">beginner</button>;
+                    case 2:
+                        return <button className="button button--outline button--info button--sm">intermediate</button>;
+                    case 3:
+                        return <button className="button button--outline button--primary button--sm">advanced</button>;
+                }
+            })()}
+        </>
+    );
+}
 
 const Tips = () => {
     /* The following functions track the currently selected value for each filter */
@@ -106,9 +142,9 @@ const Tips = () => {
             </header>
             <main>
                 <div className="container">
-                    <div className="row align-items-center">
+                    <div className="row">
                         {filteredCards.map((card, index) => (
-                            <div key={index} className="col col--3 col--6@md col--12@xs">
+                            <div key={index} className="col col--4 col--6@md col--12@xs">
                                 <div className="card">
                                     <div className="card__header">
                                         <h3>
@@ -116,57 +152,33 @@ const Tips = () => {
                                                 {`${card.number} - ${card.title}`}
                                             </Link>
                                         </h3>
+                                        <div className="row">
+                                            <div className={clsx("col col--6", styles.centerCardAttribute)}>
+                                                <CardLevel level={card.level}/>
+                                            </div>
+                                            <div className={clsx("col col--6", styles.centerCardAttribute)}>
+                                                <button
+                                                    className="button button--outline button--warning button--sm"
+                                                >
+                                                    {card.category}
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="card__body">
                                         <p>
                                             {card.text}
                                         </p>
                                     </div>
-                                    {/*<div className="card__footer">*/}
-                                    {/*    {card.tags}*/}
-                                    {/*</div>*/}
+                                    <div className={clsx("card__footer", styles.centerCardAttribute)}>
+                                        <CardTags tags={card.tags}/>
+                                    </div>
                                 </div>
                             </div>
-
-                            // <Card
-                            //     contentUrl={`tips${card.slug}`}
-                            //     level={card.level}
-                            //     selectedTags={selectedTags}
-                            //     handleTagClick={handleTagClick} // Pass the handleTagClick function as a prop
-                            // />
                         ))}
                     </div>
                 </div>
             </main>
-            {/*<div className='tips-wrapper'>*/}
-            {/*    <div className='dropdown-container'>*/}
-            {/*        <div className='dropdown-container-left'>*/}
-            {/*            <p>Filters:</p>*/}
-            {/*            <Dropdown*/}
-            {/*                ariaLabel='Order Posted'*/}
-            {/*                options={[*/}
-            {/*                    {value: '', label: 'Order Posted'},*/}
-            {/*                    {value: 'oldest', label: 'Oldest First'},*/}
-            {/*                    {value: 'newest', label: 'Newest First'},*/}
-            {/*                ]}*/}
-            {/*                selectedOption={selectedOrder}*/}
-            {/*                onSelectChange={handleOrderChange}*/}
-            {/*            />*/}
-            {/*            <Dropdown*/}
-            {/*                ariaLabel='Category'*/}
-            {/*                options={categoryOptions}*/}
-            {/*                selectedOption={selectedCategory}*/}
-            {/*                onSelectChange={handleCategoryChange}*/}
-            {/*            />*/}
-            {/*            <Dropdown*/}
-            {/*                ariaLabel='Difficulty Level'*/}
-            {/*                options={difficultyOptions}*/}
-            {/*                selectedOption={selectedDifficulty}*/}
-            {/*                onSelectChange={handleDifficultyChange}*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
             {/*<img className='tips-footer' src='img/backgrounds/tips-footer.svg' alt=''/>*/}
         </Layout>
     );
