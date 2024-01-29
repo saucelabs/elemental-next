@@ -1,50 +1,47 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import clsx from "clsx";
+import styles from "./pages.module.css";
+import SignupForm from "../components/signupForm";
 
 function Signup() {
-  return (
-    <body>
-      <Layout title='Sign up' description='Sign up to our newsletter'>
-        <div className='signup-container'>
-          <h1>Want in? </h1>
-          <p>One email every tuesday, nothing else.</p>
-          <p>You can unsubscribe at any time.</p>
+    const context = useDocusaurusContext();
+    const {siteConfig} = context;
 
-          {/* Drip Sign Up */}
-          <form
-            action='https://www.getdrip.com/forms/59166497/submissions'
-            method='post'
-            data-drip-embedded-form='59166497'
-          >
-            <div className='input-container'>
-              <input type='email' id='email' placeholder='email-address@send-me-tips.com' name='fields[email]'></input>
-              <div>
-                <select name='fields[programming_language]' className='dropdown-language'>
-                  <option disabled='' selected='' value=''>
-                    Language
-                  </option>
-                  <option value='C#'>C#</option>
-                  <option value='Java'>Java</option>
-                  <option value='JavaScript'>JavaScript</option>
-                  <option value='Python'>Python</option>
-                  <option value='Ruby'>Ruby</option>
-                </select>
-              </div>
-              <input
-                type='submit'
-                value='Send me Selenium tips'
-                className='signup-button'
-                data-drip-attribute='sign-up-button'
-              />
-            </div>
-            <input type='hidden' name='tags[]' value='elemental selenium' tabIndex='-1' />
-          </form>
-          <em className='signup-disclaimer'>Your information will only be used for sending you a tip every Tuesday.</em>
-        </div>
-        <img className='signup-footer' src='./img/backgrounds/signup-footer.svg' alt='' />
-      </Layout>
-    </body>
-  );
+    return (
+        <Layout
+            title={siteConfig.title}
+            description="A modern styling framework for content-driven websites">
+            <header className={clsx('hero', styles.heroBanner)}>
+                <div className="container">
+                    <h1 className="hero__title">Want in?</h1>
+                    <p className="hero__subtitle">{siteConfig.tagline}</p>
+                </div>
+            </header>
+            <main>
+                <div>
+                    <div className="container padding-vert--md">
+                        <div className="row">
+                            <div className="col col--8 col--offset-2">
+                                <div className="margin-vert--lg text--center">
+                                    <h2>
+                                        Join over 20k test automation Pros
+                                    </h2>
+                                    <h3>
+                                        One email every Tuesday. Unsubscribe anytime.
+                                    </h3>
+                                    {/* Drip Sign Up */}
+                                    <SignupForm/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/*<img className='signup-footer' src='./img/backgrounds/signup-footer.svg' alt=''/>*/}
+            </main>
+        </Layout>
+    );
 }
 
 export default Signup;
