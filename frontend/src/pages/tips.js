@@ -170,7 +170,7 @@ const Tips = () => {
                                             {card.text}
                                         </p>
                                     </div>
-                                    <div className={clsx("card__footer", styles.centerCardAttribute)}>
+                                    <div className="card__footer">
                                         <CardTags tags={card.tags}/>
                                     </div>
                                 </div>
