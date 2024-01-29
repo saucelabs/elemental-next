@@ -29,11 +29,14 @@ function CardLevel({level}) {
             {(() => {
                 switch (level) {
                     case 1:
-                        return <button className="button button--outline button--success button--sm">beginner</button>;
+                        return <button
+                            className="button button--outline button--success button--sm margin-right--xs">beginner</button>;
                     case 2:
-                        return <button className="button button--outline button--info button--sm">intermediate</button>;
+                        return <button
+                            className="button button--outline button--info button--sm margin-right--xs">intermediate</button>;
                     case 3:
-                        return <button className="button button--outline button--primary button--sm">advanced</button>;
+                        return <button
+                            className="button button--outline button--primary button--sm margin-right--xs">advanced</button>;
                 }
             })()}
         </>
@@ -144,7 +147,7 @@ const Tips = () => {
                 <div className="container">
                     <div className="row">
                         {filteredCards.map((card, index) => (
-                            <div key={index} className="col col--4 col--6@md col--12@xs">
+                            <div key={index} className="col col--6 col--12@xs">
                                 <div className="card">
                                     <div className="card__header">
                                         <h3>
@@ -153,12 +156,10 @@ const Tips = () => {
                                             </Link>
                                         </h3>
                                         <div className="row">
-                                            <div className={clsx("col col--6", styles.centerCardAttribute)}>
+                                            <div className={clsx("col col--6")}>
                                                 <CardLevel level={card.level}/>
-                                            </div>
-                                            <div className={clsx("col col--6", styles.centerCardAttribute)}>
                                                 <button
-                                                    className="button button--outline button--warning button--sm"
+                                                    className="button button--outline button--warning button--sm margin-right--xs"
                                                 >
                                                     {card.category}
                                                 </button>
