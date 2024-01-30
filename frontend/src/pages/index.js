@@ -27,12 +27,14 @@ function Home() {
                         <div className="row">
                             <div className="col col--8 col--offset-2">
                                 <div className="margin-vert--lg text--center">
-                                    <h2>
+                                    <p className={"hero__subtitle margin-bottom--none"}>
                                         Join over 20k test automation Pros
-                                    </h2>
-                                    <h3>
-                                        One email every Tuesday. Unsubscribe anytime.
-                                    </h3>
+                                    </p>
+                                    <p className={"hero__subtitle"}>
+                                        <small>
+                                            One email every Tuesday. Unsubscribe anytime.
+                                        </small>
+                                    </p>
                                     {/* Drip Sign Up */}
                                     <SignupForm/>
                                 </div>
