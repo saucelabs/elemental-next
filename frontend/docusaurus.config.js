@@ -154,19 +154,19 @@ const config = {
                 // style: 'dark',
                 links: [
                     {
-                        title: 'Tips Archive:',
+                        title: 'Tips by Level:',
                         items: [
                             {
                                 label: 'Beginner tips',
-                                to: '/',
+                                to: '/tips?level=beginner',
                             },
                             {
-                                label: 'Fundamentals',
-                                to: '/',
+                                label: 'Intermediate',
+                                to: '/tips?level=intermediate',
                             },
                             {
-                                label: 'Troubleshooting',
-                                to: '/',
+                                label: 'Advanced',
+                                to: '/tips?level=advanced',
                             },
                         ],
                     },
