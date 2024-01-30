@@ -148,7 +148,7 @@ const Tips = () => {
                 </div>
             </header>
             <main>
-                <div className="container">
+                <div className="container padding-bottom--lg">
                     <div className="row padding-bottom--md">
                         <div className="col col--12 center-filters">
                             <span className="hero__subtitle">Filters:</span>
