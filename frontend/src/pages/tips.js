@@ -4,17 +4,17 @@ import Layout from '@theme/Layout';
 import useGlobalData from '@docusaurus/useGlobalData';
 import Link from "@docusaurus/Link";
 
-function CardTags({tags}) {
+function CardTags({tags, handleTagChange}) {
     return (
         <>
-            {tags.sort().map((tagObject, index) => {
-                // const id = `showcase_card_tag_${tagObject.tag}`;
+            {tags.sort().map((tag, index) => {
                 return (
                     <button
                         key={index}
                         className="button button--outline button--secondary button--sm padding--xs margin--xs"
+                        onClick={() => handleTagChange({target: {value: {tag}}})}
                     >
-                        {tagObject}
+                        {tag}
                     </button>
                 );
             })}
@@ -22,133 +22,120 @@ function CardTags({tags}) {
     );
 }
 
-function CardLevel({level}) {
+function CardLevel({level, handleLevelChange}) {
     const buttonClass = clsx('button button--outline button--sm margin-right--xs');
     return (
         <>
             {(() => {
                 switch (level) {
                     case 1:
-                        return <button
-                            className={clsx(buttonClass, "button--success")}>
-                            <small>BEGINNER</small>
-                        </button>;
+                        return (
+                            <button
+                                className={clsx(buttonClass, "button--success")}
+                                onClick={() => handleLevelChange({target: {value: 'Beginner'}})}
+                            >
+                                <small>BEGINNER</small>
+                            </button>
+                        );
                     case 2:
-                        return <button
-                            className={clsx(buttonClass, "button--info")}>
-                            <small>INTERMEDIATE</small>
-                        </button>;
+                        return (
+                            <button
+                                className={clsx(buttonClass, "button--info")}
+                                onClick={() => handleLevelChange({target: {value: 'Intermediate'}})}
+                            >
+                                <small>INTERMEDIATE</small>
+                            </button>
+                        );
                     case 3:
-                        return <button
-                            className={clsx(buttonClass, "button--primary")}>
-                            <small>ADVANCED</small>
-                        </button>;
+                        return (
+                            <button
+                                className={clsx(buttonClass, "button--primary")}
+                                onClick={() => handleLevelChange({target: {value: 'Advanced'}})}
+                            >
+                                <small>ADVANCED</small>
+                            </button>
+                        );
                 }
             })()}
         </>
     );
 }
 
-function CardCategory({category}) {
-    const categoryUpperCase = category.toString().toUpperCase();
+function CardCategory({category, handleCategoryChange}) {
+    const flattenedCategories = [];
+    flattenedCategories.push(Array.isArray(category) ? category : [category]);
     return (
-        <button
-            className="button button--outline button--warning button--sm margin-right--xs"
-        >
-            <small>{categoryUpperCase}</small>
-        </button>
+        <>
+            {flattenedCategories.flat().map((flattenedCategory, index) => (
+                <button
+                    key={index}
+                    className="button button--outline button--warning button--sm margin-right--xs"
+                    onClick={() => handleCategoryChange({target: {value: flattenedCategory.toString()}})}
+                >
+                    <small>{flattenedCategory.toString().toUpperCase()}</small>
+                </button>
+            ))}
+        </>
     );
 }
 
 const Tips = () => {
-    /* The following functions track the currently selected value for each filter */
-    // useState hooks allow to store and update the selected filters and options
-    // state variable that holds the currently selected value for each filter
-    // setSelected<> function allows to update the value of selected<> and trigger a re-render of the component
-    const [selectedDifficulty, setSelectedDifficulty] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [selectedOrder, setSelectedOrder] = useState('');
-
-    /* The following functions store the available options for each filter */
-    // state variable holds an array of options for the filter option dropdown
-    // set<>Options function allows to update the value of <>Options and trigger a re-render of the component
-    const [difficultyOptions, setDifficultyOptions] = useState([]);
-    const [categoryOptions, setCategoryOptions] = useState([]);
-    const [selectedTags, setSelectedTags] = useState([]);
-
-    // Store the filtered cards based on the selected difficulty, category, and order
-    const [filteredCards, setFilteredCards] = useState([]);
-
+    const tipLevels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+    const orderPosted = ['Newest', 'Oldest'];
     const globalData = useGlobalData();
-    const metadata = globalData.metadata.default.aggregateFrontMatter
-
-    // useEffect hook updates the filtered cards whenever there is a change
-    useEffect(() => {
-        // Extract unique difficulty levels from the data and create difficulty options
-        const uniqueDifficulties = [...new Set(metadata.map((card) => card.level))];
-        const difficultyOptions = [
-            {value: '', label: 'Difficulty Level'},
-            ...uniqueDifficulties.map((level) => ({
-                value: level != null ? level.toString() : '',
-                label: `Level ${level}`,
-            })),
-        ];
-        setDifficultyOptions(difficultyOptions);
-
-        // Extract unique categories from the data and create category options
-        const uniqueCategories = [...new Set(metadata.flatMap((card) => card.category))];
-        const categoryOptions = [
-            {value: '', label: 'Categories'},
-            ...uniqueCategories.map((category) => ({
-                value: category,
-                label: category,
-            })),
-        ];
-        setCategoryOptions(categoryOptions);
-    }, []);
-
-    /*
-     * Dependencies:[selectedDifficulty, selectedCategory, selectedTags, selectedOrder]
-     * effect will re-run whenever any of these dependencies changes
-     * ensuring filtered cards are updated whenever the selected filters or options changes
-     */
-    useEffect(() => {
-        let filtered = metadata.filter((card) => {
-            const difficultyMatch = selectedDifficulty === '' || card.level === parseInt(selectedDifficulty);
-            const categoryMatch = selectedCategory === '' || card.category.includes(selectedCategory);
-            const tagMatch = selectedTags.length === 0 || selectedTags.some((tag) => card.tags.includes(tag));
-            return difficultyMatch && categoryMatch && tagMatch;
-        });
-
-        if (selectedOrder === 'oldest') {
-            filtered = filtered.sort((a, b) => a.number - b.number);
-        } else if (selectedOrder === 'newest' || selectedOrder === '') {
-            filtered = filtered.sort((a, b) => b.number - a.number);
-        }
-
-        setFilteredCards(filtered);
-    }, [selectedDifficulty, selectedCategory, selectedTags, selectedOrder]);
-
-    const handleDifficultyChange = (event) => {
-        setSelectedDifficulty(event.target.value);
-    };
+    const [originalMetadata, setOriginalMetadata] = useState([]);
+    const [metadata, setMetadata] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [selectedLevel, setSelectedLevel] = useState('All');
+    const [selectedOrder, setSelectedOrder] = useState('Newest');
+    const [selectedTag, setSelectedTag] = useState({tag: 'All'});
 
     const handleCategoryChange = (event) => {
+        setSelectedTag({tag: 'All'});
         setSelectedCategory(event.target.value);
+    };
+
+    const handleLevelChange = (event) => {
+        setSelectedTag({tag: 'All'});
+        setSelectedLevel(event.target.value);
     };
 
     const handleOrderChange = (event) => {
         setSelectedOrder(event.target.value);
-    };
+    }
 
-    const handleTagClick = (tag) => {
-        const isSelected = selectedTags.includes(tag);
-        if (isSelected) {
-            setSelectedTags(selectedTags.filter((selectedTag) => selectedTag !== tag));
-        } else {
-            setSelectedTags([...selectedTags, tag]);
+    const handleTagChange = (event) => {
+        setSelectedTag(event.target.value);
+    }
+
+    useEffect(() => {
+        let globalMetadata = globalData.metadata.default.aggregateFrontMatter;
+        const uniqueCategories = [...new Set(globalMetadata.flatMap(card => card.category))];
+        uniqueCategories.push("All");
+        globalMetadata = globalMetadata.sort((a, b) => b.number - a.number);
+        setMetadata(globalMetadata);
+        setOriginalMetadata(globalMetadata);
+        setCategories(uniqueCategories.sort());
+    }, []); // Empty dependency array ensures this runs only on mount
+
+    useEffect(() => {
+        if (originalMetadata.length === 0) {
+            return;
         }
-    };
+        let filteredMetadata = originalMetadata.filter(card => {
+            const categoryMatch = selectedCategory === "All" || card.category.includes(selectedCategory);
+            const levelMatch = selectedLevel === "All" || card.level === tipLevels.indexOf(selectedLevel);
+            const tagMatch = selectedTag.tag === "All" || card.tags.includes(selectedTag.tag);
+            return categoryMatch && levelMatch && tagMatch;
+        });
+        if (selectedOrder === "Newest") {
+            filteredMetadata = filteredMetadata.sort((a, b) => b.number - a.number);
+        } else {
+            filteredMetadata = filteredMetadata.sort((a, b) => a.number - b.number);
+        }
+        setMetadata(filteredMetadata);
+    }, [selectedCategory, selectedLevel, selectedOrder, selectedTag]);
 
     return (
         <Layout
@@ -162,8 +149,67 @@ const Tips = () => {
             </header>
             <main>
                 <div className="container">
+                    <div className="row padding-bottom--md">
+                        <div className="col col--12 center-filters">
+                            <span className="hero__subtitle">Filters:</span>
+                            <div className="dropdown dropdown--hoverable margin-horiz--sm">
+                                <button className="button button--success button--outline">
+                                    Order Posted{' '}↓
+                                </button>
+                                <ul className="dropdown__menu">
+                                    {orderPosted.map((order, index) => (
+                                        <li key={index}>
+                                            <a
+                                                className="dropdown__link"
+                                                onClick={() => handleOrderChange({target: {value: order}})}
+                                                href="#"
+                                            >
+                                                {order}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="dropdown dropdown--hoverable margin-horiz--sm">
+                                <button className="button button--success button--outline">
+                                    Categories{' '}↓
+                                </button>
+                                <ul className="dropdown__menu">
+                                    {categories.map((category, index) => (
+                                        <li key={index}>
+                                            <a
+                                                className="dropdown__link"
+                                                onClick={() => handleCategoryChange({target: {value: category}})}
+                                                href="#"
+                                            >
+                                                {category}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="dropdown dropdown--hoverable margin-horiz--sm">
+                                <button className="button button--success button--outline">
+                                    Levels{' '}↓
+                                </button>
+                                <ul className="dropdown__menu">
+                                    {tipLevels.map((level, index) => (
+                                        <li key={index}>
+                                            <a
+                                                className="dropdown__link"
+                                                onClick={() => handleLevelChange({target: {value: level}})}
+                                                href="#"
+                                            >
+                                                {level}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row">
-                        {filteredCards.map((card, index) => (
+                        {metadata.map((card, index) => (
                             <div key={index} className="col col--12 col--12@xs">
                                 <div className="card shadow--md margin-vert--xs">
                                     <div className="card__header">
@@ -174,8 +220,14 @@ const Tips = () => {
                                         </h3>
                                         <div className="row">
                                             <div className={clsx("col col--6")}>
-                                                <CardLevel level={card.level}/>
-                                                <CardCategory category={card.category}/>
+                                                <CardLevel
+                                                    level={card.level}
+                                                    handleLevelChange={handleLevelChange}
+                                                />
+                                                <CardCategory
+                                                    category={card.category}
+                                                    handleCategoryChange={handleCategoryChange}
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -185,7 +237,10 @@ const Tips = () => {
                                         </p>
                                     </div>
                                     <div className="card__footer">
-                                        <CardTags tags={card.tags}/>
+                                        <CardTags
+                                            tags={card.tags}
+                                            handleTagChange={handleTagChange}
+                                        />
                                     </div>
                                 </div>
                             </div>
