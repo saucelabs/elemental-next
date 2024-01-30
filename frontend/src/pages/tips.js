@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import useGlobalData from '@docusaurus/useGlobalData';
 import Link from "@docusaurus/Link";
+import {useLocation} from "@docusaurus/router";
 
 function CardTags({tags, handleTagChange}) {
     return (
@@ -90,6 +91,7 @@ const Tips = () => {
     const [selectedLevel, setSelectedLevel] = useState('All');
     const [selectedOrder, setSelectedOrder] = useState('Newest');
     const [selectedTag, setSelectedTag] = useState({tag: 'All'});
+    const location = useLocation();
 
     const handleCategoryChange = (event) => {
         setSelectedTag({tag: 'All'});
@@ -117,6 +119,16 @@ const Tips = () => {
         setMetadata(globalMetadata);
         setOriginalMetadata(globalMetadata);
         setCategories(uniqueCategories.sort());
+
+        if (location.search) {
+            const urlParams = new URLSearchParams(location.search);
+            const paramLevel = urlParams.get("level");
+            const matchedLevel = tipLevels.find(level => level.toLowerCase() === paramLevel.toLowerCase());
+            if (matchedLevel) {
+                setSelectedLevel(matchedLevel);
+            }
+        }
+
     }, []); // Empty dependency array ensures this runs only on mount
 
     useEffect(() => {
