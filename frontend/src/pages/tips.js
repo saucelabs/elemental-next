@@ -227,8 +227,8 @@ const Tips = () => {
                     </div>
                     <div className="row">
                         {metadata.map((card, index) => (
-                            <div key={index} className="col col--12 col--12@xs">
-                                <div className="card shadow--md margin-vert--xs">
+                            <div key={index} className="col col--4 col--12@xs padding-vert--sm">
+                                <div className="card card--full-height shadow--md">
                                     <div className="card__header">
                                         <h3>
                                             <Link to={`tips${card.slug}`}>
@@ -236,7 +236,7 @@ const Tips = () => {
                                             </Link>
                                         </h3>
                                         <div className="row">
-                                            <div className={clsx("col col--6")}>
+                                            <div className={clsx("col col--12")}>
                                                 <CardLevel
                                                     level={card.level}
                                                     handleLevelChange={handleLevelChange}
