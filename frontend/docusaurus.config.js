@@ -157,7 +157,7 @@ const config = {
                         title: 'Tips by Level:',
                         items: [
                             {
-                                label: 'Beginner tips',
+                                label: 'Beginner',
                                 to: '/tips?level=beginner',
                             },
                             {
