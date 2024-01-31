@@ -36,15 +36,24 @@
     height: auto;
 }
 
-@media screen and (max-width: 360px) {
-    .navbar__logo img {
-        max-width: 200px;
-    }
-}
-
 .center-filters {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 }
+
+@media screen and (max-width: 480px) {
+    .navbar__logo img {
+        max-width: 200px;
+    }
+
+    .center-filters {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+
