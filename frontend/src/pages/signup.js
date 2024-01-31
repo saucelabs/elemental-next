@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import clsx from "clsx";
@@ -8,6 +8,14 @@ import SignupForm from "../components/signupForm";
 function Signup() {
     const context = useDocusaurusContext();
     const {siteConfig} = context;
+
+    useEffect(() => {
+        document.body.style.backgroundImage = 'url("./img/backgrounds/signup-footer.svg")';
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundPosition = 'top center';
+        document.body.style.backgroundAttachment = 'fixed';
+    }, [])
 
     return (
         <Layout
