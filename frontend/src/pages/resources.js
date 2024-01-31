@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Layout from '@theme/Layout';
 import ContentCard from "../components/contentCard";
 
@@ -38,6 +38,14 @@ const content = [
 ];
 
 const Resources = () => {
+    useEffect(() => {
+        document.body.style.backgroundImage = 'url("./img/backgrounds/community-footer.svg")';
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundPosition = 'top center';
+        document.body.style.backgroundAttachment = 'fixed';
+    }, [])
+
     return (
         <Layout
             title={"External Resources"}
