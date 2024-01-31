@@ -176,7 +176,7 @@ const Tips = () => {
                         <div className="col col--12 center-filters">
                             <span className="hero__subtitle">Filters:</span>
                             <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--success button--outline">
+                                <button className="button button--warning">
                                     Order Posted{' '}↓
                                 </button>
                                 <ul className="dropdown__menu">
@@ -194,7 +194,7 @@ const Tips = () => {
                                 </ul>
                             </div>
                             <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--success button--outline">
+                                <button className="button button--warning">
                                     Categories{' '}↓
                                 </button>
                                 <ul className="dropdown__menu">
@@ -212,7 +212,7 @@ const Tips = () => {
                                 </ul>
                             </div>
                             <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--success button--outline">
+                                <button className="button button--warning">
                                     Levels{' '}↓
                                 </button>
                                 <ul className="dropdown__menu">
