@@ -20,15 +20,16 @@
 
 .signup-form input[type="submit"] {
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--ifm-color-primary);
+    color: black;
+    font-weight: bolder;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .signup-form input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: var(--ifm-color-primary-darker);
 }
 
 @media screen and (max-width: 600px) {
