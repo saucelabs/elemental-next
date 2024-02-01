@@ -11,7 +11,7 @@ function generateSidebarItems(items) {
     const result = [
         {
             type: 'category',
-            label: 'Tips',
+            label: 'More Tips',
             collapsed: false,
             collapsible: false,
             items: [],
@@ -77,7 +77,6 @@ const config = {
                     path: 'tips',
                     routeBasePath: 'tips',
                     breadcrumbs: true,
-                    // Remove this to remove the "edit this page" links.
                     editUrl: 'https://github.com/saucelabs/elemental-next/blob/main/frontend/',
                     showLastUpdateAuthor: true,
                     showLastUpdateTime: true,
@@ -111,7 +110,7 @@ const config = {
     themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         {
-            image: 'img/docusaurus-social-card.jpg',
+            image: 'img/elemental-selenium-social-media-card.jpeg',
             navbar: {
                 title: null,
                 hideOnScroll: false,
