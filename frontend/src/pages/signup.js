@@ -20,7 +20,7 @@ function Signup() {
     return (
         <Layout
             title={siteConfig.title}
-            description="A modern styling framework for content-driven websites">
+            description="Join the mailing list!">
             <header className={clsx('hero', styles.heroBanner)}>
                 <div className="container">
                     <h1 className="hero__title">Want in?</h1>
@@ -30,9 +30,9 @@ function Signup() {
             <main>
                 <div>
                     <div className="container padding-vert--md">
-                        <div className="row">
+                        <div className="row padding-bottom--none">
                             <div className="col col--8 col--offset-2">
-                                <div className="margin-vert--lg text--center">
+                                <div className="text--center">
                                     <p className={"hero__subtitle margin-bottom--none"}>
                                         Join over 20k test automation Pros
                                     </p>
