@@ -208,7 +208,7 @@ const config = {
                 additionalLanguages: ['ruby', 'java', 'csharp'],
             },
             colorMode: {
-                disableSwitch: true,
+                disableSwitch: false,
             },
         },
 };
