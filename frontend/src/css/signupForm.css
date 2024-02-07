@@ -21,7 +21,7 @@
 .signup-form input[type="submit"] {
     padding: 10px;
     background-color: var(--ifm-color-primary);
-    color: black;
+    color: var(--ifm-color-content-inverse);
     font-weight: bolder;
     border: none;
     border-radius: 5px;
