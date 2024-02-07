@@ -113,12 +113,6 @@ const Tips = () => {
     }
 
     useEffect(() => {
-        document.body.style.backgroundImage = 'url("./img/backgrounds/tips-background.svg")';
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
-        document.body.style.backgroundPosition = 'top center';
-        document.body.style.backgroundAttachment = 'fixed';
-
         let globalMetadata = globalData.metadata.default.aggregateFrontMatter;
         const uniqueCategories = [...new Set(globalMetadata.flatMap(card => card.category))];
         uniqueCategories.push("All");
@@ -174,9 +168,14 @@ const Tips = () => {
                 <div className="container padding-bottom--lg">
                     <div className="row padding-bottom--md">
                         <div className="col col--12 center-filters">
-                            <span className="hero__subtitle">Filters:</span>
+                            <span
+                                className="hero__subtitle"
+                                style={{color: "var(--ifm-color-content)"}}
+                            >
+                                Filters:
+                            </span>
                             <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--warning">
+                                <button className="button button--primary">
                                     Order Posted{' '}↓
                                 </button>
                                 <ul className="dropdown__menu">
@@ -194,7 +193,7 @@ const Tips = () => {
                                 </ul>
                             </div>
                             <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--warning">
+                                <button className="button button--primary">
                                     Categories{' '}↓
                                 </button>
                                 <ul className="dropdown__menu">
@@ -212,7 +211,7 @@ const Tips = () => {
                                 </ul>
                             </div>
                             <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--warning">
+                                <button className="button button--primary">
                                     Levels{' '}↓
                                 </button>
                                 <ul className="dropdown__menu">

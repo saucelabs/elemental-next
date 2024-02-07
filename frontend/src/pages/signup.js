@@ -8,15 +8,6 @@ import SignupForm from "../components/signupForm";
 function Signup() {
     const context = useDocusaurusContext();
     const {siteConfig} = context;
-
-    useEffect(() => {
-        document.body.style.backgroundImage = 'url("./img/backgrounds/signup-footer.svg")';
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
-        document.body.style.backgroundPosition = 'top center';
-        document.body.style.backgroundAttachment = 'fixed';
-    }, [])
-
     return (
         <Layout
             title={siteConfig.title}

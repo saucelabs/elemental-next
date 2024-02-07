@@ -11,14 +11,6 @@ function Home() {
     const context = useDocusaurusContext();
     const {siteConfig} = context;
 
-    useEffect(() => {
-        document.body.style.backgroundImage = 'url("./img/backgrounds/home-footer.svg")';
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
-        document.body.style.backgroundPosition = 'top center';
-        document.body.style.backgroundAttachment = 'fixed';
-    }, [])
-
     return (
         <Layout
             title="Home"
@@ -52,7 +44,7 @@ function Home() {
                             <div className="col col--8 col--offset-2">
                                 <div className="margin-top--sm margin-bottom-lg text--center">
                                     <Link
-                                        style={{color: "#171313"}}
+                                        style={{color: "var(--ifm-color-primary)"}}
                                         className={"hero__subtitle"}
                                         to={useBaseUrl('tips/')}>
                                         Skip it, take me to the tips!{' '}→
