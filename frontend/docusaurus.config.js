@@ -30,7 +30,7 @@ function generateSidebarItems(items) {
 const config = {
     title: 'Elemental Selenium',
     tagline: 'A free, once-weekly e-mail on how to do test automation like a Pro',
-    favicon: 'img/ES.ico',
+    favicon: 'img/favicon.svg',
 
     // Set the production url of your site here
     url: 'https://elementalselenium.com',
@@ -112,12 +112,12 @@ const config = {
         {
             image: 'img/elemental-selenium-social-media-card.jpeg',
             navbar: {
-                title: null,
                 hideOnScroll: false,
                 logo: {
                     href: '/',
                     alt: 'Elemental Selenium Logo',
-                    src: 'img/logo.png',
+                    src: 'img/banner-light.png',
+                    srcDark: 'img/banner-dark.png',
                 },
                 items: [
                     {
