@@ -110,7 +110,7 @@ const config = {
     themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         {
-            image: 'img/elemental-selenium-social-media-card.jpeg',
+            image: 'img/social-card.png',
             navbar: {
                 hideOnScroll: false,
                 logo: {
