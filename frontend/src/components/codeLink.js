@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import ExternalLink from '@theme/Icon/ExternalLink';
-import {useDoc} from '@docusaurus/theme-common/internal';
 
 const CodeLink = ({codePath}) => {
-    const {metadata} = useDoc();
-    const mainEditUrl = metadata.editUrl.replace('main.mdx', '');
-    const codeDirectoryUrl = `${mainEditUrl}${codePath}`;
+    const baseEditUrl = 'https://github.com/saucelabs/elemental-next/blob/main/frontend/tips/'
+    const codePathParts = codePath.split('/');
+    codePathParts.pop();
+    const codePathBase = codePathParts.join('/');
+    const codeDirectoryUrl = `${baseEditUrl}${codePathBase}`;
 
     return (
         <div className={"margin-bottom--md text-center"}>
