@@ -19,7 +19,7 @@ function generateSidebarItems(items) {
     ];
 
     categories.forEach((category) => {
-        category.items.forEach((item) => {
+        category.items.filter(item => item.type === 'doc').forEach((item) => {
             result[0].items.push({type: item.type, label: item.label, id: item.id})
         })
     });
@@ -98,9 +98,12 @@ const config = {
                 async contentLoaded({content, actions, allContent}) {
                     const {setGlobalData} = actions;
                     let tempFrontMatter = []
-                    allContent['docusaurus-plugin-content-docs'].default.loadedVersions[0].docs.map((doc) => {
-                        tempFrontMatter.push(doc.frontMatter)
-                    })
+                    allContent['docusaurus-plugin-content-docs']
+                        .default
+                        .loadedVersions[0]
+                        .docs
+                        .filter(doc => doc.frontMatter.id !== undefined)
+                        .map((doc) => tempFrontMatter.push(doc.frontMatter))
                     setGlobalData({aggregateFrontMatter: tempFrontMatter})
                 }
             }

@@ -1,76 +1,71 @@
-## Example
+import TipCode from "../../src/components/tipCode";
+import DefaultAvatar from "../../src/components/defaultAvatar";
 
-__NOTE: We are using [a file upload example](http://the-internet.herokuapp.com/upload) found on [the-internet](https://github.com/tourdedave/the-internet).__
+## TL;DR - Show Me The Code
 
-First let's pull in our requisite libraries for interacting with the operating system (e.g., `import os`), our testing framework (e.g., `import unittest`), and driving the browser with Selenium (e.g., `from selenium import webdriver`).
+<TipCode codePath={"1-upload-a-file/code/python/upload.py"} language={"python"}/>
 
-```python
-# filename: upload.py
+## Code Walkthrough
 
-import os
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+### Importing Libraries
 
-# ...
-```
+Lines 1 to 4 are pulling in our requisite libraries for interacting with the operating system (e.g., `import os`), our
+testing framework (e.g., `import pytest`), driving the browser with Selenium (e.g., `from selenium import webdriver`),
+and a locator strategy to find the elements (e.g. `from selenium.webdriver.common.by import By`).
 
-Now to create a new class file and add in the test's setup and teardown.
+### Setup and Teardown
 
-```python
-# filename: upload.py
-# ...
-class Upload(unittest.TestCase):
+Lines 6 to 10 are setting up and tearing down the browser instance. The `@pytest.fixture` decorator is used to create a
+fixture that sets up and tears down the browser. The `yield` keyword is used to pause the fixture until the test is
+completed. After the test is completed, the fixture resumes and executes the teardown code
+(in this case, `driver.quit()`).
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+### The Test
 
-    def tearDown(self):
-        self.driver.quit()
-```
+Lines 12 to 20 are the test itself.
 
-After specifying the class and establishing inheritance so it's a test case for `unittest` (e.g., `class Upload(unitest.TestCase)`) we create methods. The first method, `setUp(self):`, will execute before each test in this class. In it we are launching a new instance of Firefox with Selenium and storing it in a class variable that we'll use throughout this class (e.g., `self.driver = webdriver.Firefox()`). After our test executes the second method, `tearDown(self):`, will execute. This calls `self.driver.quit()` which ends the session by closing the browser instance and the destroying the Selenium object in-memory.
+The fixture that sets up and tears down the browser is used as an argument in the test
+`test_file_upload(driver_setup_teardown)`, which allows the test to have access to the browser provided by the fixture.
 
-Now to wire up our test.
+After declaring the test method (e.g., `def test_file_upload(driver_setup_teardown):`) we store `driver_setup_teardown`
+in a local variable (e.g., `driver = driver_setup_teardown`). This way we don't have to litter our test method with
+`driver_setup_teardown` and can call `driver` instead. Next we specify the file we'd like to upload. There's already a
+text file called `some-file.txt` in the current working directory, so we grab both the file name and its full path,
+storing both of these values in variables (e.g., `filename` and `file` respectively).
 
-```python
-# filename: upload.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        filename = 'some-file.txt'
-        file = os.path.join(os.getcwd(), filename)
-        driver.get('http://the-internet.herokuapp.com/upload')
-        driver.find_element(By.ID, 'file-upload').send_keys(file)
-        driver.find_element(By.ID,'file-submit').click()
+Next we visit the page with the upload form, input the string value of `file` (e.g., the full path to the file plus the
+filename with its extension), and submit the form. After the file is uploaded to the page it will display the filename
+it just processed. We use this text on the page to perform our assertion (making sure the uploaded file is what we
+expect).
 
-        uploaded_file = driver.find_element(By.ID, 'uploaded-files').text
-        assert uploaded_file == filename, "uploaded file should be %s" % filename
+### Executing the Test
 
-if __name__ == "__main__":
-    unittest.main()
-```
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install. Here's what the `requirements.txt` file looks like:
 
-After declaring the test method (e.g., `def test_example_1(self):`) we store `self.driver` in a local variable (e.g., `driver = self.driver`). This way we don't have to litter our test method with `self.driver` and can call `driver` instead. Next we specify the file we'd like to upload. There's already a text file called `some-file.txt` in the current working directory, so we grab both the file name and its full path, storing both of these values in variables (e.g., `filename` and `file` respectively).
+<TipCode codePath={"1-upload-a-file/code/python/requirements.txt"} language={"txt"}/>
 
-Next we visit the page with the upload form, input the string value of `file` (e.g., the full path to the file plus the filename with its extension), and submit the form. After the file is uploaded to the page it will display the filename it just processed. We use this text on the page to perform our assertion (making sure the uploaded file is what we expect).
+After installing the required libraries, we can run the test by executing `pytest upload.py` from the command-line.
 
-The two lines at the end of the file are so the file can be executed directly from the command-line.
+### Special Thanks
 
-## Expected Behavior
+<DefaultAvatar
+    name="Mike Millgate"
+    imgSrc={"https://github.com/trabulmonkee.png"}
+    description={"For contributing the code for this tip"}
+/>
+<DefaultAvatar
+    name="Isaul Vargas"
+    imgSrc={"https://github.com/isaulv.png"}
+    description={"Code review"}
+/>
+<DefaultAvatar
+    name="Peter Bittner"
+    imgSrc={"https://github.com/bittner.png"}
+    description={"Code review"}
+/>
 
-When we save this file and run it (e.g., `python upload.py` from the command-line) this is what will happen:
 
-+ Open the browser
-+ Visit the upload form page
-+ Inject the file path into the form and submit it
-+ Page displays the uploaded filename
-+ Grab the text from the page and assert it's what we expect
-+ Close the browser
 
-## Summary
-
-This approach will work across all browsers. If you want to use it with a remote instance (e.g., on Selenium Grid or Sauce Labs) then you'll want to have a look at [`file_detector`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html?highlight=detect#selenium.webdriver.remote.webdriver.WebDriver.file_detector).
-
-Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
 
