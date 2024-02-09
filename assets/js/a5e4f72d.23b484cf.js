@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[2621],{4944:t=>{t.exports=JSON.parse('{"label":"sorting","permalink":"/tips/tags/sorting","allTagsPath":"/tips/tags","count":1,"items":[{"id":"how-to-work-with-tables/25-tables","title":"How To Work With Tables","description":"Intro","permalink":"/tips/25-tables"}],"unlisted":false}')}}]);

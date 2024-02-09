@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[8975],{6262:i=>{i.exports=JSON.parse('{"label":"implicit waits","permalink":"/tips/tags/implicit-waits","allTagsPath":"/tips/tags","count":1,"items":[{"id":"waiting/47-waiting","title":"Implicit vs Explicit Waits","description":"Intro","permalink":"/tips/47-waiting"}],"unlisted":false}')}}]);

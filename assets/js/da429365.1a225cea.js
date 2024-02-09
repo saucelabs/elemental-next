@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[2216],{2313:e=>{e.exports=JSON.parse('{"label":"talks","permalink":"/tips/tags/talks","allTagsPath":"/tips/tags","count":1,"items":[{"id":"available-resources/36-available-resources","title":"Selenium Resources","description":"Intro","permalink":"/tips/36-available-resources"}],"unlisted":false}')}}]);
