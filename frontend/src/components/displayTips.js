@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, {useState, useEffect, lazy, Suspense} from 'react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -19,15 +19,16 @@ import TabItem from '@theme/TabItem';
  * @param {string} props.contentPath - The path to the content.
  * @param {Language[]} props.languages - The languages for the content.
  */
-function DisplayTips({ contentPath, languages }) {
+function DisplayTips({contentPath, languages}) {
     /** @type {ContentComponent[]} */
     const [ContentComponents, setContentComponents] = useState([]);
 
     useEffect(() => {
         const fetchComponents = async () => {
             const components = await Promise.all(languages.map(async (lang) => {
-                const component = lazy(() => import(`../../tips/${contentPath}/_${lang.value}.md`));
-                return { label: lang.label, component };
+                const component =
+                    lazy(() => import(`@site/tips/${contentPath}/_${lang.value}.mdx`));
+                return {label: lang.label, component};
             }));
             setContentComponents(components);
         };

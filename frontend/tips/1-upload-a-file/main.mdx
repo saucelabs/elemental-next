@@ -22,7 +22,7 @@ category:
 ## Intro
 
 Uploading a file is a common piece of functionality found on the web but when trying to automate it, you get prompted
-with a dialog box that is just out of reach for Selenium.
+with a dialog box that is just out of reach for your automation script.
 
 In these cases people often look to a third-party tool to manipulate this window (e.g., [AutoIt](http://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/)). While this
 can help solve your short-term need, it sets you up for failure later by chaining you to a specific platform (e.g.,
@@ -36,6 +36,12 @@ insert the full path of the file we want to upload (as text) into the form and t
 
 Let's step through an example.
 
+## Example
+
+__NOTE: We are using [a file upload example](https://the-internet.herokuapp.com/upload) found on
+[the-internet](https://github.com/saucelabs/the-internet).__
+
+
 
 import DisplayTips from '@site/src/components/displayTips';
 
@@ -47,6 +53,23 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+After executing the test, this is what will happen:
+
++ Open the browser
++ Visit the upload form page
++ Inject the file path into the form and submit it
++ Page displays the uploaded filename
++ Grab the text from the page and assert it's what we expect
++ Close the browser
+
+## Summary
+
+This approach will work across all browsers. If you want to use it with a remote instance (e.g., on
+[Selenium Grid](https://www.selenium.dev/documentation/grid/) or
+[Sauce Labs](https://saucelabs.com/)) then you'll want to have a look
+at [remote uploads](https://www.selenium.dev/documentation/webdriver/drivers/remote_webdriver/#uploads).
 
 ## About The Author
 
