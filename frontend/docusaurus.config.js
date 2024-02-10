@@ -76,6 +76,7 @@ const config = {
                     },
                     path: 'tips',
                     routeBasePath: 'tips',
+                    include: ['**/*.mdx'],
                     breadcrumbs: true,
                     editUrl: 'https://github.com/saucelabs/elemental-next/blob/main/frontend/',
                     showLastUpdateAuthor: true,
@@ -208,7 +209,7 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
-                additionalLanguages: ['ruby', 'java', 'csharp'],
+                additionalLanguages: ['ruby', 'java', 'csharp', 'json'],
             },
             colorMode: {
                 disableSwitch: false,
