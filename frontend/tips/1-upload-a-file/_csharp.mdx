@@ -42,9 +42,14 @@ filename it just processed. We use this text to perform our assertion (making su
 ### Executing the Test
 
 Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
-`csharp.csproj` in this case). Here's what the project file looks like:
+`csharp.csproj` in this case).
 
-<TipCode codePath={"1-upload-a-file/code/csharp/csharp.csproj"} language={"xml"}/>
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/csharp/csharp.csproj"} language={"json"}/>
+    </div>
+</details>
 
 Finally, we can run the test by executing `dotnet test` from the command-line.
 
