@@ -38,7 +38,7 @@ function DisplayTips({contentPath, languages}) {
     return (
         <div>
             {ContentComponents.length > 0 && (
-                <Tabs>
+                <Tabs groupId={"elemental-selenium-tabs"}>
                     {ContentComponents.map((ContentComponent, index) => (
                         <TabItem key={index} value={ContentComponent.label} label={ContentComponent.label}>
                             <Suspense fallback={<div>Loading...</div>}>
