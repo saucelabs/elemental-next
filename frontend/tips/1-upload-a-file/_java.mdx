@@ -1,90 +1,44 @@
-First let's import our requisite classes for annotations (e.g., `org.junit.After`, etc.), driving the browser with
-Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), matchers for assertions (e.g., `org.hamcrest.CoreMatchers`,
-etc. ), and something to handle local files (e.g., `java.io.File`).
+import TipCode from "@site/src/components/tipCode";
 
-```java
-// filename: Upload.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-import java.io.File;
-```
+## TL;DR - Show Me The Code
 
-Now to create a class and take care of the test's setup and teardown.
+<TipCode codePath={"1-upload-a-file/code/java/src/test/java/com/elemental/selenium/UploadTest.java"} language={"java"}/>
 
-```java
-// filename: Upload.java
-// ...
-public class Upload {
-    WebDriver driver;
+## Code Walkthrough
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+### Importing Libraries
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-```
+Lines 3 to 10 are pulling in our requisite classes for annotations (e.g., `org.junit.jupiter.api.BeforeEach`, etc.),
+driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), matchers for assertions
+(e.g., `org.junit.jupiter.api.Assertions;`, etc. ), and something to handle local files (e.g., `java.io.File`).
 
-After specifying the class (e.g., `public class Upload {`) we create a field variable (e.g., `WebDriver driver;`) to
-store our Selenium instance for reuse throughout the class. We then create a `setUp()` method with a `@Before`
-annotation so it runs before our test. In this method we are creating an instance of Selenium with Firefox (
-e.g., `driver = new FirefoxDriver();`).
+### Setup and Teardown
 
-After our test executes, the `tearDown()` method will run thanks to the `@After` annotation. This calls `driver.quit();`
-which will close the browser instance.
+Lines 15 to 25 are setting up and tearing down the browser instance. The `beforeEach` method, will execute before
+each test. In it we are launching a new instance of Firefox with Selenium and storing it in a class variable that
+we'll use throughout all tests. After our test executes the second method, `afterEach`, will execute. This calls
+`driver.quit()` which ends the session by closing the browser instance.
 
-Now to wire up our test.
+### The Test
 
-```java
-    @Test
-    public void uploadFile() throws Exception {
-        String filename = "some-file.txt";
-        File file = new File(filename);
-        String path = file.getAbsolutePath();
-        driver.get("http://the-internet.herokuapp.com/upload");
-        driver.findElement(By.id("file-upload")).sendKeys(path);
-        driver.findElement(By.id("file-submit")).click();
-        String text = driver.findElement(By.id("uploaded-files")).getText();
-        assertThat(text, is(equalTo(filename)));
-    }
+Lines 29 to 36 are the test itself.
 
-}
-```
-
-We create an `uploadFile()` method and annotate it with `@Test` so it is run as a test. In it we create a new file
+We create an `uploadFile()` method and annotate it with `@Test` so it is run as a test. In it, we create a new file
 called `some-file.txt` in the present working directory and get it's absolute path.
 
 Next we visit the page with the upload form, input the string value of `path` (e.g., the full path to the file plus the
 filename with it's extension), and submit the form. After the file is uploaded to the page it will display the filename
 it just processed. We use this text to perform our assertion (making sure the uploaded file is what we expect).
 
-## Expected Behavior
+### Executing the Test
 
-When we save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-+ Open the browser
-+ Visit the upload form page
-+ Inject the file path into the form and submit it
-+ Page displays the uploaded filename
-+ Grab the text from the page and assert it's what we expect
-+ Close the browser
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-## Summary
-
-This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or
-Sauce Labs), then you'll want to have a look
-at [`FileDetector`](https://github.com/SeleniumHQ/selenium/blob/ab1e647d0fc8fc39e6b00ae94321ab228b6728f2/java/client/src/org/openqa/selenium/remote/FileDetector.java).
-You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload).
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip!
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.
