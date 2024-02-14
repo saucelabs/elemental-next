@@ -111,6 +111,13 @@ const config = {
         }
     ],
 
+    scripts: [
+        {
+            src: 'js/drip.js',
+            defer: true,
+        },
+    ],
+
     themeConfig:
     // /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         {
