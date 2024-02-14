@@ -177,11 +177,11 @@ const config = {
                         title: 'Get Involved:',
                         items: [
                             {
-                                label: 'Elemental Selenium on Github',
+                                label: 'GitHub',
                                 to: 'https://github.com/saucelabs/elemental-next',
                             },
                             {
-                                label: 'Elemental Selenium Discussions on GitHub',
+                                label: 'Discussions',
                                 to: 'https://github.com/saucelabs/elemental-next/discussions',
                             },
                         ],
