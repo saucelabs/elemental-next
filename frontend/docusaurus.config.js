@@ -181,8 +181,8 @@ const config = {
                                 to: 'https://github.com/saucelabs/elemental-next',
                             },
                             {
-                                label: 'Elemental Selenium Team on Slack',
-                                to: 'https://saucelabs.com/resources/community/slack',
+                                label: 'Elemental Selenium Discussions on GitHub',
+                                to: 'https://github.com/saucelabs/elemental-next/discussions',
                             },
                         ],
                     },
