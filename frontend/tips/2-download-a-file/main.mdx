@@ -3,7 +3,7 @@ title: 'How To Download a File'
 id: '2-download-a-file'
 slug: /2-download-a-file
 sidebar_label: How To Download a File
-text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box."
+text: "Just like with uploading files we hit the same issue with downloading them a dialog box just out of reach of your automation script."
 number: 2
 hide_table_of_contents: true
 level: 2
@@ -19,19 +19,21 @@ category:
 
 # How To Download a File
 
-## Intro
+## The Problem
 
-Just like with [uploading files](/tips/how-to-upload-a-file/1-upload-a-file) we hit the same issue with downloading
-them -- a dialog box just out of Selenium's reach. With some additional configuration, we can side-step the dialog box.
+Just like with [uploading files](/tips/1-upload-a-file) we hit the same issue with downloading
+them -- a dialog box just out of reach of your automation script. With some additional configuration, we can side-step
+the dialog box.
 
 ## A Solution
 
 In order to avoid the dialog box, we will be instructing the browser to download files to a specific location without
-being prompted.
-
-After the file is downloaded we can then perform some simple checks to make sure the file is what we expect.
+being prompted. After the file is downloaded we can then perform some simple checks to make sure the file is what we
+expect.
 
 Let's continue with an example.
+
+## Example
 
 
 import DisplayTips from '@site/src/components/displayTips';
@@ -44,15 +46,69 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+After executing the test, this is what will happen:
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
++ Create a uniquely named temp directory in the present working directory
++ Open the browser
++ Visit the page
++ Find and click the first download link on the page
++ Automatically download the file to the temp directory without prompting
++ Check that the temp directory is not empty
++ Check that the downloaded file is not empty
++ Close the browser
++ Delete the temp directory
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+## Outro
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+A similar approach can be applied to some other browsers with varying configurations. But downloading files this
+way is not sustainable or recommended. Mark Collin articulates this point well in his prominent
+[write-up about it](https://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/).
+In a future tip we will cover a more reliable, faster, and scalable browser-agnostic approach to downloading files.
+Stay tuned.
+
+Happy Testing!
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Mike Millgate"
+    imgSrc={"https://github.com/trabulmonkee.png"}
+    description={"Contributed the Python code for this tip."}
+    url={"https://github.com/trabulmonkee"}
+/>
+<DefaultAvatar
+    name="Isaul Vargas"
+    imgSrc={"https://github.com/isaulv.png"}
+    description={"Python code review"}
+    url={"https://github.com/isaulv"}
+/>
+<DefaultAvatar
+    name="Peter Bittner"
+    imgSrc={"https://github.com/bittner.png"}
+    description={"Python code review"}
+    url={"https://github.com/bittner"}
+/>
+
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Current maintainer of Elemental Selenium"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
+
