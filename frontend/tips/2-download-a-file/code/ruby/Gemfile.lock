@@ -1,0 +1,42 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    diff-lcs (1.5.1)
+    macaddr (1.7.2)
+      systemu (~> 2.6.5)
+    rexml (3.2.6)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.0)
+    rubyzip (2.3.2)
+    selenium-webdriver (4.17.0)
+      base64 (~> 0.2)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
+    systemu (2.6.5)
+    uuid (2.3.9)
+      macaddr (~> 1.0)
+    websocket (1.2.10)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  rspec (~> 3.10)
+  selenium-webdriver (~> 4.17)
+  uuid
+
+BUNDLED WITH
+   2.4.10
