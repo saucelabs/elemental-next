@@ -15,7 +15,6 @@ Selenium (e.g., `using OpenQA.Selenium;`), and launching an instance of Firefox
 
 ### Setup and Teardown
 
-
 After specifying the namespace and the class (e.g., `public class FileUploadTest`), lines 12 to 24 are setting up and
 tearing down the browser instance.
 
@@ -25,7 +24,6 @@ method we are creating an instance of WebDriver with Firefox (e.g., `_driver = n
 
 After our test executes, the `TearDown()` method will run thanks to the `[TestCleanup]` attribute. This
 calls `_driver?.Quit();` which will close the browser instance.
-
 
 ### The Test
 
@@ -47,7 +45,7 @@ Before executing the test, we need to make sure the required dependencies are de
 <details>
     <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
     <div>
-        <TipCode codePath={"1-upload-a-file/code/csharp/csharp.csproj"} language={"json"}/>
+        <TipCode codePath={"1-upload-a-file/code/csharp/csharp.csproj"} language={"xml"}/>
     </div>
 </details>
 
