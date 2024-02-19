@@ -14,10 +14,10 @@ Selenium (e.g., `const {Builder, By} = require("selenium-webdriver");`).
 
 ### Setup and Teardown
 
-After creating a `describe` to group our tests (e.g., `describe("Download Test")...`), lines 11 to 38 are declaring
-two variables. One for the Selenium instance (e.g., `driver`) and the other for the temporary directory where we'll
-want to automatically download files to (e.g., `tmpDir`). In it we're storing the absolute path to the current
-working directory, plus the name `tmp`.
+After creating a `describe` to group our tests (e.g., `describe("Download Test")...`), lines 11 to 38 contain the setup
+and teardown, and then we are declaring two variables. One for the Selenium instance (e.g., `driver`) and the other
+for the temporary directory where we'll want to automatically download files to (e.g., `tmpDir`). In it we're storing
+the absolute path to the current working directory, plus the name `tmp`.
 
 In the setup method (e.g., `beforeEach`) we create this directory if it's not already there, and then create a
 new browser options object (for Firefox in this case), specifying the necessary configuration parameters to make
