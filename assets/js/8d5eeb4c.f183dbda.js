@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[9875],{60218:e=>{e.exports=JSON.parse('{"label":"file","permalink":"/tips/tags/file","allTagsPath":"/tips/tags","count":1,"items":[{"id":"upload-a-file/1-upload-a-file","title":"How To Upload A File","description":"The Problem","permalink":"/tips/1-upload-a-file"}],"unlisted":false}')}}]);
