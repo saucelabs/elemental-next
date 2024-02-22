@@ -1,41 +1,25 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
+## TL;DR - Show Me The Code
 
-```python
-# filename: frames.py
+<TipCode codePath={"3-work-with-frames/code/python/frames.py"} language={"python"}/>
 
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+## Code Walkthrough
 
-class Frames(unittest.TestCase):
+### Importing Libraries, Setup and Teardown
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+Lines 1 to 9 are pulling in our requisite libraries our testing framework (e.g., `import pytest`), driving the browser
+with Selenium (e.g., `from selenium import webdriver`), and a locator strategy to find the elements
+(e.g. `from selenium.webdriver.common.by import By`), and wire up some setup and teardown methods for our tests.
 
-    def tearDown(self):
-        self.driver.quit()
+### Example 1
 
-# ...
-```
+Line 11 shows our first test. In it, we'll step through [an example of nested frames](http://the-internet.herokuapp.com/nested_frames)
+which can be found on [the-internet](https://github.com/saucelabs/the-internet).
 
-Now onto our test. In it we'll step through [an example of nested frames](http://the-internet.herokuapp.com/nested_frames) which can be found on [the-internet](https://github.com/tourdedave/the-internet).
-
-```python
-# filename: frames.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/nested_frames')
-        driver.switch_to.frame('frame-top')
-        driver.switch_to.frame('frame-middle')
-        assert driver.find_element(By.ID,'content').text == "MIDDLE", "content should be MIDDLE"
-
-# ...
-```
-
-With Selenium's `.switch_to.frame` method we can easily switch to the frame we want. It accepts either an ID or name attribute. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to switch to the parent frame (e.g., the top frame) _and then_ switch to the child frame (e.g., the middle frame).
+With Selenium's `.switch_to.frame` method we can easily switch to the frame we want. It accepts either an ID or name
+attribute. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to
+switch to the parent frame (e.g., the top frame) _and then_ switch to the child frame (e.g., the middle frame).
 
 Once we've done that we're able to find the element we need, grab its text, and assert that it's what we expect.
 
@@ -43,56 +27,21 @@ While this example helps illustrate the point of frame switching, it's not very 
 
 ## Example 2
 
-Here is a more likely example you'll run into -- working with a WYSIWYG Editor like [TinyMCE](http://www.tinymce.com/). You can see the page we're testing [here](http://the-internet.herokuapp.com/tinymce).
+Line 18 shows a more likely example you'll run into -- working with a WYSIWYG Editor like [TinyMCE](http://www.tinymce.com/). You can see
+the page we're testing on [the-internet](http://the-internet.herokuapp.com/tinymce).
 
-```python
-# filename: frames.py
-# ...
-    def test_example_2(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/tinymce')
-        driver.switch_to.frame('mce_0_ifr')
-        editor = driver.find_element(By.ID,'tinymce')
-        before_text = editor.text
-        editor.clear()
-        editor.send_keys('Hello World!')
-        after_text = editor.text
-        assert after_text != before_text, "%s equals %s" % (before_text, after_text)
+### Executing the Test
 
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
 
-if __name__ == "__main__":
-    unittest.main()
-  assert driver.find_element(By.CSS_SELECTOR, 'h3').text != "", "element should not be empty"
-```
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
 
-## Expected Behavior
+After installing the required libraries, we can run the test by executing `pytest frames.py` from the command-line.
 
-If we save the file and run it (e.g., `python frames.py` from the command-line) here is what will happen:
-
-<u>Example 1</u>
-
-+ Open the browser
-+ Visit the page
-+ Switch to the nested frame
-+ Grab the text from the frame and assert that Selenium is in the correct place
-+ Close the browser
-
-<u>Example 2</u>
-
-+ Open the browser
-+ Visit the page
-+ Switch to the frame that contains the TinyMCE editor
-+ Grab and clear the text in the editor
-+ Input and grab new text in the edtitor
-+ Assert that the original and new text entries don't match
-+ Switch to the top level of the page
-+ Grab the text from the top of the page and assert that it's not empty
-+ Close the browser
-
-## Summary
-
-Now you're ready to handily defeat frames when they cross your path.
-
-Thanks to [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and to [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
-
-Happy Testing!

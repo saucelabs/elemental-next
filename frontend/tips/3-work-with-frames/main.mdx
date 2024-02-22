@@ -3,7 +3,7 @@ title: 'Work With Frames'
 id: '3-work-with-frames'
 slug: /3-work-with-frames
 sidebar_label: Work With Frames
-text: "In this tip, you'll learn how to work with frames and write tests against them. On occasion, we may encounter relics of the front-end world, such as frames."
+text: "In this tip, you'll learn how to work with frames and write tests against them."
 number: 3
 hide_table_of_contents: true
 level: 1
@@ -16,7 +16,7 @@ category:
 
 # How to Work with Frames
 
-## Intro
+## The Problem
 
 In this tip, you'll learn how to work with frames and write tests against them.
 
@@ -30,6 +30,8 @@ Selenium to switch to that frame first. Then the rest of your test should be mor
 
 Let's explore further with some examples.
 
+## Examples
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips contentPath={"3-work-with-frames"} languages={[
@@ -40,15 +42,87 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+### Example 1
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
++ Open the browser
++ Visit the page
++ Switch to the nested frame
++ Grab the text from the frame and assert that Selenium is in the correct place
++ Close the browser
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+### Example 2
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
++ Open the browser
++ Visit the page
++ Switch to the frame that contains the TinyMCE editor
++ Grab and clear the text in the editor
++ Input and grab new text in the editor
++ Assert that the original and new text entries don't match
++ Switch to the top level of the page
++ Grab the text from the top of the page and assert that it's not empty
++ Close the browser
+
+## Outro
+
+Now you're ready to handily defeat frames when they cross your path.
+
+Happy Testing!
+
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Mike Millgate"
+    imgSrc={"https://github.com/trabulmonkee.png"}
+    description={"Contributed the Python code for this tip."}
+    url={"https://github.com/trabulmonkee"}
+/>
+<DefaultAvatar
+    name="Isaul Vargas"
+    imgSrc={"https://github.com/isaulv.png"}
+    description={"Python code review"}
+    url={"https://github.com/isaulv"}
+/>
+<DefaultAvatar
+    name="Peter Bittner"
+    imgSrc={"https://github.com/bittner.png"}
+    description={"Python code review"}
+    url={"https://github.com/bittner"}
+/>
+
+<DefaultAvatar
+    name="Jonathan Taylor"
+    imgSrc={"https://github.com/jtay2380.png"}
+    description={"Contributed the initial C# code for this tip."}
+    url={"https://github.com/jtay2380"}
+/>
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/sturman.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/sturman"}
+/>
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Current maintainer of Elemental Selenium"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
+
