@@ -33,6 +33,17 @@ While this example helps illustrate the point of frame switching, it's not very 
 Here is a more likely example you'll run into -- working with a WYSIWYG Editor like [TinyMCE](http://www.tinymce.com/). You can see the
 page we're testing [here](http://the-internet.herokuapp.com/tinymce).
 
+Once the page loads we switch into the frame that contains TinyMCE and...
+
+- grab the original text and store it
+- clear and input new text
+- grab the new text value
+- assert that the original and new texts are not the same
+
+Keep in mind that if we need to access a part of the page outside of the frame we're currently in we'll need to switch
+to it. Thankfully Selenium has a method that enables us to quickly jump back to the top level of the page
+-- `.DefaultContent();.`.
+
 ### Executing the Test
 
 Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
