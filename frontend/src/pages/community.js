@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 import ContentCard from "../components/contentCard";
 
@@ -70,7 +70,6 @@ const Community = () => {
                     </div>
                 </div>
             </main>
-            {/*<img className='community-footer' src='img/backgrounds/community-footer.svg' alt=''/>*/}
         </Layout>
     );
 };

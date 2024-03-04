@@ -270,7 +270,6 @@ const Tips = () => {
                     </div>
                 </div>
             </main>
-            {/*<img className='tips-footer' src='img/backgrounds/tips-footer.svg' alt=''/>*/}
         </Layout>
     );
 };

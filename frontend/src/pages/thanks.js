@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 
 function Thanks() {
@@ -45,7 +45,6 @@ function Thanks() {
                     </div>
                 </div>
             </main>
-            {/*<img className='thanks-footer' src='./img/backgrounds/signup-footer.svg' alt='' />*/}
         </Layout>
     );
 }

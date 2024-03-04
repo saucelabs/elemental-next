@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -55,7 +55,6 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                {/*<img className='home-footer' src='./img/backgrounds/home-footer.svg' alt=''/>*/}
             </main>
         </Layout>
     );
