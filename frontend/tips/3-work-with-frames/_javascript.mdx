@@ -1,118 +1,58 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-We'll first need to pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: test/frames.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+<TipCode codePath={"3-work-with-frames/code/javascript/test/frames.spec.js"} language={"js"}/>
 
-describe("Frame Test", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() {
-    this.timeout(60000)
-    driver = await new Builder().forBrowser("firefox").build();
-  });
+### Importing Libraries, Setup and Teardown
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The first two lines are pulling in our testing framework (e.g., `require("assert")`), and driving the
+browser with Selenium (e.g., `const {Builder, By} = require("selenium-webdriver");`).
 
-Now onto our test. In it we'll step through [an example of nested frames](http://the-internet.herokuapp.com/nested_frames) which can be found on [the-internet](https://github.com/tourdedave/the-internet).
+After creating a `describe` to group our tests (e.g., `describe("Frame Test")...`), lines 5 to 13 are setting up and
+tearing down the browser instance.
 
-```javascript
-// filename: test/frames.spec.js
-  it("nested_frames", async function() {
-    await driver.get("http://the-internet.herokuapp.com/nested_frames");
-    await driver
-      .switchTo()
-      .frame(await driver.findElement(By.name("frame-top")));
-    await driver
-      .switchTo()
-      .frame(await driver.findElement(By.name("frame-middle")));
-    let content = await driver.findElement(By.id("content")).getText();
-    assert.equal(content, "MIDDLE");
-  });
-// ...
-```
+The `beforeEach` method, will execute before each test. In it we are launching a new instance of Firefox with
+Selenium and storing it in a class variable that we'll use throughout all tests. After our test executes the second
+method, `afterEach`, will execute. This calls `driver.quit()` which ends the session by closing the browser instance.
 
-With Selenium's `.switchTo().frame` method we can easily switch to the frame we want. It accepts either a numbered index or WebElement (e.g., the result of a `findElement`).
+### Example 1
 
-In order to get the text of the middle frame (e.g., a frame nested within another frame), we first need to switch to the parent frame (e.g., the top frame) _and then_ switch to the child frame (e.g., the middle frame). Once we've done that we're able to find the element we need, grab its text, and assert that it's what we expect.
+Line 15 shows our first test. In it, In it we'll step through [an example of nested frames](http://the-internet.herokuapp.com/nested_frames) from
+[the-internet](https://github.com/tourdedave/the-internet).
+
+With Selenium's `.switchTo().frame` method we can easily switch to the frame we want. It accepts either a numbered
+index or WebElement (e.g., the result of a `findElement`).
+
+In order to get the text of the middle frame (e.g., a frame nested within another frame), we first need to switch to
+the parent frame (e.g., the top frame) _and then_ switch to the child frame (e.g., the middle frame). Once we've done
+that we're able to find the element we need, grab its text, and assert that it's what we expect.
 
 While this example helps illustrate the point of frame switching, it's not very practical.
 
-## Example 2
+### Example 2
 
-Here is a more likely example you'll run into -- working with a WYSIWYG (What You See Is What You Get) Editor like [TinyMCE](http://www.tinymce.com/). You can see the page we're testing [here](http://the-internet.herokuapp.com/tinymce).
+Here is a more likely example you'll run into -- working with a WYSIWYG (What You See Is What You Get) Editor like
+[TinyMCE](http://www.tinymce.com/). You can see the page we're testing [here](http://the-internet.herokuapp.com/tinymce).
 
-```javascript
-// filename: test/frames.spec.js
-// ...
-  it("iframes", async function() {
-    await driver.get("http://the-internet.herokuapp.com/tinymce");
-    await driver.switchTo().frame(await driver.findElement(By.id("mce_0_ifr")));
-    const editor = await driver.findElement(By.id("tinymce"));
-    let beforeText = await editor.getText();
-    await editor.clear();
-    await editor.sendKeys("Hello World!");
-    let afterText = await editor.getText();
-    assert.notEqual(afterText, beforeText);
-  });
-});
-```
+Keep in mind that if we need to access a part of the page outside of the frame we are currently in we'll need to
+switch to it. Thankfully Selenium has method that enables us to quickly jump back to the top level of the page
+-- `switchTo.defaultContent()`.
 
-Once the page loads we switch into the frame that contains TinyMCE and...
+### Executing the Test
 
-+ grab the original text and store it
-+ clear and input new text
-+ grab the new text value
-+ assert that the original and new texts are not the same
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-Keep in mind that if we need to access a part of the page outside of the frame we are currently in we'll need to switch to it. Thankfully Selenium has method that enables us to quickly jump back to the top level of the page -- `switchTo.defaultContent()`.
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-Here is what that looks like in practice.
+Finally, we can run the test by executing `npm test` from the command-line.
 
-```javascript
-// filename: test/frames.spec.js
-  it("iframes", async function() {
-    await driver.get("http://the-internet.herokuapp.com/tinymce");
-    await driver.switchTo().defaultContent();
-    let txt = await driver.findElement(By.css("h3")).getText();
-    assert.equal(txt, "An iFrame containing the TinyMCE WYSIWYG Editor");
-  });
-});
-```
 
-## Expected Behavior
 
-If we save the file and run it (e.g., `mocha` from the command-line) here is what will happen:
-
-<u>Example 1</u>
-
-+ Open the browser
-+ Visit the page
-+ Switch to the nested frame
-+ Grab the text from the frame and assert that Selenium is in the correct place
-+ Close the browser
-
-<u>Example 2</u>
-
-+ Open the browser
-+ Visit the page
-+ Switch to the frame that contains the TinyMCE editor
-+ Grab and clear the text in the editor
-+ Input and grab new text in the edtitor
-+ Assert that the original and new text entries don't match
-+ Switch to the top level of the page
-+ Grab the text from the top of the page and assert that it's not empty
-+ Close the browser
-
-## Summary
-
-Now you can readily defeat frames when they cross your path.
-
-Happy Testing!
