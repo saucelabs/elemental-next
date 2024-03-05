@@ -1,0 +1,80 @@
+name: Run DotNet tips
+
+on:
+  schedule:
+    - cron: '35 22 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - trunk
+    paths:
+      - '**/code/csharp/**'
+  push:
+    branches:
+      - trunk
+    paths:
+      - '**/code/csharp/**'
+
+env:
+  DISPLAY: :99
+
+jobs:
+  test_examples:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v3
+      - name: Remove driver directories Windows
+        if: matrix.os == 'windows-latest'
+        run: |
+          rm "$env:ChromeWebDriver" -r -v
+          rm "$env:EdgeWebDriver" -r -v
+          rm "$env:GeckoWebDriver" -r -v
+      - name: Remove driver directories Non-Windows
+        if: matrix.os != 'windows-latest'
+        run: |
+          sudo rm -rf $CHROMEWEBDRIVER $EDGEWEBDRIVER $GECKOWEBDRIVER
+      - name: Start Xvfb
+        if: matrix.os == 'ubuntu-latest'
+        run: Xvfb :99 &
+      - name: Set up .Net
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
+      - name: Run tests in triggered path
+        if: ${{ github.event_path != '' }}
+        uses: nick-invision/retry@v2.8.3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            echo ${{ github.event_path }} 
+            cd ${{ github.event_path }}
+            dotnet test
+      - name: Run tests in schedule or workflow dispatch
+        if: ${{ github.event_path == '' }}
+        uses: nick-invision/retry@v2.8.3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            echo ${{ github.event_path }} 
+            # Find directories
+            directories=$(find . -type d -path '*/code/csharp' 2>/dev/null)            
+            # Loop over directories and execute dotnet test
+            for dir in $directories
+            do
+                echo "Running tests in $dir"
+                cd $dir
+                dotnet test
+                cd -
+            done
