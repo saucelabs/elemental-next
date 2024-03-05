@@ -8,12 +8,12 @@ on:
     branches:
       - trunk
     paths:
-      - '**/code/csharp/**'
+      - '**/code/csharp'
   push:
     branches:
       - trunk
     paths:
-      - '**/code/csharp/**'
+      - '**/code/csharp'
 
 env:
   DISPLAY: :99
