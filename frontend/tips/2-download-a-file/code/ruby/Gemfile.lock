@@ -35,7 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   rspec (~> 3.10)
-  selenium-webdriver (~> 4.17)
+  selenium-webdriver (~> 4.17.0)
   uuid
 
 BUNDLED WITH
