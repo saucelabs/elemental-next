@@ -45,7 +45,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-      - name: Run tests
+      - name: Run tests on Linux and macOS
+        if: matrix.os != 'windows-latest'
         uses: nick-invision/retry@v2.8.3
         with:
           timeout_minutes: 20
@@ -61,3 +62,19 @@ jobs:
                 dotnet test
                 cd -
             done
+      - name: Run tests on Windows
+        if: matrix.os != 'windows-latest'
+        uses: nick-invision/retry@v2.8.3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            # PowerShell script to find directories and run dotnet test
+            $directories = Get-ChildItem -Path . -Recurse -Filter 'csharp' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\csharp*' }
+            foreach ($dir in $directories)
+            {
+              Write-Host "Running tests in $dir"
+              Set-Location -Path $dir.FullName
+              dotnet test
+              Set-Location -Path $PSScriptRoot
+            }
