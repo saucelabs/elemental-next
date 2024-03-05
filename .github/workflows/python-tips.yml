@@ -79,7 +79,10 @@ jobs:
               Set-Location -Path $dir.FullName
               python -m pip install --upgrade pip
               pip install -r requirements.txt
-              dir
-              pytest *.py
+              $pyFiles = Get-ChildItem -Path . -Recurse -Filter '*.py' | ForEach-Object { $_.FullName }
+              if ($pyFiles)
+              {
+                pytest $pyFiles
+              }
               Set-Location -Path $PSScriptRoot
             }
