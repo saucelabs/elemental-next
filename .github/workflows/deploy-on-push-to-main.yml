@@ -1,9 +1,6 @@
 name: Deploy Docusaurus Site
 
 on:
-  pull_request:
-    paths:
-      - 'frontend/**'
   push:
     branches:
       - trunk
