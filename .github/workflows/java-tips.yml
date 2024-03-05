@@ -52,7 +52,7 @@ jobs:
           maven-version: 3.9.6
       - name: Run tests on Linux and macOS
         if: matrix.os != 'windows-latest'
-        uses: nick-invision/retry@v2.8.3
+        uses: nick-invision/retry@v3.0.0
         with:
           timeout_minutes: 20
           max_attempts: 3
@@ -69,7 +69,7 @@ jobs:
             done
       - name: Run tests on Windows
         if: matrix.os == 'windows-latest'
-        uses: nick-invision/retry@v2.8.3
+        uses: nick-invision/retry@v3.0.0
         with:
           timeout_minutes: 20
           max_attempts: 3
