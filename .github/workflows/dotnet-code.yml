@@ -45,29 +45,12 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: 11
-      - name: Run tests in triggered path
-        if: ${{ github.event_path != '' }}
+      - name: Run tests
         uses: nick-invision/retry@v2.8.3
         with:
           timeout_minutes: 20
           max_attempts: 3
           command: |
-            echo ${{ github.event_path }} 
-            cd ${{ github.event_path }}
-            dotnet test
-      - name: Run tests in schedule or workflow dispatch
-        if: ${{ github.event_path == '' }}
-        uses: nick-invision/retry@v2.8.3
-        with:
-          timeout_minutes: 20
-          max_attempts: 3
-          command: |
-            echo ${{ github.event_path }} 
             # Find directories
             directories=$(find . -type d -path '*/code/csharp' 2>/dev/null)            
             # Loop over directories and execute dotnet test
