@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 18.x
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache-npm-packages
         with:
           path: |
@@ -28,7 +28,7 @@ jobs:
         run: |
           cd frontend
           npm install
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache-build
         with:
           path: |
