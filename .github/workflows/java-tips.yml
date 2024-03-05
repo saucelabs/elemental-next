@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - trunk
+      - main
     paths:
       - '**/code/java/**'
   push:
     branches:
-      - trunk
+      - main
     paths:
       - '**/code/java/**'
 

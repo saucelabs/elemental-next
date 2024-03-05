@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - trunk
+      - main
     paths:
       - '**/code/python/**'
   push:
     branches:
-      - trunk
+      - main
     paths:
       - '**/code/python/**'
 
