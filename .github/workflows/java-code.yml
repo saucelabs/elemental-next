@@ -71,10 +71,10 @@ jobs:
           max_attempts: 3
           command: |
             # PowerShell script to find directories and run mvn test
-            $directories = Get-ChildItem -Path . -Recurse -Filter 'java' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\java*' }
+            $directories = Get-ChildItem -Path . -Recurse -Filter 'java' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\java*' -and $_.FullName -notlike '*\code\java\*' }
             foreach ($dir in $directories)
             {
-              Write-Host "Running tests in $dir"
+              Write-Host "Running tests in $dir.FullName"
               Set-Location -Path $dir.FullName
               mvn test
               Set-Location -Path $PSScriptRoot
