@@ -1,0 +1,84 @@
+name: Run JavaScript tips
+
+on:
+  schedule:
+    - cron: '45 22 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - trunk
+    paths:
+      - '**/code/python/**'
+  push:
+    branches:
+      - trunk
+    paths:
+      - '**/code/python/**'
+
+env:
+  DISPLAY: :99
+
+jobs:
+  test_examples:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v3
+      - name: Remove driver directories Windows
+        if: matrix.os == 'windows-latest'
+        run: |
+          rm "$env:ChromeWebDriver" -r -v
+          rm "$env:EdgeWebDriver" -r -v
+          rm "$env:GeckoWebDriver" -r -v
+      - name: Remove driver directories Non-Windows
+        if: matrix.os != 'windows-latest'
+        run: |
+          sudo rm -rf $CHROMEWEBDRIVER $EDGEWEBDRIVER $GECKOWEBDRIVER
+      - name: Start Xvfb
+        if: matrix.os == 'ubuntu-latest'
+        run: Xvfb :99 &
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+      - name: Run tests on Linux and macOS
+        if: matrix.os != 'windows-latest'
+        uses: nick-invision/retry@v2.8.3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            # Find directories
+            directories=$(find . -type d -path '*/code/python' 2>/dev/null)            
+            # Loop over directories and execute mvn test
+            for dir in $directories
+            do
+                echo "Running tests in $dir"
+                cd $dir
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+                pytest
+                cd -
+            done
+      - name: Run tests on Windows
+        if: matrix.os == 'windows-latest'
+        uses: nick-invision/retry@v2.8.3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            # PowerShell script to find directories and run mvn test
+            $directories = Get-ChildItem -Path . -Recurse -Filter 'python' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\python*' }
+            foreach ($dir in $directories)
+            {
+              Write-Host "Running tests in $($dir.FullName)"
+              Set-Location -Path $dir.FullName
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
+              pytest
+              Set-Location -Path $PSScriptRoot
+            }
