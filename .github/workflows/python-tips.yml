@@ -61,7 +61,7 @@ jobs:
                 cd $dir
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
-                pytest
+                pytest *.py
                 cd -
             done
       - name: Run tests on Windows
@@ -79,6 +79,6 @@ jobs:
               Set-Location -Path $dir.FullName
               python -m pip install --upgrade pip
               pip install -r requirements.txt
-              pytest
+              pytest *.py
               Set-Location -Path $PSScriptRoot
             }
