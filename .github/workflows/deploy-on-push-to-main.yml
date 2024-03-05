@@ -3,7 +3,7 @@ name: Deploy Docusaurus Site
 on:
   push:
     branches:
-      - trunk
+      - main
     paths:
       - 'frontend/**'
 
