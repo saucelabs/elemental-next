@@ -63,7 +63,7 @@ jobs:
                 cd -
             done
       - name: Run tests on Windows
-        if: matrix.os != 'windows-latest'
+        if: matrix.os == 'windows-latest'
         uses: nick-invision/retry@v2.8.3
         with:
           timeout_minutes: 20
