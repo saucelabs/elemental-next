@@ -1,93 +1,55 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-First we'll need to pull in our requisite libraries, declare our test class, and wire up some test setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: test/multiple-windows.spec.js
-const assert = require("assert");
-const { Builder, By, Key } = require("selenium-webdriver");
+<TipCode codePath={"4-work-with-multiple-windows/code/javascript/test/multiple-windows.spec.js"} language={"js"}/>
 
-describe("Multiple Windows", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() {
-    this.timeout(60000)
-    driver = await new Builder().forBrowser("chrome").build();
-  });
+### Importing Libraries, Setup and Teardown
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The first two lines are pulling in our testing framework (e.g., `require("assert")`), driving the
+browser with Selenium (e.g., `const {Builder, By} = require("selenium-webdriver");`). Then we wire up
+some test setup and teardown methods.
 
-Now let's write a test that exercises new window functionality from an application. In this case, we'll be using [the new window example](http://the-internet.herokuapp.com/windows) found on [the-internet](https://github.com/tourdedave/the-internet).
+### Example 1
 
-```javascript
-// filename: test/multiple-windows.spec.js
-// ...
-  it("non-deterministic switching", async function() {
-    await driver.get("http://the-internet.herokuapp.com/windows");
-    await driver.findElement(By.css(".example a")).click();
-    const windowHandles = await driver.getAllWindowHandles();
-    await driver.switchTo().window(windowHandles[0]);
-    assert((await driver.getTitle()) !== "New Window");
-    await driver.switchTo().window(windowHandles[windowHandles.length - 1]);
-    assert((await driver.getTitle()) === "New Window");
-  });
-// ...
-```
+Line 15 shows a test that exercises new window functionality from an application. In this case, we'll be using
+[the new window example](http://the-internet.herokuapp.com/windows) from [the-internet](https://github.com/saucelabs/the-internet).
 
-After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the last one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
+After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique
+identifier strings which represent each open browser window) and switch between them based on their order (assuming
+that the first one is the originating window, and that the second one is the new window). We round this test out by
+performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
 
-While this may seem like a good approach, it can present problems later. That's because the order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.
+While this may seem like a good approach it can present problems later because the order of the window handles is not
+consistent across all browsers. Some return it in the order opened, others _alphabetically_.
 
-Here's a more resilient approach that will work across all browsers.
+Here's a more resilient approach. One that will work across all browsers.
 
-## Example 2
+### Example 2
 
-```javascript
-// filename: test/multiple-windows.spec.js
-// ...
-  it("browser agnostic switching", async function() {
-    await driver.get("http://the-internet.herokuapp.com/windows");
-    const windowHandlesBefore = await driver.getAllWindowHandles();
-    await driver.findElement(By.css(".example a")).click();
-    const windowHandlesAfter = await driver.getAllWindowHandles();
-    const newWindow = windowHandlesAfter.find(
-      handle => !windowHandlesBefore.includes(handle)
-    );
-    await driver.switchTo().window(windowHandlesBefore[0]);
-    assert((await driver.getTitle()) !== "New Window");
-    await driver.switchTo().window(newWindow);
-    assert((await driver.getTitle()) === "New Window");
-  });
-});
-```
+Line 29 shows that after loading the page we store the window handles in a variable (e.g., `windowHandlesBefore`)
+and then proceed with clicking the new window link.
 
-After loading the page we store the window handles in a variable (e.g., `windowHandlesBefore`) and then proceed with clicking the new window link.
+Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search
+through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the
+initial one). We store the result in another variable (e.g., `newWindow`) and then switch between the windows each
+time checking the page title to make sure the correct window is in focus.
 
-Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the initial one). We store the result in another variable (e.g., `newWindow`) and then switch between the windows each time checking the page title to make sure the correct window is in focus.
+For more information about switching windows (and tabs) visit the official Selenium
+[documentation page](https://www.selenium.dev/documentation/webdriver/interactions/windows/).
 
-## Expected Behavior
 
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
+### Executing the Test
 
-+ Open the browser
-+ Visit the page
-+ Find the window handle for the current window
-+ Click a link that opens a new window
-+ Find the window handle out of all available window handles
-+ Switch between the windows
-+ Assert that the correct window is in focus
-+ Close the browser
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-## Summary
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-I hope this was a helpful guide on how to work with and switch between multiple windows using Selenium.
-
-Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
-
-For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/).
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

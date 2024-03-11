@@ -1,90 +1,58 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+## TL;DR - Show Me The Code
 
-```python
-# filename: new_window.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+<TipCode codePath={"4-work-with-multiple-windows/code/python/windows.py"} language={"python"}/>
 
+## Code Walkthrough
 
-class Windows(unittest.TestCase):
+### Importing Libraries, Setup and Teardown
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+The first lines are pulling in our requisite libraries our testing framework (e.g., `import pytest`),
+driving the browser with Selenium (e.g., `from selenium import webdriver`), and a locator strategy to
+find the elements (e.g. `from selenium.webdriver.common.by import By`), Selenium's wait functionality
+(e.g., `from selenium.webdriver.support.ui import WebDriverWait`), and wire up some setup and
+teardown methods for our tests.
 
-    def tearDown(self):
-        self.driver.quit()
-# ...
-```
+### Example 1
 
-Now let's write a test that exercises new window functionality from an application. In this case, we'll be using [the new window example](http://the-internet.herokuapp.com/windows) found on [the-internet](https://github.com/tourdedave/the-internet).
+Line 13 shows a test that exercises new window functionality from an application. In this case, we'll be using
+[the new window example](http://the-internet.herokuapp.com/windows) from [the-internet](https://github.com/saucelabs/the-internet).
 
-```python
-# filename: new_window.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/windows')
-        driver.find_element(By.CSS_SELECTOR,'.example a').click()
-        driver.switch_to.window(driver.window_handles[0])
-        assert driver.title != "New Window", "title should not be New Window"
-        driver.switch_to.window(driver.window_handles[-1])
-        assert driver.title == "New Window", "title should be New Window"
+After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique
+identifier strings which represent each open browser window) and switch between them based on their order (assuming
+that the first one is the originating window, and that the second one is the new window). We round this test out by
+performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
 
-# ...
-```
-
-After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the last one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
-
-While this may seem like a good approach, it can present problems later. That's because the order of the window handles is not consistent across all browsers. Some return in the order opened, others _alphabetically_.
+While this may seem like a good approach it can present problems later because the order of the window handles is not
+consistent across all browsers. Some return it in the order opened, others _alphabetically_.
 
 Here's a more resilient approach. One that will work across all browsers.
 
-## Example 2
+### Example 2
 
-```python
-# filename: new_window.py
-# ...
-    def test_example_2(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/windows')
+Line 24 shows that after loading the page we store the window handles in a variable (e.g., `first_window`)
+and then proceed with clicking the new window link.
 
-        first_window = driver.window_handles[0]
-        driver.find_element(By.CSS_SELECTOR,'.example a').click()
-        all_windows = driver.window_handles
-        for window in all_windows:
-            if window != first_window:
-                new_window = window
-        driver.switch_to.window(first_window)
-        assert driver.title != "New Window", "title should not be New Window"
-        driver.switch_to.window(new_window)
-        assert driver.title == "New Window", "title should be New Window"
+Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search
+through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the
+initial one). We store the result in another variable (e.g., `new_window`) and then switch between the windows each
+time checking the page title to make sure the correct window is in focus.
 
-if __name__ == "__main__":
-    unittest.main()
-```
+For more information about switching windows (and tabs) visit the official Selenium
+[documentation page](https://www.selenium.dev/documentation/webdriver/interactions/windows/).
 
-After loading the page we store the window handle in a variable (e.g., `first_window`) and then proceed with clicking the new window link.
+### Executing the Test
 
-Now that we have two windows open we grab all of the window handles and search through them to find the new window handle (e.g., the handle that doesn't match the first one we've already stored). We store the result in another variable (e.g., `new_window`) and then switch between the windows. Each time checking the page title to make sure the correct window is in focus.
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
 
-## Expected Behavior
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
 
-+ Open the browser
-+ Visit the page
-+ Find the window handle for the current window
-+ Click a link that opens a new window
-+ Find the window handle out of all available window handles
-+ Switch between the windows
-+ Assert that the correct window is in focus
-+ Close the browser
-
-## Summary
-
-Thanks to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip, [Mike Millgate](https://github.com/trabulmonkee) for contributing the Python code for this tip, and [Isaul Vargas](https://github.com/Dude-X) & [Peter Bittner](https://github.com/bittner) for code reviewing!
-
-For more information about switching windows (and tabs) visit the official Selenium HQ [documentation page] (https://www.selenium.dev/documentation/webdriver/interactions/windows/).
-
-Happy Testing!
+After installing the required libraries, we can run the test by executing `pytest windows.py` from the command-line.

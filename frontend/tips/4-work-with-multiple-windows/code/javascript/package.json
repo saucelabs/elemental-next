@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "selenium-webdriver": "4.18.1"
+  },
+  "description": "A project to showcase working with multiple windows using official WebdriverJs",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "license": "MIT",
+  "name": "download-a-file",
+  "scripts": {
+    "test": "npx mocha test/**/*.spec.js --timeout 60000"
+  },
+  "version": "1.0.0"
+}
