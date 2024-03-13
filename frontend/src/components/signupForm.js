@@ -23,11 +23,11 @@ const SignupForm = () => {
                 <option disabled='' value=''>
                     Pick a language
                 </option>
-                <option value='JavaScript'>JavaScript</option>
-                <option value='Python'>Python</option>
-                <option value='Java'>Java</option>
-                <option value='C#'>C#</option>
-                <option value='Ruby'>Ruby</option>
+                <option value='javascript'>JavaScript</option>
+                <option value='python'>Python</option>
+                <option value='java'>Java</option>
+                <option value='csharp'>C#</option>
+                <option value='ruby'>Ruby</option>
             </select>
             <input
                 type="submit"
