@@ -108,7 +108,8 @@ const config = {
                     setGlobalData({aggregateFrontMatter: tempFrontMatter})
                 }
             }
-        }
+        },
+        "./plugins/getdrip.js",
     ],
 
     themeConfig:
