@@ -35,6 +35,9 @@ const SignupForm = () => {
                 data-drip-attribute='sign-up-button'
             />
             <input type='hidden' name='tags[]' value='elemental selenium' tabIndex='-1'/>
+            <input type='hidden' name="fields[send_newsletter]" value='true' tabIndex='-1'/>
+            <input type='hidden' name="fields[send_book_sample]" value='false' tabIndex='-1'/>
+            <input type='hidden' name="fields[send_email_course]" value='false' tabIndex='-1'/>
         </form>
     );
 }
