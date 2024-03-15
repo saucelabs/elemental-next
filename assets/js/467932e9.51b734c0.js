@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[1623],{6102:t=>{t.exports=JSON.parse('{"label":"xml","permalink":"/tips/tags/xml","allTagsPath":"/tips/tags","count":1,"items":[{"id":"junit-xml/57-junit-xml","title":"How To Prepare Your Tests For Continuous Integration","description":"Intro","permalink":"/tips/57-junit-xml"}],"unlisted":false}')}}]);

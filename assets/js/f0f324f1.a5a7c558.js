@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[6002],{83930:e=>{e.exports=JSON.parse('{"label":"selected","permalink":"/tips/tags/selected","allTagsPath":"/tips/tags","count":1,"items":[{"id":"how-to-test-checkboxes/45-checkboxes","title":"How To Test Checkboxes","description":"Intro","permalink":"/tips/45-checkboxes"}],"unlisted":false}')}}]);

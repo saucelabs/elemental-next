@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[8837],{42822:e=>{e.exports=JSON.parse('{"label":"wrapper","permalink":"/tips/tags/wrapper","allTagsPath":"/tips/tags","count":1,"items":[{"id":"wrapper/55-wrapper","title":"Wrapper","description":"Intro","permalink":"/tips/55-wrapper"}],"unlisted":false}')}}]);
