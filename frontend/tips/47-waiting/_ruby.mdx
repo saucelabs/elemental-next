@@ -1,6 +1,6 @@
 ## Example
 
-Let's step through some examples that deal with [dynamically loaded content](http://the-internet.herokuapp.com/dynamic_loading) available on [the-internet](https://github.com/tourdedave/the-internet). There are two examples, each is constructed slightly differently, but they have the same behavior (e.g., when you click the button on the page a loading bar appears for 5 seconds then disappears and displays some text).
+Let's step through some examples that deal with [dynamically loaded content](http://the-internet.herokuapp.com/dynamic_loading) available on [the-internet](https://github.com/saucelabs/the-internet). There are two examples, each is constructed slightly differently, but they have the same behavior (e.g., when you click the button on the page a loading bar appears for 5 seconds then disappears and displays some text).
 
 First let's pull in our dependent libraries (e.g., `selenium-webdriver` to drive the browser, and `rspec/expectations` and `RSpec::Matchers` for our assertions) and wire up some simple methods (e.g., `setup`, `teardown`, and `run`) to handle our test configuration.
 
@@ -81,20 +81,8 @@ run do
 end
 ```
 
->### On Not Mixing Explicit and Implicit Waits
->
->If your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., transient failures as you scale your test suite). For more details about this, check out [this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978) from [Jim Evans](https://twitter.com/jimevansmusic) (a member of the Selenium core team).
->
->The best thing is to only use explicit waits. We already have them in place, so we can go ahead and simply remove the implicit wait from our `setup` method.
->
->```ruby
->def setup
->  @driver = Selenium::WebDriver.for :firefox
->end
->```
-> And there you go!
->
-## Expected Behavior
+>### On Not Mixing Explicit and Implicit WaitsIf your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., transient failures as you scale your test suite). For more details about this, check out [this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978) from [Jim Evans](https://twitter.com/jimevansmusic) (a member of the Selenium core team).The best thing is to only use explicit waits. We already have them in place, so we can go ahead and simply remove the implicit wait from our `setup` method.```rubydef setup  @driver = Selenium::WebDriver.for :firefoxend
+>```And there you go!## Expected Behavior
 
 If we save the file and run it (e.g., `ruby waiting.rb` from the command-line) here is what will happen:
 
