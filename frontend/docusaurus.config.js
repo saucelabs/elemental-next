@@ -121,8 +121,8 @@ const config = {
                 logo: {
                     href: '/',
                     alt: 'Elemental Selenium Logo',
-                    src: 'img/banner-light.png',
-                    srcDark: 'img/banner-dark.png',
+                    src: 'img/banner-light.svg',
+                    srcDark: 'img/banner-dark.svg',
                 },
                 items: [
                     {
