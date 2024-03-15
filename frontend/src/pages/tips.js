@@ -255,7 +255,7 @@ const Tips = () => {
                                     </div>
                                     <div className="card__body">
                                         <p>
-                                            {card.text}
+                                            {card.description}
                                         </p>
                                     </div>
                                     <div className="card__footer">
