@@ -118,3 +118,5 @@ dist
 # Generated files
 .docusaurus
 .cache-loader
+
+playwright-report
