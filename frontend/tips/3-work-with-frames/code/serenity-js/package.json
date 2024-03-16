@@ -1,0 +1,22 @@
+{
+  "name": "serenity-js-elemental-automation-work-with-frames",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "license": "MIT",
+  "homepage": "https://serenity-js.org",
+  "dependencies": {
+    "@playwright/test": "1.42.1",
+    "@serenity-js/assertions": "3.21.0",
+    "@serenity-js/core": "3.21.0",
+    "@serenity-js/console-reporter": "3.21.0",
+    "@serenity-js/playwright-test": "3.21.0",
+    "@serenity-js/web": "3.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.25",
+    "typescript": "5.4.2"
+  }
+}
