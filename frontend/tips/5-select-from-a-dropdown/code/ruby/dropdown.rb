@@ -3,7 +3,7 @@ require 'rspec/expectations'
 include RSpec::Matchers
 
 def setup
-  @driver = Selenium::WebDriver.for :firefox
+  @driver = Selenium::WebDriver.for(:firefox)
 end
 
 def teardown
@@ -17,7 +17,7 @@ def run
 end
 
 run do
-  @driver.get 'http://the-internet.herokuapp.com/dropdown'
+  @driver.get 'https://the-internet.herokuapp.com/dropdown'
 
   dropdown_list = @driver.find_element(id: 'dropdown')
   options = dropdown_list.find_elements(tag_name: 'option')
@@ -28,7 +28,7 @@ run do
 end
 
 run do
-  @driver.get 'http://the-internet.herokuapp.com/dropdown'
+  @driver.get 'https://the-internet.herokuapp.com/dropdown'
 
   dropdown = @driver.find_element(id: 'dropdown')
   select_list = Selenium::WebDriver::Support::Select.new(dropdown)
@@ -36,5 +36,4 @@ run do
 
   selected_option = select_list.selected_options[0].text
   expect(selected_option).to eql 'Option 1'
-  #select_list.select_by(:value, '1')
 end
