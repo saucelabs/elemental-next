@@ -1,33 +1,36 @@
-package src.test.java;
+package com.elemental.selenium;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
+import java.time.Duration;
+import java.util.List;
+import java.util.ArrayList;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
-import java.util.List;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 
-public class Dropdown {
+public class DropdownTest {
     WebDriver driver;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void beforeEach() {
         driver = new FirefoxDriver();
     }
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
+    @AfterEach
+    public void afterEach() {
+        if (driver != null) {
+          driver.quit();
+        }
     }
 
     @Test
     public void dropdownTest() {
-        driver.get("http://the-internet.herokuapp.com/dropdown");
+        driver.get("https://the-internet.herokuapp.com/dropdown");
         WebElement dropdownList = driver.findElement(By.id("dropdown"));
         List<WebElement> options = dropdownList.findElements(By.tagName("option"));
         for (int i = 0; i < options.size(); i++) {
@@ -41,16 +44,16 @@ public class Dropdown {
                 selectedOption = options.get(i).getText();
             }
         }
-        assertThat(selectedOption, is("Option 1"));
+        Assertions.assertEquals("Option 1", selectedOption);
     }
 
     @Test
     public void dropdownTestRedux() {
-        driver.get("http://the-internet.herokuapp.com/dropdown");
+        driver.get("https://the-internet.herokuapp.com/dropdown");
         Select selectList = new Select(driver.findElement(By.id("dropdown")));
         selectList.selectByVisibleText("Option 1");
         // You could also use select.selectByValue("1");
-        assertThat(selectList.getFirstSelectedOption().getText(), is(equalTo("Option 1")));
+        Assertions.assertEquals("Option 1", selectList.getFirstSelectedOption().getText());
     }
 
 }
