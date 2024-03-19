@@ -1,8 +1,6 @@
 package com.elemental.selenium;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
