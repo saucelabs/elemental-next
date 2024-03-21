@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.1.1",
-    "@playwright/test": "1.42.1",
     "cypress": "13.7.0"
   },
   "browserslist": {

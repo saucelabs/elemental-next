@@ -52,10 +52,6 @@ jobs:
           timeout_minutes: 20
           max_attempts: 3
           command: |
-            # Install Playwright browsers
-            cd frontend
-            npx --no playwright install --with-deps
-            
             # Find directories
             directories=$(find . -type d -path '*/code/serenity-js' 2>/dev/null)            
             # Loop over directories and execute mvn test
