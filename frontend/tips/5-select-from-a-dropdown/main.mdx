@@ -1,13 +1,14 @@
 ---
-title: 'Select From A Dropdown'
+title: 'How to Select from a Dropdown List'
 id: '5-select-from-a-dropdown'
 slug: /5-select-from-a-dropdown
-sidebar_label: Select From A Dropdown
+sidebar_label: How to Select from a Dropdown List
 description: "Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown menu while online shopping, or selecting your method of payment."
 number: 5
 hide_table_of_contents: true
 level: 1
 publish_date: 2015-07-06
+image: "img/cards/5-select-from-a-dropdown.png"
 tags:
   - 'dropdown'
   - 'forms'
@@ -17,7 +18,7 @@ category:
 
 # How to Select from a Dropdown List
 
-## Intro
+## The Problem
 
 Some common use cases for selecting from a dropdown list might be selecting sizes or styles from a dropdown
 menu while online shopping, or selecting your method of payment. And, while selecting from a dropdown list
@@ -28,7 +29,7 @@ Let's take a look at a couple of different approaches.
 
 import DisplayTips from '@site/src/components/displayTips';
 
-<DisplayTips contentPath={"5-select-from-a-dropdown"} languages={[
+<DisplayTips languages={[
     {label: 'Python', value: 'python'},
     {label: 'C#', value: 'csharp'},
     {label: 'Java', value: 'java'},
@@ -36,15 +37,71 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Visit the example application
+- Find the dropdown list
+- Select the specified item from the dropdown list
+- Assert that the selected option is what you expect
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Outro
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Hopefully this tip will help you breeze through selecting items from a dropdown list.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
+
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/sturman.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/sturman"}
+/>
+<DefaultAvatar
+    name="Mike Millgate"
+    imgSrc={"https://github.com/trabulmonkee.png"}
+    description={"Contributed the Python code for this tip."}
+    url={"https://github.com/trabulmonkee"}
+/>
+<DefaultAvatar
+    name="Isaul Vargas"
+    imgSrc={"https://github.com/isaulv.png"}
+    description={"Python code review"}
+    url={"https://github.com/isaulv"}
+/>
+<DefaultAvatar
+    name="Peter Bittner"
+    imgSrc={"https://github.com/bittner.png"}
+    description={"Python code review"}
+    url={"https://github.com/bittner"}
+/>
+<DefaultAvatar
+    name="Jonathan Taylor"
+    imgSrc={"https://github.com/jtay2380.png"}
+    description={"Contributed the initial C# code for this tip."}
+    url={"https://github.com/jtay2380"}
+/>
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Current maintainer of Elemental Selenium"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

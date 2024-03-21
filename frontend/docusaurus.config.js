@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import {themes} from 'prism-react-renderer';
 
 // Reverse the sidebar items ordering (including nested category items)
 function generateSidebarItems(items) {
@@ -208,8 +207,8 @@ const config = {
                 copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
             },
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                theme: themes.github,
+                darkTheme: themes.dracula,
                 additionalLanguages: ['ruby', 'java', 'csharp', 'json'],
             },
             colorMode: {

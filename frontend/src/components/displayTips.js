@@ -1,6 +1,7 @@
 import React, {useState, useEffect, lazy, Suspense} from 'react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import {useDoc} from '@docusaurus/theme-common/internal';
 
 /**
  * @typedef {Object} Language
@@ -16,24 +17,24 @@ import TabItem from '@theme/TabItem';
 
 /**
  * @param {Object} props - The props for the DisplayTips component.
- * @param {string} props.contentPath - The path to the content.
  * @param {Language[]} props.languages - The languages for the content.
  */
-function DisplayTips({contentPath, languages}) {
+function DisplayTips({languages}) {
     /** @type {ContentComponent[]} */
     const [ContentComponents, setContentComponents] = useState([]);
+    const tipId = useDoc().frontMatter.id;
 
     useEffect(() => {
         const fetchComponents = async () => {
             const components = await Promise.all(languages.map(async (lang) => {
                 const component =
-                    lazy(() => import(`@site/tips/${contentPath}/_${lang.value}.mdx`));
+                    lazy(() => import(`@site/tips/${tipId}/_${lang.value}.mdx`));
                 return {label: lang.label, component};
             }));
             setContentComponents(components);
         };
         fetchComponents();
-    }, [contentPath, languages]);
+    }, [languages]);
 
     return (
         <div>

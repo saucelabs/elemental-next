@@ -1,98 +1,52 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-First let's pull in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: spec/dropdown.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+<TipCode codePath={"5-select-from-a-dropdown/code/javascript/test/dropdown.spec"} language={"js"}/>
 
-describe("Dropdown", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() {
-    driver = await new Builder().forBrowser("chrome").build();
-  });
+### Importing Libraries, Setup and Teardown
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The first two lines are pulling in our testing framework (e.g., `require("assert")`), driving the
+browser with Selenium (e.g., `const {Builder, By} = require("selenium-webdriver");`). Then we wire up
+some test setup and teardown methods.
 
-Now lets' wire up our test.
 
-```javascript
-// filename: spec/dropdown.spec.js
-// ...
-  it("select the hard way", async function() {
-    await driver.get("http://the-internet.herokuapp.com/dropdown");
-    const options = await driver.findElements(By.css("#dropdown option"));
-    let selection;
-    for (const option in options) {
-      if ((await options[option].getText()) === "Option 1") {
-        await options[option].click();
-        break;
-      }
-    }
-    for (const option in options) {
-      if (await options[option].isSelected()) {
-        selection = await options[option].getText();
-        break;
-      }
-    }
-    assert(selection === "Option 1");
-  });
-// ...
-```
+### Example 1
 
-After visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the dropdown list by its ID and store it in a variable. We then find each clickable element in the dropdown list (e.g., each `option`) with `findElements`.
+Our first example is `select the hard way`, after visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the dropdown list
+by its ID and store it in a variable. We then find each clickable element in the dropdown list
+(e.g., each `option`) with `findElements`.
 
-Grabbing all of the options returns a collection that we iterate over and when the text matches what we want it will click on it.
+Grabbing all of the options returns a collection that we iterate over and when the text matches what we want it
+will click on it.
 
-We finish the test by performing a check to see that our selection was made correctly. This is done by looping over the dropdown options collection one more time. This time we're getting the text of the item that was selected, storing it in a variable, and then making an assertion against it.
+We finish the test by performing a check to see that our selection was made correctly. This is done by looping
+over the dropdown options collection one more time. This time we're getting the text of the item that was
+selected, storing it in a variable, and then making an assertion against it.
 
 While this works, there is a more accessible way to do this.
 
-## Example 2
+### Example 2
 
-```javascript
-// filename: spec/dropdown.spec.js
-// ...
-  it("select the simpler way", async function() {
-    await driver.get("http://the-internet.herokuapp.com/dropdown");
-    await driver
-      .findElement(
-        By.xpath("//*[@id='dropdown']/option[contains(text(),'Option 1')]")
-      )
-      .click();
-    const selection = await driver
-      .findElement(By.css('#dropdown option[selected="selected"]'))
-      .getText();
-    assert(selection === "Option 1");
-  });
-});
-```
+Our second example is `select the simpler way`, and similar to the first example, we are selecting a dropdown
+list option by its text. Instead of first finding the dropdown list, we will employ a more robust locator
+(e.g., XPath) to find an element within the dropdown list that contains our target text -- and click it.
 
-Similar to the first example, we are selecting a dropdown list option by its text. Instead of first finding the dropdown list, we will employ a more robust locator (e.g., XPath) to find an element within the dropdown list that contains our target text -- and click it.
+We then determine what has been selected in the dropdown list by using one more powerful locator (e.g., a
+CSS selector). This time, looking to see which option has the `selected` attribute, and grabbing its text. We
+use this found text to assert that the correct item was chosen.
 
-We then determine what has been selected in the dropdown list by using one more powerful locator (e.g., a CSS selector). This time, looking to see which option has the `selected` attribute, and grabbing its text. We use this found text to assert that the correct item was chosen.
+### Executing the Test
 
-## Expected Behavior
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-If you save this file with either of these examples and run it (e.g., `mocha` from the command-line) here is what will happen:
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-+ Open the browser
-+ Visit the example application
-+ Find the dropdown list
-+ Select the requested item from the dropdown list
-+ Assert that the selected option is the one you expect
-+ Close the browser
-
-## Summary
-
-In this tip, we've gone over using Selenium to select from a drop down using the drop down list, or XPath to find an element within the dropdown list.
-
-Hopefully this will help you when selecting items from a dropdown list.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.
