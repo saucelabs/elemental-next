@@ -1,6 +1,6 @@
 [build]
     base = "frontend/"
-    command = "cd frontend && npm install && npm run build"
+    command = "npm install && npm run build"
     publish = "frontend/build"
 
 [build.environment]
@@ -8,21 +8,21 @@
 
 [context.production]
     base = "frontend/"
-    command = "cd frontend && npm install && npm run build"
+    command = "npm install && npm run build"
 
 [context.production.environment]
     NODE_VERSION = "18"
 
 [context.branch-deploy]
     base = "frontend/"
-    command = "cd frontend && npm install && npm run build"
+    command = "npm install && npm run build"
 
 [context.branch-deploy.environment]
     NODE_VERSION = "18"
 
 [context.deploy-preview]
     base = "frontend/"
-    command = "cd frontend && npm install && npm run build"
+    command = "npm install && npm run build"
 
 [context.deploy-preview.environment]
     NODE_VERSION = "18"
