@@ -1,4 +1,4 @@
-name: Run JavaScript tips
+name: Run Serenity/JS tips
 
 on:
   schedule:
@@ -8,12 +8,12 @@ on:
     branches:
       - main
     paths:
-      - '**/code/javascript/**'
+      - '**/code/serenity-js/**'
   push:
     branches:
       - main
     paths:
-      - '**/code/javascript/**'
+      - '**/code/serenity-js/**'
 
 env:
   DISPLAY: :99
@@ -52,8 +52,12 @@ jobs:
           timeout_minutes: 20
           max_attempts: 3
           command: |
+            # Install Playwright browsers
+            cd frontend
+            npx --no playwright install --with-deps
+            
             # Find directories
-            directories=$(find . -type d -path '*/code/javascript' 2>/dev/null)            
+            directories=$(find . -type d -path '*/code/serenity-js' 2>/dev/null)            
             # Loop over directories and execute mvn test
             for dir in $directories
             do
@@ -71,7 +75,7 @@ jobs:
           max_attempts: 3
           command: |
             # PowerShell script to find directories and run mvn test
-            $directories = Get-ChildItem -Path . -Recurse -Filter 'javascript' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\javascript*' }
+            $directories = Get-ChildItem -Path . -Recurse -Filter 'serenity-js' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\serenity-js*' }
             foreach ($dir in $directories)
             {
               Write-Host "Running tests in $($dir.FullName)"
