@@ -1,7 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-import {themes as prismThemes, themes} from 'prism-react-renderer';
+import {themes} from 'prism-react-renderer';
 
 // Reverse the sidebar items ordering (including nested category items)
 function generateSidebarItems(items) {
