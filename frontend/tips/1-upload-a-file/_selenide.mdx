@@ -1,0 +1,64 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"1-upload-a-file/code/selenide/src/test/java/com/elemental/selenium/UploadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 7 are pulling in our requisite classes
+ * for annotations (e.g., `org.junit.jupiter.api.Test`),
+ * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
+ * matchers for assertions (e.g., `com.codeborne.selenide.Condition.text`) 
+ * etc.
+
+NB! You don't need to add the typical "selenium*" dependencies.  
+Just one dependency is enough: `com.codeborne:selenide`. 
+It will pull down all the needed Selenium dependencies automatically.
+
+### Setup and Teardown
+
+Line 15 opens a browser with given URL.
+
+Under the hood, Selenide doesn't all the needed jobs:
+* detects the browser (can be customized if needed), 
+* setups commons browser settings (can be customized if needed) 
+* etc.
+
+No teardown is needed because Selenide automatically closes the browser when the test finishes.
+
+### The Test
+
+Lines 20 to 22 are the test itself.
+
+We call `uploadFileFromClasspath()` method and annotate it with `@Test` so it is run as a test.
+
+Next, we visit the page with the upload form, find the input allowing to upload files, and submit the form. 
+
+After the file is uploaded to the page it will display the filename it just processed.
+We use this text to perform our assertion (making sure the uploaded file is what we expect).
+
+NB! "Classpath" is a special folder in Java that (among others) contains all files from folder `src/test/resources`)
+
+That's why we store the file we want to upload to folder `src/test/resources` and call method `uploadFromClasspath`.
+
+### Alternative test
+If you are afraid of the term "classpath" :), or prefer to store test files in some other folders,
+you can call method `uploadFile` explicitly specifying file path. 
+
+This example is described in lines 27-29. 
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

@@ -119,4 +119,8 @@ dist
 .docusaurus
 .cache-loader
 
+# Maven output
+target
+
+# Playwright
 playwright-report
