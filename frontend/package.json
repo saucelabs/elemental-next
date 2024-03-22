@@ -5,7 +5,6 @@
   "scripts": {
     "build": "docusaurus build",
     "clear": "docusaurus clear",
-    "cypress:open": "cypress open",
     "deploy": "docusaurus deploy",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -25,8 +24,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.1.1",
-    "cypress": "13.7.1"
+    "@docusaurus/module-type-aliases": "^3.1.1"
   },
   "browserslist": {
     "production": [
