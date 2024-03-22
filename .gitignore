@@ -118,3 +118,6 @@ dist
 # Generated files
 .docusaurus
 .cache-loader
+
+# Maven output
+target
