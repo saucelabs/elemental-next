@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/python/new_window_and_tab.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+The first lines are pulling in our requisite libraries our testing framework (e.g., `import pytest`),
+driving the browser with Selenium (e.g., `from selenium import webdriver`), and a locator strategy to
+find the elements (e.g. `from selenium.webdriver.common.by import By`), and wire up some setup and
+teardown methods for our tests.
+
+### Setup and Teardown
+
+Afterward, we set up and tear down the browser instance. The `@pytest.fixture` decorator is used to create a
+fixture that sets up and tears down the browser. The `yield` keyword is used to pause the fixture until the test is
+completed. After the test is completed, the fixture resumes and executes the teardown code
+(in this case, `driver.quit()`).
+
+### Open New Window
+
+`test_new_window` shows how to open a new window, switch to it, and assert the number of window handles open. They
+key to this is the `driver.switch_to.new_window('window')` line. Which opens a new window and switches to it.
+
+### Open New Tab
+
+`test_new_tab` shows how to open a new tab, switch to it, and assert the number of window handles open. They key to
+this is the `driver.switch_to.new_window('tab')` line. Which opens a new tab and switches to it.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest new_window_and_tab.py` from the
+command-line.
+

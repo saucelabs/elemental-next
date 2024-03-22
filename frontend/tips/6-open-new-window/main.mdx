@@ -1,0 +1,84 @@
+---
+title: 'Open a New Window or Tab'
+id: '6-open-new-window'
+slug: /6-open-new-window
+sidebar_label: Open a New Window or Tab
+description: 'Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or tab.'
+number: 6
+hide_table_of_contents: true
+publish_date: 2023-02-17
+tags:
+  - 'new window'
+  - 'new tab'
+  - 'no keystrokes needed'
+level: 1
+category:
+  - 'fundamentals'
+---
+
+## The Problem
+
+Nearly everyone, at some point during their normal flow of work on the computer, has had to open a new window or
+tab. In fact, many of us often end up with several tabs open. It makes sense that this should be tested using
+automation.
+
+Previously, you may have sent keystrokes to open a new tab or window with a send keys method and `Command t`
+(macOS) or `Control n` (Windows/Linux). However, this doesn't translate well across different operating systems
+and browser versions.
+
+## A Solution
+
+Most modern browser automation tools have a built-in method to open a new window or tab. This method allows you to
+create a new window or new tab (without needing a keyboard input), then select that new tab or window, and navigate
+to a website.
+
+## Example
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+]}/>
+
+## Expected Behavior
+
+- Open Firefox browser
+- Navigate to the-internet website
+- Open a New Window and move it to a different position on the screen
+- Navigate to the Typos page on the-internet website
+- Check the number of windows open
+- Close all browsers
+
+## Summary
+
+There are many possible use cases for this new way of opening and focusing on new browser tabs and windows across
+OS and browser combinations.
+
+From testing the way a user can interact with two windows side-by-side, to testing performance and behavior
+of multiple windows, this new command makes it simpler to test on multiple web pages.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Lindsay Walker "
+    imgSrc={"https://github.com/walkerlj0.png"}
+    description={"Creator of this tip"}
+    url={"https://github.com/walkerlj0"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Maintainer of Elemental Selenium"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/csharp/NewWindowNewTabTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+First, we are pulling in our requisite classes for interacting with the operating system (e.g., `using System.IO;`),
+our testing framework (e.g., `using Microsoft.VisualStudio.TestTools.UnitTesting;`), driving the browser with
+Selenium (e.g., `using OpenQA.Selenium;`), and launching an instance of Firefox
+(e.g., `using OpenQA.Selenium.Firefox;`).
+
+### Setup and Teardown
+
+After specifying the namespace and the class (e.g., `public class NewWindowNewTabTest`), we are setting up and
+tearing down the browser instance.
+
+First we create a field variable (e.g., `IWebDriver _driver;`) to store our WebDriver instance for reuse throughout
+the class. We then create a `SetUp()` method with a `[TestInitialize]` attribute so it runs before our test. In this
+method we are creating an instance of WebDriver with Firefox (e.g., `_driver = new FirefoxDriver();`).
+
+After our test executes, the `TearDown()` method will run thanks to the `[TestCleanup]` attribute. This
+calls `_driver?.Quit();` which will close the browser instance.
+
+### Open New Window
+
+`NewWindowTest` shows how to open a new window, switch to it, and assert the number of window handles open. They key
+to this is the `_driver.SwitchTo().NewWindow(WindowType.Window)` line. Which opens a new window and switches to it.
+
+### Open New Tab
+
+`NewTabTest` shows how to open a new tab, switch to it, and assert the number of window handles open. They key to this
+is the `_driver.SwitchTo().NewWindow(WindowType.Tab)` line. Which opens a new tab and switches to it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
+

@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"6-open-new-window/code/java/src/test/java/com/elemental/selenium/NewWindowNewTabTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the
+browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions
+(e.g., `org.junit.jupiter.api.Assertions`, etc.)), and start our class with some setup and teardown
+methods.
+
+### Setup and Teardown
+
+After specifying the namespace and the class (e.g., `public class NewWindowNewTabTest`), we are setting up and
+tearing down the browser instance. The `beforeEach` method, will execute before
+each test. In it we are launching a new instance of Firefox with Selenium and storing it in a class variable that
+we'll use throughout all tests. After our test executes the second method, `afterEach`, will execute. This calls
+`driver.quit()` which ends the session by closing the browser instance.
+
+### Open New Window
+
+`newWindow` shows how to open a new window, switch to it, and assert the number of window handles open. They key
+to this is the `driver.switchTo().newWindow(WindowType.WINDOW)` line. Which opens a new window and switches to it.
+
+### Open New Tab
+
+`newTab` shows how to open a new tab, switch to it, and assert the number of window handles open. They key to this
+is the `driver.switchTo().newWindow(WindowType.TAB)` line. Which opens a new tab and switches to it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
