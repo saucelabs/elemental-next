@@ -33,7 +33,6 @@ run do
 
     first_window = @driver.window_handle
     @driver.find_element(css: '.example a').click
-    sleep 2
     all_windows = @driver.window_handles
     new_window = all_windows.find { |window| window != first_window }
 
