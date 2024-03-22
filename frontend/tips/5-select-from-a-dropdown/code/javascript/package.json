@@ -7,7 +7,7 @@
     "mocha": "^10.2.0"
   },
   "license": "MIT",
-  "name": "download-a-file",
+  "name": "select-from-a-dropdown",
   "scripts": {
     "test": "npx mocha test/**/*.spec.js --timeout 60000"
   },
