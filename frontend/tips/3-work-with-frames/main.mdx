@@ -26,8 +26,8 @@ easy to make a mistake if we're not paying attention.
 
 ## A Solution
 
-Rather than getting frustrated when authoring your tests, you can work with the elements in a frame by telling
-Selenium to switch to that frame first. Then the rest of your test should be more straightforward.
+Rather than getting frustrated when authoring your tests, you can work with the elements in a frame switching
+to that frame first. Then the rest of your test should be more straightforward.
 
 Let's explore further with some examples.
 
@@ -41,6 +41,7 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Java', value: 'java'},
     {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
+    {label: 'Serenity/JS', value: 'serenity-js'},
 ]}/>
 
 ## Expected Behavior
@@ -105,6 +106,13 @@ import DefaultAvatar from "@site/src/components/defaultAvatar";
     imgSrc={"https://github.com/sturman.png"}
     description={"Contributed the initial Java code for this tip."}
     url={"https://github.com/sturman"}
+/>
+
+<DefaultAvatar
+    name="Jan Molak"
+    imgSrc={"https://github.com/jan-molak.png"}
+    description={"Contributed the Serenity/JS code for this tip."}
+    url={"https://github.com/jan-molak"}
 />
 
 ## Authors

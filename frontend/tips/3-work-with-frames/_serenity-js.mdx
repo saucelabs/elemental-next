@@ -1,0 +1,94 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/serenity-js/spec/frames.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+This example uses [Serenity/JS](https://serenity-js.org) and [Playwright Test](https://serenity-js.org/handbook/test-runners/playwright-test/)
+to demonstrate how to work with frames in a web application.
+
+To learn more about Serenity/JS, check out:
+- [Web testing with Serenity/JS](https://serenity-js.org/handbook/web-testing/)
+- [Serenity/JS Screenplay Pattern](https://serenity-js.org/handbook/design/screenplay-pattern/)
+- [Serenity/JS Assertions](https://serenity-js.org/handbook/design/assertions/)
+- [Serenity/JS Playwright Test integration](https://serenity-js.org/handbook/test-runners/playwright-test/)
+
+### Importing Libraries, Setup and Teardown
+
+First, we import the [`describe`](https://serenity-js.org/api/playwright-test/function/describe/)
+and [`it`](https://serenity-js.org/api/playwright-test/function/it/) functions from
+[`@serenity-js/playwright-test`](https://serenity-js.org/api/playwright-test/) - the Serenity/JS adapter for [Playwright Test](https://serenity-js.org/handbook/test-runners/playwright-test/).
+We'll use these functions to group and define our test cases, respectively,
+as they offer integration with [Serenity/JS reporters](https://serenity-js.org/handbook/reporting/)
+and test fixtures that allow us to use [Serenity/JS Screenplay Pattern](https://serenity-js.org/handbook/design/screenplay-pattern/)
+libraries in our test scenarios.
+Relying on [Serenity/JS fixtures](https://serenity-js.org/api/playwright-test/interface/SerenityFixtures/) enables us
+to avoid defining the setup and teardown logic for our tests, as it's all done automatically by the test runner.
+
+Later, we import Serenity/JS Screenplay Pattern libraries that we'll use to interact with the web app
+and perform assertions.
+Note that the [`@serenity-js/web`](https://serenity-js.org/api/web/) module offers an abstraction layer over web integration
+tools like Selenium, Playwright, or WebdriverIO, allowing us to write our tests in a driver-agnostic way and swap out
+the driver without having to modify the tests.
+Furthermore, the [`@serenity-js/assertions`](https://serenity-js.org/api/assertions/) module provides an universal
+assertion library that enables us to write our assertions using the same syntax regardless of the interface
+our tests interact with - be it web UI, REST API, or anything else.
+
+### Example 1
+
+Our first test scenario is interacting with the [nested frames](https://the-internet.herokuapp.com/nested_frames)
+example from [the-internet](https://the-internet.herokuapp.com/nested_frames).
+
+While [Selenium](https://www.selenium.dev/documentation/webdriver/interactions/windows/),
+[WebdriverIO](https://webdriver.io/docs/api/webdriver/#switchtoframe),
+and [Playwright](https://playwright.dev/docs/api/class-page#page-frame) all approach frame switching differently and have their own methods for it,
+Serenity/JS provides a single, consistent API for working with frames, regardless of the underlying driver.
+
+Afterwards, to perform activities in the context of a frame, we use the interaction to [`Switch`](https://serenity-js.org/api/web/class/Switch/) from the
+[`@serenity-js/web`](https://serenity-js.org/api/web/) module, and provide a [`PageElement`](https://serenity-js.org/api/web/class/PageElement/)
+that represents the frame we want to work with.
+When our [`actor`](https://serenity-js.org/handbook/design/screenplay-pattern/#actors) finishes their last activity in the frame,
+they'll automatically switch their focus back to the parent frame or the top-level page, depending on the context.
+This way, we can avoid the need to keep track of frames and manually switch back after we're done with the nested frame.
+
+If we need to work with frames nested in other frames, like the middle frame in this example, we repeat the same pattern
+to get to the desired frame, then retrieve the text of the desired element, to then finally perform the assertion.
+When the `actor` is done, they'll automatically switch their focus back to the top-level frame, and then the top-level page.
+
+### Example 2
+
+A common scenario where you'll likely run into frames involves working with
+<abbr title="What You See Is What You Get">WYSIWYG</abbr> editors, such as [TinyMCE](http://www.tinymce.com/).
+
+Our second test scenario is interacting with the [TinyMCE editor embedded in a nested frame](https://the-internet.herokuapp.com/iframe).
+You'll notice that apart from interacting with the frame, this example also demonstrates how to make you `actor`
+use their [`notes()`](https://serenity-js.org/api/core/class/TakeNotes/) to store and retrieve information about the state of the application under test.
+
+Once the page loads:
+- We switch into the frame that contains TinyMCE
+- Then, store the original text displayed in the editor and store it in the actor's notes
+- Next, use the interaction to [`Clear`](https://serenity-js.org/api/web/class/Clear/) to remove the contents of the editor
+- Afterward, use the interaction to [`Enter`](https://serenity-js.org/api/web/class/Enter/) to enter the new value
+- Finally, use the interaction to [`Ensure`](https://serenity-js.org/api/assertions/class/Ensure/) to assert that the new value is different than what the actor saw originally
+
+When the activity sequence from is complete, the actor automatically switches their focus back to the top-level page.
+This mechanism allows us to go straight to the next step of the scenario without having to worry about the frames,
+and so it ensures that the content of the top-level page heading is as expected.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/serenity-js/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.
+
+
+

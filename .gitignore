@@ -121,3 +121,6 @@ dist
 
 # Maven output
 target
+
+# Playwright
+playwright-report
