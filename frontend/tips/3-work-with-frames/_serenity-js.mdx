@@ -17,7 +17,7 @@ To learn more about Serenity/JS, check out:
 
 ### Importing Libraries, Setup and Teardown
 
-On **line 1**, we import the [`describe`](https://serenity-js.org/api/playwright-test/function/describe/)
+First, we import the [`describe`](https://serenity-js.org/api/playwright-test/function/describe/)
 and [`it`](https://serenity-js.org/api/playwright-test/function/it/) functions from
 [`@serenity-js/playwright-test`](https://serenity-js.org/api/playwright-test/) - the Serenity/JS adapter for [Playwright Test](https://serenity-js.org/handbook/test-runners/playwright-test/).
 We'll use these functions to group and define our test cases, respectively,
@@ -27,7 +27,7 @@ libraries in our test scenarios.
 Relying on [Serenity/JS fixtures](https://serenity-js.org/api/playwright-test/interface/SerenityFixtures/) enables us
 to avoid defining the setup and teardown logic for our tests, as it's all done automatically by the test runner.
 
-On **lines 3 to 5**, we import Serenity/JS Screenplay Pattern libraries that we'll use to interact with the web app
+Later, we import Serenity/JS Screenplay Pattern libraries that we'll use to interact with the web app
 and perform assertions.
 Note that the [`@serenity-js/web`](https://serenity-js.org/api/web/) module offers an abstraction layer over web integration
 tools like Selenium, Playwright, or WebdriverIO, allowing us to write our tests in a driver-agnostic way and swap out
@@ -38,7 +38,7 @@ our tests interact with - be it web UI, REST API, or anything else.
 
 ### Example 1
 
-**Lines 9 to 29** define our first test scenario, interacting with the [nested frames](https://the-internet.herokuapp.com/nested_frames)
+Our first test scenario is interacting with the [nested frames](https://the-internet.herokuapp.com/nested_frames)
 example from [the-internet](https://the-internet.herokuapp.com/nested_frames).
 
 While [Selenium](https://www.selenium.dev/documentation/webdriver/interactions/windows/),
@@ -46,7 +46,7 @@ While [Selenium](https://www.selenium.dev/documentation/webdriver/interactions/w
 and [Playwright](https://playwright.dev/docs/api/class-page#page-frame) all approach frame switching differently and have their own methods for it,
 Serenity/JS provides a single, consistent API for working with frames, regardless of the underlying driver.
 
-On **line 21**, to perform activities in the context of a frame, we use the interaction to [`Switch`](https://serenity-js.org/api/web/class/Switch/) from the
+Afterwards, to perform activities in the context of a frame, we use the interaction to [`Switch`](https://serenity-js.org/api/web/class/Switch/) from the
 [`@serenity-js/web`](https://serenity-js.org/api/web/) module, and provide a [`PageElement`](https://serenity-js.org/api/web/class/PageElement/)
 that represents the frame we want to work with.
 When our [`actor`](https://serenity-js.org/handbook/design/screenplay-pattern/#actors) finishes their last activity in the frame,
@@ -59,22 +59,23 @@ When the `actor` is done, they'll automatically switch their focus back to the t
 
 ### Example 2
 
-A common scenario where you'll likely run into frames involves working with <abbr title="What You See Is What You Get">WYSIWYG</abbr> editors, such as [TinyMCE](http://www.tinymce.com/).
+A common scenario where you'll likely run into frames involves working with
+<abbr title="What You See Is What You Get">WYSIWYG</abbr> editors, such as [TinyMCE](http://www.tinymce.com/).
 
-**Lines 31 to 62** define our second test scenario, interacting with the [TinyMCE editor embedded in a nested frame](https://the-internet.herokuapp.com/iframe).
+Our second test scenario is interacting with the [TinyMCE editor embedded in a nested frame](https://the-internet.herokuapp.com/iframe).
 You'll notice that apart from interacting with the frame, this example also demonstrates how to make you `actor`
 use their [`notes()`](https://serenity-js.org/api/core/class/TakeNotes/) to store and retrieve information about the state of the application under test.
 
 Once the page loads:
-- on **line 48**: we switch into the frame that contains TinyMCE
-- on **line 49**: store the original text displayed in the editor and store it in the actor's notes
-- on **line 51**: use the interaction to [`Clear`](https://serenity-js.org/api/web/class/Clear/) to remove the contents of the editor
-- on **line 52**: use the interaction to [`Enter`](https://serenity-js.org/api/web/class/Enter/) to enter the new value
-- on **line 55**: use the interaction to [`Ensure`](https://serenity-js.org/api/assertions/class/Ensure/) to assert that the new value is different than what the actor saw originally
+- We switch into the frame that contains TinyMCE
+- Then, store the original text displayed in the editor and store it in the actor's notes
+- Next, use the interaction to [`Clear`](https://serenity-js.org/api/web/class/Clear/) to remove the contents of the editor
+- Afterward, use the interaction to [`Enter`](https://serenity-js.org/api/web/class/Enter/) to enter the new value
+- Finally, use the interaction to [`Ensure`](https://serenity-js.org/api/assertions/class/Ensure/) to assert that the new value is different than what the actor saw originally
 
-When the activity sequence from **lines 48 to 58** is complete, the actor automatically switches their focus back to the top-level page.
-This mechanism allows us to go straight to the next step of the scenario without having to worry about the frames, and so:
-- on **line 59**: ensure that the content of the top-level page heading is as expected
+When the activity sequence from is complete, the actor automatically switches their focus back to the top-level page.
+This mechanism allows us to go straight to the next step of the scenario without having to worry about the frames,
+and so it ensures that the content of the top-level page heading is as expected.
 
 ### Executing the Test
 
