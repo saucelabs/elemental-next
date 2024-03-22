@@ -1,0 +1,82 @@
+name: Run Serenity/JS tips
+
+on:
+  schedule:
+    - cron: '30 22 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/code/serenity-js/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/code/serenity-js/**'
+
+env:
+  DISPLAY: :99
+
+jobs:
+  test_examples:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v4
+      - name: Remove driver directories Windows
+        if: matrix.os == 'windows-latest'
+        run: |
+          rm "$env:ChromeWebDriver" -r -v
+          rm "$env:EdgeWebDriver" -r -v
+          rm "$env:GeckoWebDriver" -r -v
+      - name: Remove driver directories Non-Windows
+        if: matrix.os != 'windows-latest'
+        run: |
+          sudo rm -rf $CHROMEWEBDRIVER $EDGEWEBDRIVER $GECKOWEBDRIVER
+      - name: Start Xvfb
+        if: matrix.os == 'ubuntu-latest'
+        run: Xvfb :99 &
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run tests on Linux and macOS
+        if: matrix.os != 'windows-latest'
+        uses: nick-invision/retry@v3.0.0
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            # Find directories
+            directories=$(find . -type d -path '*/code/serenity-js' 2>/dev/null)            
+            # Loop over directories and execute mvn test
+            for dir in $directories
+            do
+                echo "Running tests in $dir"
+                cd $dir
+                npm install
+                npm test
+                cd -
+            done
+      - name: Run tests on Windows
+        if: matrix.os == 'windows-latest'
+        uses: nick-invision/retry@v3.0.0
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: |
+            # PowerShell script to find directories and run mvn test
+            $directories = Get-ChildItem -Path . -Recurse -Filter 'serenity-js' | Where-Object { $_.PSIsContainer -and $_.FullName -like '*\code\serenity-js*' }
+            foreach ($dir in $directories)
+            {
+              Write-Host "Running tests in $($dir.FullName)"
+              Set-Location -Path $dir.FullName
+              npm install
+              npm test
+              Set-Location -Path $PSScriptRoot
+            }
