@@ -1,0 +1,54 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/selenide/src/test/java/com/elemental/selenium/DownloadTest.java"}
+         language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 are pulling in 
+  * classes for test runner (e.g., `org.junit.jupiter.api.BeforeEach`, etc.),
+  * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
+  * matchers for assertions (e.g., `org.assertj.core.api.Assertions.assertThat`)
+  * etc.
+
+### Setup and Teardown
+
+Lines 14 to 17 are setting up the browser instance. The `openAUT` opens the application under test before
+each test. 
+
+### The Test
+
+Lines 21 to 24 are the test itself.
+
+After visiting the page, we find the download link and call method `download` for it.
+This method does its magic and returns the downloaded file. Now you can verify its name or content.
+
+NB! You don't need to find the downloaded file in any directories (this is the typical mistake of people who start using Selenide).
+Method `$.download()` _returns_ the file. It's already in your hands. Just verify it.
+
+### Under the hood
+Selenide sample for downloading files is much simpler (just one line!) than Selenium sample because Selenide does lots of work under the hood:
+Under the hood, Selenide does all the needed job for downloading files:
+  * creates a uniquely named temp directory,
+  * configures the browser to make it automatically download files to that unique directory,
+  * clicks a web element,
+  * waits until the file arises in the downloads folder
+  * etc.
+
+Also, Selenide has several algorithms for downloading the file:
+  * HTTPGET (the default one)
+  * FOLDER
+  * CDP
+  * PROXY
+
+### For more details
+
+See https://www.youtube.com/watch?v=GwHG550moGc&ab_channel=AndreiSolntsev
+
+### Executing the Test
+
+You can run the test by executing `mvn test` from the command-line.
