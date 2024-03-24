@@ -1,7 +1,7 @@
 ---
 title: 'How To Work With Tables'
-id: '25-tables'
-slug: /25-tables
+id: '25-how-to-work-with-tables'
+slug: /25-how-to-work-with-tables'
 sidebar_label: How To Work With Tables
 description: "Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for."
 number: 25
@@ -38,7 +38,10 @@ But keep in mind that if you care about older browsers (e.g., Internet Explorer 
 work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end
 developer to update the table with helpful attributes.
 
-> ### _**A quick primer on Tables and CSS Pseudo-classes**_Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation againstit. So here's a quick primer.> A table has:- a header (e.g. `<thead>`)- a body (e.g. `<tbody>`).- rows (e.g. `<tr>`) -- horizontal slats of data- columns -- vertical slats of data> Columns are made up of cells, which are:- a header (e.g., `<th>`)- one or more standard cells (e.g., `<td>` -- which is short for **table data**)CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based ona relative number (e.g. the **third** `<td>` cell from a row in the table body). This works well with tables sincewe can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in
+> ### A quick primer on Tables and CSS Pseudo-classes
+> Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
+> A table has:- a header (e.g. `<thead>`)- a body (e.g. `<tbody>`).- rows (e.g. `<tr>`) -- horizontal slats of data- columns -- vertical slats of data
+> Columns are made up of cells, which are:- a header (e.g., `<th>`)- one or more standard cells (e.g., `<td>` -- which is short for **table data**)CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based ona relative number (e.g. the **third** `<td>` cell from a row in the table body). This works well with tables sincewe can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in
 > our test -- which would give us all of the data for the third column.
 
 Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
