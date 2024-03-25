@@ -48,7 +48,7 @@ namespace csharp
         [TestMethod]
         public void SelectFromDropdownTheEasyWay()
         {
-            _driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/dropdown");
+            _driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dropdown");
             SelectElement Dropdown = new SelectElement(_driver.FindElement(By.Id("dropdown")));
             Dropdown.SelectByText("Option 1");
             Assert.AreEqual("Option 1", Dropdown.SelectedOption.Text);

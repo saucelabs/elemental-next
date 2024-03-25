@@ -15,7 +15,6 @@ First let's import our requisite classes:
  * for annotations (e.g., `org.junit.jupiter.api.Test`),
  * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
  * matchers for assertions (e.g., `com.codeborne.selenide.Condition.text`)
- * etc.
 
 Next, we'll start our test.
 
@@ -47,8 +46,6 @@ We then verify that the expected option is actually selected:
 ```java
 dropdownList.getSelectedOption().shouldHave(text("Option 2"));
 ```
-
-
 
 ### Executing the Test
 
