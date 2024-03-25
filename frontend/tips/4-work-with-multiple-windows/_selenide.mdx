@@ -14,29 +14,28 @@ First let's import our requisite classes
  * for annotations (e.g., `org.junit.jupiter.api.Test`),
  * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
  * matchers for assertions (e.g., `com.codeborne.selenide.Condition.text`)
- * etc.
 
-Next, we'll start our class off with some setup, covered in line 18.
+In the following lines we start our class off with some setup.
 
 ### The test
 
-Line 22 shows a test that exercises new window functionality from an application. In this case, we'll be using
-[the new window example](http://the-internet.herokuapp.com/windows) from [the-internet](https://github.com/saucelabs/the-internet).
+The `multipleWindows` test exercises new window functionality from an application. In this case, we'll be using
+[the new window example](https://the-internet.herokuapp.com/windows) from [the-internet](https://github.com/saucelabs/the-internet).
 
 After loading the page we click the link with text "Click Here" which spawns a new window.
 
-We then switch between windows based on their order (assuming that the first one is the originating window, and 
-the second one is the new window). We round this test out by performing a simple check against the title of 
+We then switch between windows based on their order (assuming that the first one is the originating window, and
+the second one is the new window). We round this test out by performing a simple check against the title of
 the page to make sure Selenide is focused on the correct window.
 
 ### Details
 
-* In line 23, we check a pre-condition: the browser has only one window before we start any actions
-* In line 24, we click the link "Click Here"
-* In line 26, we check that now the browser has 2 windows
-* In lines 27-28, we check that the active window is still the first one (we check its title and url)
-* In line 30, we switch to the "new" window (index 0 for the original window, index 1 for the new window)
-* In lines 32-33, we check that the active window is the new one (we check its title and url)
+* A pre-condition is checked: the browser has only one window before we start any actions
+* Click the link "Click Here"
+* Check that now the browser has 2 windows
+* Check that the active window is still the first one (we check its title and url)
+* Switch to the "new" window (index 0 for the original window, index 1 for the new window)
+* Check that the active window is the new one (we check its title and url)
 
 ### Executing the Test
 
