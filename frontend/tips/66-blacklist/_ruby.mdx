@@ -2,7 +2,7 @@
 
 __NOTE: For a brief primer on proxy servers check out [tip 64](/tips/64-limit-bandwidth).__
 
-To get started we'll need to download a copy of Browsermob Proxy ([link](http://bmp.lightbody.net/)) and write our script. In it we'll pull in our requisite libraries (e.g., `browsermob/proxy` to control the proxy server, `selenium-webdriver` to drive the browser, and `rspec/expectations` and it's matchers to perform assertions).
+To get started we'll need to download a copy of Browsermob Proxy ([link](http://bmp.lightbody.net/)) and write our script. In it, we'll pull in our requisite libraries (e.g., `browsermob/proxy` to control the proxy server, `selenium-webdriver` to drive the browser, and `rspec/expectations` and it's matchers to perform assertions).
 
 After that, we'll configure the proxy server and wire up some simple `setup`, `teardown`, and `run` methods. As part of `setup` we'll want to configure the blacklist. To do that we'll add a regular expression to find the resource we want to block and the status code we'd like the resource to be changed to (e.g., blocking a resource from loading with a `200` response code and having it return a `404` instead).
 

@@ -24,7 +24,7 @@ category:
 
 This tip will go over how to implement explicit waits for testing dynamic web pages.
 
-Let's say you want to test some functionality of a web application but it loads things dynamically. You might think
+Let's say you want to test some functionality of a web application, but it loads things dynamically. You might think
 about using a hard-coded sleep (that you constantly tweak due to test failures) or you use a blanket timeout
 (like an [Implicit Wait](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#implicit-waits)) that you likely bump up to address test instabilities as well.
 
@@ -35,7 +35,7 @@ test automation is on shaky ground -- uncertain of when the next break/fix cycle
 
 By using a flexible wait strategy you can easily meet the rigors of testing dynamic web applications.
 
-Thankfully Selenium comes with one built in -- [Explicit Waits](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#explicit-waits). With them you specify a timeout and an action.
+Thankfully Selenium comes with one built in -- [Explicit Waits](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings#explicit-waits). With them, you specify a timeout and an action.
 Selenium will repeatedly try that action until it can either complete it successfully (at which point it will move
 onto the next step of the test), or it will throw a timeout exception (causing your test to error).
 

@@ -117,7 +117,7 @@ up a list of failed tests from the *.failure files and deleting them when we're 
 
 The Rake task is where we tie everything together.
 
-In it we make the number of concurrent processes configurable through the use of an optional run-time argument. 
+In it, we make the number of concurrent processes configurable through the use of an optional run-time argument. 
 We then call `run` (passing in the argument) which executes the full suite. After the suite completes, 
 we perform a check against the exit code to see if there were any failures. If there were, then we call 
 `rerun` (along with the argument for number of processes),  and then call `cleanup` to remove the failure files.

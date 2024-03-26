@@ -61,7 +61,7 @@ end
 
 We use the stock Selenium Wait function (e.g., an explicit wait) to continuously perform an action until either the timeout is reached or the action is true (whichever comes first). We then use it to see if the notification text is displayed on the page. If it is, then we grab the text and clean it up with a regular expression that deletes non-letter characters while preserving `!` and `.` (which are expected in the output we're testing for).
 
-Now we're ready to wire up our test. In it we will iterate through each of the user entries in the CSV file and use their data to both complete a login action and verify the notification message.
+Now we're ready to wire up our test. In it, we will iterate through each of the user entries in the CSV file and use their data to both complete a login action and verify the notification message.
 
 ```ruby
 user_data.each do |user|

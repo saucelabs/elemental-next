@@ -27,7 +27,7 @@ def run
 end
 ```
 
-Notice that in `setup` we are specifying an implicit wait of `3` seconds. This tells Selenium to retry each `find_element` action for up to 3 seconds. If it can complete the action in that amount of time, it will proceed onto the next command. Otherwise it will raise a timeout exception.
+Notice that in `setup` we are specifying an implicit wait of `3` seconds. This tells Selenium to retry each `find_element` action for up to 3 seconds. If it can complete the action in that amount of time, it will proceed onto the next command. Otherwise, it will raise a timeout exception.
 
 Now let's add our first test.
 
@@ -40,7 +40,7 @@ run do
 end
 ```
 
-In this example the element we're interested in is already on the page, just hidden. When we execute this (e.g., `ruby waiting.rb` from the command-line) the `.displayed?` step runs but it doesn't trigger the implicit wait. Instead, the test proceeds directly to the assertion looking for text that's not there and failing.
+In this example the element we're interested in is already on the page, just hidden. When we execute this (e.g., `ruby waiting.rb` from the command-line) the `.displayed?` step runs, but it doesn't trigger the implicit wait. Instead, the test proceeds directly to the assertion looking for text that's not there and failing.
 
 Let's run the same test against the other dynamic loading example.
 
@@ -95,7 +95,7 @@ If we save the file and run it (e.g., `ruby waiting.rb` from the command-line) h
 
 ## Summary
 
-While an implicit wait can be useful, providing you an initial blanket of cover, it's not ideal for every circumstance. Instead explicit waits are a better tool for the job since they provide more resilient and predictable results (even if they make your test code more verbose).
+While an implicit wait can be useful, providing you an initial blanket of cover, it's not ideal for every circumstance. Instead, explicit waits are a better tool for the job since they provide more resilient and predictable results (even if they make your test code more verbose).
 
 Regardless of the approach you choose, be sure never to mix implicit and explicit waits together.
 

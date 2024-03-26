@@ -62,7 +62,7 @@ run {
 }
 ```
 
-In this approach we have abstracted out the text grab of the notification message into a method which sets what it finds into an instance variable. And we've added a new method called `retry_if_notification_message_contains` that accepts an argument of `fail_message`. In it we accept a yield in 2 places and have constructed a simple loop that runs 3 times or until the notification message does not match the `fail_message`, whichever comes first. And the yields will execute whatever code is passed both before and during the loop.
+In this approach we have abstracted out the text grab of the notification message into a method which sets what it finds into an instance variable. And we've added a new method called `retry_if_notification_message_contains` that accepts an argument of `fail_message`. In it, we accept a yield in 2 places and have constructed a simple loop that runs 3 times or until the notification message does not match the `fail_message`, whichever comes first. And the yields will execute whatever code is passed both before and during the loop.
 
 In the run block we pass our navigation and text grab actions as a block into `retry_if_notification_message_contains`, passing the failure message of **please try again** as the argument for `fail_message` to receive.
 
