@@ -60,7 +60,7 @@ After that we have access to the helper method we want (e.g., `dump_failures`). 
 detailed information about each failed test through the `failed_examples` accessor.
 
 After checking to see if there are any failed examples, we create a new uniquely named file (leveraging the 
-environment variable created by our parallel executor), iterate through all of the failed examples, and store a 
+environment variable created by our parallel executor), iterate through all failed examples, and store a 
 properly formatted retry execution command with the name of the failed test.
 
 To use this formatter we'll need to specify it at run-time, and to leverage a retry action we'll need to wrap our 

@@ -32,7 +32,7 @@ Here's a more resilient approach. One that will work across all browsers.
 Line 29 shows that after loading the page we store the window handles in a variable (e.g., `windowHandlesBefore`)
 and then proceed with clicking the new window link.
 
-Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search
+Now that we have two windows open we grab all the window handles again (e.g., `windowHandlesAfter`) and search
 through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the
 initial one). We store the result in another variable (e.g., `newWindow`) and then switch between the windows each
 time checking the page title to make sure the correct window is in focus.

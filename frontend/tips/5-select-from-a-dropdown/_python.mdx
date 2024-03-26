@@ -18,7 +18,7 @@ teardown methods for our tests.
 After visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the dropdown list by its ID and store it in a variable. We
 then find each clickable element in the dropdown list (e.g., each `option`) with `find_elements(By.TAG_NAME, 'option')`.
 
-Grabbing all of the options returns a collection that we iterate over and when the text matches what we want it
+Grabbing all options returns a collection that we iterate over and when the text matches what we want it
 will click on it.
 
 We finish the test by performing a check to see that our selection was made correctly. This is done by reiterating

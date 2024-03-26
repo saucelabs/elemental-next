@@ -42,11 +42,11 @@ if __name__ == "__main__":
 
 ```
 
-After loading the page, we find all of the elements that have an option tag (which are all of the items in the dropdown list). This returns a list of elements, so we use the first one (which is the one with the text of `'Please select an option'`).
+After loading the page, we find all the elements that have an option tag (which are all the items in the dropdown list). This returns a list of elements, so we use the first one (which is the one with the text of `'Please select an option'`).
 
 Once we have the element we want we see if it's enabled (with `.is_enabled`) and assert based on the response.
 
-And since we grabbed all of the dropdown list options, we can easily test the opposite case by checking the second or third option in the list.
+And since we grabbed all the dropdown list options, we can easily test the opposite case by checking the second or third option in the list.
 
 ```python
         assert dropdown_list[1].is_enabled() is True

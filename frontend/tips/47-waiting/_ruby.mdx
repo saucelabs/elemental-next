@@ -55,7 +55,7 @@ end
 
 In this example the element we're interested in gets rendered _after_ the loading bar. When we run this (e.g., `ruby waiting.rb` from the command-line) the `.displayed?` step will wait as we intend, but the assertion will still fail. That's because the implicit wait is not long enough (because the loading bar takes 5 seconds to complete, but the implicit wait is set at `3` seconds).
 
-Now we're at a cross-roads. Do we increase the implicit wait to account for this? That would be a simple enough fix for this example. But that's a bad option since it would impact _all_ of the tests that use this setup. Instead, we can use an explicit wait.
+Now we're at a cross-roads. Do we increase the implicit wait to account for this? That would be a simple enough fix for this example. But that's a bad option since it would impact _all_ tests that use this setup. Instead, we can use an explicit wait.
 
 ```ruby
 def wait_for(seconds)
