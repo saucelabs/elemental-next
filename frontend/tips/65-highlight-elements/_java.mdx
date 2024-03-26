@@ -59,8 +59,8 @@ By setting a duration, we can control how long to highlight an element on the pa
 
 There are three things going on here.
 
-+ We store the style of the element so we can revert it back when we're done
-+ We change the style of the element so it visually stands out (e.g., a red dashed border)
++ We store the style of the element, so we can revert it back when we're done
++ We change the style of the element, so it visually stands out (e.g., a red dashed border)
 + We revert the style of the element back after 3 seconds (or longer if specified)
 
 We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `executeScript` command.
@@ -87,7 +87,7 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 + Open the browser
 + Load the page
 + Find the element to highlight
-+ Change the styling of the element so it has a red dashed-line border
++ Change the styling of the element, so it has a red dashed-line border
 + Wait 3 seconds
 + Revert the styling of the element back (removing the red border)
 + Close the browser

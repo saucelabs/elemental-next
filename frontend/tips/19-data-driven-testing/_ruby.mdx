@@ -49,7 +49,7 @@ end
 
 In `user_data` we read the CSV file in and grab the first row in it with `.shift`. We store this row in a variable called `descriptor` and convert each value into a symbol. We then iterate over the rest of the CSV data and create a Hash object for each row of user data. In each Hash we are binding the relevant descriptor to each piece of user data (through the use of `.zip`). This enables us to reference each of the user values by looking them up in the Hash by their descriptor symbol.
 
-Next we'll need a helper method that will responsibly obtain the notification text from the page. It will need to both wait for the text to appear and clean up the resulting text so it doesn't include any extraneous characters.
+Next we'll need a helper method that will responsibly obtain the notification text from the page. It will need to both wait for the text to appear and clean up the resulting text, so it doesn't include any extraneous characters.
 
 ```ruby
 def notification_text

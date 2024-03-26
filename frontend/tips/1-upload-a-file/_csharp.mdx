@@ -19,7 +19,7 @@ After specifying the namespace and the class (e.g., `public class FileUploadTest
 tearing down the browser instance.
 
 First we create a field variable (e.g., `IWebDriver _driver;`) to store our WebDriver instance for reuse throughout
-the class. We then create a `SetUp()` method with a `[TestInitialize]` attribute so it runs before our test. In this
+the class. We then create a `SetUp()` method with a `[TestInitialize]` attribute, so it runs before our test. In this
 method we are creating an instance of WebDriver with Firefox (e.g., `_driver = new FirefoxDriver();`).
 
 After our test executes, the `TearDown()` method will run thanks to the `[TestCleanup]` attribute. This

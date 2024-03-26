@@ -21,7 +21,7 @@ tearing down the browser instance.
 First we create a field variable (e.g., `IWebDriver _driver;`) to store our WebDriver instance for reuse throughout
 the class.
 
-We then create a `SetUp()` method with a `[TestInitialize]` attribute so it runs before our test. This is where the
+We then create a `SetUp()` method with a `[TestInitialize]` attribute, so it runs before our test. This is where the
 magic is happening in this example. In it we're creating a uniquely named temp directory
 (e.g., `System.Guid.NewGuid().ToString();`), configuring a browser options object (for Firefox in this case), and
 plying it with the necessary configuration parameters to make it automatically download the file where we want
