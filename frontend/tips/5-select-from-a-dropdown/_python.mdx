@@ -15,7 +15,7 @@ teardown methods for our tests.
 
 ### Example 1
 
-After visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the dropdown list by its ID and store it in a variable. We
+After visiting [the example application](https://the-internet.herokuapp.com/dropdown) we find the dropdown list by its ID and store it in a variable. We
 then find each clickable element in the dropdown list (e.g., each `option`) with `find_elements(By.TAG_NAME, 'option')`.
 
 Grabbing all options returns a collection that we iterate over and when the text matches what we want it
@@ -31,9 +31,9 @@ While this works, there is a simpler, built-in way to do this with Selenium. Let
 
 Similar to the first example, we are finding the dropdown list by its ID. But instead of iterating over its option
 elements and clicking based on a conditional check, we are leveraging a built-in helper function of Selenium,
-[`Select`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#module-selenium.webdriver.support.select), and its [`select_by_visibile_text`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#selenium.webdriver.support.select.Select.select_by_visible_text) method to choose the item we want.
+[`Select`](https://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#module-selenium.webdriver.support.select), and its [`select_by_visibile_text`](https://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#selenium.webdriver.support.select.Select.select_by_visible_text) method to choose the item we want.
 
-We then ask the `select_list` what option was selected by using the [`first_selected_option`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#selenium.webdriver.support.select.Select.first_selected_option) method. This
+We then ask the `select_list` what option was selected by using the [`first_selected_option`](https://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#selenium.webdriver.support.select.Select.first_selected_option) method. This
 returns a Selenium Element that we grab the text from, storing it in a variable (e.g., `selected_option`).
 
 Then we perform our assertion against this variable (just like in the previous example).

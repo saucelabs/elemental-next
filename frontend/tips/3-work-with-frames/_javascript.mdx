@@ -20,7 +20,7 @@ method, `afterEach`, will execute. This calls `driver.quit()` which ends the ses
 
 ### Example 1
 
-Line 15 shows our first test. In it, In it we'll step through [an example of nested frames](http://the-internet.herokuapp.com/nested_frames) from
+Line 15 shows our first test. In it, we'll step through [an example of nested frames](https://the-internet.herokuapp.com/nested_frames) from
 [the-internet](https://github.com/saucelabs/the-internet).
 
 With Selenium's `.switchTo().frame` method we can easily switch to the frame we want. It accepts either a numbered
@@ -36,7 +36,7 @@ While this example helps illustrate the point of frame switching, it's not very 
 
 Here is a more likely example you'll run into -- working with a
 <abbr title="What You See Is What You Get">WYSIWYG</abbr> Editor like
-[TinyMCE](http://www.tinymce.com/). You can see the page we're testing [here](http://the-internet.herokuapp.com/tinymce).
+[TinyMCE](https://www.tinymce.com/). You can see the page we're testing [here](https://the-internet.herokuapp.com/tinymce).
 
 Keep in mind that if we need to access a part of the page outside the frame we are currently in we'll need to
 switch to it. Thankfully Selenium has method that enables us to quickly jump back to the top level of the page
