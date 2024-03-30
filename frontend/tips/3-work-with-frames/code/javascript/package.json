@@ -4,7 +4,7 @@
   },
   "description": "A project to showcase working with frames using official WebdriverJs",
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "10.2.0"
   },
   "license": "MIT",
   "name": "download-a-file",
