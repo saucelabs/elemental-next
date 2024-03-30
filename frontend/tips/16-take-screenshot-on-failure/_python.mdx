@@ -21,7 +21,7 @@ class ScreenShotOnFailure(unittest.TestCase):
 # ...
 ```
 
-In `tearDown` we check to see if `sys.exc_info()` exists. If it does, then there's been a test failure and we capture a screenshot through the help of Selenium's `.save_screenshot` method. `.save_screenshot` accepts a filename as a string (e.g., `'failshot.png'`). To make the filename unique we use the test method name (e.g., `self._testMethodName`). When this command executes it will save an image file to the local system in the current working directory.
+In `tearDown` we check to see if `sys.exc_info()` exists. If it does, then there's been a test failure, and we capture a screenshot through the help of Selenium's `.save_screenshot` method. `.save_screenshot` accepts a filename as a string (e.g., `'failshot.png'`). To make the filename unique we use the test method name (e.g., `self._testMethodName`). When this command executes it will save an image file to the local system in the current working directory.
 
 Now to wire up a test which will fail.
 

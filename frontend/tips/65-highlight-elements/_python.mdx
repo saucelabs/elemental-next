@@ -1,6 +1,6 @@
 ## Example
 
-For our initial setup let's pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import time` to add a delay in our script so we're able to see the notification messages), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+For our initial setup let's pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import time` to add a delay in our script, so we're able to see the notification messages), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
 ```python
 # filename: highlight_elements.py
@@ -54,8 +54,8 @@ By setting a duration, we can control how long to highlight an element on the pa
 
 There are three things going on here.
 
-1. We store the style of the element so we can revert it back when we're done
-2. We change the style of the element so it visually stands out (e.g., a red dashed border)
+1. We store the style of the element, so we can revert it back when we're done
+2. We change the style of the element, so it visually stands out (e.g., a red dashed border)
 3. We revert the style of the element back after 3 seconds
 
 We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `execute_script` command.
@@ -81,7 +81,7 @@ When we save this file and run it (e.g., `python highlight_elements.py` from the
 - Browser opens
 - Load the page
 - Find the element
-- Change the styling of the element so it has a red dashed-line border
+- Change the styling of the element, so it has a red dashed-line border
 - Wait 3 seconds
 - Revert the styling to remove the border
 - Browser closes

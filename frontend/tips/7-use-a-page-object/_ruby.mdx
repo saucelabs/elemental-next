@@ -73,7 +73,7 @@ Next we use `attr_reader` to create a place to store the Selenium WebDriver inst
 
 The class expects an argument (e.g. the Selenium WebDriver instance) which is received through the initialize method.
 Inside the initialize method we take care of passing the Selenium object into the `attr_reader` object along with
-visiting the page and verifying that we are in the correct place. All of these things will execute in order when
+visiting the page and verifying that we are in the correct place. All these things will execute in order when
 this class is instantiated.
 
 We then break out each of the test steps into methods that execute the behavior specific to the page while also
@@ -81,7 +81,7 @@ swapping out the hard-coded CSS locators for our new CSS locator constant variab
 
 At the bottom of the class we have private helper methods. These methods aren't necessarily specific to the page
 this class represents, but they are useful for it to function. So we want to access them within the class, but
-make it so they're not available outside of the class. Using the private classification gets us this behavior nicely.
+make it so that they're not available outside the class. Using the private classification gets us this behavior nicely.
 
 And lastly, we update the `displayed?` private method to take a single argument for a 'locator' object (e.g. one of
 our CSS locator constant variables).

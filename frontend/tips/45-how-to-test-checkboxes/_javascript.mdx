@@ -31,7 +31,7 @@ describe("Checkboxes", function() {
 
 Before we begin writing a test to verify the state of the page, let's walk through both checkbox approaches to see what Selenium gives us.
 
-To do that we'll want to grab all of the checkboxes on the page and iterate through them once using an attribute lookup and again asking if the element is selected. For each we'll output the return values we get from Selenium.
+To do that we'll want to grab all the checkboxes on the page and iterate through them once using an attribute lookup and again asking if the element is selected. For each we'll output the return values we get from Selenium.
 
 ```javascript
 // filename: test/checkboxes.spec.js
@@ -92,7 +92,7 @@ When we save and run the file (e.g., `mocha` from the command-line) here is what
 
 + Open the browser
 + Visit the page
-+ Find all of the checkboxes on the page
++ Find all checkboxes on the page
 + Assert that the last checkbox (the one that is supposed to be checked on initial page load) is checked
 + Close the browser
 

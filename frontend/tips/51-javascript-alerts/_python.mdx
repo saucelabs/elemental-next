@@ -39,7 +39,7 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find all of the buttons on the page using `find_elements` and click on the second one. Since `find_elements` returns a list of all found elements, we can assume that the first item can be selected using `[0]` (since lists in Python start counting at `0`). So the second item would be `[1]`.
+A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find all buttons on the page using `find_elements` and click on the second one. Since `find_elements` returns a list of all found elements, we can assume that the first item can be selected using `[0]` (since lists in Python start counting at `0`). So the second item would be `[1]`.
 
 After click the button to trigger the JavaScript Alert we use Selenium's `switch_to.alert` method to focus on the JavaScript pop-up and use `.accept()` to click `Ok`. If we wanted to click `Cancel` we would have used `.dismiss()`.
 

@@ -49,7 +49,7 @@ end
 
 In `user_data` we read the CSV file in and grab the first row in it with `.shift`. We store this row in a variable called `descriptor` and convert each value into a symbol. We then iterate over the rest of the CSV data and create a Hash object for each row of user data. In each Hash we are binding the relevant descriptor to each piece of user data (through the use of `.zip`). This enables us to reference each of the user values by looking them up in the Hash by their descriptor symbol.
 
-Next we'll need a helper method that will responsibly obtain the notification text from the page. It will need to both wait for the text to appear and clean up the resulting text so it doesn't include any extraneous characters.
+Next we'll need a helper method that will responsibly obtain the notification text from the page. It will need to both wait for the text to appear and clean up the resulting text, so it doesn't include any extraneous characters.
 
 ```ruby
 def notification_text
@@ -61,7 +61,7 @@ end
 
 We use the stock Selenium Wait function (e.g., an explicit wait) to continuously perform an action until either the timeout is reached or the action is true (whichever comes first). We then use it to see if the notification text is displayed on the page. If it is, then we grab the text and clean it up with a regular expression that deletes non-letter characters while preserving `!` and `.` (which are expected in the output we're testing for).
 
-Now we're ready to wire up our test. In it we will iterate through each of the user entries in the CSV file and use their data to both complete a login action and verify the notification message.
+Now we're ready to wire up our test. In it, we will iterate through each of the user entries in the CSV file and use their data to both complete a login action and verify the notification message.
 
 ```ruby
 user_data.each do |user|

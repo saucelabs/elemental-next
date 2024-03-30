@@ -60,7 +60,7 @@ We store this information in an array (and potentially an array of arrays) withi
 "story:BIZ-1234"=>[["Two passes", "./spec/two_spec.rb", 2]], "story:BIZ-1235"=>[["Two fails", "./spec/two_spec.rb", 3]]}
 ```
 
-Now that we have all of the tags and the test data that shows where they are in use, we can generate a simple report with it.
+Now that we have all the tags and the test data that shows where they are in use, we can generate a simple report with it.
 
 ```ruby
 # filename: tag_lister.rb
@@ -118,7 +118,7 @@ TagLister.list_tags
 
 This script is built to live one level up from the test directory. And it assumes that the test directory is called `spec`.
 
-We make it so we can pass an argument at runtime, which then gets fed into the tag sorting environment variable (`ENV['TAG_SORT_ORDER']`). If no argument is provided, we default the value to `'usage'`.
+We make it, so we can pass an argument at runtime, which then gets fed into the tag sorting environment variable (`ENV['TAG_SORT_ORDER']`). If no argument is provided, we default the value to `'usage'`.
 
 When we save this and run it with `ruby tag_lister.rb`, we should see a report outputted in the terminal.
 

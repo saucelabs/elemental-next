@@ -72,7 +72,7 @@ We could also load the opt-out cookie _before_ navigating to the page.
 
 Here we are navigating to the main page of the site first (to establish the host) and then adding the opt-out cookie. If we didn't visit the site first, then adding the cookie wouldn't have worked. Once added we navigate to the example page and perform our checks just like before.
 
-Alternatively, we can achieve the same thing without forging a cookie. Instead we can append an opt-out query to the URL when visiting the page.
+Alternatively, we can achieve the same thing without forging a cookie. Instead, we can append an opt-out query to the URL when visiting the page.
 
 ```csharp
 // filename: ABTestOptOut.cs

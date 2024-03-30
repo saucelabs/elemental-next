@@ -30,7 +30,7 @@ const content = [
     {
         id: 4,
         title: 'Examples from Hands-On Selenium WebDriver',
-        paragraph: 'All of the listed examples from Hands-On Selenium WebDriver with Java by Boni Garcia.',
+        paragraph: 'All the listed examples from Hands-On Selenium WebDriver with Java by Boni Garcia.',
         link: 'https://github.com/bonigarcia/selenium-webdriver-java/',
         img: 'img/resource_page/github.png',
         alt: 'Github Logo',
