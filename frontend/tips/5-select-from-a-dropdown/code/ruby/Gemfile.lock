@@ -18,7 +18,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
     rubyzip (2.3.2)
-    selenium-webdriver (4.18.1)
+    selenium-webdriver (4.19.0)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -27,10 +27,11 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   rspec (~> 3.10)
-  selenium-webdriver (~> 4.18.0)
+  selenium-webdriver (~> 4.19.0)
 
 BUNDLED WITH
    2.4.10

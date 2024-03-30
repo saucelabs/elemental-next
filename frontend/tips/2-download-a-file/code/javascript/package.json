@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "selenium-webdriver": "4.18.1"
+    "selenium-webdriver": "4.19.0"
   },
   "description": "A project to showcase downloading a file using official WebdriverJs",
   "devDependencies": {
