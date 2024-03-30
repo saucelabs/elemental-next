@@ -4,7 +4,7 @@
   },
   "description": "A project to showcase opening a new tab or window using the official WebdriverJs",
   "devDependencies": {
-    "mocha": "10.2.0"
+    "mocha": "10.4.0"
   },
   "license": "MIT",
   "name": "open-new-window",
