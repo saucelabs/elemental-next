@@ -25,35 +25,39 @@ each test.
 
 ### The Test
 
-Lines 21 to 24 are the test itself.
-
-After visiting the page, we find the download link and call method `download` for it.
+Our `downloadFile` test, after visiting the page, we find the download link and call method `download` for it.
 This method does its magic and returns the downloaded file. Now you can verify its name or content.
 
-NB! You don't need to find the downloaded file in any directories (this is the typical mistake of people who start using Selenide).
-Method `$.download()` _returns_ the file. It's already in your hands. Just verify it.
+NB! You don't need to find the downloaded file in any directories. Method `$.download()` _returns_ the file. It's
+already available for you, so you can verify it right away.
 
-### Under the hood
-Selenide sample for downloading files is much simpler (just one line!) than Selenium sample because Selenide does lots of work under the hood:
-Under the hood, Selenide does all the needed job for downloading files:
-  * creates a uniquely named temp directory,
-  * configures the browser to make it automatically download files to that unique directory,
-  * clicks a web element,
-  * waits until the file arises in the downloads folder
-  * etc.
+### More About Downloading Files in Selenide
 
-Also, Selenide has several [algorithms for downloading the file](https://selenide.org/javadoc/current/com/codeborne/selenide/FileDownloadMode.html):
-  * HTTPGET (the default one)
-  * FOLDER
-  * CDP
-  * PROXY
+Selenide sample for downloading files is straightforward because Selenide does all the work for you:
+* creates a uniquely named temp directory
+* configures the browser to make it automatically download files to that unique directory
+* clicks a web element
+* waits until the file arises in the downloads folder
 
-### For more details
+In addition, Selenide has more [ways to download files](https://selenide.org/javadoc/current/com/codeborne/selenide/FileDownloadMode.html:
+  * `HTTPGET` (default one)
+  * `FOLDER`
+  * `CDP`
+  * `PROXY`
 
-See
-* this video: https://www.youtube.com/watch?v=GwHG550moGc&ab_channel=AndreiSolntsev, or
-* this blog post: https://selenide.org/2019/12/10/advent-calendar-download-files/
+Learn more about downloading files in Selenide from Andrei Solntsev's
+[YouTube video](https://www.youtube.com/watch?v=GwHG550moGc)
+and [blog post](https://selenide.org/2019/12/10/advent-calendar-download-files/).
 
 ### Executing the Test
 
-You can run the test by executing `mvn test` from the command-line.
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
