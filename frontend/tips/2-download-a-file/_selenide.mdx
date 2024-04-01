@@ -9,16 +9,19 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 11 are pulling in 
-  * classes for test runner (e.g., `org.junit.jupiter.api.BeforeEach`, etc.),
+First, we pull in our requisite classes:
+  * test runner (e.g., `org.junit.jupiter.api.BeforeEach`, etc.),
   * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
   * matchers for assertions (e.g., `org.assertj.core.api.Assertions.assertThat`)
-  * etc.
+
+NB! You don't need to add the typical "selenium*" dependencies.
+Just one dependency is enough: `com.codeborne:selenide`.
+It will pull down all the needed Selenium dependencies automatically.
 
 ### Setup and Teardown
 
-Lines 14 to 17 are setting up the browser instance. The `openAUT` opens the application under test before
-each test. 
+Next, we are setting up the browser instance. The `openAUT` opens the application under test before
+each test.
 
 ### The Test
 

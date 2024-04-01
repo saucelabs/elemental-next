@@ -21,12 +21,11 @@ It will pull down all the needed Selenium dependencies automatically.
 
 ### Setup and Teardown
 
-Line 15 opens a browser with given URL.
+Next, we open a browser with given URL.
 
-Under the hood, Selenide doesn't all the needed jobs:
+Under the hood, Selenide performs all the needed tasks:
 * detects the browser (can be customized if needed),
 * setups commons browser settings (can be customized if needed)
-* etc.
 
 No teardown is needed because Selenide automatically closes the browser when the test finishes.
 
