@@ -95,7 +95,7 @@ end
 
 We start by iterating through each of the entries in the HAR payload, creating a new request for Typhoeus to use -- storing them all in an array.
 
-After printing the current time to the terminal, we create a new thread and execute all of the Typhoeus HTTP requests within it (outputting the error handling for each request if a debug parameter is passed in). This gets repeated based on the number of times specified when `replay` is called.
+After printing the current time to the terminal, we create a new thread and execute all Typhoeus HTTP requests within it (outputting the error handling for each request if a debug parameter is passed in). This gets repeated based on the number of times specified when `replay` is called.
 
 After the threads run and terminate, we output the current time, and then list the total time run time along with the number of replays attempted.
 

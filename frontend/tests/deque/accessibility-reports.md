@@ -28,4 +28,4 @@ Your feedback is valuable to us! If you encounter any accessibility issues or ha
 
 If you would like to contribute, please visit our [CONTRIBUTING](https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md) document to get started.
 
-We appreciate your interest in our accessibility reports and thank you for joining us in creating a more inclusive online experience. Together, we can make a difference! ✨🌍✨
+We appreciate your interest in our accessibility reports, and thank you for joining us in creating a more inclusive online experience. Together, we can make a difference! ✨🌍✨

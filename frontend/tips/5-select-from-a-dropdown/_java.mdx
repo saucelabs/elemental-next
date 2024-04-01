@@ -20,11 +20,11 @@ Next, we'll start our class off with some setup and teardown methods.
 
 ### Example 1
 
-Our first example is `dropdownTest`, after visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the dropdown list by
-it's ID and store it in a variable. We then find each clickable element in the dropdown list (e.g., each `option`)
+Our first example is `dropdownTest`, after visiting [the example application](https://the-internet.herokuapp.com/dropdown) we find the dropdown list by
+its ID and store it in a variable. We then find each clickable element in the dropdown list (e.g., each `option`)
 with `findElements` (note the plural).
 
-Grabbing all of the options with `findElements` returns a collection that we iterate over. When the text matches
+Grabbing all options with `findElements` returns a collection that we iterate over. When the text matches
 what we want, we click on it.
 
 We finish the test by performing a check to see that our selection was made correctly. This is done by iterating
@@ -36,7 +36,7 @@ While this works, there is a more accessible way to do this.
 ### Example 2
 
 Our second example is `dropdownTestRedux`, and similar to the first example, we are finding the dropdown list by
-it's ID. But instead of iterating over its option elements and clicking based on a conditional we are leveraging
+its ID. But instead of iterating over its option elements and clicking based on a conditional we are leveraging
 a built-in helper function of Selenium. With [`Select`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/Select.html) and it's `selectBy` methods
 (e.g., [`selectByVisibleText`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/Select.html#selectByVisibleText-java.lang.String-)) we're able to easily choose the item we want.
 

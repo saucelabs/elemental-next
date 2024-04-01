@@ -1,0 +1,61 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"5-select-from-a-dropdown/code/selenide/src/test/java/com/elemental/selenium/DropdownTest.java"}
+    language={"java"}/>
+
+
+## Code Walkthrough
+
+### Importing Libraries
+
+First let's import our requisite classes:
+ * for annotations (e.g., `org.junit.jupiter.api.Test`),
+ * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
+ * matchers for assertions (e.g., `com.codeborne.selenide.Condition.text`)
+
+Next, we'll start our test.
+
+### Example 1: checkAvailableOptions
+
+Our first example `checkAvailableOptions` shows how we can find the dropdown list by
+its ID and verify that it contains all the expected options.
+
+### Example 2: canSelectOptionByText
+
+Our second example `canSelectOptionByText` shows how we can select an option by text:
+```java
+dropdownList.selectOption("Option 1");
+```
+
+We then verify that the expected option is actually selected:
+```java
+dropdownList.getSelectedOption().shouldHave(text("Option 1"));
+```
+
+### Example 3: canSelectOptionByValue
+
+Our third example `canSelectOptionByValue` shows how we can select an option by text:
+```java
+dropdownList.selectOptionByValue("2");
+```
+
+We then verify that the expected option is actually selected:
+```java
+dropdownList.getSelectedOption().shouldHave(text("Option 2"));
+```
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

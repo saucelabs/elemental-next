@@ -35,7 +35,7 @@ Please check off the following items as applicable:
 
 ## 📝 Additional Notes
 
-<!--- Please provide any additional notes or context about the changes being made. We appreciate hearing about your thought process and any challenges you faced along the way. If you have any questions or concerns, please don't hesitate to reach out to us.. -->
+<!--- Please provide any additional notes or context about the changes being made. We appreciate hearing about your thought process and any challenges you faced along the way. If you have any questions or concerns, please don't hesitate to reach out to us. -->
 
 >### 🎉 Inclusive Content Reminder
 >

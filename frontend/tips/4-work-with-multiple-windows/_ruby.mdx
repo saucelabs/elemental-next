@@ -15,7 +15,7 @@ and `run` methods.
 ### Example 1
 
 Line 19 shows a test that exercises new window functionality from an application. In this case, we'll be using
-[the new window example](http://the-internet.herokuapp.com/windows) from [the-internet](https://github.com/saucelabs/the-internet).
+[the new window example](https://the-internet.herokuapp.com/windows) from [the-internet](https://github.com/saucelabs/the-internet).
 
 After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique
 identifier strings which represent each open browser window) and switch between them based on their order (assuming
@@ -32,7 +32,7 @@ Here's a more resilient approach. One that will work across all browsers.
 Line 31 shows that after loading the page we store the window handles in a variable (e.g., `first_window`)
 and then proceed with clicking the new window link.
 
-Now that we have two windows open we grab all of the window handles and search through them to find the new window
+Now that we have two windows open we grab all the window handles and search through them to find the new window
 handle (e.g., the handle that doesn't match the first one we've already stored). We store the result in another
 variable (e.g., `second_window`) and then switch between the windows. Each time checking the page title to make sure
 the correct window is in focus.

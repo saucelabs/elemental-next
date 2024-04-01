@@ -19,7 +19,7 @@ methods.
 
 After specifying the namespace and the class (e.g., `public class NewWindowNewTabTest`), we are setting up and
 tearing down the browser instance. The `beforeEach` method, will execute before
-each test. In it we are launching a new instance of Firefox with Selenium and storing it in a class variable that
+each test. In it, we are launching a new instance of Firefox with Selenium and storing it in a class variable that
 we'll use throughout all tests. After our test executes the second method, `afterEach`, will execute. This calls
 `driver.quit()` which ends the session by closing the browser instance.
 

@@ -18,11 +18,11 @@ Next, we'll start our class off with some setup and teardown methods, covered in
 
 ### Example 1
 
-Our first example is `SelectFromDropdownTheHardWay`. After visiting [the example application](http://the-internet.herokuapp.com/dropdown) we find the
+Our first example is `SelectFromDropdownTheHardWay`. After visiting [the example application](https://the-internet.herokuapp.com/dropdown) we find the
 dropdown list by its ID and store it in a variable. We then find each element in the dropdown list (e.g., each
 element with an `option` tag) with `FindElements` (note the plural).
 
-Grabbing all of the options with `FindElements` returns a collection that we iterate over. When the text matches
+Grabbing all options with `FindElements` returns a collection that we iterate over. When the text matches
 what we want (e.g., `"Option 1"`) we click on it.
 
 We finish the test by performing a check to see that our selection was made correctly. This is done by iterating
@@ -35,8 +35,8 @@ While this works, there is a simpler, built-in way to do this with Selenium. Let
 
 Our second example is `SelectFromDropdownTheEasyWay`, and similar to the first example, we are finding the dropdown
 list by its ID. But instead of iterating over its option elements and clicking based on a conditional we are
-leveraging a built-in helper function of Selenium. With [`SelectElement`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Support_UI_SelectElement.htm) and its `SelectBy` methods
-(e.g., [`SelectByText`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Support_UI_SelectElement_SelectByText.htm)) we're able to easily choose the item we want.
+leveraging a built-in helper function of Selenium. With [`SelectElement`](https://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Support_UI_SelectElement.htm) and its `SelectBy` methods
+(e.g., [`SelectByText`](https://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Support_UI_SelectElement_SelectByText.htm)) we're able to easily choose the item we want.
 
 We then perform our assertion against the text of the currently selected option
 (e.g., `Assert.AreEqual("Option 1", Dropdown.SelectedOption.Text)`).
