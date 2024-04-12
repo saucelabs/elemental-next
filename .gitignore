@@ -129,3 +129,6 @@ playwright-report
 bin/
 obj/
 TestResults/
+
+# Python cache
+__pycache__/
