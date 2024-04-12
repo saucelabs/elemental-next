@@ -95,7 +95,7 @@ const config = {
         function metadata(context, options) {
             return {
                 name: 'metadata',
-                async contentLoaded({content, actions, allContent}) {
+                async allContentLoaded({actions, allContent}) {
                     const {setGlobalData} = actions;
                     let tempFrontMatter = []
                     allContent['docusaurus-plugin-content-docs']
