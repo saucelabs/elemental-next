@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"6-open-new-window/code/selenide/src/test/java/com/elemental/selenium/NewWindowNewTabTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+First, we pull in our requisite classes:
+  * test runner (e.g., `org.junit.jupiter.api.BeforeEach`, etc.),
+  * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
+  * matchers for assertions (e.g., `org.assertj.core.api.Assertions.assertThat`)
+
+### Setup and Teardown
+
+After specifying the namespace and the class (e.g., `public class NewWindowNewTabTest`), 
+we add `BrowserPerTestStrategyExtension` - this is Selenide extension for JUnit5 that closes the browser after every test.
+
+It's not always needed, but in this specific class every test opens few windows or tabs, so 
+it's easier to close the whole browser with all tabs and windows. 
+
+### Open New Window
+
+`newWindow` shows how to open a new window, switch to it, and assert the number of window handles open. They key
+to this is the `switchTo().newWindow(WindowType.WINDOW)` line. Which opens a new window and switches to it.
+
+### Open New Tab
+
+`newTab` shows how to open a new tab, switch to it, and assert the number of window handles open. They key to this
+is the `switchTo().newWindow(WindowType.TAB)` line. Which opens a new tab and switches to it.
+
+### Additional checks
+Also, in `newTab` test we showed how you can check some details of current window/tab. 
+Selenide has a number of built-in checks for URL, title etc.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
