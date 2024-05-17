@@ -3,7 +3,8 @@ GEM
   specs:
     base64 (0.2.0)
     diff-lcs (1.5.1)
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -18,11 +19,12 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.0)
     rubyzip (2.3.2)
-    selenium-webdriver (4.20.1)
+    selenium-webdriver (4.21.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    strscan (3.1.0)
     websocket (1.2.10)
 
 PLATFORMS
@@ -31,7 +33,7 @@ PLATFORMS
 
 DEPENDENCIES
   rspec (~> 3.10)
-  selenium-webdriver (~> 4.20.0)
+  selenium-webdriver (~> 4.21.0)
 
 BUNDLED WITH
    2.4.10
