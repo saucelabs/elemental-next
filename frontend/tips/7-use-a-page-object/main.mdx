@@ -41,17 +41,24 @@ import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
     {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
 ]}/>
 
 
-## About The Author
+## About The Authors
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+import DefaultAvatar from "@site/src/components/defaultAvatar";
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+<DefaultAvatar
+  name="Dave Haeffner"
+  imgSrc={"/img/authors/dave-haeffner.jpeg#author-img"}
+  description={"the original writer of Elemental Selenium"}
+  url={"https://github.com/tourdedave"}
+/>
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+<DefaultAvatar
+  name="Andrei Solntsev"
+  imgSrc={"https://github.com/asolntsev.png"}
+  description={"Contributed the Selenide code for this tip."}
+  url={"https://github.com/asolntsev"}
+/>
