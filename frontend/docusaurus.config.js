@@ -85,6 +85,9 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                googleTagManager: {
+                    trackingID: 'G-QY5T3BLYC5',
+                }
             }),
         ],
     ],
