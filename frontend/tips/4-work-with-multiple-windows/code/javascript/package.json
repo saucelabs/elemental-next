@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "selenium-webdriver": "4.22.0"
+    "selenium-webdriver": "4.23.0"
   },
   "description": "A project to showcase working with multiple windows using official WebdriverJs",
   "devDependencies": {
