@@ -4,7 +4,7 @@
   },
   "description": "A project to showcase working with multiple windows using official WebdriverJs",
   "devDependencies": {
-    "mocha": "10.6.0"
+    "mocha": "10.7.0"
   },
   "license": "MIT",
   "name": "download-a-file",
