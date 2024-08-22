@@ -6,7 +6,7 @@ GEM
     logger (1.6.0)
     macaddr (1.7.2)
       systemu (~> 2.6.5)
-    rexml (3.3.3)
+    rexml (3.3.6)
       strscan
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
