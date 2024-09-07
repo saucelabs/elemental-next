@@ -9,7 +9,7 @@
   "license": "MIT",
   "homepage": "https://serenity-js.org",
   "dependencies": {
-    "@playwright/test": "1.46.1",
+    "@playwright/test": "1.47.0",
     "@serenity-js/assertions": "3.26.1",
     "@serenity-js/core": "3.26.1",
     "@serenity-js/console-reporter": "3.26.1",
