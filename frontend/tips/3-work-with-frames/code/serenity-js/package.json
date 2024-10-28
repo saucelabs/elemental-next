@@ -17,7 +17,7 @@
     "@serenity-js/web": "3.29.4"
   },
   "devDependencies": {
-    "@types/node": "20.17.1",
+    "@types/node": "20.17.2",
     "typescript": "5.6.3"
   }
 }
