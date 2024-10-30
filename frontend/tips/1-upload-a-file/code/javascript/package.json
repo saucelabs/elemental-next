@@ -4,7 +4,7 @@
   },
   "description": "A project to showcase uploading a file using official WebdriverJs",
   "devDependencies": {
-    "mocha": "10.8.1"
+    "mocha": "10.8.2"
   },
   "license": "MIT",
   "name": "upload-a-file",
