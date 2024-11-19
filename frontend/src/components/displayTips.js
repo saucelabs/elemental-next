@@ -1,7 +1,7 @@
 import React, {useState, useEffect, lazy, Suspense} from 'react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {useDoc} from '@docusaurus/theme-common/internal';
+import {useDoc} from '@docusaurus/plugin-content-docs/client';
 
 /**
  * @typedef {Object} Language
