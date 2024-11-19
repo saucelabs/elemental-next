@@ -76,7 +76,7 @@ const config = {
                     path: 'tips',
                     routeBasePath: 'tips',
                     include: ['**/*.mdx'],
-                    exclude: ['cards/**/*'],
+                    exclude: ['**/_*.mdx', 'cards/**/*'],
                     breadcrumbs: true,
                     editUrl: 'https://github.com/saucelabs/elemental-next/blob/main/frontend/',
                     showLastUpdateAuthor: true,
