@@ -4,7 +4,7 @@
   },
   "description": "A project to showcase downloading a file using official WebdriverJs",
   "devDependencies": {
-    "mocha": "10.8.2"
+    "mocha": "11.0.1"
   },
   "license": "MIT",
   "name": "download-a-file",
