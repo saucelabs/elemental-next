@@ -47,7 +47,7 @@ jobs:
           node-version: 20
       - name: Run tests on Linux and macOS
         if: matrix.os != 'windows-latest'
-        uses: nick-invision/retry@v3.0.0
+        uses: nick-invision/retry@v3.0.1
         with:
           timeout_minutes: 20
           max_attempts: 3
@@ -65,7 +65,7 @@ jobs:
             done
       - name: Run tests on Windows
         if: matrix.os == 'windows-latest'
-        uses: nick-invision/retry@v3.0.0
+        uses: nick-invision/retry@v3.0.1
         with:
           timeout_minutes: 20
           max_attempts: 3
