@@ -47,7 +47,7 @@ jobs:
           dotnet-version: 6.0.x
       - name: Run tests on Linux and macOS
         if: matrix.os != 'windows-latest'
-        uses: nick-invision/retry@v3.0.0
+        uses: nick-invision/retry@v3.0.2
         with:
           timeout_minutes: 20
           max_attempts: 3
@@ -64,7 +64,7 @@ jobs:
             done
       - name: Run tests on Windows
         if: matrix.os == 'windows-latest'
-        uses: nick-invision/retry@v3.0.0
+        uses: nick-invision/retry@v3.0.2
         with:
           timeout_minutes: 20
           max_attempts: 3
