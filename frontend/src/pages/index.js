@@ -14,7 +14,7 @@ function Home() {
     return (
         <Layout
             title="Home"
-            description="A free, once-weekly e-mail on how to do test automation like a Pro">
+            description="A free collection of tips to do test automation like a Pro">
             <header className={clsx('hero', styles.heroBanner)}>
                 <div className="container">
                     <DisplayLogo/>
@@ -28,28 +28,11 @@ function Home() {
                         <div className="row padding-bottom--none">
                             <div className="col col--8 col--offset-2">
                                 <div className="text--center">
-                                    <p className={"hero__subtitle margin-bottom--none"}>
-                                        Join over 20k test automation Pros
-                                    </p>
-                                    <p className={"hero__subtitle"}>
-                                        <small>
-                                            One email every Tuesday. Unsubscribe anytime.
-                                        </small>
-                                    </p>
-                                    {/* Drip Sign Up */}
-                                    <SignupForm/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col col--8 col--offset-2">
-                                <div className="margin-top--sm margin-bottom-lg text--center">
-                                    <Link
-                                        style={{color: "var(--ifm-color-primary)"}}
-                                        className={"hero__subtitle"}
-                                        to={useBaseUrl('tips/')}>
-                                        Skip it, take me to the tips!{' '}→
-                                    </Link>
+                                    <a href="/tips">
+                                        <button className="button button--lg button--primary">
+                                            Take me to the tips! {' '}→
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

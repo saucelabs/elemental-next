@@ -28,7 +28,7 @@ function generateSidebarItems(items) {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Elemental Selenium',
-    tagline: 'A free, once-weekly e-mail on how to do test automation like a Pro',
+    tagline: 'A free collection of tips to do test automation like a Pro',
     favicon: 'img/favicon.svg',
 
     // Set the production url of your site here
@@ -143,13 +143,6 @@ const config = {
                         to: '/community',
                         position: 'right',
                     },
-
-                    {
-                        to: '/signup',
-                        position: 'right',
-                        label: 'Join the mailing list',
-                        className: 'nav-button',
-                    },
                 ],
             },
             docs: {
@@ -200,10 +193,6 @@ const config = {
                             {
                                 label: 'Selenium Community',
                                 to: 'https://www.selenium.dev/support/',
-                            },
-                            {
-                                label: 'The Team Behind',
-                                to: 'https://saucelabs.com/resources/topic-hub/open-source-fellowship',
                             },
                         ],
                     },

@@ -50,7 +50,7 @@ const Community = () => {
                 <div className="container">
                     <h1 className="hero__title">Community</h1>
                     <p className="hero__subtitle">
-                        Elemental Selenium extends beyond <a href='/signup'>our weekly mailing list</a>.
+                        Elemental Selenium extends beyond our <a href='/tips'>tips</a>.
                         We’re open for contributions, all our content is open source!
                     </p>
                 </div>
