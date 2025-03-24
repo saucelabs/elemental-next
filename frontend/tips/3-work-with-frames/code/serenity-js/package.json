@@ -10,11 +10,11 @@
   "homepage": "https://serenity-js.org",
   "dependencies": {
     "@playwright/test": "1.51.1",
-    "@serenity-js/assertions": "3.31.2",
-    "@serenity-js/core": "3.31.2",
-    "@serenity-js/console-reporter": "3.31.2",
-    "@serenity-js/playwright-test": "3.31.2",
-    "@serenity-js/web": "3.31.2"
+    "@serenity-js/assertions": "3.31.13",
+    "@serenity-js/core": "3.31.13",
+    "@serenity-js/console-reporter": "3.31.13",
+    "@serenity-js/playwright-test": "3.31.13",
+    "@serenity-js/web": "3.31.13"
   },
   "devDependencies": {
     "@types/node": "22.13.11",
