@@ -132,3 +132,6 @@ TestResults/
 
 # Python cache
 __pycache__/
+
+# AI
+.claude/settings.local.json

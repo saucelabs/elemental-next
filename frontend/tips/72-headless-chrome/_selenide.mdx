@@ -1,0 +1,61 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/selenide/src/test/java/com/elemental/selenium/HeadlessChromeTest.java"}
+         language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+We pull in just a few classes:
+* `com.codeborne.selenide.Configuration` to switch the browser into headless mode,
+* static helpers from `com.codeborne.selenide.Selenide` (`open`, `title`, `screenshot`),
+* JUnit 5 annotations (`@BeforeEach`, `@Test`),
+* AssertJ for the assertions.
+
+NB! You don't need to add the typical "selenium*" dependencies.  
+Just one dependency is enough: `com.codeborne:selenide`.
+It will pull down all the needed Selenium dependencies automatically.
+
+### Enabling Headless Mode
+
+Selenide hides all the Chrome-specific flags behind a single switch:
+
+```java
+Configuration.browser = "chrome"; // or "edge", "firefox" etc.
+Configuration.headless = true;
+```
+
+Under the hood, Selenide adds the right command-line arguments (`--headless`, plus the
+extra flags Google recommends to work around known issues) and launches Chrome for you.
+
+You can also enable headless mode without touching the code at all by passing
+`-Dselenide.headless=true` on the command line — handy on a CI server where you may
+want to run the same tests with or without a visible browser.
+
+### Setup and Teardown
+
+`open(...)` launches the browser and navigates to the page. There is no explicit
+teardown — Selenide closes the browser automatically when the test finishes.
+
+### The Test
+
+We open the page, assert on the title (to make sure we are in the right place),
+and take a screenshot to verify our headless setup is working correctly. The
+screenshot is written to `Configuration.reportsFolder` (`build/reports/tests`
+by default) and `screenshot(...)` returns the URL of the saved file.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
