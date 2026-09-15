@@ -27,7 +27,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout GitHub repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Remove driver directories Windows
         if: matrix.os == 'windows-latest'
         run: |
@@ -48,7 +48,7 @@ jobs:
           bundler-cache: true
       - name: Run tests on Linux and macOS
         if: matrix.os != 'windows-latest'
-        uses: nick-invision/retry@v3.0.2
+        uses: nick-invision/retry@v4
         with:
           timeout_minutes: 20
           max_attempts: 3
@@ -66,7 +66,7 @@ jobs:
             done
       - name: Run tests on Windows
         if: matrix.os == 'windows-latest'
-        uses: nick-invision/retry@v3.0.2
+        uses: nick-invision/retry@v4
         with:
           timeout_minutes: 20
           max_attempts: 3
