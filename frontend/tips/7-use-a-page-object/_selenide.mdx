@@ -1,0 +1,92 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"7-use-a-page-object/code/selenide/src/test/java/com/elemental/selenium/PageObjectTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+First let's import our requisite classes:
+ * for annotations (e.g., `org.junit.jupiter.api.Test`),
+ * opening the browser with Selenide (e.g., `com.codeborne.selenide.Selenide.open`),
+
+Next, we'll start our test.
+
+### Example 1: pageObject
+
+Our first example `pageObject` shows how we can open an url and create a page object instance for it.
+
+Instead of a usual Selenide method `open(url)`, you can use method `open(url, Class)` that returns a newly created page object instance:
+> var page = open("https://the-internet.herokuapp.com/dynamic_loading/2", DynamicLoadingPage.class);
+
+Note that `page` is fully initialized object. You don't need to call any "page factories", initializers etc. - Selenide's already done it for you.
+
+Now you can use this `page` as any other Java object - call its methods (or even pass it as parameter to other methods):
+> page.start();
+
+and
+> page.waitForCompletion("Hello World!");
+
+Take a look how this page object is implemented - it's pretty simple:
+
+<details>
+  <summary>Toggle to see the <code>DynamicLoadingPage.java</code></summary>
+  <div>
+    <TipCode
+      codePath={"7-use-a-page-object/code/selenide/src/test/java/com/elemental/selenium/DynamicLoadingPage.java"}
+      language={"java"}/>
+  </div>
+</details>
+
+
+Web elements can be declared as fields in page object class.
+
+NB! Please make the fields private. In OOP (Object-oriented programming), 
+* objects expose their behaviour via methods, but
+* objects should NOT expose their state via public fields.
+
+### Example 2: alternativePageObject
+
+This example just shows a bit different page object that has fields of type `SelenideElement` instead of `By`.
+It's a matter of taste which variant you like more.
+
+<details>
+  <summary>Toggle to see the <code>AlternativeDynamicLoadingPage.java</code></summary>
+  <div>
+    <TipCode
+      codePath={"7-use-a-page-object/code/selenide/src/test/java/com/elemental/selenium/AlternativeDynamicLoadingPage.java"}
+      language={"java"}/>
+  </div>
+</details>
+
+### Example 3: anotherPageObject
+
+This example just shows a bit different page object that has no fields at all. :)
+
+Yes, it's also possible. And it's often even better because the code is shorter and simpler.
+
+<details>
+  <summary>Toggle to see the <code>AnotherDynamicLoadingPage.java</code></summary>
+  <div>
+    <TipCode
+      codePath={"7-use-a-page-object/code/selenide/src/test/java/com/elemental/selenium/AnotherDynamicLoadingPage.java"}
+      language={"java"}/>
+  </div>
+</details>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
