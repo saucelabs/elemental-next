@@ -124,6 +124,7 @@ target
 
 # Playwright
 playwright-report
+test-results
 
 # Csharp
 bin/
