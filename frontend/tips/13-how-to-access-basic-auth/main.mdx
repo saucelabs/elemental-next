@@ -37,6 +37,25 @@ By specifying the username and password _in the URL_ when visiting a page with S
 level dialog box and avoid setting up a proxy server. This approach will work for both HTTP or HTTPS pages.
 
 
+## Example
+
+__NOTE:__ We are using [a Basic Auth example](https://the-internet.herokuapp.com/basic_auth) found on
+[the-internet](https://github.com/saucelabs/the-internet). The username and password are both `admin`.
+
+There are two tests:
+
+- __Credentials in the URL__: we load the page by passing in the username and password in the front of the URL
+  (e.g., `https://admin:admin@`). Once it loads we grab text from the page to make sure we ended up in the right
+  place.
+- __Credentials cached by the browser__: alternatively, we could access the page with credentials once (e.g., as part
+  of the test setup). This caches the Basic Auth session in the browser, enabling us to visit the page again without
+  having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.
+
+__NOTE:__ If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one
+of _each_ type before executing your test steps. Otherwise you will get authorization errors when switching between
+HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g., HTTP for HTTPS and vice
+versa).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -47,6 +66,41 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+For the first test:
+
+- Open the browser
+- Visit the page using Basic Auth
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
+
+For the second test:
+
+- Open the browser
+- Visit the page using Basic Auth
+- Navigate to the Basic Auth page again (without providing credentials)
+- Get the page text
+- Assert that the text is what we expect
+- Close the browser
+
+## Summary
+
+Hopefully this tip will help save you from getting tripped by Basic Auth when you come across it.
+
+Happy Testing!
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/RomanIsko.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/RomanIsko"}
+/>
 
 ## About The Author
 
