@@ -40,15 +40,54 @@ configuration, local disk usage, or lengthy download times (depending on the fil
 Let's continue with an example.
 
 
+## Example
+
+__NOTE:__ We are using [a file download example](https://the-internet.herokuapp.com/download) found on
+[the-internet](https://github.com/saucelabs/the-internet).
+
+It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a
+`HEAD` request with it. Once we receive the response we check its headers for the content type and the content
+length to make sure the file is the correct type and not empty.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
     {label: 'Python', value: 'python'},
     {label: 'C#', value: 'csharp'},
     {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Load the page
+- Grab the URL of the first download link
+- Perform a `HEAD` request against it with an HTTP library
+- Check the response headers to see that the file type is correct
+- Check the response headers to see that the file is not empty
+- Close the browser
+
+## Summary
+
+Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more
+maintainable approach. But unfortunately it only works with files served up from a flat URL. So if you're trying to
+test file downloads that are generated in-memory as part of the browser session (a.k.a. not accessible from a URL)
+then you'll need to reach for the [browser specific Selenium configuration](/tips/2-download-a-file).
+
+Happy Testing!
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/RomanIsko.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/RomanIsko"}
+/>
 
 ## About The Author
 

@@ -1,83 +1,41 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-To start things off let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.), and an HTTP library to handle our HEAD request (e.g., `org.apache.http.HttpResponse`, etc.) and start our class with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```java
-// filename: DownloadFileRevisited.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpHead;
-import org.apache.http.impl.client.HttpClientBuilder;
+<TipCode
+    codePath={"8-download-a-file-revisited/code/java/src/test/java/com/elemental/selenium/DownloadRevisitedTest.java"}
+    language={"java"}/>
 
-public class DownloadFileRevisited {
-    WebDriver driver;
+## Code Walkthrough
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+### Importing Libraries
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+We import the HTTP client that comes with Java (e.g., `java.net.http.HttpClient`), annotations and assertions from
+JUnit (e.g., `org.junit.jupiter.api.Test`), and the classes to drive the browser with Selenium
+(e.g., `org.openqa.selenium.WebDriver`).
 
-Now we're ready to wire up our test.
+### Setup and Teardown
 
-It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a `HEAD` request with it.
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
 
-```java
-// filename: DownloadFileRevisited.java
-// ...
-    @Test
-    public void downloadFileRevisitedTest() throws Exception {
-        driver.get("http://the-internet.herokuapp.com/download");
-        String link = driver.findElement(By.cssSelector(".example a:nth-of-type(1)")).getAttribute("href");
+### The Test
 
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        HttpHead request = new HttpHead(link);
-        HttpResponse response = httpClient.execute(request);
-        String contentType = response.getFirstHeader("Content-Type").getValue();
-        int contentLength = Integer.parseInt(response.getFirstHeader("Content-Length").getValue());
+The test visits the page and grabs the `href` of the first download link. Since the attribute holds a relative
+link, we resolve it against the current URL to get the full URL of the file.
 
-        assertThat(contentType, is("application/octet-stream"));
-        assertThat(contentLength, is(not(0)));
-    }
+Then it sends a `HEAD` request for that URL (`.method("HEAD", HttpRequest.BodyPublishers.noBody())`). From the
+response we read the `Content-Type` and `Content-Length` headers, and assert that the file is the correct type
+and not empty.
 
-}
-```
+### Executing the Test
 
-Once we receive the response we check it's header for the content type (e.g., `response.getFirstHeader("Content-Type")`) and content length (e.g., `response.getFirstHeader("Content-Length")`) to make sure the file is the correct type and not empty.
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-## Expected Behavior
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-When you save this and run it (e.g., `mvn clean install` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Load the page
-+ Grab the URL of the first download link
-+ Perform a `HEAD` request against it with an HTTP library
-+ Store the response headers
-+ Check the response headers to see that the file type is correct
-+ Check the response headers to see that the file is not empty
-+ Close the browser
-
-## Summary
-
-Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach.
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.

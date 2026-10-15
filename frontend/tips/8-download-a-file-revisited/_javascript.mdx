@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"8-download-a-file-revisited/code/javascript/test/downloadRevisited.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+We pull in `assert` for our assertions and the classes to drive the browser with Selenium
+(`const {Builder, By} = require("selenium-webdriver");`). For the HTTP request we use `fetch`, which is built into
+Node.js.
+
+### Setup and Teardown
+
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
+
+### The Test
+
+The test visits the page and grabs the `href` of the first download link (`.example a`).
+
+Then it sends a `HEAD` request for that URL (`fetch(link, {method: "HEAD"})`). From the response we read the
+`content-type` and `content-length` headers, and assert that the file is the correct type and not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.
