@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Runs the code examples in the given directories, retrying each one up to 3 times.
 # Fails at the end if any directory still fails, so one failure does not hide the others.
+# Commands read from /dev/null, so an example that waits for input (e.g., a REPL) does not hang.
 #
 # Usage: run-tips.sh <language> '<JSON array of directories>'
 set -uo pipefail
@@ -37,7 +38,7 @@ while read -r dir; do
   passed=false
   for attempt in 1 2 3; do
     echo "Attempt ${attempt} in ${dir}"
-    if (cd "${root}/${dir}" && run_one); then
+    if (cd "${root}/${dir}" && run_one) </dev/null; then
       passed=true
       break
     fi
