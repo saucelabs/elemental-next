@@ -60,22 +60,6 @@
 }
 
 
-#__docusaurus {
-    background-image: url("../../static/img/backgrounds/background-light.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-attachment: fixed;
-}
-
-[data-theme='dark'] #__docusaurus {
-    background-image: url("../../static/img/backgrounds/background-dark.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-attachment: fixed;
-}
-
 .navbar-sidebar .nav-button {
     align-items: center;
     justify-content: center;
