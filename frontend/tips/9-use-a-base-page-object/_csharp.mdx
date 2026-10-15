@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/csharp/BasePage.cs"} language={"csharp"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/csharp/DynamicLoadingPage.cs"} language={"csharp"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/csharp/LoginPage.cs"} language={"csharp"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/csharp/BasePageTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Base Page Object
+
+`BasePage` stores the Selenium WebDriver instance it receives in its constructor, and the rest of the class is
+filled with common Selenium actions: `Visit`, `Find`, `Click`, `Type`, `IsDisplayed`, `TextOf`, `Title`,
+and `WaitFor`. They are `protected`, so only the Page Objects that inherit from it can use them.
+
+Note that `IsDisplayed` returns `false` when the element is not on the page instead of throwing an exception.
+That lets `WaitFor` use it with an explicit wait (`WebDriverWait`) until the element is displayed.
+
+### The Page Objects
+
+`DynamicLoadingPage` and `LoginPage` inherit from it (`public class DynamicLoadingPage : BasePage`). Their
+constructors pass the driver to the Base Page Object (`: base(driver)`), visit their page, and verify that we are
+in the right place.
+
+Each method now reads like a description of the page behavior (e.g., `Click(StartButton)`), with no Selenium code
+in it.
+
+### The Test
+
+`BasePageTest` launches Firefox in `SetUp()` and quits it in `TearDown()`. The tests create the Page Objects and
+use their methods, just like in the previous tip.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

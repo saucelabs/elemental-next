@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/java/src/test/java/com/elemental/selenium/BasePage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/java/src/test/java/com/elemental/selenium/DynamicLoadingPage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/java/src/test/java/com/elemental/selenium/LoginPage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/java/src/test/java/com/elemental/selenium/BasePageTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Base Page Object
+
+`BasePage` stores the Selenium WebDriver instance it receives in its constructor, and the rest of the class is
+filled with common Selenium actions: `visit`, `find`, `click`, `type`, `isDisplayed`, `textOf`, `title`,
+and `waitFor`. They are `protected`, so only the Page Objects that inherit from it can use them.
+
+Note that `isDisplayed` returns `false` when the element is not on the page instead of throwing an exception.
+That lets `waitFor` use it with an explicit wait (`WebDriverWait`) until the element is displayed.
+
+### The Page Objects
+
+`DynamicLoadingPage` and `LoginPage` inherit from it (`public class DynamicLoadingPage extends BasePage`). Their
+constructors call `super(driver)` first, which stores the driver in the Base Page Object. Then they visit their
+page and verify that we are in the right place.
+
+Each method now reads like a description of the page behavior (e.g., `click(START_BUTTON)`), with no Selenium code
+in it.
+
+### The Test
+
+`BasePageTest` launches Firefox in `beforeEach` and quits it in `afterEach`. The tests create the Page Objects
+and use their methods, just like in the previous tip.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/javascript/pages/basePage.js"} language={"js"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/javascript/pages/dynamicLoadingPage.js"} language={"js"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/javascript/pages/loginPage.js"} language={"js"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/javascript/test/basePage.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Base Page Object
+
+`BasePage` stores the Selenium WebDriver instance it receives in its constructor, and the rest of the class is
+filled with common Selenium actions: `visit`, `find`, `click`, `type`, `isDisplayed`, `textOf`, `title`,
+and `waitFor`.
+
+Note that `isDisplayed` returns `false` when the element is not on the page instead of throwing an error, and
+`waitFor` waits until the element is located and visible.
+
+### The Page Objects
+
+`DynamicLoadingPage` and `LoginPage` inherit from it (`class DynamicLoadingPage extends BasePage`). Since they
+don't need anything else in their constructor, they use the one from `BasePage`. Because WebDriver calls are
+asynchronous, visiting the page and verifying that we are in the right place happens in the `load()` method.
+
+Each method now reads like a description of the page behavior (e.g., `await this.click(START_BUTTON)`), with no
+Selenium code in it.
+
+### The Test
+
+The `beforeEach` hook launches Firefox and the `afterEach` hook quits it. The tests create the Page Objects, load
+them, and use their methods, just like in the previous tip.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

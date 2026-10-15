@@ -35,12 +35,43 @@ With a Base Page Object (a.k.a. a facade layer) we can abstract all common actio
 leverage them in any Page Object we see fit.
 
 
+## Example
+
+We are going to take the code from our previous tip ([Use a Page Object](/tips/7-use-a-page-object)) and modify it
+to use a Base Page Object.
+
+The Base Page Object is a simple class that our other Page Objects inherit from. It stores the Selenium WebDriver
+instance and wraps the common Selenium actions (visit, find, click, type, check if something is displayed, get its
+text, and wait for it) in a small Domain Specific Language (DSL).
+
+With it in hand, the Dynamic Loading Page Object from the previous tip no longer calls Selenium directly. To show
+that the same actions are reusable, we also add a Page Object for
+[the login page](https://the-internet.herokuapp.com/login) found on
+[the-internet](https://github.com/saucelabs/the-internet).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Load the Dynamic Loading page, click on start, and assert that `Hello World!` is displayed
+- Load the login page, log in with valid credentials, and assert that the success message is displayed
+
+## Summary
+
+Now we are in a position to write more Page Objects that leverage common actions without duplication or any
+Selenium code directly in them.
+
+Hopefully this tip has helped you find your way further down the rabbit hole of Page Objects (in a good way).
+
+Happy Testing!
 
 ## About The Author
 
