@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/javascript/pages/dynamicLoadingPage.js"} language={"js"}/>
+
+<TipCode codePath={"7-use-a-page-object/code/javascript/test/dynamicLoading.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+`DynamicLoadingPage` is a class in its own module. At the top of the file we store the URL and the locators as
+constants (e.g., `const START_BUTTON = By.css("#start button");`).
+
+The constructor receives the Selenium WebDriver instance. Since WebDriver calls in JavaScript are asynchronous and
+a constructor can't be `async`, visiting the page and verifying its title happens in the `visit()` method.
+
+Then each test step is a method that describes the behavior of the page: `start()` clicks the start button,
+`waitForFinish()` waits until the finish message is located and visible (the element is only added to the page
+once loading is done), and `finishText()` returns its text.
+
+### The Test
+
+The `beforeEach` hook launches Firefox, creates the Page Object, and visits the page. The `afterEach` hook quits
+the browser.
+
+The test (`displays Hello World! after loading`) uses the Page Object methods to start the loading and wait for it
+to finish, and asserts the text. Notice that the test has no locators or Selenium calls in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

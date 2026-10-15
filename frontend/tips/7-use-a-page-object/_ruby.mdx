@@ -1,162 +1,44 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-In this example we are going to take the following sample code and upgrade it with the use of a Page Object.
+## TL;DR - Show Me The Code
 
-```ruby
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+<TipCode codePath={"7-use-a-page-object/code/ruby/dynamic_loading_page.rb"} language={"ruby"}/>
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-  @base_url = 'http://the-internet.herokuapp.com/dynamic_loading/2'
-end
+<TipCode codePath={"7-use-a-page-object/code/ruby/dynamic_loading_test.rb"} language={"ruby"}/>
 
-def teardown
-  @driver.quit
-end
+## Code Walkthrough
 
-def run
-  setup
-  yield
-  teardown
-end
+### The Page Object
 
-def wait_for(seconds=10)
-  Selenium::WebDriver::Wait.new(:timeout => seconds).until { yield }
-end
-
-run do
-    @driver.get @base_url
-    @driver.find_element(css: '#start button').click
-    wait_for { @driver.find_element(css: '#finish').displayed? }
-    expect(@driver.find_element(css: '#finish').text).to eql('Hello World!')
-end
-```
-
-The first order of business is pretty simple. We keep our setup, teardown, and run actions mostly the same.
-But we change the base_url from an instance variable to an environment variable. Doing this will enable
-us to access it from anywhere in our test suite.
-
-While the usage of environment variables can be a slippery slope, this is an ideal candidate for it since
-it effects the overall behavior of the suite.
-
-```ruby
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
-
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-  ENV['base_url'] = 'http://the-internet.herokuapp.com/dynamic_loading/2'
-end
-
-def teardown
-  @driver.quit
-end
-
-def run
-  setup
-  yield
-  teardown
-end
-```
-
-Next we create a Page Object for the Dynamic Loading page by using a standard Ruby class and add some relevant
-bits to it.
-
-At the top of it we pull out the CSS locators used in our test steps and put them into helpfully
-named constants to use instead. And instead of using the two part 'how', 'what' approach, we are
-using a hash to store the locator type and its value.
+`DynamicLoadingPage` is a standard Ruby class. At the top of it we store the URL and the locators as constants.
+Instead of using the two part 'how', 'what' approach, we are using a hash to store the locator type and its value
+(e.g., `START_BUTTON = { css: '#start button' }`).
 
 Next we use `attr_reader` to create a place to store the Selenium WebDriver instance for use throughout the class.
+The `initialize` method receives it, visits the page, and verifies that we are in the right place.
 
-The class expects an argument (e.g. the Selenium WebDriver instance) which is received through the initialize method.
-Inside the initialize method we take care of passing the Selenium object into the `attr_reader` object along with
-visiting the page and verifying that we are in the correct place. All these things will execute in order when
-this class is instantiated.
+Then each test step is a method that describes the behavior of the page: `start` clicks the start button,
+`wait_for_finish` waits until the finish message is displayed, and `finish_text` returns its text.
 
-We then break out each of the test steps into methods that execute the behavior specific to the page while also
-swapping out the hard-coded CSS locators for our new CSS locator constant variables.
+At the bottom of the class we have a private method (`verify_page`). It's useful for the class to function, but
+we don't want it to be available outside of the class.
 
-At the bottom of the class we have private helper methods. These methods aren't necessarily specific to the page
-this class represents, but they are useful for it to function. So we want to access them within the class, but
-make it so that they're not available outside the class. Using the private classification gets us this behavior nicely.
+### The Test
 
-And lastly, we update the `displayed?` private method to take a single argument for a 'locator' object (e.g. one of
-our CSS locator constant variables).
+The `setup`, `teardown`, and `run` methods launch Firefox before the test and quit it afterward.
 
-```ruby
-class DynamicLoading
+The test creates the Page Object (`DynamicLoadingPage.new(@driver)`), uses its methods to start the loading and
+wait for it to finish, and asserts the text. Notice that the test has no locators or Selenium calls in it.
 
-  START_BUTTON = { css: '#start button' }
-  FINISH_BUTTON = { css: '#finish' }
+### Executing the Test
 
-  attr_reader :driver
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-  def initialize(driver)
-    @driver = driver
-    visit
-    verify_page
-  end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-  def visit
-    driver.get ENV['base_url']
-  end
-
-  def start
-    driver.find_element(START_BUTTON).click
-  end
-
-  def finish_present?
-    wait_for { @driver.find_element(FINISH_BUTTON).displayed? }
-  end
-
-  def finish_text
-    driver.find_element(FINISH_BUTTON).text
-  end
-
-  private
-
-    def verify_page
-      expect(driver.title).to eql('The Internet')
-    end
-
-    def wait_for(seconds=10)
-      Selenium::WebDriver::Wait.new(:timeout => seconds).until { yield }
-    end
-
-end
-```
-
-With our new Page Object in hand, our run action cleans up considerably. Making it more succinct and readable.
-
-```ruby
-run do
-  dynamic_loading = DynamicLoading.new(@driver)
-  dynamic_loading.start
-  dynamic_loading.finish_present?
-  expect(dynamic_loading.finish_text).to eql('Hello World!')
-end
-```
-
-It's worth noting that while we are peforming an assertion in the Page Object in our `verify_page`
-action __assertions should only be performed in your test scripts__ (just like the run action above).
-Using a `verify_page` action is just a helpful exception to the rule.
-
-## Expected Behavior
-
-+ Load Dynamic Loading page on The Internet
-+ Click on start
-+ Wait for the finish message to appear
-+ Grab the text from it
-+ Assert that the text we want is within it
-
-## Summary
-
-Hopefully this tip has helped you wade into the waters of Page Objects in Selenium.
-
-Stay tuned for a future tip where we implement a Base Page Object class to abstract things even further
-and roll our own Domain Specific Language (DSL) for our test suite.
-
-Until then, Happy Testing!
+Finally, we can run the test by executing `ruby dynamic_loading_test.rb` from the command-line.

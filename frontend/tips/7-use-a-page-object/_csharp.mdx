@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/csharp/DynamicLoadingPage.cs"} language={"csharp"}/>
+
+<TipCode codePath={"7-use-a-page-object/code/csharp/DynamicLoadingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+`DynamicLoadingPage` stores the URL and the locators as constants (e.g.,
+`private static readonly By StartButton = By.CssSelector("#start button");`).
+
+The constructor receives the Selenium WebDriver instance, stores it in a field (`_driver`), visits the page, and
+verifies that we are in the right place by checking the page title.
+
+Then each test step is a method that describes the behavior of the page: `Start()` clicks the start button,
+`WaitForFinish()` uses an explicit wait (`WebDriverWait`) until the finish message is displayed, and
+`GetFinishText()` returns its text.
+
+### The Test
+
+`DynamicLoadingTest` creates an instance of WebDriver with Firefox in the `SetUp()` method (marked with
+`[TestInitialize]`), and closes it in the `TearDown()` method (marked with `[TestCleanup]`).
+
+The test (`HelloWorldIsDisplayed()`) creates the Page Object, uses its methods to start the loading and wait for
+it to finish, and asserts the text. Notice that the test has no locators or Selenium calls in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
