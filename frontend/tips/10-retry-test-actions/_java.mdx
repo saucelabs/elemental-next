@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/java/src/test/java/com/elemental/selenium/RetryActionsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
+
+### The Retry Helper
+
+`retryIfMessageContains` receives the failure message and the action to perform (a `Supplier<String>` that returns
+the notification message). It performs the action once, and repeats it while the message contains the failure
+message, up to 10 attempts. Then it returns the last message it got.
+
+### The Test
+
+In the test we pass a lambda that loads the page and returns the text of the notification message
+(`driver.findElement(By.id("flash")).getText()`), together with the failure message (`please try again`). Then we
+assert that the message we end up with is the successful one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

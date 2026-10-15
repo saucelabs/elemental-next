@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/python/retry_actions.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+
+### The Retry Helper
+
+`retry_if_message_contains` receives the failure message, the action to perform (a function that returns the
+notification message), and the maximum number of attempts. It performs the action once, and repeats it while the
+message contains the failure message. Then it returns the last message it got.
+
+### The Test
+
+In the test we define `load_notification_message`, which loads the page and returns the text of the notification
+message (`driver.find_element(By.ID, 'flash').text`). We pass it to the retry helper together with the failure
+message (`please try again`), and assert that the message we end up with is the successful one.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest retry_actions.py` from the
+command-line.

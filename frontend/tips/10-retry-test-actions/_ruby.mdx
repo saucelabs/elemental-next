@@ -1,86 +1,36 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-The example application is a page that displays a notification message at the top of the page. It will either say **Action successful** or **Action unsuccessful, please try again**. You can see it [here](http://the-internet.herokuapp.com/notification_message).
+## TL;DR - Show Me The Code
 
-Our goal in this example is verify an **Action successful** message.
+<TipCode codePath={"10-retry-test-actions/code/ruby/retry_actions.rb"} language={"ruby"}/>
 
-The beginning of our test script starts off simply with accessing our libraries (Selenium and RSpec) and creating our setup, teardown, and run actions.
+## Code Walkthrough
 
-```ruby
-require 'selenium-webdriver'
-require 'rspec/expectations'
+### Setup and Teardown
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+The `setup`, `teardown`, and `run` methods launch Firefox before the test and quit it afterward.
 
-def teardown
-  @driver.quit
-end
+### The Retry Helper
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+`retry_if_message_contains` receives the failure message and the maximum number of attempts, and a block with the
+actions to perform. It runs the block (with `yield`) once, and runs it again while the message it returns contains
+the failure message. Then it returns the last message it got.
 
-A first pass at this example would look something like this:
+### The Test
 
-```ruby
-run {
-  @driver.get 'http://the-internet.herokuapp.com/notification_message'
-  notification_message = @driver.find_element(id: 'flash').text
-  notification_message =~ /Action successful/
-}
-```
+In the `run` block we pass a block that loads the page and returns the text of the notification message
+(`@driver.find_element(id: 'flash').text`), together with the failure message (`please try again`). Then we assert
+that the message we end up with is the successful one.
 
-The problem with this approach is that it will fail intermittently because the page's notification message could very well be something else. But the next time you load it, it could be the correct thing.
+### Executing the Test
 
-Perhaps something like this would be better suited:
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-```ruby
-def get_notification_message
-  @notification_message = @driver.find_element(id: 'flash').text
-end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-def retry_if_notification_message_contains(fail_message)
-  count = 0
-  yield
-  until !@notification_message.include? fail_message || count == 3
-    yield
-    count =+ 1
-  end
-end
-
-run {
-  retry_if_notification_message_contains 'please try again' do
-    @driver.get 'http://the-internet.herokuapp.com/notification_message'
-    get_notification_message
-  end
-  @notification_message =~ /Action successful/
-}
-```
-
-In this approach we have abstracted out the text grab of the notification message into a method which sets what it finds into an instance variable. And we've added a new method called `retry_if_notification_message_contains` that accepts an argument of `fail_message`. In it, we accept a yield in 2 places and have constructed a simple loop that runs 3 times or until the notification message does not match the `fail_message`, whichever comes first. And the yields will execute whatever code is passed both before and during the loop.
-
-In the run block we pass our navigation and text grab actions as a block into `retry_if_notification_message_contains`, passing the failure message of **please try again** as the argument for `fail_message` to receive.
-
-And we top everything off with an assertion.
-
-## Expected Behavior
-
-- Load the page
-- Grab the notification message text
-- Compare it to the failure message
-- If it matches, retry
-- If 3 retries attempted, end loop, and fail test
-- If it doesn't match, pass the test
-
-## Summary
-
-With this approach there may be a concern that we could be obfuscating a real issue that could bubble up to our users. That's why it is important to use this approach sparingly, and on issues you more or less understand (e.g. a third-party test environment having one-off service blips, or expensive tests that involve sharing something to a third-party and checking to see that it appeared).
-
-Hopefully this example will help you build a more resilient and relevant set of tests.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby retry_actions.rb` from the command-line.

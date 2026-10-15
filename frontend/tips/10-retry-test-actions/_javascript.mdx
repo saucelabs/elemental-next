@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/javascript/test/retryActions.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
+
+### The Retry Helper
+
+`retryIfMessageContains` receives the failure message, the action to perform (an `async` function that returns the
+notification message), and the maximum number of attempts. It performs the action once, and repeats it while the
+message contains the failure message. Then it returns the last message it got.
+
+### The Test
+
+In the test we pass an `async` function that loads the page and returns the text of the notification message
+(`driver.findElement(By.id("flash")).getText()`), together with the failure message (`please try again`). Then we
+assert that the message we end up with is the successful one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.
