@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "selenium-webdriver": "4.51.0"
+  },
+  "description": "A project to showcase opting out of A/B tests using official WebdriverJs",
+  "devDependencies": {
+    "mocha": "12.0.3"
+  },
+  "license": "MIT",
+  "name": "opt-out-of-ab-tests",
+  "scripts": {
+    "test": "npx mocha test/**/*.spec.js --timeout 60000"
+  },
+  "version": "1.0.0"
+}
