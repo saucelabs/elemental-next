@@ -44,7 +44,11 @@ const config = {
     projectName: 'elemental-next', // Usually your repo name.
     deploymentBranch: 'gh-pages', // The branch that GitHub pages deploys from.
     onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    markdown: {
+        hooks: {
+            onBrokenMarkdownLinks: 'warn',
+        },
+    },
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want

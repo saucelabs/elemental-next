@@ -4,25 +4,25 @@
     publish = "/build"
 
 [build.environment]
-    NODE_VERSION = "18"
+    NODE_VERSION = "24"
 
 [context.production]
     base = "frontend/"
     command = "npm install && npm run build"
 
 [context.production.environment]
-    NODE_VERSION = "18"
+    NODE_VERSION = "24"
 
 [context.branch-deploy]
     base = "frontend/"
     command = "npm install && npm run build"
 
 [context.branch-deploy.environment]
-    NODE_VERSION = "18"
+    NODE_VERSION = "24"
 
 [context.deploy-preview]
     base = "frontend/"
     command = "npm install && npm run build"
 
 [context.deploy-preview.environment]
-    NODE_VERSION = "18"
+    NODE_VERSION = "24"

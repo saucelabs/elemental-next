@@ -29,7 +29,7 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
 ## Prerequisites
 
 - [`git`](https://git-scm.com/downloads) 📥
-- [Node.js](https://nodejs.org/en/download/) `version >= 18` or above (which can be checked by running node -v). You can use nvm for managing multiple Node versions on a single machine installed 📈
+- [Node.js](https://nodejs.org/en/download/) `version >= 20` (24 LTS recommended) (which can be checked by running node -v). You can use nvm for managing multiple Node versions on a single machine installed 📈
 
 ## Installation 💻
 
