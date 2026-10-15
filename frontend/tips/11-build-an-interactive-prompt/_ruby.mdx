@@ -1,63 +1,48 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-In the first half of our example we include our libraries and our usual setup, teardown, and run actions.
+## TL;DR - Show Me The Code
 
-```ruby
-require 'selenium-webdriver'
-require 'rspec/expectations'
+<TipCode codePath={"11-build-an-interactive-prompt/code/ruby/repl.rb"} language={"ruby"}/>
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+<TipCode codePath={"11-build-an-interactive-prompt/code/ruby/repl_test.rb"} language={"ruby"}/>
 
-def teardown
-  @driver.quit
-end
+## Code Walkthrough
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### The Prompt
 
-In the run action we define our loop and its behavior, creating the interactive prompt we want.
+`run_repl` receives the driver, and where to read the input from and write the output to (`$stdin` and `$stdout` by
+default). We capture a `binding` before the loop, so every command is evaluated in the same context and can use
+`driver` (and any variable declared by a previous command).
 
-```ruby
-run do
-  loop do
-    print '>> '
-    input = gets.chomp
-    if input == 'q'
-      puts 'Quitting...'
-      @driver.quit
-      exit 0
-    end
-    begin
-      eval input
-    rescue Exception => e
-      puts e.message
-    end
-  end
-end
-```
+The `print` command is used instead of `puts` because we want `>> ` to appear on the same line as the input that we
+are issuing. This gives us the look and feel of a prompt. And we use `gets` to take in input and `chomp` to remove
+the carriage return character (e.g., `\n`) from it.
 
-The `print` command is used instead of `puts` because we want `>> ` to appear on the same line as the input that we are issuing. This gives us the look and feel of a prompt. And we use `gets.chomp` to take in input. `gets` is responsible for receiving the input. And `chomp` removes the carriage return character (e.g. '\n') from the input.
+If the command is `q`, we say goodbye and leave the loop. Otherwise we `eval` it, print the result when there is
+one, and rescue errors, printing their class and message and continuing.
 
-Before executing the input we perform a check to see if the letter **q** is issued. If so, the script will post a message to the terminal, close the browser, and exit the prompt.
+At the bottom, when the file is run directly (`if __FILE__ == $PROGRAM_NAME`), we launch Firefox, start the prompt,
+and quit the browser when the prompt ends.
 
-We then execute the input provided with `eval` and rescue exceptions, posting their message to the terminal when they occur.
+### The Test
 
-Here is an example command you may issue to start: `@driver.get 'https://www.google.com'`.
+The test passes the commands with a `StringIO` and collects the output in another one. Then it checks that the title
+was printed, that the missing element printed a `NoSuchElementError`, and that `q` ended the prompt.
 
-## Expected Behavior
+### Using the Prompt
 
-- Firefox loads
-- An interactive prompt is presented
-- Issue a Selenium command and see it execute in the browser
-- Issue a command that it does not recognize (or that errors), and see a message stating the issue in the prompt
-- Issue **q**, the browser will close and the prompt will terminate
+Run `ruby repl.rb` and type commands like `driver.get 'https://the-internet.herokuapp.com'` or
+`driver.find_element(css: 'h1').text`. Type `q` to quit.
 
-## Summary
+### Executing the Test
 
-Hopefully this REPL will help save you some time and frustration -- making it easier to write and debug your tests.
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `ruby repl_test.rb` from the command-line.

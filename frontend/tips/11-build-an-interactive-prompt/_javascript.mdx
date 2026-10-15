@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/javascript/repl.js"} language={"js"}/>
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/javascript/test/repl.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Prompt
+
+WebDriver calls in JavaScript return promises, so commands need to be `await`ed. To evaluate them we create an
+`AsyncFunction` with the command as its body and `driver` and `By` as its parameters. First we try to use the
+command as an expression (`return (${command});`), so we get its value back. If that's not valid JavaScript (e.g.,
+it's a statement), we use the command as the body as is.
+
+`runRepl` receives the driver, a function to read input, and a function to write output. In the loop we read a
+command. If it is `q`, we say goodbye and leave the loop. Otherwise we evaluate it and print the result when there
+is one. When there is an error we print its name and message and keep going.
+
+At the bottom, when the file is run directly (`require.main === module`), we launch Firefox, read the commands from
+the terminal with `readline`, and quit the browser when the prompt ends.
+
+### The Test
+
+The test passes the commands from an array (`async () => commands.shift()`) and collects the output in another
+array. Then it checks that the title was printed, that the missing element printed a `NoSuchElementError`, and that
+`q` ended the prompt.
+
+### Using the Prompt
+
+Run `node repl.js` and type commands like `driver.get('https://the-internet.herokuapp.com')` or
+`driver.findElement(By.css('h1')).getText()`. Type `q` to quit.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

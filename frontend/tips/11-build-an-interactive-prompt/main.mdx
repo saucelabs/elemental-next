@@ -41,12 +41,38 @@ This will enable us to continue through specific Selenium actions and locators t
 putting them into test code.
 
 
+## Example
+
+The prompt is a simple loop. It prints `>> `, reads a command, and evaluates it with the driver available as
+`driver` (or `Driver` in C#). If the command returns something, the prompt prints it. If the command errors, the
+prompt prints the error and keeps going. When we type `q`, it says goodbye and ends, and the browser is closed.
+
+To make sure the prompt keeps working, the input and output are passed in to the loop. That way the same code reads
+from the keyboard when we use it, and from a list of commands in a test that runs in CI.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Firefox loads
+- An interactive prompt is presented
+- Issue a Selenium command and see it execute in the browser
+- Issue a command that it does not recognize (or that errors), and see a message stating the issue in the prompt
+- Issue __q__, the browser will close and the prompt will terminate
+
+## Summary
+
+Hopefully this REPL will help save you some time and frustration -- making it easier to write and debug your tests.
+
+Happy Testing!
 
 ## About The Author
 

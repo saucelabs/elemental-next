@@ -1,0 +1,54 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/java/src/test/java/com/elemental/selenium/Repl.java"} language={"java"}/>
+
+<TipCode
+    codePath={"11-build-an-interactive-prompt/code/java/src/test/java/com/elemental/selenium/ReplTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### The Prompt
+
+Java ships with JShell, a REPL for Java, and its API (`jdk.jshell.JShell`) lets us evaluate Java snippets from our
+own code. We create it with the `local` execution engine, so snippets run in the same JVM as our code, and we add our
+classpath to it so snippets can use Selenium.
+
+Snippets can't receive Java objects directly, so we store the driver in a static field (`Repl.driver`) and declare
+a `driver` variable in JShell that points to it. We also import `org.openqa.selenium.*`, so commands can use `By`
+and friends.
+
+`run` receives the driver, a `BufferedReader` for the input, and a `PrintStream` for the output. In the loop we read
+a command. If it is `q`, we say goodbye and leave the loop. Otherwise we evaluate it with `jshell.eval` and look at
+the events it returns: we print the exception when the command threw one, the diagnostics when it didn't compile, or
+its value when it returned something.
+
+`main` launches Firefox, starts the prompt with the console input and output, and quits the browser when the prompt
+ends.
+
+### The Test
+
+The test passes the commands with a `StringReader` and collects the output in a `ByteArrayOutputStream`. Then it
+checks that the title was printed, that the missing element printed a `NoSuchElementException`, and that `q` ended
+the prompt.
+
+### Using the Prompt
+
+Run `mvn -q test-compile exec:exec` and type commands like `driver.get("https://the-internet.herokuapp.com");` or
+`driver.findElement(By.cssSelector("h1")).getText()`. Type `q` to quit. The `exec-maven-plugin` configuration in the
+`pom.xml` starts `Repl` with the test classpath.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
