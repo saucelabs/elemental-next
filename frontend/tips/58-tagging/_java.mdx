@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/java/src/test/java/com/elemental/selenium/TaggingTest.java"} language={"java"}/>
+
+<TipCode codePath={"58-tagging/code/java/pom.xml"} language={"xml"}/>
+
+## Code Walkthrough
+
+### Tagging
+
+In JUnit, we apply tags with the `@Tag` annotation (e.g., `@Tag("smoke")`).
+
+### Filtering
+
+Maven Surefire runs only the tests with the tags we give it in `groups` (and skips the ones in `excludedGroups`). We
+set `<groups>smoke</groups>` in the `pom.xml`, so `mvn test` runs only the smoke tests. You can also choose the tags
+from the command-line (e.g., `mvn test -Dgroups=wip`, or a tag expression like `-Dgroups="!wip"`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
