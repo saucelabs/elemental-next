@@ -1,69 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/saucelabs/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them they display additional user information and a link to view a full profile.
+## TL;DR - Show Me The Code
 
-Let's write a test that will hover over the first avatar and make sure that its additional information appears.
+<TipCode codePath={"50-how-to-work-with-hovers/code/csharp/HoversTest.cs"} language={"csharp"}/>
 
-First let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
+## Code Walkthrough
 
-```csharp
-// filename: Hovers.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
+### Setup and Teardown
 
-public class Hovers
-{
-    IWebDriver Driver;
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+### The Test
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+After loading the page we find the first avatar (the first element with the `figure` class) and store it in a
+variable. Then we find its caption by searching _within_ the avatar (`anAvatar.FindElement(...)`), so we get the caption of that avatar
+and not of any other one.
 
-Now let's write our test.
+We assert that the caption is not displayed, trigger the hover with `new Actions(_driver).MoveToElement(anAvatar).Perform()`, and assert that the caption is displayed.
 
-```csharp
-// filename: Hovers.cs
-    [Test]
-    public void MouseHoverDisplays()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/hovers");
+### Executing the Test
 
-        IWebElement Avatar = Driver.FindElement(By.ClassName("figure"));
-        Actions Builder = new Actions(Driver);
-        Builder.MoveToElement(Avatar).Build().Perform();
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-        By Hover = By.ClassName("figcaption");
-        Assert.That(Driver.FindElement(Hover).Displayed);
-    }
-}
-```
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-After visiting the page we find the first avatar and store it in a variable (`Avatar`). We then use Selenium's `MoveToElement` method and pass the avatar variable to it (which triggers the hover) and check to see if the additional user information displayed.
-
-## Expected Behavior
-
-When you save this file and run it (e.g., `nunit3-console.exe .\Hovers.sln` from the command-line) here is what will happen:
-
-- Open the browser
-- Visit the page
-- Hover over the first avatar
-- Assert that the caption displayed for that avatar
-- Close the browser
-
-## Summary
-
-Hopefully this will help you handle more complex user interactions like hovers.
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test` from the command-line.

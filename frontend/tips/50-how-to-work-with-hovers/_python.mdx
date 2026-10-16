@@ -1,63 +1,35 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/saucelabs/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them, they display additional user information and a link to view a full profile.
+## TL;DR - Show Me The Code
 
-We're going to write a test that will hover over the first avatar and make sure that this additional information appears.
+<TipCode codePath={"50-how-to-work-with-hovers/code/python/hovers.py"} language={"python"}/>
 
-First we'll include our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
+## Code Walkthrough
 
-```python
-# filename: hovers.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
+### Setup and Teardown
 
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
 
-class Hovers(unittest.TestCase):
+### The Test
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+After loading the page we find the first avatar (the first element with the `figure` class) and store it in a
+variable. Then we find its caption by searching _within_ the avatar (`an_avatar.find_element(...)`), so we get the caption of that avatar
+and not of any other one.
 
-    def tearDown(self):
-        self.driver.quit()
+We assert that the caption is not displayed, trigger the hover with `ActionChains(driver).move_to_element(an_avatar).perform()`, and assert that the caption is displayed.
 
-# ...
-```
+### Executing the Test
 
-Now let's write our test.
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
 
-```python
-# filename: hovers.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/hovers')
-        avatar = driver.find_element(By.CLASS_NAME, 'figure')
-        ActionChains(driver).move_to_element(avatar).perform()
-        avatar_caption = driver.find_element(By.CLASS_NAME, 'figcaption')
-        assert avatar_caption.is_displayed()
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
 
-if __name__ == "__main__":
-    unittest.main()
-```
-
-After loading the page we find the first avatar and store it in a variable (`avatar`). We then use the `.move_to_element` method and feed it the avatar variable (which triggers the hover).
-
-We then check to see if the additional user information is displayed with `.is_displayed` in our assertion.
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `python hover.py` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Hover over the first avatar
-+ Assert that the caption appeared on the page
-+ Close the browser
-
-## Summary
-
-Hopefully this will help you handle more complex user interactions like hovers.
-
-Happy Testing!
+After installing the required libraries, we can run the test by executing `pytest hovers.py` from the
+command-line.
