@@ -16,6 +16,9 @@ on:
 
 env:
   DISPLAY: :99
+  # Used by the tips that run on Sauce Labs (e.g., tip 26). They are skipped when these are not set (e.g., on forks).
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
 jobs:
   select:

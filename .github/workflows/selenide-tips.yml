@@ -24,6 +24,7 @@ on:
 jobs:
   run_tips:
     uses: ./.github/workflows/run-tips.yml
+    secrets: inherit
     with:
       language: selenide
       workflow-file: selenide-tips.yml

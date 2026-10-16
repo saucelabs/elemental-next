@@ -99,6 +99,8 @@ tips/1-upload-a-file/
   - Tests that fail on purpose (e.g., tip 16, screenshot on failure) go in a directory with an `expect-failure`
     file listing the files the failure must create (e.g., `failshot_*.png`). The directory passes only when the
     tests fail and those files exist.
+  - Tips that run on Sauce Labs (e.g., tip 26) read `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` (repository secrets in
+    CI) and skip themselves when they are not set.
 - Renovate (`renovate.json`) keeps dependencies updated.
 
 ## Common commands
