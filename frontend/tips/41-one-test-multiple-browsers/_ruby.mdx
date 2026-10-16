@@ -1,80 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-To start, we include our dependent libraries (`'selenium-webdriver'` to drive the browser, and `'rspec-expectations'` 
-to perform our assertion) and then wire up `setup` and `teardown` methods.
+## TL;DR - Show Me The Code
 
-In `setup` we are accepting two parameters -- `browser_name` and `browser_version`. We put these to use when 
-specifying the browser and operating system capabilities for Sauce Labs, which gets stored in the `caps` variable. 
-This variable then gets passed in as part of the `@driver` incantation.
+<TipCode codePath={"41-one-test-multiple-browsers/code/ruby/multiple_browsers.rb"} language={"ruby"}/>
 
-And in `teardown` we destroy the browser session.
+## Code Walkthrough
 
-```ruby
-# filename: example.rb
+### Setup and Teardown
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
+If the credentials are not set, the script prints a message and exits without running the test.
 
-def setup(browser_name, browser_version)
-  caps = Selenium::WebDriver::Remote::Capabilities.send(browser_name.to_sym)
-  caps.platform = 'Windows XP'
-  caps.version = browser_version.to_s
+`setup` receives the browser name. It creates the options for that browser (`Selenium::WebDriver::Options.send(browser)`
+calls `Options.chrome`, `Options.firefox`, and so on), sets the version and operating system, adds the Sauce Labs
+options (including the browser in the test name), and connects to Sauce Labs. `teardown` quits the browser.
 
-  @driver = Selenium::WebDriver.for(
-    :remote,
-    url: "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_API_KEY']}@ondemand.saucelabs.com/wd/hub",
-    desired_capabilities: caps)
-end
+`run` loops over `BROWSERS`, running `setup`, the test, and `teardown` for each of them.
 
-def teardown
-  @driver.quit
-end
-```
+### The Test
 
-Note the `url:` in the `@driver` section above. It is concatenated from environment variables that are set at run 
-time; like so.
+The test loads the page and asserts that the title is correct. It doesn't know which browser it is running on.
 
-```sh
-SAUCE_USERNAME='your sauce username' SAUCE_API_KEY='your sauce api key' ruby example.rb
-```
+### Executing the Test
 
-Next we specify the browsers and versions we care about in a collection (e.g., a Hash), create a `run` method, and 
-wire it up to loop over the collection -- running `setup`, test actions, and `teardown` for each browser in the 
-collection.
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-```ruby
-BROWSERS = { firefox: '27',
-             chrome: '32',
-             internet_explorer: '8' }
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-def run
-  BROWSERS.each_pair do |browser, browser_version|
-    setup(browser, browser_version)
-    yield
-    teardown
-  end
-end
-```
-
-Once we have that, we wire up our test.
-
-```ruby
-run do
-  @driver.get 'https://the-internet.herokuapp.com'
-  expect(@driver.title).to eql('The Internet')
-end
-```
-
-And when we run it, we should see three jobs appear in Sauce Labs.
-
-## Expected Behavior
-
-+ Load Firefox, load the page, assert the title is correct
-+ Load Chrome, load the page, assert the title is correct
-+ Load IE, load the page, assert the title is correct
-
-## Summary
-
-Hopefully this tip has helped make multi-browser testing more approachable to you.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby multiple_browsers.rb` from the command-line.

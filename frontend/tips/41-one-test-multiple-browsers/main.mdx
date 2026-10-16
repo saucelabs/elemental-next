@@ -21,23 +21,53 @@ category:
 ## Intro
 
 You'll occasionally have something that you want to test across multiple browsers. It would be nice to run your test
-once and have it execute against all the browsers you care about. Unfortunately this functionality doesn't come out
-of the box with most testing frameworks.
+once and have it execute against all the browsers you care about. Most testing frameworks can do it, as long as you give them
+the list of browsers.
 
 ## A Solution
 
-With the help of Sauce Labs, a collection, and a loop, we can easily specify a list of browsers and run a test
-against each of them.
+With the help of [Sauce Labs](/tips/26-cloud), a collection, and the parametrization features of our test framework
+(or a simple loop), we can easily specify a list of browsers and run a test against each of them.
 
 Let's take a look at an example.
 
 
+## Example
+
+__NOTE:__ You'll need a Sauce Labs account, with your username and access key exported as the environment variables
+`SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`. See [How to Run Your Tests on Any Browser & Operating System](/tips/26-cloud)
+for the details. If they are not set, the tests are skipped.
+
+We specify the browsers we care about in a collection (Chrome, Firefox, and Edge in this case). For each of them, we
+create the options for that browser, set the version (`latest`) and the operating system (`Windows 11`), add the
+Sauce Labs options, and connect to Sauce Labs with a Remote WebDriver. Then our test loads the page and asserts that
+the title is correct.
+
+The test runs once for each browser in the collection, one after the other. When we run it, we should see three jobs
+appear in Sauce Labs.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Load Chrome, load the page, assert the title is correct
+- Load Firefox, load the page, assert the title is correct
+- Load Edge, load the page, assert the title is correct
+
+## Summary
+
+Hopefully this tip has helped make multi-browser testing more approachable to you. Next up,
+[running them in parallel](/tips/42-one-test-multiple-browsers-parallel).
+
+Happy Testing!
 
 ## About The Author
 
