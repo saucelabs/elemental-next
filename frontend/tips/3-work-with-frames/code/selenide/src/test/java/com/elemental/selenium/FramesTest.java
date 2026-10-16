@@ -25,9 +25,12 @@ public class FramesTest {
 
         SelenideElement editor = $(By.id("tinymce"));
         editor.shouldHave(text("Your content goes here."));
-        editor.setValue("Hello World!");
+        editor.clear();
+        // Clearing the editor makes it lose the focus in some browsers (e.g., Chrome), so we click on it before typing.
+        editor.click();
+        editor.sendKeys("Hello World!");
         editor.shouldHave(text("Hello World!"));
-        
+
         switchTo().defaultContent();
         $("h3").shouldHave(text("An iFrame containing the TinyMCE WYSIWYG Editor"));
     }
