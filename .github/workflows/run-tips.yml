@@ -1,0 +1,107 @@
+# Reusable workflow that runs the code examples of one language (frontend/tips/*/code/<language>).
+# On pull requests and pushes, only the changed directories run. See .github/scripts/select-tip-dirs.sh.
+name: Run tips
+
+on:
+  workflow_call:
+    inputs:
+      language:
+        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby)'
+        required: true
+        type: string
+      workflow-file:
+        description: 'File name of the calling workflow, a change to it runs every directory'
+        required: true
+        type: string
+
+env:
+  DISPLAY: :99
+  # Used by the tips that run on Sauce Labs (e.g., tip 26). They are skipped when these are not set (e.g., on forks).
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.select.outputs.dirs }}
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Select directories to run
+        id: select
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          HEAD_REF: ${{ github.head_ref || github.ref_name }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          dirs=$(.github/scripts/select-tip-dirs.sh "${{ inputs.language }}" "${{ inputs.workflow-file }}")
+          echo "Directories to run: ${dirs}"
+          echo "dirs=${dirs}" >> "$GITHUB_OUTPUT"
+
+  test_examples:
+    needs: select
+    if: needs.select.outputs.dirs != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v7
+      - name: Remove driver directories Windows
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          rm "$env:ChromeWebDriver" -r -v
+          rm "$env:EdgeWebDriver" -r -v
+          rm "$env:GeckoWebDriver" -r -v
+      - name: Remove driver directories Non-Windows
+        if: matrix.os != 'windows-latest'
+        run: |
+          sudo rm -rf $CHROMEWEBDRIVER $EDGEWEBDRIVER $GECKOWEBDRIVER
+      - name: Start Xvfb
+        if: matrix.os == 'ubuntu-latest'
+        run: Xvfb :99 &
+      - name: Set up Java
+        if: inputs.language == 'java' || inputs.language == 'selenide'
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: 25
+      - name: Set up Maven
+        if: inputs.language == 'java' || inputs.language == 'selenide'
+        uses: stCarolas/setup-maven@v5.1
+        with:
+          maven-version: 3.9.16
+      - name: Set up .NET
+        if: inputs.language == 'csharp'
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+      - name: Set up Node
+        if: inputs.language == 'javascript' || inputs.language == 'serenity-js'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Set up Python
+        if: inputs.language == 'python'
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+      - name: Set up Ruby
+        if: inputs.language == 'ruby'
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+      - name: Run tests
+        run: .github/scripts/run-tips.sh "${{ inputs.language }}" '${{ needs.select.outputs.dirs }}'

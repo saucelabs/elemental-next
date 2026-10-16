@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "selenium-webdriver": "4.30.0"
+    "selenium-webdriver": "4.51.0"
   },
   "description": "A project to showcase uploading a file using official WebdriverJs",
   "devDependencies": {
-    "mocha": "11.1.0"
+    "mocha": "12.0.3"
   },
   "license": "MIT",
   "name": "upload-a-file",

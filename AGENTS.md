@@ -88,9 +88,24 @@ tips/1-upload-a-file/
 
 - `test-build.yml`: builds the site on every PR.
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
-- `<lang>-tips.yml`: run nightly, and on PRs/pushes that touch `**/code/<lang>/**`. They find every
-  `*/code/<lang>` directory and run its tests on Ubuntu, Windows and macOS (with Xvfb on Linux and retries).
-  A new `code/<lang>` directory is picked up automatically, as long as it follows the conventions above.
+- `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`): thin callers of
+  the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
+  - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
+    `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, Renovate branches, and when
+    the CI itself changes.
+  - `.github/scripts/run-tips.sh` holds the per-language test command, retries each directory up to 3 times, and
+    fails if any directory fails.
+  - A new `code/<lang>` directory is picked up automatically, as long as it follows the conventions above.
+  - A directory with an `expect-files` file passes only when its tests pass and the files listed in it exist (e.g.,
+    the JUnit XML report of tip 57).
+  - Tests that fail on purpose (e.g., tip 16, screenshot on failure) go in a directory with an `expect-failure`
+    file listing the files the failure must create (e.g., `failshot_*.png`). The directory passes only when the
+    tests fail and those files exist.
+  - Tips that need a Selenium Grid (e.g., tip 52) have a `needs-grid` file. The run script downloads the Selenium
+    Server jar (`GRID_VERSION` in `run-tips.sh`) and starts it in standalone mode on `http://localhost:4444` while
+    their tests run.
+  - Tips that run on Sauce Labs (e.g., tip 26) read `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` (repository secrets in
+    CI) and skip themselves when they are not set.
 - Renovate (`renovate.json`) keeps dependencies updated.
 
 ## Common commands
@@ -118,3 +133,11 @@ Run a single example from its `code/<lang>` directory (see that directory's READ
   are signed off (DCO), see CONTRIBUTING.md.
 - Keep the code examples simple and readable: they are teaching material, not a framework.
 - When you change a code file, update the line references in the matching `_<lang>.mdx` walkthrough.
+
+## Gotchas
+
+- `TipCode` uses `require(`!!raw-loader!@site/tips/${codePath}`)`, so webpack bundles every file under
+  `frontend/tips/`. Local build output inside a tip (`node_modules`, `target`, `bin`, `obj`, ...) makes
+  `npm run build` fail with `RangeError: Invalid string length`. Clean it with `git clean -fdX frontend/tips`.
+- The examples use Firefox. Locally, a new Firefox may fail to start ("Failed to read marionette port") while
+  another Firefox is open; CI is the source of truth.

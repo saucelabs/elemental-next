@@ -16,7 +16,7 @@ namespace csharp
         [TestInitialize]
         public void SetUp()
         {
-            _folderPath = System.Environment.CurrentDirectory + $"/../../../{System.Guid.NewGuid().ToString()}";
+            _folderPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "..", "..", Guid.NewGuid().ToString()));
             Directory.CreateDirectory(_folderPath);
             FirefoxOptions Options = new FirefoxOptions();
             Options.SetPreference("browser.download.dir", _folderPath);

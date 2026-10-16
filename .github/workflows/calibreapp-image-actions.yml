@@ -36,10 +36,10 @@ jobs:
        github.event.pull_request.head.repo.full_name == github.repository)
     steps:
       - name: Checkout Branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: Compress Images
         id: calibre
-        uses: calibreapp/image-actions@main
+        uses: calibreapp/image-actions@1.5.0
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           # For non-Pull Requests, run in compressOnly mode and we'll PR after.
@@ -49,9 +49,11 @@ jobs:
         if: |
           github.event_name != 'pull_request' &&
           steps.calibre.outputs.markdown != ''
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@v8.1.1
         with:
           title: Auto Compress Images
-          branch-suffix: timestamp
+          # A fixed branch, so each run updates the same pull request instead of opening a new one.
+          branch: auto-compress-images
+          delete-branch: true
           commit-message: Compress Images
           body: ${{ steps.calibre.outputs.markdown }}

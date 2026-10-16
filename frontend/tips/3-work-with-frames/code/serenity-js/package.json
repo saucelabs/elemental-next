@@ -9,15 +9,15 @@
   "license": "MIT",
   "homepage": "https://serenity-js.org",
   "dependencies": {
-    "@playwright/test": "1.51.1",
-    "@serenity-js/assertions": "3.31.13",
-    "@serenity-js/core": "3.31.13",
-    "@serenity-js/console-reporter": "3.31.13",
-    "@serenity-js/playwright-test": "3.31.13",
-    "@serenity-js/web": "3.31.13"
+    "@playwright/test": "1.64.1",
+    "@serenity-js/assertions": "3.49.0",
+    "@serenity-js/core": "3.49.0",
+    "@serenity-js/console-reporter": "3.49.0",
+    "@serenity-js/playwright-test": "3.49.0",
+    "@serenity-js/web": "3.49.0"
   },
   "devDependencies": {
-    "@types/node": "22.13.13",
-    "typescript": "5.8.2"
+    "@types/node": "26.6.5",
+    "typescript": "7.0.2"
   }
 }

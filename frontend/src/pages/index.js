@@ -38,6 +38,7 @@ function Home() {
                         </div>
                     </div>
                 </div>
+                <div className={styles.homeWave} aria-hidden="true"/>
             </main>
         </Layout>
     );

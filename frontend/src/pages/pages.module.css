@@ -19,3 +19,16 @@
         padding: 2rem;
     }
 }
+
+/* Decorative wave (with the rocket) shown below the home page content. */
+.homeWave {
+    aspect-ratio: 1440 / 570;
+    background-image: url("../../static/img/backgrounds/background-light.svg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom center;
+}
+
+[data-theme='dark'] .homeWave {
+    background-image: url("../../static/img/backgrounds/background-dark.svg");
+}
