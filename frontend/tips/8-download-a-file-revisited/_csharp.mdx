@@ -1,71 +1,40 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-To start things off let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), an HTTP library to handle our HEAD request (e.g., `System.Net`), and start our class with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```csharp
-// filename: FileDownloadRevisited.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using System.Net;
+<TipCode codePath={"8-download-a-file-revisited/code/csharp/DownloadRevisitedTest.cs"} language={"csharp"}/>
 
-public class FileDownloadRevisited
-{
+## Code Walkthrough
 
-    IWebDriver Driver;
+### Importing Libraries
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+We pull in an HTTP client (`using System.Net.Http;`), our testing framework
+(`using Microsoft.VisualStudio.TestTools.UnitTesting;`), driving the browser with Selenium (`using OpenQA.Selenium;`),
+and launching an instance of Firefox (`using OpenQA.Selenium.Firefox;`).
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+### Setup and Teardown
 
-Now we're ready to wire up our test.
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
 
-It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a `HEAD` request with it.
+### The Test
 
-```csharp
-// filename: FileDownloadRevisited.cs
-// ...
-    [Test]
-    public void CheckFileDownloadWithoutBrowser()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/download");
-        string FileURL = Driver.FindElement(By.CssSelector(".example a")).GetAttribute("href");
-        var Request = (HttpWebRequest)WebRequest.Create(FileURL);
-        Request.Method = "HEAD";
-        WebResponse Response = Request.GetResponse();
-        Assert.That(Response.ContentType.Equals("application/octet-stream"));
-        Assert.Greater(Response.ContentLength, 0);
-    }
-}
-```
+The test visits the page and grabs the full URL of the first download link (`GetDomProperty("href")`).
 
-Once we receive the response we check its header for the content type (e.g., `Assert.That(Response.ContentType.Equals("application/octet-stream"));`) and content length (e.g., `Assert.Greater(Response.ContentLength, 0);`) to make sure the file is the correct type and not empty.
+Then it sends a `HEAD` request for that URL with `HttpClient` (`new HttpRequestMessage(HttpMethod.Head, link)`).
+From the response we read the content type and content length headers, and assert that the file is the correct type
+and not empty.
 
-## Expected Behavior
+### Executing the Test
 
-When you save this and run it (e.g., `nunit3-console.exe .\FileDownloadRevisited.sln` from the command-line) here is what will happen:
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-- Open the browser
-- Load the page
-- Grab the URL of the first download link
-- Perform a `HEAD` request against it with an HTTP library
-- Store the response headers
-- Check the response headers to see that the file type is correct
-- Check the response headers to see that the file is not empty
-- Close the browser
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-## Summary
-
-Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach.
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test` from the command-line.
