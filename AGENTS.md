@@ -96,6 +96,9 @@ tips/1-upload-a-file/
   - `.github/scripts/run-tips.sh` holds the per-language test command, retries each directory up to 3 times, and
     fails if any directory fails.
   - A new `code/<lang>` directory is picked up automatically, as long as it follows the conventions above.
+  - Tests that fail on purpose (e.g., tip 16, screenshot on failure) go in a directory with an `expect-failure`
+    file listing the files the failure must create (e.g., `failshot_*.png`). The directory passes only when the
+    tests fail and those files exist.
 - Renovate (`renovate.json`) keeps dependencies updated.
 
 ## Common commands

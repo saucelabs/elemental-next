@@ -131,6 +131,9 @@ bin/
 obj/
 TestResults/
 
+# Screenshots taken by the tips on failure
+failshot_*.png
+
 # Python cache
 __pycache__/
 
