@@ -42,8 +42,8 @@ tips/1-upload-a-file/
   code/<lang>/          A runnable project per language, with a README.md showing how to run it
 ```
 
-- `DisplayTips` lazy-imports `@site/tips/<frontmatter id>/_<value>.mdx` for each language, so the frontmatter `id`
-  must match the directory name and the `value` must match the partial file name.
+- `DisplayTips` lazy-imports `_<value>.mdx` from the folder of the page for each language, so the `value` must match
+  the partial file name.
 - `TipCode` loads the file via `raw-loader`, relative to `frontend/tips/`. Line numbers referenced in the
   walkthrough prose must stay in sync with the code file.
 - Target languages: Python, Java, C#, JavaScript, Ruby. Selenide and Serenity/JS examples exist for some tips and
