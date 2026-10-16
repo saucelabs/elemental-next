@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/python/waiting.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done. Note
+that it doesn't set an implicit wait: only the tests that show the implicit wait set it, with
+`driver.implicitly_wait(3)`.
+
+### The Implicit Wait Tests
+
+The first test clicks start in the second example and uses `pytest.raises` to assert that finding the finish element
+raises a `NoSuchElementException`, since the implicit wait gives up before the element is rendered.
+
+The second test clicks start in the first example and asserts that the finish element is found, but not displayed.
+
+### The Explicit Wait Test
+
+`test_explicit_wait` is parametrized, so it runs for both examples. It clicks start and waits up to 10 seconds for the
+finish element to be visible with `WebDriverWait(driver, 10).until(EC.visibility_of_element_located(...))`, which
+returns the element. Then it asserts its text.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest waiting.py` from the
+command-line.
