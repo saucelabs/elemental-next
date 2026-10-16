@@ -31,21 +31,71 @@ actions (rather than the whole test) that will back-off after a few attempts.
 If it finds what it needs, the tests passes. If it doesn't, the test fails -- and you know you have a legitimate
 problem on your hands.
 
+## Example
+
+__NOTE:__ We are using [a notification message example](https://the-internet.herokuapp.com/notification_message)
+found on [the-internet](https://github.com/saucelabs/the-internet). It displays a notification message at the top of
+the page that will either say __Action successful__ or __Action unsuccesful, please try again__.
+
+Our goal in this example is to verify an __Action successful__ message.
+
+A first pass would be to load the page, grab the notification message, and assert on it. The problem with this
+approach is that it will fail intermittently, because the message could very well be the unsuccessful one. But the
+next time you load the page, it could be the correct thing.
+
+So instead, we add a small helper that receives the failure message and the actions to perform (loading the page and
+grabbing the notification message). It performs the actions, and repeats them while the message contains the
+failure message, up to a maximum number of attempts. Then the test asserts on the last message it got.
+
+The page shows the unsuccessful message most of the time, so we allow up to 10 attempts. With only 3 attempts the
+test would still fail roughly a quarter of the time.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Load the page
+- Grab the notification message text
+- Compare it to the failure message
+- If it matches, retry
+- If 10 attempts are reached, end the loop and fail the test
+- If it doesn't match, pass the test
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+With this approach there may be a concern that we could be obfuscating a real issue that could bubble up to our users.
+That's why it is important to use this approach sparingly, and on issues you more or less understand (e.g., a
+third-party test environment having one-off service blips, or expensive tests that involve sharing something to a
+third-party and checking to see that it appeared).
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Hopefully this example will help you build a more resilient and relevant set of tests.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

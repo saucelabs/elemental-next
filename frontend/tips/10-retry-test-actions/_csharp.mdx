@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/csharp/RetryActionsTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
+
+### The Retry Helper
+
+`RetryIfMessageContains` receives the failure message, the action to perform (a `Func<string>` that returns the
+notification message), and the maximum number of attempts. It performs the action once, and repeats it while the
+message contains the failure message. Then it returns the last message it got.
+
+### The Test
+
+In the test we pass a lambda that loads the page and returns the text of the notification message
+(`_driver.FindElement(By.Id("flash")).Text`), together with the failure message (`please try again`). Then we assert
+that the message we end up with is the successful one (`StringAssert.Contains`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
