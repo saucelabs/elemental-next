@@ -1,111 +1,40 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example page is from [the-internet](http://github.com/saucelabs/the-internet) and can be seen [here](http://the-internet.herokuapp.com/abtest). There are three different variants of the page that are available, each with different heading text:
+## TL;DR - Show Me The Code
 
-- Control: `A/B Test Control`
-- Variation 1: `A/B Test Variation 1`
-- Opt-out: `No A/B Test`
+<TipCode
+    codePath={"12-opt-out-of-ab-tests/code/java/src/test/java/com/elemental/selenium/ABTestOptOutTest.java"}
+    language={"java"}/>
 
-Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+## Code Walkthrough
 
-```java
-// filename: ABTestOptOut.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+### Setup and Teardown
 
-public class ABTestOptOut {
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
 
-    WebDriver driver;
+### The Tests
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+`forgeCookieOnTargetPage` loads the page and checks that the heading (`h3`) is one of the A/B test variations. Then
+it adds the opt-out cookie with `driver.manage().addCookie(new Cookie("optimizelyOptOut", "true"))`, refreshes the
+page, and checks that the heading now says `No A/B Test`.
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+`forgeCookieBeforeVisitingTargetPage` loads the home page first. A cookie can only be added for the domain the
+browser is on, so we need to visit a page of the site before adding it. Then it adds the cookie and visits the A/B
+test page.
 
-Now let's wire up our first test to step through visiting the page and verifying that the text changes as we forge an opt-out cookie.
+`urlParameter` appends `?optimizely_opt_out=true` to the URL. It waits for the JavaScript alert it triggers
+(`ExpectedConditions.alertIsPresent()`) and dismisses it. The page keeps loading after that, so it also waits for
+the heading before checking it.
 
-```java
-// filename: ABTestOptOut.java
-// ...
-    @Test
-    public void WithCookieAfterVisitingPage() {
-        driver.get("http://the-internet.herokuapp.com/abtest");
-        String headingText = driver.findElement(By.tagName("h3")).getText();
-        assertThat(headingText, startsWith("A/B Test"));
-        driver.manage().addCookie(new Cookie("optimizelyOptOut", "true"));
-        driver.navigate().refresh();
-        headingText = driver.findElement(By.cssSelector("h3")).getText();
-        assertThat(headingText, is("No A/B Test"));
-    }
-// ...
-```
+### Executing the Test
 
-After navigating to the page we confirm that we are in one of the A/B test groups by grabbing the heading text and checking to see if it starts with the text `"A/B Test"`. After that we add the opt-out cookie, refresh the page, and then confirm that we are no longer in the A/B test group by checking the heading text again.
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-We could also load the opt-out cookie _before_ navigating to the page.
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-```java
-// filename: ABTestOptOut.java
-// ...
-    @Test
-    public void WithCookieBeforeVisitingPage() {
-        driver.get("http://the-internet.herokuapp.com");
-        driver.manage().addCookie(new Cookie("optimizelyOptOut", "true"));
-        driver.get("http://the-internet.herokuapp.com/abtest");
-        assertThat(driver.findElement(By.cssSelector("h3")).getText(), is("No A/B Test"));
-    }
-// ...
-```
-
-Here we are navigating to the main page of the site first (to establish the host) and then adding the opt-out cookie. If we didn't visit the site first, then adding the cookie wouldn't have worked. Once added, we navigate to the example page and perform our checks just like before.
-
-Alternatively, we can achieve the same thing without forging a cookie. Instead, we can append an opt-out query to the URL when visiting the page.
-
-```java
-// filename: ABTestOptOut.java
-// ...
-    @Test
-    public void WithOptOutUrl() {
-        driver.get("http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true");
-        driver.switchTo().alert().dismiss();
-
-        Thread.sleep(2000);
-        assertThat(driver.findElement(By.cssSelector("h3")).getText(), is("No A/B Test"));
-        Thread.sleep(2000);
-    }
-
-}
-```
-
-By appending `?optimizely_opt_out=true` we achieve the same outcome as before. Keep in mind that this approach triggers a JavaScript alert, so we have to switch to and dismiss it (e.g., `driver.switchTo().alert().dismiss();`) before performing our check.
-
-## Expected Behavior
-
-When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
-
-- Open the browser
-- Opt-out of the split tests (either by cookie or appended URL)
-- Visit the split testing page
-- Grab the header text
-- Confirm that the session is opted out of the split tests
-- Close the browser
-
-## Summary
-
-Hopefully this tip was helpful in guiding you in different methods of how to opt out of split tests.
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.

@@ -1,106 +1,37 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example page is from [the-internet](http://github.com/saucelabs/the-internet) and can be seen [here](http://the-internet.herokuapp.com/abtest). There are three different versions of the page that are available. On each page the heading text will vary:
+## TL;DR - Show Me The Code
 
-+ Control: `A/B Test Control`
-+ Variation 1: `A/B Test Variation 1`
-+ Opt-out: `No A/B Test`
+<TipCode codePath={"12-opt-out-of-ab-tests/code/javascript/test/abTestOptOut.spec.js"} language={"js"}/>
 
-Let's start by loading our requisite libraries, declare our test class, and wire up some setup and teardown methods for our tests.
+## Code Walkthrough
 
-```javascript
-// filename: test/abOptOut.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+### Setup and Teardown
 
-describe("A/B opt-out", function() {
-  let driver;
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
 
-  beforeEach(async function() { this.timeout(60000) driver = await new Builder().forBrowser("chrome").build();
-  });
+### The Tests
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The first test loads the page and checks that the heading (`h3`) is one of the A/B test variations. Then it adds the
+opt-out cookie with `driver.manage().addCookie({name: "optimizelyOptOut", value: "true"})`, refreshes the page, and
+checks that the heading now says `No A/B Test`.
 
-Now let's wire up our first test to step through loading the split testing page and verifying that the text changes after we forge an opt-out cookie.
+The second test loads the home page first. A cookie can only be added for the domain the browser is on, so we need to
+visit a page of the site before adding it. Then it adds the cookie and visits the A/B test page.
 
-```javascript
-// filename: test/abOptOut.spec.js
-// ...
-  it("with cookie after visiting page", async function() {
-    await driver.get("http://the-internet.herokuapp.com/abtest");
-    let headingText = await driver.findElement(By.css("h3")).getText();
-    if (headingText.startsWith("A/B Test")) {
-      await driver
-        .manage()
-        .addCookie({ name: "optimizelyOptOut", value: "true" });
-      await driver.navigate().refresh();
-      headingText = await driver.findElement(By.css("h3")).getText();
-    }
-    assert.equal(headingText, "No A/B Test");
-  });
-// ...
-```
+The third test appends `?optimizely_opt_out=true` to the URL. It waits for the JavaScript alert it triggers
+(`until.alertIsPresent()`) and dismisses it. The page keeps loading after that, so it also waits for the heading
+before checking it.
 
-After navigating to the page we confirm that we are in one of the A/B test groups by grabbing the heading text and checking to see if it matches what we expect. After that we add the opt-out cookie, refresh the page, and then confirm that we are no longer in the A/B test group by checking the heading text again.
+### Executing the Test
 
-We could also load the opt-out cookie before navigating to this page.
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-```javascript
-// filename: test/abOptOut.spec.js
-  it("with cookie before visiting page", async function() {
-    await driver.get("http://the-internet.herokuapp.com");
-    await driver
-      .manage()
-      .addCookie({ name: "optimizelyOptOut", value: "true" });
-    await driver.get("http://the-internet.herokuapp.com/abtest");
-    assert.equal(
-      await driver.findElement(By.css("h3")).getText(),
-      "No A/B Test"
-    );
-  });
-// ...
-```
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-Here we are navigating to the main page of the site first and then adding the opt-out cookie. After that we navigate to the split test page and then perform our check. Alternatively, we could opt out without forging a cookie. Instead, we just need to append an opt out parameter to the URL.
-
-```javascript
-// filename: test/abOptOut.spec.js
-// ...
-  it("with opt out URL", async function() {
-    await driver.get(
-      "http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true"
-    );
-    await driver
-      .switchTo()
-      .alert()
-      .dismiss();
-    assert.equal(
-      await driver.findElement(By.css("h3")).getText(),
-      "No A/B Test"
-    );
-  });
-});
-```
-
-By appending `?optimizely_opt_out=true` we achieve the same outcome as before. Keep in mind that this approach triggers a JavaScript alert, so we have to switch to and dismiss it (e.g., `driver.switchTo().alert().dismiss()`) before performing our check.
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen with either of the tests:
-
-+ Open the browser
-+ Opt-out of the split tests (either by cookie or appended URL)
-+ Visit the split testing page
-+ Grab the header text
-+ Confirm that the session is opted out of the split test
-+ Close the browser
-
-## Summary
-
-In this tip, we learned about split testing and learned about some standard opt-out mechanisms built into A/B testing platforms.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

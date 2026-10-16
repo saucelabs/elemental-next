@@ -1,96 +1,41 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example page is from [the-internet](http://github.com/saucelabs/the-internet) and can be seen [here](http://the-internet.herokuapp.com/abtest). There are three different versions of the page that are available. On each page the heading text will vary:
+## TL;DR - Show Me The Code
 
-+ Control: `A/B Test Control`
-+ Variation 1: `A/B Test Variation 1`
-+ Opt-out: `No A/B Test`
+<TipCode codePath={"12-opt-out-of-ab-tests/code/python/ab_test_opt_out.py"} language={"python"}/>
 
-Let's start things off by loading our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+## Code Walkthrough
 
-```python
-# filename: ab_test_opt_out.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+### Setup and Teardown
 
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
 
-class ABTestOptOut(unittest.TestCase):
+### The Tests
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+`test_forge_cookie_on_target_page` loads the page and checks that the heading (`h3`) is one of the A/B test
+variations. Then it adds the opt-out cookie with `driver.add_cookie({'name': 'optimizelyOptOut', 'value': 'true'})`,
+refreshes the page, and checks that the heading now says `No A/B Test`.
 
-    def tearDown(self):
-        self.driver.quit()
-# ...
-```
+`test_forge_cookie_before_visiting_target_page` loads the home page first. A cookie can only be added for the
+domain the browser is on, so we need to visit a page of the site before adding it. Then it adds the cookie and visits
+the A/B test page.
 
-Now let's begin our first test to step through loading the split testing page and verifying that the text changes after we forge an opt-out cookie.
+`test_url_parameter` appends `?optimizely_opt_out=true` to the URL. It waits for the JavaScript alert it triggers
+(`EC.alert_is_present()`) and dismisses it. The page keeps loading after that, so it also waits for the heading
+before checking it.
 
-```python
-# filename: ab_test_opt_out.py
-# ...
-    def test_forge_cookie_on_target_page(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/abtest')
-        heading_text = driver.find_element(By.TAG_NAME,'h3').text
-        assert heading_text in ['A/B Test Variation 1', 'A/B Test Control']
-        driver.add_cookie({'name' : 'optimizelyOptOut', 'value' : 'true'})
-        driver.refresh()
-        heading_text = driver.find_element(By.TAG_NAME,'h3').text
-        assert heading_text == 'No A/B Test'
+### Executing the Test
 
-# ...
-```
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
 
-After navigating to the page we confirm that we are in one of the A/B test groups by grabbing the heading text and checking to see if it matches what we expect. After that we add the opt-out cookie, refresh the page, and then confirm that we are no longer in the A/B test group by checking the heading text again.
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
 
-We could also load the opt-out cookie before navigating to this page.
-
-```python
-# filename: ab_test_opt_out.py
-# ...
-    def test_forge_cookie_on_homepage_then_navigate_to_target_page(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com')
-        driver.add_cookie({'name' : 'optimizelyOptOut', 'value' : 'true'})
-        driver.get('http://the-internet.herokuapp.com/abtest')
-        heading_text = driver.find_element(By.TAG_NAME,'h3').text
-        assert heading_text == 'No A/B Test'
-
-# ...
-```
-
-Here we are navigating to the main page of the site first and then adding the opt-out cookie. After that we navigate to the split test page and then perform our check. Alternatively, we could opt out without forging a cookie. Instead, we just need to append an opt out parameter to the URL.
-
-```python
-# filename: ab_test_opt_out.py
-    def test_url_parameter(self):
-            driver = self.driver
-            driver.get('http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true')
-            driver.switch_to.alert.dismiss()
-            heading_text = driver.find_element(By.TAG_NAME,'h3').text
-            assert heading_text == 'No A/B Test'
-
-if __name__ == "__main__":
-    unittest.main()
-```
-
-By appending `?optimizely_opt_out=true` we achieve the same outcome as before. Keep in mind that this approach triggers a JavaScript alert, so we have to switch to and dismiss it (e.g., `driver.switch_to.alert.dismiss()`) before performing our check.
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `python ab_test_opt_out.py` from the command-line) here is what will happen with either of the tests:
-
-+ Open the browser
-+ Opt-out of the split tests (either by cookie or appended URL)
-+ Visit the split testing page
-+ Grab the header text
-+ Confirm that the session is opted out of the split test
-+ Close the browser
-
-## Summary
-
-Hopefully this tip was helpful in guiding you in different methods of how to opt out of split tests.
-
-Happy Testing!
+After installing the required libraries, we can run the test by executing `pytest ab_test_opt_out.py` from the
+command-line.
