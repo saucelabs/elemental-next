@@ -3,7 +3,7 @@ title: 'How to Test HTML5 Drag and Drop'
 id: '39-drag-and-drop'
 slug: /39-drag-and-drop
 sidebar_label: How to Test HTML5 Drag and Drop
-description: "Exercising a page's drag-and-drop functionality used to be simple with Selenium's Action Builder, but sadly, it won't work with HTML5 drag and drop."
+description: "Exercising a page's drag-and-drop functionality should be simple with Selenium's Actions API, but HTML5 drag and drop doesn't work with it in every browser."
 number: 39
 hide_table_of_contents: true
 level: 2
@@ -21,21 +21,54 @@ category:
 
 ## Intro
 
-Exercising a page's drag-and-drop functionality used to be simple with [Selenium's Action Builder](http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/WebDriver/ActionBuilder.html), but sadly,
-[it won't work with HTML5 drag and drop](https://code.google.com/p/selenium/issues/detail?id=6315).
+Exercising a page's drag-and-drop functionality should be simple with
+[Selenium's Actions API](https://www.selenium.dev/documentation/webdriver/actions_api/mouse/#drag-and-drop-on-element),
+but HTML5 drag and drop doesn't work with it in every browser. At the time of writing, it works in Chrome, but not in
+Firefox.
 
 ## A Solution
 
-As a workaround, we can simulate dragging and dropping by executing JavaScript with Selenium. Let's continue with an
-example.
+As a workaround that works in every browser, we can simulate dragging and dropping by executing JavaScript with
+Selenium. Let's continue with an example.
 
+
+## Example
+
+You can see a simple HTML5 drag and drop example [here on the-internet](https://the-internet.herokuapp.com/drag_and_drop).
+
+First, we borrow [the JavaScript made available by rcorreia on GitHub](https://gist.github.com/rcorreia/2362544) for
+this workaround and store it in a local file (e.g., `dnd.js`). It adds a `simulateDragDrop` function to jQuery (which
+the page already uses), that fires the same events the browser fires when a user drags and drops an element.
+
+Then, in our test, we visit the page, read the `dnd.js` file, and execute it with Selenium along with the function
+call and the elements we want to work with (`$('#column-a').simulateDragDrop({ dropTarget: '#column-b'});`). After
+that, it's just a simple matter of grabbing text from the page and making an assertion against it.
+
+Since there are only two elements to drag and drop on the page, they should have switched places. So, `column-a`
+should now contain the text `B`, and `column-b` should contain the text `A`.
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Visit the page
+- Text in Column A and Column B will switch places
+- Close the browser
+
+## Summary
+
+Hopefully this tip has helped you figure out how to wrangle HTML5 dragging and dropping in every browser.
+
+Happy Testing!
 
 ## About The Author
 

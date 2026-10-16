@@ -1,0 +1,29 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/javascript/test/dragAndDrop.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
+
+### The Test
+
+The test visits the page and reads `dnd.js` with `fs.readFileSync`. Then it executes the script, followed by the call
+to `simulateDragDrop`, with `driver.executeScript`. Finally, it asserts that the columns switched places.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

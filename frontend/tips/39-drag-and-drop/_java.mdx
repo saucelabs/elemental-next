@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/java/src/test/java/com/elemental/selenium/DragAndDropTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
+
+### The Test
+
+The test visits the page and reads `dnd.js`, which lives in `src/test/resources`, so it's on the test classpath
+(`getClass().getResourceAsStream("/dnd.js")`). Then it casts the driver to `JavascriptExecutor` and executes the
+script, followed by the call to `simulateDragDrop`. Finally, it asserts that the columns switched places.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
