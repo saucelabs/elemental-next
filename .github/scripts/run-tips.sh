@@ -6,6 +6,9 @@
 # A directory with a `needs-grid` file gets a Selenium Grid (standalone) running on http://localhost:4444 while its
 # tests run (e.g., tip 52).
 #
+# A directory with an `expect-files` file passes when its tests pass AND every file pattern listed in it matches a
+# file (e.g., the JUnit XML report in tip 57).
+#
 # A directory with an `expect-failure` file holds tests that fail on purpose (e.g., to show a screenshot taken on
 # failure). It passes when the tests fail AND every file pattern listed in `expect-failure` matches a file.
 #
@@ -77,8 +80,25 @@ run_dir() {
   run_tests
 }
 
-# Runs the tests of the current directory, honoring an `expect-failure` file when present.
+# Checks that every file pattern listed in the given file matches a file.
+check_files() {
+  local pattern
+  for pattern in $(tr -d '\r' < "$1"); do
+    if ! compgen -G "${pattern}" >/dev/null; then
+      echo "No file matches '${pattern}'"
+      return 1
+    fi
+  done
+}
+
+# Runs the tests of the current directory, honoring the `expect-files` and `expect-failure` files when present.
 run_tests() {
+  if [[ -f expect-files ]]; then
+    # shellcheck disable=SC2046
+    rm -f $(tr -d '\r' < expect-files)
+    run_one && check_files expect-files
+    return
+  fi
   if [[ ! -f expect-failure ]]; then
     run_one
     return
