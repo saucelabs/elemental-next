@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/java/src/test/java/com/elemental/selenium/DataDrivenTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+JUnit can read the data for us. The CSV file lives in `src/test/resources`, so it's on the test classpath, and
+`@CsvFileSource(resources = "/user_data.csv", numLinesToSkip = 1)` reads it, skipping the header. This annotation
+comes from the `junit-jupiter-params` dependency.
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
+
+### The Test
+
+`notificationText` uses an explicit wait (`WebDriverWait`) until the notification is visible and returns its text.
+
+`login` is a `@ParameterizedTest` that receives one argument for each column of the CSV file, so JUnit runs it once
+for each row. `name = "{0}"` names each run after the account type. The test logs in with the user's credentials and
+asserts that the notification starts with the expected message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

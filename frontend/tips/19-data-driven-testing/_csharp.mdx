@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/csharp/DataDrivenTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+`UserData` reads the lines of `user_data.csv`, skips the header, and splits each line into the values for one test
+run. The project file copies the CSV file to the output directory (`CopyToOutputDirectory`), where the tests run.
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
+
+### The Test
+
+`NotificationText` uses an explicit wait (`WebDriverWait`) until the notification is displayed and returns its text.
+
+`Login` receives one argument for each column of the CSV file. `[DynamicData(nameof(UserData))]` tells MSTest to run
+it once for each row returned by `UserData`. The test logs in with the user's credentials and asserts that the
+notification starts with the expected message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
