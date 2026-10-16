@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/python/notification.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+`test_notification_message` loads the page and asserts that the message is the successful one.
+
+### Retrying
+
+The [pytest-rerunfailures](https://pypi.org/project/pytest-rerunfailures/) plugin (in `requirements.txt`) adds the
+`flaky` marker. With `@pytest.mark.flaky(reruns=9)`, pytest runs the test again (including its fixtures, so with a
+new browser) up to 9 more times when it fails. The summary at the end shows how many reruns there were (e.g.,
+`1 passed, 2 rerun`).
+
+You can also retry every test in a run from the command-line, with `pytest --reruns 9`.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest notification.py` from the
+command-line.

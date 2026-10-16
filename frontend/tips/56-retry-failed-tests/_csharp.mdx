@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/csharp/NotificationTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it. `NotificationMessage` loads the page and asserts that the
+message is the successful one.
+
+### Retrying
+
+MSTest comes with a `[Retry]` attribute. With `[Retry(9)]`, MSTest runs the test again (including the setup and
+cleanup, so with a new browser) up to 9 more times when it fails.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

@@ -1,137 +1,39 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's assume we have a bunch of tests written in [RSpec](http://rspec.info/), which would look something like this:
+## TL;DR - Show Me The Code
 
-```sh
-└── spec
-    ├── 11_spec.rb
-    ├── 1_spec.rb
-    ├── 2_spec.rb
-    ├── 3_spec.rb
-    ├── 4_spec.rb
-    ├── 5_spec.rb
-    ├── 6_spec.rb
-    ├── 7_spec.rb
-    ├── 8_spec.rb
-    ├── 9_spec.rb
-    └── this_spec.rb
-```
+<TipCode codePath={"56-retry-failed-tests/code/ruby/spec/spec_helper.rb"} language={"ruby"}/>
 
-And let's assume that we will execute these tests in parallel (using [parallel_tests](https://github.com/grosser/parallel_tests)).
+<TipCode codePath={"56-retry-failed-tests/code/ruby/spec/notification_spec.rb"} language={"ruby"}/>
 
-Some of the tests will pass, and some of them will fail. In order to track which ones fail, we will want to keep a 
-log. The simplest way to do this would be to output a list of failures to a file. That way the list of failures will 
-persist after the suite of tests completes, so we can perform a retry action using the list of failures.
+<TipCode codePath={"56-retry-failed-tests/code/ruby/run_with_retries.rb"} language={"ruby"}/>
 
-Thankfully RSpec comes with some of the plumbing to help accomplish this -- through the use of a 
-[custom formatter](https://github.com/dchelimsky/rspec/wiki/Custom-Formatters); specifically the [base formatter](http://rubydoc.info/gems/rspec-core/2.6.4/RSpec/Core/Formatters/BaseFormatter).
+## Code Walkthrough
 
-Let's create one.
+### The Test
 
-```ruby
-# filename: failure_catcher.rb
+In RSpec, test files are referred to as 'specs'. The setup and teardown live in `spec/spec_helper.rb`: before each
+spec it launches Firefox, and after each spec it quits it (the `.rspec` file loads it for every spec). The spec loads
+the page and asserts that the message is the successful one.
 
-require 'rspec/core/formatters/base_formatter'
+### Retrying
 
-class FailureCatcher < RSpec::Core::Formatters::BaseFormatter
+RSpec can remember which specs failed: with `example_status_persistence_file_path` set in `spec_helper.rb`, it
+stores the status of each spec in a file (`examples.txt`). Then, `rspec --only-failures` runs just the specs that
+failed last time.
 
-  # create files called rspec_#.failures with a list of failed examples
-  def dump_failures
-    return if failed_examples.empty?
-    f = File.new("rspec#{ENV['TEST_ENV_NUMBER']}.failures", "w+")
-    failed_examples.each do |example|
-      f.puts retry_command(example)
-    end
-    f.close
-  end
+`run_with_retries.rb` puts it together. It runs all the specs, and while there are failures, it runs only the failed
+ones again, up to 9 more times.
 
-  def retry_command(example)
-    example_name = example.full_description.gsub("\"", "\\\"")
-    "-e \"#{example_name}\""
-  end
+### Executing the Test
 
-end
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-In order to extend the base formatter we first need to require it, and then inherit from it when declaring our 
-class (e.g., `< RSpec::Core::Formatters::BaseFormatter`).
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-After that we have access to the helper method we want (e.g., `dump_failures`). In `dump_failures` we can access 
-detailed information about each failed test through the `failed_examples` accessor.
-
-After checking to see if there are any failed examples, we create a new uniquely named file (leveraging the 
-environment variable created by our parallel executor), iterate through all failed examples, and store a 
-properly formatted retry execution command with the name of the failed test.
-
-To use this formatter we'll need to specify it at run-time, and to leverage a retry action we'll need to wrap our 
-run-time execution. Let's wire all of this up using [Rake](https://github.com/jimweirich/rake).
-
-```ruby
-# filename: Rakefile
-
-def gather_failures
-  opts = ""
-  files = Dir.glob('*.failures')
-  files.each { |file| opts << File.read(file).gsub(/\n/, ' ') }
-  all_failures = './all.failures'
-  File.write(all_failures, opts.rstrip)
-  return File.read all_failures
-end
-
-def cleanup(files = '')
-  system("rm #{files}") unless Dir.glob("#{files}").empty?
-end
-
-def launch(params = {})
-  if params[:test_options].include? '-e'
-    count = params[:test_options].split(/failed/).count - 1
-    puts "Retrying #{count} failed tests!"
-  end
-  system("parallel_rspec -n #{params[:processes] || 5} \
-          --test-options '#{params[:test_options]}' spec")
-end
-
-def run(processes = 5)
-  launch(processes: processes,
-    test_options: '--require ./failure_catcher.rb \
-    --format FailureCatcher')
-end
-
-def rerun(processes = 5)
-  launch(processes: processes, test_options: gather_failures)
-end
-
-desc "parallel test execution with failure retries"
-task :run_tests, :number_of_processes do |t, args|
-  run args[:number_of_processes]
-  unless $?.success?
-    rerun args[:number_of_processes]
-    cleanup '*.failures'
-  end
-end
-```
-
-There are five methods and one Rake task. The first two methods (`gather_failures` and `cleanup`) are for rounding 
-up a list of failed tests from the *.failure files and deleting them when we're finished. The next three methods 
-(`launch`, `run`, and `rerun`) are for executing the test suite and retrying just the failures.
-
-The Rake task is where we tie everything together.
-
-In it, we make the number of concurrent processes configurable through the use of an optional run-time argument. 
-We then call `run` (passing in the argument) which executes the full suite. After the suite completes, 
-we perform a check against the exit code to see if there were any failures. If there were, then we call 
-`rerun` (along with the argument for number of processes),  and then call `cleanup` to remove the failure files.
-
-
-## Expected Behavior
-
-+ Tests execute in parallel
-+ A list of failed tests get stored in output files (one for each process)
-+ Failed tests get rerun
-+ Output files for failed tests get deleted
-
-## Summary
-
-Hat-tip to [rspec-rerun](https://github.com/dblock/rspec-rerun) for the initial implementation, and to [the write-up that led me there](http://artsy.github.io/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/).
-
-Happy Testing!
+Finally, we can run the test by executing `ruby run_with_retries.rb` from the command-line.

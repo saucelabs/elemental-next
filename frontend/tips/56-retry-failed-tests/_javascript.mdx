@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/javascript/test/notification.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it. The test loads the page
+and asserts that the message is the successful one.
+
+### Retrying
+
+Mocha can retry failed tests. With `this.retries(9)` in the `describe` block, Mocha runs a failed test again
+(including its `beforeEach` and `afterEach` hooks, so with a new browser) up to 9 more times. Note that the `describe`
+block uses `function () {}` instead of an arrow function, so Mocha can give us its context through `this`.
+
+You can also retry every test in a run from the command-line, with `npx mocha --retries 9`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.
