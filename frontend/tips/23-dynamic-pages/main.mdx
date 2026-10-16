@@ -42,12 +42,53 @@ onto the next step of the test), or it will throw a timeout exception (causing y
 Let's continue with an example.
 
 
+## Example
+
+Let's use [an example](https://the-internet.herokuapp.com/dynamic_loading) from
+[the-internet](https://github.com/saucelabs/the-internet) which loads content dynamically. On it there is a `Start`
+button that when clicked will trigger a loading bar to appear for 5 seconds. After that time it will disappear and an
+element with the text `Hello World!` will appear.
+
+There are two variations of the page, and we test both of them:
+
+- [Example 1](https://the-internet.herokuapp.com/dynamic_loading/1): the element is already on the page, but hidden.
+- [Example 2](https://the-internet.herokuapp.com/dynamic_loading/2): the element is rendered after the loading
+  finishes.
+
+In each test we visit the page, click the start button, wait for the finish text to be displayed, and assert that it
+is displayed. Rather than litter our test code with the verbose Selenium incantation, we pull the explicit wait out
+into a small helper that accepts the condition to wait for and a timeout (10 seconds by default).
+
+If we set the timeout too low (e.g., 2 seconds) Selenium won't wait long enough for the loading bar to finish, which
+will trigger the timeout threshold and throw a timeout exception. And if we didn't use an explicit wait at all, the
+test would fail because Selenium would try to check for the finish text before it is displayed (e.g., a
+`NoSuchElement` error in the second example).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Visit the page
+- Click the Start button
+- Wait for the loading bar to disappear and display the finish text
+- Assert that the finish text element is displayed
+- Close the browser
+
+## Summary
+
+Hopefully this tip will help you build more efficient and resilient tests when faced with dynamic pages that are
+constructed in various ways.
+
+Happy Testing!
 
 ## About The Author
 
