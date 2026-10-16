@@ -1,5 +1,6 @@
 import base64
 import http.client
+import urllib.parse
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -31,7 +32,8 @@ def test_files_behind_basic_auth(driver):
 
     credentials = base64.b64encode(b'admin:admin').decode()
     for link in links:
-        response = request('HEAD', f'/{link}', {'Authorization': f'Basic {credentials}'})
+        # The file names can have spaces and other characters that need to be encoded in a URL.
+        response = request('HEAD', urllib.parse.quote(f'/{link}'), {'Authorization': f'Basic {credentials}'})
         assert response.status == 200, link
 
 

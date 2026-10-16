@@ -30,7 +30,8 @@ run do
   expect(links).not_to be_empty
 
   links.each do |link|
-    head = Net::HTTP::Head.new("/#{link}")
+    # The file names can have spaces and other characters that need to be encoded in a URL.
+    head = Net::HTTP::Head.new(URI::RFC2396_PARSER.escape("/#{link}"))
     head.basic_auth('admin', 'admin')
     expect(request(head).code).to eql('200')
   end

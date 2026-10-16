@@ -46,7 +46,9 @@ public class SecureDownloadTest {
 
         String credentials = Base64.getEncoder().encodeToString("admin:admin".getBytes());
         for (String link : links) {
-            HttpRequest request = HttpRequest.newBuilder(URI.create(BASE_URL + "/" + link))
+            // The file names can have spaces and other characters, which this URI constructor encodes.
+            URI url = new URI("https", "the-internet.herokuapp.com", "/" + link, null);
+            HttpRequest request = HttpRequest.newBuilder(url)
                 .method("HEAD", HttpRequest.BodyPublishers.noBody())
                 .header("Authorization", "Basic " + credentials)
                 .build();
