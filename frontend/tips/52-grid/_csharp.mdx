@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/csharp/GridTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+`GridIsRunning` checks if the Grid answers on its `/status` endpoint.
+
+The `SetUp()` method (marked with `[TestInitialize]`) stops the test with `Assert.Inconclusive` when the Grid is not
+running. Otherwise, it connects to the Grid with a `RemoteWebDriver`, passing the Grid's address and the options of
+the browser we want (`new FirefoxOptions()`). The `TearDown()` method (marked with `[TestCleanup]`) quits the browser.
+
+### The Test
+
+`PageLoaded` loads the page and asserts its title, just like a local test.
+
+### Executing the Test
+
+First, start a Selenium Grid (see Part 1). Then, before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
