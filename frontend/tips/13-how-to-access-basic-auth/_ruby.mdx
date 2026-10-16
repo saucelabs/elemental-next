@@ -1,99 +1,33 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by requiring our requisite libraries (e.g., `selenium-webdriver` to drive the browser and `rspec/expectations` & `RSpec::Matchers` to handle our assertions) and implementing some helper methods (e.g., `setup`, `teardown`, and `run`) to handle our test configuration.
+## TL;DR - Show Me The Code
 
-```ruby
-# filename: basic_auth.rb
+<TipCode codePath={"13-how-to-access-basic-auth/code/ruby/basic_auth.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+## Code Walkthrough
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### Setup and Teardown
 
-def teardown
-  @driver.quit
-end
+The `setup`, `teardown`, and `run` methods launch Firefox before each test and quit it afterward.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### The Tests
 
-Now let's add our test code to the script.
+The first test (the first `run` block) loads the page with the credentials in the front of the URL
+(`https://admin:admin@the-internet.herokuapp.com/basic_auth`), grabs the text of the page message
+(`.example p`), and asserts that it is the one we expect.
 
-```ruby
-run do
-  @driver.get 'http://admin:admin@the-internet.herokuapp.com/basic_auth'
-  page_message = @driver.find_element(css: '.example p').text
-  expect(page_message).to eql 'Congratulations! You must have the proper credentials.'
-end
-```
+The second test (the second `run` block) loads the page with the credentials first, and then loads it again without them. The browser
+reuses the credentials it cached, so the page loads and we can assert the message the same way.
 
-In the test we're loading the page by passing in the username and password in the front of the URL (e.g., `http://admin:admin@`). Once it loads we grab text from the page to make sure we ended up in the right place.
+### Executing the Test
 
-## Example 2
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-Alternatively, we could have accessed this page as part of the test setup (after creating an instance of Selenium). This would have cached the Basic Auth session in the browser, enabling us to visit the page again without having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-Here's what that script would look like.
-
-```ruby
-# filename: basic_auth_setup.rb
-
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
-
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-  @driver.get 'http://admin:admin@the-internet.herokuapp.com/basic_auth'
-end
-
-def teardown
-  @driver.quit
-end
-
-def run
-  setup
-  yield
-  teardown
-end
-
-run do
-  @driver.get 'http://the-internet.herokuapp.com/basic_auth'
-  page_message = @driver.find_element(css: '.example p').text
-  expect(page_message).to eql 'Congratulations! You must have the proper credentials.'
-end
-```
-
-NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).__
-
-## Expected Behavior
-
-When you save the first example and run it (e.g., `ruby basic_auth.rb`), here is what will happen:
-
-+ Open the browser
-+ Visit the page using Basic Auth
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
-
-And when you save the second example and run it (e.g., `ruby basic_auth_setup.rb`), here is what will happen:
-
-+ Open the browser
-+ Visit the page using Basic Auth in the setup
-+ Navigate to the Basic Auth page (without providing credentials)
-+ Get the page text
-+ Assert that the text is what we expect
-
-
-## Summary
-
-Hopefully these examples will help save you from getting any setbacks from Basic Auth when you come across it.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby basic_auth.rb` from the command-line.

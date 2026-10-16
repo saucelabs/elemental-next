@@ -1,115 +1,35 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```java
-// filename: WorkWithBasicAuth.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+<TipCode
+    codePath={"13-how-to-access-basic-auth/code/java/src/test/java/com/elemental/selenium/BasicAuthTest.java"}
+    language={"java"}/>
 
-public class WorkWithBasicAuth {
-    WebDriver driver;
+## Code Walkthrough
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+### Setup and Teardown
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
 
-Now to add our test.
+### The Tests
 
-```java
-// filename: WorkWithBasicAuth.java
-// ...
-    @Test
-    public void workWithBasicAuthTest() {
-        driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
-        String pageMessage = driver.findElement(By.cssSelector("p")).getText();
-        assertThat(pageMessage, containsString("Congratulations!"));
-    }
+The first test (`credentialsInUrl`) loads the page with the credentials in the front of the URL
+(`https://admin:admin@the-internet.herokuapp.com/basic_auth`), grabs the text of the page message
+(`.example p`), and asserts that it is the one we expect.
 
-}
-```
+The second test (`credentialsCachedByTheBrowser`) loads the page with the credentials first, and then loads it again without them. The browser
+reuses the credentials it cached, so the page loads and we can assert the message the same way.
 
-In the test we're loading the page by passing in the username and password in the front of the URL (e.g., `http://admin:admin@`). Once it loads we grab text from the page to make sure we ended up in the right place.
+### Executing the Test
 
-## Example 2
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-Alternatively, we could have accessed this page as part of the test setup (after creating an instance of Selenium). This would have cached the Basic Auth session in the browser, enabling us to visit the page again without having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-Here's what the script would look like.
-
-```java
-// filename: WorkWithBasicAuth2.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-public class WorkWithBasicAuth2 {
-    WebDriver driver;
-
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-        driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-
-    @Test
-    public void workWithBasicAuthTest2() {
-        driver.get("http://the-internet.herokuapp.com/basic_auth");
-        String pageMessage = driver.findElement(By.cssSelector("p")).getText();
-        assertThat(pageMessage, containsString("Congratulations!"));
-    }
-
-}
-```
-
-__NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).__
-
-## Expected Behavior
-
-When you save the first example and run it here is what will happen:
-
-+ Open the browser
-+ Visit the page using Basic Auth
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
-
-And when you save the second example and run it here is what will happen:
-
-+ Open the browser
-+ Visit the page using Basic Auth in the setup
-+ Navigate to the Basic Auth page (without providing credentials)
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
-
-## Summary
-
-Hopefully this tip will help save you from getting tripped by Basic Auth when you come across it.
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.

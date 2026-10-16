@@ -1,94 +1,36 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by requiring our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+## TL;DR - Show Me The Code
 
-```python
-# filename: basic_auth_1.py
+<TipCode codePath={"13-how-to-access-basic-auth/code/python/basic_auth.py"} language={"python"}/>
 
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+## Code Walkthrough
 
-class BasicAuth1(unittest.TestCase):
+### Setup and Teardown
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
 
-    def tearDown(self):
-        self.driver.quit()
-```
+### The Tests
 
-Now to add our test.
+The first test (`test_credentials_in_url`) loads the page with the credentials in the front of the URL
+(`https://admin:admin@the-internet.herokuapp.com/basic_auth`), grabs the text of the page message
+(`.example p`), and asserts that it is the one we expect.
 
-```python
-# filename: basic_auth_1.py
-# ...
-    def test_visit_basic_auth_secured_page(self):
-        driver = self.driver
-        driver.get('http://admin:admin@the-internet.herokuapp.com/basic_auth')
-        page_message = driver.find_element(By.CSS_SELECTOR, '.example p').text
-        assert page_message == 'Congratulations! You must have the proper credentials.'
+The second test (`test_credentials_cached_by_the_browser`) loads the page with the credentials first, and then loads it again without them. The browser
+reuses the credentials it cached, so the page loads and we can assert the message the same way.
 
-if __name__ == "__main__":
-    unittest.main()
-```
+### Executing the Test
 
-In the test we're loading the page by passing in the username and password in the front of the URL (e.g., `http://admin:admin@`). Once it loads we grab text from the page to make sure we ended up in the right place.
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
 
-## Example 2
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
 
-Alternatively, we could have accessed this page as part of the test setup (after creating an instance of Selenium). This would have cached the Basic Auth session in the browser, enabling us to visit the page again without having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.
-
-Here's what that would look like.
-
-```python
-# filename: basic_auth_2.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-
-
-class BasicAuth1(unittest.TestCase):
-
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-        self.driver.get('http://admin:admin@the-internet.herokuapp.com/basic_auth')
-
-    def tearDown(self):
-        self.driver.quit()
-
-    def test_visit_basic_auth_secured_page(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/basic_auth')
-        page_message = driver.find_element(By.CSS_SELECTOR, '.example p').text
-        assert page_message == 'Congratulations! You must have the proper credentials.'
-
-if __name__ == "__main__":
-    unittest.main()
-```
-
-__NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of *each* type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).__
-
-## Expected Behavior
-
-When you save the first example and run it (e.g., `python basic_auth_1.py`), here is what will happen:
-
-+ Open the browser
-+ Visit the page using Basic Auth
-+ Get the page text
-+ Assert that the text is what we expect
-+ Close the browser
-
-And when you save the second example and run it (e.g., `python basic_auth_2.py`), here is what will happen:
-
-+ Open the browser
-+ Visit the page using Basic Auth in the setup
-+ Navigate to the Basic Auth page (without providing credentials)
-+ Get the page text
-+ Assert that the text is what we expect
-
-## Summary
-
-Hopefully this tip will help save you from getting tripped by Basic Auth when you come across it.
-
-Happy Testing!
+After installing the required libraries, we can run the test by executing `pytest basic_auth.py` from the
+command-line.
