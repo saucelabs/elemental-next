@@ -1,103 +1,38 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-First let's require our libraries (`selenium-webdriver` to drive the browser, `rspec/expectations` & `RSpec::Matchers` for our assertions, and `rest-client` for our HTTP requests) and wire up some simple `setup`, `teardown`, and `run` methods.
+## TL;DR - Show Me The Code
 
-```ruby
-# filename: secure_download.rb
+<TipCode codePath={"15-download-secure-files/code/ruby/secure_download.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-require 'rest-client'
-include RSpec::Matchers
+## Code Walkthrough
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### Setup and Teardown
 
-def teardown
-  @driver.quit
-end
+The `setup`, `teardown`, and `run` methods launch Firefox before each test and quit it afterward. We also add a small
+`request` helper that sends a request with `Net::HTTP` from the standard library, which doesn't follow redirects.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### Files Behind Basic Auth
 
-Next we'll write our test. In it, we'll want to access a page of download links that is behind some form of authentication (Basic HTTP Authentication in this case).
+The first `run` block loads the secure downloads page with the credentials in the URL and collects the `href` of
+every link (`dom_attribute('href')` returns the relative path as written in the page). Then, for each link, it sends
+a `HEAD` request with the same credentials (`head.basic_auth('admin', 'admin')`) and asserts that the response status
+is `200`.
 
-```ruby
-run do
-  @driver.get 'http://admin:admin@the-internet.herokuapp.com/download_secure'
-  cookie = @driver.manage.cookie_named 'rack.session'
-  link = @driver.find_element(css: '.example a').attribute('href')
-  response = RestClient.head link, cookie: { cookie[:name] => cookie[:value] }
-  expect(response.headers[:content_type]).to eql('application/octet-stream')
-  expect(response.headers[:content_length].to_i).to be > 0
-end
-```
+### Page Behind a Form Login
 
-Once the page loads, we grab the authentication session cookie from Selenium along with the URL for the first file listed. Then we fire up our HTTP library and perform a `HEAD` request using both the download link and the session cookie. We then check the response headers to make sure the file is the correct type and that it's not empty.
+The second `run` block logs in through the form and waits for the success message. Then it grabs the session cookie
+with `@driver.manage.cookie_named('rack.session')` and sends it in a `Cookie` header when requesting `/secure`, which
+returns `200`. Without the cookie, the same request is redirected to the login page (`302`).
 
-If we run this script, it will pass. But, it's only limited to the first download link, and it assumes that the file will always be whatever we declared (in this case 'application/octet-stream').
+### Executing the Test
 
-In the next example, let's update the script to remedy these issues.
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-## Example 2
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-Here, we will update our previous example code to make the script more robust, by adding a helper method just before our test code.
-
-```ruby
-def content_type(file)
-  file = File.basename(file)
-  if file.include? '.txt'
-    'application/octet-stream'
-  elsif file.include? '.pdf'
-    'application/pdf'
-  else
-    raise 'Unknown file type'
-  end
-end
-```
-
-With this new helper method added, we can tease out the filename from a given URL and return the correct content type. If the file type isn't recognized, then we'll stop the test and raise an exception.
-
-Now we can update our test code to use this method in addition to grabbing all download links from the page and iterating through them.
-
-```ruby
-run do
-  @driver.get 'http://admin:admin@the-internet.herokuapp.com/download_secure'
-  cookie = @driver.manage.cookie_named 'rack.session'
-  links = @driver.find_elements(css: '.example a')
-  links.map! { |link| link.attribute('href') }
-  links.each do |link|
-    response = RestClient.head link, cookie: { cookie[:name] => cookie[:value] }
-    expect(response.headers[:content_type]).to eql(content_type(link))
-    expect(response.headers[:content_length].to_i).to be > 0
-  end
-end
-```
-
-By using `find_elements` (plural) we get _all_ download links (returned in an array). We then use `map!` to update the array of download links to give us _just_ the URLs (instead of a collection of Selenium objects which contain URLs). After that, we're able to iterate over the array of URLs, performing a `HEAD` request and assertions for each one (but this time, we're using our new `content_type` helper method).
-
-## Expected Behavior
-
-If we save this file and run it (e.g., `ruby secure_download.rb` from the command-line), here is what will happen.
-
-+ Browser opens
-+ The secure file downloads page loads
-+ The authenticated cookie information is retrieved
-+ All download URLs on the page are found
-+ HTTP library performs a HEAD request against the download link using the retrieved cookie information
-+ The response headers are checked to make sure the file is the correct type and not empty
-+ The previous two steps are repeated until all download links are verified
-+ Browser closes
-
-## Summary
-
-From here, it's simple enough to add in additional content types and file types. And while this example demonstrates accessing files behind Basic HTTP Authentication it should also work with files behind form-based authentication.
-
-Hopefully this helps save you some time, enabling you to build a more lean and fast set of download tests.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby secure_download.rb` from the command-line.

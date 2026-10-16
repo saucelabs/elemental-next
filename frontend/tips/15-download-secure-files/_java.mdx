@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"15-download-secure-files/code/java/src/test/java/com/elemental/selenium/SecureDownloadTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it. For the HTTP
+requests we use the `HttpClient` that comes with Java, which doesn't follow redirects by default.
+
+### Files Behind Basic Auth
+
+`filesBehindBasicAuth` loads the secure downloads page with the credentials in the URL and collects the `href` of
+every link (`getDomAttribute("href")` returns the relative path as written in the page). Then, for each link, it
+sends a `HEAD` request with a Basic `Authorization` header (the credentials encoded in Base64) and asserts that the
+response status is `200`.
+
+### Page Behind a Form Login
+
+`pageBehindFormLogin` logs in through the form and waits for the success message. Then it grabs the session cookie
+with `driver.manage().getCookieNamed("rack.session")` and sends it in a `Cookie` header when requesting `/secure`,
+which returns `200`. Without the cookie, the same request is redirected to the login page (`302`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

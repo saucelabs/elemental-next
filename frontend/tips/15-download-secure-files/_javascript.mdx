@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/javascript/test/secureDownload.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it. For the HTTP requests we
+use `fetch`, which is built into Node.js.
+
+### Files Behind Basic Auth
+
+The first test loads the secure downloads page with the credentials in the URL and collects the `href` of every link
+(`getDomAttribute("href")` returns the relative path as written in the page). Then, for each link, it sends a `HEAD`
+request with a Basic `Authorization` header (the credentials encoded in Base64) and asserts that the response status
+is `200`.
+
+### Page Behind a Form Login
+
+The second test logs in through the form and waits for the success message. Then it grabs the session cookie with
+`driver.manage().getCookie("rack.session")` and sends it in a `Cookie` header when requesting `/secure`, which
+returns `200`. Without the cookie, the same request is redirected to the login page (`302`). We pass
+`redirect: "manual"` to `fetch` so it gives us the redirect instead of following it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.
