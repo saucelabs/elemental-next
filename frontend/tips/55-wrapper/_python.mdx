@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/python/wrapper.py"} language={"python"}/>
+
+<TipCode codePath={"55-wrapper/code/python/wrapper_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Listener
+
+`Wrapper` inherits from `AbstractEventListener` and overrides the hooks we're interested in: `after_navigate_to`,
+`before_find`, `after_find`, `before_click`, and `after_click`. Each of them receives the arguments of the action
+(e.g., the URL, or the locator) and the driver. They log a message with `log`, which prints it and keeps it in the
+`messages` list.
+
+### The Test
+
+The `driver` fixture wraps a Firefox instance in an `EventFiringWebDriver`, passing it our listener. From then on,
+every action we perform through it calls the listener's hooks.
+
+The test visits the page, clicks the link, and asserts the messages the listener logged.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest wrapper_test.py` from the
+command-line.

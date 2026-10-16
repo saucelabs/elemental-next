@@ -25,12 +25,60 @@ you have to explicitly request the logs after each test action (fine for one-off
 for **every** test action?
 
 
+## A Solution
+
+Instead of hard-coding logging requests all over the place, we can leverage an event listener to give us the
+information we want -- automatically and for each Selenium action.
+
+This functionality is built in to most of the Selenium bindings (e.g., `AbstractEventListener` in Python and Ruby,
+`WebDriverListener` in Java, and `EventFiringWebDriver` in C#). They come preloaded with hooks that enable us to add
+behavior before and after common Selenium actions, like navigating to a page, finding an element, clicking it, typing
+into it, executing a script, or quitting the browser.
+
+We can pick and choose from these hooks and specify the additional behavior we want to occur. After that, it's just a
+simple matter of passing our listener to Selenium when creating the driver.
+
+## Example
+
+Our listener (a.k.a. a `Wrapper`) hooks into navigating to a page, finding an element, and clicking it. For each of
+these actions it logs a message (e.g., `Navigated to ...`, `Finding element ...`, `Found element ...`, and
+`Clicking on ...`). Before each click it also remembers the current URL, so after the click it can log when the URL
+changed. It outputs the messages, and keeps them in a list, so our test can check them.
+
+Then our test visits the homepage of [the-internet](https://github.com/saucelabs/the-internet), clicks on the
+`Checkboxes` link, and checks the messages the listener logged. Notice that the test steps don't log anything
+themselves.
+
+The JavaScript bindings don't come with an event listener, so in that example we wrap the driver ourselves.
+
+You could also show these messages in the browser itself, with the
+[Growl notifications from a previous tip](/tips/53-growl).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Load the browser
+- Visit the page, and log it
+- Find the link, and log it before and after
+- Click the link, and log it before, and after if the URL changed
+- Check the logged messages
+- Close the browser
+
+## Summary
+
+Event listeners give you a hook into every Selenium action, without changing your tests. They are a great place for
+logging, highlighting elements, or taking screenshots.
+
+Happy Testing!
 
 ## About The Author
 

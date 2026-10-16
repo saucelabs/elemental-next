@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/java/src/test/java/com/elemental/selenium/Wrapper.java"} language={"java"}/>
+
+<TipCode codePath={"55-wrapper/code/java/src/test/java/com/elemental/selenium/WrapperTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Listener
+
+`Wrapper` implements `WebDriverListener` and overrides the hooks we're interested in: `afterGet`,
+`beforeFindElement`, `afterFindElement`, `beforeClick`, and `afterClick`. Each of them receives the arguments of the
+action (e.g., the URL, or the locator). They log a message with `log`, which prints it and keeps it in the
+`messages` list. The click hooks only receive the element, so we keep the driver from `afterGet` to check the URL.
+
+### The Test
+
+The `beforeEach` method creates our listener and decorates a Firefox instance with it
+(`new EventFiringDecorator<>(listener).decorate(...)`). From then on, every action we perform through the decorated
+driver calls the listener's hooks.
+
+The test visits the page, clicks the link, and asserts the messages the listener logged.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

@@ -1,139 +1,36 @@
-## A Solution
+import TipCode from "@site/src/components/tipCode";
 
-Instead of hard-coding logging requests all over the place, we can leverage an event listener to give us the information we want -- automatically and for each Selenium action.
+## TL;DR - Show Me The Code
 
-This functionality is built in to Selenium in what's called the [AbstractEventListener](https://code.google.com/p/selenium/source/browse/rb/lib/selenium/webdriver/support/abstract_event_listener.rb). This is a class which comes preloaded with helper methods that enable us to add behavior before and after common Selenium actions -- here's a list of the available methods:
+<TipCode codePath={"55-wrapper/code/ruby/wrapper.rb"} language={"ruby"}/>
 
-- `before_navigate_to`
-- `after_navigate_to`
-- `before_navigate_back`
-- `after_navigate_back`
-- `before_navigate_forward`
-- `after_navigate_forward`
-- `before_find`
-- `after_find`
-- `before_click`
-- `after_click`
-- `before_change_value_of`
-- `after_change_value_of`
-- `before_execute_script`
-- `after_execute_script`
-- `before_quit`
-- `after_quit`
-- `before_close`
-- `after_close`
+<TipCode codePath={"55-wrapper/code/ruby/wrapper_test.rb"} language={"ruby"}/>
 
-We can pick and choose from each of these methods and specify the additional behavior we want to occur. After that, it's just a simple matter of passing this information to Selenium when creating a browser instance.
+## Code Walkthrough
 
-Here is an example.
+### The Listener
 
-## Example
+`Wrapper` inherits from `Selenium::WebDriver::Support::AbstractEventListener` and overrides the hooks we're
+interested in: `after_navigate_to`, `before_find`, `after_find`, `before_click`, and `after_click`. Each of them
+receives the arguments of the action (e.g., the URL, or the locator) and the driver. They log a message with `log`,
+which outputs it and keeps it in the `messages` list.
 
-To start, let's create a `Wrapper` class that inherits from `AbstractEventListener` and add our behavior there.
+### The Test
 
-The helper methods we're interested in are `after_navigate_to`, `before_find`, `after_find`, `before_click`, and `after_click` and they each require different arguments to be specified. See [here](https://code.google.com/p/selenium/source/browse/rb/lib/selenium/webdriver/support/abstract_event_listener.rb#30) for details.
+The `setup` method creates our listener and passes it to Selenium when creating the driver
+(`Selenium::WebDriver.for(:firefox, listener: @listener)`). From then on, every action calls the listener's hooks.
 
-And to make things interesting, let's wire up jQuery Growl notifications.
+The test visits the page, clicks the link, and asserts the messages the listener logged.
 
-```ruby
-# filename: wrapper.rb
+### Executing the Test
 
-class Wrapper < Selenium::WebDriver::Support::AbstractEventListener
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-  def after_navigate_to(url, driver)
-    add_growl(driver)
-    display_growl(driver, "Navigated to #{url}")
-  end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-  def before_find(by, what, driver)
-    display_growl(driver, "Finding element #{what}")
-  end
-
-  def after_find(by, what, driver)
-    display_growl(driver, "Found element #{what}")
-  end
-
-  def before_click(element, driver)
-    display_growl(driver, "Clicking on #{element.text}")
-    @pre_click_url = driver.current_url
-  end
-
-  def after_click(element, driver)
-    unless @pre_click_url == driver.current_url
-      add_growl(driver)
-      display_growl(driver, "URL changed to #{driver.current_url}")
-    end
-  end
-
-  private
-
-  def add_growl(driver)
-     driver.execute_script("if (!window.jQuery) {
-        var jquery = document.createElement('script'); jquery.type = 'text/javascript';
-        jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js';
-        document.getElementsByTagName('head')[0].appendChild(jquery);
-      }")
-
-    driver.execute_script("$.getScript('http://the-internet.herokuapp.com/js/vendor/jquery.growl.js')")
-
-    driver.execute_script("$('head').append('<link rel=\"stylesheet\" href=\"http://the-internet.herokuapp.com/css/jquery.growl.css\" type=\"text/css\" />');")
-
-    sleep 1
-  end
-
-  def display_growl(driver, message)
-    driver.execute_script("$.growl({ title: 'Selenium', message: '#{message}' });")
-    sleep 0.5
-  end
-
-end
-```
-
-Our Event Listener helper methods give us access to the driver object at the precise moments we want in our test steps, and by wiring up growl notifications (see `add_growl` and `display_growl`) we can now display notification messages in the browser window automatically without any additional work in our test code.
-
-Let's go ahead and wire up our test code to use this new wrapper.
-
-```ruby
-# filename: wrapper_test.rb
-
-require 'selenium-webdriver'
-require_relative 'wrapper'
-require 'rspec/expectations'
-include RSpec::Matchers
-
-def setup
-  @driver = Selenium::WebDriver.for :firefox, listener: Wrapper.new
-end
-
-def teardown
-  @driver.quit
-end
-
-def run
-  setup
-  yield
-  teardown
-end
-
-run do
-  @driver.get 'http://the-internet.herokuapp.com'
-  @driver.find_elements(css: 'a').last.click
-end
-```
-
-Everything here is pretty standard with the exception of two small changes to handle our wrapper. We first need to include the file (`require_relative 'wrapper'`) and then pass in an instance of the wrapper to Selenium (`listener: Wrapper.new`).
-
-Now if we run our test (`ruby wrapper_test.rb`) then we will see notification messages appear around each of the test actions as they occur.
-
-## Expected Behavior
-
-- Load the browser
-- Load jQuery if it's not already loaded
-- Load jQuery Growl and it's styles
-- Display notifications in the browser window for each of the test actions
-
-## Summary
-
-To see a video demo of this test, [click here](https://vimeo.com/98736887).
-
-Happy Testing!
+Finally, we can run the test by executing `ruby wrapper_test.rb` from the command-line.
