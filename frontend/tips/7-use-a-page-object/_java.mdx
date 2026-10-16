@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"7-use-a-page-object/code/java/src/test/java/com/elemental/selenium/DynamicLoadingPage.java"}
+    language={"java"}/>
+
+<TipCode
+    codePath={"7-use-a-page-object/code/java/src/test/java/com/elemental/selenium/DynamicLoadingTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+`DynamicLoadingPage` stores the URL and the locators as constants (e.g.,
+`private static final By START_BUTTON = By.cssSelector("#start button");`).
+
+The constructor receives the Selenium WebDriver instance, stores it in a field, visits the page, and verifies that
+we are in the right place by checking the page title.
+
+Then each test step is a method that describes the behavior of the page: `start()` clicks the start button,
+`waitForFinish()` uses an explicit wait (`WebDriverWait`) until the finish message is displayed, and
+`finishText()` returns its text.
+
+### The Test
+
+`DynamicLoadingTest` launches Firefox in the `beforeEach` method and quits it in the `afterEach` method.
+
+The test (`helloWorldIsDisplayed`) creates the Page Object, uses its methods to start the loading and wait for it
+to finish, and asserts the text. Notice that the test has no locators or Selenium calls in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

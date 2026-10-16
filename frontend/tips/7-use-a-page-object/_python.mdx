@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/python/dynamic_loading_page.py"} language={"python"}/>
+
+<TipCode codePath={"7-use-a-page-object/code/python/dynamic_loading_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+`DynamicLoadingPage` is a standard Python class. At the top of it we store the URL and the locators as class
+constants (e.g., `START_BUTTON = (By.CSS_SELECTOR, '#start button')`). Each locator is a tuple with the locator
+strategy and its value, which we unpack with `*` when calling `find_element`.
+
+The constructor (`__init__`) receives the Selenium WebDriver instance, stores it, visits the page, and verifies
+that we are in the right place by checking the page title.
+
+Then each test step is a method that describes the behavior of the page: `start` clicks the start button,
+`wait_for_finish` uses an explicit wait (`WebDriverWait`) until the finish message is displayed, and
+`finish_text` returns its text.
+
+### The Test
+
+The `driver` fixture creates a Firefox instance before the test, `yield`s it to the test, and quits it
+afterward.
+
+The test (`test_hello_world_is_displayed`) creates the Page Object, uses its methods to start the loading and
+wait for it to finish, and asserts the text. Notice that the test has no locators or Selenium calls in it.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest dynamic_loading_test.py` from
+the command-line.

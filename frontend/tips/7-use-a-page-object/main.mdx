@@ -37,13 +37,55 @@ you only have to update your test code in one place to fix it.
 And with this approach, we not only get the benefit of controlled chaos, we also get the benefit of reusable behavior.
 
 
+## Example
+
+Let's take a test that works directly against
+[a dynamic loading example](https://the-internet.herokuapp.com/dynamic_loading/2) found on
+[the-internet](https://github.com/saucelabs/the-internet). It clicks the start button, waits for the finish message
+to appear, and asserts that it says `Hello World!`. Every step uses the locators and the Selenium API directly.
+
+We'll move all of that into a Page Object for the Dynamic Loading page:
+
+- The locators are pulled out into helpfully named constants (e.g., the start button and the finish text).
+- The constructor receives the Selenium WebDriver instance, visits the page, and verifies that we are in the
+  right place.
+- Each test step becomes a method that describes the behavior of the page (e.g., `start`, wait for the finish
+  message, and get the finish text).
+
+With the Page Object in hand, the test becomes short and readable, and it no longer knows about locators.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
     {label: 'Selenide', value: 'selenide'},
 ]}/>
 
+It's worth noting that while we are performing an assertion in the Page Object when verifying the page,
+__assertions should only be performed in your test scripts__. Verifying the page on load is just a helpful
+exception to the rule.
+
+## Expected Behavior
+
+- Load the Dynamic Loading page on the-internet
+- Verify that we are on the right page
+- Click on start
+- Wait for the finish message to appear
+- Grab the text from it
+- Assert that it is the text we expect
+
+## Summary
+
+Hopefully this tip has helped you wade into the waters of Page Objects in Selenium.
+
+Stay tuned for a future tip where we implement a Base Page Object class to abstract things even further
+and roll our own Domain Specific Language (DSL) for our test suite.
+
+Until then, Happy Testing!
 
 ## Special Thanks
 
