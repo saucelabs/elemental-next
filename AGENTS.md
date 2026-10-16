@@ -99,6 +99,9 @@ tips/1-upload-a-file/
   - Tests that fail on purpose (e.g., tip 16, screenshot on failure) go in a directory with an `expect-failure`
     file listing the files the failure must create (e.g., `failshot_*.png`). The directory passes only when the
     tests fail and those files exist.
+  - Tips that need a Selenium Grid (e.g., tip 52) have a `needs-grid` file. The run script downloads the Selenium
+    Server jar (`GRID_VERSION` in `run-tips.sh`) and starts it in standalone mode on `http://localhost:4444` while
+    their tests run.
   - Tips that run on Sauce Labs (e.g., tip 26) read `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` (repository secrets in
     CI) and skip themselves when they are not set.
 - Renovate (`renovate.json`) keeps dependencies updated.

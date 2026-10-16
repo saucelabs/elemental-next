@@ -3,11 +3,17 @@
 # Fails at the end if any directory still fails, so one failure does not hide the others.
 # Commands read from /dev/null, so an example that waits for input (e.g., a REPL) does not hang.
 #
+# A directory with a `needs-grid` file gets a Selenium Grid (standalone) running on http://localhost:4444 while its
+# tests run (e.g., tip 52).
+#
 # A directory with an `expect-failure` file holds tests that fail on purpose (e.g., to show a screenshot taken on
 # failure). It passes when the tests fail AND every file pattern listed in `expect-failure` matches a file.
 #
 # Usage: run-tips.sh <language> '<JSON array of directories>'
 set -uo pipefail
+
+# Selenium Server version used for the tips that need a Grid. Keep it in sync with the Selenium version of the tips.
+GRID_VERSION=4.51.0
 
 language="$1"
 dirs_json="$2"
@@ -34,8 +40,45 @@ run_one() {
   esac
 }
 
-# Runs the tests of the current directory, honoring an `expect-failure` file when present.
+start_grid() {
+  local jar="${RUNNER_TEMP:-${TMPDIR:-/tmp}}/selenium-server-${GRID_VERSION}.jar"
+  if [[ ! -f "${jar}" ]]; then
+    curl -sSfL -o "${jar}" \
+      "https://github.com/SeleniumHQ/selenium/releases/download/selenium-${GRID_VERSION}/selenium-server-${GRID_VERSION}.jar" \
+      || return 1
+  fi
+  java -jar "${jar}" standalone --port 4444 > grid.log 2>&1 &
+  grid_pid=$!
+  for _ in $(seq 1 60); do
+    if curl -s http://localhost:4444/status | grep -q '"ready": *true'; then
+      return 0
+    fi
+    sleep 1
+  done
+  echo "The Grid did not start, see grid.log"
+  return 1
+}
+
+stop_grid() {
+  kill "${grid_pid}" 2>/dev/null
+  wait "${grid_pid}" 2>/dev/null
+  rm -f grid.log
+}
+
+# Runs the tests of the current directory, honoring the `needs-grid` and `expect-failure` files when present.
 run_dir() {
+  if [[ -f needs-grid ]]; then
+    start_grid || return 1
+    local result=0
+    run_tests || result=$?
+    stop_grid
+    return "${result}"
+  fi
+  run_tests
+}
+
+# Runs the tests of the current directory, honoring an `expect-failure` file when present.
+run_tests() {
   if [[ ! -f expect-failure ]]; then
     run_one
     return
