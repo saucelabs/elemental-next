@@ -18,7 +18,7 @@ end
 
 run do
   filename = 'some-file.txt'
-  file = File.join(Dir.pwd, filename)
+  file = File.join(Dir.pwd, filename).tr('/', File::ALT_SEPARATOR || '/')
   @driver.get('https://the-internet.herokuapp.com/upload')
   @driver.find_element(id: 'file-upload').send_keys(file)
   @driver.find_element(id: 'file-submit').click

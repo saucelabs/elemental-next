@@ -28,7 +28,8 @@ Lines 18 to 28 are the test itself.
 
 After specifying the `filename` we get the full path to the file (which we're doing with
 `File.join(Dir.pwd, filename)`). This approach assumes that the file is living in the same directory as the test
-script.
+script. Ruby joins paths with `/`, but on Windows the browser expects `\`, so we replace the separators with the
+alternative one of the operating system (`File::ALT_SEPARATOR`, which is only set on Windows).
 
 Next we visit the page with the upload form, input the `file` text (e.g., the full path to the file plus the filename
 with it's extension), and submit the form. After the file is uploaded the page will display the filename that it just

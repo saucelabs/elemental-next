@@ -10,7 +10,7 @@ def setup
     FileUtils.mkdir_p(@download_dir)
 
     options = Selenium::WebDriver::Firefox::Options.new
-    options.add_preference('browser.download.dir', @download_dir)
+    options.add_preference('browser.download.dir', @download_dir.tr('/', File::ALT_SEPARATOR || '/'))
     options.add_preference('browser.download.folderList', 2)
     options.add_preference('browser.helperApps.neverAsk.saveToDisk',
         'image/jpeg, application/pdf, application/octet-stream')

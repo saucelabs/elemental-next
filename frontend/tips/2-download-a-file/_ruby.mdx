@@ -22,7 +22,9 @@ variable that we'll use throughout this file.
 We're also setting a few browser preferences (for Firefox in this case) and plying it with the necessary configuration
 parameters to make it automatically download the file where we want. Here's a breakdown of each of them:
 
-+ `browser.download.dir` accepts a string. This is how we set the custom download path. It needs to be an absolute path.
++ `browser.download.dir` accepts a string. This is how we set the custom download path. It needs to be an absolute path,
+with the separators of the operating system (on Windows, `\` instead of the `/` Ruby uses, which is why we replace
+them with `File::ALT_SEPARATOR` when it's set).
 + `browser.download.folderList` takes a number. It tells Firefox which download directory to use. `2` tells it to use
 a custom download path, wheras `1` would use the browser's default path, and `0` would place them on the Desktop.
 + `browser.helperApps.neverAsk.saveToDisk` tells Firefox when not to prompt for a file download. It accepts a string
