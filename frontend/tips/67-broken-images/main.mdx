@@ -29,23 +29,57 @@ test for broken images?
 ## A Solution
 
 Out of the box, Selenium is not equipped to handle this. But regardless, there are several ways to accomplish this.
-
 We can use...
 
-+ a proxy server
-+ an HTTP library
-+ JavaScript
+- an HTTP library
+- JavaScript
+- a proxy server, or the network features of [WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/),
+  to watch the responses of the images as the page loads
 
-Lets look at an example of each.
+Let's look at an example of the first two.
 
+## Example
 
+[Our example page](https://the-internet.herokuapp.com/broken_images) from
+[the-internet](https://github.com/saucelabs/the-internet) has a few images, and two of them are broken on purpose
+(`asdf.jpg` and `hjkl.jpg`). So our tests check that they find exactly those two.
+
+In both tests we load the page and find all the images on it.
+
+- __With an HTTP library__: for each image, we perform a `GET` request for its URL (the `src` of the image) and
+  check the response status code. The images that don't return a `200` are broken. There are additional requests
+  being made, but it doesn't need any extra setup.
+- __With JavaScript__: for each image, we ask the browser if it finished loading and has a width (an image that failed
+  to load has a `naturalWidth` of `0`). This is the leanest approach since it requires no additional setup or extra
+  requests.
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Find all images on the page
+- Iterate through each image, and check it with an HTTP request (first test) or JavaScript (second test)
+- Store the images that fail the check in a collection
+- Assert that the collection has the broken images we expect
+- Close the browser
+
+## Summary
+
+Your circumstance may vary, so choose the approach that works best for you and your team.
+
+A big thanks to [Brian Goad](https://github.com/bbbco) for the JavaScript solution and pointing me towards
+[the StackOverflow post where he first came across this](http://stackoverflow.com/questions/16784534/find-broken-images-in-page-image-replace-by-another-image/).
+
+Happy Testing!
 
 ## About The Author
 

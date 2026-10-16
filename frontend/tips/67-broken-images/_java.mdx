@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/java/src/test/java/com/elemental/selenium/BrokenImagesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox, loads the page, and finds all the images on it. The `afterEach` method
+quits the browser.
+
+### With an HTTP Library
+
+The first test gets the full URL of each image (`getDomProperty("src")`), and requests it with the `HttpClient` that comes with Java. It collects the URLs that don't
+return a `200`, and asserts that they are the two broken images.
+
+### With JavaScript
+
+The second test runs a small script for each image (`executeScript`, passing the image as an argument). It returns `true`
+when the image finished loading (`complete`) and has a width (`naturalWidth > 0`). It collects the images where it
+returns `false`, and asserts that their `src` are the two broken images.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

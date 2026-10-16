@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/python/broken_images.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `images` fixture launches Firefox, loads the page, and `yield`s the driver and all the images on the page
+(`find_elements(By.TAG_NAME, 'img')`) to the test. Once the test is done, it quits the browser.
+
+### With an HTTP Library
+
+The first test gets the full URL of each image (`get_attribute('src')`), and requests it with `urllib.request` (`status_code` returns the error code when the request fails). It collects the URLs that don't
+return a `200`, and asserts that they are the two broken images.
+
+### With JavaScript
+
+The second test runs a small script for each image (`driver.execute_script`, passing the image as an argument). It returns `true`
+when the image finished loading (`complete`) and has a width (`naturalWidth > 0`). It collects the images where it
+returns `false`, and asserts that their `src` are the two broken images.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest broken_images.py` from the
+command-line.
