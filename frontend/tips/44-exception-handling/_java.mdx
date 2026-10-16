@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"44-exception-handling/code/java/src/test/java/com/elemental/selenium/ExceptionHandlingTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox, logs in, and waits for the success message. The `afterEach` method quits
+the browser.
+
+### The Helper
+
+`isDisplayed` tries to find the element and return whether it's displayed. If Selenium throws a
+`NoSuchElementException` or a `StaleElementReferenceException`, it catches it (in a multi-catch block) and returns
+`false`.
+
+### The Tests
+
+`lookingForAMissingElementThrowsAnException` shows the problem: it uses `Assertions.assertThrows` to assert that
+looking for the login form throws a `NoSuchElementException`.
+
+`loginFormIsNotDisplayed` uses the helper instead, and asserts that the login form is not displayed.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

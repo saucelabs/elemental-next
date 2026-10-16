@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/csharp/ExceptionHandlingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) launches Firefox, logs in, and waits for the success message.
+The `TearDown()` method (marked with `[TestCleanup]`) closes the browser.
+
+### The Helper
+
+`IsDisplayed` tries to find the element and return whether it's displayed. If Selenium throws a
+`NoSuchElementException` or a `StaleElementReferenceException`, it catches it (with an exception filter, `when`) and
+returns `false`.
+
+### The Tests
+
+`LookingForAMissingElementThrowsAnException` shows the problem: it uses `Assert.ThrowsExactly` to assert that looking
+for the login form throws a `NoSuchElementException`.
+
+`LoginFormIsNotDisplayed` uses the helper instead, and asserts that the login form is not displayed.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

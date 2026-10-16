@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/javascript/test/exceptionHandling.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook launches Firefox, logs in, and waits for the success message. The `afterEach` hook quits the
+browser.
+
+### The Helper
+
+`isDisplayed` tries to find the element and return whether it's displayed. If Selenium throws a
+`NoSuchElementError` or a `StaleElementReferenceError` (both from `error` in `selenium-webdriver`), it catches it and
+returns `false`. Any other error is thrown again, so we don't hide problems we didn't expect.
+
+### The Tests
+
+The first test shows the problem: it uses `assert.rejects` to assert that looking for the login form fails with a
+`NoSuchElementError`.
+
+The second test uses the helper instead, and asserts that the login form is not displayed.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

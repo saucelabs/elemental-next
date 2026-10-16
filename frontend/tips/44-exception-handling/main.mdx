@@ -34,12 +34,49 @@ By adding some simple exception handling we can catch Selenium's errors and make
 Let's take a look at an example.
 
 
+## Example
+
+For this example we'll use [a login example](https://the-internet.herokuapp.com/login) from
+[the-internet](https://github.com/saucelabs/the-internet).
+
+Before each test we log in, and wait for the success message to be displayed (so we know the next page loaded). Then
+we want to check that the login form is no longer displayed.
+
+The first test demonstrates the problem. If we look for the login form and ask if it's displayed, Selenium doesn't
+answer `false`. It can't find the element at all (since it's not on the page anymore), so it throws a `NoSuchElement`
+error.
+
+The second test fixes it with a small helper that checks if an element is displayed and handles the exceptions:
+`NoSuchElement` (the element is not on the page) and `StaleElementReference` (the element was on the page, but it
+was removed or re-rendered). In both cases the element is not displayed, so the helper returns `false`. We're left
+with a cleaner (and reusable) check for our tests.
+
+__NOTE:__ `NoSuchElement` and `StaleElementReference` are the two most common errors you'll run into when using
+Selenium.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Log in and wait for the success message
+- Check that looking for the login form throws an error (first test)
+- Check that the login form is not displayed, with the helper (second test)
+- Close the browser
+
+## Summary
+
+Hopefully this tip has helped you handle the exceptions you'll run into when using Selenium.
+
+Happy Testing!
 
 ## About The Author
 
