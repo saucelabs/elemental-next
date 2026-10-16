@@ -5,7 +5,6 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './pages.module.css';
-import SignupForm from '@site/src/components/signupForm';
 import DisplayLogo from "../components/displayLogo";
 
 function Home() {
