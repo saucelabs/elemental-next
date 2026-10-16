@@ -1,63 +1,31 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/saucelabs/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
+## TL;DR - Show Me The Code
 
-First, we'll include our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
+<TipCode codePath={"51-javascript-alerts/code/javascript/test/javascriptAlerts.spec.js"} language={"js"}/>
 
-```javascript
-// filename: test/js-alerts.spec.js
-const assert = require("assert");
-const { Builder, By, Key } = require("selenium-webdriver");
+## Code Walkthrough
 
-describe("JS Alerts", function() {
-  let driver;
+### Setup and Teardown
 
-  beforeEach(async function() {
-    driver = await new Builder().forBrowser("chrome").build();
-  });
+The `beforeEach` hook launches Firefox, loads the page, and clicks the second button (`buttons[1]`, since the list
+starts at `0`). The `afterEach` hook quits the browser.
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+### The Tests
 
-Now let's write our test.
+Both tests wait for the alert to be present with `driver.wait(until.alertIsPresent(), 5000)`, which returns the
+alert. Then the first test accepts it (`popup.accept()`) and the second one dismisses it (`popup.dismiss()`).
+Finally, they assert the result displayed on the page.
 
-```javascript
-// filename: test/js-alerts.spec.js
-// ...
-  it("general use", async function() {
-    await driver.get("http://the-internet.herokuapp.com/javascript_alerts");
-    await driver.findElement(By.css("ul > li:nth-child(2) > button")).click();
-    const popup = await driver.switchTo().alert();
-    popup.accept();
-    const result = await driver.findElement(By.id("result")).getText();
-    assert(result == "You clicked: Ok");
-  });
-});
-```
+### Executing the Test
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. In order to click on the second button (to trigger the JavaScript confirmation dialog) we need a locator which targets the second item in the unordered list.
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-After we click the button to trigger the JavaScript Alert we use Selenium's `switchTo().alert()` to focus on the JavaScript pop-up and use `.accept()` to click `Ok` (if we wanted to click `Cancel` we would have used `.dismiss()`).
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-After accepting the alert, our main browser window will automatically regain focus and the page will display the result that we chose. This text is what we use for our assertion, making sure that the words `You clicked: Ok` are displayed on the page.
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript Confirmation Alert appears
-+ Accept the JavaScript Confirmation Alert
-+ Assert that the result on the page is what we expect
-+ Close the browser
-
-## Summary
-
-We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

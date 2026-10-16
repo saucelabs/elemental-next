@@ -1,67 +1,31 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/saucelabs/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
+## TL;DR - Show Me The Code
 
-First, we'll include our requisite libraries (e.g., `selenium-webdriver` to control the browser and `rspec/expectations` and `RSpec::Matchers` for our assertion) and wire up some simple `setup`, `teardown`, and `run` methods.
+<TipCode codePath={"51-javascript-alerts/code/ruby/javascript_alerts.rb"} language={"ruby"}/>
 
-```ruby
-# filename: javascript_alerts.rb
+## Code Walkthrough
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+### Setup and Teardown
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+The `setup` method launches Firefox, loads the page, and clicks the second button (`find_elements(...)[1]`, since the
+list starts at `0`). The `teardown` method quits the browser. The `run` method wraps each test with them.
 
-def teardown
-  @driver.quit
-end
+### The Tests
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+`alert` waits for the alert to be present: it keeps trying to switch to it (`@driver.switch_to.alert`) until it
+shows up, and returns it. Then the first test accepts it (`accept`) and the second one dismisses it (`dismiss`).
+Finally, they assert the result displayed on the page.
 
-Now let's write our test.
+### Executing the Test
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/javascript_alerts'
-  @driver.find_elements(css: 'button')[1].click
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-  popup = @driver.switch_to.alert
-  popup.accept
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-  result = @driver.find_element(id: 'result').text
-  expect(result).to eql('You clicked: Ok')
-end
-```
-
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find all buttons on the page using `find_elements` and click on the second one. Since `find_elements` returns an Array of all found elements, we can assume that the first item can be selected using `[0]` (since Arrays in Ruby start counting at `0`). So the second item would be `[1]`.
-
-After click the button to trigger the JavaScript Alert we use Selenium's `switch_to.alert` method to focus on the JavaScript pop-up and use `.accept` to click `Ok`. If we wanted to click `Cancel` we would have used `.dismiss`.
-
-After accepting the alert, our main browser window will automatically regain focus and the page will display the result that we chose. This text is what we use for our assertion, making sure that the words `You clicked: Ok` are displayed on the page.
-
-## Expected Behavior
-
-If you save this file and run it (e.g., `ruby javascript_alerts.rb` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript Confirmation Alert appears
-+ Accept the JavaScript Confirmation Alert
-+ Assert that the result on the page is what we expect
-+ Close the browser
-
-
-## Summary
-
-We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby javascript_alerts.rb` from the command-line.
