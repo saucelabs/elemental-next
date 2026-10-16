@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/csharp/Wrapper.cs"} language={"csharp"}/>
+
+<TipCode codePath={"55-wrapper/code/csharp/WrapperTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Listener
+
+In C#, the event firing driver (`EventFiringWebDriver`, from the `Selenium.Support` package) exposes .NET events for
+each action (e.g., `Navigated`, `FindingElement`, `FindElementCompleted`, `ElementClicking`, and `ElementClicked`).
+`Wrapper` subscribes to the ones we're interested in, and logs a message for each of them with `Log`, which writes it
+to the console and keeps it in the `Messages` list.
+
+The project references `Microsoft.Bcl.AsyncInterfaces` explicitly, since the event firing driver needs it and
+doesn't bring it in on its own for `net10.0`.
+
+### The Test
+
+The `SetUp()` method (marked with `[TestInitialize]`) wraps a Firefox instance in an `EventFiringWebDriver` and
+creates our listener with it. From then on, every action we perform through it raises the events.
+
+The test visits the page, clicks the link, and asserts the messages the listener logged.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

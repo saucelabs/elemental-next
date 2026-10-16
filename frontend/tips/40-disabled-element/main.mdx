@@ -32,6 +32,17 @@ method called `Enabled` that can help us accomplish what we want.
 Let's take a look at how to use it.
 
 
+## Example
+
+For this example we will use [a dropdown list](https://the-internet.herokuapp.com/dropdown) from
+[the-internet](https://github.com/saucelabs/the-internet). In this list there are a few options to select, one of
+which is disabled (`Please select an option`). Let's find this element and assert that it is disabled.
+
+After loading the page, we find all the elements that have an `option` tag (which are all the items in the dropdown
+list). This returns a collection, so we search it for the item we want based on its text. Once we have the element,
+we check whether it's enabled and assert that it isn't. To show the difference, we also check that a regular option
+(`Option 1`) is enabled.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -42,16 +53,36 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open a browser
+- Visit the page
+- Grab all dropdown list elements and find the one we want by its text
+- Assert that the element is not enabled
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Hopefully this tip has helped make the task of seeing whether an element is enabled or disabled more approachable.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

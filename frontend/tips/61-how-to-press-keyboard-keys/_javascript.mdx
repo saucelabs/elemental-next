@@ -1,79 +1,32 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First we'll include our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: test/keyboard-keys.spec.js
-const assert = require("assert");
-const { Builder, By, Key } = require("selenium-webdriver");
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/javascript/test/keyPresses.spec.js"} language={"js"}/>
 
-describe("Keyboard Keys", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() {
-    driver = await new Builder().forBrowser("firefox").build();
-  });
+### Setup and Teardown
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The `beforeEach` hook launches Firefox and visits the page before each test, and the `afterEach` hook quits it.
 
-Now we can write up our test.
+### The Tests
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed to perform our assertion.
+The keys that don't print a character (e.g., space, tab, enter, or the arrows) are available as constants
+(`Key`, from `selenium-webdriver`).
 
-```javascript
-// filename: test/keyboard-keys.spec.js
-  it("send keys", async function() {
-    await driver.get("http://the-internet.herokuapp.com/key_presses");
-    await driver.findElement(By.id("target")).sendKeys(Key.SPACE);
-    assert(
-      (await driver.findElement(By.id("result")).getText()) ===
-        "You entered: SPACE"
-    );
-  });
-});
-```
+The first test finds the `target` element and sends the space key to it (`sendKeys(Key.SPACE)`). The second one sends the tab
+key with the Actions API (`driver.actions().sendKeys(Key.TAB).perform()`), without finding an element. Both of them check the result text on the page.
 
-After visiting the page we find an element that's both visible and interactable with the keyboard (e.g., the input element on the page) and send the space key to it (e.g., `.sendKeys(Key.SPACE`). Then we grab the resulting text (e.g., `driver.findElement(By.id('result')).getText()`) and assert that it says what we expect (e.g., `'You entered: SPACE'`).
+### Executing the Test
 
-Alternatively, we can issue a key press without finding the element first by using the Action Builder.
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-```javascript
-// filename: test/keyboard-keys.spec.js
-// ...
-  it("send keys", async function() {
-		await driver.get("http://the-internet.herokuapp.com/key_presses");
-    await driver
-      .actions({ bridge: true })
-      .sendKeys(Key.TAB)
-      .perform();
-    assert(
-      (await driver.findElement(By.id("result")).getText()) ==
-        "You entered: TAB"
-    );
-  });
-});
-```
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-__NOTE: In order for this approach to work in browsers other than Firefox, we need to specify `{bridge: true}` when calling `driver.actions` (e.g., `driver.actions({ bridge: true })`). You can see [the documentation](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) for further details.__
-
-## Expected Behavior
-
-When we save this file and run it (e.g. `mocha` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Find the element and send the space key to it
-+ Find the result text on the page and check that it's what we expect
-+ Send the tab key to the element that's currently in focus
-+ Find the result text on the page and check that it's what we expect
-+ Close the browser
-
-## Summary
-
-If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. If you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

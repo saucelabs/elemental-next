@@ -1,64 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/saucelabs/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
+## TL;DR - Show Me The Code
 
-First, we'll include our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
+<TipCode codePath={"51-javascript-alerts/code/python/javascript_alerts.py"} language={"python"}/>
 
-```python
-# filename: javascript_alerts.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+## Code Walkthrough
 
+### Setup and Teardown
 
-class JavaScriptAlerts(unittest.TestCase):
+The `driver` fixture launches Firefox, loads the page, and clicks the second button (`find_elements(...)[1]`, since
+the list starts at `0`) before `yield`ing the driver to the test. Once the test is done, it quits the browser.
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+### The Tests
 
-    def tearDown(self):
-        self.driver.quit()
-# ...
-```
+Both tests wait for the alert to be present with `WebDriverWait(driver, 5).until(EC.alert_is_present())`, which
+returns the alert. Then the first test accepts it (`popup.accept()`) and the second one dismisses it
+(`popup.dismiss()`). Finally, they assert the result displayed on the page.
 
-Now let's write our test.
+### Executing the Test
 
-```python
-# filename: javascript_alerts.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/javascript_alerts')
-        driver.find_element(By.CSS_SELECTOR, "ul > li:nth-child(1) > button").click()
-        popup = driver.switch_to.alert
-        popup.accept()
-        result = driver.find_element(By.ID, 'result').text
-        assert result == 'You successfully clicked an alert'
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
 
-if __name__ == "__main__":
-    unittest.main()
-```
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find all buttons on the page using `find_elements` and click on the second one. Since `find_elements` returns a list of all found elements, we can assume that the first item can be selected using `[0]` (since lists in Python start counting at `0`). So the second item would be `[1]`.
-
-After click the button to trigger the JavaScript Alert we use Selenium's `switch_to.alert` method to focus on the JavaScript pop-up and use `.accept()` to click `Ok`. If we wanted to click `Cancel` we would have used `.dismiss()`.
-
-After accepting the alert, our main browser window will automatically regain focus and the page will display the result that we chose. This text is what we use for our assertion, making sure that the words `You clicked: Ok` are displayed on the page.
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `python javascript_alerts.py` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript Confirmation Alert appears
-+ Accept the JavaScript Confirmation Alert
-+ Assert that the result on the page is what we expect
-+ Close the browser
-
-## Summary
-
-We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `switchTo().alert()`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result.
-
-Happy Testing!
+After installing the required libraries, we can run the test by executing `pytest javascript_alerts.py` from the
+command-line.

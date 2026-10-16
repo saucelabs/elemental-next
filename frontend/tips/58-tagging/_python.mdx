@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/python/tagging.py"} language={"python"}/>
+
+<TipCode codePath={"58-tagging/code/python/pytest.ini"} language={"ini"}/>
+
+## Code Walkthrough
+
+### Tagging
+
+In pytest, tags are called markers. We apply them with decorators (`@pytest.mark.smoke` and `@pytest.mark.wip`), and
+register them in `pytest.ini` with a short description (pytest warns about markers it doesn't know).
+
+### Filtering
+
+The `-m` option takes an expression with the markers to run (e.g., `-m smoke`, `-m "not wip"`, or
+`-m "smoke and not wip"`). We add `-m smoke` to the default options in `pytest.ini`, so a plain `pytest` runs only the
+smoke tests, and reports the other one as deselected.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest tagging.py` from the
+command-line.

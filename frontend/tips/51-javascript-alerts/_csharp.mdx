@@ -1,73 +1,33 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/saucelabs/the-internet). It has various JavaScript alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
+## TL;DR - Show Me The Code
 
-First let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
+<TipCode codePath={"51-javascript-alerts/code/csharp/JavaScriptAlertsTest.cs"} language={"csharp"}/>
 
-```csharp
-// filename: JavaScriptAlerts.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+## Code Walkthrough
 
-public class JavaScriptAlerts
-{
-    IWebDriver Driver;
+### Setup and Teardown
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+The `SetUp()` method (marked with `[TestInitialize]`) launches Firefox, loads the page, and clicks the second button
+(`FindElements(...)[1]`, since the list starts at `0`). The `TearDown()` method (marked with `[TestCleanup]`) closes
+the browser.
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+### The Tests
 
-Now let's write our test.
+`Alert()` waits for the alert to be present: it keeps trying to switch to it (`d.SwitchTo().Alert()`), ignoring the
+`NoAlertPresentException` thrown until it shows up, and returns it. Then `AcceptConfirmation` accepts it (`Accept()`)
+and `DismissConfirmation` dismisses it (`Dismiss()`). Finally, they assert the result displayed on the page.
 
-```csharp
-// filename: JavaScriptAlerts.cs
-// ...
-    [Test]
-    public void JavaScriptAlertAppearsAndAccepted()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/javascript_alerts");
-        Driver.FindElement(By.CssSelector(".example li:nth-child(2) button")).Click();
-        IAlert Popup = Driver.SwitchTo().Alert();
-        Popup.Accept();
-        string Result = Driver.FindElement(By.Id("result")).Text;
-        Assert.That(Result.Equals("You clicked: Ok"));
-    }
+### Executing the Test
 
-}
-```
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find it with a child CSS Pseudo-class (`nth-child(2)`).
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-After click the button to trigger the JavaScript alert we use Selenium's `SwitchTo().Alert();` method to focus on the JavaScript pop-up and use `.Accept();` to click `Ok`. If we wanted to click `Cancel` we would have used `.Dismiss();`.
-
-After accepting the alert our browser window will automatically regain focus and the page will display the result that we chose. We use this text for our assertion, making sure that the words `You clicked: Ok` are displayed.
-
-## Expected Behavior
-
-When you save this file and run it (e.g., `nunit3-console.exe .\JavaScriptAlerts.sln` from the command-line) here is what will happen:
-
-- Open the browser
-- Load the page
-- Click the second button on the page
-- JavaScript confirmation alert appears
-- JavaScript confirmation alert is accepted and goes away
-- Browser window is returned to focus
-- Assert that the result on the page is what we expect
-- Close the browser
-
-## Summary
-
-We've learned how to accept/dismiss Javascript alerts using Selenium Webdriver by locating the alert using Selenium's `SwitchTo().Alert();`. After accepting/dismissing the alert, our main browser window will automatically regain focus and the page will display the result.
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test` from the command-line.

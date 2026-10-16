@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/javascript/test/tagging.spec.js"} language={"js"}/>
+
+<TipCode codePath={"58-tagging/code/javascript/package.json"} language={"json"}/>
+
+## Code Walkthrough
+
+### Tagging
+
+Mocha doesn't have tags, but it can filter tests by their name. So we follow a convention: we add the tags to the
+names of the tests, prefixed with `@` (e.g., `has the right title @smoke`).
+
+### Filtering
+
+`--grep` runs only the tests whose name matches (e.g., `--grep @smoke`), and adding `--invert` runs the ones that
+don't. The `test` script in `package.json` uses `--grep @smoke`, so `npm test` runs only the smoke tests.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

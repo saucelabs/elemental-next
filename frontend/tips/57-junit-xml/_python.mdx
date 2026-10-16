@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/python/title.py"} language={"python"}/>
+
+<TipCode codePath={"57-junit-xml/code/python/pytest.ini"} language={"ini"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+`test_title` loads the page and checks its title.
+
+### The Report
+
+pytest writes a JUnit XML report when we pass `--junitxml` with the path of the file. Rather than typing it every
+time, we add it to the default options in `pytest.ini` (`addopts = --junitxml=result.xml`), so every run writes the
+report to `result.xml`.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest title.py` from the
+command-line.

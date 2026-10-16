@@ -1,95 +1,37 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-For our initial setup let's pull in the `selenium-webdriver` gem and wire up some simple `setup`, `teardown`, and `run` methods.
+## TL;DR - Show Me The Code
 
-```ruby
-# filename: highlight.rb
+<TipCode codePath={"65-highlight-elements/code/ruby/highlight.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
+## Code Walkthrough
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### Setup and Teardown
 
-def teardown
-  @driver.quit
-end
+The `setup` method launches Firefox and loads the page, and the `teardown` method quits it. The `run` method wraps
+each test with them.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### The Helper
 
-Now let's create a `highlight` helper method that will accept a Selenium WebDriver `element` and a time to wait (e.g., `duration`) as arguments.
+`highlight` reads the `style` attribute of the element (`dom_attribute('style')`), using an empty string when the element doesn't have
+one. Then it sets the highlight style with JavaScript (`@driver.execute_script`, passing the element and the style as arguments).
+If the duration is greater than `0`, it waits that long and sets the original style back.
 
-By setting a duration, we can control how long to highlight an element on the page before reverting the styling back. And we can make this an optional argument by setting a default (e.g., 3 seconds).
+### The Tests
 
-```ruby
-def highlight(element, duration = 3)
+Both tests find an element on the page. The first one highlights it with a duration of `0` (so the style stays) and
+checks that the style has the dashed border. The second one highlights it for 1 second and checks that the dashed
+border is gone afterward.
 
-  # store original style so it can be reset later
-  original_style = element.attribute("style")
+### Executing the Test
 
-  # style element with yellow border
-  @driver.execute_script(
-    "arguments[0].setAttribute(arguments[1], arguments[2])",
-    element,
-    "style",
-    "border: 2px solid red; border-style: dashed;")
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-  # keep element highlighted for a spell and then revert
-  if duration > 0
-    sleep duration
-    @driver.execute_script(
-      "arguments[0].setAttribute(arguments[1], arguments[2])",
-      element,
-      "style",
-      original_style)
-  end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-end
-```
-
-There are three things going on here.
-
-1. We store the style of the element, so we can revert it back when we're done
-2. We change the style of the element, so it visually stands out (e.g., a red dashed border)
-3. We revert the style of the element back after 3 seconds
-
-We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `execute_script` command.
-
-Now to use this in our test is simple, we just prepend a `find_element` action with the `highlight` command.
-
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/large'
-  highlight @driver.find_element(id: 'sibling-2.3')
-end
-```
-
-
-## Expected Behavior
-
-If you were to save this file and run it (e.g., `ruby highlight.rb` from the command-line), here is what you would see.
-
-1. Load the page
-2. Find the element
-3. Change the styling of the element, so it has a red dashed-line border
-4. Wait 3 seconds
-5. Revert the styling to remove the border
-
-## Summary
-
-If you wanted to take this a step further, you could leverage this approach along with an interactive debugger.
-
-Alternatively, you could verify your locators by using a browser plugin like FireFinder.
-
-Happy Testing!
-
-## About The Author
-
-You can follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).
-
-![Brian D. Goad profile picture](/img/authors/brian-goad.jpeg#author-img 'a title')
+Finally, we can run the test by executing `ruby highlight.rb` from the command-line.

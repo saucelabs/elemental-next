@@ -1,100 +1,37 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-In RSpec, this metadata and filtered execution is referred to as [tags](https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option) (or tagging).
+## TL;DR - Show Me The Code
 
-A tag is a simple key/value pair that can be specified within any test file. Alternatively, you can specify just a key (as a symbol) for the tag.
+<TipCode codePath={"58-tagging/code/ruby/spec/spec_helper.rb"} language={"ruby"}/>
 
-Here is an example spec file with a `:smoke` tag applied to the entire file.
+<TipCode codePath={"58-tagging/code/ruby/spec/tagging_spec.rb"} language={"ruby"}/>
 
-```ruby
-# filename: spec/example_spec.rb
+<TipCode codePath={"58-tagging/code/ruby/.rspec"} language={"text"}/>
 
-require 'selenium-webdriver'
+<TipCode codePath={"58-tagging/code/ruby/run_specs.rb"} language={"ruby"}/>
 
-describe 'Login', :smoke do
+## Code Walkthrough
 
-  before(:each) do
-    @driver = Selenium::WebDriver.for :firefox
-  end
+### Tagging
 
-  after(:each) do
-    @driver.quit
-  end
+In RSpec, tags are metadata on a spec (or a group of specs). The simplest form is a symbol after the description
+(e.g., `it 'has the right title', :smoke do`). Tags can also be key/value pairs (e.g., `speed: 'slow'`).
 
-  it 'succeeded' do
-    # test code goes here
-  end
+### Filtering
 
-  it 'failed' do
-    # test code goes here
-  end
+`--tag` runs only the specs with that tag (e.g., `--tag smoke`), and a `~` in front of the tag name ignores them
+instead (e.g., `--tag ~wip`). We put `--tag smoke` in the `.rspec` file, which RSpec reads on every run, so
+`bundle exec rspec` (or `ruby run_specs.rb`) runs only the smoke specs.
 
-end
-```
+### Executing the Test
 
-To run this, you would specify `--tag` and the tag name (without the `:`) as a runtime parameter, like so:
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-```sh
-rspec --tag smoke
-```
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-Alternatively, you can ignore tags with a `~` prepended to the tag name.
-
-```sh
-rspec --tag ~smoke
-```
-
-You can also tag each individual test and specify multiple tags at run time.
-
-```ruby
-# filename: spec/example_spec.rb
-
-require 'selenium-webdriver'
-
-describe 'Login' do
-
-  before(:each) do
-    @driver = Selenium::WebDriver.for :firefox
-  end
-
-  after(:each) do
-    @driver.quit
-  end
-
-  it 'succeeded', :smoke do
-    # test code goes here
-  end
-
-  it 'failed', :wip do
-    # test code goes here
-  end
-
-end
-```
-
-To run just the smoke tag and negate the wip tag, you would do the following:
-
-```sh
-rspec --tag smoke --tag ~wip
-```
-
-Please note that if you're running RSpec 2 or earlier, the following config is required:
-
-```ruby
-require 'rspec'
-RSpec.configure { |c| c.treat_symbols_as_metadata_keys_with_true_values = true }
-```
-
-Otherwise, you'll have to specify tags using the standard key/value syntax (e.g., `:smoke` would be `smoke: true`).
-
-## Expected Behavior
-
-+ Run the test suite
-+ The test suite identifies which tests to run based on the tags provided
-+ Executes the filtered set of tests, ignoring the rest
-
-## Summary
-
-By utilizing metadata tags and filtering a set of tests, you have learned to effectively create a dynamic test suite that takes into account all of your tests.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby run_specs.rb` from the command-line.

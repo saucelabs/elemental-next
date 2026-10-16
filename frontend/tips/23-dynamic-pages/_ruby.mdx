@@ -1,90 +1,36 @@
-## Example 1
+import TipCode from "@site/src/components/tipCode";
 
-Let's use from [the-internet](https://github.com/saucelabs/the-internet) which load content dynamically ([link](http://the-internet.herokuapp.com/dynamic_loading)). On it there is a `Start` button that when clicked will trigger a loading bar to appear for 5 seconds. After that time it will disappear and a new element with the text `'Hello World!'` will appear.
+## TL;DR - Show Me The Code
 
-We'll start by requiring our dependent libraries (`selenium-webriver` to drive the browser and `rspec/expectations` & `RSpec::Matchers` to perform our assertions) and wiring up some `setup`, `teardown`, and `run` methods to handle our test configuration.
+<TipCode codePath={"23-dynamic-pages/code/ruby/dynamic_loading.rb"} language={"ruby"}/>
 
-```ruby
-# filename: dynamic_loading.rb
+## Code Walkthrough
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+### Setup and Teardown
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+The `setup`, `teardown`, and `run` methods launch Firefox before each test and quit it afterward.
 
-def teardown
-  @driver.quit
-end
+### The Wait Helper
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+`wait_for` accepts a timeout and the action we want to wait for as a block. It uses
+`Selenium::WebDriver::Wait.new(timeout: seconds).until { yield }`, which runs the block repeatedly until it returns
+something truthy, or raises a `TimeoutError` when the time runs out. While waiting, it ignores the
+`NoSuchElementError` raised when the element is not on the page yet.
 
-Now we can create our first test. In it, we'll visit the page, click the start button, wait for the finish text to appear, and assert that it appeared.
+### The Tests
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/2'
-  @driver.find_element(css: '#start button').click
-  Selenium::WebDriver::Wait.new(timeout: 6).until { @driver.find_element(id: 'finish').displayed? }
-  expect(@driver.find_element(id: 'finish').displayed?).to eql true
-end
-```
+Each `run` block visits one of the examples, clicks the start button, waits for the finish element to be displayed
+(`wait_for { @driver.find_element(id: 'finish').displayed? }`), and asserts that it is.
 
-In the code above we are using an explicit wait with a timeout of `6` seconds (e.g. `Selenium::WebDriver::Wait.new(timeout: 6).until`), looking for the element with the finish text (e.g., `@driver.find_element(id: 'finish')`, and seeing if it's displayed (e.g., `.displayed?`).
+### Executing the Test
 
-If we set the timeout too low (e.g. `timeout: 2`) Selenium won't wait long enough for the loading bar to finish, which will trigger the timeout threshold and throw an exception (e.g. `until': timed out after 2 seconds (Selenium::WebDriver::Error::TimeOutError)`).
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-And if we didn't use an explicit wait at all, the test would have errored because Selenium would have tried to check for the finish text before it displayed and return a `NoSuchElement` exception (e.g., `Unable to locate element: {"method":"css selector","selector":"#finish"} (Selenium::WebDriver::Error::NoSuchElementError)`).
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-For applications that already have the target element on the page but have it hidden, this approach will work as well (which we can see by pointing our test at the other dynamic loading example).
-
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/1'
-  @driver.find_element(css: '#start button').click
-  Selenium::WebDriver::Wait.new(timeout: 6).until { @driver.find_element(id: 'finish').displayed? }
-  expect(@driver.find_element(id: 'finish').displayed?).to eql true
-end
-```
-## Example 2
-
-Explicit waits are a useful tool to have in your toolbelt since they enable you to finely tune your tests and avoid static sleeps and arbitrary timeouts. But rather than litter your test code with the verbose Selenium incantation, it's best to pull this code out into a method that accepts a timeout argument and the action you want to wait for as a block.
-
-You can then clean up our test code and reuse this method whenever an explicit wait is needed.
-
-```ruby
-def wait_for(seconds = 6)
-  Selenium::WebDriver::Wait.new(:timeout => seconds).until { yield }
-end
-
-run do
-  @driver.get 'http://the-internet.herokuapp.com/dynamic_loading/1'
-  @driver.find_element(css: '#start button').click
-  wait_for { @driver.find_element(id: 'finish').displayed? }
-  expect(@driver.find_element(id: 'finish').displayed?).to eql true
-end
-```
-
-## Expected Behavior
-
-When you save the file and run it (e.g., `ruby dynamic_loading.rb` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Click the Start button
-+ Wait for the loading bar to disappear and display the finish text
-+ Assert that the finish text element is displayed
-+ Close the browser
-
-## Summary
-
-Hopefully this tip will help you build more efficient and resilient tests when faced with dynamic pages that are constructed in various ways.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby dynamic_loading.rb` from the command-line.

@@ -1,59 +1,32 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-For this example we will use [a dropdown list](http://github.com/saucelabs/the-internet) from [the-internet](http://the-internet.herokuapp.com/dropdown). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
+## TL;DR - Show Me The Code
 
-First let's require our dependent libraries (e.g., `selenium-webdriver` to control the browser and `rspec/expectations` and `RSpec::Matchers` for our assertion) and wire up some simple `setup`, `teardown`, and `run` methods.
+<TipCode codePath={"40-disabled-element/code/ruby/dropdown_disabled.rb"} language={"ruby"}/>
 
-```ruby
-# filename: dropdown_disabled.rb
+## Code Walkthrough
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
+### Setup and Teardown
 
-include RSpec::Matchers
+The `setup`, `teardown`, and `run` methods launch Firefox before the test and quit it afterward.
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### The Test
 
-def teardown
-  @driver.quit
-end
+`option` finds all the `option` elements (`find_elements`, plural) and returns the first one with the text we are
+looking for (`find`).
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+The test visits the page and asserts that the `Please select an option` item is not enabled (`enabled?` returns
+`false`), and that `Option 1` is.
 
-Now let's wire up our test.
+### Executing the Test
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/dropdown'
-  dropdowns = @driver.find_elements(tag_name: 'option')
-  item_of_interest = dropdowns.find { |dropdown| dropdown.text == 'Please select an option' }
-  expect(item_of_interest.enabled?).to eql false
-end
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-After loading the page, we find all the elements that have an option tag (which are all the items in the dropdown list). This will return an array, so we iterate over the collection and find the item we want based on a text comparison.
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-Once we have the element we want we see if it's enabled (with `.enabled?`) and assert based on the response.
-
-## Expected Behavior
-
-If you save this file and run it (e.g., `ruby dropdown_disabled.rb` from the command-line) here is what will happen:
-
-+ Open a browser
-+ Visit the page
-+ Grab all dropdown list elements and find the one we want by its text
-+ Assert that the element is not enabled
-+ Close the browser
-
-## Summary
-
-Hopefully this tip has helped make the task of seeing whether an element is enabled or disabled more approachable.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby dropdown_disabled.rb` from the command-line.

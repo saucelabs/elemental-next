@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/csharp/BrokenImagesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) launches Firefox, loads the page, and finds all the images on
+it. The `TearDown()` method (marked with `[TestCleanup]`) closes the browser.
+
+### With an HTTP Library
+
+The first test gets the full URL of each image (`GetDomProperty("src")`), and requests it with `HttpClient`. It collects the URLs that don't
+return a `200`, and asserts that they are the two broken images.
+
+### With JavaScript
+
+The second test runs a small script for each image (`ExecuteScript`, passing the image as an argument). It returns `true`
+when the image finished loading (`complete`) and has a width (`naturalWidth > 0`). It collects the images where it
+returns `false`, and asserts that their `src` are the two broken images.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

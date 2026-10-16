@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/java/src/test/java/com/elemental/selenium/DynamicLoadingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
+
+### The Wait Helper
+
+`waitFor` receives a condition (a function that receives the driver) and uses
+`new WebDriverWait(driver, Duration.ofSeconds(10)).until(condition)`, which calls the condition repeatedly until it
+returns `true`, or throws a `TimeoutException` when the time runs out. While waiting, it ignores the
+`NoSuchElementException` thrown when the element is not on the page yet.
+
+### The Test
+
+`dynamicLoading` is a `@ParameterizedTest`, so it runs once for each example. It visits the page, clicks the start
+button, waits for the finish element to be displayed (`d -> d.findElement(By.id("finish")).isDisplayed()`), and
+asserts that it is.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

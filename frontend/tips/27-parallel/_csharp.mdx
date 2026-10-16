@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/csharp/BaseTest.cs"} language={"csharp"}/>
+
+<TipCode codePath={"27-parallel/code/csharp/SortWithAttributesTest.cs"} language={"csharp"}/>
+
+<TipCode codePath={"27-parallel/code/csharp/SortWithoutAttributesTest.cs"} language={"csharp"}/>
+
+<TipCode codePath={"27-parallel/code/csharp/AssemblyInfo.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+`BaseTest` has the setup and teardown that all our test classes share: it launches Firefox and loads the page before
+each test (`[TestInitialize]`), and quits it afterward (`[TestCleanup]`). MSTest creates a new instance of the test
+class for each test, so each test gets its own driver.
+
+### The Tests
+
+Each test class has the tests for one of the tables and inherits from `BaseTest`.
+
+### Running in Parallel
+
+MSTest runs tests one at a time out of the box. The `[assembly: Parallelize(...)]` attribute in `AssemblyInfo.cs`
+turns on parallel execution for the whole project, with 2 workers and at the method level (each test method can run
+at the same time as any other).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

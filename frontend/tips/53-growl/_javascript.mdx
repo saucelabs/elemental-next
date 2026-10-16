@@ -1,96 +1,33 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First we'll need to pull in our requisite libraries, declare our test suite, and wire up some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: test/growl.spec.js
-const assert = require("assert");
-const { Builder, By, Key } = require("selenium-webdriver");
+<TipCode codePath={"53-growl/code/javascript/test/growl.spec.js"} language={"js"}/>
 
-describe("Growl", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() {
-    driver = await new Builder().forBrowser("firefox").build();
-  });
+### Setup and Teardown
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
 
-Now for our test. We'll need to visit the page we want to display notifications on and do some work with JavaScript to load [jQuery](http://jquery.com/), jQuery Growl, and styles for jQuery Growl. After that we can issue commands to jQuery Growl to make notification messages display on the page.
+### The Test
 
-```javascript
-// filename: test/growl.spec.js
-// ...
-  it("runs and shows growl debugging output", async function() {
-    await driver.get("http://the-internet.herokuapp.com");
+The test loads the page and runs the four steps with `driver.executeScript`. After adding jQuery, it waits until
+`window.jQuery` is defined, and after adding jQuery Growl and its styles, it waits until `$.growl` is defined
+(with `driver.wait` and a function that runs `return !!window.jQuery` in the browser). Then it displays the notification.
 
-    // check for jQuery on the page, add it if needed
-    await driver.executeScript(
-      `if (!window.jQuery) { var jquery = document.createElement('script'); jquery.type = 'text/javascript'; jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'; document.getElementsByTagName('head')[0].appendChild(jquery);}`
-    );
+Finally, it waits for the notification (`#growls .growl`) to be displayed, and checks its title (`.growl-title`) and
+message (`.growl-message`).
 
-    // use jQuery to add jquery-growl to the page
-    await driver.executeScript(
-      "$.getScript('http://the-internet.herokuapp.com/js/vendor/jquery.growl.js');"
-    );
+### Executing the Test
 
-    // use jQuery to add jquery-growl styles to the page
-    await driver.executeScript(
-      `$('head').append("<link rel=stylesheet href=http://the-internet.herokuapp.com/css/jquery.growl.css type=text/css />");`
-    );
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-    await driver.sleep(1000);
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-    await driver.executeScript("$.growl({ title: 'GET', message: '/' });");
-
-    await driver.sleep(3000);
-  });
-});
-```
-
-In addition to loading the scripts and styles, we also need to have Selenium work at the right pace for our needs. So we add a slight delay (e.g., 1 second) before the call to jquery-growl to make sure it will be available. After that, we add a slightly longer delay (e.g., 3 seconds) so the rendered growl notification stays on the page long enough for viewing.
-
-If we wanted to see color-coded notifications, then we could use one of the following:
-
-```javascript
-// filename: test/growl.spec.js
-// ...
-  it("runs and shows growl debugging output", async function() {
-    // ...
-    await driver.executeScript(
-      "$.growl.error({ title: 'ERROR', message: 'your error message goes here' });"
-    );
-    await driver.executeScript(
-      "$.growl.notice({ title: 'Notice', message: 'your notice message goes here' });"
-    );
-    await driver.executeScript(
-      "$.growl.warning({ title: 'Warning!', message: 'your warning message goes here' });"
-    );
-
-    await driver.sleep(3000);
-  });
-});
-```
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `mocha`) here is what will happen:
-
-+ Browser opens
-+ Load the page
-+ Add jQuery, jQuery Growl, and jQuery Growl notifications to the page
-+ Display a set of notification messages in the top-right corner of the page
-+ Notification messages disappear
-+ Browser closes
-
-## Summary
-
-In order to use this approach, you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay (unless you can get your team to add it to the application under test).
-
-I'd like to give a big thanks to Jon Austen ([GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl with Selenium.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

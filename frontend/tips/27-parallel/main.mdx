@@ -27,29 +27,96 @@ hampering your ability to get fast feedback.
 
 Rather than run your tests in series (which is what you get out of the box with Selenium) you can dramatically speed
 things up by running them in parallel. Couple this with
-[the ability to run your tests in any browser](https://elementalselenium.com/docs/cloud/26-cloud), and you're on to
+[the ability to run your tests in any browser](/tips/26-cloud), and you're on to
 some solid footing with your test automation.
 
 But keep in mind that doing this requires some consideration into how you structure your tests, but the pay off is
 well worth the effort.
 
 
+### A brief primer on Good Test Writing
+
+In order to write tests that work well in parallel there are some simple guidelines to follow:
+
++ Write atomic and autonomous tests
++ Group like tests together in small batches
++ Be descriptive
++ Use a Test Runner
+
+#### Atomic & Autonomous Tests
+
+Each test needs to be concise (e.g. testing a single feature rather than multiple features) and be able to be run independently (e.g. sets up it's own data rather than relying on a previous test to do it). Doing this may require a mental shift, discipline, and more up front effort. But __it will make a dramatic impact on the quality, effectiveness, and maintainability of your tests__.
+
+#### Grouping Tests
+
+As your test suite grows you should have multiple test files, each containing a small grouping of tests broken out by functionality that they're exercising. This will go a long way towards organization and maintenance as your test suite grows -- as well as faster execution times (depending on your approach to parallelization).
+
+#### Being Descriptive
+
+Each test file should be named appropriately, and each test within it should have an informative name (even if it may be a bit verbose). Also, each test (or grouping of tests) should be tagged for flexible execution later (e.g. on a Continuous Integration server).
+
+This way you can run parts of your test suite as needed, and the results will be informative thanks to helpful naming.
+
+#### Test Runners
+
+At the heart of every testing framework is a test runner that does a lot of the heavy lifting (e.g. test group execution, easy global configuration for setup and teardown, reporting, etc.).
+
+So rather than reinvent the wheel, you can use one of the many that already exists (there's more than one for every language). And with it, you can bolt on third party libraries to extend it's functionality if there's something missing -- like parallelization.
+
+## Example
+
+For this example we are using the test code from [a previous tip on working with tables](/tips/25-how-to-work-with-tables).
+Don't get too distracted by what the test steps are doing, the organization and naming of things is more important.
+
+Most test runners run tests in parallel at the file (or class) level, so we break our tests up into two files: one
+for the table _with_ attributes, and one for the table _without_ them. And we move our setup and teardown into a
+central place, so each test file only has its tests in it.
+
+Each test gets its own browser, so the tests don't share any state and can safely run at the same time. Then we tell
+the test runner to run them in parallel (2 at a time in these examples).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Two browsers open in parallel
+- Each test runs in a different browser
+- All browsers close
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+If you combine this with [running your tests in Sauce Labs](/tips/26-cloud), you can run many more tests at the same
+time, and the test results (along with a video recording, screenshots, and other debugging information) are
+available on the [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/).
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+## Summary
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Hopefully this tip has helped steer you on a path towards better test writing and parallelization.
 
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

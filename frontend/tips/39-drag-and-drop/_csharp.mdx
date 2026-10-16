@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/csharp/DragAndDropTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
+
+### The Test
+
+The test visits the page and reads `dnd.js` (`File.ReadAllText`). The project file copies it to the output directory
+(`CopyToOutputDirectory`), where the tests run. Then it casts the driver to `IJavaScriptExecutor` and executes the
+script, followed by the call to `simulateDragDrop`. Finally, it asserts that the columns switched places.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

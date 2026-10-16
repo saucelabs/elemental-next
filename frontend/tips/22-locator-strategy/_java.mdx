@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"22-locator-strategy/code/java/src/test/java/com/elemental/selenium/LocatorStrategyTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox and visits the page before each test, and the `afterEach` method quits it.
+
+### The Tests
+
+Each test finds a link with `driver.findElement(By.cssSelector(...))`, gets its URL with `getDomProperty("href")`
+(the full URL, as the browser resolved it), prints it, and checks where it points to. Note the `By.cssSelector`: it
+tells Selenium which locator strategy to use, and the string we pass to it is the selector.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

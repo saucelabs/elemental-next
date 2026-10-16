@@ -30,28 +30,66 @@ test run times.
 
 ## A Solution
 
-Let's remedy this by taking [the previous tip's example](https://elementalselenium.com/docs/one-test-multiple-browsers/41-one-test-multiple-browsers)
-and parallelize it with the help of [threads](http://www.tutorialspoint.com/ruby/ruby_multithreading.htm).
+Let's remedy this by taking [the previous tip's example](/tips/41-one-test-multiple-browsers) and parallelize it.
 
 
+
+## Example
+
+__NOTE:__ You'll need a Sauce Labs account, with your username and access key exported as the environment variables
+`SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`. See [How to Run Your Tests on Any Browser & Operating System](/tips/26-cloud)
+for the details. If they are not set, the tests are skipped.
+
+Our setup stays mostly the same as in [the previous tip](/tips/41-one-test-multiple-browsers): a collection of
+browsers (Chrome, Firefox, and Edge), and a test that runs once for each of them in Sauce Labs. The only change is
+that we now run the browsers at the same time, with the parallel features of each test framework (or with threads).
+
+When running things in parallel, each test needs its own browser, so they don't step on each other. When we run it,
+we should see three tests running simultaneously in Sauce Labs, and the whole run takes about as long as the slowest
+browser, instead of the sum of all of them.
+
+__NOTE:__ The number of parallel sessions allotted to your Sauce Labs account will dictate how quickly your tests
+will finish. For instance, if you add more browsers than the sessions you have, Sauce Labs queues the extra ones
+until some of the original sessions finish.
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Simultaneously loads each browser in a Sauce Labs job
+- Each test loads the page and asserts the title is correct
+- Each session closes when it is complete
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+For a full write-up on running a whole test suite in parallel, check out [tip 27](/tips/27-parallel).
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Authors
 
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

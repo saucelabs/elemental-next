@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/csharp/WaitingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it. Note that it doesn't set an implicit wait: only the tests
+that show the implicit wait set it, with `_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3)`.
+
+### The Implicit Wait Tests
+
+`ImplicitWaitGivesUpBeforeTheElementIsRendered` clicks start in the second example and uses `Assert.ThrowsExactly` to
+assert that finding the finish element throws a `NoSuchElementException`.
+
+`ImplicitWaitDoesNotWaitForHiddenElements` clicks start in the first example and asserts that the finish element is
+found, but not displayed.
+
+### The Explicit Wait Test
+
+`ExplicitWait` runs once for each `[DataRow]` (both examples). It clicks start and uses a `WebDriverWait` of up to 10
+seconds, with a condition that returns the finish element once it's displayed (and `null` until then). Then it
+asserts its text.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

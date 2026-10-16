@@ -1,83 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First, we'll include our requisite libraries and wire up some simple `setup`, `teardown`, and `run` methods.
+## TL;DR - Show Me The Code
 
-```ruby
-# filename: growl.rb
+<TipCode codePath={"53-growl/code/ruby/growl.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+## Code Walkthrough
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### Setup and Teardown
 
-def teardown
-  @driver.quit
-end
+The `setup`, `teardown`, and `run` methods launch Firefox before the test and quit it afterward. `wait_for` wraps an
+explicit wait, running the block we give it until it returns something truthy.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### The Test
 
-Now for our test. We'll need to visit the page we want to display notifications on and do some work with JavaScript to load [jQuery](http://jquery.com/), jQuery Growl, and styles for jQuery Growl. After that we can issue commands to jQuery Growl to make notification messages display on the page.
+The test loads the page and runs the four steps with `@driver.execute_script`. After adding jQuery, it waits until
+`window.jQuery` is defined, and after adding jQuery Growl and its styles, it waits until `$.growl` is defined
+(with `wait_for` and a block that runs `return !!window.jQuery` in the browser). Then it displays the notification.
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com'
+Finally, it waits for the notification (`#growls .growl`) to be displayed, and checks its title (`.growl-title`) and
+message (`.growl-message`).
 
-  # Step 1: check for jQuery on the page, add it if needbe
-  @driver.execute_script(
-    "if (!window.jQuery) {
-    var jquery = document.createElement('script');
-    jquery.type = 'text/javascript';
-    jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js';
-    document.getElementsByTagName('head')[0].appendChild(jquery);
-    }")
+### Executing the Test
 
-  # Step 2: use jQuery to add jquery-growl to the page
-  @driver.execute_script("$.getScript('http://the-internet.herokuapp.com/js/vendor/jquery.growl.js')")
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-  # Step 3: use jQuery to add jquery-growl styles to the page
-  @driver.execute_script("$('head').append('<link rel=\"stylesheet\" href=\"http://the-internet.herokuapp.com/css/jquery.growl.css\" type=\"text/css\" />');")
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-  sleep 5 # adding 5 seconds sleep
-
-  # Step 4: display a message with jquery-growl
-  @driver.execute_script("$.growl({ title: 'GET', message: '/' });")
-
-  sleep 5 # to keep the browser active long enough to see the notifications
-end
-```
-
-And if we wanted to see color-coded notifications, then we could use one of the following:
-
-```ruby
-  @driver.execute_script("$.growl.error({ title: 'ERROR', message: 'your error message goes here' });")
-  @driver.execute_script("$.growl.notice({ title: 'Notice', message: 'your notice message goes here' });")
-  @driver.execute_script("$.growl.warning({ title: 'Warning!', message: 'your warning message goes here' });")
-```
-
-## Expected Behavior
-
-+ Browser opens
-+ Load the page
-+ Add jQuery, jQuery Growl, and jQuery Growl notifications to the page
-+ Display a set of notification messages in the top-right corner of the page
-+ Notification messages disappear
-+ Browser closes
-
-## Summary
-
-In order to use this approach, you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay (unless you can get your team to add it to the application under test).
-
-In a future tip I'll step through how to access Selenium logging output, so we can wire it up to these notifications.
-
-I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/austenjt), [GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl with Selenium.
-
-Happy Testing!
-
+Finally, we can run the test by executing `ruby growl.rb` from the command-line.

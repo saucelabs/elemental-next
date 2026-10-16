@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/python/multiple_browsers.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Browsers
+
+`BROWSERS` maps each browser name to its options class (e.g., `webdriver.ChromeOptions`).
+
+### Setup and Teardown
+
+The `driver` fixture is parametrized with the browser names (`@pytest.fixture(params=BROWSERS.keys())`), so pytest
+runs every test that uses it once for each browser, and gives the fixture the current one in `request.param`.
+
+If the credentials are not set, the fixture skips the test. Otherwise, it creates the options for the browser, sets
+the version and operating system, adds the Sauce Labs options (including the browser in the test name), and connects
+to Sauce Labs with `webdriver.Remote`. Once the test is done, it quits the browser.
+
+### The Test
+
+`test_title` loads the page and asserts that the title is correct. It doesn't know which browser it is running on.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest multiple_browsers.py` from the
+command-line.

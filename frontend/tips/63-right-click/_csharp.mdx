@@ -1,76 +1,31 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by importing our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```csharp
-// filename: RightClick.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
+<TipCode codePath={"63-right-click/code/csharp/RightClickTest.cs"} language={"csharp"}/>
 
-public class RightClick
-{
-    IWebDriver Driver;
+## Code Walkthrough
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+### Setup and Teardown
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
 
-Now we're ready to write our test.
+### The Test
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will render a custom context menu when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)).
+The test visits the page, finds the area, and right-clicks it with `new Actions(_driver).ContextClick(menuArea).Perform()`. Then it waits for the alert (a `WebDriverWait` that keeps switching to it, ignoring `NoAlertPresentException`),
+asserts its text, and accepts it.
 
-Clicking the context menu item will trigger a JavaScript alert which will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
+### Executing the Test
 
-```csharp
-// filename: RightClick.cs
-// ...
-    [Test]
-    public void RightClickExample()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/context_menu");
-        IWebElement MenuArea = Driver.FindElement(By.Id("hot-spot"));
-        Actions Builder = new Actions(Driver);
-        Builder.ContextClick(MenuArea)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.Enter)
-            .Perform();
-        IAlert Alert = Driver.SwitchTo().Alert();
-        Assert.That(Alert.Text.Equals("You selected a context menu"));
-    }
-}
-```
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-## Expected Behavior
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-When you save this file and run it (e.g., `nunit3-console.exe .\RightClick.sln` from the command-line) here is what will happen.
-
-- Open the browser
-- Visit the page
-- Find and right-click the area of the page that renders a custom context menu
-- Navigate to the context menu option with keyboard keys and select it
-- JavaScript alert appears
-- Grab the text of the JavaScript alert
-- Assert that the text from the alert is what we expect
-- Close the browser
-
-## Summary
-
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test` from the command-line.

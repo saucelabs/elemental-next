@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "selenium-webdriver": "4.51.0"
+  },
+  "description": "A project to showcase running tests in parallel using official WebdriverJs",
+  "devDependencies": {
+    "mocha": "12.0.3"
+  },
+  "license": "MIT",
+  "name": "parallel",
+  "scripts": {
+    "test": "npx mocha test/**/*.spec.js --require test/hooks.js --timeout 60000 --parallel --jobs 2"
+  },
+  "version": "1.0.0"
+}

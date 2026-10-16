@@ -1,80 +1,32 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/saucelabs/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them, they display additional user information and a link to view a full profile.
+## TL;DR - Show Me The Code
 
-Let's write a test that will hover over the first avatar and make sure that this additional information appears.
+<TipCode codePath={"50-how-to-work-with-hovers/code/java/src/test/java/com/elemental/selenium/HoversTest.java"} language={"java"}/>
 
-First we'll import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+## Code Walkthrough
 
-```java
-// filename: Hovers.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import java.time.Duration;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+### Setup and Teardown
 
-public class Hovers {
-    WebDriver driver;
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+### The Test
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+After loading the page we find the first avatar (the first element with the `figure` class) and store it in a
+variable. Then we find its caption by searching _within_ the avatar (`anAvatar.findElement(...)`), so we get the caption of that avatar
+and not of any other one.
 
-Now let's write our test.
+We assert that the caption is not displayed, trigger the hover with `new Actions(driver).moveToElement(anAvatar).perform()`, and assert that the caption is displayed.
 
-```java
-// ...
-    @Test
-    public void hoversTest() {
-        driver.get("http://the-internet.herokuapp.com/hovers");
+### Executing the Test
 
-        WebElement avatar = driver.findElement(By.className("figure"));
-        Actions builder = new Actions(driver);
-        builder.moveToElement(avatar).build().perform();
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("figcaption")));
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-        assertThat(driver.findElement(By.className("figcaption")).isDisplayed(), is(Boolean.TRUE));
-    }
-
-}
-```
-
-After visiting the page we find the first avatar and store it in a variable (`avatar`). We then use Selenium's `action.moveToElement` method and pass the avatar variable to it (which triggers the hover) and check to see if the additional user information displayed.
-
-
-## Expected Behavior
-
-When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Hover over the first avatar
-+ Assert that the caption displayed to the user
-+ Close the browser
-
-## Summary
-
-Hopefully this will help you handle more complex user interactions like hovers.
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.

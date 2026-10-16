@@ -1,116 +1,36 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```java
-// filename: HighlightElement.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+<TipCode codePath={"65-highlight-elements/code/java/src/test/java/com/elemental/selenium/HighlightTest.java"} language={"java"}/>
 
-public class HighlightElement {
-    WebDriver driver;
-    JavascriptExecutor js;
+## Code Walkthrough
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-        js = (JavascriptExecutor) driver;
-    }
+### Setup and Teardown
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+The `beforeEach` method launches Firefox and loads the page before each test, and the `afterEach` method quits it.
 
-Now let's create a `highlightElement` helper method that will accept a Selenium WebDriver `element` and a time to wait (e.g., `duration`) as arguments.
+### The Helper
 
-By setting a duration, we can control how long to highlight an element on the page before reverting the styling back. And we can make this an optional argument by setting a sensible default (e.g., 3 seconds).
+`highlight` reads the `style` attribute of the element (`getDomAttribute("style")`), using an empty string when the element doesn't have
+one. Then it sets the highlight style with JavaScript (`executeScript`, passing the element and the style as arguments).
+If the duration is greater than `0`, it waits that long and sets the original style back.
 
-```java
-// filename: HighlightElement.java
-// ...
-    private void highlightElement(WebElement element, int duration) throws InterruptedException {
-        String original_style = element.getAttribute("style");
+### The Tests
 
-        js.executeScript(
-                "arguments[0].setAttribute(arguments[1], arguments[2])",
-                element,
-                "style",
-                "border: 2px solid red; border-style: dashed;");
+Both tests find an element on the page. The first one highlights it with a duration of `0` (so the style stays) and
+checks that the style has the dashed border. The second one highlights it for 1 second and checks that the dashed
+border is gone afterward.
 
-        if (duration > 0) {
-            Thread.sleep(duration * 1000);
-            js.executeScript(
-                    "arguments[0].setAttribute(arguments[1], arguments[2])",
-                    element,
-                    "style",
-                    original_style);
-        }
-    }
-```
+### Executing the Test
 
-There are three things going on here.
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-+ We store the style of the element, so we can revert it back when we're done
-+ We change the style of the element, so it visually stands out (e.g., a red dashed border)
-+ We revert the style of the element back after 3 seconds (or longer if specified)
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `executeScript` command.
-
-To use this in our test is simple, we just need to find an element and then pass it to `highlightElement`.
-
-```java
-// filename: HighlightElement.java
-// ...
-    @Test
-    public void highlightElementTest() throws InterruptedException {
-        driver.get("http://the-internet.herokuapp.com/large");
-        WebElement element = driver.findElement(By.id("sibling-2.3"));
-        highlightElement(element, 3);
-    }
-
-}
-```
-
-## Expected Behavior
-
-When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen.
-
-+ Open the browser
-+ Load the page
-+ Find the element to highlight
-+ Change the styling of the element, so it has a red dashed-line border
-+ Wait 3 seconds
-+ Revert the styling of the element back (removing the red border)
-+ Close the browser
-
-## Summary
-
-If you wanted to take this a step further, you could leverage this approach along with an interactive debugger.
-
-Alternatively, you could verify your locators by using a browser plugin like FireFinder.
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
-
-## About The Author
-
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
-
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
-
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
-
+Finally, we can run the test by executing `mvn test` from the command-line.

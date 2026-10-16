@@ -36,6 +36,21 @@ Built into Selenium is the ability to switch to an alert window and either accep
 tests can continue unencumbered by dialog boxes that may feel just out of reach.
 
 
+## Example
+
+Our example application is available [here](https://the-internet.herokuapp.com/javascript_alerts) on
+[the-internet](https://github.com/saucelabs/the-internet). It has various JavaScript Alerts available (e.g., an
+alert, a confirmation, and a prompt). We'll work with the JavaScript Confirmation, since it has more than one
+option to choose from (`Ok` and `Cancel`).
+
+A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second
+button (to trigger the JavaScript confirmation dialog) we find all buttons on the page and click the second one.
+
+After clicking the button we wait for the JavaScript pop-up to appear and switch to it. Then we accept it (to click
+`Ok`) in the first test, and dismiss it (to click `Cancel`) in the second one. Once the alert is gone, our main
+browser window automatically regains focus and the page displays the result that we chose. This text is what we use
+for our assertion, making sure that the right option was chosen.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -46,16 +61,48 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Load the page
+- Click the second button on the page
+- JavaScript Confirmation Alert appears
+- Accept (or dismiss) the JavaScript Confirmation Alert
+- Assert that the result on the page is what we expect
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+We've learned how to accept or dismiss JavaScript alerts with Selenium. After accepting or dismissing the alert, the
+main browser window regains focus, and we can continue with our test.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/sturman.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/sturman"}
+/>
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

@@ -26,29 +26,65 @@ automated tests. Once that begins, it's a slippery slope.
 
 ## A Solution
 
-Rather than rerun your entire test suite to suss out transient failures -- you can log which tests fail, and retry
-just those a second time.
+Rather than rerun your entire test suite to suss out transient failures -- you can retry just the tests that fail.
+Most test runners can do this for you, either out of the box or with a well-known plugin.
 
 Let's continue with an example.
 
 
+## Example
+
+To have a test that fails some of the time, we use [the notification message example](https://the-internet.herokuapp.com/notification_message)
+from [the-internet](https://github.com/saucelabs/the-internet). Each time the page loads, it shows either
+__Action successful__ or __Action unsuccesful, please try again__ (most of the time, the latter). Our test loads the
+page and checks that the message is the successful one, so it's flaky on purpose.
+
+Then we tell the test runner to retry the test when it fails, up to 9 more times (the page fails more often than not,
+so we need a few attempts). When a retry passes, the test passes, and the report tells us it needed retries -- which
+is a good hint that the test (or the application) has a transient issue worth looking into.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- The test runs and, most of the time, fails
+- The failed test gets rerun, until it passes or runs out of retries
+- The report shows that the test needed retries
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Retrying failed tests is a useful safety net, but use it sparingly. Keep an eye on the tests that need retries, and fix
+the ones that do so often, since they may be hiding a real issue.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+The original version of this tip was inspired by [rspec-rerun](https://github.com/dblock/rspec-rerun) and
+[this write-up](http://artsy.github.io/blog/2012/05/15/how-to-organize-over-3000-rspec-specs-and-retry-test-failures/).
 
+Happy Testing!
 
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

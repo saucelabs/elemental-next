@@ -40,24 +40,60 @@ Let's go through an example of how to configure a test suite in order to output 
 
 
 
+## Example
+
+Each example has a simple test (it loads the homepage of [the-internet](https://github.com/saucelabs/the-internet) and
+checks the title), and the configuration needed to write a JUnit XML report every time the tests run:
+
+- __Python__: pytest writes JUnit XML out of the box with `--junitxml`.
+- __C#__: the [JunitXml.TestLogger](https://www.nuget.org/packages/JunitXml.TestLogger) package adds a `junit` logger
+  to `dotnet test`.
+- __Java__: Maven Surefire (which runs the tests in `mvn test`) writes JUnit XML reports by default.
+- __JavaScript__: Mocha comes with an `xunit` reporter, which writes the same XML format.
+- __Ruby__: the [RSpec JUnit Formatter](https://github.com/sj26/rspec_junit_formatter) gem adds a JUnit XML formatter
+  to RSpec.
+
+If you run your tests in parallel, make sure each process writes its own report file (most CI servers can read
+several of them), or use a tool that merges them.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- The tests run
+- A JUnit XML report with the results is written to disk
+- Your CI server reads the report and shows the results
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Now you're ready to plug your Selenium tests into a CI server and let them report the results.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Authors
 
+import DefaultAvatar from "@site/src/components/defaultAvatar";
 
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

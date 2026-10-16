@@ -1,64 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-For this example we will use [the dropdown list](http://github.com/saucelabs/the-internet) from [the-internet](http://the-internet.herokuapp.com/dropdown). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is in fact disabled.
+## TL;DR - Show Me The Code
 
-Let's start by including our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
+<TipCode codePath={"40-disabled-element/code/csharp/DropdownDisabledTest.cs"} language={"csharp"}/>
 
-```csharp
-// filename: DisabledElements.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+## Code Walkthrough
 
-public class DisabledElements
-{
-    IWebDriver Driver;
+### Setup and Teardown
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+### The Test
 
-Now to wire up our test.
+`Option` finds all the `option` elements (`FindElements`, plural) and returns the first one with the text we are
+looking for (LINQ's `First`).
 
-```csharp
-// filename: DisabledElements.cs
-// ...
-    [Test]
-    public void ElementDisabled()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/dropdown");
-        var Dropdown = new SelectElement(Driver.FindElement(By.Id("dropdown")));
-        // The SelectedOption we want is selected by default on page load
-        Assert.False(Dropdown.SelectedOption.Enabled);
-    }
-}
-```
+The test visits the page and asserts that the `Please select an option` item is not enabled (its `Enabled` property
+is `false`), and that `Option 1` is.
 
-After visiting the page we find the dropdown list with the `SelectElement` function and store it in a variable. We then use in our assertion, focusing on the currently selected option which is the first one by default on page load (e.g., `Dropdown.SelectedOption`) and check that it is enabled (e.g., `.Enabled`). This will return a boolean result. If the element is disabled (e.g., not selectable) then Selenium will return `false`. So that's what we use in our assertion (e.g., `Assert.False`).
+### Executing the Test
 
-## Expected Behavior
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-When you save this file and run it (e.g., `nunit3-console.exe .\DisabledElements.sln` from the command-line) here is what will happen:
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-- Open a browser
-- Visit the page
-- Grab the dropdown list
-- Assert that the target element is not enabled
-- Close the browser
-
-## Summary
-
-Hopefully this tip has helped make the task of seeing whether an element is enabled or disabled more approachable.
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test` from the command-line.

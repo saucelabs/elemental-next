@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/java/src/test/java/com/elemental/selenium/BaseTest.java"} language={"java"}/>
+
+<TipCode codePath={"27-parallel/code/java/src/test/java/com/elemental/selenium/SortWithAttributesTest.java"} language={"java"}/>
+
+<TipCode codePath={"27-parallel/code/java/src/test/java/com/elemental/selenium/SortWithoutAttributesTest.java"} language={"java"}/>
+
+<TipCode codePath={"27-parallel/code/java/src/test/resources/junit-platform.properties"} language={"properties"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+`BaseTest` has the setup and teardown that all our test classes share: it launches Firefox and loads the page before
+each test (`@BeforeEach`), and quits it afterward (`@AfterEach`). JUnit creates a new instance of the test class for
+each test, so each test gets its own driver.
+
+### The Tests
+
+Each test class has the tests for one of the tables and extends `BaseTest`.
+
+### Running in Parallel
+
+JUnit runs tests one at a time out of the box. The `junit-platform.properties` file in `src/test/resources` turns
+on parallel execution, runs both the classes and their methods concurrently, and uses a fixed parallelism of 2
+threads.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

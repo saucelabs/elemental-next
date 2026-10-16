@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"42-one-test-multiple-browsers-parallel/code/java/src/test/java/com/elemental/selenium/MultipleBrowsersParallelTest.java"}
+    language={"java"}/>
+
+<TipCode
+    codePath={"42-one-test-multiple-browsers-parallel/code/java/src/test/resources/junit-platform.properties"}
+    language={"properties"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test is the same as in the previous tip: `title` is a `@ParameterizedTest` that runs once for each browser, and
+each run creates its own browser in Sauce Labs. JUnit creates a new instance of the test class for each run, so they
+don't share the driver.
+
+### Running in Parallel
+
+The `junit-platform.properties` file in `src/test/resources` turns on parallel execution, runs the tests
+concurrently, and uses a fixed parallelism of 3 threads, so the three runs happen at the same time.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

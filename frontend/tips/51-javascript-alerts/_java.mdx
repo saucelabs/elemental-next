@@ -1,75 +1,33 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/saucelabs/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
+## TL;DR - Show Me The Code
 
-First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+<TipCode
+    codePath={"51-javascript-alerts/code/java/src/test/java/com/elemental/selenium/JavaScriptAlertsTest.java"}
+    language={"java"}/>
 
-```java
-// filename: JavaScriptAlert.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+## Code Walkthrough
 
-public class JavaScriptAlert {
-    WebDriver driver;
+### Setup and Teardown
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+The `beforeEach` method launches Firefox, loads the page, and clicks the second button (`findElements(...).get(1)`,
+since the list starts at `0`). The `afterEach` method quits the browser.
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+### The Tests
 
-Now let's write our test.
+`alert()` waits for the alert to be present with `ExpectedConditions.alertIsPresent()`, which switches to it and
+returns it. Then `acceptConfirmation` accepts it (`accept()`) and `dismissConfirmation` dismisses it (`dismiss()`).
+Finally, they assert the result displayed on the page.
 
-```java
-// filename: JavaScriptAlert.java
-// ...
-    @Test
-    public void JavaScriptAlertTest() {
-        driver.get("http://the-internet.herokuapp.com/javascript_alerts");
-        driver.findElement(By.cssSelector(".example li:nth-child(2) button")).click();
-        Alert popup = driver.switchTo().alert();
-        popup.accept();
-        String result = driver.findElement(By.id("result")).getText();
-        assertThat(result, is(equalTo("You clicked: Ok")));
-    }
+### Executing the Test
 
-}
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find it with a child CSS Pseudo-class (`nth-child(2)`).
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-After click the button to trigger the JavaScript Alert we use Selenium's `switchTo().alert();` method to focus on the JavaScript pop-up and use `.accept();` to click `Ok`. If we wanted to click `Cancel` we would have used `.dismiss();`.
-
-After accepting the alert, our browser window will automatically regain focus and the page will display the result that we chose. We use this text for our assertion, making sure that the words `You clicked: Ok` are displayed.
-
-
-## Expected Behavior
-
-When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Load the page
-+ Click the second button on the page
-+ JavaScript Confirmation Alert appears
-+ JavaScript Confirmation Alert is accepted and goes away
-+ Assert that the result on the page is what we expect
-+ Close the browser
-
-## Summary
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.

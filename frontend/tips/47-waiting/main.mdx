@@ -40,23 +40,80 @@ Let's continue with some examples.
 
 
 
+## Example
+
+Let's step through some examples that deal with
+[dynamically loaded content](https://the-internet.herokuapp.com/dynamic_loading) available on
+[the-internet](https://github.com/saucelabs/the-internet). Both examples have a `Start` button that, when clicked,
+shows a loading bar for 5 seconds and then displays `Hello World!`. In the first example the finish element is
+already on the page, just hidden. In the second one it gets rendered _after_ the loading bar.
+
+An implicit wait tells Selenium to retry each find element action for up to a set amount of time (3 seconds in our
+examples). If it can find the element in that amount of time, it proceeds. If it can't, it throws a `NoSuchElement`
+exception. Our first two tests show where that falls short:
+
+- In the second example, finding the finish element fails. The implicit wait gives up after 3 seconds, but the
+  element is rendered after 5. We could increase the implicit wait, but that would impact _all_ the find element
+  actions in our tests, making every failure slow to report.
+- In the first example, finding the finish element succeeds right away, since it's already on the page. But it's
+  still hidden. An implicit wait only waits for elements to be _present_, not for them to be _displayed_.
+
+Our last test uses an explicit wait instead, in both examples. We tell Selenium what we're waiting for (the finish
+element to be displayed) and for how long (up to 10 seconds), only where we need it. Then we can assert its text.
+
+### On Not Mixing Explicit and Implicit Waits
+
+If your test suite uses both explicit and implicit waits, then you're in for some pain (e.g., unpredictable wait
+times and transient failures as you scale your test suite). For more details about this, check out
+[this StackOverflow answer](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978)
+from [Jim Evans](https://github.com/jimevans) (a member of the Selenium core team). That's why the test with the
+explicit wait doesn't set an implicit wait.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Visit the page
+- Click the Start button
+- With an implicit wait: fail to find the element (second example), or find it while it's still hidden (first example)
+- With an explicit wait: wait for the loading bar to disappear and the finish text to appear, and assert it
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+While an implicit wait can be useful, providing you an initial blanket of cover, it's not ideal for every
+circumstance. Instead, explicit waits are a better tool for the job since they provide more resilient and
+predictable results.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Regardless of the approach you choose, be sure never to mix implicit and explicit waits together.
 
+Happy Testing!
 
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

@@ -1,61 +1,32 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our example application is available [here](http://the-internet.herokuapp.com/hovers) on [the-internet](http://github.com/saucelabs/the-internet). It has a few avatars displayed in a grid layout. When you hover over each of them, they display additional user information and a link to view a full profile.
+## TL;DR - Show Me The Code
 
-We're going to write a test that will hover over the first avatar and make sure that this additional information appears.
+<TipCode codePath={"50-how-to-work-with-hovers/code/ruby/hovers.rb"} language={"ruby"}/>
 
-First, we'll want to include our requisite libraries (e.g., `selenium-webdriver` to control the browser, and `rspec/expectations` and `RSpec::Matchers` for our assertion) and wire up some `setup`, `teardown`, and `run` methods.
+## Code Walkthrough
 
-```ruby
-# filename: hover.rb
+### Setup and Teardown
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+The `setup`, `teardown`, and `run` methods launch Firefox before the test and quit it afterward.
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### The Test
 
-def teardown
-  @driver.quit
-end
+After loading the page we find the first avatar (the first element with the `figure` class) and store it in a
+variable. Then we find its caption by searching _within_ the avatar (`an_avatar.find_element(...)`), so we get the caption of that avatar
+and not of any other one.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+We assert that the caption is not displayed, trigger the hover with `@driver.action.move_to(an_avatar).perform`, and assert that the caption is displayed.
 
-Now let's write our test.
+### Executing the Test
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/hovers'
-  an_avatar = @driver.find_element(class: 'figure')
-  @driver.action.move_to(an_avatar).perform
-  expect(@driver.find_element(class: 'figcaption').displayed?).to eql true
-end
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-After loading the page we find the first avatar and store it in a variable (`an_avatar`). We then use Selenium's `action.move_to` method and feed the avatar variable to it (which triggers the hover).
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-We then check to see if the additional user information is displayed with `.displayed?` and wrap that in an assertion.
-
-## Expected Behavior
-
-If we save this file and run it (e.g., `ruby hover.rb` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Hover over the first avatar
-+ Assert that the caption appeared on the page
-+ Close the browser
-
-
-## Summary
-
-Hopefully this will help you handle more complex user interactions like hovers.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby hovers.rb` from the command-line.

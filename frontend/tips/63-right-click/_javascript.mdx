@@ -1,62 +1,29 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by pulling in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: test/right-click.spec.js
-const assert = require("assert");
-const { Builder, By, Key } = require("selenium-webdriver");
+<TipCode codePath={"63-right-click/code/javascript/test/rightClick.spec.js"} language={"js"}/>
 
-describe("Right click", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() {
-  this.timeout(60000)
-    driver = await new Builder().forBrowser("firefox").build();
-  });
+### Setup and Teardown
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
 
-Now we're ready to write our test.
+### The Test
 
-We'll use an example from [the-internet](https://github.com/saucelabs/the-internet) that will trigger a JavaScript alert when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)). It will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
+The test visits the page, finds the area, and right-clicks it with `driver.actions().contextClick(menuArea).perform()`. Then it waits for the alert (`until.alertIsPresent()`),
+asserts its text, and accepts it.
 
-```javascript
-// filename: test/right-click.spec.js
-// ...
-  it("displays browser context menu", async function() {
-    await driver.get("http://the-internet.herokuapp.com/context_menu");
-    const menuArea = await driver.findElement(By.id("hot-spot"));
-    await driver
-      .actions({ bridge: true })
-      .contextClick(menuArea)
-      .perform();
-    const alertText = await driver
-      .switchTo()
-      .alert()
-      .getText();
-    assert(alertText === "You selected a context menu");
-  });
-});
-```
+### Executing the Test
 
-## Expected Behavior
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-When we save this file and run it (e.g., `mocha`) from the command-line) here is what will happen:
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-+ Open the browser and visit the page
-+ Find and right-click the area which will render a custom context menu
-+ JavaScript alert appears
-+ Grab the text of the JavaScript alert
-+ Assert that the text from the alert is what we expect
-+ Close the browser
-
-## Summary
-
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

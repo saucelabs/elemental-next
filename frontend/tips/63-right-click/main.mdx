@@ -27,14 +27,22 @@ These menus tend to be system level menus that are untouchable by Selenium. So h
 
 ## A Solution
 
-By leveraging [Selenium's Action Builder](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm) we can issue a right-click command (a.k.a. a [`ContextClick`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_ContextClick.htm)).
+By leveraging [Selenium's Actions API](https://www.selenium.dev/documentation/webdriver/actions_api/mouse/#context-click)
+we can issue a right-click command (a.k.a. a context click) on the element, which triggers the code the page runs
+when its context menu is opened.
 
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the
-Action Builder's [`SendKeys`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_SendKeys_1.htm) command).
+Keep in mind that Selenium can't interact with the menu the browser itself displays (e.g., to select one of its
+options), since it's part of the browser and not of the page. But most custom context menus are rendered by the page,
+and those you can work with like any other element.
 
-Let's continue with an example.
+## Example
 
+Let's use [an example](https://the-internet.herokuapp.com/context_menu) from
+[the-internet](https://github.com/saucelabs/the-internet) that runs some JavaScript when we right-click on a specific
+area of the page: it triggers a JavaScript alert with the text `You selected a context menu`.
 
+After visiting the page we find the area (with the id `hot-spot`) and right-click it with the Actions API. Then we
+wait for the alert, check its text, and accept it.
 
 import DisplayTips from '@site/src/components/displayTips';
 
@@ -46,16 +54,46 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser and visit the page
+- Find and right-click the area which has a custom context menu action
+- JavaScript alert appears
+- Grab the text of the JavaScript alert
+- Assert that the text from the alert is what we expect
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Hopefully this tip has helped you test functionality that is hidden behind a right-click.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/sturman.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/sturman"}
+/>
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

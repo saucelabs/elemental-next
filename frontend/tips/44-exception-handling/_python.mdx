@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/python/exception_handling.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture launches Firefox, logs in, and waits for the success message before `yield`ing the driver to the
+test. Once the test is done, it quits the browser.
+
+### The Helper
+
+`is_displayed` tries to find the element and return whether it's displayed. If Selenium raises a
+`NoSuchElementException` or a `StaleElementReferenceException`, it catches it (`except (...)`) and returns `False`.
+
+### The Tests
+
+`test_looking_for_a_missing_element_raises_an_exception` shows the problem: it uses `pytest.raises` to assert that
+looking for the login form raises a `NoSuchElementException`.
+
+`test_login_form_is_not_displayed` uses the helper instead, and asserts that the login form is not displayed.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest exception_handling.py` from the
+command-line.

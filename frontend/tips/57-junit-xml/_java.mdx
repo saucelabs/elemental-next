@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/java/src/test/java/com/elemental/selenium/TitleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it. `title` loads the
+page and checks its title.
+
+### The Report
+
+There's nothing to configure: Maven Surefire, the plugin that runs the tests in `mvn test`, writes a JUnit XML report
+for each test class in `target/surefire-reports` (e.g., `TEST-com.elemental.selenium.TitleTest.xml`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

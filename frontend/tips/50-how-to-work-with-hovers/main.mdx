@@ -32,6 +32,17 @@ By leveraging Selenium's [Action Builder](http://seleniumhq.github.io/selenium/d
 done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
 
 
+## Example
+
+Our example application is available [here](https://the-internet.herokuapp.com/hovers) on
+[the-internet](https://github.com/saucelabs/the-internet). It has a few avatars displayed in a grid layout. When
+you hover over an avatar, additional user information appears in a caption.
+
+We're going to write a test that will hover over the first avatar and make sure that this additional information
+appears. After loading the page we find the first avatar, and its caption within it. We check that the caption is
+not displayed yet, use Selenium's Actions API to move the mouse to the avatar (which triggers the hover), and then
+check that the caption is displayed.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -42,16 +53,45 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Visit the page
+- Hover over the first avatar
+- Assert that the caption appeared on the page
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Hopefully this will help you handle more complex user interactions like hovers.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/sturman.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/sturman"}
+/>
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

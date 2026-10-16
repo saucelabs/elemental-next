@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"42-one-test-multiple-browsers-parallel/code/javascript/test/multipleBrowsersParallel.spec.js"}
+    language={"js"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The `before` hook skips the test if the credentials are not set.
+
+### Running in Parallel
+
+`runOn` does everything for one browser: it connects to Sauce Labs with the capabilities for that browser, loads the
+page, asserts the title, and quits the browser (in a `finally` block, so it quits even when the assertion fails).
+It's an `async` function, so calling it starts the work and returns a promise right away.
+
+The test calls `runOn` for every browser and waits for all of them with `Promise.all`, so the browsers run at the
+same time. If any of them fails, `Promise.all` rejects, and the test fails.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

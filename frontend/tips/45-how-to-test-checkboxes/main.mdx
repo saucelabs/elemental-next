@@ -34,6 +34,29 @@ an attribute lookup), or by asking an element if it has been _selected_.
 We're going to go through each of these approaches to see their pros and cons.
 
 
+## Example
+
+For reference, here is the markup from [the page we will be testing against](https://the-internet.herokuapp.com/checkboxes)
+(an example from [the-internet](https://github.com/saucelabs/the-internet)).
+
+```html
+<form id="checkboxes">
+  <input type="checkbox"> checkbox 1<br>
+  <input type="checkbox" checked> checkbox 2
+</form>
+```
+
+In both tests we load the page, find all the checkboxes, and output what Selenium gives us for each of them. Then we
+assert that the first checkbox is not checked and the last one is.
+
+With the attribute lookup (the first test) we get the value of the `checked` attribute in the markup: nothing (e.g.,
+`null`, `None`, or `nil`) when the checkbox doesn't have the attribute, and a string when it does (an empty one in
+this case, since the attribute has no value). Whereas asking if the checkbox is selected (the second test) gives us a
+boolean (`true` or `false`) response.
+
+There is one more difference. The attribute reflects the markup, so it doesn't change when the user checks or unchecks
+the checkbox. Being selected reflects the current state of the checkbox.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -44,16 +67,49 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Visit the page
+- Find all checkboxes on the page
+- Assert that the first checkbox is not checked and the last one (the one that is supposed to be checked on initial
+  page load) is
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Attribute lookups are generally meant for pulling information out of the page for review, and they can tell you
+whether a checkbox _started_ checked. But there is a method built for this use case that is more readable, has a
+predictable set of return values, and reflects the current state of the checkbox. Checking if the checkbox is
+selected should be the thing you reach for.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/sturman.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/sturman"}
+/>
+
+## Authors
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

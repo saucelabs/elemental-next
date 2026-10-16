@@ -42,25 +42,56 @@ Let's start with an example.
 
 
 
+## Example
+
+Each example has two tests. One is tagged as `smoke`: it loads the homepage of
+[the-internet](https://github.com/saucelabs/the-internet) and checks the title. The other one is tagged as `wip`:
+it's not finished yet, so it fails.
+
+Each test framework has its own name and syntax for tags (e.g., markers in pytest, categories in MSTest, tags in JUnit
+and RSpec, and a naming convention with `--grep` in Mocha), and a way to filter by them at run time. We configure each
+of them to run only the `smoke` tests by default, so the unfinished test doesn't run. If the filter didn't work, the
+`wip` test would run and fail.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Run the test suite
+- The test suite identifies which tests to run based on the tags provided
+- Executes the filtered set of tests, ignoring the rest
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+By utilizing metadata tags and filtering a set of tests, you have learned to effectively create a dynamic test suite
+that takes into account all of your tests.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Authors
 
+import DefaultAvatar from "@site/src/components/defaultAvatar";
 
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
 
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

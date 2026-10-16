@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/javascript/test/multipleBrowsers.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+We create a `describe` block for each browser in `BROWSERS` with a `for` loop. In each of them, the `beforeEach`
+hook skips the test if the credentials are not set. Otherwise, it connects to Sauce Labs (`usingServer(SAUCE_URL)`)
+with the capabilities for that browser: its name, the version and operating system, and the Sauce Labs options
+(including the browser in the test name). The `afterEach` hook quits the browser.
+
+### The Test
+
+The test loads the page and asserts that the title is correct. It doesn't know which browser it is running on.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

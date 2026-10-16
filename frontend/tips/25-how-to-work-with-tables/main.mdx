@@ -32,10 +32,9 @@ work against older browsers.
 
 ## A Solution
 
-You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
-
-But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't
-work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end
+You can easily traverse a table through the use of
+[CSS Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes). But keep in mind that they
+rely on the position of the elements, so they break when the table layout changes. When you can, get a front-end
 developer to update the table with helpful attributes.
 
 > ### A quick primer on Tables and CSS Pseudo-classes
@@ -49,6 +48,85 @@ Let's step through some examples for a common set of table functionality like so
 
 
 
+## Example
+
+__NOTE:__ You can see the application under test [here](https://the-internet.herokuapp.com/tables). It's an example
+from [the-internet](https://github.com/saucelabs/the-internet). In the example there are 2 tables with the same data.
+
+Here is the markup from the first table. Note that, other than the table itself, its cells don't have any `id` or
+`class` attributes.
+
+```html
+<table id="table1" class="tablesorter">
+  <thead>
+    <tr>
+      <th><span>Last Name</span></th>
+      <th><span>First Name</span></th>
+      <th><span>Email</span></th>
+      <th><span>Due</span></th>
+      <th><span>Web Site</span></th>
+      <th><span>Action</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smith</td>
+      <td>John</td>
+      <td>jsmith@gmail.com</td>
+      <td>$50.00</td>
+      <td>http://www.jsmith.com</td>
+      <td>
+        <a href="#edit">edit</a>
+        <a href="#delete">delete</a>
+      </td>
+    </tr>
+    ...
+```
+
+There are 6 columns. Each one is sortable by clicking on the column header. The first click will sort them in
+ascending order, the second click in descending order. There is a small sampling of data in the table to work with
+(4 rows worth), so we can sort the data, grab it, and confirm that it sorted correctly.
+
+Our first test sorts the `Due` column. We find and click the column heading with a CSS Pseudo-class
+(`#table1 thead tr th:nth-of-type(4)`), which targets the 4th `<th>` element in the table heading. Then we use another
+pseudo-class to find all the cells of the column (`#table1 tbody tr td:nth-of-type(4)`), grab their text, clean it up
+(removing the `$`), and convert it to a number. Finally, we compare the values to a sorted version of themselves. If
+they match, the column was sorted in ascending order.
+
+To test for descending order we click the heading twice and compare the values to a sorted and reversed version of
+themselves. And to test a column that doesn't deal with numbers (e.g., `Email`) we don't need to clean up or convert
+the text.
+
+These locators depend on the order of the columns. If a column is added or moved, they break. The second table on the
+page shows what the markup looks like with some helpful `class` attributes added in:
+
+```html
+<table id="table2" class="tablesorter">
+  <thead>
+    <tr>
+      <th><span class="last-name">Last Name</span></th>
+      <th><span class="first-name">First Name</span></th>
+      <th><span class="email">Email</span></th>
+      <th><span class="dues">Due</span></th>
+      <th><span class="web-site">Web Site</span></th>
+      <th><span class="action">Action</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="last-name">Smith</td>
+      <td class="first-name">John</td>
+      <td class="email">jsmith@gmail.com</td>
+      <td class="dues">$50.00</td>
+      <td class="web-site">http://www.jsmith.com</td>
+      ...
+```
+
+With these selectors our last test (`#table2 thead .dues` and `#table2 tbody .dues`) becomes simpler, more
+expressive, and more resilient to changes in the table layout, since it doesn't use hard-coded numbers that rely on
+the column order. If the table you are testing doesn't have them, it's worth asking your front-end developers to add
+them.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -59,16 +137,44 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+For each test:
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+- Open the browser
+- Load the page
+- Click the column heading (once for ascending order, twice for descending order)
+- Grab the values for that column
+- Assert that the column is sorted in the correct order
+- Close the browser
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+## Summary
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests. But when you can, prefer
+semantic locators that don't depend on the layout of the page.
 
+For more info on CSS Pseudo-classes see
+[the MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), and maybe
+[the W3C spec](https://www.w3.org/TR/selectors-4/#structural-pseudos) if you're feeling adventurous.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

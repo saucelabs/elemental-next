@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/csharp/DynamicLoadingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
+
+### The Wait Helper
+
+`WaitFor` receives a condition (a function that receives the driver) and a timeout. It uses
+`new WebDriverWait(_driver, ...).Until(condition)`, which calls the condition repeatedly until it returns `true`, or
+throws a `WebDriverTimeoutException` when the time runs out. While waiting, it ignores the `NoSuchElementException`
+thrown when the element is not on the page yet.
+
+### The Test
+
+`DynamicLoading` runs once for each `[DataRow]`. It visits the page, clicks the start button, waits for the finish
+element to be displayed (`d => d.FindElement(By.Id("finish")).Displayed`), and asserts that it is.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

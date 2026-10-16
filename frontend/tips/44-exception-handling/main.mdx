@@ -34,23 +34,66 @@ By adding some simple exception handling we can catch Selenium's errors and make
 Let's take a look at an example.
 
 
+## Example
+
+For this example we'll use [a login example](https://the-internet.herokuapp.com/login) from
+[the-internet](https://github.com/saucelabs/the-internet).
+
+Before each test we log in, and wait for the success message to be displayed (so we know the next page loaded). Then
+we want to check that the login form is no longer displayed.
+
+The first test demonstrates the problem. If we look for the login form and ask if it's displayed, Selenium doesn't
+answer `false`. It can't find the element at all (since it's not on the page anymore), so it throws a `NoSuchElement`
+error.
+
+The second test fixes it with a small helper that checks if an element is displayed and handles the exceptions:
+`NoSuchElement` (the element is not on the page) and `StaleElementReference` (the element was on the page, but it
+was removed or re-rendered). In both cases the element is not displayed, so the helper returns `false`. We're left
+with a cleaner (and reusable) check for our tests.
+
+__NOTE:__ `NoSuchElement` and `StaleElementReference` are the two most common errors you'll run into when using
+Selenium.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Log in and wait for the success message
+- Check that looking for the login form throws an error (first test)
+- Check that the login form is not displayed, with the helper (second test)
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Hopefully this tip has helped you handle the exceptions you'll run into when using Selenium.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Happy Testing!
 
+## Authors
 
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/csharp/TitleTest.cs"} language={"csharp"}/>
+
+<TipCode codePath={"57-junit-xml/code/csharp/junit.runsettings"} language={"xml"}/>
+
+<TipCode codePath={"57-junit-xml/code/csharp/csharp.csproj"} language={"xml"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it. `Title` loads the page and checks its title.
+
+### The Report
+
+The `JunitXml.TestLogger` package adds a `junit` logger to `dotnet test`. We could enable it from the command-line
+(`dotnet test --logger junit`), but to get the report on every run we enable it in `junit.runsettings`, with the path
+of the report (`TestResults/result.xml`). The project file points to it with `RunSettingsFilePath`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

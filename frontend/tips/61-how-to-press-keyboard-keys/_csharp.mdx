@@ -1,76 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First let's include our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), and start our class off with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```csharp
-// filename: KeyboardKeys.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/csharp/KeyPressesTest.cs"} language={"csharp"}/>
 
-public class KeyboardKeys
-{
-    IWebDriver Driver;
+## Code Walkthrough
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+### Setup and Teardown
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+The `SetUp()` method (marked with `[TestInitialize]`) launches Firefox and visits the page, and the `TearDown()`
+method (marked with `[TestCleanup]`) closes it.
 
-Now we can wire up our test.
+### The Tests
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed on the page to perform our assertion.
+The keys that don't print a character (e.g., space, tab, enter, or the arrows) are available as constants
+(`Keys`, from `OpenQA.Selenium`).
 
-```csharp
-// filename: KeyboardKeys.cs
-// ...
-    [Test]
-    public void KeyboardKeysExample()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/key_presses");
+The first test finds the `target` element and sends the space key to it (`SendKeys(Keys.Space)`). The second one sends the tab
+key with the Actions API (`new Actions(_driver).SendKeys(Keys.Tab).Perform()`), without finding an element. Both of them check the result text on the page.
 
-        Driver.FindElement(By.Id("target")).SendKeys(Keys.Space);
-        Assert.That(Driver.FindElement(By.Id("result")).Text.Equals("You entered: SPACE"));
-// ...
-```
+### Executing the Test
 
-After visiting the page we find a visible element (e.g., the primary content of the page) and send the space key to it (e.g., `.SendKeys(Keys.SPACE)`). Then we grab the resulting text (e.g., `Driver.FindElement(By.Id("result")).Text`) and assert that it says what we expect (e.g., `.Equals("You entered: SPACE"`).
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-Alternatively, we can issue a key press without finding the element by using the Selenium Action Builder.
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-```csharp
-// filename: KeyboardKeys.cs
-// ...
-        Actions Builder = new Actions(Driver);
-        Builder.SendKeys(Keys.Left).Build().Perform();
-        Assert.That(Driver.FindElement(By.Id("result")).Text.Equals("You entered: LEFT"));
-    }
-}
-```
-
-## Expected Behavior
-
-When you save this file and run it (e.g. `nunit3-console.exe .\KeyboardKeys.sln` from the command-line) here is what will happen:
-
-- Open the browser
-- Visit the page
-- Find the element and send the space key to it
-- Find the result text on the page and asset it's what we expect
-- Send the left arrow key to the element that's currently in focus
-- Find the result text on the page and assert it's what we expect
-- Close the browser
-
-## Summary
-
-If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. If you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
-
+Finally, we can run the test by executing `dotnet test` from the command-line.

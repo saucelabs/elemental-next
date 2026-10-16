@@ -1,83 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First let's import our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```java
-// filename: KeyboardKeys.java
+<TipCode
+    codePath={"61-how-to-press-keyboard-keys/code/java/src/test/java/com/elemental/selenium/KeyPressesTest.java"}
+    language={"java"}/>
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.Keys;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+## Code Walkthrough
 
-public class KeyboardKeys {
-    WebDriver driver;
+### Setup and Teardown
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+The `beforeEach` method launches Firefox and visits the page before each test, and the `afterEach` method quits it.
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+### The Tests
 
-Now we can wire up our test.
+The keys that don't print a character (e.g., space, tab, enter, or the arrows) are available as constants
+(`Keys`, from `org.openqa.selenium`).
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed to perform our assertion.
+The first test finds the `target` element and sends the space key to it (`sendKeys(Keys.SPACE)`). The second one sends the tab
+key with the Actions API (`new Actions(driver).sendKeys(Keys.TAB).perform()`), without finding an element. Both of them check the result text on the page.
 
-```java
-// filename: KeyboardKeys.java
-// ...
-    @Test
-    public void uploadFile() throws Exception {
-        driver.get("http://the-internet.herokuapp.com/key_presses");
-        driver.findElement(By.id("target")).sendKeys(Keys.SPACE);
-        assertThat(driver.findElement(By.id("result")).getText(), is("You entered: SPACE"));
-// ...
-```
+### Executing the Test
 
-After visiting the page we find an element that's visible (e.g., the one that contains the example on the page) and send the space key to it (e.g., `builder.sendKeys(Keys.SPACE).build().perform()`). Then we grab the resulting text (e.g., `driver.findElement(By.id("result")).getText()`) and assert that it says what we expect (e.g., `is("You entered: SPACE"));`).
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-Alternatively, we can also issue a key press without finding the element first.
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-```java
-// filename: KeyboardKeys.java
-// ...
-        Actions builder = new Actions(driver);
-        builder.sendKeys(Keys.LEFT).build().perform();
-        assertThat(driver.findElement(By.id("result")).getText(), is("You entered: LEFT"));
-    }
-
-}
-```
-
-## Expected Behavior
-
-When you save this file and run it (e.g. `mvn clean test` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Find the element and send the space key to it
-+ Find the result text on the page and check to that it's what we expect
-+ Send the left arrow key to the element that's currently in focus
-+ Find the result text on the page and check to that it's what we expect
-+ Close the browser
-
-## Summary
-
-If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this ti.
-
-Happy Testing!
-
+Finally, we can run the test by executing `mvn test` from the command-line.

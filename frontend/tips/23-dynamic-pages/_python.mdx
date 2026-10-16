@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/python/dynamic_loading.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+
+### The Wait Helper
+
+`wait_for` receives the driver, a condition (a function that receives the driver), and a timeout. It uses
+`WebDriverWait(driver, seconds).until(condition)`, which calls the condition repeatedly until it returns something
+truthy, or raises a `TimeoutException` when the time runs out. While waiting, it ignores the `NoSuchElementException`
+raised when the element is not on the page yet.
+
+### The Test
+
+`test_dynamic_loading` is parametrized, so it runs once for each example. It visits the page, clicks the start
+button, waits for the finish element to be displayed (`lambda d: d.find_element(By.ID, 'finish').is_displayed()`),
+and asserts that it is.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest dynamic_loading.py` from the
+command-line.
