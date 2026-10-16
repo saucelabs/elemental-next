@@ -22,13 +22,16 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
 function DisplayTips({languages}) {
     /** @type {ContentComponent[]} */
     const [ContentComponents, setContentComponents] = useState([]);
-    const tipId = useDoc().frontMatter.id;
+    // The partials live next to the page, so we load them from the page's own folder. The frontmatter id can
+    // differ from the folder name (e.g., '13-work-with-basic-auth' in '13-how-to-access-basic-auth').
+    const source = useDoc().metadata.source;
+    const tipFolder = source.split('/').slice(-2, -1)[0];
 
     useEffect(() => {
         const fetchComponents = async () => {
             const components = await Promise.all(languages.map(async (lang) => {
                 const component =
-                    lazy(() => import(`@site/tips/${tipId}/_${lang.value}.mdx`));
+                    lazy(() => import(`@site/tips/${tipFolder}/_${lang.value}.mdx`));
                 return {label: lang.label, component};
             }));
             setContentComponents(components);
