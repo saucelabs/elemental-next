@@ -57,6 +57,24 @@ tips/1-upload-a-file/
   - Selenide: Maven project, like Java
 - Most examples hit https://the-internet.herokuapp.com and rely on Selenium Manager for browser drivers.
 
+### How the site is put together
+
+- `main.mdx` is the only file Docusaurus turns into a page. In `docusaurus.config.js`, the docs plugin uses
+  `include: ['**/*.mdx']` and `exclude: ['**/_*.mdx', 'cards/**/*']`, which is what keeps the `_<lang>.mdx` partials
+  from becoming pages of their own.
+- `sidebarItemsGenerator` is overridden to produce a single "More Tips" category with the tips in reverse order.
+- A local `metadata` plugin (also in `docusaurus.config.js`) collects the frontmatter of every tip and exposes it as
+  global data (`aggregateFrontMatter`). The `/tips` page (`src/pages/tips.js`) reads it to list, filter, and sort the
+  tips, so the frontmatter fields (`number`, `level`, `category`, `tags`, `publish_date`) matter.
+
+### Adding a new tip
+
+1. Create `frontend/tips/<number>-<kebab-title>/` with a `main.mdx` (see `TIP-TEMPLATE.MD` for the frontmatter).
+2. Add the runnable code under `code/<lang>/`, following the conventions above. It must work on Ubuntu, Windows and
+   macOS, since CI runs it on all three.
+3. Add one `_<lang>.mdx` partial per language and list them in the `<DisplayTips>` block of `main.mdx`.
+4. Every path in a `<TipCode codePath=...>` must exist under `frontend/tips/`, or the site build fails.
+
 ### Status of the tips
 
 - Tips 1 to 6 use the full pattern (code in `code/`, run in CI).
@@ -82,9 +100,17 @@ cd frontend
 npm install
 npm run start   # dev server at http://localhost:3000
 npm run build   # production build into frontend/build (fails on broken links/MDX errors)
+npm run serve   # serve the production build
+npm run clear   # clear the Docusaurus cache (try it when the dev server shows stale content)
 ```
 
 Run a single example from its `code/<lang>` directory (see that directory's README.md).
+
+## Deployment
+
+- Pushing to `main` deploys the site to GitHub Pages (the `gh-pages` branch), which serves
+  https://elementalselenium.com.
+- Netlify (`netlify.toml`) builds a deploy preview for each pull request.
 
 ## Conventions
 
