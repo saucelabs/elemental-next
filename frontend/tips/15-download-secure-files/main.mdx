@@ -28,27 +28,79 @@ authentication?
 
 ## A Solution
 
-To access secure files with our HTTP library we'll need to pull the authenticated session information out of
-Selenium's cookie store and pass it into the HTTP library when we perform the request.
+To access secure files with our HTTP library we'll need to pass it the same authentication the browser is using.
+How we do that depends on how the site is secured:
+
+- With Basic HTTP Authentication, the browser sends the credentials on every request, so we pass the same
+  credentials to the HTTP library.
+- With a login form, the site keeps an authenticated session in a cookie, so we pull the session cookie out of
+  Selenium's cookie store and pass it into the HTTP library when we perform the request.
 
 Let's continue with some examples.
+
+## Example
+
+__NOTE:__ We are using [a secure file download example](https://the-internet.herokuapp.com/download_secure) (behind
+Basic Auth, with `admin` as username and password) and [a login form example](https://the-internet.herokuapp.com/login)
+found on [the-internet](https://github.com/saucelabs/the-internet).
+
+There are two tests:
+
+- __Files behind Basic Auth__: we load the secure downloads page with the credentials in the URL and grab the links
+  of _all_ the files. Then, for each link, we perform a `HEAD` request with the HTTP library, passing the same
+  credentials in an `Authorization` header, and check that the response is successful (`200`). The files on this
+  page are uploaded by users, so we don't assume which types they are.
+- __Page behind a form login__: we log in with Selenium and grab the session cookie (`rack.session`) from it. Then we
+  request the secure area with the HTTP library and the cookie, and check that the response is successful (`200`).
+  To show that the cookie is what gets us in, we also request it without the cookie and get a redirect (`302`) to
+  the login page.
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Browser opens
+- The secure file downloads page loads
+- All download URLs on the page are found
+- The HTTP library performs a `HEAD` request against each download link with the credentials
+- The response is checked to make sure it is successful
+- Browser logs in through the login form
+- The session cookie is retrieved from the browser
+- The HTTP library requests the secure page with and without the cookie, and the responses are checked
+- Browser closes
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+From here, it's simple enough to add checks for the content types and file sizes you expect.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Hopefully this helps save you some time, enabling you to build a more lean and fast set of download tests.
 
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

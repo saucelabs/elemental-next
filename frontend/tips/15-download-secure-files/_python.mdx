@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/python/secure_download.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+
+We also add a small `request` helper that uses `http.client` from the standard library. Unlike other HTTP libraries
+it doesn't follow redirects, which we need for the second test.
+
+### Files Behind Basic Auth
+
+`test_files_behind_basic_auth` loads the secure downloads page with the credentials in the URL and collects the
+`href` of every link (`get_dom_attribute('href')` returns the relative path as written in the page). Then, for each
+link, it performs a `HEAD` request with an `Authorization: Basic ...` header (the credentials encoded in Base64) and
+asserts that the response status is `200`.
+The file names can have spaces and other characters that aren't allowed in a URL, so we encode the path first
+(`urllib.parse.quote`).
+
+### Page Behind a Form Login
+
+`test_page_behind_form_login` logs in through the form and waits for the success message. Then it grabs the session
+cookie with `driver.get_cookie('rack.session')` and sends it in a `Cookie` header when requesting `/secure`, which
+returns `200`. Without the cookie, the same request is redirected to the login page (`302`).
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest secure_download.py` from the
+command-line.
