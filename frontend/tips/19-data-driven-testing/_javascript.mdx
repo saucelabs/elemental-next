@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/javascript/test/dataDriven.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+`userData` reads `user_data.csv` with `fs`, splits it into lines and values, and uses the first line as the keys. So
+each user is an object (e.g., `user.username`). Our data has no quoted values, so splitting on commas is enough; for
+more complex files, use a CSV library.
+
+### Setup and Teardown
+
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
+
+### The Test
+
+`notificationText` waits until the notification is located and visible, and returns its text.
+
+We create one test (`it`) for each user with a `for` loop, named after the account type. Each test logs in with the
+user's credentials and asserts that the notification starts with the expected message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

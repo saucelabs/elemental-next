@@ -33,6 +33,17 @@ something that is fairly quick to add to your tests, and allows you to review th
 Here is an example.
 
 
+## Example
+
+In each example we hook into the test framework to find out, after the test runs and _before_ the browser is
+closed, whether the test failed. If it did, we capture a screenshot with Selenium and save it with a name that
+includes the test name (e.g., `failshot_<test name>.png`), so it doesn't get overwritten by other tests.
+
+Then we wire up a test that fails on purpose: it loads the homepage of
+[the-internet](https://github.com/saucelabs/the-internet) and asserts that the heading is `blah blah blah`.
+
+__NOTE:__ Since these tests fail on purpose, our CI checks that they fail _and_ that the screenshot was saved.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -43,16 +54,40 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Open the browser
+- Load the homepage of [the-internet](https://github.com/saucelabs/the-internet)
+- Check the text of the page header and fail
+- Output a failure message in the terminal
+- Capture a screenshot
+- Close the browser
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+If you want truly unique filenames, then you can add a unique ID (or a timestamp) to the filename. This will prevent
+screenshots from getting overwritten when the same test fails more than once.
 
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

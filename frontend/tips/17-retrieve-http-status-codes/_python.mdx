@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"17-retrieve-http-status-codes/code/python/status_codes.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+
+### Retrieving the Status Code
+
+`status_code` executes the Navigation Timing script in the browser with `driver.execute_script` and returns the
+result, which Selenium converts to a Python `int`.
+
+### The Test
+
+`test_status_code` is parametrized (`@pytest.mark.parametrize`), so it runs once for each status code. It visits the
+page that returns the code and asserts that `status_code` returns the same one.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest status_codes.py` from the
+command-line.

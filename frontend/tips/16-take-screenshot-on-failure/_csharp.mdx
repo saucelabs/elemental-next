@@ -1,83 +1,37 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by including our requisite classes for our test framework (e.g., `NUnit.Framework`), driving the browser with Selenium (e.g., `OpenQA.Selenium`, etc.), accessing C#'s image functionality (e.g., `System.Drawing.Imaging`), and start our class off with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```csharp
-// filename: Screenshot.cs
-using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using System.Drawing.Imaging;
+<TipCode codePath={"16-take-screenshot-on-failure/code/csharp/ScreenshotTest.cs"} language={"csharp"}/>
 
-public class Screenshot
-{
-    IWebDriver Driver;
+## Code Walkthrough
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new FirefoxDriver();
-    }
+### Setup and Teardown
 
-    [TearDown]
-    public void TearDown()
-    {
-        if (TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Failed))
-            TakeScreenshot();
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox.
 
-        Driver.Quit();
-    }
-// ...
-```
+MSTest gives the test class a `TestContext` when it has a public property with that name. In the `TearDown()` method
+(marked with `[TestCleanup]`) we use it to check if the test failed (`TestContext.CurrentTestOutcome`). If it did, we
+cast the driver to `ITakesScreenshot`, capture a screenshot, and save it with the class and test name in the filename
+(e.g., `failshot_csharp.ScreenshotTest.FailsOnPurpose.png`). Then we close the browser.
 
-Notice in the teardown we have a conditional statement before we call `Driver.Quit();`. It's checking to see if the test failed, if it has then it will take a screenshot. Right now the method we're referencing isn't declared. Let's add it now.
+`dotnet test` runs the tests from the build output directory, so the screenshot is saved there (e.g.,
+`bin/Debug/net10.0`).
 
-```csharp
-// filename: Screenshot.cs
-// ...
-    private void TakeScreenshot()
-    {
-        string SaveLocation = @"C:\Temp\" +
-                               "failshot_" +
-                               TestContext.CurrentContext.Test.FullName +
-                               ".png";
-        ITakesScreenshot ScreenshotDriver = (ITakesScreenshot) Driver;
-        ScreenshotDriver.GetScreenshot().SaveAsFile(SaveLocation, ScreenshotImageFormat.Png);
-    }
-// ...
-```
+### The Test
 
-There are numerous ways to make the filename unique for the screenshot (e.g., unique ID, timestamp, etc.). The simplest way to get started is with the full test name (e.g., test class name and test method name), which we've done. We also specified the save location on disk using a string literal (e.g., `@"C:\Temp"`), feel free to change it to suit your needs.
+`FailsOnPurpose` loads the homepage of the-internet and asserts that the heading is `blah blah blah`, which fails.
 
-The rest is a simple matter of casting the `Driver` as an `ITakeScreenshot` object and calling `GetScreenshot().SaveAsFile` (specifying the save location and image format -- which is PNG in this case).
+### Executing the Test
 
-Now let's wire up our test with a forced failure.
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-```csharp
-// filename: Screenshot.cs
-// ...
-    [Test]
-    public void ScreenShotOnFailure()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com");
-        Assert.That(false.Equals(true));
-    }
-}
-```
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-## Expected Behavior
-
-When you save this file and run it (`nunit3-console.exe .\Screenshot.sln` from the command-line) here is what will happen:
-
-- Open the browser
-- Visit the page
-- Test Fails
-- Selenium Captures a screenshot in `C:\Temp` with the name `failshot_Screenshot.ScreenShotOnFailure.png`
-- Close the browser
-
-## Summary
-
-Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test` from the command-line.

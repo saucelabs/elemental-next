@@ -1,59 +1,35 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by importing our requisite libraries and wire up some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```javascript
-// filename: test/screenshot.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
-const fs = require("fs");
-const path = require("path");
+<TipCode codePath={"16-take-screenshot-on-failure/code/javascript/test/screenshot.spec.js"} language={"js"}/>
 
-describe("Screenshot", function() {
-  let driver;
+## Code Walkthrough
 
-  beforeEach(async function() { this.timeout(60000) driver = await new Builder().forBrowser("chrome").build();
-  });
+### Setup and Teardown
 
-  afterEach(async function() {
-    if (this.currentTest.state !== "passed") {
-      const testName = this.currentTest.fullTitle().replace(/\s/g, "-");
-      const fileName = path.join(__dirname, `screenshot_${testName}.jpg`);
-      fs.writeFileSync(fileName, await driver.takeScreenshot(), "base64");
-    }
-    await driver.quit();
-  });
-// ...
-```
+The `beforeEach` hook launches Firefox.
 
-In `afterEach` we check to see if the test was unsuccessful (e.g., `this.currenTest.state !== "passed"`). If not, then the test has either failed or errored and we capture a screenshot through the help of Selenium's `.takeScreenshot()` function. To save it to disk, we use `fs` and its `writeFileSync` function. It takes the full path to save to, the payload (e.g., the screenshot), and the encoding (which for the image is `"base64"`).
+In the `afterEach` hook we check if the test failed (`this.currentTest.state === "failed"`). If it did, we capture a
+screenshot with `driver.takeScreenshot()`, which returns the image encoded in Base64, and save it with
+`fs.writeFileSync`. To make the filename unique we use the test name after cleaning it up (by replacing spaces with
+`-`), e.g., `failshot_Screenshot-fails-on-purpose.png`. Then we quit the browser.
 
-To make the filename unique we use the test name after cleaning it up (by replacing spaces with `-`). When this command executes it will save an image file (e.g., `screenshot_Screenshot-on-failure.jpg`) to the local system in the current working directory.
+Note that the hooks use `function () {}` instead of arrow functions, so Mocha can give us the test through `this`.
 
-Now to wire up a test which will fail.
+### The Test
 
-```javascript
-// filename: test/screenshot.spec.js
-// ...
-  it("on failure", async function() {
-    await driver.get("http://the-internet.herokuapp.com");
-    assert(true === false);
-  });
-});
-```
+The test loads the homepage of the-internet and asserts that the heading is `blah blah blah`, which fails.
 
-## Expected Behavior
+### Executing the Test
 
-When we save this file and run it (`mocha` from the command-line) here is what will happen:
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-+ Open the browser
-+ Load the homepage of [the-internet](http://github.com/saucelabs/the-internet)
-+ Fail on the assertion
-+ Capture a screenshot in the current working directory
-+ Close the browser
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-## Summary
-
-Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.

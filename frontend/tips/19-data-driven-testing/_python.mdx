@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/python/data_driven.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+`user_data` opens `user_data.csv` (next to the test file) and reads it with `csv.DictReader`, which uses the first row
+as the keys. So each user is a dictionary (e.g., `user['username']`).
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance, `yield`s it to the test, and quits it once the test is done.
+
+### The Test
+
+`notification_text` uses an explicit wait (`WebDriverWait`) until the notification is visible and returns its text.
+
+`test_login` is parametrized with the user data (`@pytest.mark.parametrize('user', user_data(), ...)`), so pytest
+runs it once for each user. The `ids` argument names each run after the account type (e.g.,
+`test_login[bad_password]`), which makes the results easier to read. The test logs in with the user's credentials
+and asserts that the notification starts with the expected message.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest data_driven.py` from the
+command-line.

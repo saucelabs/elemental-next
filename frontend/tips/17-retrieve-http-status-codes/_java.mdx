@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"17-retrieve-http-status-codes/code/java/src/test/java/com/elemental/selenium/StatusCodesTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
+
+### Retrieving the Status Code
+
+`statusCode()` casts the driver to `JavascriptExecutor`, executes the Navigation Timing script with
+`executeScript`, and returns the result. Selenium returns JavaScript numbers as a `Long`.
+
+### The Test
+
+The test is a `@ParameterizedTest` (from the `junit-jupiter-params` dependency), so it runs once for each value in
+`@ValueSource`. It visits the page that returns the code and asserts that `statusCode()` returns the same one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
