@@ -40,12 +40,43 @@ Let's go through an example of how to configure a test suite in order to output 
 
 
 
+## Example
+
+Each example has a simple test (it loads the homepage of [the-internet](https://github.com/saucelabs/the-internet) and
+checks the title), and the configuration needed to write a JUnit XML report every time the tests run:
+
+- __Python__: pytest writes JUnit XML out of the box with `--junitxml`.
+- __C#__: the [JunitXml.TestLogger](https://www.nuget.org/packages/JunitXml.TestLogger) package adds a `junit` logger
+  to `dotnet test`.
+- __Java__: Maven Surefire (which runs the tests in `mvn test`) writes JUnit XML reports by default.
+- __JavaScript__: Mocha comes with an `xunit` reporter, which writes the same XML format.
+- __Ruby__: the [RSpec JUnit Formatter](https://github.com/sj26/rspec_junit_formatter) gem adds a JUnit XML formatter
+  to RSpec.
+
+If you run your tests in parallel, make sure each process writes its own report file (most CI servers can read
+several of them), or use a tool that merges them.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- The tests run
+- A JUnit XML report with the results is written to disk
+- Your CI server reads the report and shows the results
+
+## Summary
+
+Now you're ready to plug your Selenium tests into a CI server and let them report the results.
+
+Happy Testing!
 
 ## About The Author
 
