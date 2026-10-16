@@ -52,6 +52,8 @@ jobs:
         uses: peter-evans/create-pull-request@v8.1.1
         with:
           title: Auto Compress Images
-          branch-suffix: timestamp
+          # A fixed branch, so each run updates the same pull request instead of opening a new one.
+          branch: auto-compress-images
+          delete-branch: true
           commit-message: Compress Images
           body: ${{ steps.calibre.outputs.markdown }}
