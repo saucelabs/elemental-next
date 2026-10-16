@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/python/conftest.py"} language={"python"}/>
+
+<TipCode codePath={"27-parallel/code/python/test_sort_with_attributes.py"} language={"python"}/>
+
+<TipCode codePath={"27-parallel/code/python/test_sort_without_attributes.py"} language={"python"}/>
+
+<TipCode codePath={"27-parallel/code/python/pytest.ini"} language={"ini"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+pytest shares the fixtures defined in `conftest.py` with all the test files in the same directory. So our `driver`
+fixture lives there: it launches Firefox and loads the page before each test, and quits it afterward.
+
+### The Tests
+
+Each test file has the tests for one of the tables, and each test receives its own `driver`. The test files are
+named `test_*.py`, so pytest finds them on its own.
+
+### Running in Parallel
+
+pytest runs tests one at a time out of the box. The [pytest-xdist](https://pypi.org/project/pytest-xdist/) plugin
+(in `requirements.txt`) adds the `-n` option to run them in several processes. We add `-n 2` to the default options in
+`pytest.ini`, so a plain `pytest` runs them in 2 processes. You can also use `-n auto` to use one process per CPU.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the tests by executing `pytest` from the
+command-line.

@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/javascript/test/hooks.js"} language={"js"}/>
+
+<TipCode codePath={"27-parallel/code/javascript/test/sortWithAttributes.spec.js"} language={"js"}/>
+
+<TipCode codePath={"27-parallel/code/javascript/test/sortWithoutAttributes.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+When Mocha runs tests in parallel, each file runs in its own process, so hooks in one file don't apply to the
+others. Root hooks do: `test/hooks.js` exports them (`mochaHooks`), and we load it with `--require test/hooks.js`.
+Before each test, they launch Firefox and load the page, and store the driver in the test context (`this.driver`).
+After each test, they quit it.
+
+### The Tests
+
+Each test file has the tests for one of the tables, and uses the driver from the test context (`this.driver`). The
+tests use `function () {}` instead of arrow functions, so Mocha can give them the context through `this`.
+
+### Running in Parallel
+
+Mocha runs tests one at a time out of the box. The `test` script in `package.json` adds `--parallel --jobs 2`, so
+the test files run in 2 processes.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.
