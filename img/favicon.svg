@@ -2,11 +2,11 @@
 <svg height="100" viewBox="0 0 21 21" width="100" xmlns="http://www.w3.org/2000/svg">
     <style>
         g {
-        stroke: #1ea766;
+        stroke: #043423;
         }
         @media ( prefers-color-scheme: dark ) {
         g {
-        stroke: #3ddc91;
+        stroke: #abe082;
         }
         }
     </style>
