@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/python/cloud.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture is where the magic is happening. If the credentials are not set, it skips the test
+(`pytest.skip`). Otherwise, it creates the options for Chrome (`webdriver.ChromeOptions()`), sets the browser version
+and operating system (`browser_version` and `platform_name`), and adds the Sauce Labs options with
+`set_capability('sauce:options', {...})`.
+
+Then it connects to Sauce Labs with `webdriver.Remote`, passing the Sauce Labs URL and the options, and `yield`s the
+driver to the test. Once the test is done, it quits the browser.
+
+### The Test
+
+`test_title` loads the page and checks its title, just like any other test. It runs in Sauce Labs because of the
+driver it receives.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest cloud.py` from the
+command-line.

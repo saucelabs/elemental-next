@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/javascript/test/cloud.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook is where the magic is happening. If the credentials are not set, it skips the test
+(`this.skip()`). Otherwise, it creates the options for Chrome (`new chrome.Options()`), sets the browser version and
+operating system (`setBrowserVersion` and `setPlatform`), and adds the Sauce Labs options with
+`set("sauce:options", {...})`.
+
+Then it connects to Sauce Labs by telling the `Builder` to use the Sauce Labs URL (`usingServer(SAUCE_URL)`). The
+`afterEach` hook quits the browser (when one was started).
+
+### The Test
+
+The test loads the page and checks its title, just like any other test. It runs in Sauce Labs because of the driver
+created in `beforeEach`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `npm test` from the command-line.

@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/csharp/CloudTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) is where the magic is happening. If the credentials are not
+set, it stops the test with `Assert.Inconclusive`, which reports it as skipped. Otherwise, it creates the options for
+Chrome (`ChromeOptions`), sets the browser version and operating system (`BrowserVersion` and `PlatformName`), and
+adds the Sauce Labs options with `AddAdditionalOption("sauce:options", ...)`.
+
+Then it connects to Sauce Labs with a `RemoteWebDriver`, passing the Sauce Labs URL and the options. The
+`TearDown()` method (marked with `[TestCleanup]`) quits the browser.
+
+### The Test
+
+`Title` loads the page and checks its title, just like any other test. It runs in Sauce Labs because of the driver
+created in `SetUp()`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
