@@ -1,60 +1,29 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by pulling in the necessary libraries (`selenium-webdriver` to control the browser and `rspec/expectations` & `RSpec::Matchers` to perform an assertion) and wiring up some simple `setup`, `teardown`, and `run` methods.
+## TL;DR - Show Me The Code
 
-```ruby
-# filename: right_click.rb
+<TipCode codePath={"63-right-click/code/ruby/right_click.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+## Code Walkthrough
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### Setup and Teardown
 
-def teardown
-  @driver.quit
-end
+The `setup`, `teardown`, and `run` methods launch Firefox before the test and quit it afterward.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### The Test
 
-Now we're ready to write our test.
+The test visits the page, finds the area, and right-clicks it with `@driver.action.context_click(menu_area).perform`. Then it waits for the alert (with an explicit wait that keeps switching to it until it shows up),
+asserts its text, and accepts it.
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will render a custom context menu when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)). Clicking the context menu will trigger a JavaScript alert which will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
+### Executing the Test
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/context_menu'
-  menu_area = @driver.find_element id: 'hot-spot'
-  @driver.action.context_click(menu_area).send_keys(
-    :arrow_down).send_keys(
-    :arrow_down).send_keys(
-    :arrow_down).send_keys(
-    :enter).perform
-  alert = @driver.switch_to.alert
-  expect(alert.text).to eq('You selected a context menu')
-end
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-## Expected Behavior
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-If we save this file and run it (e.g., `ruby right_click.rb`) from the command-line) here is what will happen:
-
-+ Open the browser and visit the page
-+ Find and right-click the area which will render a custom context menu
-+ Select the context menu option with keyboard keys
-+ JavaScript alert appears
-+ Grab the text of the JavaScript alert
-+ Assert that the text from the alert is what we expect
-
-## Summary
-
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
-
-Happy Testing!
+Finally, we can run the test by executing `ruby right_click.rb` from the command-line.

@@ -1,77 +1,29 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
+## TL;DR - Show Me The Code
 
-```java
-// filename: RightClick.java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+<TipCode codePath={"63-right-click/code/java/src/test/java/com/elemental/selenium/RightClickTest.java"} language={"java"}/>
 
-public class RightClick {
-    WebDriver driver;
+## Code Walkthrough
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
+### Setup and Teardown
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
-// ...
-```
+The `beforeEach` method launches Firefox before each test, and the `afterEach` method quits it.
 
-Now we're ready to write our test.
+### The Test
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will render a custom context menu when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)).
-Clicking the context menu item will trigger a JavaScript alert which will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
+The test visits the page, finds the area, and right-clicks it with `new Actions(driver).contextClick(menuArea).perform()`. Then it waits for the alert (`ExpectedConditions.alertIsPresent()`),
+asserts its text, and accepts it.
 
-```java
-// filename: RightClick.java
-// ...
-    @Test
-    public void rightClickTest() throws InterruptedException {
-        driver.get("http://the-internet.herokuapp.com/context_menu");
-        WebElement menu = driver.findElement(By.id("hot-spot"));
-        Actions action = new Actions(driver);
-        action.contextClick(menu)
-                .sendKeys(Keys.ARROW_DOWN)
-                .sendKeys(Keys.ARROW_DOWN)
-                .sendKeys(Keys.ARROW_DOWN)
-                .sendKeys(Keys.ENTER)
-                .perform();
-        Alert alert = driver.switchTo().alert();
-        assertThat(alert.getText(), is(equalTo("You selected a context menu")));
-    }
+### Executing the Test
 
-}
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-## Expected Behavior
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-When you save this file and run it (e.g., `mvn clean test` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Find and right-click the area of the page that renders a custom context menu
-+ Navigate to the context menu option with keyboard keys
-+ JavaScript alert appears
-+ Grab the text of the JavaScript alert
-+ Assert that the text from the alert is what we expect
-+ Close the browser
-
-## Summary
-
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip.
-
-Happy Testing!
-
+Finally, we can run the test by executing `mvn test` from the command-line.
