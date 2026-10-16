@@ -1,94 +1,46 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with a setup method.
+## TL;DR - Show Me The Code
 
-```java
-// filename: Screenshot.java
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+<TipCode
+    codePath={"16-take-screenshot-on-failure/code/java/src/test/java/com/elemental/selenium/ScreenshotOnFailure.java"}
+    language={"java"}/>
 
-public class Screenshot {
-    WebDriver driver;
+<TipCode
+    codePath={"16-take-screenshot-on-failure/code/java/src/test/java/com/elemental/selenium/ScreenshotTest.java"}
+    language={"java"}/>
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-    }
-// ...
-```
+## Code Walkthrough
 
-We still need to handle our teardown. But in order to get the timing right with screenshots on failure we'll need to break from the norm of a simple `@After` annotation. For this we'll look to a [JUnit Rule](https://github.com/junit-team/junit/wiki/Rules), specifically the [TestWatcher](http://junit.org/apidocs/org/junit/rules/TestWatcher.html).
+### The Extension
 
-```java
-// filename: Screenshot.java
-// ...
-    @Rule
-    public TestRule watcher = new TestWatcher() {
-        @Override
-        protected void failed(Throwable throwable, Description description) {
-            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(scrFile,
-                        new File("failshot_"
-                                + description.getClassName()
-                                + "_" + description.getMethodName()
-                                + ".png"));
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
+JUnit 5 lets us hook into the test lifecycle with extensions. `ScreenshotOnFailure` implements
+`AfterTestExecutionCallback`, which runs right after the test method and _before_ the `@AfterEach` methods, so the
+browser is still open. If the test threw an exception (`context.getExecutionException().isPresent()`), we cast the
+driver to `TakesScreenshot`, capture a screenshot, and save it with the class and test name in the filename (e.g.,
+`failshot_ScreenshotTest.failsOnPurpose.png`).
 
-        @Override
-        protected void finished(Description description) {
-            driver.quit();
-        }
-    };
-// ...
-```
+The extension receives a `Supplier<WebDriver>` instead of the driver itself, because the driver is created later, in
+the `@BeforeEach` method.
 
-With a `TestWatcher` we easily gain access to a test after it's failed (e.g., in the `failed` method) and when the test completes regardless of it's outcome (e.g., the `finished` method). So for our teardown we issue `driver.quit();` in `finished`. And when there's a failure we capture a screenshot and write it to disk (in the current working directory) in `failed`.
+### Setup and Teardown
 
-There are numerous ways to make the filename unique (e.g., unique ID, timestamp, etc.). The simplest way to get started is with the test class name and the test method name, which we've done.
+In `ScreenshotTest` we register the extension with `@RegisterExtension`, passing it a lambda that returns the current
+driver. The `beforeEach` method launches Firefox and the `afterEach` method quits it.
 
-Now let's wire up our test with a forced failure.
+### The Test
 
-```java
-// filename: Screenshot.java
-// ...
-    @Test
-    public void OnError() {
-        driver.get("http://the-internet.herokuapp.com");
-        assertThat(false, is(true));
-    }
+`failsOnPurpose` loads the homepage of the-internet and asserts that the heading is `blah blah blah`, which fails.
 
-}
-```
+### Executing the Test
 
-## Expected Behavior
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-When you save this file and run it (`mvn clean test` from the command-line) here is what will happen:
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-+ Open the browser
-+ Visit the page
-+ Fail
-+ Capture a screenshot in the current working directory with the name `failshot_Screenshot_OnError.png`
-+ Close the browser
-
-## Summary
-
-Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
-
-Happy Testing!
+Finally, we can run the test by executing `mvn test` from the command-line.

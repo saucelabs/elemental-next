@@ -33,6 +33,17 @@ something that is fairly quick to add to your tests, and allows you to review th
 Here is an example.
 
 
+## Example
+
+In each example we hook into the test framework to find out, after the test runs and _before_ the browser is
+closed, whether the test failed. If it did, we capture a screenshot with Selenium and save it with a name that
+includes the test name (e.g., `failshot_<test name>.png`), so it doesn't get overwritten by other tests.
+
+Then we wire up a test that fails on purpose: it loads the homepage of
+[the-internet](https://github.com/saucelabs/the-internet) and asserts that the heading is `blah blah blah`.
+
+__NOTE:__ Since these tests fail on purpose, our CI checks that they fail _and_ that the screenshot was saved.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -43,6 +54,23 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Load the homepage of [the-internet](https://github.com/saucelabs/the-internet)
+- Check the text of the page header and fail
+- Output a failure message in the terminal
+- Capture a screenshot
+- Close the browser
+
+## Summary
+
+Having a screenshot to aid in troubleshooting failing tests along with a stack trace helps in having more insight.
+
+If you want truly unique filenames, then you can add a unique ID (or a timestamp) to the filename. This will prevent
+screenshots from getting overwritten when the same test fails more than once.
+
+Happy Testing!
 
 ## About The Author
 
