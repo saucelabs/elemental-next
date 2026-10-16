@@ -34,6 +34,29 @@ an attribute lookup), or by asking an element if it has been _selected_.
 We're going to go through each of these approaches to see their pros and cons.
 
 
+## Example
+
+For reference, here is the markup from [the page we will be testing against](https://the-internet.herokuapp.com/checkboxes)
+(an example from [the-internet](https://github.com/saucelabs/the-internet)).
+
+```html
+<form id="checkboxes">
+  <input type="checkbox"> checkbox 1<br>
+  <input type="checkbox" checked> checkbox 2
+</form>
+```
+
+In both tests we load the page, find all the checkboxes, and output what Selenium gives us for each of them. Then we
+assert that the first checkbox is not checked and the last one is.
+
+With the attribute lookup (the first test) we get the value of the `checked` attribute in the markup: nothing (e.g.,
+`null`, `None`, or `nil`) when the checkbox doesn't have the attribute, and a string when it does (an empty one in
+this case, since the attribute has no value). Whereas asking if the checkbox is selected (the second test) gives us a
+boolean (`true` or `false`) response.
+
+There is one more difference. The attribute reflects the markup, so it doesn't change when the user checks or unchecks
+the checkbox. Being selected reflects the current state of the checkbox.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -44,6 +67,34 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Visit the page
+- Find all checkboxes on the page
+- Assert that the first checkbox is not checked and the last one (the one that is supposed to be checked on initial
+  page load) is
+- Close the browser
+
+## Summary
+
+Attribute lookups are generally meant for pulling information out of the page for review, and they can tell you
+whether a checkbox _started_ checked. But there is a method built for this use case that is more readable, has a
+predictable set of return values, and reflects the current state of the checkbox. Checking if the checkbox is
+selected should be the thing you reach for.
+
+Happy Testing!
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/RomanIsko.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/RomanIsko"}
+/>
 
 ## About The Author
 
