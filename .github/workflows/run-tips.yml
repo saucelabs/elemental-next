@@ -97,7 +97,7 @@ jobs:
         if: inputs.language == 'python'
         uses: actions/setup-python@v7
         with:
-          python-version: '3.14'
+          python-version: '3.15'
       - name: Set up Ruby
         if: inputs.language == 'ruby'
         uses: ruby/setup-ruby@v1
