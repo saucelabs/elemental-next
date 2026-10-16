@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/python/repl.py"} language={"python"}/>
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/python/repl_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Prompt
+
+`run_repl` receives the driver, a function to read input (`input` by default), and a function to write output
+(`print` by default). It keeps a `namespace` dictionary with `driver` and `By` in it, so commands can use them.
+
+In the loop we read a command. If it is `q`, we say goodbye and leave the loop. Otherwise we try to `eval` it, which
+returns the value of an expression (e.g., `driver.title`). If it's a statement (e.g., an assignment), `eval` raises a
+`SyntaxError`, so we run it with `exec` instead. When there is a result we print it, and when there is an error we
+print its type and message and keep going.
+
+At the bottom, the `if __name__ == '__main__':` block launches Firefox, starts the prompt, and quits the browser when
+the prompt ends.
+
+### The Test
+
+The test passes the commands from a list (`read=lambda prompt: next(commands)`) and collects the output in another
+list (`write=output.append`). Then it checks that the title was printed, that the missing element printed a
+`NoSuchElementException`, and that `q` ended the prompt.
+
+### Using the Prompt
+
+Run `python repl.py` and type commands like `driver.get('https://the-internet.herokuapp.com')` or
+`driver.find_element(By.CSS_SELECTOR, 'h1').text`. Type `q` to quit.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest repl_test.py` from the
+command-line.

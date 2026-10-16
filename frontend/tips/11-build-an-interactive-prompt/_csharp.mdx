@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/csharp/Repl.cs"} language={"csharp"}/>
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/csharp/ReplTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Prompt
+
+To evaluate C# code at runtime we use Roslyn scripting (the `Microsoft.CodeAnalysis.CSharp.Scripting` package). The
+driver is exposed to the commands through a `Globals` class, so they can use it as `Driver`. We also reference the
+Selenium assembly and import the `OpenQA.Selenium` namespace, so commands can use `By` and friends.
+
+`Run` receives the driver, a `TextReader` for the input, and a `TextWriter` for the output. In the loop we read a
+command. If it is `q`, we say goodbye and leave the loop. Otherwise we run it with `CSharpScript.RunAsync` the first
+time, and with `state.ContinueWithAsync` afterward, so variables declared in one command are available in the next
+ones. When there is a return value we print it, and when there is an error (including code that doesn't compile) we
+print its type and message and keep going.
+
+`Main` launches Firefox, starts the prompt with the console input and output, and quits the browser when the prompt
+ends. Since the project is also a test project, `<GenerateProgramFile>false</GenerateProgramFile>` in the project
+file tells the test SDK to use our `Main` instead of generating one.
+
+### The Test
+
+The test passes the commands with a `StringReader` and collects the output with a `StringWriter`. Then it checks that
+the title was printed, that the missing element printed a `NoSuchElementException`, and that `q` ended the prompt.
+
+### Using the Prompt
+
+Run `dotnet run` and type commands like `Driver.Navigate().GoToUrl("https://the-internet.herokuapp.com");` or
+`Driver.FindElement(By.CssSelector("h1")).Text`. Type `q` to quit.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
