@@ -77,38 +77,27 @@ For full details on how to contribute, see [CONTRIBUTING.MD](https://github.com/
   npm run serve
   ```
 
-  This command builds the site and serves it on your machine's host (http://localhost:3000).
+  This command serves the site built by `npm run build` on your machine (http://localhost:3000).
 
 ## Deploying the Website 🚀
 
-- Deploy the website:
+There's nothing to run by hand:
 
-  ```bash
-  npm run deploy -outDir
-  ```
-
-🚨 **We are currently deploying this website to GitHub Pages.** 🚨
-
-The <code>docusaurus deploy</code> command helps us deploy our site from the source branch to the deployment branch <code>gh-pages</code> in one command: clone, build, and commit.
-
-The <code>-outDir</code> flag ships only the <code>frontend</code> content folder to the <code>gh-pages</code>.
+- Every push to `main` that changes the site builds it and deploys it to GitHub Pages (the `gh-pages` branch), which
+  serves [elementalselenium.com](https://elementalselenium.com). See `.github/workflows/deploy-on-push-to-main.yml`.
+- Every pull request gets a deploy preview on Netlify (see `netlify.toml`), linked from the pull request.
 
 # Testing 🧪
 
-Testing is an essential part of ensuring the quality and reliability of Elemental Selenium, and is very important to us. We've got a great lineup of testing tools that make the testing process achievable. Check them out!
+Every tip shows code that actually runs. The code of each tip lives next to it, in `frontend/tips/<tip>/code/<language>/`
+(e.g., `frontend/tips/1-upload-a-file/code/python`), and each of those directories is a small project with a
+`README.md` that explains how to run it (e.g., `pytest upload.py` or `mvn test`).
 
+CI runs these examples on Ubuntu, Windows, and macOS, with one workflow per language in `.github/workflows`:
 
-```
-elemental-next
-└── tests
-    ├── cypress
-    ├── deque
-    └── selenium
-```
+- On pull requests and pushes, only the examples that changed run.
+- Every example runs nightly, on manual runs, and when the CI itself or the dependencies change.
 
+The site build is checked on every pull request (`test-build.yml`), and it fails on broken links or MDX errors.
 
-- **Cypress**: We use Cypress for end-to-end (E2E) testing, which allows us to simulate real user interactions and verify the functionality of the application. You can find the E2E testing files in the `tests/cypress` folder.
-
-- **Deque Axe**: To ensure our application is accessible to all users, we rely on Deque Axe for accessibility testing. Deque Axe helps us identify accessibility issues and ensures compliance with accessibility standards. The accessibility testing files are located in the `tests/deque` folder.
-
-- **Selenium WebDriver**: For automated testing of web applications, we utilize Selenium WebDriver. It provides a framework for interacting with web elements and performing automated tests. The Selenium testing files can be found in the `tests/selenium` folder.
+For accessibility checks of the site itself, see the [Deque Axe guide](frontend/tests/deque/README.md).

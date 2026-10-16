@@ -15,7 +15,13 @@ Below are a few guidelines we would like you to follow. If you need help, please
 
 ## 📝 Add a new tip
 
-Adding a new tip tutorial is the best way to have our community engage and share knowlege with each other. In order to maintain coherence and best practices among submtting information, we've created a [tip template](TIP-TEMPLATE.MD) to guide you.
+Adding a new tip tutorial is the best way to have our community engage and share knowledge with each other. Every tip
+shows code that actually runs: the code lives next to the tip, in `frontend/tips/<tip>/code/<language>/`, and CI runs
+it on Ubuntu, Windows, and macOS. We aim to show every tip in Python, C#, Java, JavaScript, and Ruby, but you're
+welcome to send the languages you know.
+
+The [tip template](TIP-TEMPLATE.MD) walks you through the structure of a tip, step by step. [AGENTS.md](AGENTS.md)
+has more details about the repository and the CI.
 
 ## 🐛 Report a bug
 
@@ -45,9 +51,9 @@ It is always best to discuss your plans beforehand, to ensure that your contribu
 - Make sure you sign-off on your commits `git commit -s -m "adding X to change Y"`
 - Write good commit messages (see below).
 - Push your changes to a topic branch in your fork of the repository.
-- As you push your changes, update the pull request with new infomation and tasks as you complete them.
+- As you push your changes, update the pull request with new information and tasks as you complete them.
 - Project maintainers might comment on your work as you progress.
-- When you are done, remove the `work in progess` label and ping the maintainers for a review.
+- When you are done, remove the `work in progress` label and ping the maintainers for a review.
 - Your pull request must receive a :thumbsup: from two [maintainers](MAINTAINERS)
 
 Thanks for your contributions!
