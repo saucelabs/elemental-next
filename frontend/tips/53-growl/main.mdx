@@ -37,6 +37,29 @@ Let's step through an example of how to set this up.
 
 
 
+## Example
+
+We'll visit the page we want to display notifications on and do some work with JavaScript to load
+[jQuery](https://jquery.com/), jQuery Growl, and the styles for jQuery Growl. After that, we can issue commands to
+jQuery Growl to display notification messages:
+
+1. Check for jQuery on the page, and add it if need be.
+2. Use jQuery to add jQuery Growl to the page.
+3. Use jQuery to add the jQuery Growl styles to the page.
+4. Display a message with jQuery Growl (e.g., `$.growl({ title: 'GET', message: '/' });`).
+
+Adding the scripts to the page happens in the background, so after steps 1 and 3 we wait until they are loaded
+(e.g., until `window.jQuery` and `$.growl` are defined) instead of sleeping for a fixed amount of time. And to make
+sure everything worked, we wait for the notification to be displayed and check its title and message.
+
+If we wanted to see color-coded notifications, then we could use one of the following instead:
+
+```js
+$.growl.error({ title: 'ERROR', message: 'your error message goes here' });
+$.growl.notice({ title: 'Notice', message: 'your notice message goes here' });
+$.growl.warning({ title: 'Warning!', message: 'your warning message goes here' });
+```
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -47,6 +70,24 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Browser opens
+- Load the page
+- Add jQuery, jQuery Growl, and the jQuery Growl styles to the page
+- Display a notification message in the top-right corner of the page
+- Check the title and message of the notification
+- Browser closes
+
+## Summary
+
+In order to use this approach, you will need to load jQuery Growl on every page you want to display output to --
+which can be a bit of overhead. But if you want rich messaging like this then that's the price you have to pay.
+
+I'd like to give a big thanks to Jon Austen ([GitHub](https://github.com/djangofan)) for giving me the idea to use
+jQuery Growl with Selenium.
+
+Happy Testing!
 
 ## About The Author
 
