@@ -44,6 +44,17 @@ You can see a full list of Selenium's available keyboard keys [here](http://sele
 Let's try out a couple of examples.
 
 
+## Example
+
+Let's use [an example](https://the-internet.herokuapp.com/key_presses) from
+[the-internet](https://github.com/saucelabs/the-internet) that displays which key has been pressed.
+
+In the first test, we find an element that's visible (the one that contains the example on the page, with the id
+`target`) and send the space key to it. Then we check the result text on the page.
+
+Alternatively, we can also issue a key press without finding an element first, with the Actions API. The key goes to
+the element that's currently in focus. That's what the second test does, with the tab key.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -54,6 +65,33 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Open the browser
+- Visit the page
+- Find the element and send the space key to it (first test), or send the tab key to the element in focus (second
+  test)
+- Find the result text on the page and check that it's what we expect
+- Close the browser
+
+## Summary
+
+If you have a specific element that you want to issue key presses to, then finding the element first is the way to go.
+If you don't have a receiving element, or you need to string together multiple key presses, then the Actions API is
+what you should use.
+
+Happy Testing!
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/RomanIsko.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/RomanIsko"}
+/>
 
 ## About The Author
 

@@ -1,67 +1,33 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First we'll set up our requisite libraries to drive the browser (e.g., `selenium-webdriver`) and perform an assertion (e.g., `rspec/expections` and `RSpec::Matchers`). After that, we'll create some simple `setup`, `teardown`, and `run` methods.
+## TL;DR - Show Me The Code
 
-```ruby
-# filename: key_presses.rb
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/ruby/key_presses.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+## Code Walkthrough
 
-def setup
-  @driver = Selenium::WebDriver.for :firefox
-end
+### Setup and Teardown
 
-def teardown
-  @driver.quit
-end
+The `setup` method launches Firefox and visits the page, and the `teardown` method quits it. The `run` method wraps
+each test with them.
 
-def run
-  setup
-  yield
-  teardown
-end
-```
+### The Tests
 
-Now we can write up our test.
+The keys that don't print a character (e.g., space, tab, enter, or the arrows) are available as constants
+(as symbols, e.g., `:space` and `:tab`).
 
-Let's use an example from [the-internet](https://github.com/saucelabs/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed to perform our assertion.
+The first test finds the `target` element and sends the space key to it (`send_keys :space`). The second one sends the tab
+key with the Actions API (`@driver.action.send_keys(:tab).perform`), without finding an element. Both of them check the result text on the page.
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/key_presses'
-  @driver.find_element(id: 'target').send_keys :space
-  expect(@driver.find_element(id: 'result').text).to eql('You entered: SPACE')
-end
-```
+### Executing the Test
 
-After visiting the page we find an element that's visible (e.g., the one that contains the example on the page `(id: 'target')`) and send the space key to it (e.g., `.send_keys :space`). Then we grab the resulting text (e.g., `@driver.find_element(id: 'result').text)`) and assert that it says what we expect (e.g., `'You entered: SPACE'`).
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-Alternatively, we can also issue a key press without finding the element first.
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com/key_presses'
-  @driver.action.send_keys(:tab).perform
-  expect(@driver.find_element(id: 'result').text).to eql('You entered: TAB')
-end
-```
-
-## Expected Behavior
-
-If we save this and run it (e.g. `ruby key_presses.rb` from the command-line) here is what will happen:
-
-+ Open the browser
-+ Visit the page
-+ Find the element and send the space key to it
-+ Find the result text on the page and check to that it's what we expect
-+ Send the tab key to the element that's currently in focus
-+ Find the result text on the page and check to that it's what we expect
-+ Close the browser
-
-## Summary
-
-If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. If you don't have a receiving element, or you need to string together multiple key presses, then the Action Builder is what you should use.
-
-Happy Testing!
+Finally, we can run the test by executing `ruby key_presses.rb` from the command-line.
