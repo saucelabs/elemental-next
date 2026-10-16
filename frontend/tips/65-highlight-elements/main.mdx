@@ -36,6 +36,23 @@ Let's take a look at an example.
 
 
 
+## Example
+
+We create a `highlight` helper that accepts an element and a time to keep it highlighted (e.g., a `duration` of 3
+seconds by default). It does three things:
+
+1. It stores the style of the element, so it can revert it back when it's done.
+2. It changes the style of the element, so it visually stands out (e.g., a red dashed border).
+3. It reverts the style of the element back after the duration.
+
+We're accomplishing the style change through JavaScript's `setAttribute` function, and we're executing it with
+Selenium. To use it in a test, we just pass it the element we found.
+
+We use [a page with a large DOM](https://the-internet.herokuapp.com/large) from
+[the-internet](https://github.com/saucelabs/the-internet). Our first test highlights an element without reverting it
+(a duration of `0`) and checks that it has the border. The second one highlights it for 1 second and checks that the
+style was reverted.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -46,4 +63,36 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
+1. Load the page
+2. Find the element
+3. Change the styling of the element, so it has a red dashed-line border
+4. Wait for the duration
+5. Revert the styling to remove the border
+
+## Summary
+
+Hopefully this tip helps you quickly confirm that your locators are targeting the elements you expect. Since it adds
+waiting time to your tests, use it while writing or debugging them, not in every run. If you wanted to take this a
+step further, you could combine it with [an event listener](/tips/55-wrapper), to highlight every element your test
+interacts with.
+
+Happy Testing!
+
+## Special Thanks
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Roman Isko"
+    imgSrc={"https://github.com/RomanIsko.png"}
+    description={"Contributed the initial Java code for this tip."}
+    url={"https://github.com/RomanIsko"}
+/>
+
+## About The Author
+
+You can follow Brian on Twitter at [@bbbco](https://twitter.com/bbbco).
+
+![Brian D. Goad profile picture](/img/authors/brian-goad.jpeg#author-img 'a title')
