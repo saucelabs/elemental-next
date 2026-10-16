@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/python/multiple_browsers_parallel.py"} language={"python"}/>
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/python/pytest.ini"} language={"ini"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test is the same as in the previous tip: the `driver` fixture is parametrized with the browsers, so pytest runs
+`test_title` once for each of them, and each run gets its own browser in Sauce Labs.
+
+### Running in Parallel
+
+The [pytest-xdist](https://pypi.org/project/pytest-xdist/) plugin (in `requirements.txt`) runs tests in several
+processes with the `-n` option. We add `-n 3` to the default options in `pytest.ini`, so the three runs of the test
+happen at the same time.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest multiple_browsers_parallel.py` from the
+command-line.

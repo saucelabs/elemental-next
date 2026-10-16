@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/csharp/MultipleBrowsersParallelTest.cs"} language={"csharp"}/>
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/csharp/AssemblyInfo.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test is the same as in the previous tip: `Title` runs once for each `[DataRow]`, and each run creates its own
+browser in Sauce Labs. MSTest creates a new instance of the test class for each run, so they don't share the
+driver.
+
+### Running in Parallel
+
+The `[assembly: Parallelize(...)]` attribute in `AssemblyInfo.cs` turns on parallel execution for the whole
+project, with 3 workers and at the method level. MSTest treats each data row as its own test, so the three runs
+happen at the same time.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

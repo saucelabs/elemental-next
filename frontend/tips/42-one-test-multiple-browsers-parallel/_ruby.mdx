@@ -1,91 +1,38 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Our initial setup stays mostly the same. There are only a couple of minor changes we'll need to make.
+## TL;DR - Show Me The Code
 
-```ruby
-ENV['SAUCE_USERNAME'] = 'your username'
-ENV['SAUCE_API_KEY']  = 'your api key'
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/ruby/multiple_browsers_parallel.rb"} language={"ruby"}/>
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
+## Code Walkthrough
 
-def setup(browser_name, browser_version)
-  caps = Selenium::WebDriver::Remote::Capabilities.send(browser_name.to_sym)
-  caps.platform = 'Windows XP'
-  caps.version = browser_version.to_s
+### Setup and Teardown
 
-  Thread.current[:driver] = Selenium::WebDriver.for(
-    :remote,
-    url: "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_API_KEY']}@ondemand.saucelabs.com/wd/hub",
-    desired_capabilities: caps)
-end
+Since we are working with threads, we need variables that are thread safe. The best candidates are thread local
+variables: they have a global scope (similar to global variables) but are only accessible from within the thread that
+created them. So instead of an instance variable (e.g., `@driver`), `setup` stores each browser in
+`Thread.current[:driver]`, and `teardown` quits it.
 
-def teardown
-  Thread.current[:driver].quit
-end
-```
+### Running in Parallel
 
-Since we are working with threads, we will need to use variables that are thread safe. The best candidates are 
-thread local variables. They have a global scope (similar to global variables) but are only accessible from within 
-the thread that created it. This way we won't run into any odd collisions across simultaneous test runs.
+`run` spawns a thread for each of the browsers (`Thread.new`). Each thread runs `setup`, the test, and `teardown`
+(in an `ensure` block, so the browser quits even when the test fails). Then `run` waits for all of them to finish
+with `join`, which also raises any error from a thread, so a failed assertion fails the script.
 
-So instead of instance variables (e.g., `@driver`) we are now storing each instance of Selenium in this new kind of 
-variable and referencing it as needed (e.g., `Thread.current[:driver]`).
+### The Test
 
-```ruby
-# filename: example42.rb
+The test uses the thread local driver (`Thread.current[:driver]`) to load the page and assert that the title is
+correct.
 
-BROWSERS = { firefox: '27',
-             chrome: '32',
-             internet_explorer: '8' }
+### Executing the Test
 
-def run
-  threads = []
-  BROWSERS.each_pair do |browser, browser_version|
-    threads << Thread.new do
-      setup(browser, browser_version)
-      yield
-      teardown
-    end
-  end
-  threads.each { |thread| thread.join }
-end
-```
+Before executing the test, we need to make sure the required dependencies are declared on the `Gemfile` file.
 
-Our browser list remains untouched, but our `run` method has been updated to spawn and join threads (which is how 
-you finish a thread). With this setup a new thread will be spawned for each of the browsers in the list, perform 
-its actions, and finish.
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/ruby/Gemfile"} language={"txt"}/>
+    </div>
+</details>
 
-Will all of that in place, we just need to update our test to use the new thread local driver variable.
-
-```ruby
-run do
-  Thread.current[:driver].get 'https://the-internet.herokuapp.com'
-  Thread.current[:driver].title.should == 'The Internet'
-end
-```
-
-If we run this script from the command line (`ruby examle42.rb`) and head over 
-[the Sauce Labs Account page](https://saucelabs.com/account), then we should see three tests running simultaneously.
-
-NOTE: the number of parallel sessions allotted to your Sauce Labs account will dictate how quickly your tests will 
-finish. For instance, if you add two new browsers to `BROWSER_LIST` and run this, only 3 sessions will run in Sauce 
-Labs, queuing the other two until some of the original sessions finish.
-
-## Expected Behavior
-
-+ Simultaneously loads each browser in a Sauce Labs job
-+ Each test loads the page and asserts the title is correct
-+ Each session closes when it is complete
-
-## Summary
-
-There are alternative ways to run your tests in parallel. Some more notable approaches include:
-
-+ through a test framework (e.g., TestNG in Java)
-+ through Continuous Integration
-+ through a third-party library (e.g., [parallel_tests in Ruby](https://github.com/grosser/parallel_tests)).
-
-For a full write-up on how to parallel_tests, check out [tip 27](https://elementalselenium.com/docs/parallel/27-parallel).
-
-Happy Testing!
+Finally, we can run the test by executing `ruby multiple_browsers_parallel.rb` from the command-line.
