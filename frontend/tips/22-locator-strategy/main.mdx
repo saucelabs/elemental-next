@@ -38,12 +38,77 @@ cross-browser performant, simpler to maintain, and powerful -- that's CSS Select
 
 
 
+## Example
+
+With the markup below (taken from [the file download example](https://the-internet.herokuapp.com/download) on
+[the-internet](https://github.com/saucelabs/the-internet)) we can demonstrate grabbing the first link from a series
+of links with varying degrees of precision via CSS Selectors.
+
+```html
+<a href="https://github.com/saucelabs/the-internet"><img ... alt="Fork me on GitHub"></a>
+<div class="row">
+  <div id="content" class="large-12 columns">
+    <div class="example">
+      <h3>File Downloader</h3>
+      <a href="download/Images.txt">Images.txt</a>
+      <a href="download/SomeFile.txt">SomeFile.txt</a>
+      ...
+    </div>
+  </div>
+</div>
+```
+
+Selenium works by first finding the element you want and then chaining additional actions to it. Each of our three
+tests finds a link with a different CSS selector, outputs its URL, and checks where it points to:
+
+- `a` is a selector for a link. Of all the links on the page Selenium returns the first one, which is the
+  __Fork me on GitHub__ banner, not a download link. Not quite what we want.
+- `#content a` is more precise. `#content` is a selector for an HTML element with `id="content"`, and chaining it
+  with `a` (separated by a space) grabs the first link from within the content div on the page.
+- `#content .example a` scopes down even further. `.example` is a selector for an HTML element with
+  `class="example"`, so we grab the first link from within the example div, which is within the content div.
+
+Alternatively, we could have just scoped into `.example a`. Either would have worked and for this simple example it
+doesn't matter. The layout of a page will ultimately influence your CSS Selector decision. The ultimate goal is to
+find and use unique and reliable selectors that will get you the intended behavior you want for your test.
+
+You can find a full list of CSS Selectors [here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+For each test:
+
+- Open the browser
+- Visit the page
+- Grab the first link that matches the selector and output the URL to the terminal
+- Check where the link points to
+- Close the browser
+
+## Summary
+
+In a perfect world all pages would be written with sound markup and uniquely named bits but that's more the exception
+than the rule. So, you will likely find as you dig into automating various sites that things will not be as
+straightforward as the examples above.
+
+As far as finding CSS Selectors, the simplest way to find them is to inspect the elements on a page. The best way to
+do this is from within your web browser. Fortunately popular browsers of today come pre-loaded with development tools
+that make this simple to accomplish.
+
+When viewing the page, right click on the element you want to interact with and click __Inspect__. This will bring up
+the developer tools with all the HTML for the page, zoomed into your selection. From here you can see if there are
+unique attributes you can work with (e.g. `id`, `class`, etc.), and construct a CSS Selector to use in a test.
+
+Happy Testing!
 
 ## About The Author
 

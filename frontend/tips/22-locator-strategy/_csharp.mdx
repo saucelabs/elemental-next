@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/csharp/LocatorStrategyTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox and visits the
+page, and the `TearDown()` method (marked with `[TestCleanup]`) closes it.
+
+### The Tests
+
+Each test finds a link with `_driver.FindElement(By.CssSelector(...))`, gets its URL with `GetDomProperty("href")`
+(the full URL, as the browser resolved it), writes it to the console, and checks where it points to. Note the
+`By.CssSelector`: it tells Selenium which locator strategy to use, and the string we pass to it is the selector.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

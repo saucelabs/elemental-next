@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/python/locator_strategy.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture creates a Firefox instance and visits the page before `yield`ing it to the test, and quits it
+once the test is done.
+
+### The Tests
+
+Each test finds a link with `driver.find_element(By.CSS_SELECTOR, ...)`, gets its URL with `get_attribute('href')`,
+prints it, and checks where it points to. Note the `By.CSS_SELECTOR`: it tells Selenium which locator strategy to use,
+and the string after it is the selector.
+
+Run pytest with `-s` (e.g., `pytest -s locator_strategy.py`) to see the printed URLs.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest locator_strategy.py` from the
+command-line.
