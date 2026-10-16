@@ -1,70 +1,32 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-For this example we will use [a dropdown list](http://the-internet.herokuapp.com/dropdown) from [the-internet](http://github.com/saucelabs/the-internet). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
+## TL;DR - Show Me The Code
 
-First we'll require our dependent libraries, declare our test class, and wire up some setup and teardown methods for our test.
+<TipCode codePath={"40-disabled-element/code/javascript/test/dropdownDisabled.spec.js"} language={"js"}/>
 
-```javascript
-// filename: test/disabledElement.spec.js
-const assert = require("assert");
-const { Builder, By } = require("selenium-webdriver");
+## Code Walkthrough
 
-describe("Disabled Element", function() {
-  let driver;
+### Setup and Teardown
 
-  beforeEach(async function() {
-    this.timeout(60000);
-    driver = await new Builder().forBrowser("chrome").build();
-  });
+The `beforeEach` hook launches Firefox before each test, and the `afterEach` hook quits it.
 
-  afterEach(async function() {
-    await driver.quit();
-  });
-// ...
-```
+### The Test
 
-Now let's wire up our test.
+`option` finds all the `option` elements (`findElements`, plural) and returns the first one with the text we are
+looking for. Getting the text of each element is asynchronous, so we use a `for...of` loop with `await`.
 
-```javascript
-// filename: test/disabledElement.spec.js
-// ...
-  it("dropdown list should contain disabled and enabled elements", async function() {
-    driver.get("http://the-internet.herokuapp.com/dropdown");
-    const dropdownList = await driver.findElements(By.css("option"));
-    assert((await dropdownList[0].isEnabled()) === false);
-  });
-});
-```
+The test visits the page and asserts that the `Please select an option` item is not enabled (`isEnabled()` resolves
+to `false`), and that `Option 1` is.
 
-After loading the page, we find all the elements that have an option tag (which are all the items in the dropdown list). This returns a list of elements, so we use the first one (which is the one with the text of `'Please select an option'`).
+### Executing the Test
 
-Once we have the element we want we see if it's enabled (with `.isEnabled`) and assert based on the response.
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
 
-Also, since we grabbed all the dropdown list options, we can easily test the opposite case by checking the second or third option in the list.
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
 
-```javascript
-// filename: test/disabledElement.spec.js
-// ...
-  it("dropdown list should contain disabled and enabled elements", async function() {
-		// ...
-    assert(await dropdownList[1].isEnabled());
-  });
-});
-```
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
-
-+ Open a browser
-+ Visit the page
-+ Grab all dropdown list elements
-+ Assert that the first element in the list is not enabled
-+ Assert that the second element in the list is enabled
-+ Close the browser
-
-## Summary
-
-Hopefully this tip has helped make the task of seeing whether an element is enabled or disabled more approachable.
-
-Happy Testing!
+Finally, we can run the test by executing `npm test` from the command-line.
