@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/python/base_page.py"} language={"python"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/python/dynamic_loading_page.py"} language={"python"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/python/login_page.py"} language={"python"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/python/base_page_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Base Page Object
+
+`BasePage` stores the Selenium WebDriver instance it receives in its constructor (`__init__`), and the rest of
+the class is filled with common Selenium actions: `visit`, `find`, `click`, `type`, `is_displayed`,
+`text_of`, `title`, and `wait_for`.
+
+Note that `is_displayed` returns `False` when the element is not on the page instead of raising an exception.
+That lets `wait_for` use it with an explicit wait (`WebDriverWait`) until the element is displayed.
+
+### The Page Objects
+
+`DynamicLoadingPage` and `LoginPage` inherit from it (`class DynamicLoadingPage(BasePage)`). Their constructors
+call `super().__init__(driver)` first, which stores the driver in the Base Page Object so all of its methods work.
+Then they visit their page and verify that we are in the right place.
+
+Each method now reads like a description of the page behavior (e.g., `self.click(self.START_BUTTON)`), with no
+Selenium code in it.
+
+### The Test
+
+The `driver` fixture launches Firefox and quits it after each test. The tests create the Page Objects and use
+their methods, just like in the previous tip.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line. The `requirements.txt` file contains the libraries we
+need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest base_page_test.py` from the
+command-line.

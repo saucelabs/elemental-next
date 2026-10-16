@@ -35,22 +35,60 @@ With a Base Page Object (a.k.a. a facade layer) we can abstract all common actio
 leverage them in any Page Object we see fit.
 
 
+## Example
+
+We are going to take the code from our previous tip ([Use a Page Object](/tips/7-use-a-page-object)) and modify it
+to use a Base Page Object.
+
+The Base Page Object is a simple class that our other Page Objects inherit from. It stores the Selenium WebDriver
+instance and wraps the common Selenium actions (visit, find, click, type, check if something is displayed, get its
+text, and wait for it) in a small Domain Specific Language (DSL).
+
+With it in hand, the Dynamic Loading Page Object from the previous tip no longer calls Selenium directly. To show
+that the same actions are reusable, we also add a Page Object for
+[the login page](https://the-internet.herokuapp.com/login) found on
+[the-internet](https://github.com/saucelabs/the-internet).
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
 
-## About The Author
+- Load the Dynamic Loading page, click on start, and assert that `Hello World!` is displayed
+- Load the login page, log in with valid credentials, and assert that the success message is displayed
 
-Dave Haeffner is the original writer of Elemental Selenium -- a free, once weekly Selenium tip newsletter that's read
-by thousands of testing professionals. He also created and maintains the-internet (an open-source web app that's
-perfect for writing automated tests against).
+## Summary
 
-Dave has helped numerous companies successfully implement automated acceptance testing; including The Motley Fool,
-ManTech International, Sittercity, and Animoto. He is also an active member of the Selenium project and has spoken
-at numerous conferences and meetups around the world about automated acceptance testing.
+Now we are in a position to write more Page Objects that leverage common actions without duplication or any
+Selenium code directly in them.
 
-![Dave Haeffner profile picture](/img/authors/dave-haeffner.jpeg#author-img 'a title')
+Hopefully this tip has helped you find your way further down the rabbit hole of Page Objects (in a good way).
 
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
