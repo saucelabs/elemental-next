@@ -19,6 +19,8 @@ it doesn't follow redirects, which we need for the second test.
 `href` of every link (`get_dom_attribute('href')` returns the relative path as written in the page). Then, for each
 link, it performs a `HEAD` request with an `Authorization: Basic ...` header (the credentials encoded in Base64) and
 asserts that the response status is `200`.
+The file names can have spaces and other characters that aren't allowed in a URL, so we encode the path first
+(`urllib.parse.quote`).
 
 ### Page Behind a Form Login
 

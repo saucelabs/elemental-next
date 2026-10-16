@@ -17,6 +17,8 @@ The first `run` block loads the secure downloads page with the credentials in th
 every link (`dom_attribute('href')` returns the relative path as written in the page). Then, for each link, it sends
 a `HEAD` request with the same credentials (`head.basic_auth('admin', 'admin')`) and asserts that the response status
 is `200`.
+The file names can have spaces and other characters that aren't allowed in a URL, so we encode the path first
+(`URI::RFC2396_PARSER.escape`).
 
 ### Page Behind a Form Login
 
