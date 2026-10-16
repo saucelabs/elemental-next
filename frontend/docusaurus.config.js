@@ -116,7 +116,6 @@ const config = {
                 }
             }
         },
-        "./plugins/getdrip.js",
     ],
 
     themeConfig:
