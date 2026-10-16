@@ -26,12 +26,65 @@ There are times when you are testing a page (or numerous pages) and you want to 
 A great way to handle this is by checking the HTTP Status Code that the browser received. However, this functionality
 is not available in Selenium WebDriver.
 
+## A Solution
+
+The tried and true approach that Selenium practitioners used to recommend was a proxy server (e.g., BrowserMob
+Proxy), which watches the network traffic between the browser and the application. It works, but it is one more
+thing to download, start, configure, and keep up to date.
+
+Nowadays the browser can tell us itself. The [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming)
+keeps an entry for the page that was loaded, and its `responseStatus` property is the HTTP status code of the
+response. So we can read it with a small piece of JavaScript executed through Selenium:
+
+```js
+return performance.getEntriesByType('navigation')[0].responseStatus
+```
+
+It works in all modern browsers, with no proxy and no extra libraries.
+
+__NOTE:__ It gives us the status code of the page we navigated to. If you need the status codes of other requests
+(e.g., images, scripts, or API calls), have a look at the network features of
+[WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/).
+
+## Example
+
+__NOTE:__ We are using [a status codes example](https://the-internet.herokuapp.com/status_codes) found on
+[the-internet](https://github.com/saucelabs/the-internet). It has a page that returns each of these status codes:
+`200`, `301`, `404`, and `500`.
+
+We add a small helper that executes the script above and returns the status code. Then, for each of the status
+codes, we visit its page and check that the helper returns the code we expect.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
 
+## Expected Behavior
+
+- Browser opens
+- Visit the page that returns the status code
+- Retrieve the status code with the Navigation Timing API
+- Assert that it is the status code we expect
+- Browser closes
+
+## Summary
+
+Hopefully this tip will help you add a quick check of the HTTP status codes to your tests.
+
+The original version of this tip was inspired by [Jim Evans'](https://github.com/jimevans) multi-part blog post
+series on doing the same thing in C# with Fiddler
+([1](http://jimevansmusic.blogspot.com/2013/08/implementing-webdriver-http-status.html),
+[2](http://jimevansmusic.blogspot.com/2013/08/implementing-http-status-codes-in.html),
+[3](http://jimevansmusic.blogspot.com/2013/08/implementing-http-status-codes-in_17.html)), which was in response to
+[Selenium Issue 141](https://github.com/SeleniumHQ/selenium/issues/141). Thanks, Jim!
+
+Happy Testing!
 
 ## About The Author
 

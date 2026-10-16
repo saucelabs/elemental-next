@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"17-retrieve-http-status-codes/code/csharp/StatusCodesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of WebDriver with Firefox, and the
+`TearDown()` method (marked with `[TestCleanup]`) closes it.
+
+### Retrieving the Status Code
+
+`StatusCode()` casts the driver to `IJavaScriptExecutor`, executes the Navigation Timing script with `ExecuteScript`,
+and converts the result to a number.
+
+### The Test
+
+`RetrievesStatusCode` runs once for each `[DataRow]`, receiving the expected status code as an argument. It visits
+the page that returns the code and asserts that `StatusCode()` returns the same one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
