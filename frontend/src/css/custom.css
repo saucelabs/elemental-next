@@ -128,3 +128,16 @@ html[data-theme='dark'] {
     color: var(--ifm-color-content-inverse);
 }
 
+
+.tips-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+}
+
+.tips-pagination__status {
+    color: var(--ifm-color-content);
+}
