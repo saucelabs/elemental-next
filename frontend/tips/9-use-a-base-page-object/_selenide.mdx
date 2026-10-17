@@ -1,0 +1,70 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/selenide/src/test/java/com/elemental/selenium/BasePage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/selenide/src/test/java/com/elemental/selenium/DynamicLoadingPage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/selenide/src/test/java/com/elemental/selenium/LoginPage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/selenide/src/test/java/com/elemental/selenium/BasePageTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Selenide Is Already a DSL
+
+In the other languages, the Base Page Object wraps the common Selenium actions (`find`, `click`, `type`,
+`isDisplayed`, `waitFor`, ...) in a small Domain Specific Language.
+
+Selenide _is_ such a DSL. `$("#start button").click()` or `$("#finish").shouldHave(text("Hello World!"))` are
+already short and readable, and every `should*` method waits for its condition on its own. Wrapping them in
+`click(locator)` or `waitFor(locator)` methods would just duplicate Selenide, so our Base Page Object doesn't
+do that.
+
+### The Base Page Object
+
+Instead, `BasePage` contains only what is really common to all our pages.
+
+It's `abstract`, because it doesn't describe any particular page. It knows the base URL of the application
+(line 8), and its `visit` method (lines 10 to 13) opens a page by its path and verifies that we are in the right
+place: `webdriver().shouldHave(title("The Internet"))` waits until the page has the expected title.
+
+NB! There is no `WebDriver` field and no constructor. Selenide keeps the browser for the current thread, and
+opens it only when it's needed (on the first `open` call).
+
+As the application grows, this is the place for other common things: a header or a menu present on every page,
+a flash message, a cookie banner, logging out, ...
+
+### The Page Objects
+
+`DynamicLoadingPage` and `LoginPage` inherit from it (`public class DynamicLoadingPage extends BasePage`). Their
+constructors call `visit` with their own path, so creating a Page Object opens its page.
+
+Their methods describe the page behavior (`start`, `loginAs`) and the expected results (`shouldShowFinishText`,
+`shouldShowSuccessMessage`). The checks are made with Selenide's `should*` methods, so they wait automatically:
+* `shouldShowFinishText` waits up to 10 seconds, since loading `Hello World!` takes longer than the default timeout
+  of Selenide (4 seconds),
+* `shouldShowSuccessMessage` uses the default timeout.
+
+### The Test
+
+`BasePageTest` has no setup and no teardown. Selenide opens the browser when the first Page Object visits its page,
+and closes it automatically when the tests finish.
+
+The tests create the Page Objects and call their methods, just like in [the previous tip](/tips/7-use-a-page-object).
+They don't need assertions of their own: if the expected text or message doesn't appear in time, the `should*`
+method fails the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
