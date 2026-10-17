@@ -166,3 +166,9 @@ html[data-theme='dark'] {
 [data-theme='dark'] .card .button--outline.button--warning {
     --ifm-button-border-color: var(--ifm-color-warning);
 }
+
+/* Links inside text are underlined, so they don't rely only on color to stand out (WCAG 1.4.1) */
+.markdown a:not(.button):not(.card),
+.hero__subtitle a {
+    text-decoration: underline;
+}
