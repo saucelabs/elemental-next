@@ -3,6 +3,29 @@
 
 import {themes} from 'prism-react-renderer';
 
+// Replaces the colors of a Prism theme that don't have enough contrast with its background (WCAG AA, 4.5:1)
+function withColors(theme, replacements) {
+    return {
+        ...theme,
+        styles: theme.styles.map((style) => {
+            const color = replacements[style.style.color];
+            return color ? {...style, style: {...style.style, color}} : style;
+        }),
+    };
+}
+
+const codeTheme = withColors(themes.github, {
+    '#999988': '#636c76', // comments
+    '#e3116c': '#b3135a', // strings
+    '#36acaa': '#0a7d7b', // numbers, booleans, constants
+    '#00a4db': '#005cc5', // keywords
+    '#d73a49': '#cf222e', // functions, tags
+});
+
+const darkCodeTheme = withColors(themes.dracula, {
+    'rgb(98, 114, 164)': '#8b9bc8', // comments
+});
+
 // Reverse the sidebar items ordering (including nested category items)
 function generateSidebarItems(items) {
     // Reverse items in categories
@@ -203,8 +226,8 @@ const config = {
                 copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
             },
             prism: {
-                theme: themes.github,
-                darkTheme: themes.dracula,
+                theme: codeTheme,
+                darkTheme: darkCodeTheme,
                 additionalLanguages: ['ruby', 'java', 'csharp', 'json'],
             },
             colorMode: {
