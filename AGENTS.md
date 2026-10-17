@@ -89,8 +89,7 @@ tips/1-upload-a-file/
 - `test-build.yml`: builds the site on every PR.
 - `accessibility.yml`: on PRs, builds and serves the site and runs `npm run test:a11y`
   (`frontend/scripts/accessibility.mjs`). It checks every page in the sitemap (one tag page only) with axe, WCAG 2.2
-  A and AA rules, in light and dark mode, using Selenium and Firefox. Any violation fails the job. It is a required
-  check on `main`, so it runs on every PR.
+  A and AA rules, in light and dark mode, using Selenium and Firefox. Any violation fails the job.
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`): thin callers of
   the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
