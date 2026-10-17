@@ -89,7 +89,8 @@ tips/1-upload-a-file/
 - `test-build.yml`: builds the site on every PR.
 - `accessibility.yml`: on PRs, builds and serves the site and runs `npm run test:a11y`
   (`frontend/scripts/accessibility.mjs`). It checks every page in the sitemap (one tag page only) with axe, WCAG 2.2
-  A and AA rules, in light and dark mode, using Selenium and Firefox. Any violation fails the job.
+  A and AA rules, in light and dark mode (in parallel), using Selenium and Firefox. It checks every language tab of a
+  tip, and fails on any violation or on a page that crashes ("This page crashed").
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`): thin callers of
   the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
@@ -143,5 +144,7 @@ Run a single example from its `code/<lang>` directory (see that directory's READ
 - `TipCode` uses `require(`!!raw-loader!@site/tips/${codePath}`)`, so webpack bundles every file under
   `frontend/tips/`. Local build output inside a tip (`node_modules`, `target`, `bin`, `obj`, ...) makes
   `npm run build` fail with `RangeError: Invalid string length`. Clean it with `git clean -fdX frontend/tips`.
+- `TipCode` can't embed dotfiles (e.g., `.rspec`): webpack leaves them out of the bundle, and the page crashes at
+  runtime with "Cannot find module" (the build still passes). Show their content in a fenced code block instead.
 - The examples use Firefox. Locally, a new Firefox may fail to start ("Failed to read marionette port") while
   another Firefox is open; CI is the source of truth.

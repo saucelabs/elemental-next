@@ -6,7 +6,12 @@ import TipCode from "@site/src/components/tipCode";
 
 <TipCode codePath={"57-junit-xml/code/ruby/spec/title_spec.rb"} language={"ruby"}/>
 
-<TipCode codePath={"57-junit-xml/code/ruby/.rspec"} language={"text"}/>
+```text title=".rspec"
+--require spec_helper
+--format progress
+--format RspecJunitFormatter
+--out result.xml
+```
 
 <TipCode codePath={"57-junit-xml/code/ruby/run_specs.rb"} language={"ruby"}/>
 

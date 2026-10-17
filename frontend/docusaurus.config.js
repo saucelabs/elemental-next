@@ -3,13 +3,15 @@
 
 import {themes} from 'prism-react-renderer';
 
-// Replaces the colors of a Prism theme that don't have enough contrast with its background (WCAG AA, 4.5:1)
+// Replaces the colors of a Prism theme that don't have enough contrast with its background (WCAG AA, 4.5:1),
+// and removes the opacity of the faded tokens (e.g., namespaces in Java imports), which lowers their contrast too
 function withColors(theme, replacements) {
     return {
         ...theme,
         styles: theme.styles.map((style) => {
-            const color = replacements[style.style.color];
-            return color ? {...style, style: {...style.style, color}} : style;
+            const {opacity, ...rest} = style.style;
+            const color = replacements[rest.color];
+            return {...style, style: color ? {...rest, color} : rest};
         }),
     };
 }
