@@ -4,6 +4,44 @@ import Layout from '@theme/Layout';
 import useGlobalData from '@docusaurus/useGlobalData';
 import Link from "@docusaurus/Link";
 import {useLocation, useHistory} from "@docusaurus/router";
+import BackToTopButton from '@theme/BackToTopButton';
+
+// Three rows of three cards
+const TIPS_PER_PAGE = 9;
+
+function Pagination({page, pageCount, showAll, handlePageChange, handleShowAll}) {
+    if (pageCount <= 1 && !showAll) {
+        return null;
+    }
+    return (
+        <nav className="tips-pagination" aria-label="Tips pages">
+            {!showAll && (
+                <>
+                    <button
+                        className="button button--outline button--primary"
+                        disabled={page === 1}
+                        onClick={() => handlePageChange(page - 1)}
+                    >
+                        ← Previous
+                    </button>
+                    <span className="tips-pagination__status">
+                        Page {page} of {pageCount}
+                    </span>
+                    <button
+                        className="button button--outline button--primary"
+                        disabled={page === pageCount}
+                        onClick={() => handlePageChange(page + 1)}
+                    >
+                        Next →
+                    </button>
+                </>
+            )}
+            <button className="button button--link" onClick={() => handleShowAll(!showAll)}>
+                {showAll ? 'Show fewer tips' : 'Show all tips'}
+            </button>
+        </nav>
+    );
+}
 
 function CardTags({tags, handleTagChange}) {
     return (
@@ -91,6 +129,8 @@ const Tips = () => {
     const [selectedLevel, setSelectedLevel] = useState('All');
     const [selectedOrder, setSelectedOrder] = useState('Newest');
     const [selectedTag, setSelectedTag] = useState({tag: 'All'});
+    const [page, setPage] = useState(1);
+    const [showAll, setShowAll] = useState(false);
     const location = useLocation();
     const history = useHistory();
 
@@ -112,6 +152,29 @@ const Tips = () => {
         setSelectedTag(event.target.value);
     }
 
+    // Keeps the page in the URL (?page=2 or ?page=all), so the back button and shared links work
+    const updatePageParam = (value) => {
+        const urlParams = new URLSearchParams(location.search);
+        if (value === 1) {
+            urlParams.delete("page");
+        } else {
+            urlParams.set("page", value);
+        }
+        history.replace({search: urlParams.toString()});
+    }
+
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+        updatePageParam(newPage);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    const handleShowAll = (all) => {
+        setShowAll(all);
+        setPage(1);
+        updatePageParam(all ? 'all' : 1);
+    }
+
     useEffect(() => {
         let globalMetadata = globalData.metadata.default.aggregateFrontMatter;
         const uniqueCategories = [...new Set(globalMetadata.flatMap(card => card.category))];
@@ -124,9 +187,15 @@ const Tips = () => {
         if (location.search) {
             const urlParams = new URLSearchParams(location.search);
             const paramLevel = urlParams.get("level");
-            const matchedLevel = tipLevels.find(level => level.toLowerCase() === paramLevel.toLowerCase());
+            const matchedLevel = tipLevels.find(level => level.toLowerCase() === paramLevel?.toLowerCase());
             if (matchedLevel) {
                 setSelectedLevel(matchedLevel);
+            }
+            const paramPage = urlParams.get("page");
+            if (paramPage === "all") {
+                setShowAll(true);
+            } else if (Number(paramPage) > 1) {
+                setPage(Number(paramPage));
             }
             urlParams.delete("level");
             history.replace({
@@ -153,6 +222,34 @@ const Tips = () => {
         }
         setMetadata(filteredMetadata);
     }, [selectedCategory, selectedLevel, selectedOrder, selectedTag]);
+
+    // A new filter or order starts again from the first page
+    const isFirstFilter = React.useRef(true);
+    useEffect(() => {
+        if (isFirstFilter.current) {
+            isFirstFilter.current = false;
+            return;
+        }
+        if (page !== 1) {
+            setPage(1);
+            updatePageParam(showAll ? 'all' : 1);
+        }
+    }, [selectedCategory, selectedLevel, selectedOrder, selectedTag]);
+
+    const pageCount = Math.max(1, Math.ceil(metadata.length / TIPS_PER_PAGE));
+    const currentPage = Math.min(page, pageCount);
+    const visibleTips = showAll
+        ? metadata
+        : metadata.slice((currentPage - 1) * TIPS_PER_PAGE, currentPage * TIPS_PER_PAGE);
+    const pagination = (
+        <Pagination
+            page={currentPage}
+            pageCount={pageCount}
+            showAll={showAll}
+            handlePageChange={handlePageChange}
+            handleShowAll={handleShowAll}
+        />
+    );
 
     return (
         <Layout
@@ -231,7 +328,7 @@ const Tips = () => {
                         </div>
                     </div>
                     <div className="row">
-                        {metadata.map((card, index) => (
+                        {visibleTips.map((card, index) => (
                             <div key={index} className="col col--4 col--12@xs padding-vert--sm">
                                 <div className="card card--full-height shadow--md">
                                     <div className="card__header">
@@ -268,7 +365,9 @@ const Tips = () => {
                             </div>
                         ))}
                     </div>
+                    {pagination}
                 </div>
+                <BackToTopButton/>
             </main>
         </Layout>
     );
