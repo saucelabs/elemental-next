@@ -1,0 +1,72 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode
+    codePath={"8-download-a-file-revisited/code/selenide/src/test/java/com/elemental/selenium/DownloadRevisitedTest.java"}
+    language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in our requisite classes:
+ * the test runner (e.g., `org.junit.jupiter.api.Test`),
+ * the Selenide methods to open a page, find an element and download a file (e.g., `com.codeborne.selenide.Selenide.download`),
+ * matchers for assertions (e.g., `org.assertj.core.api.Assertions.assertThat`).
+
+NB! You don't need to add an HTTP client library or the typical "selenium*" dependencies.
+Just one dependency is enough: `com.codeborne:selenide`.
+
+### Setup and Teardown
+
+There is none. Selenide opens the browser only when it's needed (in the second test), and closes it automatically
+when the tests finish.
+
+### Downloading a File by URL
+
+In the `downloadFileByUrl` test (lines 13 to 19), we call the static method `Selenide.download(url)`.
+It sends an HTTP `GET` request for the given URL, saves the response to a file in a unique folder
+(under `build/downloads` by default), and _returns_ that file.
+
+Note that this test doesn't open a browser at all. When you know the URL of the file, you don't need one.
+
+Then we verify the name of the downloaded file and its content.
+
+### Downloading a File by Link From a Page
+
+More often, the URL of the file is only known from the page. In the `downloadFileByLinkFromPage` test
+(lines 21 to 29), we open the page, take the `href` of the first download link (Selenide returns it as an absolute
+URL), and pass it to `download(url)`.
+
+When the browser is open, Selenide sends the request "like the browser would do": it adds the browser's cookies and
+its `User-Agent` header to the request. So this also works for files that are only available to a logged-in user.
+
+Finally, we assert that the file is not empty.
+
+### `download(url)` vs. a `HEAD` Request
+
+Unlike the examples in other languages, Selenide performs a `GET` request, so the file is actually downloaded.
+On the other hand, you can check not only the headers, but also the name and the content of the file.
+
+Some more details:
+ * A relative URL (starting with `/`) is resolved against `Configuration.baseUrl`.
+ * The download fails if it takes longer than `Configuration.timeout`. Use `download(url, timeoutMs)` to set
+   another timeout.
+ * The URL must be properly encoded (e.g., `/files/%D0%B6.txt` instead of `/files/ж.txt`).
+
+If you want to click a link and download the file with the browser itself, see
+[the Selenide example in tip 2](/tips/2-download-a-file).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
