@@ -84,7 +84,11 @@ cd frontend
 npm install
 npm run start   # dev server at http://localhost:3000
 npm run build   # production build, fails on broken links or MDX errors
+npm run serve   # serve the production build at http://localhost:3000
+npm run test:a11y  # in another terminal: check every page with axe (accessibility), in light and dark mode
 ```
+
+CI runs the accessibility check on every pull request, so please run it when you change the site's design or content.
 
 To run a code example, follow the README.md in its `code/<language>/` directory.
 

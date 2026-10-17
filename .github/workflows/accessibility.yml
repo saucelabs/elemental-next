@@ -1,0 +1,53 @@
+# Checks every page of the site with axe (WCAG 2.2 A and AA), in light and dark mode.
+# See frontend/scripts/accessibility.mjs.
+name: Accessibility
+on:
+  pull_request:
+    paths-ignore:
+      - 'frontend/tips/*/code/**'
+  workflow_dispatch:
+
+jobs:
+  axe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+
+      - uses: actions/cache@v6
+        id: cache-npm-packages
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache-npm-packages.outputs.cache-hit != 'true'
+        run: |
+          cd frontend
+          npm install
+      - uses: actions/cache@v6
+        id: cache-build
+        with:
+          path: |
+            frontend/build
+          key: ${{ runner.os }}-${{ github.sha }}
+
+      - name: Run Build
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Serve the site
+        run: |
+          cd frontend
+          npm run serve -- --port 3000 --no-open &
+          for i in $(seq 1 30); do curl -sf http://localhost:3000 > /dev/null && break; sleep 2; done
+
+      - name: Check accessibility
+        run: |
+          cd frontend
+          npm run test:a11y
