@@ -141,3 +141,28 @@ html[data-theme='dark'] {
 .tips-pagination__status {
     color: var(--ifm-color-content);
 }
+
+/* Level and category badges on the tip cards, with enough contrast for their text (WCAG AA, 4.5:1) */
+.card .button--outline.button--success {
+    --ifm-button-border-color: #1a7f37;
+}
+
+.card .button--outline.button--info {
+    --ifm-button-border-color: #0b6e8f;
+}
+
+.card .button--outline.button--warning {
+    --ifm-button-border-color: #8a5a00;
+}
+
+[data-theme='dark'] .card .button--outline.button--success {
+    --ifm-button-border-color: #5fd35f;
+}
+
+[data-theme='dark'] .card .button--outline.button--info {
+    --ifm-button-border-color: var(--ifm-color-info);
+}
+
+[data-theme='dark'] .card .button--outline.button--warning {
+    --ifm-button-border-color: var(--ifm-color-warning);
+}
