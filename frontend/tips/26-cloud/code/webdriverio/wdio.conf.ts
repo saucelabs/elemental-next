@@ -7,15 +7,16 @@ export const config: WebdriverIO.Config = {
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
     region: 'us',
+    // The Sauce service names each job and marks it as passed or failed on Sauce Labs
+    services: onSauce ? [['sauce', {
+        setJobName: (config, capabilities, suiteTitle) => `Elemental Selenium - Tip 26 - WebdriverIO - ${suiteTitle}`,
+    }]] : [],
     specs: ['./test/**/*.e2e.ts'],
     maxInstances: 1,
     capabilities: [onSauce ? {
         browserName: 'chrome',
         browserVersion: 'latest',
         platformName: 'Windows 11',
-        'sauce:options': {
-            name: 'Elemental Selenium - Tip 26 - WebdriverIO',
-        },
     } : {browserName: 'chrome'}],
     framework: 'mocha',
     reporters: ['spec'],
