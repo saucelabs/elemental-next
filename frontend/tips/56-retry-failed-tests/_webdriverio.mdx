@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/webdriverio/test/retry.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Retrying the Test
+
+WebdriverIO runs the tests with Mocha, and Mocha can run a failed test again. In `wdio.conf.ts`, `retries: 9` in
+`mochaOpts` (line 10) runs a failed test up to 9 more times before it counts as failed. The spec reporter shows how
+many times it retried, e.g., `✓ is successful (1x retries)`.
+
+WebdriverIO also has `specFileRetries`, which runs a whole failed spec file again in a new browser. It helps when a
+failure leaves the browser in a bad state.
+
+### The Test
+
+Lines 5 to 12 are the test. The page shows the successful message only some of the time, so the test is flaky on
+purpose. It visits the page and checks that the notification says `Action successful`.
+
+Retries hide flaky tests, so use them with care: keep the count low, and fix the cause of the flakiness when you can.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
