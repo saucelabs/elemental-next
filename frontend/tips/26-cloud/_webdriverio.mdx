@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/webdriverio/test/cloud.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Configuring Sauce Labs
+
+In WebdriverIO, where the browser runs is part of the configuration, not of the test.
+
+<TipCode codePath={"26-cloud/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+
+- Lines 3 to 5 give WebdriverIO the Sauce Labs user name and access key (from the `SAUCE_USERNAME` and
+  `SAUCE_ACCESS_KEY` environment variables) and the region of the data center. With `user` and `key` set, WebdriverIO
+  sends the tests to Sauce Labs instead of starting a local browser.
+- Lines 7 to 9 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and,
+  when the tests end, marks the job as passed or failed. Without it, every job shows up on Sauce Labs with no name and
+  no result. `setJobName` sets the name, here with the title of the `describe` block (`suiteTitle`).
+- Lines 12 to 16 ask for the latest Chrome on Windows 11.
+
+### The Test
+
+The test (lines 4 to 7) loads the page and checks the title. It is the same test we would run locally: moving it to
+the cloud only changed the configuration.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
