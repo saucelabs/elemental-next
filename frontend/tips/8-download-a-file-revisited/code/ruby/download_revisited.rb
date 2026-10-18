@@ -26,6 +26,6 @@ run do
     http.head(uri.path)
   end
 
-  expect(response['Content-Type']).to eql('application/octet-stream')
+  expect(response['Content-Disposition']).to start_with('attachment')
   expect(response['Content-Length'].to_i).to be > 0
 end

@@ -17,8 +17,8 @@ def test_file_can_be_downloaded(driver):
 
     request = urllib.request.Request(download_link, method='HEAD')
     with urllib.request.urlopen(request) as response:
-        content_type = response.headers['Content-Type']
+        content_disposition = response.headers['Content-Disposition']
         content_length = int(response.headers['Content-Length'])
 
-    assert content_type == 'application/octet-stream'
+    assert content_disposition.startswith('attachment')
     assert content_length > 0

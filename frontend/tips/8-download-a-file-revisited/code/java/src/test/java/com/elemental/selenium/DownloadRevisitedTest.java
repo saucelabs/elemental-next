@@ -38,10 +38,10 @@ public class DownloadRevisitedTest {
             .build();
         HttpResponse<Void> response = HttpClient.newHttpClient()
             .send(request, HttpResponse.BodyHandlers.discarding());
-        String contentType = response.headers().firstValue("Content-Type").orElse("");
+        String contentDisposition = response.headers().firstValue("Content-Disposition").orElse("");
         long contentLength = response.headers().firstValueAsLong("Content-Length").orElse(0);
 
-        Assertions.assertEquals("application/octet-stream", contentType);
+        Assertions.assertTrue(contentDisposition.startsWith("attachment"));
         Assertions.assertTrue(contentLength > 0);
     }
 }
