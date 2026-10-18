@@ -1,7 +1,3 @@
-// Runs the tests on Sauce Labs when the credentials are set. Otherwise the tests skip themselves, and the runner
-// starts a local Chrome that is not used.
-const onSauce = Boolean(process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY);
-
 const BROWSERS = ['chrome', 'firefox', 'MicrosoftEdge'];
 
 export const config: WebdriverIO.Config = {
@@ -10,18 +6,18 @@ export const config: WebdriverIO.Config = {
     key: process.env.SAUCE_ACCESS_KEY,
     region: 'us',
     // The Sauce service names each job and marks it as passed or failed on Sauce Labs
-    services: onSauce ? [['sauce', {
+    services: [['sauce', {
         setJobName: (config, capabilities) =>
             `Elemental Selenium - Tip 42 - WebdriverIO - ${(capabilities as WebdriverIO.Capabilities).browserName}`,
-    }]] : [],
+    }]],
     specs: ['./test/**/*.e2e.ts'],
     // All the browsers at the same time
     maxInstances: 3,
-    capabilities: onSauce ? BROWSERS.map((browserName) => ({
+    capabilities: BROWSERS.map((browserName) => ({
         browserName,
         browserVersion: 'latest',
         platformName: 'Windows 11',
-    })) : [{browserName: 'chrome'}],
+    })),
     framework: 'mocha',
     reporters: ['spec'],
     logLevel: 'error',
