@@ -1,0 +1,15 @@
+{
+  "name": "upload-a-file",
+  "version": "1.0.0",
+  "description": "A project to showcase uploading a file using Vibium",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha test/**/*.spec.js --timeout 60000"
+  },
+  "dependencies": {
+    "vibium": "26.8.21"
+  },
+  "devDependencies": {
+    "mocha": "12.0.3"
+  }
+}

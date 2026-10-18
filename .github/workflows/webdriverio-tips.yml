@@ -1,0 +1,30 @@
+name: Run WebdriverIO tips
+
+on:
+  schedule:
+    - cron: '30 23 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/code/webdriverio/**'
+      - '.github/workflows/webdriverio-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/code/webdriverio/**'
+      - '.github/workflows/webdriverio-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+
+jobs:
+  run_tips:
+    uses: ./.github/workflows/run-tips.yml
+    secrets: inherit
+    with:
+      language: webdriverio
+      workflow-file: webdriverio-tips.yml

@@ -17,14 +17,16 @@ function pages() {
     return [...paths.filter((path) => !tagPages.includes(path)), tagPages[0], '/does-not-exist'];
 }
 
-// The language tabs of a tip load their content after the page loads. Waits until the visible tab has its content.
+// The tabs of a tip load their content after the page loads. Waits until every visible tab has its content.
 async function waitForTabContent(driver) {
     await driver.wait(() => driver.executeScript(`
-        const panel = document.querySelector('[role="tabpanel"]:not([hidden])');
-        return panel !== null && panel.children.length > 0 && panel.textContent.trim() !== 'Loading...';`), 10000);
+        const panels = [...document.querySelectorAll('[role="tabpanel"]:not([hidden])')]
+            .filter((panel) => panel.parentElement.closest('[hidden]') === null);
+        return panels.length > 0
+            && panels.every((panel) => panel.children.length > 0 && panel.textContent.trim() !== 'Loading...');`), 10000);
 }
 
-// Tips with language tabs render them after the page loads
+// Tips with tabs render them after the page loads
 async function waitForTabs(driver, path) {
     if (!/^\/tips\/\d+-/.test(path)) {
         return;
@@ -32,9 +34,33 @@ async function waitForTabs(driver, path) {
     try {
         await driver.wait(until.elementLocated(By.css('[role="tab"]')), 5000);
     } catch {
-        return; // This tip has no language tabs
+        return; // This tip has no tabs
     }
     await waitForTabContent(driver);
+}
+
+// Clicks each tab of the tab list and checks its content. When a tab has tabs inside (e.g., the languages of a tool),
+// those are checked too. The tabs selected when the page loads were already checked with the full page.
+async function checkTabs(driver, theme, path, tablist, prefix = '') {
+    for (const tab of await tablist.findElements(By.xpath('./*[@role="tab"]'))) {
+        const name = prefix + await tab.getText();
+        if (await tab.getAttribute('aria-selected') !== 'true') {
+            await driver.executeScript('arguments[0].click()', tab);
+            await driver.wait(async () => await tab.getAttribute('aria-selected') === 'true', 5000);
+            await waitForTabContent(driver);
+            const results = await new AxeBuilder(driver)
+                .include('[role="tabpanel"]:not([hidden])')
+                .withTags(tags)
+                .analyze();
+            report(results, theme, `${path} (${name})`);
+        }
+        const panel = await tablist.findElement(
+            By.xpath('following-sibling::div/div[@role="tabpanel" and not(@hidden)]'));
+        const inner = await panel.findElements(By.css('[role="tablist"]'));
+        if (inner.length > 0) {
+            await checkTabs(driver, theme, path, inner[0], `${name} / `);
+        }
+    }
 }
 
 function report(results, theme, path) {
@@ -67,20 +93,10 @@ async function checkTheme(theme) {
                     throw new Error('the page crashed');
                 }
                 report(await new AxeBuilder(driver).withTags(tags).analyze(), theme, path);
-                // Each language tab shows different code, so the other tabs are checked too (only the tab content)
-                for (const tab of await driver.findElements(By.css('[role="tab"]'))) {
-                    if (await tab.getAttribute('aria-selected') === 'true') {
-                        continue;
-                    }
-                    const language = await tab.getText();
-                    await driver.executeScript('arguments[0].click()', tab);
-                    await driver.wait(async () => await tab.getAttribute('aria-selected') === 'true', 5000);
-                    await waitForTabContent(driver);
-                    const results = await new AxeBuilder(driver)
-                        .include('[role="tabpanel"]:not([hidden])')
-                        .withTags(tags)
-                        .analyze();
-                    report(results, theme, `${path} (${language})`);
+                // Each tab shows different code, so the other tabs are checked too (only the tab content)
+                const tablists = await driver.findElements(By.css('[role="tablist"]'));
+                if (tablists.length > 0) {
+                    await checkTabs(driver, theme, path, tablists[0]);
                 }
             } catch (error) {
                 failures++;

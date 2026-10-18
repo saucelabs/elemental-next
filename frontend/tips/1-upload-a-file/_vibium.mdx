@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"1-upload-a-file/code/vibium/test/upload.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the `assert` module for the assertion, the `path` module to build the path to the file, and
+Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+After creating a `describe` to group our tests, lines 9 to 16 start and stop the browser.
+
+The `beforeEach` method runs before each test. It starts the browser with `browser.start()` and gets its first page
+(tab) with `bro.page()`. The `afterEach` method runs after each test and closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 18 to 28 are the test itself.
+
+First we set the name of the file we'd like to upload. It's a text file called `some-file.txt` in the current working
+directory. We build the full path to it and store it in `filePath`.
+
+Next we visit the page with the upload form. `setFiles` sets the file on the file input, without opening the operating
+system dialog. Then we click the submit button.
+
+After the file is uploaded, the page shows the name of the file. We read that text and check that it matches the name
+we expect.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` (it also downloads Chrome for Testing), then run the test by executing
+`npm test` from the command-line.
