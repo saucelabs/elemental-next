@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/webdriverio/test/dynamicLoading.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/webdriverio/pages/dynamicLoadingPage.ts"} language={"ts"}/>
+
+WebdriverIO page objects usually use getters for the elements (lines 4 to 10). Each time we use `startButton` or
+`finishText`, the getter finds the element again, so it is never stale.
+
+`visit` (lines 12 to 15) goes to the page and checks its title. `start` (lines 17 to 19) clicks the start button, and
+`waitForFinish` (lines 21 to 23) waits up to 10 seconds for the text to show up.
+
+On line 26, the file exports one instance of the page object. The browser is global in WebdriverIO, so the page
+object doesn't need to receive it.
+
+### The Test
+
+After the imports, the `beforeEach` hook (lines 5 to 7) visits the page.
+
+The test (lines 9 to 13) clicks the start button, waits for the loading to finish, and checks the text.
+
+The test only talks to the page object. If the page changes, we update the page object and the test stays the same.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
