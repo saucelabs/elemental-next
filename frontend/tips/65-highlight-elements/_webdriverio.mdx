@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/webdriverio/test/highlight.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Highlight Helper
+
+Lines 5 to 15 are a helper that highlights an element on the page.
+
+- Line 7 saves the original `style` attribute of the element, so we can put it back later.
+- Line 9 runs JavaScript in the page with `browser.execute`. WebdriverIO passes the element and the style to the
+  function, which sets the style to a red dashed border (line 3).
+- When a duration is given, lines 11 to 14 wait that many seconds with `browser.pause` and then restore the original
+  style.
+
+### Setup
+
+The `beforeEach` hook (lines 18 to 20) visits a page with a lot of elements.
+
+### The Tests
+
+The id of the element has a dot (`sibling-2.3`), which `#sibling-2.3` would read as a class, so we use an attribute
+selector: `[id="sibling-2.3"]`.
+
+- Lines 22 to 26 highlight the element without a duration and check that its style has the dashed border.
+- Lines 28 to 32 highlight it for 1 second and check that the dashed border is gone afterward.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
