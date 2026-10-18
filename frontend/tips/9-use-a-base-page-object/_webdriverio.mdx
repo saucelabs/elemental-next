@@ -1,0 +1,56 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/webdriverio/test/basePage.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/webdriverio/pages/basePage.ts"} language={"ts"}/>
+
+The base page holds what every page object needs. Here, it is a `visit` method (lines 6 to 9) that goes to a path of
+the site and checks the title. The browser is global in WebdriverIO, so the base page doesn't need to keep it.
+
+WebdriverIO already waits for elements before it clicks or types, so the base page doesn't need to wrap those actions.
+In Selenium, the base page usually wraps them to add waits.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/webdriverio/pages/dynamicLoadingPage.ts"} language={"ts"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/webdriverio/pages/loginPage.ts"} language={"ts"}/>
+
+Both page objects extend `BasePage`. They return their elements from getters, and use `visit` to load their page.
+The login page also has a `loginAs` method that fills the form and submits it. Each file exports one instance of its
+page object.
+
+### The Tests
+
+The first test (lines 6 to 10) loads the dynamic loading page, clicks start and checks the text. `toHaveText` waits up
+to 10 seconds (the `wait` option) for it. The second test (lines 12 to 16) logs in and checks that the success
+message is displayed.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
