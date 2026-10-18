@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/webdriverio/test/tagging.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Tagging the Tests
+
+WebdriverIO runs the tests with Mocha, which has no tags of its own. A simple way to tag a test is to add the tag to
+its name, like `@smoke` (line 4) or `@wip` (line 10).
+
+The `@wip` test is not finished yet, so it fails. We don't want it to run with the rest.
+
+### Running the Tagged Tests
+
+Mocha's `grep` option runs only the tests whose name matches. WebdriverIO lets us pass Mocha options from the command
+line, so the `test` script in `package.json` runs `wdio run ./wdio.conf.ts --mochaOpts.grep @smoke`. Only the
+`@smoke` test runs, and the `@wip` test is left out.
+
+To run a different group of tests, change the tag (e.g., `--mochaOpts.grep @wip`). To run every test except a tag,
+add `--mochaOpts.invert`.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
