@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/webdriverio/test/dynamicPages.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect`).
+
+### The Tests
+
+Line 4 loops over the two examples of the page and creates one test for each. In the first example the text is on the
+page but hidden. In the second one, the text is added to the page after the loading finishes.
+
+Each test visits the example and clicks the start button. Then `toBeDisplayed` waits until the text (`#finish`) is on
+the page and visible, up to 10 seconds (the `wait` option). The loading takes about 5 seconds.
+
+The same check works for both examples. WebdriverIO keeps looking for the element until it exists and is displayed,
+so we don't need a separate wait for each case.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
