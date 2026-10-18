@@ -1,0 +1,56 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/webdriverio/test/download.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in the WebdriverIO globals (`browser` and `$$`), the `assert`, `fs` and `path` modules, and the
+download folder that we set in `wdio.conf.ts`.
+
+### Configuring the Browser
+
+To skip the download dialog, Chrome needs two settings, which we set in `wdio.conf.ts`. `download.default_directory`
+is the folder where Chrome saves the files (a `tmp` folder in the current directory), and
+`download.prompt_for_download: false` tells Chrome to save the file without asking.
+
+### Setup and Teardown
+
+Lines 8 to 14 create the download folder before each test and delete it, with the files in it, after each test.
+
+### The Test
+
+Lines 16 to 26 are the test itself.
+
+After visiting the page, we click the first download link. `$$` finds all the links, and we take the first one.
+
+Then we wait up to 5 seconds for the file. While Chrome downloads a file, it uses a temporary `.crdownload` file, so
+we wait for a file without that extension.
+
+Finally, we check that the downloaded file is not empty.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
