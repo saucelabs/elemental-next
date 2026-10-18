@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/webdriverio/test/secureFiles.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Example 1: Files Behind Basic Auth
+
+Lines 7 to 18 are the first test.
+
+We visit the page with the files, passing the credentials with the `auth` option of `browser.url`. Then we collect the
+full URL of every link (the `href` property).
+
+`fetch` doesn't know about the browser, so we build the `Authorization` header with the same credentials. We send a
+`HEAD` request for each file, all at the same time with `Promise.all`, and check that each one answers with status
+`200`.
+
+### Example 2: A Page Behind a Form Login
+
+Lines 20 to 36 log in with the form and wait for the success message. The site keeps the session in a cookie called
+`rack.session`.
+
+We get that cookie with `browser.getCookies` and send it in the `Cookie` header of a request for `/secure`. With the
+cookie, it answers with `200`. Without it, it answers with `302` (a redirect to the login page). We set
+`redirect: 'manual'` so that `fetch` doesn't follow the redirect.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
