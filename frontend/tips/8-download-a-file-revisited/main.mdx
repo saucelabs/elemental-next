@@ -46,8 +46,8 @@ __NOTE:__ We are using [a file download example](https://the-internet.herokuapp.
 [the-internet](https://github.com/saucelabs/the-internet).
 
 It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a
-`HEAD` request with it. Once we receive the response we check its headers for the content type and the content
-length to make sure the file is the correct type and not empty.
+`HEAD` request with it. Once we receive the response we check its headers for the content disposition and the
+content length to make sure the server sends the file as a download and that it is not empty.
 
 import DisplayTips from '@site/src/components/displayTips';
 

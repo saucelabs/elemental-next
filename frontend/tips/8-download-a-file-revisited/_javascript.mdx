@@ -21,7 +21,8 @@ The `beforeEach` hook launches Firefox before each test, and the `afterEach` hoo
 The test visits the page and grabs the `href` of the first download link (`.example a`).
 
 Then it sends a `HEAD` request for that URL (`fetch(link, {method: "HEAD"})`). From the response we read the
-`content-type` and `content-length` headers, and assert that the file is the correct type and not empty.
+`content-disposition` and `content-length` headers, and assert that the server sends the file as a download
+(`attachment`) and that it is not empty.
 
 ### Executing the Test
 

@@ -22,8 +22,8 @@ The `SetUp()` method (marked with `[TestInitialize]`) creates an instance of Web
 The test visits the page and grabs the full URL of the first download link (`GetDomProperty("href")`).
 
 Then it sends a `HEAD` request for that URL with `HttpClient` (`new HttpRequestMessage(HttpMethod.Head, link)`).
-From the response we read the content type and content length headers, and assert that the file is the correct type
-and not empty.
+From the response we read the content disposition and content length headers, and assert that the server sends the
+file as a download (`attachment`) and that it is not empty.
 
 ### Executing the Test
 
