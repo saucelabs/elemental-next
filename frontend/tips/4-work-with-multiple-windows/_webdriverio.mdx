@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/webdriverio/test/windows.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser` and `expect`).
+
+### The Test
+
+Lines 4 to 13 are the test itself.
+
+`browser.url` returns the browsing context of the page. After visiting the page, we click the link that opens a new
+window.
+
+Since WebdriverIO 10, `browser.browsingContexts()` lists every open tab and window as a browsing context. We wait
+until the list has a window with the URL of the new page. Each browsing context works on its own window, so there is
+no need to switch between them. This also avoids the problem of the Selenium examples, where the order of the window
+handles can change between browsers.
+
+Finally, we check the title of the first window and the heading of the new one. `toHaveText` waits for the new window
+to load.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
