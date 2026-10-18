@@ -17,10 +17,10 @@ describe("Download a File Revisited", function () {
         const link = await driver.findElement(By.css(".example a")).getAttribute("href");
 
         const response = await fetch(link, {method: "HEAD"});
-        const contentType = response.headers.get("content-type");
+        const contentDisposition = response.headers.get("content-disposition");
         const contentLength = Number(response.headers.get("content-length"));
 
-        assert.strictEqual(contentType, "application/octet-stream");
+        assert(contentDisposition.startsWith("attachment"));
         assert(contentLength > 0);
     });
 });

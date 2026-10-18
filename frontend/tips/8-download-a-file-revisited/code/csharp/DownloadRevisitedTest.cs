@@ -32,10 +32,10 @@ namespace csharp
             using var client = new HttpClient();
             using var request = new HttpRequestMessage(HttpMethod.Head, link);
             using var response = client.Send(request);
-            var contentType = response.Content.Headers.ContentType?.MediaType;
+            var contentDisposition = response.Content.Headers.ContentDisposition?.DispositionType;
             var contentLength = response.Content.Headers.ContentLength ?? 0;
 
-            Assert.AreEqual("application/octet-stream", contentType);
+            Assert.AreEqual("attachment", contentDisposition);
             Assert.IsTrue(contentLength > 0);
         }
     }

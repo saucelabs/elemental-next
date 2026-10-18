@@ -21,8 +21,8 @@ The `driver` fixture creates a Firefox instance, `yield`s it to the test, and qu
 The test visits the page and grabs the `href` of the first download link (`.example a`).
 
 Then it builds a `HEAD` request for that URL (`urllib.request.Request(download_link, method='HEAD')`) and sends it.
-From the response we read the `Content-Type` and `Content-Length` headers, and assert that the file is the
-correct type and not empty.
+From the response we read the `Content-Disposition` and `Content-Length` headers, and assert that the server sends
+the file as a download (`attachment`) and that it is not empty.
 
 ### Executing the Test
 
