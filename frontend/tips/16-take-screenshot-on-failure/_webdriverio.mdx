@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/webdriverio/test/screenshot.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Taking the Screenshot
+
+WebdriverIO calls the `afterTest` hook of `wdio.conf.ts` after each test, with the result of the test. When the test
+didn't pass, the hook builds a file name from the name of the test (with dashes instead of spaces) and saves a
+screenshot with `browser.saveScreenshot`, e.g., `failshot_Screenshot-fails-on-purpose.png`.
+
+Since the hook is in the configuration, it works for every test without changing them.
+
+### The Test
+
+Lines 4 to 8 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah blah`,
+which it doesn't. We give the check a short timeout (2 seconds), so it fails fast.
+
+When it fails, the hook takes the screenshot.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
