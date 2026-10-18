@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/webdriverio/test/sortWithAttributes.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+The WebdriverIO test runner runs spec files in parallel on its own. `maxInstances` in `wdio.conf.ts` says how many
+can run at the same time. We set it to `2`, so the two spec files of this example run at the same time, each one in
+its own browser.
+
+Each spec file is a group of related tests (e.g., the sorting of one table), and each test sets up what it needs, so
+the files don't depend on each other and can run in any order.
+
+### The Tests
+
+Both spec files test the sorting of a table. The one above uses the second table, whose cells have classes (e.g.,
+`dues`). The other one uses the first table, which has no classes, so it finds the cells by position:
+
+<TipCode codePath={"27-parallel/code/webdriverio/test/sortWithoutAttributes.e2e.ts"} language={"ts"}/>
+
+In each file, the `beforeEach` hook visits the page with the tables. Each test clicks the header of the "Due" column
+once (ascending) or twice (descending).
+
+The page sorts the table a moment after the click, and marks the header with the class `headerSortDown` (ascending)
+or `headerSortUp` (descending). So we wait for that class with `toHaveElementClass` before we read the values.
+Then we check that the values are in the same order as a sorted copy of them.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
