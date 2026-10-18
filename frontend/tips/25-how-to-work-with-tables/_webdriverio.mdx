@@ -1,0 +1,58 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/webdriverio/test/tables.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Helpers
+
+Lines 3 to 9 are two small helpers. `texts` finds all the cells that match a selector with `$$` and returns their text.
+`dues` uses it for the "Due" column, removes the `$` from each value, and turns it into a number, so we can sort the
+values as numbers.
+
+### Setup
+
+The `beforeEach` hook (lines 12 to 14) visits the page with the tables before each test.
+
+### The Tests
+
+The first table has no classes or IDs on its cells, so we find them by position, with `:nth-of-type`. The fourth
+column is "Due" and the third one is "Email".
+
+- Lines 16 to 21 click the header of the "Due" column once, read the values, and check that they are the same as a
+  copy of them sorted from low to high.
+- Lines 23 to 29 click the header twice, which sorts the column from high to low, and check that order.
+- Lines 31 to 36 click the "Email" header and check that the emails are in alphabetical order.
+
+The page sorts the table a moment after the click, and marks the header with the class `headerSortDown` (ascending)
+or `headerSortUp` (descending). So after each click we wait for that class with `toHaveElementClass`, and only then
+read the values.
+
+The second table has classes on its cells (e.g., `dues`), so lines 38 to 43 use them. The selectors are shorter, and
+they keep working if the columns change order. The `dues` class is on a `span` inside the header cell, so we click the
+header cell that has it (`th:has(.dues)`).
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
