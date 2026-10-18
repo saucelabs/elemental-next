@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/webdriverio/test/new-window.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser` and `expect`).
+
+### The Tests
+
+Lines 4 to 13 open a new window, and lines 15 to 24 open a new tab. They only differ in the `type` option.
+
+After visiting the first page, `browser.newWindow` opens the URL in a new window (`type: 'window'`) or tab
+(`type: 'tab'`) and waits for it to load. Since WebdriverIO 10, it returns the browsing context of the new window and
+doesn't switch to it. We tell TypeScript that it is a `BrowsingContext` with `as`, since older sessions return
+something else.
+
+We check that there are two windows open with `browser.browsingContexts()`, and check the heading of the new page.
+
+WebdriverIO uses the same browser for all the tests of a file, so we close the new window at the end of each test.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
