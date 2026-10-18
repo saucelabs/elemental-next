@@ -103,8 +103,10 @@ tips/1-upload-a-file/
 - `test-build.yml`: builds the site on every PR.
 - `accessibility.yml`: on PRs, builds and serves the site and runs `npm run test:a11y`
   (`frontend/scripts/accessibility.mjs`). It checks every page in the sitemap (one tag page only) with axe, WCAG 2.2
-  A and AA rules, in light and dark mode (in parallel), using Selenium and Firefox. It checks every language tab of a
-  tip, and fails on any violation or on a page that crashes ("This page crashed").
+  A and AA rules, in light and dark mode (in parallel), using Selenium and Firefox. It checks every tool and language
+  tab of a tip, and fails on any violation or on a page that crashes ("This page crashed"). On a PR that only changes
+  files inside tip folders, it checks only those tip pages (`CHANGED_FILES`); any other change, the nightly run and
+  manual runs check every page.
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`, `playwright`,
   `webdriverio`, `vibium`): thin callers of
