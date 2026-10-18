@@ -16,11 +16,12 @@ entry in `capabilities`.
 - Line 5 lists the browsers: Chrome, Firefox and Edge.
 - Lines 9 to 11 give WebdriverIO the Sauce Labs credentials (from the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`
   environment variables) and the region, so the tests run on Sauce Labs.
-- Lines 15 to 22 turn each browser into a capability: the latest version on Windows 11, with a test name for the Sauce
-  Labs dashboard that includes the browser.
-- `maxInstances: 1` (line 14) runs one browser at a time. See the next tip to run them in parallel.
-- When the credentials are not set, the configuration asks for a local Chrome instead, so the runner can start, and the
-  test skips itself.
+- Lines 13 to 16 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and,
+  when the tests end, marks the job as passed or failed. `setJobName` sets the name, with the browser of the job.
+- `maxInstances: 1` (line 19) runs one browser at a time. See the next tip to run them in parallel.
+- Lines 20 to 24 turn each browser into a capability: the latest version on Windows 11.
+- When the credentials are not set, the configuration asks for a local Chrome and skips the Sauce service, so the
+  runner can start, and the test skips itself.
 
 ### The Test
 
