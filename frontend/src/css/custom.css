@@ -172,3 +172,12 @@ html[data-theme='dark'] {
 .hero__subtitle a {
     text-decoration: underline;
 }
+
+/* The language tabs inside a tool tab (e.g., Selenium > Python) are smaller than the tool tabs */
+.tabs-container .tabs-container > .tabs {
+    font-size: 0.9rem;
+}
+
+.tabs-container .tabs-container > .tabs .tabs__item {
+    padding: 0.5rem 0.9rem;
+}

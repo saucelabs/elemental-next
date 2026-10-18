@@ -39,15 +39,23 @@ tips/1-upload-a-file/
   _javascript.mdx
   _ruby.mdx
   _selenide.mdx
-  code/<lang>/          A runnable project per language, with a README.md showing how to run it
+  _playwright.mdx       One partial per other tool (Playwright, WebdriverIO, Vibium), same idea
+  _webdriverio.mdx
+  _vibium.mdx
+  code/<lang>/          A runnable project per language or tool, with a README.md showing how to run it
 ```
 
 - `DisplayTips` lazy-imports `_<value>.mdx` from the folder of the page for each language, so the `value` must match
-  the partial file name.
+  the partial file name. An entry can set a `tool` (e.g., `{label: 'TypeScript', value: 'playwright', tool:
+  'Playwright'}`; the default is Selenium). When a tip has more than one tool, the page shows a row of tool tabs and,
+  inside each, a row of language tabs. Selenide is a tool of its own: `{label: 'Selenide', value: 'selenide'}` shows
+  as the Java tab of a Selenide tool tab (see `KNOWN_TOOLS` in `displayTips.js`).
 - `TipCode` loads the file via `raw-loader`, relative to `frontend/tips/`. Line numbers referenced in the
   walkthrough prose must stay in sync with the code file.
-- Target languages: Python, Java, C#, JavaScript, Ruby. Selenide and Serenity/JS examples exist for some tips and
-  are kept.
+- Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Serenity/JS examples exist for some tips and
+  are kept. Selenide (Java) examples exist for some tips and show as their own tool.
+- Other tools, one language each: Playwright (TypeScript), WebdriverIO (TypeScript) and Vibium (JavaScript). They
+  use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
 - Per-language conventions in `code/`:
   - Python: `requirements.txt` + pytest test file (`pytest <file>.py`)
   - Java: Maven `pom.xml`, JUnit 5, `src/test/java/com/elemental/selenium/*Test.java` (`mvn test`)
@@ -55,6 +63,12 @@ tips/1-upload-a-file/
   - JavaScript: `package.json` + Mocha tests in `test/` (`npm test`)
   - Ruby: `Gemfile` + RSpec (`bundle exec rspec ...`)
   - Selenide: Maven project, like Java
+  - Playwright: `package.json` with `@playwright/test`, tests in `tests/*.spec.ts`
+    (`npx playwright install chromium`, then `npm test`)
+  - WebdriverIO: `package.json` with the `@wdio/*` packages, `wdio.conf.ts`, `tsconfig.json`, tests in
+    `test/*.e2e.ts` (`npm test`)
+  - Vibium: `package.json` with `vibium` and Mocha, tests in `test/*.spec.js` (`npm test`, which runs
+    `vibium install` first to download Chrome for Testing)
 - Most examples hit https://the-internet.herokuapp.com and rely on Selenium Manager for browser drivers.
 
 ### How the site is put together
@@ -92,7 +106,8 @@ tips/1-upload-a-file/
   A and AA rules, in light and dark mode (in parallel), using Selenium and Firefox. It checks every language tab of a
   tip, and fails on any violation or on a page that crashes ("This page crashed").
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
-- `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`): thin callers of
+- `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`, `playwright`,
+  `webdriverio`, `vibium`): thin callers of
   the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
   - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
     `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, Renovate branches, and when

@@ -26,7 +26,8 @@ run_one() {
   case "${language}" in
     java | selenide) mvn -B test ;;
     csharp) dotnet test ;;
-    javascript | serenity-js) npm install && npm test ;;
+    javascript | serenity-js | webdriverio | vibium) npm install && npm test ;;
+    playwright) npm install && npx playwright install --with-deps chromium && npm test ;;
     python)
       python -m pip install -r requirements.txt && python -m pytest ./*.py
       ;;
