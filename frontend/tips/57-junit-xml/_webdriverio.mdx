@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/webdriverio/test/title.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Saving the Results as JUnit XML
+
+WebdriverIO creates reports with reporters, set in `wdio.conf.ts`. We use two: `spec` prints the results in the
+terminal, and `junit` (the `@wdio/junit-reporter` package) saves them as JUnit XML, the format most CI servers read.
+
+Lines 8 to 11 set the JUnit reporter. `outputDir` is the folder for the reports, and `outputFileFormat` names each
+file. WebdriverIO writes one file per worker, so the name includes the worker id (`cid`), e.g.,
+`reports/results-0-0.xml`.
+
+### The Test
+
+Lines 3 to 8 are a simple test that loads the page and checks its title. The reporter writes the results of every test
+without any change to the tests.
+
+After running `npm test`, the `reports` folder has the XML file. Point your CI server to it to see the results of each
+test.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
