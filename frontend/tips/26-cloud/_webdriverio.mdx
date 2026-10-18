@@ -12,22 +12,17 @@ In WebdriverIO, where the browser runs is part of the configuration, not of the 
 
 <TipCode codePath={"26-cloud/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
 
-- Lines 7 to 9 give WebdriverIO the Sauce Labs user name and access key (from the `SAUCE_USERNAME` and
+- Lines 3 to 5 give WebdriverIO the Sauce Labs user name and access key (from the `SAUCE_USERNAME` and
   `SAUCE_ACCESS_KEY` environment variables) and the region of the data center. With `user` and `key` set, WebdriverIO
   sends the tests to Sauce Labs instead of starting a local browser.
-- Lines 11 to 13 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and,
+- Lines 7 to 9 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and,
   when the tests end, marks the job as passed or failed. Without it, every job shows up on Sauce Labs with no name and
   no result. `setJobName` sets the name, here with the title of the `describe` block (`suiteTitle`).
-- Lines 16 to 20 ask for the latest Chrome on Windows 11.
-- When the credentials are not set, line 3 makes the configuration ask for a local Chrome and skip the Sauce service,
-  so the runner can start, and the test skips itself.
+- Lines 12 to 16 ask for the latest Chrome on Windows 11.
 
 ### The Test
 
-The `before` hook (lines 4 to 9) skips the tests when the credentials are not set, with a message that says how to
-run them.
-
-The test (lines 11 to 14) loads the page and checks the title. It is the same test we would run locally: moving it to
+The test (lines 4 to 7) loads the page and checks the title. It is the same test we would run locally: moving it to
 the cloud only changed the configuration.
 
 ### Executing the Test
