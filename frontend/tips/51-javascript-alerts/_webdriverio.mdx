@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"51-javascript-alerts/code/webdriverio/test/alerts.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The `beforeEach` hook (lines 4 to 6) visits the page with the alerts before each test.
+
+### The Tests
+
+Each test clicks the button that opens a JavaScript confirmation. We find the button by its text with WebdriverIO's
+`tag=text` selector (`button=Click for JS Confirm`).
+
+The confirmation blocks the page until someone answers it, so we tell WebdriverIO what to do before we click. With a
+WebDriver BiDi session (the default in WebdriverIO 10), the browser sends a `dialog` event when a dialog opens.
+`browser.once('dialog')` handles the next one: the first test (lines 8 to 13) accepts it and the second test (lines 15
+to 20) dismisses it.
+
+Then we check the result on the page: `You clicked: Ok` or `You clicked: Cancel`.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
