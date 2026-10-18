@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/webdriverio/test/hovers.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$$` and `expect`).
+
+### The Test
+
+Lines 4 to 12 are the test itself.
+
+After visiting the page, we take the first avatar (`$$('.figure')[0]`) and find its caption inside it. The caption is
+hidden until the mouse is over the avatar, so we check that it is not displayed.
+
+`moveTo` moves the mouse to the middle of the avatar. Then we check that the caption is displayed. `toBeDisplayed`
+waits a moment for it, in case the page shows it with an animation.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
