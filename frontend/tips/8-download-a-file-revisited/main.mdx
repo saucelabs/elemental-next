@@ -30,7 +30,7 @@ which we can do by using an HTTP client alongside Selenium in our test.
 ## A Solution
 
 Ultimately we shouldn't care if a file was downloaded or not. Instead, we should care that a file _can_ be downloaded.
-And we can do that by using an HTTP client alongside Selenium in our test.
+And we can do that by using an HTTP client alongside the browser in our test.
 
 With an HTTP library we can perform a header (or `HEAD`) request for the file. Instead of downloading the file we'll
 receive header information for the file which contains information like the content type and content length
@@ -58,6 +58,7 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
     {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
 ]}/>
 
 ## Expected Behavior
