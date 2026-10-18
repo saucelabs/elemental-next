@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"8-download-a-file-revisited/code/webdriverio/test/download.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the WebdriverIO globals (`browser` and `$$`) and the `assert` module.
+
+### The Test
+
+Lines 5 to 15 are the test itself.
+
+After visiting the page, we get the `href` property of the first download link. The property (unlike the attribute)
+is the full URL of the file.
+
+Then we send a `HEAD` request for the file with `fetch`, which comes with Node.js. It returns the headers of the file
+without downloading it.
+
+Finally, we check two headers. `content-disposition` starts with `attachment`, which means the server sends the file
+as a download. `content-length` tells us the file is not empty.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
