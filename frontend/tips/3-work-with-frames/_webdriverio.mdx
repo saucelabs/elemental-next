@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/webdriverio/test/frames.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser` and `expect`).
+
+### Example 1: Nested Frames
+
+Lines 4 to 11 are the first test. The page has a frame (`frame-top`) with frames inside it, and we want the text of
+the `frame-middle` frame.
+
+`browser.url` returns the browsing context of the page. Since WebdriverIO 10, `frame()` on a browsing context returns
+the browsing context of a frame, so there is no need to switch to it. We get `frame-top` from the page, and
+`frame-middle` from `frame-top`. Then we find the element in that frame and check its text, which is `MIDDLE`.
+
+### Example 2: An iframe
+
+Lines 13 to 23 are the second test. The page has a text editor (TinyMCE) inside an iframe.
+
+We get the browsing context of the iframe and find the editor's body (`#tinymce`) in it. We save its text, replace it
+with `setValue`, and check that the text changed.
+
+Then we check the heading of the page. The page context still works, so there is nothing to switch back from.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
