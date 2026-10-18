@@ -1,0 +1,54 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/webdriverio/test/locators.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$$` and `expect`).
+
+### Setup
+
+The `beforeEach` hook (lines 4 to 6) visits the download page before each test.
+
+### The Tests
+
+Each test finds a link with a CSS selector, prints its `href` attribute, and checks it.
+
+In WebdriverIO 10, `$` is strict: it fails when the selector matches more than one element, so a vague selector can't
+silently pick the wrong one. Here every selector matches many links, and we want the first one, so we use `$$`
+(all the matches) and take the first with `[0]`.
+
+- Lines 8 to 12 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not
+  what we're after.
+- Lines 14 to 18 scope the selector to the content of the page (`#content a`). The first match is a download link.
+- Lines 20 to 24 scope it further, to the example (`#content .example a`). It's still a download link, and the
+  selector says more clearly what we want.
+
+The more specific the selector, the less likely it is to break or to find the wrong element when the page changes.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
