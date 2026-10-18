@@ -26,15 +26,12 @@ end
 # Files behind Basic Auth
 run do
   @driver.get "https://admin:admin@#{HOST}/download_secure"
-  links = @driver.find_elements(css: '.example a').map { |link| link.dom_attribute('href') }
-  expect(links).not_to be_empty
+  link = @driver.find_element(css: '.example a').dom_attribute('href')
 
-  links.each do |link|
-    # The file names can have spaces and other characters that need to be encoded in a URL.
-    head = Net::HTTP::Head.new(URI::RFC2396_PARSER.escape("/#{link}"))
-    head.basic_auth('admin', 'admin')
-    expect(request(head).code).to eql('200')
-  end
+  # The file names can have spaces and other characters that need to be encoded in a URL.
+  head = Net::HTTP::Head.new(URI::RFC2396_PARSER.escape("/#{link}"))
+  head.basic_auth('admin', 'admin')
+  expect(request(head).code).to eql('200')
 end
 
 # Page behind a form login

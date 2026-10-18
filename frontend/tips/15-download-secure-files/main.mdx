@@ -34,7 +34,7 @@ How we do that depends on how the site is secured:
 - With Basic HTTP Authentication, the browser sends the credentials on every request, so we pass the same
   credentials to the HTTP library.
 - With a login form, the site keeps an authenticated session in a cookie, so we pull the session cookie out of
-  Selenium's cookie store and pass it into the HTTP library when we perform the request.
+  the browser and pass it into the HTTP library when we perform the request.
 
 Let's continue with some examples.
 
@@ -63,6 +63,7 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Java', value: 'java'},
     {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
 ]}/>
 
 ## Expected Behavior

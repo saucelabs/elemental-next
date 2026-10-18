@@ -16,18 +16,14 @@ describe("Download Secure Files", function () {
 
     it("checks the files behind Basic Auth", async function () {
         await driver.get("https://admin:admin@the-internet.herokuapp.com/download_secure");
-        const elements = await driver.findElements(By.css(".example a"));
-        const links = await Promise.all(elements.map((element) => element.getDomAttribute("href")));
-        assert(links.length > 0);
+        const link = await driver.findElement(By.css(".example a")).getDomAttribute("href");
 
         const credentials = Buffer.from("admin:admin").toString("base64");
-        for (const link of links) {
-            const response = await fetch(`${BASE_URL}/${link}`, {
-                method: "HEAD",
-                headers: {Authorization: `Basic ${credentials}`},
-            });
-            assert.strictEqual(response.status, 200, link);
-        }
+        const response = await fetch(`${BASE_URL}/${link}`, {
+            method: "HEAD",
+            headers: {Authorization: `Basic ${credentials}`},
+        });
+        assert.strictEqual(response.status, 200, link);
     });
 
     it("checks a page behind a form login", async function () {

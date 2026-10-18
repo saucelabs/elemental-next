@@ -15,10 +15,9 @@ requests we use the `HttpClient` that comes with Java, which doesn't follow redi
 
 ### Files Behind Basic Auth
 
-`filesBehindBasicAuth` loads the secure downloads page with the credentials in the URL and collects the `href` of
-every link (`getDomAttribute("href")` returns the relative path as written in the page). Then, for each link, it
-sends a `HEAD` request with a Basic `Authorization` header (the credentials encoded in Base64) and asserts that the
-response status is `200`.
+`filesBehindBasicAuth` loads the secure downloads page with the credentials in the URL and gets the `href` of the first
+file (`getDomAttribute("href")` returns the relative path as written in the page). Then it sends a `HEAD` request with a
+Basic `Authorization` header (the credentials encoded in Base64) and asserts that the response status is `200`.
 The file names can have spaces and other characters that aren't allowed in a URL, so we build the URL with the `URI`
 constructor that takes its parts (`new URI("https", host, path, null)`), which encodes them.
 
