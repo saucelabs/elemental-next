@@ -2,8 +2,8 @@
 
 ### Install dependencies
 
-`npm install` (it also downloads Chrome for Testing)
+`npm install`
 
 ### Run tests
 
-`npm test`
+`npm test` (it downloads Chrome for Testing the first time)

@@ -66,8 +66,8 @@ tips/1-upload-a-file/
     (`npx playwright install chromium`, then `npm test`)
   - WebdriverIO: `package.json` with the `@wdio/*` packages, `wdio.conf.ts`, `tsconfig.json`, tests in
     `test/*.e2e.ts` (`npm test`)
-  - Vibium: `package.json` with `vibium` and Mocha, tests in `test/*.spec.js` (`npm test`; `npm install` also
-    downloads Chrome for Testing)
+  - Vibium: `package.json` with `vibium` and Mocha, tests in `test/*.spec.js` (`npm test`, which runs
+    `vibium install` first to download Chrome for Testing)
 - Most examples hit https://the-internet.herokuapp.com and rely on Selenium Manager for browser drivers.
 
 ### How the site is put together

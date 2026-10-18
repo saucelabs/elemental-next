@@ -4,6 +4,7 @@
   "description": "A project to showcase uploading a file using Vibium",
   "license": "MIT",
   "scripts": {
+    "pretest": "vibium install",
     "test": "mocha test/**/*.spec.js --timeout 60000"
   },
   "dependencies": {
