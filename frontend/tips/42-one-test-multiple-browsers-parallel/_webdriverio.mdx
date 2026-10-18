@@ -21,6 +21,8 @@ entry in `capabilities`.
 - `maxInstances: 3` (line 15) is the only change from the previous tip. It lets the runner start the three browsers at
   the same time, so the whole run takes about as long as the slowest browser.
 - Lines 16 to 20 turn each browser into a capability: the latest version on Windows 11.
+- Lines 25 to 31 skip the run when the Sauce Labs credentials are not set. The `onPrepare` hook runs before any browser
+  starts, so it prints how to set them and ends the run without an error.
 
 ### The Test
 
