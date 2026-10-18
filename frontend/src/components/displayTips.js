@@ -10,6 +10,12 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
  * @property {string} [tool] - The tool the example uses (e.g., 'Playwright'). Defaults to 'Selenium'.
  */
 
+// Partials that belong to another tool without saying so in main.mdx. Selenide is a framework of its own (in Java),
+// so it gets its own tool tab, like Playwright or WebdriverIO.
+const KNOWN_TOOLS = {
+    selenide: {tool: 'Selenide', label: 'Java'},
+};
+
 /**
  * @typedef {Object} ContentComponent
  * @property {string} label - The label of the component.
@@ -56,7 +62,10 @@ function DisplayTips({languages}) {
             const components = await Promise.all(languages.map(async (lang) => {
                 const component =
                     lazy(() => import(`@site/tips/${tipFolder}/_${lang.value}.mdx`));
-                return {label: lang.label, tool: lang.tool || 'Selenium', component};
+                const known = KNOWN_TOOLS[lang.value];
+                const label = lang.tool || !known ? lang.label : known.label;
+                const tool = lang.tool || known?.tool || 'Selenium';
+                return {label, tool, component};
             }));
             setContentComponents(components);
         };

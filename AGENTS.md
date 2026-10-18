@@ -48,11 +48,12 @@ tips/1-upload-a-file/
 - `DisplayTips` lazy-imports `_<value>.mdx` from the folder of the page for each language, so the `value` must match
   the partial file name. An entry can set a `tool` (e.g., `{label: 'TypeScript', value: 'playwright', tool:
   'Playwright'}`; the default is Selenium). When a tip has more than one tool, the page shows a row of tool tabs and,
-  inside each, a row of language tabs.
+  inside each, a row of language tabs. Selenide is a tool of its own: `{label: 'Selenide', value: 'selenide'}` shows
+  as the Java tab of a Selenide tool tab (see `KNOWN_TOOLS` in `displayTips.js`).
 - `TipCode` loads the file via `raw-loader`, relative to `frontend/tips/`. Line numbers referenced in the
   walkthrough prose must stay in sync with the code file.
-- Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Selenide and Serenity/JS examples exist for
-  some tips and are kept.
+- Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Serenity/JS examples exist for some tips and
+  are kept. Selenide (Java) examples exist for some tips and show as their own tool.
 - Other tools, one language each: Playwright (TypeScript), WebdriverIO (TypeScript) and Vibium (JavaScript). They
   use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
 - Per-language conventions in `code/`:
