@@ -1,0 +1,65 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/webdriverio/repl.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Prompt
+
+WebdriverIO calls return promises, so commands need to be `await`ed. To evaluate them we create an `AsyncFunction`
+with the command as its body and `browser` as its parameter (lines 3 to 11). First we try to use the command as an
+expression (`return (${command});`), so we get its value back. If that's not valid JavaScript (e.g., it's a
+statement), we use the command as the body as is.
+
+`runRepl` receives the browser, a function to read input, and a function to write output. In the loop we read a
+command. If it is `q`, we say goodbye and leave the loop. Otherwise we evaluate it and print the result when there
+is one. When there is an error we print its name and message and keep going.
+
+### Starting the Prompt
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/webdriverio/start-repl.ts"} language={"ts"}/>
+
+`start-repl.ts` starts Chrome with `remote` from the `webdriverio` package (WebdriverIO without the test runner),
+reads the commands from the terminal with `readline`, and ends the session when the prompt ends.
+
+### The Test
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/webdriverio/test/repl.e2e.ts"} language={"ts"}/>
+
+The test uses the browser of the test runner. It passes the commands from an array (`async () => commands.shift()`)
+and collects the output in another array. Then it checks that the title was printed, that the missing element printed
+an error, and that `q` ended the prompt. The first output is what `browser.url` returns, so the title is the second
+one.
+
+### Using the Prompt
+
+Run `npm run repl` and type commands like `browser.url('https://the-internet.herokuapp.com')` or
+`browser.$('h1').getText()`. Type `q` to quit.
+
+WebdriverIO also comes with its own prompt: `npx wdio repl chrome` starts one, and `await browser.debug()` in a test
+pauses it and opens a prompt in the terminal.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
