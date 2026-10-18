@@ -72,6 +72,11 @@ jobs:
       - name: Start Xvfb
         if: matrix.os == 'ubuntu-latest'
         run: Xvfb :99 &
+      # Ubuntu 24.04 blocks the user namespaces that the Chrome sandbox needs, which makes Chrome for Testing
+      # (used by Vibium) crash on start
+      - name: Allow the Chrome sandbox
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - name: Set up Java
         if: inputs.language == 'java' || inputs.language == 'selenide'
         uses: actions/setup-java@v6
