@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"5-select-from-a-dropdown/code/webdriverio/test/dropdown.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect`).
+
+### The Test
+
+Lines 4 to 10 are the test itself.
+
+After visiting the page, we call `selectByVisibleText` on the dropdown to pick `Option 1`. WebdriverIO also has
+`selectByAttribute` (e.g., by value) and `selectByIndex`.
+
+To check the selection, we find the selected option with the `:checked` CSS pseudo-class and check its text.
+`toHaveText` waits until it matches.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
