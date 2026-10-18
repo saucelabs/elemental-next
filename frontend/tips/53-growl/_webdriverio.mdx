@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/webdriverio/test/growl.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Test
+
+After visiting the page, the test adds jQuery Growl to it and shows a message, in four steps. Each step runs
+JavaScript in the page with `browser.execute`. The function we pass runs in the browser, not in Node.js.
+
+1. Lines 7 to 15 add jQuery to the page if it isn't there yet, and wait until it has loaded (`window.jQuery`).
+2. Lines 17 to 20 use jQuery to load the jquery-growl script.
+3. Lines 22 to 27 add the jquery-growl styles to the page, and wait until `jQuery.growl` is available.
+4. Line 30 shows a message with the title `GET` and the text `/`, like a log of a request.
+
+Lines 32 and 33 check that the notification shows the title and the message. `toHaveText` waits for it to appear.
+
+The page doesn't have jQuery types, so `globals.d.ts` tells TypeScript that `window.jQuery` exists.
+
+In your own tests, you can call step 4 from a hook or a helper to show what the test is doing (e.g., the page it
+visits), and see it on screenshots or videos of the test run.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
