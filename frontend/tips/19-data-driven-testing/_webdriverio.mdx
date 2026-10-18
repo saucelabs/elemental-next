@@ -1,0 +1,54 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/webdriverio/test/dataDriven.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Loading the Data
+
+Lines 5 to 11 read the test data from `user_data.csv`. The first line of the file is the header. We split the file into
+lines and each line into values, and turn each row into an object with the header names as keys (e.g.,
+`user.username`). The file has one row per user: the account type, the user name, the password, and the message the
+site should show.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/webdriverio/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+### The Tests
+
+Line 14 loops over the users and creates one test for each, named after the account type.
+
+Each test visits the login page, fills in the user name and the password, and submits the form. Then it checks that
+the notification contains the message for that user. `toHaveText` with `expect.stringContaining` waits until the
+notification shows the expected text.
+
+To test another user, we add a row to the CSV file. The test code stays the same.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
