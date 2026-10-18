@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/webdriverio/test/abTest.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Line 3 sets the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`), with the `domain`
+of the site.
+
+WebdriverIO uses the same browser for all the tests of a file, so the `afterEach` hook (lines 6 to 8) deletes the
+cookies after each test.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 10 to 18 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie with
+`browser.setCookies`, reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 20 to 25 add the cookie first and then visit the page. Since the cookie has a `domain`, WebdriverIO can add it
+before we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 27 to 32 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+`browser.once('dialog')` dismisses the next alert. Then we check the heading.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
