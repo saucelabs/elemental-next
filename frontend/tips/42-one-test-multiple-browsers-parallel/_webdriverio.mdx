@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/webdriverio/test/multipleBrowsers.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Configuring the Browsers
+
+In WebdriverIO, the list of browsers is part of the configuration. The test runner runs every spec file once for each
+entry in `capabilities`.
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+
+- Line 5 lists the browsers: Chrome, Firefox and Edge.
+- Lines 9 to 11 give WebdriverIO the Sauce Labs credentials (from the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`
+  environment variables) and the region, so the tests run on Sauce Labs.
+- Lines 15 to 22 turn each browser into a capability: the latest version on Windows 11, with a test name for the Sauce
+  Labs dashboard that includes the browser.
+- `maxInstances: 3` (line 14) is the only change from the previous tip. It lets the runner start the three browsers at
+  the same time, so the whole run takes about as long as the slowest browser.
+- When the credentials are not set, the configuration asks for a local Chrome instead, so the runner can start, and the
+  test skips itself.
+
+### The Test
+
+The `before` hook (lines 4 to 9) skips the tests when the credentials are not set. The test (lines 11 to 14) loads the
+page and checks the title. Running in parallel didn't need any change to the test.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
