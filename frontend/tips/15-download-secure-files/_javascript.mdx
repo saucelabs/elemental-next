@@ -13,10 +13,9 @@ use `fetch`, which is built into Node.js.
 
 ### Files Behind Basic Auth
 
-The first test loads the secure downloads page with the credentials in the URL and collects the `href` of every link
-(`getDomAttribute("href")` returns the relative path as written in the page). Then, for each link, it sends a `HEAD`
-request with a Basic `Authorization` header (the credentials encoded in Base64) and asserts that the response status
-is `200`.
+The first test loads the secure downloads page with the credentials in the URL and gets the `href` of the first file
+(`getDomAttribute("href")` returns the relative path as written in the page). Then it sends a `HEAD` request with a
+Basic `Authorization` header (the credentials encoded in Base64) and asserts that the response status is `200`.
 
 ### Page Behind a Form Login
 

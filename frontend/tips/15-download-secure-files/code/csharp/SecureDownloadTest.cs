@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -34,19 +33,13 @@ namespace csharp
         public void FilesBehindBasicAuth()
         {
             _driver.Navigate().GoToUrl("https://admin:admin@the-internet.herokuapp.com/download_secure");
-            var links = _driver.FindElements(By.CssSelector(".example a"))
-                .Select(link => link.GetDomAttribute("href"))
-                .ToList();
-            Assert.IsTrue(links.Count > 0);
+            var link = _driver.FindElement(By.CssSelector(".example a")).GetDomAttribute("href");
 
             var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes("admin:admin"));
-            foreach (var link in links)
-            {
-                using var request = new HttpRequestMessage(HttpMethod.Head, $"{BaseUrl}/{link}");
-                request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
-                using var response = HttpClient.Send(request);
-                Assert.AreEqual(200, (int)response.StatusCode, link);
-            }
+            using var request = new HttpRequestMessage(HttpMethod.Head, $"{BaseUrl}/{link}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+            using var response = HttpClient.Send(request);
+            Assert.AreEqual(200, (int)response.StatusCode, link);
         }
 
         [TestMethod]

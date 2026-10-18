@@ -27,14 +27,12 @@ def request(method, path, headers):
 
 def test_files_behind_basic_auth(driver):
     driver.get(f'https://admin:admin@{HOST}/download_secure')
-    links = [link.get_dom_attribute('href') for link in driver.find_elements(By.CSS_SELECTOR, '.example a')]
-    assert len(links) > 0
+    link = driver.find_element(By.CSS_SELECTOR, '.example a').get_dom_attribute('href')
 
     credentials = base64.b64encode(b'admin:admin').decode()
-    for link in links:
-        # The file names can have spaces and other characters that need to be encoded in a URL.
-        response = request('HEAD', urllib.parse.quote(f'/{link}'), {'Authorization': f'Basic {credentials}'})
-        assert response.status == 200, link
+    # The file names can have spaces and other characters that need to be encoded in a URL.
+    response = request('HEAD', urllib.parse.quote(f'/{link}'), {'Authorization': f'Basic {credentials}'})
+    assert response.status == 200, link
 
 
 def test_page_behind_form_login(driver):

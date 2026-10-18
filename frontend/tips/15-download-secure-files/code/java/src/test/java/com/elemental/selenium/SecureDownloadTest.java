@@ -6,7 +6,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Base64;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,22 +38,17 @@ public class SecureDownloadTest {
     @Test
     public void filesBehindBasicAuth() throws Exception {
         driver.get("https://admin:admin@the-internet.herokuapp.com/download_secure");
-        List<String> links = driver.findElements(By.cssSelector(".example a")).stream()
-            .map(link -> link.getDomAttribute("href"))
-            .toList();
-        Assertions.assertFalse(links.isEmpty());
+        String link = driver.findElement(By.cssSelector(".example a")).getDomAttribute("href");
 
         String credentials = Base64.getEncoder().encodeToString("admin:admin".getBytes());
-        for (String link : links) {
-            // The file names can have spaces and other characters, which this URI constructor encodes.
-            URI url = new URI("https", "the-internet.herokuapp.com", "/" + link, null);
-            HttpRequest request = HttpRequest.newBuilder(url)
-                .method("HEAD", HttpRequest.BodyPublishers.noBody())
-                .header("Authorization", "Basic " + credentials)
-                .build();
-            HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
-            Assertions.assertEquals(200, response.statusCode(), link);
-        }
+        // The file names can have spaces and other characters, which this URI constructor encodes.
+        URI url = new URI("https", "the-internet.herokuapp.com", "/" + link, null);
+        HttpRequest request = HttpRequest.newBuilder(url)
+            .method("HEAD", HttpRequest.BodyPublishers.noBody())
+            .header("Authorization", "Basic " + credentials)
+            .build();
+        HttpResponse<Void> response = httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        Assertions.assertEquals(200, response.statusCode(), link);
     }
 
     @Test

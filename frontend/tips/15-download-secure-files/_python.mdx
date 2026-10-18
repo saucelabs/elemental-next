@@ -15,10 +15,10 @@ it doesn't follow redirects, which we need for the second test.
 
 ### Files Behind Basic Auth
 
-`test_files_behind_basic_auth` loads the secure downloads page with the credentials in the URL and collects the
-`href` of every link (`get_dom_attribute('href')` returns the relative path as written in the page). Then, for each
-link, it performs a `HEAD` request with an `Authorization: Basic ...` header (the credentials encoded in Base64) and
-asserts that the response status is `200`.
+`test_files_behind_basic_auth` loads the secure downloads page with the credentials in the URL and gets the `href` of
+the first file (`get_dom_attribute('href')` returns the relative path as written in the page). Then it performs a `HEAD`
+request with an `Authorization: Basic ...` header (the credentials encoded in Base64) and asserts that the response
+status is `200`.
 The file names can have spaces and other characters that aren't allowed in a URL, so we encode the path first
 (`urllib.parse.quote`).
 

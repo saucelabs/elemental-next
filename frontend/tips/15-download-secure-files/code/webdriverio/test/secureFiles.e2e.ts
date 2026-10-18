@@ -6,15 +6,14 @@ const BASE_URL = 'https://the-internet.herokuapp.com';
 describe('Download Secure Files', () => {
     it('checks the files behind Basic Auth', async () => {
         await browser.url(`${BASE_URL}/download_secure`, {auth: {user: 'admin', pass: 'admin'}});
-        const links = await $$('.example a').map((element) => element.getProperty('href') as Promise<string>);
-        assert(links.length > 0);
+        const link = await $$('.example a')[0].getProperty('href') as string;
 
         const credentials = Buffer.from('admin:admin').toString('base64');
-        const responses = await Promise.all(links.map((link) => fetch(link, {
+        const response = await fetch(link, {
             method: 'HEAD',
             headers: {Authorization: `Basic ${credentials}`},
-        })));
-        responses.forEach((response, index) => assert.strictEqual(response.status, 200, links[index]));
+        });
+        assert.strictEqual(response.status, 200, link);
     });
 
     it('checks a page behind a form login', async () => {

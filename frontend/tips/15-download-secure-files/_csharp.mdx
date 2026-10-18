@@ -16,10 +16,9 @@ We also create an `HttpClient` that doesn't follow redirects (`AllowAutoRedirect
 
 ### Files Behind Basic Auth
 
-`FilesBehindBasicAuth` loads the secure downloads page with the credentials in the URL and collects the `href` of
-every link (`GetDomAttribute("href")` returns the relative path as written in the page). Then, for each link, it
-sends a `HEAD` request with a Basic `Authorization` header (the credentials encoded in Base64) and asserts that the
-response status is `200`.
+`FilesBehindBasicAuth` loads the secure downloads page with the credentials in the URL and gets the `href` of the first
+file (`GetDomAttribute("href")` returns the relative path as written in the page). Then it sends a `HEAD` request with a
+Basic `Authorization` header (the credentials encoded in Base64) and asserts that the response status is `200`.
 
 ### Page Behind a Form Login
 
