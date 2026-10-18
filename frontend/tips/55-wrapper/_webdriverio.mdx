@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/webdriverio/logging.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Wrapping the Commands
+
+WebdriverIO lets us replace any of its commands with `overwriteCommand`. The new function receives the original
+command, so it can add behavior before and after it. That's how we add logging without a wrapper class.
+
+- Lines 4 to 9 keep the messages in an array (so the test can check them) and print each one.
+- Lines 13 to 17 replace `url`: they call the original command, then log the page we navigated to.
+- Lines 19 to 28 replace `click`. `attachToElement: true` makes it an element command, so `this` is the element.
+  We log the text of the element, remember the URL, click, and log the new URL when the click changed it.
+
+### The Test
+
+<TipCode codePath={"55-wrapper/code/webdriverio/test/wrapper.e2e.ts"} language={"ts"}/>
+
+The `before` hook (lines 5 to 7) adds the logging before the tests run. The test (lines 9 to 18) visits the home page
+and clicks the `Checkboxes` link. `=Checkboxes` is WebdriverIO's selector for a link with that text. Then we check that
+every action was logged, in order.
+
+The test calls the usual `browser.url` and `click`: the logging happens without changing the test code.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
