@@ -1,0 +1,16 @@
+{
+  "name": "cloud",
+  "version": "1.0.0",
+  "description": "A project to showcase running tests in the cloud using WebdriverIO",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "wdio run ./wdio.conf.ts"
+  },
+  "devDependencies": {
+    "@wdio/cli": "10.0.2",
+    "@wdio/local-runner": "10.0.2",
+    "@wdio/mocha-framework": "10.0.1",
+    "@wdio/spec-reporter": "10.0.1"
+  }
+}
