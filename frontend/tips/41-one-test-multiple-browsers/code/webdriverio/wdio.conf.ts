@@ -22,4 +22,11 @@ export const config: WebdriverIO.Config = {
     reporters: ['spec'],
     logLevel: 'error',
     mochaOpts: {timeout: 60000},
+    // Skips the tests when the Sauce Labs credentials are not set
+    onPrepare: () => {
+        if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
+            console.log('Set SAUCE_USERNAME and SAUCE_ACCESS_KEY to run this test on Sauce Labs');
+            process.exit(0);
+        }
+    },
 };

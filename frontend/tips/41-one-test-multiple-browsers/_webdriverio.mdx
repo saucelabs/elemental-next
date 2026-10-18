@@ -20,6 +20,8 @@ entry in `capabilities`.
   when the tests end, marks the job as passed or failed. `setJobName` sets the name, with the browser of the job.
 - `maxInstances: 1` (line 15) runs one browser at a time. See the next tip to run them in parallel.
 - Lines 16 to 20 turn each browser into a capability: the latest version on Windows 11.
+- Lines 25 to 31 skip the run when the Sauce Labs credentials are not set. The `onPrepare` hook runs before any browser
+  starts, so it prints how to set them and ends the run without an error.
 
 ### The Test
 

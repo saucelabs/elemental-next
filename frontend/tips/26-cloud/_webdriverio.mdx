@@ -19,6 +19,8 @@ In WebdriverIO, where the browser runs is part of the configuration, not of the 
   when the tests end, marks the job as passed or failed. Without it, every job shows up on Sauce Labs with no name and
   no result. `setJobName` sets the name, here with the title of the `describe` block (`suiteTitle`).
 - Lines 12 to 16 ask for the latest Chrome on Windows 11.
+- Lines 21 to 27 skip the run when the Sauce Labs credentials are not set. The `onPrepare` hook runs before any browser
+  starts, so it prints how to set them and ends the run without an error.
 
 ### The Test
 
