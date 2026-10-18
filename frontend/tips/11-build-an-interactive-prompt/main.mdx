@@ -50,6 +50,9 @@ prompt prints the error and keeps going. When we type `q`, it says goodbye and e
 To make sure the prompt keeps working, the input and output are passed in to the loop. That way the same code reads
 from the keyboard when we use it, and from a list of commands in a test that runs in CI.
 
+With Selenide we don't need to write the prompt: the Selenide CLI already is one. It keeps a browser open between
+commands, and it turns the commands that worked into the code of a test.
+
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
@@ -58,6 +61,7 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Java', value: 'java'},
     {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
     {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
 ]}/>
 
@@ -75,9 +79,18 @@ Hopefully this REPL will help save you some time and frustration -- making it ea
 
 Happy Testing!
 
-## Authors
+## Special Thanks
 
 import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Andrei Solntsev"
+    imgSrc={"https://github.com/asolntsev.png"}
+    description={"Contributed the Selenide code for this tip."}
+    url={"https://github.com/asolntsev"}
+/>
+
+## Authors
 
 <DefaultAvatar
     name="Dave Piacente"

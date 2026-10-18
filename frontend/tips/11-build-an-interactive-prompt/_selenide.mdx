@@ -1,0 +1,93 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+We don't need to build the prompt ourselves: the [Selenide CLI](https://www.npmjs.com/package/@selenide/cli) is one.
+We type Selenide commands in the terminal, see them run in the browser, and get the code of a test at the end.
+
+```bash
+npm install -g @selenide/cli
+
+selenide open https://the-internet.herokuapp.com
+selenide click "text=Form Authentication"
+selenide setValue "#username" tomsmith
+selenide setValue "#password" "SuperSecretPassword!"
+selenide click "#does-not-exist"
+selenide click "button[type=submit]"
+selenide should "#flash" text "You logged into a secure area!"
+selenide code
+selenide close
+```
+
+And this is the test we built from it:
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/selenide/src/test/java/com/elemental/selenium/LoginTest.java"}
+         language={"java"}/>
+
+## Code Walkthrough
+
+### Installing the Prompt
+
+The Selenide CLI is distributed through npm, and needs Java 17 or newer and a browser.
+`npm install -g @selenide/cli` puts a `selenide` command on our path (`selenide --version` checks that it's there).
+
+### Using the Prompt
+
+`selenide open <url>` starts a browser and opens the page. The browser stays open in the background, so each of the
+next commands connects to it, runs one Selenide command, prints it, and returns:
+
+```
+$ selenide click "text=Form Authentication"
++ $(byText("Form Authentication")).click();
+```
+
+Elements are found with CSS selectors by default, `text=` finds them by their text, and `xpath=` (or a selector that
+starts with `//`) uses XPath. `selenide should` checks a condition (e.g., `visible`, `text`, `value`), the same way
+`shouldBe` and `shouldHave` do in a test.
+
+When a command fails, the prompt tells us why and the browser stays where it was, so we can try again:
+
+```
+$ selenide click "#does-not-exist"
+Element not found {#does-not-exist}
+```
+
+`selenide close` closes the browser and ends the session. Before that, `selenide undo` drops the last recorded
+command and `selenide reset` drops all of them.
+
+### Turning the Session into a Test
+
+Every command that worked is recorded, and the ones that failed are not. `selenide code` prints them as Selenide
+code, with the imports they need (`selenide save LoginTest.java` writes it to a file):
+
+```java
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+
+open("https://the-internet.herokuapp.com");
+$(byText("Form Authentication")).click();
+$("#username").setValue("tomsmith");
+$("#password").setValue("SuperSecretPassword!");
+$("button[type=submit]").click();
+$("#flash").shouldHave(text("You logged into a secure area!"));
+```
+
+Lines 3 to 8 of `LoginTest` are these imports, plus the JUnit `@Test` annotation. Lines 14 to 19 are the recorded
+commands, pasted as they are into a test method.
+
+No setup or teardown is needed: Selenide opens the browser on the first `open` and closes it when the tests finish.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
