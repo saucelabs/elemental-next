@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/webdriverio/test/exceptions.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The `beforeEach` hook (lines 4 to 10) logs in and waits for the success message. After logging in, the login form
+(`#login`) is no longer on the page.
+
+### Example 1: Acting on a Missing Element
+
+Lines 12 to 14 try to click the login form. WebdriverIO waits for the element to show up (5 seconds by default, the
+`waitforTimeout` setting), and then throws an error that says the element wasn't found. `rejects.toThrow` checks that
+the click fails with that error.
+
+### Example 2: Checking That an Element Is Not Displayed
+
+Lines 16 to 18 check that the login form is not displayed. In WebdriverIO, `isDisplayed` returns `false` when the
+element doesn't exist, instead of throwing an error. So we don't need to catch an exception to check that something is
+gone, like we do in the Selenium examples.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
