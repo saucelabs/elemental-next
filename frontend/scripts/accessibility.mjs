@@ -1,6 +1,8 @@
 // Checks the pages of the site with axe (WCAG 2.2 A and AA rules), in light and dark mode.
 // Usage: npm run build && npm run serve, then, in another terminal: npm run test:a11y
 // BASE_URL changes the site to check (default: http://localhost:3000).
+// CHANGED_FILES (one path per line, relative to the repository) checks only the tip pages those files belong to. When a
+// file outside a tip folder changed (e.g., a component or the CSS), every page is checked.
 import fs from 'node:fs';
 import {Builder, By, until} from 'selenium-webdriver';
 import firefox from 'selenium-webdriver/firefox.js';
@@ -10,12 +12,44 @@ const baseUrl = (process.env.BASE_URL || 'http://localhost:3000').replace(/\/$/,
 const tags = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 
 // Every page in the sitemap. Tag pages all use the same template, so only the first one is checked.
-function pages() {
+function allPages() {
     const sitemap = fs.readFileSync(new URL('../build/sitemap.xml', import.meta.url), 'utf8');
     const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
     const tagPages = paths.filter((path) => /^\/tips\/tags\/.+/.test(path));
     return [...paths.filter((path) => !tagPages.includes(path)), tagPages[0], '/does-not-exist'];
 }
+
+// The page of a tip folder (e.g., '1-upload-a-file'), from the slug of its main.mdx. Undefined when there is none.
+function tipPage(folder) {
+    const mainMdx = new URL(`../tips/${folder}/main.mdx`, import.meta.url);
+    if (!fs.existsSync(mainMdx)) {
+        return undefined;
+    }
+    const slug = fs.readFileSync(mainMdx, 'utf8').match(/^slug:\s*(\S+)/m);
+    return slug ? `/tips${slug[1]}` : undefined;
+}
+
+// The pages to check: the pages of the changed tips, or every page when something else changed
+function pages() {
+    const changedFiles = (process.env.CHANGED_FILES || '').split('\n').map((file) => file.trim()).filter(Boolean);
+    if (changedFiles.length === 0) {
+        return allPages();
+    }
+    const tipPages = new Set();
+    for (const file of changedFiles) {
+        const folder = file.match(/^frontend\/tips\/([^/]+)\//)?.[1];
+        const page = folder && tipPage(folder);
+        if (!page) {
+            console.log(`${file} is not part of a tip, so every page is checked`);
+            return allPages();
+        }
+        tipPages.add(page);
+    }
+    console.log(`Checking only the changed tips: ${[...tipPages].join(', ')}`);
+    return [...tipPages];
+}
+
+const pagesToCheck = pages();
 
 // The tabs of a tip load their content after the page loads. Waits until every visible tab has its content.
 async function waitForTabContent(driver) {
@@ -82,7 +116,7 @@ async function checkTheme(theme) {
     try {
         await driver.get(baseUrl);
         await driver.executeScript(`localStorage.setItem('theme', '${theme}')`);
-        for (const path of pages()) {
+        for (const path of pagesToCheck) {
             try {
                 await driver.get(baseUrl + path);
                 await waitForTabs(driver, path);
@@ -103,7 +137,7 @@ async function checkTheme(theme) {
                 console.log(`\n[${theme}] ${path}: could not check the page (${error.name}: ${error.message})`);
             }
         }
-        console.log(`Checked ${pages().length} pages in ${theme} mode`);
+        console.log(`Checked ${pagesToCheck.length} pages in ${theme} mode`);
     } finally {
         await driver.quit();
     }
