@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/vibium-java/src/test/java/com/elemental/vibium/GrowlTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 16 to 20) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
+
+### The Test
+
+Lines 29 to 56 are the test itself. It adds jQuery Growl to the page to show notifications, in four steps.
+
+`page.evaluate` runs a JavaScript expression in the page. Vibium takes it as a string (a text block for the longer
+one).
+
+1. Lines 33 to 41 add jQuery to the page when it's not there, and wait for it to load with `page.waitForFunction`.
+2. Line 44 uses jQuery to load the jQuery Growl script.
+3. Lines 47 to 49 add the Growl styles to the page, and wait for `jQuery.growl` to be ready.
+4. Line 52 shows a notification with a title and a message.
+
+Finally, we check the title and the message of the notification on the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
