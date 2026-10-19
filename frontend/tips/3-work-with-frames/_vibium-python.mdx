@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/vibium-python/frames.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+Lines 5 to 9 are a pytest fixture that starts the browser, gives each test its first page (tab), and closes the
+browser after the test.
+
+### Example 1: Nested Frames
+
+Lines 12 to 18 are the first test. The page has a frame (`frame-top`) with frames inside it, and we want the text of
+the `frame-middle` frame.
+
+In Vibium, a frame is a page of its own, so there is no need to switch to it. `page.frame` finds a frame by its name
+(or URL). We get `frame-top` from the page, and `frame-middle` from `frame-top`. Then we find the element in that
+frame and check its text, which is `MIDDLE`.
+
+### Example 2: An iframe
+
+Lines 21 to 33 are the second test. The page has a text editor (TinyMCE) inside an iframe.
+
+The editor's iframe has no name and no URL, so `page.frame` can't find it. Instead, we wait for the iframe element
+and take the only frame of the page from `page.frames()`.
+
+We find the editor's body (`#tinymce`) in the frame and save its text. Then we clear it, type new text, and check
+that the text changed.
+
+Finally, we check the heading of the page. The `page` still works, so there is nothing to switch back from.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest frames.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.
