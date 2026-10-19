@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/vibium-java/src/test/java/com/elemental/vibium/CloudTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Connecting to Sauce Labs
+
+Vibium speaks WebDriver BiDi, and Sauce Labs gives each session a BiDi WebSocket when we ask for one. So the helper in
+`Sauce.java` talks to Sauce Labs with plain WebDriver requests (Java's `HttpClient`, and Gson for the JSON), and the
+test connects Vibium to the session.
+
+<details>
+    <summary>Toggle to see the <code>Sauce.java</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/vibium-java/src/test/java/com/elemental/vibium/Sauce.java"} language={"java"}/>
+    </div>
+</details>
+
+- Line 15 sets the Sauce Labs URL (US West data center).
+- Lines 19 and 20 hold what we need from a session: its id and its WebSocket URL.
+- Lines 22 to 33 send a WebDriver request to Sauce Labs and return the JSON answer. The `Authorization` header comes
+  from the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
+- Lines 37 to 49 start a session on the latest version of the browser on Windows 11. `webSocketUrl: true` asks for the
+  BiDi WebSocket, and `sauce:options` gives the job a name.
+- Lines 52 to 56 mark the job as passed or failed on Sauce Labs (`sauce:job-result`), and end the session.
+
+### The Test
+
+Lines 21 to 23 register a small JUnit extension. It runs after each test, before `afterEach`, and saves whether the
+test passed.
+
+The `beforeEach` method (lines 25 to 33) skips the test when the Sauce Labs credentials are not set (`Assumptions`).
+Then it starts a Chrome session on Sauce Labs, connects Vibium to it with
+`Vibium.start(new StartOptions().connectURL(...))`, and gets its first page (tab). The `afterEach` method (lines 35 to
+41) closes the connection, and marks the job as passed or failed with the result of the test.
+
+The test (lines 43 to 47) is the same as on a local browser: it visits the page and checks its title.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
