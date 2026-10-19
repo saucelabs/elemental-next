@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+`ScreenshotTest.java`:
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/vibium-java/src/test/java/com/elemental/vibium/ScreenshotTest.java"} language={"java"}/>
+
+`ScreenshotOnFailure.java`:
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/vibium-java/src/test/java/com/elemental/vibium/ScreenshotOnFailure.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Extension
+
+`ScreenshotOnFailure` is a JUnit extension. JUnit calls its `afterTestExecution` method after each test, before the
+`@AfterEach` methods, so the browser is still open. `context.getExecutionException()` tells us if the test failed.
+When it did, we take a screenshot with `page.screenshot()` and save it with the name of the test, e.g.,
+`failshot_ScreenshotTest.failsOnPurpose.png`.
+
+The extension gets the page with a `Supplier`, because the page is created later, in `beforeEach`.
+
+### The Test Class
+
+Lines 16 and 17 register the extension. The `beforeEach` method (lines 19 to 23) starts the browser and gets its
+first page (tab). The `afterEach` method (lines 25 to 30) closes the browser.
+
+Lines 32 to 36 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah
+blah`, which it doesn't. When it fails, the extension takes the screenshot.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
