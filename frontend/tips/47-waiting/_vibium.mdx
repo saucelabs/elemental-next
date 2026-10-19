@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/vibium/test/waiting.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser. Line 4 sets the URL of the
+example pages.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 10 to 13) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 15 to 17) closes the browser.
+
+### The Tests
+
+Vibium waits on its own: `page.find` waits for the element to be on the page (30 seconds by default), and actions like
+`click` wait for the element to be visible and enabled. There are no implicit waits to set.
+
+Lines 19 to 27 create one test for each example page. After clicking the start button, `waitUntil('visible')` waits
+up to 10 seconds for the `#finish` element to be visible. Then we check its text.
+
+Lines 29 to 34 show what happens when the wait is too short. The second example adds the element after about 5
+seconds, so `page.find` with a 2 second `timeout` fails with a timeout error. `assert.rejects` checks that it
+fails.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
