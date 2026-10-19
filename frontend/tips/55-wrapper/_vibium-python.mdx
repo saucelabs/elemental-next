@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/vibium-python/wrapper.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Wrapper
+
+Vibium doesn't have hooks to change its commands, so we wrap the page in a class of our own. The test uses the wrapper
+instead of the page.
+
+<details>
+    <summary>Toggle to see the <code>logging_page.py</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/vibium-python/logging_page.py"} language={"python"}/>
+    </div>
+</details>
+
+- Lines 3 to 6 keep the Vibium page, and a list of the messages logged, so the test can check them.
+- Lines 8 to 10 print a message and add it to the list.
+- Lines 12 to 14 go to a URL and log it.
+- Lines 16 to 24 log the text of the element before clicking it. After the click, they wait for the page to load, and
+  log the new URL when it changed.
+
+### The Test
+
+Lines 1 to 3 pull in `pytest`, Vibium's `browser`, and the wrapper.
+
+The fixture (lines 6 to 10) starts the browser, wraps its first page (tab), gives the wrapper to the test, and closes
+the browser after the test.
+
+The test (lines 13 to 21) visits the home page and clicks the "Checkboxes" link. Then it checks the three messages the
+wrapper logged.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest wrapper.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
