@@ -28,7 +28,7 @@ run_one() {
     csharp) dotnet test ;;
     javascript | serenity-js | webdriverio | vibium) npm install && npm test ;;
     playwright) npm install && npx playwright install --with-deps chromium && npm test ;;
-    python)
+    python | vibium-python)
       python -m pip install -r requirements.txt && python -m pytest ./*.py
       ;;
     ruby)
