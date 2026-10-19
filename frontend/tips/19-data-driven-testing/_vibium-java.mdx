@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/vibium-java/src/test/java/com/elemental/vibium/DataDrivenTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Loading the Data
+
+JUnit reads the test data from `user_data.csv` for us. The file has one row per user: the account type, the user name,
+the password, and the message the site should show.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/vibium-java/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 16 to 20) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
+
+### The Tests
+
+Lines 29 and 30 make it a parameterized test. `@CsvFileSource` reads the file, skips the header line, and runs the
+test once for each row, passing the values of the row as the parameters of the method. Each run is named after the
+account type. The `junit-jupiter-params` library in the `pom.xml` file brings these annotations.
+
+Each test visits the login page, fills in the user name and the password, and submits the form. Then it checks that
+the notification starts with the message for that user. `page.find` waits for the notification to show up.
+
+To test another user, we add a row to the CSV file. The test code stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
