@@ -1,0 +1,17 @@
+{
+  "name": "build-an-interactive-prompt",
+  "version": "1.0.0",
+  "description": "A project to showcase building an interactive prompt using Vibium",
+  "license": "MIT",
+  "scripts": {
+    "pretest": "vibium install",
+    "test": "mocha test/**/*.spec.js --timeout 60000",
+    "repl": "node repl.js"
+  },
+  "dependencies": {
+    "vibium": "26.8.21"
+  },
+  "devDependencies": {
+    "mocha": "12.0.3"
+  }
+}
