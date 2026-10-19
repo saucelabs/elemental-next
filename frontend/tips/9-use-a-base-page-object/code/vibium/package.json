@@ -1,0 +1,16 @@
+{
+  "name": "use-a-base-page-object",
+  "version": "1.0.0",
+  "description": "A project to showcase using a base page object using Vibium",
+  "license": "MIT",
+  "scripts": {
+    "pretest": "vibium install",
+    "test": "mocha test/**/*.spec.js --timeout 60000"
+  },
+  "dependencies": {
+    "vibium": "26.8.21"
+  },
+  "devDependencies": {
+    "mocha": "12.0.3"
+  }
+}
