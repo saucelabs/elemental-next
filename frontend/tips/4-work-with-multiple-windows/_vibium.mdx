@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/vibium/test/windows.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### The Test
+
+Lines 17 to 27 are the test itself.
+
+After visiting the page, we wrap `bro.onPopup` in a promise, and then click the link that opens a new window.
+`onPopup` calls us back with the new window as a page object. We wait for it to load with `waitForLoad`.
+
+In Vibium, each window is its own page object, so there is no switching. We can use both at any time, in any order.
+This also avoids the problem of the Selenium examples, where the order of the window handles can change between
+browsers.
+
+Finally, we check the title of each window.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
