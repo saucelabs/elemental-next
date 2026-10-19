@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/vibium-java/src/test/java/com/elemental/vibium/AbTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Lines 19 to 21 build the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`), with the
+`domain` of the site.
+
+The `beforeEach` method (lines 23 to 27) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 29 to 34) closes the browser.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 36 to 46 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie to the
+context of the page (`page.context().setCookies`), reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 48 to 54 add the cookie first and then visit the page. Since the cookie has a `domain`, Vibium can add it before
+we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 56 to 62 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+`page.onDialog(Dialog::dismiss)` dismisses it. Then we check the heading.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
