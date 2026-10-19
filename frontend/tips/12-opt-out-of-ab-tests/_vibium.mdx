@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/vibium/test/abTest.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Line 4 sets the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`), with the `domain`
+of the site.
+
+The `beforeEach` method (lines 10 to 13) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 15 to 17) closes the browser.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 19 to 28 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie to the
+context of the page (`page.context.setCookies`), reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 30 to 35 add the cookie first and then visit the page. Since the cookie has a `domain`, Vibium can add it before
+we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 37 to 42 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+`page.onDialog` dismisses it. Then we check the heading.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
