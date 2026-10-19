@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/vibium/test/retry.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Retrying the Test
+
+The page shows the successful message only some of the time, so the test is flaky on purpose. Line 7 tells Mocha to
+run a failing test again, up to 9 more times. Mocha also runs the `beforeEach` and `afterEach` hooks again, so each
+try gets a new browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 12 to 15) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 17 to 19) closes the browser.
+
+### The Test
+
+Lines 21 to 25 visit the page and check that the notification says `Action successful`. When it doesn't, the test
+fails and Mocha runs it again.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
