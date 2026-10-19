@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/vibium/test/hovers.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### The Test
+
+Lines 17 to 26 are the test itself.
+
+The page shows avatars, and each one has a caption that only shows up when the mouse is over it. We find the first
+avatar, and its caption inside it with `find`. At first, the caption is not visible.
+
+Then `hover` moves the mouse over the avatar. We wait for the caption to be visible and check it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
