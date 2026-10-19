@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/vibium-java/src/test/java/com/elemental/vibium/DynamicLoadingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/vibium-java/src/test/java/com/elemental/vibium/DynamicLoadingPage.java"} language={"java"}/>
+
+The page object keeps the URL and the selectors of the page in one place (lines 8 to 10). It receives the Vibium page
+in its constructor (lines 14 to 16).
+
+`visit` (lines 18 to 21) goes to the page and checks its title. `start` (lines 23 to 25) clicks the start button.
+`waitForFinish` (lines 27 to 29) waits up to 10 seconds for the text to be visible, and `finishText` (lines 31 to 33)
+returns it.
+
+### The Test
+
+After the imports, the `beforeEach` method (lines 14 to 19) starts the browser, creates the page object with the
+first page of the browser, and visits the page. The `afterEach` method (lines 21 to 26) closes the browser.
+
+The test (lines 28 to 33) clicks the start button, waits for the loading to finish, and checks the text.
+
+The test only talks to the page object. If the page changes, we update the page object and the test stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
