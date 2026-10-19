@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/vibium-python/ab_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Line 4 sets the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`), with the `domain`
+of the site.
+
+The fixture (lines 7 to 11) starts the browser, gives each test its first page (tab), and closes the browser after the
+test.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 14 to 22 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie to the
+context of the page (`page.context.set_cookies`), reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 25 to 29 add the cookie first and then visit the page. Since the cookie has a `domain`, Vibium can add it before
+we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 32 to 36 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+`page.on_dialog('dismiss')` dismisses it. Then we check the heading.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest ab_test.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
