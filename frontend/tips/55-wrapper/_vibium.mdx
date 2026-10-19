@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/vibium/test/wrapper.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Wrapper
+
+Vibium doesn't have hooks to change its commands, so we wrap the page in a class of our own. The test uses the wrapper
+instead of the page.
+
+<details>
+    <summary>Toggle to see the <code>loggingPage.js</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/vibium/loggingPage.js"} language={"js"}/>
+    </div>
+</details>
+
+- Lines 3 to 7 keep the Vibium page, and a list of the messages logged, so the test can check them.
+- Lines 9 to 12 print a message and add it to the list.
+- Lines 14 to 17 go to a URL and log it.
+- Lines 19 to 29 log the text of the element before clicking it. After the click, they wait for the page to load, and
+  log the new URL when it changed.
+
+### The Test
+
+Lines 1 to 3 pull in the `assert` module, Vibium's `browser`, and the wrapper.
+
+The `beforeEach` method (lines 9 to 12) starts the browser and wraps its first page (tab). The `afterEach` method
+(lines 14 to 16) closes the browser.
+
+The test (lines 18 to 27) visits the home page and clicks the "Checkboxes" link. Then it checks the three messages the
+wrapper logged.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
