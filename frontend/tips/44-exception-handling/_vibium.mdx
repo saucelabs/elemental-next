@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/vibium/test/exceptions.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### A Helper
+
+Lines 4 to 11 have a helper that tells us if an element is visible. `page.find` waits for the element, and throws an
+error when it doesn't show up in time. So we catch the error and return `false`. We set a short `timeout` (2
+seconds) since we expect the element to be missing.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 17 to 25) starts the browser and gets its first page (tab). Then it logs in and waits for the success message. The `afterEach` method
+(lines 27 to 29) closes the browser.
+
+### The Tests
+
+After logging in, the login form is not on the page anymore.
+
+- Lines 31 to 33 try to click the form. `page.find` fails with a timeout error, since the form never shows up.
+  `assert.rejects` checks that it fails.
+- Lines 35 to 37 use the helper instead. It handles the error, so the test just checks that the form is not
+  visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
