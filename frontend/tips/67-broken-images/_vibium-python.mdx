@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/vibium-python/broken_images.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `urllib` (from the Python standard library) to request the images, `pytest` to run the tests,
+and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 8 to 14) starts the browser, visits a page with some broken images in its first page (tab), gives
+the page to each test, and closes the browser after the test.
+
+Lines 17 to 22 are a helper that requests a URL and returns the status code of the answer. `urllib` raises an
+`HTTPError` for an error status (e.g., `404`), so we return its code.
+
+### The Tests
+
+There are two ways to find broken images.
+
+Lines 25 to 29 use an HTTP library. We find all the images, and turn the `src` of each one into a full URL with
+`urljoin`. Then we request each image and keep the ones that don't answer with status `200`.
+
+Lines 32 to 39 ask the browser instead, with `page.evaluate`. A broken image is `complete` (the browser finished
+loading it) but has no width (`naturalWidth` is `0`). The code returns the `src` of each broken image.
+
+Both tests print the broken images and check that they are `asdf.jpg` and `hjkl.jpg`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest broken_images.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.
