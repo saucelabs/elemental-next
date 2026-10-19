@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="1" failures="0" errors="0" skipped="0">
+  <testsuite name="The Internet" timestamp="2026-10-18T10:48:41" time="1.535" tests="1" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="suiteName" value="The Internet"/>
+      <property name="capabilities" value="chrome.156_0_8078_36.mac"/>
+      <property name="file" value="file://./test/title.e2e.ts"/>
+    </properties>
+    <testcase classname="chrome.156_0_8078_36.mac.The_Internet" name="has the right title" time="1.534">
+      <system-out><![CDATA[
+COMMAND: GET /session/939b8b4e9538d8885ba8ef43db08ae19/title - {}
+RESULT: {}
+COMMAND: DELETE /session/939b8b4e9538d8885ba8ef43db08ae19 - {}
+RESULT: {}
+]]></system-out>
+    </testcase>
+  </testsuite>
+</testsuites>

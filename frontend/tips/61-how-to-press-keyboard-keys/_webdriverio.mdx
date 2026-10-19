@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/webdriverio/test/keyPresses.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the WebdriverIO globals (`browser`, `$` and `expect`) and `Key`, which has the names of the
+special keys (e.g., `Key.Space`, `Key.Tab`, `Key.Enter`). `Key` comes from the `webdriverio` package, so it is in the
+`package.json` too.
+
+### Setup
+
+The `beforeEach` hook (lines 5 to 7) visits a page that shows the last key we pressed.
+
+### Example 1: Sending Keys to an Element
+
+Lines 9 to 12 press the space key in the input field with `addValue`, which types into an element without clearing it
+first. Then we check that the page says `You entered: SPACE`.
+
+### Example 2: Sending Keys Without an Element
+
+Lines 14 to 17 press the tab key with `browser.keys`. It sends the keys to whatever has the focus, so it's useful for
+keyboard shortcuts or to move between fields. Then we check that the page says `You entered: TAB`.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.

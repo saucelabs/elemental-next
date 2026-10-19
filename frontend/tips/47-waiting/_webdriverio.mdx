@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/webdriverio/test/waiting.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### No Implicit Waits
+
+WebdriverIO doesn't use implicit waits. Instead, it waits on its own before acting on an element (e.g., a click waits
+for the element to exist), and it has explicit waits, like `waitForDisplayed`, for everything else.
+
+### Example 1: Explicit Waits
+
+Lines 6 to 14 create one test for each example of the page. In the first example the text is on the page but hidden.
+In the second one, the text is added to the page after the loading finishes.
+
+Each test clicks the start button, and `waitForDisplayed` waits up to 10 seconds for the text (`#finish`) to exist and
+be visible. The same wait works for both cases. Then we check the text.
+
+### Example 2: A Wait That Is Too Short
+
+Lines 16 to 21 wait only 2 seconds, but the loading takes about 5. `waitForDisplayed` gives up and throws an error,
+which `rejects.toThrow` expects. When a wait fails, the error tells you which element and how long it waited.
+
+### Example 3: Waiting Inside the Assertion
+
+Lines 23 to 28 skip the separate wait. WebdriverIO's assertions (e.g., `toHaveText`) retry until they pass or the
+`wait` time runs out, so the assertion is the wait.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.

@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/webdriverio/test/headless.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Running Chrome Headless
+
+Headless is a browser setting, so in WebdriverIO it goes in the capabilities of `wdio.conf.ts`. The `--headless`
+argument in `goog:chromeOptions` starts Chrome without a window, so the tests run on a machine without a display
+(e.g., a CI server), with no extra tools like Xvfb.
+
+### The Test
+
+Lines 4 to 11 load the page and check its title, like any other test. To show that Chrome runs headless, we read the
+user agent of the browser with `browser.execute`, print it, and check that it says `HeadlessChrome`.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.

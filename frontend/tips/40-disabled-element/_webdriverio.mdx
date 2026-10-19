@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/webdriverio/test/disabledElement.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect`).
+
+### The Test
+
+Lines 4 to 9 are the test itself.
+
+After visiting the page, we find each option by its text. WebdriverIO has a selector for that: `tag=text` finds the
+element with that tag and that exact text (e.g., `option=Option 1`), so we don't need to loop over the options.
+
+Then `toBeDisabled` checks that the first option (`Please select an option`) is disabled, and `toBeEnabled` checks
+that `Option 1` is enabled.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
