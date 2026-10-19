@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/webdriverio/test/brokenImages.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The `beforeEach` hook (lines 4 to 6) visits a page with three images. Two of them are broken.
+
+### Example 1: With an HTTP Library
+
+Lines 8 to 19 collect the full URL of every image (the `src` property) and request each one with `fetch`, which comes
+with Node.js. An image that doesn't answer with status `200` is broken. We print the broken ones and check their file
+names.
+
+This approach works for any image, but it requests every image a second time.
+
+### Example 2: With JavaScript
+
+Lines 21 to 31 ask the browser instead. For each image, `browser.execute` runs a function in the page that checks
+whether the image finished loading (`complete`) and has a width (`naturalWidth > 0`). A broken image has a width of
+`0`. We collect the `src` attribute of the broken ones and check them.
+
+This approach uses what the browser already loaded, so it doesn't send any extra requests.
+
+### Executing the Test
+
+The WebdriverIO test runner reads the browser and the test framework (Mocha) from the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the
+command-line.
