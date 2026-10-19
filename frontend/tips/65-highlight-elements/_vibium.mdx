@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/vibium/test/highlight.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Highlighting an Element
+
+Line 4 has the style we use to highlight an element: a red dashed border.
+
+Lines 6 to 17 are the `highlight` function. It takes the page, the selector of the element, and how many seconds to
+keep the highlight (3 by default).
+
+`page.evaluate` runs JavaScript in the page and takes it as a string, so line 7 builds the code that finds the
+element. We store the original style of the element (line 9), and set the highlight style with `setAttribute` (line
+11). After the given seconds, we put the original style back (lines 13 to 16). With a duration of `0`, the highlight
+stays.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 23 to 27) starts the browser and gets its first page (tab), and visits a page with a lot of elements. The `afterEach` method
+(lines 29 to 31) closes the browser.
+
+### The Tests
+
+The element we highlight has an id with a dot (`sibling-2.3`). In CSS, a dot starts a class name, so we use an
+attribute selector (`[id="sibling-2.3"]`).
+
+- Lines 33 to 36 highlight the element with no duration, and check that its style has the dashed border.
+- Lines 38 to 41 highlight it for 1 second, and check that the style is back to the original one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
