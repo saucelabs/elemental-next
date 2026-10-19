@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/vibium-python/highlight.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Highlighting an Element
+
+Line 4 has the style we use to highlight an element: a red dashed border.
+
+Lines 7 to 16 are the `highlight` function. It takes the page, the selector of the element, and how many seconds to
+keep the highlight (3 by default).
+
+`page.evaluate` runs JavaScript in the page and takes it as a string, so line 8 builds the code that finds the
+element. We store the original style of the element (line 10), and set the highlight style with `setAttribute` (line
+12). After the given seconds (`page.wait`), we put the original style back (lines 14 to 16). With a duration of `0`,
+the highlight stays.
+
+### Setup and Teardown
+
+The fixture (lines 19 to 25) starts the browser, visits a page with a lot of elements in its first page (tab), gives
+the page to each test, and closes the browser after the test.
+
+### The Tests
+
+The element we highlight has an id with a dot (`sibling-2.3`). In CSS, a dot starts a class name, so we use an
+attribute selector (`[id="sibling-2.3"]`).
+
+- Lines 28 to 30 highlight the element with no duration, and check that its style has the dashed border.
+- Lines 33 to 35 highlight it for 1 second, and check that the style is back to the original one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest highlight.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
