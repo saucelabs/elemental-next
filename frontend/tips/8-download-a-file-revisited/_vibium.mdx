@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"8-download-a-file-revisited/code/vibium/test/download.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### The Test
+
+Lines 17 to 27 are the test itself.
+
+After visiting the page, we get the `href` of the first download link. It is a relative URL, so we turn it into a full
+URL using the URL of the page.
+
+Then we send a `HEAD` request for the file with `fetch`, which comes with Node.js. It returns the headers of the file
+without downloading it.
+
+Finally, we check two headers. `content-disposition` starts with `attachment`, which means the server sends the file
+as a download. `content-length` tells us the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
