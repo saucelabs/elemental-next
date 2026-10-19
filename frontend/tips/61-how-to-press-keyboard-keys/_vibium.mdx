@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/vibium/test/keyPresses.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 12) starts the browser and gets its first page (tab), and visits the page that shows the last key pressed. The `afterEach` method
+(lines 14 to 16) closes the browser.
+
+### The Tests
+
+- Lines 18 to 21 press the space key on an input field with the element's `press` method.
+- Lines 23 to 26 press the tab key with `page.keyboard.press`, without an element. The key goes to the element that
+  has the focus.
+
+Vibium uses the key names of the browser (e.g., `Space`, `Tab`, `Enter`, `ArrowDown`). Each test checks the
+message that the page shows for the key.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
