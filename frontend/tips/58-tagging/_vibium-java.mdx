@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/vibium-java/src/test/java/com/elemental/vibium/TaggingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the tests.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 16 to 20) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
+
+### The Tests
+
+We tag each test with JUnit's `@Tag`: `smoke` for the test on lines 29 to 34, and `wip` for the test on lines 36 to
+42, which is not finished yet and fails.
+
+Maven Surefire, which runs the tests, can run only the tests with a tag. `<groups>smoke</groups>` in the `pom.xml`
+file sets it, so only the first test runs. To leave out only the `wip` tests instead, use
+`<excludedGroups>wip</excludedGroups>`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
