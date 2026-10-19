@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/vibium/test/brokenImages.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 12) starts the browser and gets its first page (tab), and visits a page with some broken images. The `afterEach` method
+(lines 14 to 16) closes the browser.
+
+### The Tests
+
+There are two ways to find broken images.
+
+Lines 18 to 31 use an HTTP library (`fetch`, built into Node.js). We find all the images, and turn the `src` of each
+one into a full URL. Then we request each image and keep the ones that don't answer with status `200`.
+
+Lines 33 to 41 ask the browser instead, with `page.evaluate`. A broken image is `complete` (the browser finished
+loading it) but has no width (`naturalWidth` is `0`). The code returns the `src` of each broken image.
+
+Both tests print the broken images and check that they are `asdf.jpg` and `hjkl.jpg`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
