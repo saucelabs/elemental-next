@@ -24,7 +24,7 @@ root="$(pwd)"
 
 run_one() {
   case "${language}" in
-    java | selenide) mvn -B test ;;
+    java | selenide | vibium-java) mvn -B test ;;
     csharp) dotnet test ;;
     javascript | serenity-js | webdriverio | vibium) npm install && npm test ;;
     playwright) npm install && npx playwright install --with-deps chromium && npm test ;;
