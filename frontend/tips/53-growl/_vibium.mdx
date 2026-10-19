@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/vibium/test/growl.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### The Test
+
+Lines 17 to 43 are the test itself. It adds jQuery Growl to the page to show notifications, in four steps.
+
+`page.evaluate` runs a JavaScript expression in the page. Vibium takes it as a string.
+
+1. Lines 20 to 28 add jQuery to the page when it's not there, and wait for it to load with `page.waitForFunction`.
+2. Line 31 uses jQuery to load the jQuery Growl script.
+3. Lines 34 to 36 add the Growl styles to the page, and wait for `jQuery.growl` to be ready.
+4. Line 39 shows a notification with a title and a message.
+
+Finally, we check the title and the message of the notification on the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
