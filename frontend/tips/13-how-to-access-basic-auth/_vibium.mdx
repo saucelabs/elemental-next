@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"13-how-to-access-basic-auth/code/vibium/test/basicAuth.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setting the Credentials
+
+Line 4 holds the message the page shows when we log in.
+
+The `beforeEach` method (lines 10 to 13) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 15 to 17) closes the browser.
+
+### The Test
+
+Lines 19 to 25 are the test itself.
+
+Basic auth sends the credentials in the `Authorization` header of each request, as `Basic` followed by
+`user:password` in Base64. We build that value with `Buffer`, and `page.setHeaders` adds the header to every request
+of the page. The server sees the credentials, so the browser never shows the login dialog.
+
+Then we visit the page and check that it shows the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
