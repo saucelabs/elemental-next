@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/vibium-python/new_window.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+Lines 5 to 9 are a pytest fixture that starts the browser, gives it to the test, and closes it after the test. The
+test needs the browser itself (not only a page), to open a new tab.
+
+### The Test
+
+Lines 12 to 20 are the test itself.
+
+We visit a page in the first tab. Then `bro.new_page()` opens a new tab and gives it to us as a page object, and we
+visit another page in it. There is no switching: each tab is its own page object.
+
+Finally, we check that the browser has two tabs, and the heading of the new one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest new_window.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
