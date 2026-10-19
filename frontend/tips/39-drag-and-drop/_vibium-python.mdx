@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/vibium-python/drag_and_drop.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### The Test
+
+Lines 12 to 18 are the test itself.
+
+The page has two columns, A and B, that use HTML5 drag and drop. Vibium's `drag_to` drags an element and drops it on
+another one, and it works with HTML5 drag and drop. So there is no need for the JavaScript helper that some of the
+Selenium examples use.
+
+After dragging column A onto column B, we check that the columns swapped their text.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest drag_and_drop.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.
