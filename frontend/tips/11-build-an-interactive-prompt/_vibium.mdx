@@ -2,36 +2,92 @@ import TipCode from "@site/src/components/tipCode";
 
 ## TL;DR - Show Me The Code
 
-<TipCode codePath={"11-build-an-interactive-prompt/code/vibium/repl.js"} language={"js"}/>
+We don't need to build the prompt ourselves: the Vibium CLI is one. We type Vibium commands in the terminal and see
+them run in a browser that stays open between commands.
+
+```bash
+npm install -g vibium
+
+vibium start
+vibium go https://the-internet.herokuapp.com
+vibium find role link --name "Form Authentication"
+vibium click @e1
+vibium fill "#username" tomsmith
+vibium fill "#password" "SuperSecretPassword!"
+vibium click "#does-not-exist" --timeout 2s
+vibium click "button[type=submit]"
+vibium wait text "You logged into a secure area!"
+vibium text "#flash"
+vibium stop
+```
+
+And this is the test we built from it:
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/vibium/test/login.spec.js"} language={"js"}/>
 
 ## Code Walkthrough
 
-### The Prompt
+### Installing the Prompt
 
-Vibium calls return promises, so commands need to be `await`ed. To evaluate them we create an `AsyncFunction` with
-the command as its body and `page` as its parameter (lines 6 to 14). First we try to use the command as an
-expression (`return (${command});`), so we get its value back. If that's not valid JavaScript (e.g., it's a
-statement), we use the command as the body as is.
-
-`runRepl` receives the page, a function to read input, and a function to write output. In the loop we read a
-command. If it is `q`, we say goodbye and leave the loop. Otherwise we evaluate it and print the result when there
-is one. When there is an error we print its name and message and keep going.
-
-At the bottom, when the file is run directly (`require.main === module`), we start the browser, read the commands
-from the terminal with `readline`, and stop the browser when the prompt ends.
-
-### The Test
-
-<TipCode codePath={"11-build-an-interactive-prompt/code/vibium/test/repl.spec.js"} language={"js"}/>
-
-The test passes the commands from an array (`async () => commands.shift()`) and collects the output in another
-array. Then it checks that the title was printed, that the missing element printed an error, and that `q` ended the
-prompt.
+The Vibium CLI comes with the `vibium` npm package. `npm install -g vibium` puts a `vibium` command on our path
+(`vibium --version` checks that it's there). In a project that already has `vibium` as a dependency, `npx vibium`
+works too. The first time, `vibium install` downloads Chrome for Testing.
 
 ### Using the Prompt
 
-Run `npm run repl` and type commands like `page.go('https://the-internet.herokuapp.com')` or
-`page.find('h1').text()`. Type `q` to quit.
+`vibium start` starts a browser. It stays open in the background, so each of the next commands connects to it, runs
+one Vibium command, prints what it did, and returns:
+
+```
+$ vibium go https://the-internet.herokuapp.com
+Navigated to https://the-internet.herokuapp.com
+```
+
+Elements are found with CSS selectors. `vibium find` also finds them by role, text, label, placeholder, and more, and
+gives each one a short name (e.g., `@e1`) that the next commands can use:
+
+```
+$ vibium find role link --name "Form Authentication"
+@e1 [a] "Form Authentication"
+$ vibium click @e1
+Clicked element: #content > ul > li:nth-of-type(22) > a
+```
+
+`vibium map` lists all the elements we can interact with on the page, with the same short names. It helps when we
+don't know the page yet.
+
+When a command fails, the prompt tells us why and the browser stays where it was, so we can try again:
+
+```
+$ vibium click "#does-not-exist" --timeout 2s
+Error: failed to click: timeout after 2s: element not found
+```
+
+A click doesn't wait for the next page to load. So after submitting the form, `vibium wait text` waits for the
+message before `vibium text` reads it:
+
+```
+$ vibium wait text "You logged into a secure area!"
+Text "You logged into a secure area!" found on page
+$ vibium text "#flash"
+You logged into a secure area!
+            ×
+```
+
+`vibium stop` closes the browser and ends the session.
+
+### Turning the Session into a Test
+
+The Vibium CLI doesn't write the code for us, but each command matches a call of the JavaScript API. So we copy the
+commands that worked into a test, and leave out the one that failed.
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab), like `vibium start`. The
+`afterEach` method (lines 13 to 15) closes the browser, like `vibium stop`.
+
+Lines 19 to 24 are the commands of the session: `vibium go` is `page.go`, `vibium find role link --name ...` is
+`page.find({role: 'link', text: ...})`, `vibium fill` is `fill`, and `vibium click` is `click`. In the test, `page.find`
+waits for the element on the next page, so we don't need the extra wait. Finally, we check that the message starts with
+the text we expect (it ends with a `×` close button).
 
 ### Executing the Test
 
