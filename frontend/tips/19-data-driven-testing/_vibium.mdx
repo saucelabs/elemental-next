@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/vibium/test/dataDriven.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Loading the Data
+
+Lines 6 to 12 read the test data from `user_data.csv`. The first line of the file is the header. We split the file into
+lines and each line into values, and turn each row into an object with the header names as keys (e.g.,
+`user.username`). The file has one row per user: the account type, the user name, the password, and the message the
+site should show.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/vibium/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 18 to 21) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 23 to 25) closes the browser.
+
+### The Tests
+
+Line 27 loops over the users and creates one test for each, named after the account type.
+
+Each test visits the login page, fills in the user name and the password, and submits the form. Then it checks that
+the notification starts with the message for that user. `page.find` waits for the notification to show up.
+
+To test another user, we add a row to the CSV file. The test code stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
