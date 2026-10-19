@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/vibium-java/src/test/java/com/elemental/vibium/DragAndDropTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 15 to 19) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 21 to 26) closes the browser.
+
+### The Test
+
+Lines 28 to 36 are the test itself.
+
+The page has two columns, A and B, that use HTML5 drag and drop. Vibium's `dragTo` drags an element and drops it on
+another one, and it works with HTML5 drag and drop. So there is no need for the JavaScript helper that some of the
+Selenium examples use.
+
+After dragging column A onto column B, we check that the columns swapped their text.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
