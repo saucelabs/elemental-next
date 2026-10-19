@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/vibium-python/dynamic_loading_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/vibium-python/dynamic_loading_page.py"} language={"python"}/>
+
+The page object keeps the URL and the selectors of the page in one place (lines 1 to 3). It receives the Vibium page
+when it is created (lines 7 and 8).
+
+`visit` (lines 10 to 12) goes to the page and checks its title. `start` (lines 14 and 15) clicks the start button.
+`wait_for_finish` (lines 17 and 18) waits up to 10 seconds for the text to be visible, and `finish_text` (lines 20
+and 21) returns it.
+
+### The Test
+
+After the imports, the fixture (lines 6 to 12) starts the browser, creates the page object with the first page of the
+browser, and visits the page. After the test, it closes the browser.
+
+The test (lines 15 to 18) clicks the start button, waits for the loading to finish, and checks the text.
+
+The test only talks to the page object. If the page changes, we update the page object and the test stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest
+dynamic_loading_test.py` from the command-line. The first time, Vibium downloads Chrome for Testing.
