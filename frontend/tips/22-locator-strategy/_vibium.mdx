@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/vibium/test/locators.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### The Tests
+
+Each test visits the download page and finds a link with a CSS selector. `page.find` returns the first element that
+matches, and `attr('href')` reads where the link goes. We print it and check it.
+
+- Lines 17 to 22 look for any link on the page (`a`). The first one on the page is the "Fork me on GitHub" banner,
+  which is not the link we want.
+- Lines 24 to 29 narrow the search to the content of the page (`#content a`). That finds a file link.
+- Lines 31 to 36 narrow it further to the list of files (`#content .example a`). This selector says exactly where
+  the link is, so a change somewhere else on the page won't break it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
