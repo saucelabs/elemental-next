@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/vibium-python/exceptions.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `pytest` to run the tests, Vibium's `browser` to drive the browser, and the `ElementNotFoundError`
+that Vibium raises when it can't find an element.
+
+### A Helper
+
+Lines 6 to 11 have a helper that tells us if an element is visible. `page.find` waits for the element, and raises an
+`ElementNotFoundError` when it doesn't show up in time. So we catch the error and return `False`. We set a short
+`timeout` (2 seconds) since we expect the element to be missing.
+
+### Setup and Teardown
+
+The fixture (lines 14 to 24) starts the browser, logs in, and waits for the success message. Then it gives the page to
+each test, and closes the browser after the test.
+
+### The Tests
+
+After logging in, the login form is not on the page anymore.
+
+- Lines 27 to 29 try to click the form. `page.find` fails with an `ElementNotFoundError`, since the form never shows
+  up. `pytest.raises` checks that it fails.
+- Lines 32 and 33 use the helper instead. It handles the error, so the test just checks that the form is not visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest exceptions.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
