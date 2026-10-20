@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/vibium-java/src/test/java/com/elemental/vibium/RetryTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 15 to 19) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 21 to 26) closes the browser.
+
+### Retrying the Test
+
+The page shows the successful message only some of the time, so the test is flaky on purpose. Maven Surefire, which
+runs the tests, can run a failing test again: `rerunFailingTestsCount` in the `pom.xml` file sets it to up to 9 more
+times. JUnit also runs `beforeEach` and `afterEach` again, so each try gets a new browser.
+
+### The Test
+
+Lines 28 to 35 visit the page and check that the notification says `Action successful`. When it doesn't, the test
+fails and Surefire runs it again.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
