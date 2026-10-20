@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/vibium-java/src/test/java/com/elemental/vibium/ExceptionsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in Vibium's classes to drive the browser, the `ElementNotFoundException` that Vibium throws when it
+can't find an element, and JUnit to run the tests.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 17 to 26) starts the browser and gets its first page (tab). Then it logs in and waits
+for the success message. The `afterEach` method (lines 28 to 33) closes the browser.
+
+### A Helper
+
+Lines 35 to 42 have a helper that tells us if an element is visible. `page.find` waits for the element, and throws an
+`ElementNotFoundException` when it doesn't show up in time. So we catch the exception and return `false`. We set a
+short `timeout` (2 seconds) since we expect the element to be missing.
+
+### The Tests
+
+After logging in, the login form is not on the page anymore.
+
+- Lines 44 to 48 try to click the form. `page.find` fails with an `ElementNotFoundException`, since the form never
+  shows up. `Assertions.assertThrows` checks that it fails.
+- Lines 50 to 53 use the helper instead. It handles the exception, so the test just checks that the form is not
+  visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
