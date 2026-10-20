@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/vibium-python/dynamic_pages.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives each test its first page (tab), and closes the browser after the
+test.
+
+### The Tests
+
+Lines 12 to 18 run the test once for each example page (`pytest.mark.parametrize`). The first one has an element that
+is hidden and shows up after loading. The second one adds the element to the page after loading.
+
+Each test visits the page and clicks the start button. Then `wait_until('visible')` waits up to 10 seconds for the
+`#finish` element to be visible, which works for both examples. Finally, we check that it is visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest dynamic_pages.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.
