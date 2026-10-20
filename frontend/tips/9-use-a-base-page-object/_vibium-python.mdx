@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-python/base_page_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-python/base_page.py"} language={"python"}/>
+
+The base page holds what every page object needs. It keeps the Vibium `page` (lines 5 and 6), and has methods for the
+common actions: `visit` a path of the site and check the title (lines 8 to 10), `click`, `type`, get the text of an
+element (`text_of`), check that it is visible (`is_displayed`), and `wait_for` it to be visible.
+
+If we ever need to change how we click or type (e.g., to add logging), we change it in one place.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-python/dynamic_loading_page.py"} language={"python"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-python/login_page.py"} language={"python"}/>
+
+Both page objects extend `BasePage`. They keep their selectors as constants, and use the methods of the base page
+instead of calling Vibium directly.
+
+### The Tests
+
+The fixture (lines 7 to 11) starts the browser, gives each test its first page, and closes the browser after the test.
+
+The first test (lines 14 to 18) loads the dynamic loading page, clicks start and checks the text. The second test
+(lines 21 to 25) logs in and checks that the success message is shown.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest base_page_test.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.
