@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/vibium-python/retry_actions.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### The Retry Helper
+
+Lines 5 to 11 are a small helper, `retry_if_message_contains`. It runs an action that returns a message, and runs it
+again while the message contains the failure text, up to 10 attempts. Then it returns the last message.
+
+### Setup and Teardown
+
+Lines 14 to 18 are a pytest fixture that starts the browser, gives the test its first page (tab), and closes the
+browser after the test.
+
+### The Test
+
+Lines 21 to 27 are the test itself.
+
+The action is a small function, `show_notification`, that loads the page and returns the text of the notification. We
+give the helper the failure text (`please try again`) and that function. When the helper is done, we check that the
+message says `Action successful`.
+
+If it still fails after 10 attempts, the assertion fails, and we know there is a real problem.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest retry_actions.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.
