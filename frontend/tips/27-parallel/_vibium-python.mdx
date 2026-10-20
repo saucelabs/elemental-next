@@ -1,0 +1,55 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/vibium-python/test_sort_with_attributes.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+pytest runs tests in parallel with the `pytest-xdist` plugin, and its `-n` option says how many can run at the same
+time. We set it to `2` in `pytest.ini`, so the tests of this example run two at a time, each one with its own browser.
+
+<details>
+    <summary>Toggle to see the <code>pytest.ini</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/vibium-python/pytest.ini"} language={"ini"}/>
+    </div>
+</details>
+
+Each test starts its own browser, so the tests don't depend on each other and can run in any order. The fixture lives
+in `conftest.py`, so both test files can use it. It starts the browser, visits the page with the tables, and closes
+the browser after the test.
+
+<TipCode codePath={"27-parallel/code/vibium-python/conftest.py"} language={"python"}/>
+
+### The Tests
+
+Both test files test the sorting of a table. The one above uses the second table, whose cells have classes (e.g.,
+`dues`). The other one uses the first table, which has no classes, so it finds the cells by position:
+
+<TipCode codePath={"27-parallel/code/vibium-python/test_sort_without_attributes.py"} language={"python"}/>
+
+In each file, lines 1 and 2 read the values of the "Due" column and turn them into numbers.
+
+Each test clicks the header of the "Due" column once (ascending, lines 5 to 9) or twice (descending, lines 12 to 17).
+The page sorts the table a moment after the click, and marks the header with the class `headerSortDown` (ascending)
+or `headerSortUp` (descending). So before reading the values, we wait for the header with that class (`page.find`
+waits for it). Then we check that the values are in the same order as a sorted copy of them.
+
+### Executing the Test
+
+Before executing the tests, we need to make sure the required libraries are declared on the `requirements.txt` file.
+It includes `pytest-xdist`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the tests by executing `pytest` from the
+command-line. The first time, Vibium downloads Chrome for Testing.
+
