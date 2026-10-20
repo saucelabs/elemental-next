@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"1-upload-a-file/code/vibium-python/upload.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the `os` module to build the path to the file, `pytest` to run the test, and Vibium's `browser`
+to drive the browser.
+
+### Setup and Teardown
+
+Lines 6 to 10 are a pytest fixture that starts and stops the browser.
+
+It starts the browser with `browser.start()` and gives the test its first page (tab) with `bro.page()`. After the test
+runs, the code after `yield` closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 13 to 22 are the test itself. It gets the page from the fixture.
+
+First we set the name of the file we'd like to upload. It's a text file called `some-file.txt` in the current working
+directory. We build the full path to it and store it in `file_path`.
+
+Next we visit the page with the upload form. `set_files` sets the file on the file input, without opening the
+operating system dialog. Then we click the submit button.
+
+After the file is uploaded, the page shows the name of the file. We read that text and check that it matches the name
+we expect.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest upload.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.

@@ -6,7 +6,7 @@ on:
   workflow_call:
     inputs:
       language:
-        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, webdriverio, vibium)'
+        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, webdriverio, vibium, vibium-python)'
         required: true
         type: string
       workflow-file:
@@ -99,7 +99,7 @@ jobs:
         with:
           node-version: 24
       - name: Set up Python
-        if: inputs.language == 'python'
+        if: inputs.language == 'python' || inputs.language == 'vibium-python'
         uses: actions/setup-python@v7
         with:
           python-version: '3.15'
