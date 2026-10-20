@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/vibium-python/download.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the `os` module, `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+Lines 6 to 10 are a pytest fixture that starts the browser, gives the test its first page (tab), and closes the
+browser after the test.
+
+### The Test
+
+Lines 13 to 23 are the test itself. Besides the page, it asks pytest for `tmp_path`, a temporary folder for the
+downloaded file that pytest creates for each test.
+
+Vibium doesn't need any browser setting to download files. It catches each download, and `page.capture.download()`
+gives it to us.
+
+After visiting the page, we click the first download link inside a `with page.capture.download()` block. When the
+block ends, Vibium waits for the download to start, and `captured.value` holds a `download` object.
+
+We save the file with `save_as` into the temporary folder, using the name the server suggests.
+
+Finally, we check that the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest download.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
