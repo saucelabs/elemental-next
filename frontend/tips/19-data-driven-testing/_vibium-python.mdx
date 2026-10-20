@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/vibium-python/data_driven.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Loading the Data
+
+Lines 7 to 9 read the test data from `user_data.csv` with the `csv` module. `csv.DictReader` uses the first line of
+the file as the header, and turns each row into a dictionary with the header names as keys (e.g.,
+`user['username']`). The file has one row per user: the account type, the user name, the password, and the message
+the site should show.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/vibium-python/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+### Setup and Teardown
+
+The fixture (lines 12 to 16) starts the browser, gives each test its first page (tab), and closes the browser after
+the test.
+
+### The Tests
+
+Line 19 uses `pytest.mark.parametrize` to run the test once for each user, named after the account type.
+
+Each test visits the login page, fills in the user name and the password, and submits the form. Then it checks that
+the notification starts with the message for that user. `page.find` waits for the notification to show up.
+
+To test another user, we add a row to the CSV file. The test code stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest data_driven.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.
