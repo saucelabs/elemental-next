@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/vibium-java/src/test/java/com/elemental/vibium/FramesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the tests.
+
+### Setup and Teardown
+
+Lines 13 and 14 declare the browser and the page. The `beforeEach` method (lines 16 to 20) starts the browser and
+gets its first page (tab). The `afterEach` method (lines 22 to 27) closes the browser.
+
+### Example 1: Nested Frames
+
+Lines 29 to 37 are the first test. The page has a frame (`frame-top`) with frames inside it, and we want the text of
+the `frame-middle` frame.
+
+In Vibium, a frame is a `Page` of its own, so there is no need to switch to it. `page.frame` finds a frame by its
+name (or URL). We get `frame-top` from the page, and `frame-middle` from `frame-top`. Then we find the element in that
+frame and check its text, which is `MIDDLE`.
+
+### Example 2: An iframe
+
+Lines 39 to 53 are the second test. The page has a text editor (TinyMCE) inside an iframe.
+
+The editor's iframe has no name and no URL, so `page.frame` can't find it. Instead, we wait for the iframe element
+and take the only frame of the page from `page.frames()`.
+
+We find the editor's body (`#tinymce`) in the frame and save its text. Then we clear it, type new text, and check
+that the text changed.
+
+Finally, we check the heading of the page. The `page` still works, so there is nothing to switch back from.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
