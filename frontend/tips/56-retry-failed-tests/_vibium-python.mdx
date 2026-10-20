@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/vibium-python/retry.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### Retrying the Test
+
+The page shows the successful message only some of the time, so the test is flaky on purpose. The `pytest-rerunfailures`
+plugin (in `requirements.txt`) adds the `flaky` marker. Line 14 uses it to run a failing test again, up to 9 more
+times. pytest also runs the fixture again, so each try gets a new browser.
+
+### The Test
+
+Lines 15 to 18 visit the page and check that the notification says `Action successful`. When it doesn't, the test
+fails and pytest runs it again.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest retry.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.
