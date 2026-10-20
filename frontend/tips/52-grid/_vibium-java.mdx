@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/vibium-java/src/test/java/com/elemental/vibium/GridTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Connecting to the Grid
+
+Line 22 sets the URL of the Grid, `http://localhost:4444` unless the `GRID_URL` environment variable says otherwise.
+Lines 23 and 24 create Java's `HttpClient` and Gson, to talk to the Grid.
+
+Lines 30 to 37 check if the Grid is running, with its `/status` endpoint. Lines 39 to 48 send a WebDriver request to
+the Grid and return the JSON answer.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 50 to 64) skips the test when the Grid is not running (`Assumptions`).
+
+Vibium speaks WebDriver BiDi, and the Grid gives each session a BiDi WebSocket when we ask for one. So we ask the Grid
+for a new Chrome session with `webSocketUrl: true`, connect Vibium to its WebSocket URL with
+`Vibium.start(new StartOptions().connectURL(...))`, and get its first page (tab).
+
+The `afterEach` method (lines 66 to 73) closes the connection and ends the session on the Grid.
+
+### The Test
+
+Lines 75 to 79 visit the page and check its title, the same as on a local browser.
+
+To try it, start a Grid with `java -jar selenium-server-<version>.jar standalone` before running the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
