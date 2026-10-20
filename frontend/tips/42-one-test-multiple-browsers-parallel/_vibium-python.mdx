@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/vibium-python/multiple_browsers_parallel.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Connecting to Sauce Labs
+
+Vibium speaks WebDriver BiDi, and Sauce Labs gives each session a BiDi WebSocket when we ask for one. So the helper in
+`sauce.py` talks to Sauce Labs with plain WebDriver requests (`urllib`), and the test connects Vibium to the session.
+
+<details>
+    <summary>Toggle to see the <code>sauce.py</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/vibium-python/sauce.py"} language={"python"}/>
+    </div>
+</details>
+
+- Line 6 sets the Sauce Labs URL (US West data center).
+- Lines 9 to 21 send a WebDriver request to Sauce Labs and return its value. The `Authorization` header comes from the
+  `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
+- Lines 26 to 38 start a session on the latest version of the browser on Windows 11. `webSocketUrl: True` asks for the
+  BiDi WebSocket, and `sauce:options` gives the job a name. It returns the session id and the WebSocket URL.
+- Lines 42 to 47 mark the job as passed or failed on Sauce Labs (`sauce:job-result`), and end the session.
+
+### The Test
+
+Lines 1 to 5 pull in the `os` module, `ThreadPoolExecutor` to run code at the same time, `pytest`, Vibium's
+`browser`, and the helper. Line 7 lists the browsers: Chrome, Firefox and Edge.
+
+Lines 10 to 21 run the test on one browser: they start a session on Sauce Labs, connect Vibium to it, visit the page
+and check its title. The `finally` block always closes the connection, and marks the job as passed or failed.
+
+The test (lines 24 to 30) skips itself when the Sauce Labs credentials are not set. Then it runs `run_on` for every
+browser at the same time, each one in its own thread. `list` waits for all of them, and if one of them fails, the
+test fails.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest
+multiple_browsers_parallel.py` from the command-line. The first time, Vibium downloads Chrome for Testing.
