@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/vibium-python/title.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### The Test
+
+Lines 12 to 14 visit the page and check its title.
+
+### The JUnit XML Report
+
+pytest saves the results in the JUnit XML format with its `--junitxml` option. We set it in `pytest.ini`, so every run
+saves the report in the `result.xml` file. CI servers (e.g., Jenkins) read this file to show the results.
+
+<details>
+    <summary>Toggle to see the <code>pytest.ini</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/vibium-python/pytest.ini"} language={"ini"}/>
+    </div>
+</details>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest title.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.
