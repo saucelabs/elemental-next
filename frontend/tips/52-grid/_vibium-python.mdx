@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/vibium-python/grid.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Connecting to the Grid
+
+Lines 1 to 5 pull in the `json`, `os` and `urllib` modules to talk to the Grid, `pytest`, and Vibium's `browser`. Line
+7 sets the URL of the Grid, `http://localhost:4444` unless the `GRID_URL` environment variable says otherwise.
+
+Lines 10 to 15 check if the Grid is running, with its `/status` endpoint. Lines 18 to 26 send a WebDriver request to
+the Grid and return its value.
+
+Vibium speaks WebDriver BiDi, and the Grid gives each session a BiDi WebSocket when we ask for one. Lines 31 to 35 ask
+the Grid for a new Chrome session with `webSocketUrl: True`. They return the session id and the WebSocket URL.
+
+### Setup and Teardown
+
+The fixture (lines 38 to 48) skips the test when the Grid is not running. Then it starts a session on the Grid,
+connects Vibium to it with `browser.start(session['web_socket_url'])`, and gives the test its first page (tab). After
+the test, it closes the connection and ends the session on the Grid.
+
+### The Test
+
+Lines 51 to 53 visit the page and check its title, the same as on a local browser.
+
+To try it, start a Grid with `java -jar selenium-server-<version>.jar standalone` before running the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest grid.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.
