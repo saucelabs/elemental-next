@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-java/src/test/java/com/elemental/vibium/BasePageTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-java/src/test/java/com/elemental/vibium/BasePage.java"} language={"java"}/>
+
+The base page holds what every page object needs. It keeps the Vibium `page` (lines 10 to 14), and has methods for
+the common actions: `visit` a path of the site and check the title (lines 16 to 19), `click`, `type`, get the text of
+an element (`textOf`), check that it is visible (`isDisplayed`), and `waitFor` it to be visible.
+
+If we ever need to change how we click or type (e.g., to add logging), we change it in one place.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-java/src/test/java/com/elemental/vibium/DynamicLoadingPage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium-java/src/test/java/com/elemental/vibium/LoginPage.java"} language={"java"}/>
+
+Both page objects extend `BasePage`. They keep their selectors as constants, and use the methods of the base page
+instead of calling Vibium directly.
+
+### The Tests
+
+The `beforeEach` method (lines 15 to 19) starts the browser and gets its first page, and `afterEach` (lines 21 to 26)
+closes the browser.
+
+The first test (lines 28 to 34) loads the dynamic loading page, clicks start and checks the text. The second test
+(lines 36 to 42) logs in and checks that the success message is shown.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
