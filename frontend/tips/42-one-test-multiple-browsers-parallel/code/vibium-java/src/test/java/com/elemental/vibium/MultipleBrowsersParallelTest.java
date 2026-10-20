@@ -14,11 +14,17 @@ import java.util.concurrent.CompletableFuture;
 public class MultipleBrowsersParallelTest {
     private static final List<String> BROWSERS = List.of("chrome", "firefox", "MicrosoftEdge");
 
+    // The Vibium client unpacks its binary the first time it starts, and two starts at the same time can break it
+    // (fixed upstream, not released yet). So we connect one browser at a time, and the tests still run in parallel.
+    static synchronized Browser connect(String webSocketUrl) {
+        return Vibium.start(new StartOptions().connectURL(webSocketUrl));
+    }
+
     static void runOn(String browserName) {
         try {
             Sauce.Session session = Sauce.startSession(browserName,
                 "Elemental Selenium - Tip 42 - Vibium Java - " + browserName);
-            Browser browser = Vibium.start(new StartOptions().connectURL(session.webSocketUrl()));
+            Browser browser = connect(session.webSocketUrl());
             boolean passed = false;
             try {
                 Page page = browser.page();

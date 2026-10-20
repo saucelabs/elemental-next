@@ -31,10 +31,14 @@ test connects Vibium to the session.
 
 Line 15 lists the browsers: Chrome, Firefox and Edge.
 
-Lines 17 to 35 run the test on one browser: they start a session on Sauce Labs, connect Vibium to it, visit the page
+Lines 17 to 21 connect Vibium to a session. The Java client (version 26.8.21) unpacks its binary the first time it
+starts, and two starts at the same time can break it. `synchronized` makes the browsers connect one at a time. It
+only takes a moment, and the tests still run at the same time.
+
+Lines 23 to 41 run the test on one browser: they start a session on Sauce Labs, connect Vibium to it, visit the page
 and check its title. The `finally` block always closes the connection, and marks the job as passed or failed.
 
-The test (lines 37 to 47) skips itself when the Sauce Labs credentials are not set (`Assumptions`). Then it runs
+The test (lines 43 to 53) skips itself when the Sauce Labs credentials are not set (`Assumptions`). Then it runs
 `runOn` for every browser at the same time with `CompletableFuture.runAsync`, and `join` waits for all of them. If one
 of them fails, the test fails.
 
