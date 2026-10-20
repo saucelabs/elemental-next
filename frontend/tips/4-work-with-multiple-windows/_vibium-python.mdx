@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/vibium-python/windows.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the `queue` module, `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+Lines 6 to 10 are a pytest fixture that starts the browser, gives it to the test, and closes it after the test. The
+test needs the browser itself (not only a page), to get the new window.
+
+### The Test
+
+Lines 13 to 24 are the test itself.
+
+After visiting the page, we ask the browser to put every new popup window in a queue with `bro.on_popup`, and then
+click the link that opens a new window. `popups.get` waits (up to 10 seconds) for the new window, which comes as a
+page object. We wait for it to load with `wait_for_load`.
+
+In Vibium, each window is its own page object, so there is no switching. We can use both at any time, in any order.
+This also avoids the problem of the Selenium examples, where the order of the window handles can change between
+browsers.
+
+Finally, we check the title of each window.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest windows.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
