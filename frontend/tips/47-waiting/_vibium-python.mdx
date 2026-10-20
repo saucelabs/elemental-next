@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/vibium-python/waiting.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `pytest` to run the tests, Vibium's `browser` to drive the browser, and the
+`ElementNotFoundError` that Vibium raises when it can't find an element. Line 5 sets the URL of the example pages.
+
+### Setup and Teardown
+
+The fixture (lines 8 to 12) starts the browser, gives each test its first page (tab), and closes the browser after the
+test.
+
+### The Tests
+
+Vibium waits on its own: `page.find` waits for the element to be on the page (30 seconds by default), and actions like
+`click` wait for the element to be visible and enabled. There are no implicit waits to set.
+
+Lines 15 to 21 run the test once for each example page. After clicking the start button, `wait_until('visible')`
+waits up to 10 seconds for the `#finish` element to be visible. Then we check its text.
+
+Lines 24 to 29 show what happens when the wait is too short. The second example adds the element after about 5
+seconds, so `page.find` with a 2 second `timeout` fails with an `ElementNotFoundError`. `pytest.raises` checks that it
+fails.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest waiting.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.
