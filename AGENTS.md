@@ -43,6 +43,7 @@ tips/1-upload-a-file/
   _webdriverio.mdx
   _vibium.mdx
   _vibium-python.mdx    Vibium has more than one language: `_vibium-<language>.mdx` and `code/vibium-<language>/`
+  _vibium-java.mdx
   code/<lang>/          A runnable project per language or tool, with a README.md showing how to run it
 ```
 
@@ -55,8 +56,8 @@ tips/1-upload-a-file/
   walkthrough prose must stay in sync with the code file.
 - Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Serenity/JS examples exist for some tips and
   are kept. Selenide (Java) examples exist for some tips and show as their own tool.
-- Other tools: Playwright (TypeScript), WebdriverIO (TypeScript) and Vibium (JavaScript and Python). They use
-  Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
+- Other tools: Playwright (TypeScript), WebdriverIO (TypeScript) and Vibium (JavaScript, Python and Java). They
+  use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
 - Per-language conventions in `code/`:
   - Python: `requirements.txt` + pytest test file (`pytest <file>.py`)
   - Java: Maven `pom.xml`, JUnit 5, `src/test/java/com/elemental/selenium/*Test.java` (`mvn test`)
@@ -72,6 +73,8 @@ tips/1-upload-a-file/
     `vibium install` first to download Chrome for Testing)
   - Vibium Python (`code/vibium-python`): `requirements.txt` with `vibium` and pytest, like Python (`pytest <file>.py`,
     which downloads Chrome for Testing the first time)
+  - Vibium Java (`code/vibium-java`): Maven `pom.xml` with `com.vibium:vibium`, JUnit 5,
+    `src/test/java/com/elemental/vibium/*Test.java` (`mvn test`, which downloads Chrome for Testing the first time)
 - Most examples hit https://the-internet.herokuapp.com and rely on Selenium Manager for browser drivers.
 
 ### How the site is put together
@@ -112,7 +115,7 @@ tips/1-upload-a-file/
   manual runs check every page.
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`, `playwright`,
-  `webdriverio`, `vibium`, `vibium-python`): thin callers of
+  `webdriverio`, `vibium`, `vibium-python`, `vibium-java`): thin callers of
   the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
   - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
     `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, Renovate branches, and when
