@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/vibium-java/src/test/java/com/elemental/vibium/HoversTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 16 to 20) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
+
+### The Test
+
+Lines 29 to 39 are the test itself.
+
+The page shows avatars, and each one has a caption that only shows up when the mouse is over it. We find the first
+avatar, and its caption inside it with `find`. At first, the caption is not visible.
+
+Then `hover` moves the mouse over the avatar. We wait for the caption to be visible and check it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
