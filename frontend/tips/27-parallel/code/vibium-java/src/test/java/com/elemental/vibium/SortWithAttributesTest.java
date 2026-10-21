@@ -2,7 +2,6 @@ package com.elemental.vibium;
 
 import com.vibium.Browser;
 import com.vibium.Page;
-import com.vibium.Vibium;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,7 @@ public class SortWithAttributesTest {
 
     @BeforeEach
     public void beforeEach() {
-        browser = Vibium.start();
+        browser = Browsers.start();
         page = browser.page();
         page.go("https://the-internet.herokuapp.com/tables");
     }

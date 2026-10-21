@@ -15,6 +15,14 @@ it runs the test classes and their tests at the same time, two at a time, each o
 
 Each test starts its own browser, so the tests don't depend on each other and can run in any order.
 
+### Starting the Browsers
+
+The Java client of Vibium (version 26.8.21) unpacks its binary the first time it starts, and two starts at the same
+time can break it. So the test classes start their browsers with a small helper, whose `synchronized` method lets one
+browser start at a time. Starting takes a moment, and then the tests run at the same time.
+
+<TipCode codePath={"27-parallel/code/vibium-java/src/test/java/com/elemental/vibium/Browsers.java"} language={"java"}/>
+
 ### The Tests
 
 Both test classes test the sorting of a table. The one above uses the second table, whose cells have classes (e.g.,
@@ -22,12 +30,12 @@ Both test classes test the sorting of a table. The one above uses the second tab
 
 <TipCode codePath={"27-parallel/code/vibium-java/src/test/java/com/elemental/vibium/SortWithoutAttributesTest.java"} language={"java"}/>
 
-In each class, the `beforeEach` method (lines 18 to 23) starts the browser and visits the page with the tables, and
-the `afterEach` method (lines 25 to 30) closes the browser. Lines 32 to 36 read the values of the "Due" column and
-turn them into numbers.
+In each class, the `beforeEach` method (lines 17 to 22) starts the browser with the helper and visits the page with the
+tables, and the `afterEach` method (lines 24 to 29) closes the browser. Lines 31 to 35 read the values of the "Due"
+column and turn them into numbers.
 
-Each test clicks the header of the "Due" column once (ascending, lines 38 to 44) or twice (descending, lines 46 to
-53). The page sorts the table a moment after the click, and marks the header with the class `headerSortDown`
+Each test clicks the header of the "Due" column once (ascending, lines 37 to 43) or twice (descending, lines 45 to
+52). The page sorts the table a moment after the click, and marks the header with the class `headerSortDown`
 (ascending) or `headerSortUp` (descending). So before reading the values, we wait for the header with that class
 (`page.find` waits for it). Then we check that the values are in the same order as a sorted copy of them.
 
