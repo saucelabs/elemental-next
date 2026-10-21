@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/vibium-java/src/test/java/com/elemental/vibium/TitleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 15 to 19) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 21 to 26) closes the browser.
+
+### The Test
+
+Lines 28 to 32 visit the page and check its title.
+
+### The JUnit XML Report
+
+Maven Surefire, which runs the tests, saves the results in the JUnit XML format without any setting. After `mvn test`,
+the report is in `target/surefire-reports`, one `TEST-<class name>.xml` file per test class. CI servers (e.g.,
+Jenkins) read these files to show the results.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

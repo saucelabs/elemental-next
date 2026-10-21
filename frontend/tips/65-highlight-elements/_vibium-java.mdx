@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/vibium-java/src/test/java/com/elemental/vibium/HighlightTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in Vibium's classes to drive the browser, JUnit to run the tests, and `Objects`.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 19 to 24) starts the browser, gets its first page (tab), and visits a page with a lot
+of elements. The `afterEach` method (lines 26 to 31) closes the browser.
+
+### Highlighting an Element
+
+Line 14 has the style we use to highlight an element: a red dashed border.
+
+Lines 33 to 44 are the `highlight` method. It takes the selector of the element, and how many seconds to keep the
+highlight.
+
+`page.evaluate` runs JavaScript in the page and takes it as a string, so line 34 builds the code that finds the
+element. We store the original style of the element (line 36, an empty string when there is none), and set the
+highlight style with `setAttribute` (line 38). After the given seconds (`page.sleep`), we put the original style back
+(lines 40 to 43). With a duration of `0`, the highlight stays.
+
+### The Tests
+
+The element we highlight has an id with a dot (`sibling-2.3`). In CSS, a dot starts a class name, so we use an
+attribute selector (`[id="sibling-2.3"]`).
+
+- Lines 46 to 50 highlight the element with no duration, and check that its style has the dashed border.
+- Lines 52 to 57 highlight it for 1 second, and check that the style is back to the original one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
