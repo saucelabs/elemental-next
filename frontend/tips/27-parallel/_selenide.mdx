@@ -1,0 +1,59 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+`BaseTest.java`:
+
+<TipCode codePath={"27-parallel/code/selenide/src/test/java/com/elemental/selenium/BaseTest.java"} language={"java"}/>
+
+`SortWithoutAttributesTest.java`:
+
+<TipCode codePath={"27-parallel/code/selenide/src/test/java/com/elemental/selenium/SortWithoutAttributesTest.java"} language={"java"}/>
+
+`SortWithAttributesTest.java`:
+
+<TipCode codePath={"27-parallel/code/selenide/src/test/java/com/elemental/selenium/SortWithAttributesTest.java"} language={"java"}/>
+
+`junit-platform.properties`:
+
+<TipCode codePath={"27-parallel/code/selenide/src/test/resources/junit-platform.properties"} language={"properties"}/>
+
+## Code Walkthrough
+
+### Running Tests in Parallel
+
+JUnit runs tests in parallel when `junit-platform.properties` says so. Ours runs the test classes and their tests at
+the same time (`concurrent`), with up to 2 at once (`fixed.parallelism = 2`).
+
+### The Base Test
+
+`BaseTest` holds what both test classes share:
+
+- Lines 10 and 11 hold a comparator that sorts the dues by their amount (e.g., `$51.00` before `$100.00`).
+- Lines 14 to 17 open the tables page before each test.
+
+We don't create or close a browser. Selenide keeps one browser per thread, and JUnit runs the parallel tests in
+different threads, so each test gets its own browser. Selenide closes them when the tests finish.
+
+### The Tests
+
+The two test classes sort the dues of a table, in ascending and in descending order. `SortWithoutAttributesTest` uses
+the first table, with locators based on the position of the column (`td:nth-of-type(4)`). `SortWithAttributesTest`
+uses the second table, with the classes on the cells (`.dues`).
+
+Each test takes the texts of the cells, sorts them to know the order we expect, clicks the header (twice for
+descending order), and checks the order with `shouldHave(exactTexts(...))`. That check waits until the table is
+sorted.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
