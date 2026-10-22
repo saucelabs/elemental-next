@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"51-javascript-alerts/code/selenide/src/test/java/com/elemental/selenium/JavaScriptAlertsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in the JUnit annotations and the Selenide methods we use (`open`, `$`, `$$`, `confirm`, `dismiss`
+and the `exactText` condition).
+
+### Setup
+
+Lines 15 to 18 open the page and click the second button (`get(1)`), which opens a JavaScript confirmation.
+
+### Accepting and Dismissing
+
+Selenide has methods for JavaScript dialogs. They wait for the dialog, so we don't need a `WebDriverWait`:
+
+- In lines 21 to 24, `confirm()` accepts the confirmation (like clicking `OK`), and the page says
+  `You clicked: Ok`.
+- In lines 27 to 30, `dismiss()` dismisses it (like clicking `Cancel`), and the page says `You clicked: Cancel`.
+
+Both methods return the text of the dialog, and they can also check it: `confirm("I am a JS Confirm")` fails if the
+text is different.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
