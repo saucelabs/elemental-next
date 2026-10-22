@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"45-how-to-test-checkboxes/code/selenide/src/test/java/com/elemental/selenium/CheckboxesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in `ElementsCollection`, the JUnit annotations, and the Selenide methods and conditions we use
+(`open`, `$$`, `attribute` and `checked`).
+
+### Setup
+
+Line 13 declares the checkboxes with `$$`. Selenide finds elements when we use them, not when we declare them, so we
+can declare them before the page is open. Lines 15 to 18 open the page before each test.
+
+### Example 1: The `checked` Attribute
+
+Lines 21 to 24 check the `checked` attribute of the first and the last checkbox. The first one doesn't have it, and the
+last one does. The attribute only tells us how the page was written, though: it doesn't change when the user clicks
+the checkbox.
+
+### Example 2: The State of the Checkbox
+
+Lines 27 to 30 use the `checked` condition, which asks the browser whether the checkbox is checked right now. This is
+the one to use in tests, since it follows the clicks of the user.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"45-how-to-test-checkboxes/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
