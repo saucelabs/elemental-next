@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/selenide/src/test/java/com/elemental/selenium/MultipleBrowsersTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 15 pull in Selenide's `Configuration`, the JUnit annotations for parameterized tests, Selenium's
+`MutableCapabilities`, and the Selenide methods we use (`open`, `closeWebDriver`, `webdriver` and the `title`
+condition).
+
+### Setup
+
+The `setUp` method (lines 20 to 36) gets the name of the browser. It reads the Sauce Labs username and access key
+from environment variables, and skips the test (`Assumptions.assumeTrue`) if they are not set.
+
+Lines 26 to 31 hold the capabilities that are the same for every browser: Windows 11, and the Sauce Labs options
+(credentials and the name of the test).
+
+Lines 32 to 35 set up Selenide: the address of Sauce Labs (`remote`), the browser (`chrome`, `firefox` or `edge`),
+its version, and the capabilities. Selenide creates the right options for the browser and adds our capabilities to
+them.
+
+### Teardown
+
+Lines 38 to 41 close the browser after each test. The next test then starts a new one, with the next browser.
+
+### The Test
+
+Lines 43 to 49 run once for each browser in `@ValueSource`. Each run sets up the browser, opens the page and checks
+its title.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`, then run the tests by executing `mvn test` from the command-line. They
+run one after the other, one per browser.
+
