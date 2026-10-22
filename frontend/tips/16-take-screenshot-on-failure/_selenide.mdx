@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/selenide/src/test/java/com/elemental/selenium/ScreenshotTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in the JUnit annotations, Selenide's `ScreenShooterExtension`, the Selenide methods we use, and
+JUnit's `assertEquals`.
+
+### Screenshots from Selenide Checks
+
+Selenide takes a screenshot on its own when one of its checks fails. In lines 16 to 19, `shouldHave` fails (the
+heading is not `blah blah blah`), and Selenide saves a screenshot and the page source in `build/reports/tests`. The
+error message says where they are:
+
+```
+Element should have exact text "blah blah blah" {h1}
+Element: '<h1 class="heading">Welcome to the-internet</h1>'
+Actual value: text="Welcome to the-internet"
+Screenshot: file:/.../build/reports/tests/com/elemental/selenium/ScreenshotTest/failsOnPurpose/1792676440689.0.png
+Page source: file:/.../build/reports/tests/com/elemental/selenium/ScreenshotTest/failsOnPurpose/1792676440689.0.html
+```
+
+### Screenshots from Any Failure
+
+Other failures, like a JUnit assertion, don't go through Selenide. For those, line 13 adds `ScreenShooterExtension`.
+It takes a screenshot when a test fails for any reason, like the `assertEquals` in lines 22 to 25. It also puts the
+screenshots of each test in a folder named after the test class and method.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. Both tests fail on purpose, and the screenshots are in
+`build/reports/tests`.
+
