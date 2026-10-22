@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/selenide/src/test/java/com/elemental/selenium/DynamicLoadingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in the JUnit annotations for parameterized tests, `java.time.Duration`, and the Selenide methods
+we use (`open`, `$` and the `visible` condition).
+
+### The Test
+
+Lines 13 to 19 run once for each example of the page (`@ValueSource`):
+
+1. the element is on the page but hidden, and it shows up after the loading bar,
+2. the element is added to the page after the loading bar.
+
+We open the page and click the start button. Then `shouldBe(visible, Duration.ofSeconds(10))` waits until the
+element is visible, and fails the test if it isn't after 10 seconds.
+
+Selenide waits on every check, so the same line works for both examples, whether the element is hidden or missing.
+The default timeout is 4 seconds, which is shorter than the loading bar, so we give this check a longer one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
