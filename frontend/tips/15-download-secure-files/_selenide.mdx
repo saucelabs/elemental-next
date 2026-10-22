@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/selenide/src/test/java/com/elemental/selenium/SecureDownloadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 15 pull in the JUnit annotations, `java.io.File`, the Selenide methods and options for downloads
+(`download`, `using`, `FOLDER`), and AssertJ to check the files.
+
+### One Browser per Test
+
+Line 17 adds `BrowserPerTestStrategyExtension`, which closes the browser after each test. That way, each test starts
+without the credentials or the session cookie of the other one.
+
+### Example 1: Files Behind Basic Auth
+
+Lines 20 to 24 open the page with the credentials in the URL, and download the first file on the page.
+`download(using(FOLDER))` clicks the link and waits for the file in the browser's downloads folder. The browser
+already has the credentials, so the download works, and we check that the file is not empty.
+
+### Example 2: A Page Behind a Login Form
+
+Lines 27 to 36 log in through the form and wait for the success message. Then `download(url)` gets the secure page
+with an HTTP request, outside the browser. Selenide copies the browser's cookies to that request, so it gets the
+page of a logged-in user. We check that it is the secure area, and not the login page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
