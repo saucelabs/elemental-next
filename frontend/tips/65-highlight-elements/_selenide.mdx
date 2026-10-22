@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/selenide/src/test/java/com/elemental/selenium/HighlightTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 15 pull in `SelenideElement`, the JUnit annotations, `java.util.Objects`, and the Selenide methods we use
+(`open`, `$`, `byId`, `executeJavaScript`, `sleep`, `border` and the `attributeMatching` condition).
+
+### Setup
+
+Lines 20 to 23 open a page with a lot of elements before each test.
+
+### Our Own Highlight
+
+The `highlight` method (lines 25 to 35) gets an element and a duration:
+
+1. It keeps the original `style` of the element (or an empty one), so we can put it back later.
+2. It sets the style to a red dashed border with JavaScript.
+3. If the duration is more than 0, it waits that long and puts the original style back.
+
+`executeJavaScript` accepts a Selenide element as an argument, like Selenium's `executeScript` does with a
+`WebElement`.
+
+### The Tests
+
+The element's id has a dot (`sibling-2.3`), which means something else in CSS, so we find it with `byId`.
+
+- Lines 38 to 42 highlight the element and check that its style has the dashed border.
+- Lines 45 to 49 highlight it for 1 second and check that the style is back to the original one.
+
+### Selenide's Highlight
+
+Selenide also has a `highlight()` method. Lines 52 to 56 use it with a border of our own (`border(...)`). Without
+options, it gives the element a colorful background. It doesn't put the style back, though, so we still need our own
+method for that.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
