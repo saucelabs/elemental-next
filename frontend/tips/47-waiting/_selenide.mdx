@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/selenide/src/test/java/com/elemental/selenium/WaitingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 15 pull in Selenide's `ElementNotFound` and `ElementShould` errors, the JUnit annotations,
+`java.time.Duration`, the Selenide methods and conditions we use, and JUnit's `assertThrows`.
+
+### How Selenide Waits
+
+Selenide doesn't use implicit waits or `WebDriverWait`. Every check (`shouldBe`, `shouldHave`, ...) and every action
+(`click`, `setValue`, ...) waits for the element on its own, up to a timeout of 4 seconds by default. The loading bar
+of the page takes about 5 seconds, so the default timeout is too short here.
+
+### The Default Timeout Gives Up Before the Element Is Rendered
+
+In lines 21 to 25, the element is added to the page after the loading bar. The check gives up after 4 seconds and
+throws `ElementNotFound`.
+
+### The Default Timeout Gives Up While the Element Is Hidden
+
+In lines 28 to 32, the element is on the page but hidden. Selenide finds it, but it is not visible yet after 4
+seconds, so the check throws `ElementShould`.
+
+### A Longer Timeout
+
+Lines 35 to 40 run once for each example. `shouldBe(visible, Duration.ofSeconds(10))` gives this check a longer
+timeout, so it waits until the element is visible, whether it was hidden or missing. Then we check its text.
+
+To change the timeout of every check, set `Configuration.timeout` (in milliseconds), or the `selenide.timeout`
+system property.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
