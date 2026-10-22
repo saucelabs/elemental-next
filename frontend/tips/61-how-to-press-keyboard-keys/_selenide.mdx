@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/selenide/src/test/java/com/elemental/selenium/KeyPressesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in the JUnit annotations, Selenium's `Keys`, and the Selenide methods we use (`open`, `$`,
+`actions` and the `exactText` condition).
+
+### Setup
+
+Lines 14 to 16 open the key presses page before each test. The page shows the last key we pressed.
+
+### Example 1: Press a Key on an Element
+
+Lines 19 to 22 press the space bar on the input field with `press(Keys.SPACE)`, and check that the page says
+`You entered: SPACE`.
+
+### Example 2: Press a Key Without an Element
+
+Some keys don't belong to an element, like a shortcut for the whole page. Lines 25 to 28 use Selenium's Actions API
+(`actions()` gives us one for Selenide's browser) to press `TAB` on the page, and check the result.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
