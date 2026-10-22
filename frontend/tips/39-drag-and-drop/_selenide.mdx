@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/selenide/src/test/java/com/elemental/selenium/DragAndDropTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in the JUnit annotations and the Selenide methods we use (`open`, `$`, `to` and the `exactText`
+condition).
+
+### Drag and Drop
+
+The page uses HTML5 drag and drop, which the WebDriver Actions API doesn't trigger in every browser. That's why the
+Selenium examples run a JavaScript snippet that sends the drag and drop events.
+
+Selenide already does that for us. In line 14, `dragAndDrop(to("#column-b"))` sends the same events with JavaScript
+(its default), so we don't need our own script.
+
+### The Test
+
+Lines 15 and 16 check that the columns swapped places: the first column now says `B`, and the second one says `A`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
