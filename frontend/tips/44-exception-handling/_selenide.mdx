@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/selenide/src/test/java/com/elemental/selenium/ExceptionHandlingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 12 pull in Selenide's `ElementNotFound` error, the JUnit annotations, the Selenide methods and conditions
+we use (`open`, `$`, `exist` and `visible`), and JUnit's assertions.
+
+### Setup
+
+Lines 15 to 22 log in before each test, and wait for the success message. After logging in, the login form is gone.
+
+### Example 1: Looking for a Missing Element
+
+In lines 25 to 27, `shouldBe(visible)` looks for the login form. Selenide keeps looking for 4 seconds (its default
+timeout), and then throws `ElementNotFound`. It plays the role of Selenium's `NoSuchElementException`, and its
+message says which element it looked for, for how long, and where the screenshot of the page is.
+
+### Example 2: Checking Without an Exception
+
+With Selenium, we catch the exception to find out that an element is not displayed. Selenide does that for us: in
+lines 30 to 32, `isDisplayed()` returns `false` when the element is missing, instead of throwing an exception. It
+also doesn't wait.
+
+### Example 3: Checking That an Element Is Gone
+
+In tests, we usually want the test to fail with a clear message when an element is still there. Lines 35 to 37 use
+`shouldNot(exist)`, which waits until the element is not on the page, and fails if it still is after the timeout.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
