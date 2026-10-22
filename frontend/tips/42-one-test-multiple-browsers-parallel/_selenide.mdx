@@ -1,0 +1,57 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+`MultipleBrowsersParallelTest.java`:
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/selenide/src/test/java/com/elemental/selenium/MultipleBrowsersParallelTest.java"} language={"java"}/>
+
+`junit-platform.properties`:
+
+<TipCode codePath={"42-one-test-multiple-browsers-parallel/code/selenide/src/test/resources/junit-platform.properties"} language={"properties"}/>
+
+## Code Walkthrough
+
+### Running Tests in Parallel
+
+`junit-platform.properties` tells JUnit to run the tests at the same time (`concurrent`), with up to 3 at once, one
+for each browser.
+
+### Importing Libraries
+
+Lines 3 to 13 pull in Selenide's `SelenideConfig` and `SelenideDriver`, the JUnit annotations for parameterized
+tests, Selenium's `MutableCapabilities`, and the `title` condition.
+
+### One Configuration per Test
+
+In tip 41, we set up Selenide with `Configuration`. Its settings are shared by every test, so tests running at the
+same time can't use different browsers with it.
+
+Here, each test creates its own `SelenideDriver` (lines 33 to 37), with its own `SelenideConfig`: the address of Sauce
+Labs, the browser, its version and the capabilities. The rest of the `setUp` method (lines 20 to 31) is the same as in
+tip 41: it skips the test when the Sauce Labs credentials are not set, and holds the capabilities that are the same
+for every browser.
+
+### Teardown
+
+Lines 40 to 45 close the browser of the test, if it was created.
+
+### The Test
+
+Lines 47 to 53 run once for each browser, at the same time. We use the methods of our `SelenideDriver`
+(`driver.open`, `driver.webdriver()`) instead of the static ones, so each test talks to its own browser.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"42-one-test-multiple-browsers-parallel/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`, then run the tests by executing `mvn test` from the command-line. The
+three browsers start on Sauce Labs at the same time.
+
