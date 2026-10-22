@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+`Wrapper.java`:
+
+<TipCode codePath={"55-wrapper/code/selenide/src/test/java/com/elemental/selenium/Wrapper.java"} language={"java"}/>
+
+`WrapperTest.java`:
+
+<TipCode codePath={"55-wrapper/code/selenide/src/test/java/com/elemental/selenium/WrapperTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Listening to Selenide
+
+With Selenium, we wrap the driver with an `EventFiringDecorator` to know about each action. Selenide already logs
+every step it takes (opening a page, clicking, checking, ...), and it tells the listeners we give it. That's how its
+reports and integrations (e.g., Allure) work.
+
+### The Listener
+
+`Wrapper` implements Selenide's `LogEventListener`:
+
+- Lines 10 to 19 keep the messages in a list (so the test can check them), and print them.
+- Lines 21 to 24 (`beforeEvent`) log each step before it runs, with the element (or `open`, or `webdriver`) and what is
+  done with it.
+- Lines 26 to 29 (`afterEvent`) log each step after it runs, with its status (`PASS` or `FAIL`).
+
+### The Test
+
+Lines 20 to 29 of `WrapperTest` add the listener before each test (`SelenideLogger.addListener`), with a name, and
+remove it by that name after the test.
+
+Lines 33 to 35 open the home page, click the `Checkboxes` link, and check the new URL. Lines 37 to 45 check what the
+listener logged. Note that the first `open` also starts the browser (`webdriver create()`): Selenide opens it when we
+first need it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
