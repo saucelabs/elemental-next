@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/selenide/src/test/java/com/elemental/selenium/TaggingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Tagging the Tests
+
+JUnit's `@Tag` annotation puts a test in a group. Lines 11 to 16 tag a test that checks the title of the page as
+`smoke`. Lines 19 to 24 tag a test that is not finished yet (it fails) as `wip`.
+
+### Running Only Some Tests
+
+Line 41 of the `pom.xml` tells Maven Surefire to run only the tests tagged as `smoke`, so `mvn test` doesn't run the
+`wip` test.
+
+To run another group without changing the `pom.xml`, pass it on the command-line, e.g., `mvn test -Dgroups=wip`. To
+leave a group out, use `excludedGroups` (e.g., `-DexcludedGroups=wip`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
