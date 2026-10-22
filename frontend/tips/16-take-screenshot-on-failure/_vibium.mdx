@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/vibium/test/screenshot.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the `assert` module, the `fs` module to save the screenshot, and Vibium's `browser`.
+
+### Taking the Screenshot
+
+The `beforeEach` method (lines 9 to 12) starts the browser and gets its first page (tab).
+
+The `afterEach` method (lines 14 to 20) runs after each test. Mocha tells us how the test went in
+`this.currentTest.state`. When it is `failed`, we build a file name from the full name of the test (with dashes
+instead of spaces), take a screenshot with `page.screenshot()`, and save it with `fs.writeFileSync`, e.g.,
+`failshot_Screenshot-fails-on-purpose.png`. Then we close the browser.
+
+### The Test
+
+Lines 22 to 26 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah blah`,
+which it doesn't.
+
+When it fails, the `afterEach` method takes the screenshot.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

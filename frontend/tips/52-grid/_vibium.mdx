@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/vibium/test/grid.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Connecting to the Grid
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser`. Line 4 sets the URL of the Grid, `http://localhost:4444`
+unless the `GRID_URL` environment variable says otherwise.
+
+Lines 6 to 8 check if the Grid is running, with its `/status` endpoint.
+
+Vibium speaks WebDriver BiDi, and the Grid gives each session a BiDi WebSocket when we ask for one. Lines 12 to 20 ask
+the Grid for a new Chrome session with `webSocketUrl: true`, using a plain WebDriver request (`fetch`). They return the
+session id and the WebSocket URL.
+
+### Setup and Teardown
+
+The `before` hook (lines 27 to 32) skips the test when the Grid is not running.
+
+The `beforeEach` method (lines 34 to 38) starts a session on the Grid, connects Vibium to it with
+`browser.start(session.webSocketUrl)`, and gets its first page (tab). The `afterEach` method (lines 40 to 44) closes
+the connection and ends the session on the Grid.
+
+### The Test
+
+Lines 46 to 49 visit the page and check its title, the same as on a local browser.
+
+To try it, start a Grid with `java -jar selenium-server-<version>.jar standalone` before running the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

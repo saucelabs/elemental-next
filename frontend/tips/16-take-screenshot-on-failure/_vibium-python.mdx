@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+`screenshot.py`:
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/vibium-python/screenshot.py"} language={"python"}/>
+
+`conftest.py`:
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/vibium-python/conftest.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Knowing When a Test Fails
+
+pytest doesn't tell a fixture how the test went, so `conftest.py` adds a hook (`pytest_runtest_makereport`). It runs
+after each phase of a test (setup, call, teardown) and saves the report on the test, e.g., as `report_call`.
+
+### Taking the Screenshot
+
+The fixture (lines 5 to 14) starts the browser and gives the test its first page (tab).
+
+After the test, it reads `report_call`. When the test failed, it takes a screenshot with `page.screenshot()` and saves
+it with the name of the test, e.g., `failshot_test_fails_on_purpose.png`. Then it closes the browser.
+
+### The Test
+
+Lines 17 to 19 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah blah`,
+which it doesn't.
+
+When it fails, the fixture takes the screenshot.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest screenshot.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.

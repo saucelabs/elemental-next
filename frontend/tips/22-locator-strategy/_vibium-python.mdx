@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/vibium-python/locators.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives each test its first page (tab), and closes the browser after the
+test.
+
+### The Tests
+
+Each test visits the download page and finds a link with a CSS selector. `page.find` returns the first element that
+matches, and `attr('href')` reads where the link goes. We print it and check it.
+
+- Lines 12 to 16 look for any link on the page (`a`). The first one on the page is the "Fork me on GitHub" banner,
+  which is not the link we want.
+- Lines 19 to 23 narrow the search to the content of the page (`#content a`). That finds a file link.
+- Lines 26 to 30 narrow it further to the list of files (`#content .example a`). This selector says exactly where
+  the link is, so a change somewhere else on the page won't break it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest locators.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.

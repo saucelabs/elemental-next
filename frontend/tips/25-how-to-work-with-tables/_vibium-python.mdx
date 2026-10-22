@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/vibium-python/tables.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Helpers
+
+Lines 5 to 10 have two helpers. `texts` finds all the cells that match a selector with `page.find_all` and returns
+their text. `dues` turns the text of the "Due" cells (e.g., `$50.00`) into numbers, so we can sort them.
+
+### Setup and Teardown
+
+The fixture (lines 13 to 19) starts the browser, visits the page with the tables in its first page (tab), gives the
+page to each test, and closes the browser after the test.
+
+### The Tests
+
+The page has two tables. The first one has no classes or ids on its cells, so we find them by position (e.g.,
+`td:nth-of-type(4)` is the fourth column, "Due"). The second one has classes on its cells (e.g., `dues`), which
+makes the selectors easier to read.
+
+Each test clicks the header of a column once (ascending) or twice (descending). The page sorts the table a moment
+after the click, and marks the header with the class `headerSortDown` (ascending) or `headerSortUp` (descending).
+So before reading the values, we wait for the header with that class (`page.find` waits for it). Then we check that
+the values are in the same order as a sorted copy of them.
+
+- Lines 22 to 26 sort the "Due" column of the first table in ascending order.
+- Lines 29 to 34 sort it in descending order.
+- Lines 37 to 41 sort the "Email" column, which is text.
+- Lines 44 to 48 sort the "Due" column of the second table, using its classes.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest tables.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.

@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"51-javascript-alerts/code/vibium-python/alerts.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 11) starts the browser, visits the page with the alerts in its first page (tab), gives the
+page to each test, and closes the browser after the test.
+
+### The Tests
+
+The "Click for JS Confirm" button opens a confirmation with OK and Cancel buttons. We find the button by its role and
+text (`role='button', text=...`), one of Vibium's semantic locators.
+
+Vibium lets us know when the page opens a dialog with `page.on_dialog`. We set the handler before clicking.
+
+- Lines 14 to 18 accept the confirmation (OK) and check that the page says `You clicked: Ok`.
+- Lines 21 to 25 dismiss it (Cancel) and check that the page says `You clicked: Cancel`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest alerts.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.

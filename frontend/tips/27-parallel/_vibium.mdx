@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/vibium/test/sortWithAttributes.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+Mocha runs spec files in parallel with the `--parallel` option, and `--jobs` says how many can run at the same time.
+We set it to `2` in the `test` script of `package.json`, so the two spec files of this example run at the same time,
+each one with its own browser.
+
+Each spec file is a group of related tests (e.g., the sorting of one table), and each test starts its own browser, so
+the files don't depend on each other and can run in any order.
+
+### The Tests
+
+Both spec files test the sorting of a table. The one above uses the second table, whose cells have classes (e.g.,
+`dues`). The other one uses the first table, which has no classes, so it finds the cells by position:
+
+<TipCode codePath={"27-parallel/code/vibium/test/sortWithoutAttributes.spec.js"} language={"js"}/>
+
+In each file, lines 4 to 7 read the values of the "Due" column and turn them into numbers. The `beforeEach` method
+(lines 13 to 17) starts the browser and visits the page with the tables, and the `afterEach` method (lines 19 to 21)
+closes the browser.
+
+Each test clicks the header of the "Due" column once (ascending, lines 23 to 28) or twice (descending, lines 30 to
+36). The page sorts the table a moment after the click, and marks the header with the class `headerSortDown`
+(ascending) or `headerSortUp` (descending). So before reading the values, we wait for the header with that class
+(`page.find` waits for it). Then we check that the values are in the same order as a sorted copy of them.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

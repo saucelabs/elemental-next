@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"17-retrieve-http-status-codes/code/vibium-java/src/test/java/com/elemental/vibium/StatusCodesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 17 to 21) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 23 to 28) closes the browser.
+
+### The Tests
+
+Lines 30 and 31 make it a parameterized test, which JUnit runs once for each status code we want to check. The
+`junit-jupiter-params` library in the `pom.xml` file brings `@ParameterizedTest`.
+
+Vibium can watch the network traffic of the page, so we don't need the Navigation Timing API.
+`page.capture().response` starts listening for a response to the URL, runs the code we give it (visiting the page),
+and returns the response once it arrives. Then we check `response.status()`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

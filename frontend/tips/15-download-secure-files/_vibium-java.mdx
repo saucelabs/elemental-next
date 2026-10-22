@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/vibium-java/src/test/java/com/elemental/vibium/SecureFilesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+Line 20 creates Java's `HttpClient`, which we use to check the files. It doesn't follow redirects, which we need for
+the second example.
+
+The `beforeEach` method (lines 25 to 29) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 31 to 36) closes the browser.
+
+### Example 1: Files Behind Basic Auth
+
+Lines 38 to 52 are the first test.
+
+We visit the page with the files with the user and password in the URL (`https://admin:admin@...`), and get the link
+of the first file. (In the Java client, version 26.8.21, `setHeaders` is not enough for basic auth, so we don't use it
+like the JavaScript and Python examples do.)
+
+The `HttpClient` doesn't know about the browser, so we send the credentials in the `Authorization` header, as `Basic`
+followed by `user:password` in Base64. We send a `HEAD` request for the file and check that it answers with status
+`200`.
+
+### Example 2: A Page Behind a Form Login
+
+Lines 54 to 75 log in with the form and wait for the success message. The site keeps the session in a cookie called
+`rack.session`.
+
+We get the cookies of the page's context with `page.context().cookies()` and send that one in the `Cookie` header of a
+request for `/secure`. With the cookie, it answers with `200`. Without it, it answers with `302` (a redirect to the
+login page).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

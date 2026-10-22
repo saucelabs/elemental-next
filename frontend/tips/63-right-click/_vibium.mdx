@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"63-right-click/code/vibium/test/rightClick.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### The Test
+
+Lines 17 to 30 are the test itself.
+
+The page has a box that opens a JavaScript alert when we right click on it. Vibium can't right click yet, so we fire
+the `contextmenu` event (the event a right click sends) on the box with `dispatchEvent`. The page handles it the same
+way.
+
+Before that, lines 20 to 25 set a handler with `page.onDialog`. When the alert opens, the handler keeps its message
+and accepts it. Then we check the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

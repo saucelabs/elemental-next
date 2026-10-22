@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"13-how-to-access-basic-auth/code/vibium-python/basic_auth.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setting the Credentials
+
+Line 5 holds the message the page shows when we log in.
+
+The fixture (lines 8 to 12) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### The Test
+
+Lines 15 to 20 are the test itself.
+
+Basic auth sends the credentials in the `Authorization` header of each request, as `Basic` followed by
+`user:password` in Base64. We build that value with the `base64` module, and `page.set_headers` adds the header to
+every request of the page. The server sees the credentials, so the browser never shows the login dialog.
+
+Then we visit the page and check that it shows the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest basic_auth.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.

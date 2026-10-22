@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/vibium-java/src/test/java/com/elemental/vibium/WrapperTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Wrapper
+
+Vibium doesn't have hooks to change its commands, so we wrap the page in a class of our own. The test uses the wrapper
+instead of the page.
+
+<details>
+    <summary>Toggle to see the <code>LoggingPage.java</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/vibium-java/src/test/java/com/elemental/vibium/LoggingPage.java"} language={"java"}/>
+    </div>
+</details>
+
+- Lines 11 to 17 keep the Vibium page, and a list of the messages logged, so the test can check them.
+- Lines 19 to 22 print a message and add it to the list.
+- Lines 24 to 27 go to a URL and log it.
+- Lines 29 to 39 log the text of the element before clicking it. After the click, they wait for the page to load, and
+  log the new URL when it changed.
+
+### The Test
+
+The `beforeEach` method (lines 16 to 20) starts the browser and wraps its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
+
+The test (lines 29 to 38) visits the home page and clicks the "Checkboxes" link. Then it checks the three messages the
+wrapper logged.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

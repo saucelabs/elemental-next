@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/vibium/test/frames.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 11) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 13 to 15) closes the browser.
+
+### Example 1: Nested Frames
+
+Lines 17 to 24 are the first test. The page has a frame (`frame-top`) with frames inside it, and we want the text of
+the `frame-middle` frame.
+
+In Vibium, a frame is a page of its own, so there is no need to switch to it. `page.frame` finds a frame by its name
+(or URL). We get `frame-top` from the page, and `frame-middle` from `frame-top`. Then we find the element in that
+frame and check its text, which is `MIDDLE`.
+
+### Example 2: An iframe
+
+Lines 26 to 39 are the second test. The page has a text editor (TinyMCE) inside an iframe.
+
+The editor's iframe has no name and no URL, so `page.frame` can't find it. Instead, we wait for the iframe element
+and take the only frame of the page from `page.frames()`.
+
+We find the editor's body (`#tinymce`) in the frame and save its text. Then we clear it, type new text, and check
+that the text changed.
+
+Finally, we check the heading of the page. The `page` still works, so there is nothing to switch back from.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

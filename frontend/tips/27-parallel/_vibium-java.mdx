@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/vibium-java/src/test/java/com/elemental/vibium/SortWithAttributesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+JUnit runs tests in parallel when we turn it on in `src/test/resources/junit-platform.properties`. With these settings,
+it runs the test classes and their tests at the same time, two at a time, each one with its own browser.
+
+<TipCode codePath={"27-parallel/code/vibium-java/src/test/resources/junit-platform.properties"} language={"properties"}/>
+
+Each test starts its own browser, so the tests don't depend on each other and can run in any order.
+
+### Starting the Browsers
+
+The Java client of Vibium (version 26.8.21) unpacks its binary the first time it starts, and two starts at the same
+time can break it. So the test classes start their browsers with a small helper, whose `synchronized` method lets one
+browser start at a time. Starting takes a moment, and then the tests run at the same time.
+
+<TipCode codePath={"27-parallel/code/vibium-java/src/test/java/com/elemental/vibium/Browsers.java"} language={"java"}/>
+
+### The Tests
+
+Both test classes test the sorting of a table. The one above uses the second table, whose cells have classes (e.g.,
+`dues`). The other one uses the first table, which has no classes, so it finds the cells by position:
+
+<TipCode codePath={"27-parallel/code/vibium-java/src/test/java/com/elemental/vibium/SortWithoutAttributesTest.java"} language={"java"}/>
+
+In each class, the `beforeEach` method (lines 17 to 22) starts the browser with the helper and visits the page with the
+tables, and the `afterEach` method (lines 24 to 29) closes the browser. Lines 31 to 35 read the values of the "Due"
+column and turn them into numbers.
+
+Each test clicks the header of the "Due" column once (ascending, lines 37 to 43) or twice (descending, lines 45 to
+52). The page sorts the table a moment after the click, and marks the header with the class `headerSortDown`
+(ascending) or `headerSortUp` (descending). So before reading the values, we wait for the header with that class
+(`page.find` waits for it). Then we check that the values are in the same order as a sorted copy of them.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

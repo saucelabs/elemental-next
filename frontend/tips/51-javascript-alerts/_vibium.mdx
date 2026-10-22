@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"51-javascript-alerts/code/vibium/test/alerts.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 8 to 12) starts the browser and gets its first page (tab), and visits the page with the alerts. The `afterEach` method
+(lines 14 to 16) closes the browser.
+
+### The Tests
+
+The "Click for JS Confirm" button opens a confirmation with OK and Cancel buttons. We find the button by its role and
+text (`{role: 'button', text: ...}`), one of Vibium's semantic locators.
+
+Vibium lets us know when the page opens a dialog with `page.onDialog`. We set the handler before clicking.
+
+- Lines 18 to 23 accept the confirmation (OK) and check that the page says `You clicked: Ok`.
+- Lines 25 to 30 dismiss it (Cancel) and check that the page says `You clicked: Cancel`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/vibium-java/src/test/java/com/elemental/vibium/DownloadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 14 pull in Vibium's classes to drive the browser, JUnit to run the test, and `Files` and `Path` to work
+with the downloaded file.
+
+### Setup and Teardown
+
+Lines 17 and 18 declare the browser and the page. On lines 20 and 21, `@TempDir` asks JUnit for a temporary folder
+for the downloaded file. JUnit creates it before each test and deletes it after.
+
+The `beforeEach` method (lines 23 to 27) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 29 to 34) closes the browser.
+
+### The Test
+
+Lines 36 to 46 are the test itself.
+
+Vibium doesn't need any browser setting to download files. It catches each download, and `page.capture().download()`
+gives it to us.
+
+After visiting the page, we pass the click on the first download link to `capture().download()`. It runs the click,
+waits for the download to start, and returns a `Download` object.
+
+We save the file with `saveAs` into the temporary folder, using the name the server suggests.
+
+Finally, we check that the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

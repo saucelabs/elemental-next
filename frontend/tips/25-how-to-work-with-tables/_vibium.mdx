@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/vibium/test/tables.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser` to drive the browser.
+
+### Helpers
+
+Lines 4 to 11 have two helpers. `texts` finds all the cells that match a selector with `page.findAll` and returns
+their text. `dues` turns the text of the "Due" cells (e.g., `$50.00`) into numbers, so we can sort them.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 17 to 21) starts the browser and gets its first page (tab), and visits the page with the tables. The `afterEach` method
+(lines 23 to 25) closes the browser.
+
+### The Tests
+
+The page has two tables. The first one has no classes or ids on its cells, so we find them by position (e.g.,
+`td:nth-of-type(4)` is the fourth column, "Due"). The second one has classes on its cells (e.g., `dues`), which
+makes the selectors easier to read.
+
+Each test clicks the header of a column once (ascending) or twice (descending). The page sorts the table a moment
+after the click, and marks the header with the class `headerSortDown` (ascending) or `headerSortUp` (descending).
+So before reading the values, we wait for the header with that class (`page.find` waits for it). Then we check that
+the values are in the same order as a sorted copy of them.
+
+- Lines 27 to 32 sort the "Due" column of the first table in ascending order.
+- Lines 34 to 40 sort it in descending order.
+- Lines 42 to 47 sort the "Email" column, which is text.
+- Lines 49 to 54 sort the "Due" column of the second table, using its classes.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"63-right-click/code/vibium-python/right_click.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the `queue` module, `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 6 to 10) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### The Test
+
+Lines 13 to 26 are the test itself.
+
+The page has a box that opens a JavaScript alert when we right click on it. Vibium can't right click yet, so we fire
+the `contextmenu` event (the event a right click sends) on the box with `dispatch_event`. The page handles it the same
+way.
+
+Before that, lines 16 to 22 set a handler with `page.on_dialog`. When the alert opens, the handler puts its message in
+a queue and accepts it. Then `alert_texts.get` waits (up to 10 seconds) for the message, and we check it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest right_click.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.

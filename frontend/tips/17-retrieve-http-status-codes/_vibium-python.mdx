@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"17-retrieve-http-status-codes/code/vibium-python/status_codes.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives each test its first page (tab), and closes the browser after the
+test.
+
+### The Tests
+
+Line 12 uses `pytest.mark.parametrize` to run the test once for each status code we want to check.
+
+Vibium can watch the network traffic of the page, so we don't need the Navigation Timing API.
+`page.capture.response` starts listening for a response to the URL, runs the function we give it (visiting the page),
+and returns the response once it arrives. Then we check its `status`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest status_codes.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.

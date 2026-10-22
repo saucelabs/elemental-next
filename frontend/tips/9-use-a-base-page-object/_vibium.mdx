@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium/test/basePage.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium/pages/basePage.js"} language={"js"}/>
+
+The base page holds what every page object needs. It keeps the Vibium `page` (lines 6 to 8), and has methods for the
+common actions: `visit` a path of the site and check the title (lines 10 to 13), `click`, `type`, get the text of an
+element (`textOf`), check that it is visible (`isDisplayed`), and `waitFor` it to be visible.
+
+If we ever need to change how we click or type (e.g., to add logging), we change it in one place.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium/pages/dynamicLoadingPage.js"} language={"js"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/vibium/pages/loginPage.js"} language={"js"}/>
+
+Both page objects extend `BasePage`. They keep their selectors as constants, and use the methods of the base page
+instead of calling Vibium directly.
+
+### The Tests
+
+The `beforeEach` method (lines 10 to 13) starts the browser and gets its first page, and `afterEach` (lines 15 to 17)
+closes the browser.
+
+The first test (lines 19 to 24) loads the dynamic loading page, clicks start and checks the text. The second test
+(lines 26 to 31) logs in and checks that the success message is shown.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

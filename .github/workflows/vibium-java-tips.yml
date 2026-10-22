@@ -1,0 +1,30 @@
+name: Run Vibium Java tips
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/code/vibium-java/**'
+      - '.github/workflows/vibium-java-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/code/vibium-java/**'
+      - '.github/workflows/vibium-java-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+
+jobs:
+  run_tips:
+    uses: ./.github/workflows/run-tips.yml
+    secrets: inherit
+    with:
+      language: vibium-java
+      workflow-file: vibium-java-tips.yml

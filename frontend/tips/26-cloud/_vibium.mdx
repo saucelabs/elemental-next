@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/vibium/test/cloud.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Connecting to Sauce Labs
+
+Vibium speaks WebDriver BiDi, and Sauce Labs gives each session a BiDi WebSocket when we ask for one. So the helper in
+`sauce.js` talks to Sauce Labs with plain WebDriver requests (`fetch`), and the test connects Vibium to the session.
+
+<details>
+    <summary>Toggle to see the <code>sauce.js</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/vibium/sauce.js"} language={"js"}/>
+    </div>
+</details>
+
+- Lines 1 to 3 set the Sauce Labs URL (US West data center) and build the `Authorization` header from the
+  `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
+- Lines 5 to 12 send a WebDriver request to Sauce Labs and return its value.
+- Lines 16 to 29 start a session on the latest version of the browser on Windows 11. `webSocketUrl: true` asks for the
+  BiDi WebSocket, and `sauce:options` gives the job a name. It returns the session id and the WebSocket URL.
+- Lines 32 to 38 mark the job as passed or failed on Sauce Labs (`sauce:job-result`), and end the session.
+
+### The Test
+
+Lines 1 to 3 pull in the `assert` module, Vibium's `browser`, and the helper.
+
+The `before` hook (lines 10 to 15) skips the test when the Sauce Labs credentials are not set.
+
+The `beforeEach` method (lines 17 to 21) starts a Chrome session on Sauce Labs, connects Vibium to it with
+`browser.start(session.webSocketUrl)`, and gets its first page (tab). The `afterEach` method (lines 23 to 26) closes
+the connection, and marks the job as passed or failed with the result of the test.
+
+The test (lines 28 to 31) is the same as on a local browser: it visits the page and checks its title.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

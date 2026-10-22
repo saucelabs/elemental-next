@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/vibium-python/secure_files.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The fixture (lines 10 to 14) starts the browser, gives each test its first page (tab), and closes the browser after
+the test.
+
+Lines 17 to 22 are a small helper that sends a request to the site with `http.client`, from the Python standard
+library, and returns the response. It doesn't follow redirects, which we need for the second example.
+
+### Example 1: Files Behind Basic Auth
+
+Lines 25 to 33 are the first test.
+
+Basic auth sends the credentials in the `Authorization` header of each request. We build that header with the
+`base64` module and add it to the page with `page.set_headers`. Then we visit the page with the files and get the
+link of the first file.
+
+`http.client` doesn't know about the browser, so we send the same header with it. We send a `HEAD` request for the
+file and check that it answers with status `200`.
+
+### Example 2: A Page Behind a Form Login
+
+Lines 36 to 48 log in with the form and wait for the success message. The site keeps the session in a cookie called
+`rack.session`.
+
+We get the cookies of the page's context with `page.context.cookies()` and send that one in the `Cookie` header of a
+request for `/secure`. With the cookie, it answers with `200`. Without it, it answers with `302` (a redirect to the
+login page).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest secure_files.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.

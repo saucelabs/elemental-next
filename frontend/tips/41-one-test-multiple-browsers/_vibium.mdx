@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/vibium/test/multipleBrowsers.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Connecting to Sauce Labs
+
+Vibium speaks WebDriver BiDi, and Sauce Labs gives each session a BiDi WebSocket when we ask for one. So the helper in
+`sauce.js` talks to Sauce Labs with plain WebDriver requests (`fetch`), and the test connects Vibium to the session.
+
+<details>
+    <summary>Toggle to see the <code>sauce.js</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/vibium/sauce.js"} language={"js"}/>
+    </div>
+</details>
+
+- Lines 1 to 3 set the Sauce Labs URL (US West data center) and build the `Authorization` header from the
+  `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
+- Lines 5 to 12 send a WebDriver request to Sauce Labs and return its value.
+- Lines 16 to 29 start a session on the latest version of the browser on Windows 11. `webSocketUrl: true` asks for the
+  BiDi WebSocket, and `sauce:options` gives the job a name. It returns the session id and the WebSocket URL.
+- Lines 32 to 38 mark the job as passed or failed on Sauce Labs (`sauce:job-result`), and end the session.
+
+### The Test
+
+Lines 1 to 3 pull in the `assert` module, Vibium's `browser`, and the helper. Line 5 lists the browsers: Chrome,
+Firefox and Edge.
+
+The `before` hook (lines 8 to 13) skips the tests when the Sauce Labs credentials are not set.
+
+Lines 15 to 37 create a group of tests for each browser, so the same test runs on each one, one after the other. In
+each group, the `beforeEach` method starts a session on that browser, with its name in the job name, and connects
+Vibium to it. The `afterEach` method closes the connection and marks the job as passed or failed.
+
+The test (lines 32 to 35) visits the page and checks its title.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

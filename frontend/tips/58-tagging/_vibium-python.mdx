@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/vibium-python/tagging.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the tests, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives each test its first page (tab), and closes the browser after the
+test.
+
+### The Tests
+
+We tag each test with a pytest marker: `smoke` for the test on lines 12 to 15, and `wip` for the test on lines 18 to
+22, which is not finished yet and fails.
+
+pytest's `-m` option runs only the tests with a marker. `pytest.ini` declares the markers and sets `-m smoke`, so only
+the first test runs. To run every test except the `wip` ones, use `-m "not wip"`.
+
+<details>
+    <summary>Toggle to see the <code>pytest.ini</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/vibium-python/pytest.ini"} language={"ini"}/>
+    </div>
+</details>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest tagging.py` from
+the command-line. The first time, Vibium downloads Chrome for Testing.

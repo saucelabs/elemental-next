@@ -50,8 +50,8 @@ prompt prints the error and keeps going. When we type `q`, it says goodbye and e
 To make sure the prompt keeps working, the input and output are passed in to the loop. That way the same code reads
 from the keyboard when we use it, and from a list of commands in a test that runs in CI.
 
-With Selenide we don't need to write the prompt: the Selenide CLI already is one. It keeps a browser open between
-commands, and it turns the commands that worked into the code of a test.
+With Vibium we don't need to write the prompt: the Vibium CLI already is one. It keeps a browser open between
+commands, and we copy the commands that worked into a test.
 
 import DisplayTips from '@site/src/components/displayTips';
 
@@ -63,6 +63,9 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Ruby', value: 'ruby'},
     {label: 'Selenide', value: 'selenide'},
     {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
 ]}/>
 
 ## Expected Behavior

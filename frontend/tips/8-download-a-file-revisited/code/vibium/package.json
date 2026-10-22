@@ -1,0 +1,16 @@
+{
+  "name": "download-a-file-revisited",
+  "version": "1.0.0",
+  "description": "A project to showcase downloading a file without a browser using Vibium",
+  "license": "MIT",
+  "scripts": {
+    "pretest": "vibium install",
+    "test": "mocha test/**/*.spec.js --timeout 60000"
+  },
+  "dependencies": {
+    "vibium": "26.8.21"
+  },
+  "devDependencies": {
+    "mocha": "12.0.3"
+  }
+}

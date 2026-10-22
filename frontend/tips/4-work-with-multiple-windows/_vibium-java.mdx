@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/vibium-java/src/test/java/com/elemental/vibium/MultipleWindowsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 12 pull in Vibium's classes to drive the browser, JUnit to run the test, and `CompletableFuture` and
+`TimeUnit` to wait for the new window.
+
+### Setup and Teardown
+
+Lines 15 and 16 declare the browser and the page. The `beforeEach` method (lines 18 to 22) starts the browser and
+gets its first page (tab). The `afterEach` method (lines 24 to 29) closes the browser.
+
+### The Test
+
+Lines 31 to 43 are the test itself.
+
+After visiting the page, we ask the browser to complete a `CompletableFuture` with the next new page
+(`browser.onPage`), and then click the link that opens a new window. `newWindow.get` waits (up to 10 seconds) for
+the new window, which comes as a `Page`. We wait for it to load with `waitForLoad`.
+
+In Vibium, each window is its own `Page`, so there is no switching. We can use both at any time, in any order. This
+also avoids the problem of the Selenium examples, where the order of the window handles can change between browsers.
+
+Finally, we check the title of each window.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

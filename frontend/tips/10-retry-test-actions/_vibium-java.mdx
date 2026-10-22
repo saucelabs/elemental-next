@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/vibium-java/src/test/java/com/elemental/vibium/RetryActionsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in Vibium's classes to drive the browser, JUnit to run the test, and `Supplier` to pass an action
+to the retry helper.
+
+### Setup and Teardown
+
+Lines 14 and 15 declare the browser and the page. The `beforeEach` method (lines 17 to 21) starts the browser and
+gets its first page (tab). The `afterEach` method (lines 23 to 28) closes the browser.
+
+### The Retry Helper
+
+Lines 30 to 36 are a small helper, `retryIfMessageContains`. It runs an action that returns a message, and runs it
+again while the message contains the failure text, up to 10 attempts. Then it returns the last message.
+
+### The Test
+
+Lines 38 to 45 are the test itself.
+
+We give the helper the failure text (`please try again`) and an action (a lambda) that loads the page and returns the
+text of the notification. When the helper is done, we check that the message says `Action successful`.
+
+If it still fails after 10 attempts, the assertion fails, and we know there is a real problem.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

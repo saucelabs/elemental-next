@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/vibium-python/disabled_element.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### The Test
+
+Lines 12 to 16 are the test itself.
+
+The dropdown has a first option, "Please select an option", that is disabled. We find the options by their role and
+text (`role='option', text=...`), one of Vibium's semantic locators. Then `is_enabled` tells us if each option can be
+selected: the first one can't, and "Option 1" can.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest
+disabled_element.py` from the command-line. The first time, Vibium downloads Chrome for Testing.

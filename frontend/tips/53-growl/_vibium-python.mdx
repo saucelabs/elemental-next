@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/vibium-python/growl.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` to run the test, and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+The fixture (lines 5 to 9) starts the browser, gives the test its first page (tab), and closes the browser after the
+test.
+
+### The Test
+
+Lines 12 to 37 are the test itself. It adds jQuery Growl to the page to show notifications, in four steps.
+
+`page.evaluate` runs a JavaScript expression in the page. Vibium takes it as a string.
+
+1. Lines 15 to 23 add jQuery to the page when it's not there, and wait for it to load with `page.wait_for_function`.
+2. Line 26 uses jQuery to load the jQuery Growl script.
+3. Lines 29 to 31 add the Growl styles to the page, and wait for `jQuery.growl` to be ready.
+4. Line 34 shows a notification with a title and a message.
+
+Finally, we check the title and the message of the notification on the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest growl.py` from the
+command-line. The first time, Vibium downloads Chrome for Testing.
