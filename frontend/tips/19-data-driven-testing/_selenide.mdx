@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+`DataDrivenTest.java`:
+
+<TipCode codePath={"19-data-driven-testing/code/selenide/src/test/java/com/elemental/selenium/DataDrivenTest.java"} language={"java"}/>
+
+`user_data.csv`:
+
+<TipCode codePath={"19-data-driven-testing/code/selenide/src/test/resources/user_data.csv"} language={"text"}/>
+
+## Code Walkthrough
+
+### The Data
+
+`user_data.csv` has one row per test case: the type of account, the username, the password, and the message we
+expect after logging in.
+
+### Importing Libraries
+
+Lines 3 to 8 pull in the JUnit annotations for parameterized tests and the Selenide methods we use (`open`, `$` and
+the `text` condition).
+
+### The Test
+
+Lines 11 and 12 tell JUnit to run the test once for each row of `user_data.csv` (skipping the header), and to name
+each run after the first column (e.g., `bad_password`).
+
+Lines 13 to 19 log in with the username and password of the row, and check the message. `text` checks that the
+element contains the given text, ignoring the case, so the close button (`×`) at the end of the message doesn't get
+in the way. Like every Selenide check, `shouldHave` waits for the message to show up.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
