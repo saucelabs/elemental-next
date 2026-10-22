@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/selenide/src/test/java/com/elemental/selenium/LocatorStrategyTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in the JUnit annotations and the Selenide methods we use (`open`, `$` and the
+`attributeMatching` condition).
+
+### Setup
+
+Lines 11 to 14 open the download page before each test. Selenide starts the browser on the first `open()` and
+closes it when the tests finish, so we don't need a teardown.
+
+### From Broad to Specific Locators
+
+Each test finds the first link (`a`) in a smaller part of the page, and checks where it points with
+`attributeMatching`, which compares the `href` against a regular expression:
+
+- Lines 17 to 19 use `a`. The first link on the page is the "Fork me on GitHub" banner, so it points to `github.com`,
+  not to a file.
+- Lines 22 to 24 use `#content a`. Limiting the search to the content of the page finds the first file to download.
+- Lines 27 to 29 use `#content .example a`, which is even more specific. It also finds the first file, and it keeps
+  working if a link is added to the content outside of the example.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
