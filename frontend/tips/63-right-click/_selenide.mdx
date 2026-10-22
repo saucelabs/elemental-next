@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"63-right-click/code/selenide/src/test/java/com/elemental/selenium/RightClickTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 7 pull in the JUnit `@Test` annotation and the Selenide methods we use (`open`, `$` and `confirm`).
+
+### The Test
+
+Line 12 opens the page. Line 13 right-clicks the box with `contextClick()`, which opens a JavaScript alert.
+
+Line 14 uses `confirm` with the text we expect. It waits for the alert, checks its text, and accepts it. If the text
+is different, or there is no alert, the test fails.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
