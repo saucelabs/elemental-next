@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/selenide/src/test/java/com/elemental/selenium/HoversTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in the JUnit annotations and the Selenide methods and conditions we use (`open`, `$`, `hidden` and
+`visible`).
+
+### The Test
+
+Line 13 opens the page. Each avatar on the page has a caption that shows up only when the mouse is over it, so line 14
+checks that the caption of the first avatar is hidden.
+
+Line 16 moves the mouse over the avatar with `hover()`, and line 17 checks that its caption is now visible. Selenide
+waits for it, so the test doesn't break if the caption takes a moment to show up.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
