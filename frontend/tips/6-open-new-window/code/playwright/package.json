@@ -1,0 +1,12 @@
+{
+  "name": "open-new-window",
+  "version": "1.0.0",
+  "description": "A project to showcase opening a new window or tab using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

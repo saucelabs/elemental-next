@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/playwright/tests/new-window.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect`).
+
+### Setup and Teardown
+
+Playwright Test handles the browser for us. Each test receives a `page` (a browser tab) and its `context` (the
+browser session that holds all the tabs). Playwright closes them when the test ends.
+
+### The Test
+
+Lines 3 to 11 are the test itself.
+
+After visiting the first page, `context.newPage()` opens a new tab in the same context. Playwright doesn't make a
+difference between a tab and a window: each one is a page object.
+
+The new page is ready to use right away, there is no need to switch to it. We visit another page in it, check that the
+context has two pages, and check the heading of the new page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
