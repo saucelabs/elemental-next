@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/playwright/tests/retryActions.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect`).
+
+### Setup and Teardown
+
+Playwright Test handles the browser for us. Each test receives a `page` (a fresh browser tab), and Playwright closes
+it when the test ends.
+
+### The Test
+
+Lines 3 to 8 are the test itself.
+
+Playwright has a built-in way to retry a block of actions: `expect(...).toPass()`. It runs the function we give it
+again and again until it doesn't throw, or until the timeout (30 seconds here) runs out. Between attempts it waits a
+little longer each time.
+
+In the function, we load the page and check that the notification says `Action successful`. We give that check a short
+timeout (1 second), so a page with the wrong message fails fast and the next attempt starts.
+
+If the message never shows up, the test fails after 30 seconds with the error of the last attempt.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
