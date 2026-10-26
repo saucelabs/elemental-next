@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/selenide/src/test/java/com/elemental/selenium/TitleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 10 to 14 open the page and check its title. `webdriver().shouldHave(title(...))` waits for the title, like the
+other Selenide checks.
+
+### The JUnit XML Report
+
+We don't need any extra code or settings: Maven Surefire, which runs the tests, writes a JUnit XML report for each test
+class in `target/surefire-reports` (e.g., `TEST-com.elemental.selenium.TitleTest.xml`). CI servers (Jenkins, GitHub
+Actions, GitLab, ...) read these files to show the results of the tests.
+
+When a Selenide check fails, the report has the error message of Selenide, with the paths of the screenshot and the
+page source it saved.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
