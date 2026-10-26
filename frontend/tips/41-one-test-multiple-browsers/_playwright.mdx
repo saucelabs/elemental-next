@@ -1,0 +1,64 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/playwright/tests/multipleBrowsers.spec.ts"} language={"ts"}/>
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/playwright/tests/sauceLabs.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### One Project per Browser
+
+Playwright has three browsers: Chromium, Firefox and WebKit (the engine of Safari). A project is a set of settings,
+and in `playwright.config.ts` (lines 7 to 11) we have one project per browser (`browserName`). Each test runs once in
+each project.
+
+`workers: 1` (line 5) runs one browser at a time. To run only one of them, use `npx playwright test --project firefox`.
+
+### Running on Sauce Labs
+
+The browsers run on Sauce Labs. `sauceLabs.ts` replaces the `page` that Playwright Test gives each test with a page of
+a browser on Sauce Labs:
+
+- Lines 3 to 8 hold the addresses of Sauce Labs, the credentials, and the version of Playwright. Sauce Labs needs the
+  major and minor version (e.g., `1.61`), and it supports only some versions, so `package.json` pins one of them.
+- Lines 10 to 14 map the browser of each project to its Playwright browser type and to its name on Sauce Labs.
+- Lines 25 to 40 ask Sauce Labs for the browser of the project, on Linux, with the name of the test and of the build.
+  Sauce Labs answers with redirects (`303`) while it starts the browser, so we follow them until we get its address
+  (`wsEndpoint`).
+- Lines 43 to 45 connect to the browser, give a new page to the test (`use`), and close the browser when the test
+  ends.
+- Lines 48 to 52 tell Sauce Labs if the test passed, using its REST API, and print the link to the job.
+
+The tests run on our machine, so we don't need to install any browser.
+
+### The Test
+
+The test file imports `test` from `sauceLabs.ts` instead of from Playwright (line 2). Lines 4 and 5 skip the test when
+the Sauce Labs credentials are not set.
+
+The test (lines 7 to 10) visits the page and checks the title. It doesn't know which browser it runs in.
+
+### Executing the Test
+
+Playwright Test reads its settings from the `playwright.config.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>playwright.config.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/playwright/playwright.config.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`. Then set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` and run the
+test by executing `npm test` from the command-line. No local browser is needed.
