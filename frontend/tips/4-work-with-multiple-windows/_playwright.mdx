@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/playwright/tests/windows.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect`).
+
+### Setup and Teardown
+
+Playwright Test handles the browser for us. Each test receives a `page` (a browser tab) and its `context` (the
+browser session that holds all the tabs). Playwright closes them when the test ends.
+
+### The Test
+
+Lines 3 to 12 are the test itself.
+
+After visiting the page, we start waiting for a new `page` event on the context, and then click the link that opens a
+new window. When the window opens, we get it as a new page object.
+
+In Playwright, each window is its own page object, so there is no switching. We can use both at any time, in any
+order. This also avoids the problem of the Selenium examples, where the order of the window handles can change between
+browsers.
+
+Finally, we check the title of each window. `toHaveTitle` waits for the new window to load.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
