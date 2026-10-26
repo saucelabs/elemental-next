@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/selenide/src/test/java/com/elemental/selenium/BrokenImagesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 18 pull in `ElementsCollection` and `SelenideElement`, the JUnit annotations, Java's HTTP client and
+lists, the Selenide methods we use (`open`, `$$` and `executeJavaScript`), and JUnit's `assertEquals`.
+
+### Setup
+
+Line 24 declares all the images of the page with `$$("img")`, and lines 26 to 29 open the page before each test.
+
+### Example 1: With an HTTP Library
+
+Lines 32 to 45 get the URL of each image (`getDomProperty("src")` gives the full URL) and request it with Java's
+`HttpClient`. An image whose request doesn't answer `200` is broken. Then we check that the names of the broken
+images are `asdf.jpg` and `hjkl.jpg`.
+
+### Example 2: With JavaScript
+
+The browser already knows which images failed to load. The script in lines 21 and 22 returns `true` when an image has
+loaded (`complete`) and has a width (`naturalWidth > 0`).
+
+Lines 48 to 55 run it on each image with `executeJavaScript`, keep the ones that didn't load, and check their
+`src`. This way, we don't need an extra request per image.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
