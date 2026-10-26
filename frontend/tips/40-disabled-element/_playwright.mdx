@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/playwright/tests/disabledElement.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 3 to 8 are the test. The dropdown on the page starts with a "Please select an option" placeholder that we
+can't select, because it's disabled.
+
+We find each option by its text (`hasText`) and check its state: `toBeDisabled` for the placeholder and `toBeEnabled`
+for "Option 1". Both checks wait until the element is in that state, or fail after the timeout.
+
+When we try to select a disabled option with `selectOption`, Playwright fails too, so this check tells us early why.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
