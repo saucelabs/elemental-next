@@ -1,0 +1,55 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/repl.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Prompt
+
+Playwright calls return promises, so commands need to be `await`ed. To evaluate them we create an `AsyncFunction`
+with the command as its body and `page` as its parameter (lines 5 to 13). First we try to use the command as an
+expression (`return (${command});`), so we get its value back. If that's not valid JavaScript (e.g., it's a
+statement), we use the command as the body as is.
+
+`runRepl` receives the page, a function to read input, and a function to write output. In the loop we read a
+command. If it is `q`, we say goodbye and leave the loop. Otherwise we evaluate it and print the result when there
+is one. When there is an error we print its name and message and keep going.
+
+### Starting the Prompt
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/start-repl.ts"} language={"ts"}/>
+
+`start-repl.ts` launches Chromium with a window (`headless: false`), opens a page, reads the commands from the
+terminal with `readline`, and closes the browser when the prompt ends.
+
+### The Test
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/tests/repl.spec.ts"} language={"ts"}/>
+
+The test passes the commands from an array (`async () => commands.shift()`) and collects the output in another
+array. Then it checks that the title was printed, that the missing element printed a `TimeoutError`, and that `q`
+ended the prompt. The first output is the response of `page.goto`, so the title is the second one.
+
+### Using the Prompt
+
+Run `npm run repl` and type commands like `page.goto('https://the-internet.herokuapp.com')` or
+`page.locator('h1').textContent()`. Type `q` to quit.
+
+Playwright also comes with tools to explore a page: `await page.pause()` in a test opens the Playwright Inspector,
+and `npx playwright codegen` records your actions as code.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"11-build-an-interactive-prompt/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
