@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/selenide/src/test/java/com/elemental/selenium/TablesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 13 pull in `ElementsCollection` (a list of elements in Selenide), the JUnit annotations, the Java classes to
+sort lists, and the Selenide methods we use (`open`, `$`, `$$` and the `exactTexts` condition).
+
+### Sorting by Amount
+
+The dues are texts like `$50.00`. Lines 16 and 17 hold a comparator that sorts them by their amount, so `$100.00`
+comes after `$51.00`.
+
+### Setup
+
+Lines 19 to 22 open the tables page before each test.
+
+### The Tests
+
+Each test does the same steps:
+
+1. find the cells of a column with `$$` (all the elements that match a CSS selector),
+2. take their texts and sort them to know the order we expect,
+3. click the header of the column to sort the table,
+4. check that the cells have the texts in that order.
+
+The check with `shouldHave(exactTexts(...))` waits until the table is sorted, so we don't need to wait for the
+sorting ourselves.
+
+- Lines 25 to 30 sort the dues of the first table (the 4th column, `td:nth-of-type(4)`) in ascending order.
+- Lines 33 to 39 click the header twice to sort them in descending order.
+- Lines 42 to 47 sort the emails (the 3rd column) in alphabetical order.
+- Lines 50 to 55 do the first test on the second table, which has a class on each cell (e.g., `.dues`). These
+  locators are easier to read, and they keep working if the columns change order.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
