@@ -3,5 +3,19 @@
   "extends": [
     "config:recommended"
   ],
-  "prConcurrentLimit": 1
+  "prConcurrentLimit": 1,
+  "packageRules": [
+    {
+      "description": "Tips 26, 41 and 42 run Playwright on Sauce Labs, which supports only some versions. Update them by hand when Sauce Labs adds one",
+      "matchFileNames": [
+        "frontend/tips/26-cloud/code/playwright/package.json",
+        "frontend/tips/41-one-test-multiple-browsers/code/playwright/package.json",
+        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright/package.json"
+      ],
+      "matchPackageNames": [
+        "@playwright/test"
+      ],
+      "allowedVersions": "<1.62.0"
+    }
+  ]
 }
