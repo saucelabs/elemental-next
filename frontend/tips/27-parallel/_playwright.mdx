@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/playwright/tests/sortWithAttributes.spec.ts"} language={"ts"}/>
+
+<TipCode codePath={"27-parallel/code/playwright/tests/sortWithoutAttributes.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+Playwright Test runs tests in parallel out of the box. It starts several workers, each one with its own browser, and
+spreads the tests among them.
+
+By default, the tests of one file run one after the other in the same worker. In `playwright.config.ts`,
+`fullyParallel: true` (line 5) lets each test run in any worker, and `workers: 4` (line 7) sets how many run at the
+same time. Without `workers`, Playwright uses half of the CPU cores.
+
+Since each test gets a new page, the tests don't share any state, so they can run in any order.
+
+### The Tests
+
+Each file holds two tests that sort the "Due" column of one of the tables, in ascending and descending order. The
+`dues` function (lines 3 to 6) reads the values of the column as numbers. The first file uses the class names of the
+second table, and the second file uses the position of the column in the first table.
+
+### Executing the Test
+
+Playwright Test reads its settings from the `playwright.config.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>playwright.config.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/playwright/playwright.config.ts"} language={"ts"}/>
+    </div>
+</details>
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
