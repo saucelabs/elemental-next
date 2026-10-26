@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/playwright/tests/screenshot.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Taking the Screenshot
+
+Playwright can take a screenshot when a test fails, with no code in the test. We turn it on in `playwright.config.ts`
+with `screenshot: 'only-on-failure'`.
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/playwright/playwright.config.ts"} language={"ts"}/>
+
+Playwright saves the screenshot as `test-failed-1.png` in a folder for the test, inside `test-results`. It also
+shows it in the HTML report (`npx playwright show-report`) when you use that reporter.
+
+### The Test
+
+Lines 3 to 7 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah blah`,
+which it doesn't. We give the check a short timeout (2 seconds), so it fails fast.
+
+When it fails, Playwright takes the screenshot.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
