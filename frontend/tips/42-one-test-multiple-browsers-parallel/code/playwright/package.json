@@ -1,0 +1,12 @@
+{
+  "name": "one-test-multiple-browsers-parallel",
+  "version": "1.0.0",
+  "description": "A project to showcase running one test on multiple browsers in parallel using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1"
+  }
+}
