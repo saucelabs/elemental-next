@@ -18,6 +18,9 @@ In WebdriverIO, where the browser runs is part of the configuration, not of the 
 - Lines 9 to 14 point WebdriverIO to the Grid when it is running: its protocol, host, port and path. With them,
   WebdriverIO sends the session to the Grid instead of starting a local browser. The Grid then starts Chrome on one of
   its nodes.
+- Lines 17 and 18 ask for Chrome. The `goog:chromeOptions` are empty, but the Grid needs them: it tells ChromeDriver
+  which Chrome to start (the one Selenium Manager found) only inside those options. Without them, ChromeDriver picks
+  a Chrome on its own, which may not match its version.
 
 ### The Test
 

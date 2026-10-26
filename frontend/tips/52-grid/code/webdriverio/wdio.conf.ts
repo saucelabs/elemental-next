@@ -14,7 +14,8 @@ export const config: WebdriverIO.Config = {
     }),
     specs: ['./test/**/*.e2e.ts'],
     maxInstances: 1,
-    capabilities: [{browserName: 'chrome'}],
+    // The Grid starts the Chrome that Selenium Manager finds only when the Chrome options are sent, even if empty
+    capabilities: [{browserName: 'chrome', 'goog:chromeOptions': {}}],
     framework: 'mocha',
     reporters: ['spec'],
     logLevel: 'error',
