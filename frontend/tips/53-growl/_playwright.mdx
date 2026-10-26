@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/playwright/tests/growl.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 3 to 22 are the test. We add a small notification library (jQuery Growl) to the page and use it to show a
+message, which is handy to follow what a test does while it runs.
+
+1. Lines 6 to 9 add jQuery, if the page doesn't have it. `addScriptTag` adds a `<script>` tag and waits until the
+   script is loaded, so we don't need to wait for it ourselves.
+2. Line 12 adds jquery-growl the same way.
+3. Line 15 adds its styles with `addStyleTag`.
+4. Line 18 shows a message with `page.evaluate`, which runs the function in the page.
+
+Lines 20 and 21 check the title and the message of the notification.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
