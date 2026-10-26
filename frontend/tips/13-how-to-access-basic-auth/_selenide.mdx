@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"13-how-to-access-basic-auth/code/selenide/src/test/java/com/elemental/selenium/BasicAuthTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in the JUnit annotations and the Selenide methods we use (`open`, `$` and the `exactText`
+condition).
+
+### One Browser per Test
+
+Browsers remember the credentials of a site, so line 11 adds `BrowserPerTestStrategyExtension`. It closes the browser
+after each test, and each test starts without credentials.
+
+### Example 1: Credentials in the URL
+
+Lines 16 to 19 put the username and password in the URL (`https://admin:admin@...`). The browser sends them, and
+the page shows the message we expect.
+
+### Example 2: Credentials Cached by the Browser
+
+Lines 22 to 26 visit the page once with the credentials in the URL, and then again without them. The browser
+remembers them for the rest of the session, so the second visit works too.
+
+### Example 3: Credentials Given to Selenide
+
+Lines 29 to 32 pass the credentials to `open(url, domain, login, password)` instead. Selenide adds them to the
+request for us, so the URL stays clean.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
