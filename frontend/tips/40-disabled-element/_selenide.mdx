@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/selenide/src/test/java/com/elemental/selenium/DropdownDisabledTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in the JUnit annotations and the Selenide methods we use (`open`, `$$`, and the `disabled`,
+`enabled` and `exactText` conditions).
+
+### The Test
+
+Line 14 opens the dropdown page. `$$("option")` finds all the options, and `findBy(exactText(...))` picks the one with
+the given text.
+
+- Line 15 checks that the first option (`Please select an option`) is disabled, so users can't pick it.
+- Line 16 checks that `Option 1` is enabled.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
