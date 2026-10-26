@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/playwright/tests/tagging.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Tagging the Tests
+
+Playwright Test has tags: we add them in the details of a test (`{tag: '@smoke'}`). A test can have more than one
+tag (`{tag: ['@smoke', '@login']}`).
+
+- Lines 3 to 6 are a quick test that we tag as `@smoke`.
+- Lines 9 to 12 are a test that is not finished yet, so it fails. We tag it as `@wip`.
+
+### Running Only Some Tests
+
+`--grep` runs only the tests that match, and it looks at the tags too. The `test` script in `package.json` runs
+`playwright test --grep @smoke`, so only the first test runs. `--grep-invert @wip` would run every test except the
+unfinished one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
