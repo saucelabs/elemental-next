@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/playwright/tests/locators.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+All the tests visit the download page first (lines 3 to 5).
+
+Each test finds the first link with a locator that is a bit more specific than the one before, reads its `href` and
+checks where it points:
+
+- Lines 7 to 11 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not
+  the link we want.
+- Lines 13 to 17 look only inside the `#content` element, which gets us one of the download links.
+- Lines 19 to 23 go one step further, into the `.example` element inside `#content`.
+
+A locator in Playwright is lazy: it finds the elements when we use it, and `first()` picks the first match. The more
+specific the locator, the less it depends on the rest of the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
