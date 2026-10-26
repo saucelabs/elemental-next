@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/playwright/tests/brokenImages.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Both tests visit a page with three images, two of them broken (lines 3 to 5).
+
+#### With an HTTP Request
+
+Lines 7 to 19 read the full URL (`src`) of every image, and request each one with `page.request`, the HTTP client of
+Playwright. An image whose request doesn't answer with `200` is broken.
+
+#### With JavaScript
+
+Lines 21 to 27 ask the browser instead. `evaluateAll` runs a function on all the images in the page. An image that
+loaded is `complete` and has a width (`naturalWidth`), so the function keeps the others and returns their `src`.
+
+This way is faster, since the browser already tried to load the images.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
