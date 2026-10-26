@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"13-how-to-access-basic-auth/code/playwright/tests/basicAuth.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Setting the Credentials
+
+Line 3 holds the message the page shows when we log in.
+
+Playwright has an option for basic auth: `httpCredentials`. On line 5, `test.use` sets it for every test in the file.
+Playwright then answers the login dialog of the browser for us, so we don't put the credentials in the URL.
+
+### The Test
+
+Lines 7 to 11 visit the page that needs basic auth and check that it shows the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
