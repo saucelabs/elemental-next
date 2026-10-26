@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"8-download-a-file-revisited/code/playwright/tests/download.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect`).
+
+### Setup and Teardown
+
+Playwright Test handles the browser for us. Each test receives a `page` (a fresh browser tab), and Playwright closes
+it when the test ends.
+
+### The Test
+
+Lines 3 to 11 are the test itself.
+
+After visiting the page, we get the `href` of the first download link. It is a relative URL, so we turn it into a full
+URL using the URL of the page.
+
+Playwright comes with an HTTP client, `page.request`, so we don't need another library. We send a `HEAD` request for
+the file. It returns the headers of the file without downloading it. It also uses the cookies of the browser, which
+helps when the file needs a session.
+
+Finally, we check two headers. `content-disposition` starts with `attachment`, which means the server sends the file
+as a download. `content-length` tells us the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"8-download-a-file-revisited/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
