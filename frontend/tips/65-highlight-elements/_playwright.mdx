@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/playwright/tests/highlight.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Highlight Function
+
+Lines 5 to 15 hold the `highlight` function. It saves the style of the element, gives it a red dashed border with
+`evaluate` (which runs a function on the element in the page), waits for a few seconds, and puts the original style
+back. With a duration of `0`, the border stays.
+
+Playwright has its own `locator.highlight()`, which draws an overlay over the element. It's useful while debugging,
+but it doesn't change the element, so we can't check it in a test.
+
+### The Tests
+
+Both tests visit a large page first (lines 17 to 19) and find one of its elements.
+
+- Lines 21 to 25 highlight it for good and check that its style has the dashed border.
+- Lines 27 to 31 highlight it for 1 second and check that the border is gone afterward.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
