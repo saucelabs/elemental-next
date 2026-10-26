@@ -1,0 +1,12 @@
+{
+  "name": "download-secure-files",
+  "version": "1.0.0",
+  "description": "A project to showcase downloading secure files using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
