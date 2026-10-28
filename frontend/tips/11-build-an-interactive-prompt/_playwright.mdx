@@ -2,43 +2,90 @@ import TipCode from "@site/src/components/tipCode";
 
 ## TL;DR - Show Me The Code
 
-<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/repl.ts"} language={"ts"}/>
+We don't need to build the prompt ourselves: the Playwright CLI is one. We type commands in the terminal and see
+them run in a browser that stays open between commands.
+
+```bash
+npm install -g @playwright/cli@latest
+
+playwright-cli open https://the-internet.herokuapp.com --headed
+playwright-cli find "Form Authentication"
+playwright-cli click e53
+playwright-cli fill "#username" tomsmith
+playwright-cli fill "#password" "SuperSecretPassword!"
+playwright-cli click "#does-not-exist"
+playwright-cli click "button[type=submit]"
+playwright-cli eval "() => document.querySelector('#flash').innerText"
+playwright-cli close
+```
+
+And this is the test we built from it:
+
+<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/tests/login.spec.ts"} language={"ts"}/>
 
 ## Code Walkthrough
 
-### The Prompt
+### Installing the Prompt
 
-Playwright calls return promises, so commands need to be `await`ed. To evaluate them we create an `AsyncFunction`
-with the command as its body and `page` as its parameter (lines 5 to 13). First we try to use the command as an
-expression (`return (${command});`), so we get its value back. If that's not valid JavaScript (e.g., it's a
-statement), we use the command as the body as is.
-
-`runRepl` receives the page, a function to read input, and a function to write output. In the loop we read a
-command. If it is `q`, we say goodbye and leave the loop. Otherwise we evaluate it and print the result when there
-is one. When there is an error we print its name and message and keep going.
-
-### Starting the Prompt
-
-<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/start-repl.ts"} language={"ts"}/>
-
-`start-repl.ts` launches Chromium with a window (`headless: false`), opens a page, reads the commands from the
-terminal with `readline`, and closes the browser when the prompt ends.
-
-### The Test
-
-<TipCode codePath={"11-build-an-interactive-prompt/code/playwright/tests/repl.spec.ts"} language={"ts"}/>
-
-The test passes the commands from an array (`async () => commands.shift()`) and collects the output in another
-array. Then it checks that the title was printed, that the missing element printed a `TimeoutError`, and that `q`
-ended the prompt. The first output is the response of `page.goto`, so the title is the second one.
+The Playwright CLI comes with the `@playwright/cli` npm package. `npm install -g @playwright/cli@latest` puts a
+`playwright-cli` command on our path (`playwright-cli --version` checks that it's there). It uses the Chrome
+installed on our machine. `--browser` picks another one (`firefox`, `webkit` or `msedge`).
 
 ### Using the Prompt
 
-Run `npm run repl` and type commands like `page.goto('https://the-internet.herokuapp.com')` or
-`page.locator('h1').textContent()`. Type `q` to quit.
+`playwright-cli open` starts a browser (`--headed` shows its window) and goes to the URL. The browser stays open in
+the background, so each of the next commands connects to it, runs one action, and prints the Playwright code it ran:
 
-Playwright also comes with tools to explore a page: `await page.pause()` in a test opens the Playwright Inspector,
-and `npx playwright codegen` records your actions as code.
+```
+$ playwright-cli open https://the-internet.herokuapp.com --headed
+### Browser `default` opened with pid 1592.
+### Ran Playwright code
+await page.goto('https://the-internet.herokuapp.com');
+### Page
+- Page URL: https://the-internet.herokuapp.com/
+- Page Title: The Internet
+```
+
+Each command also saves a snapshot of the page in `.playwright-cli/`, where every element has a short name (e.g.,
+`e53`). `playwright-cli find` searches that snapshot, and the next commands can use the short name instead of a
+selector. The CLI turns it into a locator:
+
+```
+$ playwright-cli find "Form Authentication"
+          - link "Form Authentication" [ref=e53] [cursor=pointer]:
+$ playwright-cli click e53
+### Ran Playwright code
+await page.getByRole('link', { name: 'Form Authentication' }).click();
+```
+
+When a command fails, the prompt tells us why and the browser stays where it was, so we can try again:
+
+```
+$ playwright-cli click "#does-not-exist"
+### Error
+Error: "#does-not-exist" does not match any elements.
+```
+
+`playwright-cli eval` runs JavaScript in the page and prints the result, which is how we read the message after
+logging in:
+
+```
+$ playwright-cli eval "() => document.querySelector('#flash').innerText"
+### Result
+" You logged into a secure area!\n×"
+```
+
+`playwright-cli close` closes the browser and ends the session. `playwright-cli --help` lists all the commands
+(tabs, cookies, network requests, screenshots, ...).
+
+### Turning the Session into a Test
+
+The Playwright CLI prints the code of each command, so we copy the code of the commands that worked into a test, and
+leave out the one that failed.
+
+Lines 5 to 9 are that code. Playwright Test gives the test a new page and closes the browser when it ends, like
+`playwright-cli open` and `playwright-cli close`. Finally, line 10 checks the message with `toContainText`, which
+waits until it shows up (it ends with a `×` close button).
 
 ### Executing the Test
 

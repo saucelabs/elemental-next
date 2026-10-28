@@ -12,6 +12,7 @@
 
 `npm test`
 
-### Start the interactive prompt
+### Use the interactive prompt
 
-`npm run repl` (type `q` to quit)
+`npm install -g @playwright/cli@latest`, then run commands like `playwright-cli open https://the-internet.herokuapp.com`
+(`playwright-cli close` to finish)
