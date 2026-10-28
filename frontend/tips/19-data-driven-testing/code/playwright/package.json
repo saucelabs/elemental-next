@@ -1,0 +1,12 @@
+{
+  "name": "data-driven-testing",
+  "version": "1.0.0",
+  "description": "A project to showcase data driven testing using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

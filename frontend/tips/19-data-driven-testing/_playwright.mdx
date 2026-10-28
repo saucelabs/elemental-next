@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/playwright/tests/dataDriven.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+The data lives in a CSV file, `user_data.csv`, next to the tests. Each row is a user: the type of account, the
+username, the password and the message we expect after logging in.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/playwright/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+Lines 5 to 11 read the file with `fs`, split it into lines and values, and turn each row into an object, using the
+first line (the header) for the keys.
+
+### The Tests
+
+Lines 13 to 22 loop over the users and create one test for each, named after the type of account. Playwright Test
+lists them as separate tests, so a failure points to the row that caused it.
+
+Each test logs in with the username and password of its row, and checks that the message on the page contains the
+expected text.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
