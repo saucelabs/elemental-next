@@ -1,3 +1,3 @@
 vibium==26.8.21
-pytest==9.1.1
+pytest==9.2.0
 pytest-rerunfailures==16.7
