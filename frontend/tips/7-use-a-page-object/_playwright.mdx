@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/playwright/tests/dynamicLoading.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/playwright/pages/dynamicLoadingPage.ts"} language={"ts"}/>
+
+The page object is a class that receives the Playwright `page` (lines 8 to 12). It keeps the locators of the page in
+one place: the start button and the text that shows when the loading finishes. A Playwright locator doesn't look for
+the element until we use it, so we can create them in the constructor.
+
+`visit` (lines 14 to 17) goes to the page and checks its title. `start` (lines 19 to 21) clicks the start button.
+
+### The Test
+
+After the imports, the `beforeEach` hook (lines 7 to 10) creates the page object with the `page` that Playwright
+gives each test, and visits the page.
+
+The test (lines 12 to 15) clicks the start button and checks the text. We don't need a method to wait for the text:
+`toHaveText` waits until the text shows up, up to 10 seconds (the loading takes about 5).
+
+The test only talks to the page object. If the page changes, we update the page object and the test stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
