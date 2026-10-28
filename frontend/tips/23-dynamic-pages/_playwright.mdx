@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/playwright/tests/dynamicPages.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Line 3 loops over the two examples of the page and creates a test for each:
+
+- In example 1, the element is on the page but hidden, and it shows up after the loading bar.
+- In example 2, the element is not on the page at all until the loading bar ends.
+
+Each test clicks the start button and waits for the `#finish` element to be visible. `toBeVisible` keeps checking
+until the element shows up or the timeout ends (10 seconds here). So the same check works for both examples: a hidden
+element and a missing one are both not visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.

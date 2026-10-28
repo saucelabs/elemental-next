@@ -1,0 +1,12 @@
+{
+  "name": "dynamic-pages",
+  "version": "1.0.0",
+  "description": "A project to showcase testing dynamic pages using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
