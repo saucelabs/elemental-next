@@ -1,0 +1,12 @@
+{
+  "name": "download-a-file",
+  "version": "1.0.0",
+  "description": "A project to showcase working with multiple windows using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
