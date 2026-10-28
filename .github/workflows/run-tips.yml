@@ -97,7 +97,7 @@ jobs:
         if: contains(fromJSON('["javascript", "serenity-js", "playwright", "webdriverio", "vibium"]'), inputs.language)
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
       - name: Set up Python
         if: inputs.language == 'python' || inputs.language == 'vibium-python'
         uses: actions/setup-python@v7
