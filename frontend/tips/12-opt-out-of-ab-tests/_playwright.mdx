@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/playwright/tests/abTest.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Line 3 sets the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`). Playwright needs to
+know which site the cookie is for, so we give it the `url` of the site.
+
+Each test receives a `page` and its `context` (the browser session). Cookies belong to the context.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 5 to 13 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie with
+`context.addCookies`, reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 15 to 20 add the cookie first and then visit the page. Since the cookie has a `url`, Playwright can add it before
+we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 22 to 27 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+`page.on('dialog')` dismisses it. Playwright dismisses dialogs on its own when nobody listens for them, but the
+listener makes it clear. Then we check the heading.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
