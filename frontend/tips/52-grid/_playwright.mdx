@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/playwright/tests/grid.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Running on the Grid
+
+Playwright can start Chrome on a Selenium Grid instead of on our machine. It does it when the `SELENIUM_REMOTE_URL`
+environment variable has the address of the Grid. Then Playwright asks the Grid for a Chrome session and talks to it
+over the Chrome DevTools Protocol.
+
+This works only with Chromium-based browsers, and Playwright marks it as experimental.
+
+### The Test
+
+Line 3 reads the address of the Grid from the `GRID_URL` environment variable, or uses `http://localhost:4444`.
+
+The `beforeAll` hook (lines 5 to 10) asks the Grid for its status. When the Grid is not running, it skips the test
+with a message that says how to run it. Otherwise it sets `SELENIUM_REMOTE_URL`, before the browser starts.
+
+The test (lines 12 to 15) loads the page and checks the title. It is the same test we would run without a Grid.
+
+### Executing the Test
+
+Start a Selenium Grid first, e.g., with `java -jar selenium-server-<version>.jar standalone`.
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
