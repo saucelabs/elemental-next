@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/playwright/tests/exceptions.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The `beforeEach` hook (lines 3 to 9) logs in before each test. After logging in, the login form is gone from the page.
+
+### Example 1: An Error
+
+Lines 11 to 13 click the login form, which is not on the page anymore. Playwright waits for the element before it
+acts on it, so instead of failing right away, it fails with a `TimeoutError` after the timeout. We set it to 2 seconds
+(`timeout: 2000`) to keep the test short.
+
+`rejects.toThrow` checks that the click fails and that the error says why.
+
+### Example 2: No Error
+
+Lines 15 to 17 ask if the form is visible. `isVisible` doesn't wait and doesn't fail: it returns `false` when the
+element is not there. So we can check that the form is gone without handling any error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
