@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright/tests/keyPresses.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Both tests visit a page that shows the last key we pressed (lines 3 to 5).
+
+- Lines 7 to 10 press a key on an element: `press` focuses the input and presses `Space` on it.
+- Lines 12 to 15 press a key without an element: `page.keyboard.press` sends `Tab` to whatever has the focus.
+
+The keys have names like `Enter`, `ArrowDown` or `Shift+A`, and Playwright fires the same events a real key press
+does.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`.
+Then run the test by executing `npm test` from the command-line.
