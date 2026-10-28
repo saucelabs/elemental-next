@@ -1,0 +1,12 @@
+{
+  "name": "wrapper",
+  "version": "1.0.0",
+  "description": "A project to showcase logging every action with a wrapper using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
