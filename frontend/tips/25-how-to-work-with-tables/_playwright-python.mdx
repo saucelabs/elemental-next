@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/playwright-python/tables.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Helpers
+
+The `dues` function (lines 5 and 6) reads the text of the cells with `all_text_contents`, removes the `$` and turns
+each value into a number, so we can sort them.
+
+### The Tests
+
+All the tests visit the page with the tables first. The fixture on lines 9 to 11 does it, and `autouse=True` makes it
+run before every test in the file. Clicking a column header sorts the table by that column, and the header gets the
+class `headerSortDown` (ascending) or `headerSortUp` (descending).
+
+- Lines 14 to 18 click the "Due" header of the first table once and check that the values are in ascending order.
+  The table has no handy attributes, so we find the column by its position (`nth-of-type(4)`).
+- Lines 21 to 26 click it twice to sort in descending order.
+- Lines 29 to 33 sort the "Email" column, which holds text.
+- Lines 36 to 40 do the same as the first test on the second table, which has a class on each cell (e.g., `.dues`),
+  so the locators are easier to read.
+
+`to_contain_class` waits until the header has the class, which tells us the table is sorted before we read it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest tables.py` from the command-line.
