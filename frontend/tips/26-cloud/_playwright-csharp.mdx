@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/playwright-csharp/CloudTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Running on Sauce Labs
+
+Sauce Labs can start a browser for Playwright and let our tests drive it over the Playwright protocol, as if it ran on
+our machine. The tests run here, and the browser runs on Sauce Labs, which records a video and the logs of the job.
+
+<TipCode codePath={"26-cloud/code/playwright-csharp/SauceTest.cs"} language={"csharp"}/>
+
+`SauceTest` is a base class for the tests. It starts the browser of each test on Sauce Labs and gives the test a page
+in it:
+
+- Lines 13 to 18 hold the addresses of Sauce Labs, the credentials, and the version of Playwright. Sauce Labs needs the
+  major and minor version (e.g., `1.61`), and it supports only some versions, so the project file pins one of them.
+- Lines 27 to 34 run before each test and skip it (`Assert.Inconclusive`) when the Sauce Labs credentials are not set.
+- `OpenPageAsync` (lines 37 to 78) starts the browser. Lines 39 to 72 create an HTTP client with the credentials
+  (`Playwright.APIRequest.NewContextAsync`) and ask Sauce Labs for the browser on Linux, with the name of the test and
+  of the build. Sauce Labs calls Chromium `chrome`, so line 55 maps the name. Sauce Labs answers with redirects
+  (`303`) while it starts the browser, so we follow them until we get its address (`wsEndpoint`).
+- Lines 74 to 77 connect to the browser with `ConnectAsync` and open a page in it.
+- Lines 80 to 96 run after each test. They close the browser, tell Sauce Labs if the test passed
+  (`TestContext.CurrentTestOutcome`), using its REST API, and print the link to the job.
+
+### The Test
+
+The test extends `SauceTest` and asks it for a page in Chrome (`OpenPageAsync("chromium")`). The rest is the same test
+we would run on our machine: it visits the page and checks the title (lines 11 to 17). `Expect` comes from the
+`Assertions` class (line 4).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` and run the test by executing `dotnet test` from the
+command-line. No local browser is needed.
