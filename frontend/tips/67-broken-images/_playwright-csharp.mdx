@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/playwright-csharp/BrokenImagesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Both tests visit a
+page with three images, two of them broken (the `[TestInitialize]` method on lines 14 to 18).
+
+#### With an HTTP Request
+
+Lines 20 to 37 read the full URL (`src`) of every image, and request each one with `Page.APIRequest`, the HTTP client
+of Playwright. An image whose request doesn't answer with `200` is broken.
+
+#### With JavaScript
+
+Lines 39 to 47 ask the browser instead. `EvaluateAllAsync` runs a function on all the images in the page. An image
+that loaded is `complete` and has a width (`naturalWidth`), so the function keeps the others and returns their `src`.
+This way is faster, since the browser already tried to load the images.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
