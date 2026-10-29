@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/playwright-csharp/HeadlessTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Running Headless
+
+`PageTest` runs the browsers headless (without a window) by default, so there is nothing to set. To see the browser,
+run `dotnet test -- Playwright.LaunchOptions.Headless=false`.
+
+For Chromium, Playwright uses a headless build of the browser (`chromium-headless-shell`), which starts faster.
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 12 to 21 are
+the test. It visits the page, checks the title, and reads the user agent with `Page.EvaluateAsync`. A headless Chrome
+says `HeadlessChrome` in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
