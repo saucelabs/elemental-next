@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/playwright-python/title.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Report
+
+pytest can save the results as JUnit XML, with no plugin. In `pytest.ini`, `--junitxml` saves them in
+`reports/results.xml`. CI servers (e.g., Jenkins, GitLab, GitHub Actions) can read this file to show the results.
+
+<TipCode codePath={"57-junit-xml/code/playwright-python/pytest.ini"} language={"ini"}/>
+
+### The Test
+
+Lines 4 to 6 are the test. It visits the page and checks the title. Any test works: the report doesn't need anything
+in the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest title.py` from the command-line.
