@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/playwright-csharp/SecureFilesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Example 1: Files Behind Basic Auth
+
+The first test (lines 13 to 27) needs the basic auth credentials (`HttpCredentials`). The test class extends
+`PageTest`, which also gives us the `Browser`. We create a browser context with the credentials, and open a page in
+it. We close the context at the end of the test.
+
+Then it visits the page with the files and gets the full URL (`href`) of the first link with `EvaluateAsync`, which
+runs a function in the browser on the element.
+
+Playwright comes with an HTTP client, `APIRequest`, and it uses the same credentials as the browser. So we send a
+`HEAD` request for the file and check that it answers with status `200`. We don't need to add the credentials
+ourselves.
+
+### Example 2: A Page Behind a Form Login
+
+Lines 32 to 36 log in with the form and wait for the success message. The site keeps the session in a cookie.
+
+`Page.APIRequest` also shares the cookies of the browser, so a `GET` request for `/secure` answers with `200`. We set
+`MaxRedirects = 0` so that a redirect to the login page would show up as a `302`.
+
+To check that the page is really protected, we create a new request context (`Playwright.APIRequest.NewContextAsync`)
+without any cookies. `PageTest` gives us the Playwright object in the `Playwright` property. The same request now
+answers with `302` (a redirect to the login page).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
