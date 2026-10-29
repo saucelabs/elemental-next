@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/playwright-csharp/HoversTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 11 to 21 are
+the test. The page has a few avatars, and hovering over one shows a caption with a link.
+
+We find the first avatar and the caption inside it. Before hovering, the caption is hidden (`ToBeHiddenAsync`). Then
+`HoverAsync` moves the mouse over the avatar, and the caption becomes visible (`ToBeVisibleAsync`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
