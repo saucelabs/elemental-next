@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/playwright-python/new_window.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in `BrowserContext`, `Page` and `expect` from Playwright.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test can take a `page` (a browser tab) and its
+`context` (the browser session that holds all the tabs) as arguments. The plugin closes them when the test ends.
+
+### The Test
+
+Lines 4 to 11 are the test itself.
+
+After visiting the first page, `context.new_page()` opens a new tab in the same context. Playwright doesn't make a
+difference between a tab and a window: each one is a page object.
+
+The new page is ready to use right away, there is no need to switch to it. We visit another page in it, check that the
+context has two pages, and check the heading of the new page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest new_window.py` from the command-line.
