@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/playwright-python/ab_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Line 4 sets the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`). Playwright needs to
+know which site the cookie is for, so we give it the `url` of the site.
+
+The tests take a `page` and its `context` (the browser session) from the `pytest-playwright` plugin. Cookies belong to
+the context.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 7 to 14 visit the A/B test page and check that it shows one of the two variants (with a regular expression).
+Then we add the cookie with `context.add_cookies`, reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 17 to 21 add the cookie first and then visit the page. Since the cookie has a `url`, Playwright can add it before
+we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 24 to 28 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+`page.on('dialog', ...)` dismisses it. Playwright dismisses dialogs on its own when nobody listens for them, but the
+listener makes it clear. Then we check the heading.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest ab_test.py` from the command-line.
