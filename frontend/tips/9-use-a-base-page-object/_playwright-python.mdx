@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-python/base_page_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-python/base_page.py"} language={"python"}/>
+
+The base page holds what every page object needs. It keeps the Playwright `page` (lines 7 and 8) and has a `visit`
+method (lines 10 to 12) that goes to a path of the site and checks the title.
+
+Playwright already has short methods to click, fill and wait (e.g., `locator.click()`, `locator.fill()`), so the
+base page doesn't need to wrap them. In Selenium, the base page usually wraps those actions to add waits.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-python/dynamic_loading_page.py"} language={"python"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-python/login_page.py"} language={"python"}/>
+
+Both page objects extend `BasePage`. They call the constructor of the base page with `super().__init__(page)`, create
+their locators with the `page`, and use `visit` to load their page. The login page also has a `login_as` method that
+fills the form and submits it.
+
+### The Tests
+
+The first test (lines 6 to 10) loads the dynamic loading page, clicks start and checks the text. The second test
+(lines 13 to 17) logs in and checks that the success message is visible. `to_have_text` and `to_be_visible` wait for
+the elements, so the page objects don't need wait methods.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest base_page_test.py` from the command-line.
