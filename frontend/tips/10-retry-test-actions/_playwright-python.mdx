@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/playwright-python/retry_actions.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in `Page` and `expect` from Playwright. Line 3 sets how many times we try.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends.
+
+### The Test
+
+Lines 6 to 14 are the test itself.
+
+Playwright for JavaScript has a built-in way to retry a block of actions (`expect(...).toPass()`), but Playwright for
+Python doesn't. A loop does the same job.
+
+In each attempt, we load the page and check that the notification says `Action successful`. We give that check a
+short timeout (1 second), so a page with the wrong message fails fast. When the check passes, `return` ends the test.
+
+When it fails, `expect` raises an `AssertionError`. We catch it and try again, unless it was the last attempt: then we
+raise the error again, so the test fails with the error of the last attempt.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest retry_actions.py` from the command-line.
