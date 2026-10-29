@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/playwright-csharp/DisabledElementTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 11 to 18 are
+the test. The dropdown on the page starts with a "Please select an option" placeholder that we can't select, because
+it's disabled.
+
+We find each option by its text (`HasText`) and check its state: `ToBeDisabledAsync` for the placeholder and
+`ToBeEnabledAsync` for "Option 1". Both checks wait until the element is in that state, or fail after the timeout.
+
+When we try to select a disabled option with `SelectOptionAsync`, Playwright fails too, so this check tells us early
+why.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
