@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright-python/key_presses.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Both tests visit a page that shows the last key we pressed (the fixture on lines 5 to 7).
+
+- Lines 10 to 12 press a key on an element: `press` focuses the input and presses `Space` on it.
+- Lines 15 to 17 press a key without an element: `page.keyboard.press` sends `Tab` to whatever has the focus.
+
+The keys have names like `Enter`, `ArrowDown` or `Shift+A`, and Playwright fires the same events a real key press
+does.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest key_presses.py` from the command-line.
