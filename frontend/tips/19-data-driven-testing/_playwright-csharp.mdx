@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/playwright-csharp/DataDrivenTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+The data lives in a CSV file, `user_data.csv`, next to the test. Each row is a user: the type of account, the
+username, the password and the message we expect after logging in. The project file copies it to the output
+directory, where the tests run.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/playwright-csharp/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+Lines 14 to 19 read the file. `UserData` skips the first line (the header), splits each row by commas, and returns one
+array of values per user.
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Line 22 gives
+MSTest the users: `[DynamicData]` runs the test once for each array that `UserData` returns, and passes its values
+as the arguments of the test. MSTest lists them as separate tests, so a failure points to the row that caused it.
+
+Each test logs in with the username and password of its row, and checks that the message on the page contains the
+expected text.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
