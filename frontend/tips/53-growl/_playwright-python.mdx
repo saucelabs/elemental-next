@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/playwright-python/growl.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 4 to 21 are the test. We add a small notification library (jQuery Growl) to the page and use it to show a
+message, which is handy to follow what a test does while it runs.
+
+1. Lines 7 to 9 add jQuery, if the page doesn't have it. `add_script_tag` adds a `<script>` tag and waits until the
+   script is loaded, so we don't need to wait for it ourselves.
+2. Line 12 adds jquery-growl the same way.
+3. Line 15 adds its styles with `add_style_tag`.
+4. Line 18 shows a message with `page.evaluate`, which runs the function in the page.
+
+Lines 20 and 21 check the title and the message of the notification.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest growl.py` from the command-line.
