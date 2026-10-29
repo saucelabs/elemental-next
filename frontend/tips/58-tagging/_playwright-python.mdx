@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/playwright-python/tagging.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Tagging the Tests
+
+pytest tags tests with marks: we add them as decorators (`@pytest.mark.smoke`). A test can have more than one mark.
+
+- Lines 5 to 8 are a quick test that we mark as `smoke`.
+- Lines 12 to 15 are a test that is not finished yet, so it fails. We mark it as `wip`.
+
+### Running Only Some Tests
+
+`-m` runs only the tests with a mark. In `pytest.ini`, we declare the marks (pytest warns about unknown ones), and
+`addopts = -m smoke` runs only the first test. `-m "not wip"` would run every test except the unfinished one.
+
+<TipCode codePath={"58-tagging/code/playwright-python/pytest.ini"} language={"ini"}/>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest tagging.py` from the command-line.
