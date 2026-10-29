@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/playwright-csharp/ScreenshotTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Taking the Screenshot
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property and closes it
+after the test. MSTest runs our `[TestCleanup]` method (lines 11 to 21) before that, so the page is still open.
+
+`TestContext.CurrentTestOutcome` tells us how the test ended. When it failed, we take a screenshot with
+`ScreenshotAsync` and save it with the name of the test class and the test in the file name, like
+`failshot_PlaywrightTests.ScreenshotTest.FailsOnPurpose.png`. The file is saved in the folder the tests run from
+(`bin/Debug/net10.0`).
+
+### The Test
+
+Lines 23 to 30 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah blah`,
+which it doesn't. We give the check a short timeout (2 seconds), so it fails fast.
+
+When it fails, the cleanup method takes the screenshot.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
