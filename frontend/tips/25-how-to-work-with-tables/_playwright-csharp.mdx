@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/playwright-csharp/TablesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Helpers
+
+The `Dues` method (lines 15 to 19) reads the text of the cells with `AllTextContentsAsync`, removes the `$` and turns
+each value into a number, so we can sort them.
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. All the tests
+visit the page with the tables first: the `[TestInitialize]` method on lines 21 to 25 runs before each test and does
+it. Clicking a column header sorts the table by that column, and the header gets the class `headerSortDown`
+(ascending) or `headerSortUp` (descending).
+
+- Lines 27 to 34 click the "Due" header of the first table once and check that the values are in ascending order.
+  The table has no handy attributes, so we find the column by its position (`nth-of-type(4)`).
+- Lines 36 to 44 click it twice to sort in descending order.
+- Lines 46 to 54 sort the "Email" column, which holds text.
+- Lines 56 to 63 do the same as the first test on the second table, which has a class on each cell (e.g., `.dues`),
+  so the locators are easier to read.
+
+`ToContainClassAsync` waits until the header has the class, which tells us the table is sorted before we read it.
+`CollectionAssert.AreEqual` then compares the values with a sorted copy of them.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
