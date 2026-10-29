@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/playwright-csharp/ExceptionsTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. The
+`[TestInitialize]` method (lines 12 to 20) logs in before each test. After logging in, the login form is gone from the
+page.
+
+### Example 1: An Error
+
+Lines 22 to 28 click the login form, which is not on the page anymore. Playwright waits for the element before it
+acts on it, so instead of failing right away, it fails with a `TimeoutException` after the timeout. We set it to 2
+seconds (`Timeout = 2000`) to keep the test short.
+
+`Assert.ThrowsExactlyAsync` checks that the click fails with a `TimeoutException` (from `System`, line 1) and returns
+it, so we can check that its message says why.
+
+### Example 2: No Error
+
+Lines 30 to 34 ask if the form is visible. `IsVisibleAsync` doesn't wait and doesn't fail: it returns `false` when the
+element is not there. So we can check that the form is gone without handling any error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
