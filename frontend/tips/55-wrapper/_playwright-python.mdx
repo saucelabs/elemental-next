@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/playwright-python/wrapper.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Wrapper
+
+<TipCode codePath={"55-wrapper/code/playwright-python/logging_page.py"} language={"python"}/>
+
+`LoggingPage` (in `logging_page.py`) wraps a Playwright `page`. It has its own `goto` and `click` that do the same as
+Playwright's, and log what they did:
+
+- Lines 15 to 17 visit the URL and log it.
+- Lines 19 to 26 log the text of the element, click it, and log the new URL if the click changed it.
+  `wait_for_load_state` waits for the new page to load before we read the URL.
+
+Each message is printed and saved in `messages` (line 9), so the test can check them.
+
+### The Test
+
+The test creates the wrapper (line 6), visits the home page and clicks the Checkboxes link through it. Then it checks
+the messages.
+
+Playwright has its own record of every action: run the tests with `--tracing on` and open the trace with
+`playwright show-trace`. The wrapper is useful when we want our own messages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest wrapper.py` from the command-line.
