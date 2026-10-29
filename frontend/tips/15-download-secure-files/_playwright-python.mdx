@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"15-download-secure-files/code/playwright-python/secure_files.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Example 1: Files Behind Basic Auth
+
+The first test (lines 6 to 13) needs the basic auth credentials (`http_credentials`). It takes the `new_context`
+fixture of the `pytest-playwright` plugin, which creates a browser context with the options we give it, and opens a
+page in it. The plugin closes the context when the test ends.
+
+Then it visits the page with the files and gets the full URL (`href`) of the first link with `evaluate`, which runs a
+function in the browser on the element.
+
+Playwright comes with an HTTP client, `page.request`, and it uses the same credentials as the browser. So we send a
+`HEAD` request for the file and check that it answers with status `200`. We don't need to add the credentials
+ourselves.
+
+### Example 2: A Page Behind a Form Login
+
+Lines 16 to 21 log in with the form and wait for the success message. The site keeps the session in a cookie.
+
+`page.request` also shares the cookies of the browser, so a `GET` request for `/secure` answers with `200`. We set
+`max_redirects=0` so that a redirect to the login page would show up as a `302`.
+
+To check that the page is really protected, we create a new request context (`playwright.request.new_context()`)
+without any cookies. The `playwright` fixture of the plugin gives us the Playwright object. The same request now
+answers with `302` (a redirect to the login page).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"15-download-secure-files/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest secure_files.py` from the command-line.
