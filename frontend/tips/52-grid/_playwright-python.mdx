@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/playwright-python/grid.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Running on the Grid
+
+Playwright can start Chrome on a Selenium Grid instead of on our machine. It does it when the `SELENIUM_REMOTE_URL`
+environment variable has the address of the Grid. Then Playwright asks the Grid for a Chrome session and talks to it
+over the Chrome DevTools Protocol.
+
+This works only with Chromium-based browsers, and Playwright marks it as experimental.
+
+### The Test
+
+Line 6 reads the address of the Grid from the `GRID_URL` environment variable, or uses `http://localhost:4444`.
+
+`grid_is_running` (lines 9 to 14) asks the Grid for its status. Lines 17 to 22 run when pytest loads the file, before
+the browser starts. When the Grid is running, they set `SELENIUM_REMOTE_URL`. Otherwise they skip the test with a
+message that says how to run it.
+
+The test (lines 25 to 27) loads the page and checks the title. It is the same test we would run without a Grid.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest grid.py` from the command-line.
