@@ -6,7 +6,7 @@ on:
   workflow_call:
     inputs:
       language:
-        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, playwright-python, webdriverio, vibium, vibium-python, vibium-java)'
+        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, playwright-python, playwright-csharp, webdriverio, vibium, vibium-python, vibium-java)'
         required: true
         type: string
       workflow-file:
@@ -89,7 +89,7 @@ jobs:
         with:
           maven-version: 3.10.0
       - name: Set up .NET
-        if: inputs.language == 'csharp'
+        if: inputs.language == 'csharp' || inputs.language == 'playwright-csharp'
         uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 10.0.x

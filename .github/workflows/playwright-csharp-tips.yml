@@ -1,0 +1,30 @@
+name: Run Playwright C# tips
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/code/playwright-csharp/**'
+      - '.github/workflows/playwright-csharp-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/code/playwright-csharp/**'
+      - '.github/workflows/playwright-csharp-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+
+jobs:
+  run_tips:
+    uses: ./.github/workflows/run-tips.yml
+    secrets: inherit
+    with:
+      language: playwright-csharp
+      workflow-file: playwright-csharp-tips.yml
