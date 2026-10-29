@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/playwright-python/disabled_element.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 4 to 8 are the test. The dropdown on the page starts with a "Please select an option" placeholder that we
+can't select, because it's disabled.
+
+We find each option by its text (`has_text`) and check its state: `to_be_disabled` for the placeholder and
+`to_be_enabled` for "Option 1". Both checks wait until the element is in that state, or fail after the timeout.
+
+When we try to select a disabled option with `select_option`, Playwright fails too, so this check tells us early why.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest disabled_element.py` from the command-line.
