@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/playwright-python/waiting.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Waiting for an Element
+
+Lines 7 to 13 run a test for each example of the page. The element shows up a few seconds after we click start: in
+example 1 it is hidden until then, and in example 2 it is not on the page until then.
+
+`wait_for` waits until the element is in a state, `visible` here, or fails after the timeout (10 seconds). Then we
+read its text.
+
+### Giving Up
+
+Lines 16 to 21 wait for only 2 seconds, which is too short. `wait_for` fails with a `TimeoutError`, and
+`pytest.raises` checks that it did.
+
+### Waiting Inside the Assertion
+
+Lines 24 to 28 show the shorter way. The assertions of Playwright (e.g., `to_have_text`) wait on their own: they keep
+checking until the element matches or the timeout ends. So we don't need a separate wait. Actions like `click` and
+`fill` wait for the element too.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest waiting.py` from the command-line.
