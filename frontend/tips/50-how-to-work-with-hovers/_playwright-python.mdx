@@ -1,0 +1,28 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/playwright-python/hovers.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 4 to 11 are the test. The page has a few avatars, and hovering over one shows a caption with a link.
+
+We find the first avatar and the caption inside it. Before hovering, the caption is hidden (`to_be_hidden`). Then
+`hover` moves the mouse over the avatar, and the caption becomes visible (`to_be_visible`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest hovers.py` from the command-line.
