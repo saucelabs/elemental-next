@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/playwright-python/download.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `os` module to check the downloaded file, and `Page` from Playwright.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. The test also takes `tmp_path`, a temporary folder that
+pytest creates for each test.
+
+### The Test
+
+Lines 5 to 15 are the test itself.
+
+Playwright doesn't need any browser setting to download files. It catches each download as a `download` event.
+
+After visiting the page, we click the first download link inside `page.expect_download()`. When the block ends, the
+download has started and `download_info.value` gives us a `download` object.
+
+We save the file with `save_as` into the temporary folder, using the name the server suggests.
+
+Finally, we check that the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest download.py` from the command-line.
