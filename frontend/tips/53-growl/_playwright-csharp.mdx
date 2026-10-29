@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"53-growl/code/playwright-csharp/GrowlTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 11 to 42 are
+the test. We add a small notification library (jQuery Growl) to the page and use it to show a message, which is handy to
+follow what a test does while it runs.
+
+1. Lines 16 to 23 add jQuery, if the page doesn't have it. `AddScriptTagAsync` adds a `<script>` tag and waits until
+   the script is loaded, so we don't need to wait for it ourselves.
+2. Lines 25 to 29 add jquery-growl the same way.
+3. Lines 31 to 35 add its styles with `AddStyleTagAsync`.
+4. Line 38 shows a message with `Page.EvaluateAsync`, which runs the function in the page.
+
+Lines 40 and 41 check the title and the message of the notification.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"53-growl/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
