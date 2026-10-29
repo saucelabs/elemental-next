@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/playwright-csharp/WaitingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Waiting for an Element
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 14 to 28 run
+a test for each example of the page (`[DataRow]`). The element shows up a few seconds after we click start: in example 1
+it is hidden until then, and in example 2 it is not on the page until then.
+
+`WaitForAsync` waits until the element is in a state, `Visible` here, or fails after the timeout (10 seconds). Then we
+read its text.
+
+### Giving Up
+
+Lines 30 to 38 wait for only 2 seconds, which is too short. `WaitForAsync` fails with a `TimeoutException`, and
+`Assert.ThrowsExactlyAsync` checks that it did.
+
+### Waiting Inside the Assertion
+
+Lines 40 to 48 show the shorter way. The assertions of Playwright (e.g., `ToHaveTextAsync`) wait on their own: they
+keep checking until the element matches or the timeout ends. So we don't need a separate wait. Actions like
+`ClickAsync` and `FillAsync` wait for the element too.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
