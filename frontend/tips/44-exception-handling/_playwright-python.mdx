@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/playwright-python/exceptions.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup
+
+The `login` fixture (lines 5 to 11) logs in before each test (`autouse=True`). After logging in, the login form is
+gone from the page.
+
+### Example 1: An Error
+
+Lines 14 to 16 click the login form, which is not on the page anymore. Playwright waits for the element before it
+acts on it, so instead of failing right away, it fails with a `TimeoutError` after the timeout. We set it to 2 seconds
+(`timeout=2000`) to keep the test short.
+
+`pytest.raises` checks that the click fails with a `TimeoutError` (imported from Playwright on line 2), and `match`
+checks that the error says why.
+
+### Example 2: No Error
+
+Lines 19 and 20 ask if the form is visible. `is_visible` doesn't wait and doesn't fail: it returns `False` when the
+element is not there. So we can check that the form is gone without handling any error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest exceptions.py` from the command-line.
