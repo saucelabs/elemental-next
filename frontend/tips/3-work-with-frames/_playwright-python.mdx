@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/playwright-python/frames.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in `Page` and `expect` from Playwright.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends.
+
+### Example 1: Nested Frames
+
+Lines 4 to 9 are the first test. The page has a frame (`frame-top`) with frames inside it, and we want the text of the
+`frame-middle` frame.
+
+Playwright doesn't switch between frames. Instead, `frame_locator` points to a frame, and we chain them to reach a
+frame inside another one. Then we find the element in that frame and check its text, which is `MIDDLE`.
+
+### Example 2: An iframe
+
+Lines 12 to 19 are the second test. The page has a text editor (TinyMCE) inside an iframe.
+
+We point to the iframe with `frame_locator` and to the editor's body (`#tinymce`) inside it. We replace its text with
+`fill`, and check that the editor now has the new text.
+
+Then we check the heading of the page. Since Playwright never switched into the iframe, there is nothing to switch
+back from: `page.locator` still works on the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest frames.py` from the command-line.
