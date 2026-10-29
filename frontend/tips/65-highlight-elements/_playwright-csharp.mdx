@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/playwright-csharp/HighlightTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Highlight Method
+
+Lines 14 to 26 hold the `Highlight` method. It saves the style of the element, gives it a red dashed border with
+`EvaluateAsync` (which runs a function on the element in the page), waits for a few seconds, and puts the original
+style back. With a duration of `0`, the border stays.
+
+Playwright has its own `HighlightAsync`, which draws an overlay over the element. It's useful while debugging, but it
+doesn't change the element, so we can't check it in a test.
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Both tests visit a
+large page first (the `[TestInitialize]` method on lines 28 to 32) and find one of its elements.
+
+- Lines 34 to 40 highlight it for good and check that its style has the dashed border.
+- Lines 42 to 48 highlight it for 1 second and check that the border is gone afterward.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
