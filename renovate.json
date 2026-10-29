@@ -20,6 +20,14 @@
         "playwright"
       ],
       "allowedVersions": "<1.62.0"
+    },
+    {
+      "description": "Selenium.Support needs the same version of Selenium.WebDriver, so update them together",
+      "matchPackageNames": [
+        "Selenium.WebDriver",
+        "Selenium.Support"
+      ],
+      "groupName": "Selenium .NET"
     }
   ]
 }
