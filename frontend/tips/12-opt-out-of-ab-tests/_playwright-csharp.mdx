@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"12-opt-out-of-ab-tests/code/playwright-csharp/AbTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Opt-out Cookie
+
+Lines 12 to 17 set the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`). Playwright
+needs to know which site the cookie is for, so we give it the `Url` of the site.
+
+The test class extends `PageTest`, which gives each test a `Page` and its `Context` (the browser session). Cookies
+belong to the context.
+
+### Example 1: Forge the Cookie on the Target Page
+
+Lines 19 to 29 visit the A/B test page and check that it shows one of the two variants (with a regular expression).
+Then we add the cookie with `Context.AddCookiesAsync`, reload the page, and check that the heading says `No A/B Test`.
+
+### Example 2: Forge the Cookie Before Visiting the Page
+
+Lines 31 to 38 add the cookie first and then visit the page. Since the cookie has a `Url`, Playwright can add it
+before we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
+
+### Example 3: Append the Opt-out Parameter to the URL
+
+Lines 40 to 47 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert. The
+`Page.Dialog` event handler dismisses it. Playwright dismisses dialogs on its own when nobody listens for them, but
+the handler makes it clear. Then we check the heading.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"12-opt-out-of-ab-tests/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
