@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"67-broken-images/code/playwright-python/broken_images.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Both tests visit a page with three images, two of them broken (the fixture on lines 5 to 7).
+
+#### With an HTTP Request
+
+Lines 10 to 18 read the full URL (`src`) of every image, and request each one with `page.request`, the HTTP client of
+Playwright. An image whose request doesn't answer with `200` is broken.
+
+#### With JavaScript
+
+Lines 21 to 26 ask the browser instead. `evaluate_all` runs a function on all the images in the page. An image that
+loaded is `complete` and has a width (`naturalWidth`), so the function keeps the others and returns their `src`.
+
+This way is faster, since the browser already tried to load the images.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"67-broken-images/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest broken_images.py` from the command-line.
