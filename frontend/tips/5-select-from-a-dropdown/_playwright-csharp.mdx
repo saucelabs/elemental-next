@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"5-select-from-a-dropdown/code/playwright-csharp/DropdownTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in the libraries we need: Playwright, its MSTest integration (`Microsoft.Playwright.MSTest`), and
+MSTest itself.
+
+### Setup and Teardown
+
+Lines 8 and 9 declare the test class. It extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package.
+`PageTest` handles the browser for us: each test gets a fresh browser tab in the `Page` property, and it is closed when
+the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 11 to 19 are the test itself.
+
+After visiting the page, we call `SelectOptionAsync` on the dropdown. It takes the value, the label (the visible text)
+or the index of the option. Here we use the label, `Option 1`, with a `SelectOptionValue`.
+
+To check the selection, we find the selected option with the `:checked` CSS pseudo-class and check its text.
+`ToHaveTextAsync` waits until it matches.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
