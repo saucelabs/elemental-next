@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-csharp/BasePageTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-csharp/BasePage.cs"} language={"csharp"}/>
+
+The base page holds what every page object needs. It keeps the Playwright page (lines 12 to 17) and has a
+`VisitAsync` method (lines 19 to 23) that goes to a path of the site and checks the title.
+
+Playwright already has short methods to click, fill and wait (e.g., `ClickAsync`, `FillAsync`), so the base page
+doesn't need to wrap them. In Selenium, the base page usually wraps those actions to add waits.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-csharp/DynamicLoadingPage.cs"} language={"csharp"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-csharp/LoginPage.cs"} language={"csharp"}/>
+
+Both page objects extend `BasePage`. They pass the page to the constructor of the base page with `: base(page)`,
+create their locators with it, and use `VisitAsync` to load their page. The login page also has a `LoginAsAsync`
+method that fills the form and submits it.
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. The first test
+(lines 11 to 19) loads the dynamic loading page, clicks start and checks the text. The second test (lines 21 to 28)
+logs in and checks that the success message is visible. `ToHaveTextAsync` and `ToBeVisibleAsync` wait for the
+elements, so the page objects don't need wait methods.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
