@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"63-right-click/code/playwright-csharp/RightClickTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 12 to 26 are
+the test. Right clicking the box on the page opens a JavaScript alert with a message.
+
+The alert blocks the page until someone closes it, and the click doesn't end until then. So before the click, we add a
+handler to the `Page.Dialog` event (lines 17 to 22): it saves the message and accepts the alert. Then we right click
+with `MouseButton.Right` and check the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
