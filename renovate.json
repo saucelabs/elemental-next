@@ -13,11 +13,15 @@
         "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright/package.json",
         "frontend/tips/26-cloud/code/playwright-python/requirements.txt",
         "frontend/tips/41-one-test-multiple-browsers/code/playwright-python/requirements.txt",
-        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright-python/requirements.txt"
+        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright-python/requirements.txt",
+        "frontend/tips/26-cloud/code/playwright-csharp/playwright-csharp.csproj",
+        "frontend/tips/41-one-test-multiple-browsers/code/playwright-csharp/playwright-csharp.csproj",
+        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright-csharp/playwright-csharp.csproj"
       ],
       "matchPackageNames": [
         "@playwright/test",
-        "playwright"
+        "playwright",
+        "Microsoft.Playwright"
       ],
       "allowedVersions": "<1.62.0"
     },
