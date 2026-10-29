@@ -1,0 +1,29 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"63-right-click/code/playwright-python/right_click.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 4 to 16 are the test. Right clicking the box on the page opens a JavaScript alert with a message.
+
+The alert blocks the page until someone closes it, and the click doesn't end until then. So before the click, we
+listen for the `dialog` event once (lines 9 to 13): the listener saves the message and accepts the alert. Then we
+right click with `click(button='right')` and check the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest right_click.py` from the command-line.
