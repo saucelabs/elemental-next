@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/playwright-python/retry.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Retrying the Test
+
+The `pytest-rerunfailures` plugin runs a failed test again. In `pytest.ini`, `--reruns 9` runs a failed test up to 9
+more times before it counts as failed. pytest shows the reruns in the results (`R`), so they don't go unnoticed.
+
+<TipCode codePath={"56-retry-failed-tests/code/playwright-python/pytest.ini"} language={"ini"}/>
+
+We can also set the reruns from the command-line (`pytest retry.py --reruns 9`) or for one test with
+`@pytest.mark.flaky(reruns=9)`.
+
+### The Test
+
+Lines 6 to 10 are the test. The page shows the successful message only some of the time, so the test is flaky on
+purpose. It visits the page and checks that the notification says `Action successful`.
+
+Retries hide flaky tests, so use them with care: keep the count low, and fix the cause of the flakiness when you can.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest retry.py` from the command-line.
