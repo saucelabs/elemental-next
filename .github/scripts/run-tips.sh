@@ -31,6 +31,10 @@ run_one() {
     python | vibium-python)
       python -m pip install -r requirements.txt && python -m pytest ./*.py
       ;;
+    playwright-python)
+      python -m pip install -r requirements.txt && python -m playwright install --with-deps chromium \
+        && python -m pytest ./*.py
+      ;;
     ruby)
       bundle install || return 1
       for file in ./*.rb; do
