@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/playwright-python/locators.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+All the tests visit the download page first. The fixture on lines 5 to 7 does it, and `autouse=True` makes it run
+before every test in the file.
+
+Each test finds the first link with a locator that is a bit more specific than the one before, reads its `href` and
+checks where it points:
+
+- Lines 10 to 13 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not
+  the link we want.
+- Lines 16 to 19 look only inside the `#content` element, which gets us one of the download links.
+- Lines 22 to 25 go one step further, into the `.example` element inside `#content`.
+
+A locator in Playwright is lazy: it finds the elements when we use it, and `first` picks the first match. The more
+specific the locator, the less it depends on the rest of the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest locators.py` from the command-line.
