@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"5-select-from-a-dropdown/code/playwright-python/dropdown.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in `Page` and `expect` from Playwright.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends.
+
+### The Test
+
+Lines 4 to 9 are the test itself.
+
+After visiting the page, we call `select_option` on the dropdown. It takes the value, the label (the visible text) or
+the index of the option. Here we use the label, `Option 1`.
+
+To check the selection, we find the selected option with the `:checked` CSS pseudo-class and check its text.
+`to_have_text` waits until it matches.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest dropdown.py` from the command-line.
