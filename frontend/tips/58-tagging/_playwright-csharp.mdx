@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"58-tagging/code/playwright-csharp/TaggingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Tagging the Tests
+
+MSTest tags tests with categories: we add them as attributes (`[TestCategory("smoke")]`). A test can have more than
+one category. The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property.
+
+- Lines 11 to 17 are a quick test in the `smoke` category.
+- Lines 19 to 26 are a test that is not finished yet, so it fails. It is in the `wip` category.
+
+### Running Only Some Tests
+
+`dotnet test --filter TestCategory=smoke` runs only the tests of a category. To not type it every time, we put the
+filter in a run settings file, and the project file points to it (`RunSettingsFilePath`). So `dotnet test` runs only
+the first test. `--filter TestCategory!=wip` would run every test except the unfinished one.
+
+<TipCode codePath={"58-tagging/code/playwright-csharp/smoke.runsettings"} language={"xml"}/>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"58-tagging/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
