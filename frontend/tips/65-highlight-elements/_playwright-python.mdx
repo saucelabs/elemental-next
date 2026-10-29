@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"65-highlight-elements/code/playwright-python/highlight.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Highlight Function
+
+Lines 8 to 16 hold the `highlight` function. It saves the style of the element, gives it a red dashed border with
+`evaluate` (which runs a function on the element in the page), waits for a few seconds, and puts the original style
+back. With a duration of `0`, the border stays.
+
+Playwright has its own `locator.highlight()`, which draws an overlay over the element. It's useful while debugging,
+but it doesn't change the element, so we can't check it in a test.
+
+### The Tests
+
+Both tests visit a large page first (the fixture on lines 19 to 21) and find one of its elements.
+
+- Lines 24 to 27 highlight it for good and check that its style has the dashed border.
+- Lines 30 to 33 highlight it for 1 second and check that the border is gone afterward.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"65-highlight-elements/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest highlight.py` from the command-line.
