@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/playwright-python/dynamic_pages.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Line 5 runs the test once for each of the two examples of the page:
+
+- In example 1, the element is on the page but hidden, and it shows up after the loading bar.
+- In example 2, the element is not on the page at all until the loading bar ends.
+
+Each test clicks the start button and waits for the `#finish` element to be visible. `to_be_visible` keeps checking
+until the element shows up or the timeout ends (10 seconds here). So the same check works for both examples: a hidden
+element and a missing one are both not visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest dynamic_pages.py` from the command-line.
