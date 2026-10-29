@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"1-upload-a-file/code/playwright-python/upload.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `os` module to build the path to the file, and `Page` and `expect` from Playwright.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 5 to 13 are the test itself.
+
+First we set the name of the file we'd like to upload. It's a text file called `some-file.txt` in the current working
+directory. We build the full path to it and store it in `file_path`.
+
+Next we visit the page with the upload form. `set_input_files` sets the file on the file input, without opening the
+operating system dialog. Then we click the submit button.
+
+After the file is uploaded, the page shows the name of the file. `to_have_text` checks that it matches the name we
+expect. It waits for the text to appear, so we don't need an explicit wait.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest upload.py` from the command-line.

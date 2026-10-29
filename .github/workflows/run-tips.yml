@@ -6,7 +6,7 @@ on:
   workflow_call:
     inputs:
       language:
-        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, webdriverio, vibium, vibium-python, vibium-java)'
+        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, playwright-python, webdriverio, vibium, vibium-python, vibium-java)'
         required: true
         type: string
       workflow-file:
@@ -99,7 +99,7 @@ jobs:
         with:
           node-version: 26
       - name: Set up Python
-        if: inputs.language == 'python' || inputs.language == 'vibium-python'
+        if: contains(fromJSON('["python", "playwright-python", "vibium-python"]'), inputs.language)
         uses: actions/setup-python@v7
         with:
           python-version: '3.15'
