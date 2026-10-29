@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"57-junit-xml/code/playwright-csharp/TitleTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Report
+
+`dotnet test` saves the results as JUnit XML with the `JunitXml.TestLogger` package. A run settings file turns it on
+for every run and saves the report in `TestResults/result.xml`. The project file points to it
+(`RunSettingsFilePath`). CI servers (e.g., Jenkins, GitLab, GitHub Actions) can read this file to show the results.
+
+<TipCode codePath={"57-junit-xml/code/playwright-csharp/junit.runsettings"} language={"xml"}/>
+
+We can also turn it on from the command-line, with `dotnet test --logger junit`.
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 11 to 16 are
+the test. It visits the page and checks the title. Any test works: the report doesn't need anything in the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"57-junit-xml/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
