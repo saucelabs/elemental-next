@@ -10,10 +10,14 @@
       "matchFileNames": [
         "frontend/tips/26-cloud/code/playwright/package.json",
         "frontend/tips/41-one-test-multiple-browsers/code/playwright/package.json",
-        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright/package.json"
+        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright/package.json",
+        "frontend/tips/26-cloud/code/playwright-python/requirements.txt",
+        "frontend/tips/41-one-test-multiple-browsers/code/playwright-python/requirements.txt",
+        "frontend/tips/42-one-test-multiple-browsers-parallel/code/playwright-python/requirements.txt"
       ],
       "matchPackageNames": [
-        "@playwright/test"
+        "@playwright/test",
+        "playwright"
       ],
       "allowedVersions": "<1.62.0"
     }

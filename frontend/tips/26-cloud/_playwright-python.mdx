@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/playwright-python/cloud.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Running on Sauce Labs
+
+Sauce Labs can start a browser for Playwright and let our tests drive it over the Playwright protocol, as if it ran on
+our machine. The tests run here, and the browser runs on Sauce Labs, which records a video and the logs of the job.
+
+<TipCode codePath={"26-cloud/code/playwright-python/conftest.py"} language={"python"}/>
+
+`conftest.py` replaces the `browser` fixture of the `pytest-playwright` plugin with a browser on Sauce Labs. The
+plugin still creates the context and the `page` of each test, in that browser:
+
+- Lines 5 to 10 hold the addresses of Sauce Labs, the credentials, and the version of Playwright. Sauce Labs needs the
+  major and minor version (e.g., `1.61`), and it supports only some versions, so `requirements.txt` pins one of them.
+- Lines 13 to 19 are a pytest hook that keeps the result of each test, so we can send it to Sauce Labs.
+- Lines 25 to 37 create an HTTP client with the credentials (`playwright.request.new_context`) and ask Sauce Labs
+  for a Chrome on Linux, with the name of the test and of the build. Sauce Labs answers with redirects (`303`)
+  while it starts the browser, so we follow them until we get its address (`wsEndpoint`).
+- Lines 40 to 42 connect to the browser with `browser_type.connect`, give it to the test (`yield`), and close it when
+  the test ends.
+- Lines 45 to 48 tell Sauce Labs if the test passed, using its REST API, and print the link to the job.
+
+### The Test
+
+The test is the same test we would run on our machine: it visits the page and checks the title (lines 9 to 11).
+pytest finds the `browser` fixture of `conftest.py` on its own, without an import. Lines 5 and 6 skip the test when
+the Sauce Labs credentials are not set.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`. Then set `SAUCE_USERNAME` and
+`SAUCE_ACCESS_KEY` and run the test by executing `pytest cloud.py` from the command-line. No local browser is
+needed.
