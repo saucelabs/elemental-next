@@ -1,0 +1,57 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/playwright-python/multiple_browsers.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### One Run per Browser
+
+Playwright has three browsers: Chromium, Firefox and WebKit (the engine of Safari). The `--browser` option of the
+`pytest-playwright` plugin picks the browser, and when we give it more than once, each test runs once in each browser.
+To not type the options every time, we add them to `pytest.ini`.
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/playwright-python/pytest.ini"} language={"ini"}/>
+
+The tests run one browser after the other.
+
+### Running on Sauce Labs
+
+The browsers run on Sauce Labs.
+
+<TipCode codePath={"41-one-test-multiple-browsers/code/playwright-python/conftest.py"} language={"python"}/>
+
+`conftest.py` replaces the `browser` fixture of the `pytest-playwright` plugin with a browser on Sauce Labs. The
+plugin still creates the context and the `page` of each test, in that browser:
+
+- Lines 5 to 10 hold the addresses of Sauce Labs, the credentials, and the version of Playwright. Sauce Labs needs the
+  major and minor version (e.g., `1.61`), and it supports only some versions, so `requirements.txt` pins one of them.
+- Lines 11 and 12 map each Playwright browser to its name on Sauce Labs.
+- Lines 15 to 21 are a pytest hook that keeps the result of each test, so we can send it to Sauce Labs.
+- Lines 27 to 39 create an HTTP client with the credentials (`playwright.request.new_context`) and ask Sauce Labs for
+  the browser of the test on Linux, with the name of the test and of the build. Sauce Labs answers with redirects
+  (`303`) while it starts the browser, so we follow them until we get its address (`wsEndpoint`).
+- Lines 42 to 44 connect to the browser with `browser_type.connect`, give it to the test (`yield`), and close it when
+  the test ends.
+- Lines 47 to 50 tell Sauce Labs if the test passed, using its REST API, and print the link to the job.
+
+### The Test
+
+The test is the same test we would run on our machine: it visits the page and checks the title (lines 9 to 11). It
+doesn't know which browser it runs in. pytest finds the `browser` fixture of `conftest.py` on its own, without an
+import. Lines 5 and 6 skip the test when the Sauce Labs credentials are not set.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"41-one-test-multiple-browsers/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`. Then set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` and run
+the test by executing `pytest multiple_browsers.py` from the command-line. No local browser is needed.
