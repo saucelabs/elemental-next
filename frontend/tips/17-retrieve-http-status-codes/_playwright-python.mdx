@@ -1,0 +1,29 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"17-retrieve-http-status-codes/code/playwright-python/status_codes.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Line 5 gives pytest the status codes we want to check. `pytest.mark.parametrize` runs the test once for each, with the
+code in `expected`.
+
+Playwright doesn't need the Navigation Timing API: `page.goto` returns the response of the main request of the page.
+So we visit the page for the status code and check `response.status`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest status_codes.py` from the command-line.
