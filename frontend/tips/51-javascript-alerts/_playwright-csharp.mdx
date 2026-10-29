@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"51-javascript-alerts/code/playwright-csharp/AlertsTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Both tests visit
+the page first (the `[TestInitialize]` method on lines 11 to 15) and click the button that opens a JavaScript
+confirmation. We find the button by its role and name (`GetByRole`).
+
+Playwright dismisses dialogs on its own unless we handle them. So before clicking, we add a handler to the
+`Page.Dialog` event:
+
+- Lines 17 to 24 accept the confirmation, and the page says `You clicked: Ok`.
+- Lines 26 to 33 dismiss it, and the page says `You clicked: Cancel`.
+
+The handler has to be there before the click, because the dialog opens during the click.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
