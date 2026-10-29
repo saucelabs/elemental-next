@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/playwright-csharp/DragAndDropTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 11 to 20 are
+the test. The page has two boxes, A and B, that we can swap with HTML5 drag and drop.
+
+`DragToAsync` drags the first element and drops it on the second one. Playwright moves the mouse step by step, so the
+page gets the drag and drop events it expects, and it works the same in Chromium, Firefox and WebKit.
+
+After the drop, the boxes have switched places: the first one says `B` and the second one says `A`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
