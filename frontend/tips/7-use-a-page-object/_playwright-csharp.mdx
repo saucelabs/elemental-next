@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/playwright-csharp/DynamicLoadingTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/playwright-csharp/DynamicLoadingPage.cs"} language={"csharp"}/>
+
+The page object is a class that receives the Playwright page (lines 15 to 20). It keeps the locators of the page in
+one place: the start button and the text that shows when the loading finishes. A Playwright locator doesn't look for
+the element until we use it, so we can create them in the constructor.
+
+`VisitAsync` (lines 22 to 26) goes to the page and checks its title. Outside a `PageTest`, the `Expect` method comes
+from the `Assertions` class. `StartAsync` (lines 28 to 31) clicks the start button.
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. The
+`[TestInitialize]` method (lines 13 to 18) runs before each test: it creates the page object with that `Page`, and
+visits the page.
+
+The test (lines 20 to 26) clicks the start button and checks the text. We don't need a method to wait for the text:
+`ToHaveTextAsync` waits until the text shows up, up to 10 seconds (the loading takes about 5).
+
+The test only talks to the page object. If the page changes, we update the page object and the test stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
