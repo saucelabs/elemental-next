@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "selenium-webdriver": "4.51.0"
+    "selenium-webdriver": "4.52.0"
   },
   "description": "A project to showcase HTML5 drag and drop using official WebdriverJs",
   "devDependencies": {
