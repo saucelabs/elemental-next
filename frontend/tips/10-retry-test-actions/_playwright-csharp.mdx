@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/playwright-csharp/RetryActionsTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in the libraries we need: Playwright, its MSTest integration (`Microsoft.Playwright.MSTest`), and
+MSTest itself. Line 11 sets how many times we try.
+
+### Setup and Teardown
+
+Lines 8 and 9 declare the test class. It extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package.
+`PageTest` handles the browser for us: each test gets a fresh browser tab in the `Page` property, and it is closed when
+the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 13 to 29 are the test itself.
+
+Playwright for JavaScript has a built-in way to retry a block of actions (`expect(...).toPass()`), but Playwright for
+.NET doesn't. A loop does the same job.
+
+In each attempt, we load the page and check that the notification says `Action successful`. We give that check a
+short timeout (1 second), so a page with the wrong message fails fast. When the check passes, `return` ends the test.
+
+When it fails, `Expect` throws a `PlaywrightException`. We catch it and try again, unless it was the last attempt: the
+`when` filter on line 25 lets the exception of the last attempt through, so the test fails with that error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
