@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"45-how-to-test-checkboxes/code/playwright-python/checkboxes.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Both tests visit the page with two checkboxes first. The fixture on lines 5 to 7 does it, and `autouse=True` makes it
+run before every test in the file. The first checkbox is not checked and the second one is.
+
+- Lines 10 to 14 look at the `checked` attribute. Line 12 prints it for every checkbox, with `evaluate_all`. The
+  attribute is `None` when it's not there, so we check that the first one is `None` and the last one is not. The
+  attribute only says how the checkbox started, not how it is now.
+- Lines 17 to 20 check the state of the checkboxes with `to_be_checked`, which is what the user sees, even after a
+  click changes it. This is the check to use.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"45-how-to-test-checkboxes/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest checkboxes.py` from the command-line.
