@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/playwright-csharp/LocatorsTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. All the tests
+visit the download page first: the `[TestInitialize]` method on lines 12 to 16 runs before each test and does it.
+
+Each test finds the first link with a locator that is a bit more specific than the one before, reads its `href` and
+checks where it points:
+
+- Lines 18 to 24 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not
+  the link we want.
+- Lines 26 to 32 look only inside the `#content` element, which gets us one of the download links.
+- Lines 34 to 40 go one step further, into the `.example` element inside `#content`.
+
+A locator in Playwright is lazy: it finds the elements when we use it, and `First` picks the first match. The more
+specific the locator, the less it depends on the rest of the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
