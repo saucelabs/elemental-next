@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/playwright-csharp/RetryTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Retrying the Test
+
+MSTest can run a failed test again. The `[Retry(9)]` attribute on line 14 runs the test up to 9 more times before it
+counts as failed. It only applies to the test that has it.
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Lines 13 to 21 are
+the test. The page shows the successful message only some of the time, so the test is flaky on purpose. It visits the
+page and checks that the notification says `Action successful`.
+
+Retries hide flaky tests, so use them with care: keep the count low, and fix the cause of the flakiness when you can.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
