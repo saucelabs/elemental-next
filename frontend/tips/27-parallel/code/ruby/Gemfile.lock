@@ -21,7 +21,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.7)
     rubyzip (3.7.0)
-    selenium-webdriver (4.51.0)
+    selenium-webdriver (4.52.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rubyzip (>= 1.2.2, < 4.0)
@@ -35,7 +35,7 @@ PLATFORMS
 DEPENDENCIES
   parallel_tests (~> 5.8)
   rspec (~> 3.13)
-  selenium-webdriver (~> 4.51.0)
+  selenium-webdriver (~> 4.52.0)
 
 BUNDLED WITH
    2.6.3
