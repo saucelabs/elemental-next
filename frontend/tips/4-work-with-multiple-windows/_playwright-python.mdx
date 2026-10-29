@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/playwright-python/windows.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in `BrowserContext`, `Page` and `expect` from Playwright.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test can take a `page` (a browser tab) and its
+`context` (the browser session that holds all the tabs) as arguments. The plugin closes them when the test ends.
+
+### The Test
+
+Lines 4 to 12 are the test itself.
+
+After visiting the page, we click the link that opens a new window inside `context.expect_page()`. When the block
+ends, the window is open and `new_page_info.value` gives it to us as a new page object.
+
+In Playwright, each window is its own page object, so there is no switching. We can use both at any time, in any
+order. This also avoids the problem of the Selenium examples, where the order of the window handles can change between
+browsers.
+
+Finally, we check the title of each window. `to_have_title` waits for the new window to load.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest windows.py` from the command-line.
