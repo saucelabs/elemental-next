@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <RunSettingsFilePath>$(MSBuildProjectDirectory)/junit.runsettings</RunSettingsFilePath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="JunitXml.TestLogger" Version="8.1.0" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+      <PackageReference Include="Microsoft.Playwright.MSTest.v4" Version="1.64.1" />
+      <PackageReference Include="MSTest.TestAdapter" Version="4.5.2" />
+      <PackageReference Include="MSTest.TestFramework" Version="4.5.2" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <LoggerRunSettings>
+    <Loggers>
+      <!-- Writes a JUnit XML report on every run (from the JunitXml.TestLogger package) -->
+      <Logger friendlyName="junit" enabled="True">
+        <Configuration>
+          <LogFilePath>TestResults/result.xml</LogFilePath>
+        </Configuration>
+      </Logger>
+    </Loggers>
+  </LoggerRunSettings>
+</RunSettings>
