@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+      <PackageReference Include="Microsoft.Playwright.MSTest.v4" Version="1.64.1" />
+      <PackageReference Include="MSTest.TestAdapter" Version="4.5.2" />
+      <PackageReference Include="MSTest.TestFramework" Version="4.5.2" />
+    </ItemGroup>
+
+</Project>

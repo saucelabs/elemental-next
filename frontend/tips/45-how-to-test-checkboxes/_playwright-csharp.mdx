@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"45-how-to-test-checkboxes/code/playwright-csharp/CheckboxesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Both tests visit
+the page with two checkboxes first: the `[TestInitialize]` method on lines 12 to 16 runs before each test and does it.
+The first checkbox is not checked and the second one is.
+
+- Lines 18 to 27 look at the `checked` attribute. Lines 22 to 24 print it for every checkbox, with
+  `EvaluateAllAsync`. The attribute is `null` when it's not there, so we check that the first one is `null` and the
+  last one is not. The attribute only says how the checkbox started, not how it is now.
+- Lines 29 to 35 check the state of the checkboxes with `ToBeCheckedAsync` (and `Not` to check the opposite), which is
+  what the user sees, even after a click changes it. This is the check to use.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"45-how-to-test-checkboxes/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
