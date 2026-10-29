@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/playwright-csharp/SortWithAttributesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+MSTest runs the tests one after the other. The `[assembly: Parallelize]` attribute runs them in parallel. We put it
+in `AssemblyInfo.cs`, so it applies to every test of the project.
+
+<TipCode codePath={"27-parallel/code/playwright-csharp/AssemblyInfo.cs"} language={"csharp"}/>
+
+`Workers = 4` sets how many run at the same time, and `Scope = ExecutionScope.MethodLevel` lets each test method run
+in any worker, not only the tests of one class. Playwright's `PageTest` gives each worker its own browser.
+
+Since each test gets a new page, the tests don't share any state, so they can run in any order.
+
+### The Tests
+
+Each class holds two tests that sort the "Due" column of one of the tables, in ascending and descending order. The
+`Dues` method (lines 14 to 20) reads the values of the column as numbers. The first class uses the class names of the
+second table, and the second class uses the position of the column in the first table.
+
+<TipCode codePath={"27-parallel/code/playwright-csharp/SortWithoutAttributesTest.cs"} language={"csharp"}/>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
