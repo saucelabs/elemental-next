@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/playwright-csharp/GridTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Running on the Grid
+
+Playwright can start Chrome on a Selenium Grid instead of on our machine. It does it when the `SELENIUM_REMOTE_URL`
+environment variable has the address of the Grid. Then Playwright asks the Grid for a Chrome session and talks to it
+over the Chrome DevTools Protocol.
+
+This works only with Chromium-based browsers, and Playwright marks it as experimental.
+
+### The Test
+
+Lines 13 and 14 read the address of the Grid from the `GRID_URL` environment variable, or use
+`http://localhost:4444`.
+
+The `[ClassInitialize]` method (lines 17 to 34) runs once, before the browser starts. It asks the Grid for its status
+and, when the Grid is running, sets `SELENIUM_REMOTE_URL`.
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. The test (lines 36
+to 45) loads the page and checks the title. It is the same test we would run without a Grid. When the Grid is not
+running, `Assert.Inconclusive` skips it with a message that says how to run it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with `pwsh bin/Debug/net10.0/playwright.ps1 install
+chromium` (the script is created by the build). Then run the test by executing `dotnet test` from the command-line.
+Start a Selenium Grid first (e.g., `java -jar selenium-server-<version>.jar standalone`).
