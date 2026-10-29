@@ -26,6 +26,9 @@ run_one() {
   case "${language}" in
     java | selenide | vibium-java) mvn -B test ;;
     csharp) dotnet test ;;
+    playwright-csharp)
+      dotnet build && pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium && dotnet test --no-build
+      ;;
     javascript | serenity-js | webdriverio | vibium) npm install && npm test ;;
     playwright) npm install && npx playwright install --with-deps chromium && npm test ;;
     python | vibium-python)

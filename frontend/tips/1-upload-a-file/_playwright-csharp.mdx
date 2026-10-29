@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"1-upload-a-file/code/playwright-csharp/UploadTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in the libraries we need: `System.IO` to build the path to the file, Playwright's MSTest
+integration, and MSTest itself.
+
+### Setup and Teardown
+
+Lines 9 and 10 declare the test class. It extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package.
+`PageTest` handles the browser for us: each test gets a fresh browser tab in the `Page` property, and it is closed
+when the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 12 to 23 are the test itself.
+
+First we set the name of the file we'd like to upload. It's a text file called `some-file.txt`. The project file
+copies it to the output directory, so we build the full path to it from `AppContext.BaseDirectory`.
+
+Next we visit the page with the upload form. `SetInputFilesAsync` sets the file on the file input, without opening the
+operating system dialog. Then we click the submit button.
+
+After the file is uploaded, the page shows the name of the file. `ToHaveTextAsync` checks that it matches the name we
+expect. It waits for the text to appear, so we don't need an explicit wait.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
