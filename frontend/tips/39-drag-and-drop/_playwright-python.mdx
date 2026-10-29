@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"39-drag-and-drop/code/playwright-python/drag_and_drop.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Test
+
+Lines 4 to 10 are the test. The page has two boxes, A and B, that we can swap with HTML5 drag and drop.
+
+`drag_to` drags the first element and drops it on the second one. Playwright moves the mouse step by step, so the page
+gets the drag and drop events it expects, and it works the same in Chromium, Firefox and WebKit.
+
+After the drop, the boxes have switched places: the first one says `B` and the second one says `A`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"39-drag-and-drop/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest drag_and_drop.py` from the command-line.
