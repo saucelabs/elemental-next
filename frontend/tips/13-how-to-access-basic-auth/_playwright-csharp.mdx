@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"13-how-to-access-basic-auth/code/playwright-csharp/BasicAuthTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setting the Credentials
+
+Line 11 holds the message the page shows when we log in.
+
+Playwright has an option for basic auth: `HttpCredentials`. The test class extends `PageTest`, which creates the
+browser context with the options that `ContextOptions` returns. On lines 13 to 19 we override that method to add the
+credentials, for every test in the class. Playwright then answers the login dialog of the browser for us, so we don't
+put the credentials in the URL.
+
+### The Test
+
+Lines 21 to 27 visit the page that needs basic auth and check that it shows the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
