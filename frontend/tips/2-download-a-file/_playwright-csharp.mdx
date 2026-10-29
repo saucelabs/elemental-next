@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/playwright-csharp/DownloadTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `System.IO` to check the downloaded file, Playwright, its MSTest integration, and MSTest itself.
+
+### Setup and Teardown
+
+Lines 9 and 10 declare the test class. It extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package.
+`PageTest` handles the browser for us: each test gets a fresh browser tab in the `Page` property, and it is closed when
+the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 12 to 27 are the test itself.
+
+Playwright doesn't need any browser setting to download files. It catches each download as a download event.
+
+After visiting the page, we click the first download link inside `RunAndWaitForDownloadAsync`. It runs the click,
+waits for the download to start, and returns it as an `IDownload` object.
+
+We save the file with `SaveAsAsync` into a new temporary folder, using the name the server suggests.
+
+Finally, we check that the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
