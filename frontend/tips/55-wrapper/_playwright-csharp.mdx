@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"55-wrapper/code/playwright-csharp/WrapperTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Wrapper
+
+<TipCode codePath={"55-wrapper/code/playwright-csharp/LoggingPage.cs"} language={"csharp"}/>
+
+`LoggingPage` wraps a Playwright page. It has its own `GotoAsync` and `ClickAsync` that do the same as Playwright's,
+and log what they did:
+
+- Lines 27 to 31 visit the URL and log it.
+- Lines 33 to 44 log the text of the element, click it, and log the new URL if the click changed it.
+  `WaitForLoadStateAsync` waits for the new page to load before we read the URL.
+
+Each message is printed and saved in `Messages` (line 14), so the test can check them.
+
+### The Test
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. The test creates
+the wrapper with it, visits the home page and clicks the Checkboxes link through it. Then it checks the messages.
+
+Playwright has its own record of every action: the trace (`Context.Tracing`), which we open with
+`playwright show-trace`. The wrapper is useful when we want our own messages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"55-wrapper/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
