@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/playwright-python/sort_with_attributes.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+pytest runs the tests one after the other. The `pytest-xdist` plugin runs them in parallel: it starts several workers,
+each one with its own browser, and spreads the tests among them.
+
+`-n 4` sets how many run at the same time (with `-n auto`, one per CPU core). To not type it every time, we add it to
+`pytest.ini`. Each test can run in any worker, not only the tests of one file.
+
+<TipCode codePath={"27-parallel/code/playwright-python/pytest.ini"} language={"ini"}/>
+
+Since each test gets a new page, the tests don't share any state, so they can run in any order.
+
+### The Tests
+
+Each file holds two tests that sort the "Due" column of one of the tables, in ascending and descending order. The
+`dues` function (lines 5 to 7) reads the values of the column as numbers. The first file uses the class names of the
+second table, and the second file uses the position of the column in the first table.
+
+<TipCode codePath={"27-parallel/code/playwright-python/sort_without_attributes.py"} language={"python"}/>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest sort_with_attributes.py sort_without_attributes.py` from the command-line.
