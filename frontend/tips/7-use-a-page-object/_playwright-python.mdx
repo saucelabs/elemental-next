@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/playwright-python/dynamic_loading_test.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/playwright-python/dynamic_loading_page.py"} language={"python"}/>
+
+The page object is a class that receives the Playwright `page` (lines 5 to 8). It keeps the locators of the page in
+one place: the start button and the text that shows when the loading finishes. A Playwright locator doesn't look for
+the element until we use it, so we can create them in the constructor.
+
+`visit` (lines 10 to 12) goes to the page and checks its title. `start` (lines 14 and 15) clicks the start button.
+
+### The Test
+
+After the imports, the `dynamic_loading` fixture (lines 6 to 10) creates the page object with the `page` that the
+`pytest-playwright` plugin gives each test, and visits the page.
+
+The test (lines 13 to 15) clicks the start button and checks the text. We don't need a method to wait for the text:
+`to_have_text` waits until the text shows up, up to 10 seconds (the loading takes about 5).
+
+The test only talks to the page object. If the page changes, we update the page object and the test stays the same.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest dynamic_loading_test.py` from the command-line.
