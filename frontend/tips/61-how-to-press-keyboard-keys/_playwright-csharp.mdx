@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright-csharp/KeyPressesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. Both tests visit a
+page that shows the last key we pressed (the `[TestInitialize]` method on lines 11 to 15).
+
+- Lines 17 to 22 press a key on an element: `PressAsync` focuses the input and presses `Space` on it.
+- Lines 24 to 29 press a key without an element: `Page.Keyboard.PressAsync` sends `Tab` to whatever has the focus.
+
+The keys have names like `Enter`, `ArrowDown` or `Shift+A`, and Playwright fires the same events a real key press
+does.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
