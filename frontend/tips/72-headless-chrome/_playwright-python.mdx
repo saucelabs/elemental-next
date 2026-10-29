@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/playwright-python/headless.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Running Headless
+
+The `pytest-playwright` plugin runs the browsers headless (without a window) by default, so there is nothing to set.
+To see the browser, run `pytest headless.py --headed`.
+
+For Chromium, Playwright uses a headless build of the browser (`chromium-headless-shell`), which starts faster.
+
+### The Test
+
+Lines 4 to 10 are the test. It visits the page, checks the title, and reads the user agent with `page.evaluate`. A
+headless Chrome says `HeadlessChrome` in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest headless.py` from the command-line.
