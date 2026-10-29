@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"19-data-driven-testing/code/playwright-python/data_driven.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Reading the Data
+
+The data lives in a CSV file, `user_data.csv`, next to the test. Each row is a user: the type of account, the
+username, the password and the message we expect after logging in.
+
+<details>
+    <summary>Toggle to see the <code>user_data.csv</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/playwright-python/user_data.csv"} language={"text"}/>
+    </div>
+</details>
+
+Lines 7 to 9 read the file with the `csv` module. `csv.DictReader` turns each row into a dictionary, using the first
+line (the header) for the keys.
+
+### The Tests
+
+Line 12 gives pytest the users. `pytest.mark.parametrize` runs the test once for each, named after the type of account
+(`ids`). pytest lists them as separate tests, so a failure points to the row that caused it.
+
+Each test logs in with the username and password of its row, and checks that the message on the page contains the
+expected text.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"19-data-driven-testing/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest data_driven.py` from the command-line.
