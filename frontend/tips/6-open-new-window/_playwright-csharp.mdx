@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"6-open-new-window/code/playwright-csharp/NewWindowTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in the libraries we need: Playwright, its MSTest integration (`Microsoft.Playwright.MSTest`), and
+MSTest itself.
+
+### Setup and Teardown
+
+Lines 8 and 9 declare the test class. It extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package.
+`PageTest` handles the browser for us: each test gets a fresh browser tab in the `Page` property, and its browser
+context (the browser session that holds all the tabs) in the `Context` property. They are closed when the test ends.
+There is no setup or teardown code to write.
+
+### The Test
+
+Lines 11 to 21 are the test itself.
+
+After visiting the first page, `Context.NewPageAsync()` opens a new tab in the same context. Playwright doesn't make a
+difference between a tab and a window: each one is a page object.
+
+The new page is ready to use right away, there is no need to switch to it. We visit another page in it, check that the
+context has two pages, and check the heading of the new page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"6-open-new-window/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.
