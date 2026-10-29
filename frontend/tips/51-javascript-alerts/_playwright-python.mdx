@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"51-javascript-alerts/code/playwright-python/alerts.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Both tests visit the page first (the fixture on lines 5 to 7) and click the button that opens a JavaScript
+confirmation. We find the button by its role and name (`get_by_role`).
+
+Playwright dismisses dialogs on its own unless we handle them. So before clicking, we listen for the `dialog` event
+once (`page.once`):
+
+- Lines 10 to 14 accept the confirmation, and the page says `You clicked: Ok`.
+- Lines 17 to 21 dismiss it, and the page says `You clicked: Cancel`.
+
+The listener has to be there before the click, because the dialog opens during the click.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"51-javascript-alerts/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest alerts.py` from the command-line.
