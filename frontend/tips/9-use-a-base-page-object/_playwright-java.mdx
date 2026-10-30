@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-java/src/test/java/com/elemental/playwright/BasePageTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Base Page
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-java/src/test/java/com/elemental/playwright/BasePage.java"} language={"java"}/>
+
+The base page holds what every page object needs. It keeps the Playwright page (lines 11 to 15) and has a `visit` method
+(lines 17 to 20) that goes to a path of the site and checks the title.
+
+Playwright already has short methods to click, fill and wait (e.g., `click`, `fill`), so the base page doesn't need to
+wrap them. In Selenium, the base page usually wraps those actions to add waits.
+
+### The Page Objects
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-java/src/test/java/com/elemental/playwright/DynamicLoadingPage.java"} language={"java"}/>
+
+<TipCode codePath={"9-use-a-base-page-object/code/playwright-java/src/test/java/com/elemental/playwright/LoginPage.java"} language={"java"}/>
+
+Both page objects extend `BasePage`. They pass the page to the constructor of the base page with `super(page)`, create
+their locators with it, and use `visit` to load their page. The login page also has a `loginAs` method that fills the
+form and submits it.
+
+### The Tests
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. The first test (lines 14 to 20) loads the
+dynamic loading page, clicks start and checks the text. The second test (lines 23 to 28) logs in and checks that the
+success message is visible. `hasText` and `isVisible` wait for the elements, so the page objects don't need wait
+methods.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"9-use-a-base-page-object/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
