@@ -12,7 +12,8 @@ const REPO = 'https://github.com/saucelabs/elemental-next';
 
 // Web tools, in the order they show up on the page, with the short name of their icon
 const WEB_TOOLS = [
-    {tool: 'Selenium', icon: 'Se', with: ['Selenide']},
+    {tool: 'Selenium', icon: 'Se'},
+    {tool: 'Selenide', icon: 'Sd'},
     {tool: 'Playwright', icon: 'Pw'},
     {tool: 'WebdriverIO', icon: 'Wd'},
     {tool: 'Vibium', icon: 'Vb'},
@@ -40,11 +41,12 @@ const USE_CASE_TOOLS = ['Selenium', 'Selenide', 'Playwright', 'WebdriverIO', 'Vi
 const START_HERE = [1, 3, 5, 51, 61];
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
 
-// Counts the tips of each tool and collects their languages, from the <DisplayTips> block of each tip
+// Counts the tips of each tool and collects their languages, from the <DisplayTips> block of each tip. Serenity/JS
+// examples are kept in some tips, but the page doesn't list them.
 function toolStats(tips) {
     const stats = {};
     tips.forEach((tip) => {
-        (tip.languages || []).forEach(({tool, label}) => {
+        (tip.languages || []).filter(({label}) => label !== 'Serenity/JS').forEach(({tool, label}) => {
             stats[tool] = stats[tool] || {tips: new Set(), languages: new Set()};
             stats[tool].tips.add(tip.number);
             stats[tool].languages.add(label);
@@ -128,29 +130,31 @@ function Frameworks({stats}) {
                     <span className={styles.eyebrow}>Frameworks</span>
                     <h2>Pick your tool</h2>
                     <p className={styles.lede}>
-                        Selenium is where we started. Playwright, WebdriverIO and Vibium are here too, and mobile
-                        frameworks are on the way.
+                        Selenium is where we started. Selenide, Playwright, WebdriverIO and Vibium are here too, and
+                        mobile frameworks are on the way.
                     </p>
                 </div>
                 <div className={styles.columns}>
                     <div className={styles.column}>
-                        <h3>Web <small>runs in CI on Linux, Windows and macOS</small></h3>
-                        {WEB_TOOLS.map(({tool, icon, with: extra = []}) => {
-                            const tips = new Set();
-                            const languages = new Set();
-                            [tool, ...extra].forEach((name) => {
-                                stats[name]?.tips.forEach((number) => tips.add(number));
-                                stats[name]?.languages.forEach((label) => languages.add(name === tool ? label : name));
-                            });
-                            return <ToolCard key={tool} icon={icon} name={tool} count={tips.size}
-                                             meta={[...languages].join(', ')}/>;
-                        })}
+                        <h3>Web <small>runs in CI on Linux, Windows and macOS, and some tips on Sauce Labs</small></h3>
+                        {WEB_TOOLS.map(({tool, icon}) => (
+                            <ToolCard key={tool} icon={icon} name={tool} count={stats[tool]?.tips.size}
+                                      meta={[...(stats[tool]?.languages || [])].join(', ')}/>
+                        ))}
                     </div>
                     <div className={styles.column}>
                         <h3>Mobile <small>will run on real devices in Sauce Labs</small></h3>
                         {MOBILE_TOOLS.map(({tool, icon, meta}) => (
                             <ToolCard key={tool} icon={icon} name={tool} meta={meta} sauce/>
                         ))}
+                        <Link className={clsx(styles.tool, styles.suggest)} to={`${REPO}/discussions`}>
+                            <span className={styles.toolIcon} aria-hidden="true">+</span>
+                            <span className={styles.toolText}>
+                                <span className={styles.toolName}>Missing your framework?</span>
+                                <span className={styles.toolMeta}>Tell us in GitHub Discussions</span>
+                            </span>
+                            <span className={styles.pill}>Suggest one</span>
+                        </Link>
                     </div>
                 </div>
             </div>
