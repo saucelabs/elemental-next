@@ -29,6 +29,10 @@ run_one() {
     playwright-csharp)
       dotnet build && pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium && dotnet test --no-build
       ;;
+    playwright-java)
+      mvn -B exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.classpathScope=test \
+        -Dexec.args="install --with-deps chromium" && PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 mvn -B test
+      ;;
     javascript | serenity-js | webdriverio | vibium) npm install && npm test ;;
     playwright) npm install && npx playwright install --with-deps chromium && npm test ;;
     python | vibium-python)

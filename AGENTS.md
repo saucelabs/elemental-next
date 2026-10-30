@@ -44,6 +44,7 @@ tips/1-upload-a-file/
   _vibium.mdx
   _playwright-python.mdx  Playwright and Vibium have more than one language: `_<tool>-<language>.mdx` and
   _playwright-csharp.mdx  `code/<tool>-<language>/` (TypeScript and JavaScript use `_<tool>.mdx` and `code/<tool>/`)
+  _playwright-java.mdx
   _vibium-python.mdx
   _vibium-java.mdx
   code/<lang>/          A runnable project per language or tool, with a README.md showing how to run it
@@ -58,8 +59,8 @@ tips/1-upload-a-file/
   walkthrough prose must stay in sync with the code file.
 - Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Serenity/JS examples exist for some tips and
   are kept. Selenide (Java) examples exist for some tips and show as their own tool.
-- Other tools: Playwright (TypeScript, Python and C#), WebdriverIO (TypeScript) and Vibium (JavaScript, Python and
-  Java). They use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
+- Other tools: Playwright (TypeScript, Python, C# and Java), WebdriverIO (TypeScript) and Vibium (JavaScript, Python
+  and Java). They use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
 - Per-language conventions in `code/`:
   - Python: `requirements.txt` + pytest test file (`pytest <file>.py`)
   - Java: Maven `pom.xml`, JUnit 5, `src/test/java/com/elemental/selenium/*Test.java` (`mvn test`)
@@ -74,6 +75,9 @@ tips/1-upload-a-file/
   - Playwright C# (`code/playwright-csharp`): `playwright-csharp.csproj` with `Microsoft.Playwright.MSTest.v4` and
     MSTest, test classes extend `PageTest` (`dotnet build`, `pwsh bin/Debug/net10.0/playwright.ps1 install chromium`,
     then `dotnet test`)
+  - Playwright Java (`code/playwright-java`): Maven `pom.xml` with `com.microsoft.playwright:playwright`, JUnit 5,
+    `src/test/java/com/elemental/playwright/*Test.java`, test classes use `@UsePlaywright` to get a `Page` (`mvn test`,
+    which downloads the browsers the first time)
   - WebdriverIO: `package.json` with the `@wdio/*` packages, `wdio.conf.ts`, `tsconfig.json`, tests in
     `test/*.e2e.ts` (`npm test`)
   - Vibium: `package.json` with `vibium` and Mocha, tests in `test/*.spec.js` (`npm test`, which runs
@@ -122,8 +126,8 @@ tips/1-upload-a-file/
   manual runs check every page.
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`, `playwright`,
-  `playwright-python`, `playwright-csharp`, `webdriverio`, `vibium`, `vibium-python`, `vibium-java`): thin callers of
-  the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
+  `playwright-python`, `playwright-csharp`, `playwright-java`, `webdriverio`, `vibium`, `vibium-python`, `vibium-java`):
+  thin callers of the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
   - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
     `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, Renovate branches, and when
     the CI itself changes.

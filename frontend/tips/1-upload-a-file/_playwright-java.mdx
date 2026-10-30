@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"1-upload-a-file/code/playwright-java/src/test/java/com/elemental/playwright/UploadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in Playwright's assertions, its `Page` class and JUnit extension, `Path` to build the path to the
+file, and JUnit to run the test.
+
+### Setup and Teardown
+
+Line 10 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 14 to 23 are the test itself.
+
+First we set the name of the file we'd like to upload. It's a text file called `some-file.txt` in the current working
+directory. We build the full path to it and store it in `path`.
+
+Next we visit the page with the upload form. `setInputFiles` sets the file on the file input, without opening the
+operating system dialog. Then we click the submit button.
+
+After the file is uploaded, the page shows the name of the file. `hasText` checks that it matches the name we expect. It
+waits for the text to appear, so we don't need an explicit wait.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"1-upload-a-file/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
