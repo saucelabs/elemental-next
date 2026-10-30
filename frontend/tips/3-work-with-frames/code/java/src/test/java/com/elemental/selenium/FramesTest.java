@@ -37,11 +37,9 @@ public class FramesTest {
         driver.get("https://the-internet.herokuapp.com/tinymce");
         driver.switchTo().frame("mce_0_ifr");
         WebElement editor = driver.findElement(By.id("tinymce"));
-        String beforeText = editor.getText();
         editor.clear();
         editor.sendKeys("Hello World!");
-        String afterText = editor.getText();
-        Assertions.assertNotEquals(beforeText, afterText);
+        Assertions.assertEquals("Hello World!", editor.getText());
         driver.switchTo().defaultContent();
         Assertions.assertEquals("An iFrame containing the TinyMCE WYSIWYG Editor",
             driver.findElement(By.cssSelector("h3")).getText());

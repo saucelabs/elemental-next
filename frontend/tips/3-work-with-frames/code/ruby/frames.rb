@@ -29,11 +29,9 @@ run do
   @driver.get 'https://the-internet.herokuapp.com/tinymce'
   @driver.switch_to.frame(@driver.find_element(id: 'mce_0_ifr'))
   editor = @driver.find_element(id: 'tinymce')
-  before_text = editor.text
   editor.clear
   editor.send_keys 'Hello World!'
-  after_text = editor.text
-  expect(after_text).not_to eql before_text
+  expect(editor.text).to eql 'Hello World!'
 
   @driver.switch_to.default_content
   expect(@driver.find_element(css: 'h3').text).not_to be_empty
