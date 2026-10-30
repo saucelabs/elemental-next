@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"23-dynamic-pages/code/playwright-java/src/test/java/com/elemental/playwright/DynamicPagesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 14 and 15 run the test once for each
+of the two examples of the page, named after the example:
+
+- In example 1, the element is on the page but hidden, and it shows up after the loading bar.
+- In example 2, the element is not on the page at all until the loading bar ends.
+
+Each test clicks the start button and waits for the `#finish` element to be visible. `isVisible` keeps checking until
+the element shows up or the timeout ends (10 seconds here). So the same check works for both examples: a hidden element
+and a missing one are both not visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"23-dynamic-pages/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
