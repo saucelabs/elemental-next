@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"40-disabled-element/code/playwright-java/src/test/java/com/elemental/playwright/DisabledElementTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Test
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 12 to 19 are the test. The dropdown
+on the page starts with a "Please select an option" placeholder that we can't select, because it's disabled.
+
+We find each option by its text (`setHasText`) and check its state: `isDisabled` for the placeholder and `isEnabled` for
+"Option 1". Both checks wait until the element is in that state, or fail after the timeout.
+
+When we try to select a disabled option with `selectOption`, Playwright fails too, so this check tells us early why.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"40-disabled-element/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
