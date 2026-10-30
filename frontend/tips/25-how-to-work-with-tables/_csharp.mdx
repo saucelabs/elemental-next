@@ -21,6 +21,10 @@ The number tests click the `Due` heading (once or twice), grab the values with `
 copy (`OrderBy`, or `OrderByDescending` for descending order) with `CollectionAssert.AreEqual`. The text test does
 the same with the `Email` column, using the text as is. The last test uses the semantic locators of the second table.
 
+After the clicks, `WaitForSort` waits until the header has the class `headerSortDown` (ascending) or
+`headerSortUp` (descending). The page sorts the table after the click, so reading the cells right away
+could get them in the old order.
+
 ### Executing the Test
 
 Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,

@@ -11,6 +11,7 @@ namespace csharp
         public void AscendingOrder()
         {
             Driver.FindElement(By.CssSelector("#table2 thead .dues")).Click();
+            WaitForSort("#table2 thead th:has(.dues)", "headerSortDown");
             var dueValues = Dues("#table2 tbody .dues");
             CollectionAssert.AreEqual(dueValues.OrderBy(due => due).ToList(), dueValues);
         }
@@ -20,6 +21,7 @@ namespace csharp
         {
             Driver.FindElement(By.CssSelector("#table2 thead .dues")).Click();
             Driver.FindElement(By.CssSelector("#table2 thead .dues")).Click();
+            WaitForSort("#table2 thead th:has(.dues)", "headerSortUp");
             var dueValues = Dues("#table2 tbody .dues");
             CollectionAssert.AreEqual(dueValues.OrderByDescending(due => due).ToList(), dueValues);
         }

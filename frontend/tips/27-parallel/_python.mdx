@@ -22,6 +22,10 @@ fixture lives there: it launches Firefox and loads the page before each test, an
 Each test file has the tests for one of the tables, and each test receives its own `driver`. The test files are
 named `test_*.py`, so pytest finds them on its own.
 
+After the clicks, `wait_for_sort` waits until the header has the class `headerSortDown` (ascending) or
+`headerSortUp` (descending). The page sorts the table after the click, so reading the cells right away
+could get them in the old order.
+
 ### Running in Parallel
 
 pytest runs tests one at a time out of the box. The [pytest-xdist](https://pypi.org/project/pytest-xdist/) plugin

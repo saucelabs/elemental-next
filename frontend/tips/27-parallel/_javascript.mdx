@@ -22,6 +22,10 @@ After each test, they quit it.
 Each test file has the tests for one of the tables, and uses the driver from the test context (`this.driver`). The
 tests use `function () {}` instead of arrow functions, so Mocha can give them the context through `this`.
 
+After the clicks, `waitForSort` waits until the header has the class `headerSortDown` (ascending) or
+`headerSortUp` (descending). The page sorts the table after the click, so reading the cells right away
+could get them in the old order.
+
 ### Running in Parallel
 
 Mocha runs tests one at a time out of the box. The `test` script in `package.json` adds `--parallel --jobs 2`, so
