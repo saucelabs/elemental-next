@@ -266,18 +266,6 @@ a.tool:hover {
     min-width: 0;
 }
 
-/* The code box keeps the same height for every file, so the page doesn't change its height with the tab: longer
-   files scroll inside it. The title (the path of the file) stays on one line for the same reason. */
-.code :global(.theme-code-block) pre {
-    height: 36rem;
-    overflow: auto;
-}
-
-.code :global(.theme-code-block) > div:first-child:not(:last-child) {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
 /* Keeps the space of the section while the browser picks the tip to show */
 .picking {
     visibility: hidden;
@@ -435,10 +423,6 @@ a.tool:hover {
 }
 
 @media (max-width: 480px) {
-    .code :global(.theme-code-block) pre {
-        height: 26rem;
-    }
-
     .tips a {
         grid-template-columns: 2.6rem 1fr;
     }
