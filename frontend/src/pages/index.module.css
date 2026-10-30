@@ -1,0 +1,571 @@
+/* Home page: hero with the CI status of the examples, then bands for the frameworks, one use case with many tools,
+   where to begin, why trust the code, and how to contribute. Colors come from the Sauce Labs palette in custom.css. */
+
+.hero,
+main > section {
+    padding-block: 4rem;
+}
+
+/* The page takes the color (tone) of the section in the middle of the screen, and fades from one to the next while
+   scrolling, like saucelabs.com. The sections themselves are transparent, except for the contribute band, which has
+   its own color (a dark tone for the whole page would hide the dark text of the section above it). */
+.page {
+    --tone-hero: var(--sauce-ivory);
+    --tone-frameworks: var(--sauce-light-highlight);
+    --tone-useCase: var(--sauce-off-white);
+    --tone-tips: #bed1e4;
+    --tone-proof: #ffeef5;
+    background-color: var(--tone-hero);
+    transition: background-color 0.8s ease;
+}
+
+[data-theme='dark'] .page {
+    --tone-hero: var(--sauce-pine);
+    --tone-frameworks: #1f2b1f;
+    --tone-useCase: var(--sauce-slate);
+    --tone-tips: var(--sauce-forest);
+    --tone-proof: #3c483c;
+}
+
+.tone-frameworks {
+    background-color: var(--tone-frameworks);
+}
+
+.tone-useCase {
+    background-color: var(--tone-useCase);
+}
+
+.tone-tips {
+    background-color: var(--tone-tips);
+}
+
+.tone-proof {
+    background-color: var(--tone-proof);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page {
+        transition: none;
+    }
+}
+
+/* A faint grid behind the frameworks, like the grid lines of saucelabs.com */
+.grid {
+    background-image:
+        linear-gradient(rgba(25, 35, 25, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(25, 35, 25, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+[data-theme='dark'] .grid {
+    background-image:
+        linear-gradient(rgba(240, 240, 236, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240, 240, 236, 0.05) 1px, transparent 1px);
+}
+
+.eyebrow {
+    font-family: var(--sauce-font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.lede {
+    max-width: 60ch;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.sectionHead {
+    display: grid;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.sectionHead h2,
+.useCaseCopy h2,
+.contribute h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    text-wrap: balance;
+}
+
+/* hero: a warm glow (like the sunflower gradient of saucelabs.com) and a pixel cluster behind the CI panel */
+.hero {
+    background-image:
+        url('../../static/img/backgrounds/pixels-hero-light.svg'),
+        linear-gradient(rgba(240, 240, 236, 0), rgba(241, 224, 130, 0.55) 55%, rgba(240, 240, 236, 0));
+    background-repeat: no-repeat;
+    background-position: right max(0px, calc((100% - 1140px) / 2)) bottom -2rem, center;
+    background-size: 40rem auto, 100% 100%;
+}
+
+[data-theme='dark'] .hero {
+    background-image:
+        url('../../static/img/backgrounds/pixels-hero-dark.svg'),
+        linear-gradient(rgba(25, 35, 25, 0), rgba(171, 224, 130, 0.08) 55%, rgba(25, 35, 25, 0));
+}
+
+.heroGrid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.heroCopy {
+    display: grid;
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+.heroTitle {
+    margin: 0;
+    font-size: clamp(2.3rem, 5.4vw, 3.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+.heroTitle em {
+    padding: 0 0.08em;
+    font-style: normal;
+    background: linear-gradient(transparent 62%, var(--sauce-highlight) 62%);
+}
+
+[data-theme='dark'] .heroTitle em {
+    color: var(--sauce-highlight);
+    background: none;
+}
+
+.ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.run {
+    min-width: 0;
+    padding: 1.1rem 1.25rem;
+    border-radius: 14px;
+    color: var(--sauce-ivory);
+    background: var(--sauce-pine);
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.82rem;
+    box-shadow: 0 18px 40px -24px rgba(4, 52, 35, 0.6);
+}
+
+[data-theme='dark'] .run {
+    background: #0f170f;
+    border: 1px solid var(--sauce-slate);
+}
+
+.runHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.runTitle {
+    margin: 0;
+    color: #c3cbbf;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+}
+
+.runPause {
+    padding: 0.1rem 0.6rem;
+    border: 1px solid #c3cbbf;
+    border-radius: 999px;
+    color: #c3cbbf;
+    background: none;
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.runPause:hover {
+    color: var(--sauce-pine);
+    background: #c3cbbf;
+}
+
+/* Shows CI_VISIBLE_ROWS rows of the same height (--run-row), so moving the list by one row height shows the next one */
+.runWindow {
+    --run-row: 2.4rem;
+    height: calc(5 * var(--run-row));
+    overflow: hidden;
+}
+
+.runScroll {
+    overflow-y: auto;
+}
+
+.runRows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: transform 0.6s ease;
+}
+
+.runRows li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    height: var(--run-row);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.runName {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.runRows a {
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.pending {
+    color: #ffb38a;
+}
+
+/* frameworks */
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.column {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    min-width: 0;
+}
+
+.column h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.column h3 small {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.tool {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--sauce-warm-gray);
+    border-radius: 12px;
+    color: inherit;
+    background: var(--ifm-background-surface-color);
+}
+
+[data-theme='dark'] .tool {
+    border-color: #3d483d;
+}
+
+/* The card that asks for a framework that is not on the list, so both columns have the same number of rows */
+.suggest {
+    border-style: dashed;
+}
+
+a.tool:hover {
+    border-color: var(--ifm-color-primary);
+    color: inherit;
+    text-decoration: none;
+}
+
+.toolIcon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--sauce-warm-gray);
+    border-radius: 10px;
+    background: #ffffff;
+    font-weight: 800;
+}
+
+.toolIcon img {
+    object-fit: contain;
+}
+
+/* The "+" of the card that asks for a framework */
+.suggest .toolIcon {
+    background: var(--ifm-background-color);
+}
+
+.toolText {
+    display: grid;
+    min-width: 0;
+}
+
+.toolName {
+    font-weight: 700;
+}
+
+.toolMeta {
+    font-size: 0.85rem;
+}
+
+.pill {
+    padding: 0.15rem 0.6rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.count {
+    border-color: var(--ifm-color-primary);
+    color: var(--ifm-background-color);
+    background: var(--ifm-color-primary);
+}
+
+.sauce {
+    margin-left: 0.4rem;
+    color: #b8370f;
+}
+
+[data-theme='dark'] .sauce {
+    color: #ff8a5c;
+}
+
+/* one use case, many tools */
+.useCase {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.useCaseCopy {
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.checks {
+    display: grid;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.checks li::before {
+    content: "✓ ";
+    font-weight: 800;
+}
+
+.code {
+    min-width: 0;
+}
+
+/* Keeps the space of the section while the browser picks the tip to show */
+.picking {
+    visibility: hidden;
+}
+
+/* tips */
+.tips {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--sauce-warm-gray);
+}
+
+[data-theme='dark'] .tips,
+[data-theme='dark'] .tips a {
+    border-color: #3d483d;
+}
+
+.tips a {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0.25rem;
+    border-bottom: 1px solid var(--sauce-warm-gray);
+    color: inherit;
+}
+
+.tips a:hover {
+    color: inherit;
+}
+
+.number {
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.tipTitle {
+    font-weight: 600;
+}
+
+.tag {
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.levels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.levels a {
+    padding: 0.2rem 0.75rem;
+    border: 1px solid var(--sauce-warm-gray);
+    border-radius: 999px;
+    color: inherit;
+    background: var(--ifm-background-surface-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.levels a:hover {
+    border-color: var(--ifm-color-primary);
+    color: inherit;
+}
+
+/* why trust the code */
+.proof {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.proof h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.proof p {
+    margin-bottom: 0.5rem;
+}
+
+.os {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.os span {
+    padding: 0.1rem 0.5rem;
+    border: 1px solid var(--sauce-warm-gray);
+    border-radius: 6px;
+    background: var(--ifm-background-surface-color);
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.75rem;
+}
+
+/* contribute */
+.contribute {
+    color: #ffffff;
+    background: var(--sauce-forest) url('../../static/img/backgrounds/pixels-band-light.svg') no-repeat right center /
+        auto 100%;
+}
+
+[data-theme='dark'] .contribute {
+    color: var(--sauce-pine);
+    background-color: var(--sauce-highlight);
+    background-image: url('../../static/img/backgrounds/pixels-band-dark.svg');
+}
+
+.contribute h2 {
+    color: inherit;
+}
+
+.contributeRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.contributeRow p {
+    max-width: 55ch;
+    margin: 0.4rem 0 0;
+}
+
+/* The button sits over the pixels, so it has a solid background */
+.contributeButton {
+    border: 2px solid currentColor;
+    color: inherit;
+    background: var(--sauce-forest);
+}
+
+.contributeButton:hover {
+    color: var(--sauce-forest);
+    background: #ffffff;
+}
+
+[data-theme='dark'] .contributeButton {
+    background: var(--sauce-highlight);
+}
+
+[data-theme='dark'] .contributeButton:hover {
+    color: var(--sauce-highlight);
+    background: var(--sauce-pine);
+}
+
+@media (max-width: 996px) {
+    .heroGrid,
+    .useCase,
+    .columns {
+        grid-template-columns: 1fr;
+    }
+
+    .proof {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .hero,
+    main > section {
+        padding-block: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* The name and the badge don't fit side by side, so each row shows them one above the other */
+    .runWindow {
+        --run-row: 3.4rem;
+    }
+
+    .runRows li {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.2rem;
+    }
+
+    .tips a {
+        grid-template-columns: 2.6rem 1fr;
+    }
+
+    .tips .tag {
+        display: none;
+    }
+}

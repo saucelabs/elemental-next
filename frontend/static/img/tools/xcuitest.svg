@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <!-- The XCUITest badge: a green rounded diamond with a white check mark -->
+    <defs>
+        <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8bd968"/>
+            <stop offset="1" stop-color="#5cb348"/>
+        </linearGradient>
+    </defs>
+    <rect x="12" y="12" width="40" height="40" rx="9" transform="rotate(45 32 32)" fill="url(#green)"/>
+    <path d="M20 33 l8 8 l17 -18" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="square"
+          stroke-linejoin="miter"/>
+</svg>

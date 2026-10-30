@@ -2,6 +2,8 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 import {themes} from 'prism-react-renderer';
+import fs from 'fs';
+import path from 'path';
 
 // Replaces the colors of a Prism theme that don't have enough contrast with its background (WCAG AA, 4.5:1),
 // and removes the opacity of the faded tokens (e.g., namespaces in Java imports), which lowers their contrast too
@@ -48,6 +50,30 @@ function generateSidebarItems(items) {
         })
     });
     return result;
+}
+
+// Reads the entries of the <DisplayTips> block of a tip (e.g., {label: 'C#', value: 'playwright-csharp', tool:
+// 'Playwright'}). Returns them as `languages` ({tool, label, value}; Selenide is a tool of its own, and the default
+// tool is Selenium), and the first code file each partial (_<value>.mdx) shows as `examples` ({value: {codePath,
+// language}}).
+function tipLanguages(file) {
+    const entry = /\{\s*label:\s*'([^']+)',\s*value:\s*'([^']+)'(?:,\s*tool:\s*'([^']+)')?/g;
+    const entries = [...fs.readFileSync(file, 'utf8').matchAll(entry)];
+    const examples = {};
+    entries.forEach(([, , value]) => {
+        const partial = path.join(path.dirname(file), `_${value}.mdx`);
+        const code = fs.existsSync(partial)
+            && fs.readFileSync(partial, 'utf8').match(/codePath=\{"([^"]+)"\}\s+language=\{"([^"]+)"\}/);
+        if (code) {
+            examples[value] = {codePath: code[1], language: code[2]};
+        }
+    });
+    return {
+        languages: entries.map(([, label, value, tool]) => value === 'selenide'
+            ? {tool: 'Selenide', label: 'Java', value}
+            : {tool: tool || 'Selenium', label, value}),
+        examples,
+    };
 }
 
 /** @type {import('@docusaurus/types').Config} */
@@ -113,7 +139,13 @@ const config = {
                 },
                 blog: false,
                 theme: {
-                    customCss: require.resolve('./src/css/custom.css'),
+                    // The fonts of saucelabs.com that are free (Fraunces stands in for its serif), served by the site
+                    customCss: [
+                        require.resolve('@fontsource-variable/fraunces/index.css'),
+                        require.resolve('@fontsource-variable/atkinson-hyperlegible-next/index.css'),
+                        require.resolve('@fontsource-variable/atkinson-hyperlegible-mono/index.css'),
+                        require.resolve('./src/css/custom.css'),
+                    ],
                 },
                 gtag: {
                     trackingID: 'G-QY5T3BLYC5',
@@ -124,6 +156,8 @@ const config = {
 
     // Source: https://discord.com/channels/398180168688074762/867060369087922187/1193336693084934144
     // This plugin loops over all docs and collects the frontMatter from each one. Then it is set as global data.
+    // It also adds the date of the last update and the tools and languages of the <DisplayTips> block of each tip,
+    // which the home page uses.
     plugins: [
         function metadata(context, options) {
             return {
@@ -136,7 +170,11 @@ const config = {
                         .loadedVersions[0]
                         .docs
                         .filter(doc => doc.frontMatter.id !== undefined)
-                        .map((doc) => tempFrontMatter.push(doc.frontMatter))
+                        .map((doc) => tempFrontMatter.push({
+                            ...doc.frontMatter,
+                            lastUpdatedAt: doc.lastUpdatedAt,
+                            ...tipLanguages(path.join(context.siteDir, doc.source.replace('@site/', ''))),
+                        }))
                     setGlobalData({aggregateFrontMatter: tempFrontMatter})
                 }
             }
@@ -225,7 +263,9 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
+                copyright: `© ${new Date().getFullYear()} <a href="https://saucelabs.com" target="_blank"
+                    rel="noopener noreferrer" aria-label="Sauce Labs Inc. (opens in a new tab)">Sauce Labs Inc.</a>, all
+                    rights reserved`,
             },
             prism: {
                 theme: codeTheme,

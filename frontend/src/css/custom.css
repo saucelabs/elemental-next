@@ -29,10 +29,18 @@
 
     --ifm-font-color-base: var(--sauce-pine);
     --ifm-heading-color: var(--sauce-pine);
-    --ifm-background-color: var(--sauce-off-white);
+    --ifm-background-color: var(--sauce-ivory);
     --ifm-background-surface-color: #ffffff;
     --ifm-navbar-background-color: #ffffff;
     --ifm-footer-background-color: var(--sauce-ivory);
+
+    /* Fonts of saucelabs.com: a serif for headings, Atkinson Hyperlegible for text, and its mono for labels and code */
+    --sauce-font-serif: 'Fraunces Variable', 'Times New Roman', serif;
+    --sauce-font-mono: 'Atkinson Hyperlegible Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --ifm-font-family-base: 'Atkinson Hyperlegible Next Variable', Arial, sans-serif;
+    --ifm-heading-font-family: var(--sauce-font-serif);
+    --ifm-heading-font-weight: 400;
+    --ifm-font-family-monospace: var(--sauce-font-mono);
     --ifm-toc-border-color: var(--sauce-warm-gray);
     --ifm-hr-background-color: var(--sauce-warm-gray);
     --ifm-menu-color-background-active: var(--sauce-light-highlight);
@@ -180,4 +188,45 @@ html[data-theme='dark'] {
 
 .tabs-container .tabs-container > .tabs .tabs__item {
     padding: 0.5rem 0.9rem;
+}
+
+/* Like saucelabs.com: a navbar that floats as a rounded bar, with mono uppercase links */
+.navbar {
+    top: 0.75rem;
+    margin: 0.75rem 0.75rem 0;
+    border: 1px solid var(--sauce-warm-gray);
+    border-radius: 999px;
+    box-shadow: none;
+}
+
+[data-theme='dark'] .navbar {
+    border-color: var(--sauce-slate);
+}
+
+.navbar__link {
+    font-family: var(--sauce-font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Buttons are pills with mono uppercase text, like the ones of saucelabs.com */
+.button {
+    font-family: var(--sauce-font-mono);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* The uppercase text is wider, so on small screens a long label wraps instead of making the page scroll sideways */
+@media screen and (max-width: 480px) {
+    .button {
+        max-width: 100%;
+        white-space: normal;
+    }
+}
+
+/* The link to saucelabs.com in the footer is underlined, like the other links inside text */
+.footer__copyright a {
+    text-decoration: underline;
 }
