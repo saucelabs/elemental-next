@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"22-locator-strategy/code/playwright-java/src/test/java/com/elemental/playwright/LocatorsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. The `@BeforeEach` method on lines 13 to 16
+runs before each test and visits the download page. It gets the same `Page` as the test.
+
+Each test finds the first link with a locator that is a bit more specific than the one before, reads its `href` and
+checks where it points:
+
+- Lines 19 to 23 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not the
+  link we want.
+- Lines 26 to 30 look only inside the `#content` element, which gets us one of the download links.
+- Lines 33 to 37 go one step further, into the `.example` element inside `#content`.
+
+A locator in Playwright is lazy: it finds the elements when we use it, and `first()` picks the first match. The more
+specific the locator, the less it depends on the rest of the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"22-locator-strategy/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
