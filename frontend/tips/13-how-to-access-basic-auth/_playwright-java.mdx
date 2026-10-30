@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"13-how-to-access-basic-auth/code/playwright-java/src/test/java/com/elemental/playwright/BasicAuthTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Playwright's assertions, its `Browser` and `Page` classes, the classes of its JUnit extension, and
+JUnit to run the test.
+
+### Setup and Teardown
+
+Line 12 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends.
+
+We pass it the `CustomOptions` class (lines 17 to 23), which sets the options of the browser context.
+`setHttpCredentials` gives the context the username and password for basic auth. Playwright sends them when the site
+asks for them, so the browser never shows the login dialog.
+
+### The Test
+
+Lines 26 to 30 are the test itself.
+
+We visit the page behind basic auth, and check that it shows the message for users with the proper credentials (line
+15).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"13-how-to-access-basic-auth/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
