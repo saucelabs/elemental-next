@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"27-parallel/code/playwright-java/src/test/java/com/elemental/playwright/SortWithAttributesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+JUnit runs the tests one after the other. The `junit-platform.properties` file, in `src/test/resources`, turns on
+parallel execution for every test of the project.
+
+<TipCode codePath={"27-parallel/code/playwright-java/src/test/resources/junit-platform.properties"} language={"text"}/>
+
+`parallel.enabled` turns it on, and `mode.default=concurrent` lets every test method run at the same time as the others,
+not only the tests of different classes. The last two lines set how many run at the same time (4).
+
+`@UsePlaywright` gives each thread its own browser, and each test a new page, so the tests don't share any state and
+they can run in any order.
+
+### The Tests
+
+Each class holds two tests that sort the "Due" column of one of the tables, in ascending and descending order. The
+`dues` method (lines 16 to 20) reads the values of the column as numbers. The first class uses the class names of the
+second table, and the second class uses the position of the column in the first table.
+
+<TipCode codePath={"27-parallel/code/playwright-java/src/test/java/com/elemental/playwright/SortWithoutAttributesTest.java"} language={"java"}/>
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"27-parallel/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
