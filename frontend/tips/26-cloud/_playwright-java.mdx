@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"26-cloud/code/playwright-java/src/test/java/com/elemental/playwright/CloudTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Running on Sauce Labs
+
+Sauce Labs can start a browser for Playwright and let our tests drive it over the Playwright protocol, as if it ran on
+our machine. The tests run here, and the browser runs on Sauce Labs, which records a video and the logs of the job.
+
+<TipCode codePath={"26-cloud/code/playwright-java/src/test/java/com/elemental/playwright/SauceTest.java"} language={"java"}/>
+
+`SauceTest` is a base class for the tests. It starts the browser of each test on Sauce Labs and gives the test a page in
+it:
+
+- Lines 27 to 33 hold the addresses of Sauce Labs, the credentials, and the version of Playwright. Sauce Labs needs the
+  major and minor version (e.g., `1.61`), and it supports only some versions, so the `pom.xml` file pins one of them.
+- Lines 41 to 46 run before each test and skip it (`assumeTrue`) when the Sauce Labs credentials are not set. They also
+  keep the name of the test (class and method) for Sauce Labs, and `openPage` adds the browser to it.
+- `openPage` (lines 49 to 79) starts the browser. Lines 50 to 68 create an HTTP client with the credentials
+  (`playwright.request().newContext`) and ask Sauce Labs for the browser on Linux, with the name of the test and of the
+  build. Sauce Labs calls Chromium `chrome`, so line 57 maps the name. Sauce Labs answers with redirects (`303`) while
+  it starts the browser, so we follow them until we get its address (`wsEndpoint`). The answer is JSON, which we read
+  with Gson.
+- Lines 70 to 78 connect to the browser with `connect` and open a page in it.
+- Lines 81 to 107 run after each test. A JUnit `TestWatcher` tells us if the test passed. Then we close the browser,
+  tell Sauce Labs the result using its REST API, and print the link to the job.
+
+### The Test
+
+The test extends `SauceTest` and asks it for a page in Chrome (`openPage("chromium")`). The rest is the same test we
+would run on our machine: it visits the page and checks the title (lines 10 to 15).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"26-cloud/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Set `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` and run the test by executing `mvn test` from the command-line. No local
+browser is needed.
