@@ -35,7 +35,7 @@ const CI_RUNS = [
 ];
 
 // The web tools shown in "One use case, many tools"
-const USE_CASE_TOOLS = ['Selenium', 'Playwright', 'WebdriverIO', 'Vibium'];
+const USE_CASE_TOOLS = ['Selenium', 'Selenide', 'Playwright', 'WebdriverIO', 'Vibium'];
 
 const START_HERE = [1, 3, 5, 51, 61];
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
