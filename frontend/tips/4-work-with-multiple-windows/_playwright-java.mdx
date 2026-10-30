@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"4-work-with-multiple-windows/code/playwright-java/src/test/java/com/elemental/playwright/WindowsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 7 pull in Playwright's assertions, its `Page` class and JUnit extension, and JUnit to run the test.
+
+### Setup and Teardown
+
+Line 9 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 13 to 20 are the test itself.
+
+After visiting the page, we click the link that opens a new window inside `waitForPage`. `page.context()` is the browser
+context the tab belongs to. `waitForPage` runs the click, waits for the new window to open, and returns it as a `Page`.
+
+Now we have both windows as objects (`page` and `newPage`), so there is no need to switch between them. We check the
+title of each one.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"4-work-with-multiple-windows/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
