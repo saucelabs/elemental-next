@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"44-exception-handling/code/playwright-java/src/test/java/com/elemental/playwright/ExceptionsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. The `@BeforeEach` method (lines 18 to 25)
+gets the same `Page` and logs in before each test. After logging in, the login form is gone from the page.
+
+### Example 1: An Error
+
+Lines 28 to 32 click the login form, which is not on the page anymore. Playwright waits for the element before it acts
+on it, so instead of failing right away, it fails with a `TimeoutError` after the timeout. We set it to 2 seconds
+(`setTimeout(2000)`) to keep the test short.
+
+`assertThrows` checks that the click fails with a `TimeoutError` (from Playwright, line 10) and returns it, so we can
+check that its message says why.
+
+### Example 2: No Error
+
+Lines 35 to 37 ask if the form is visible. `isVisible` doesn't wait and doesn't fail: it returns `false` when the
+element is not there. So we can check that the form is gone without handling any error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"44-exception-handling/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
