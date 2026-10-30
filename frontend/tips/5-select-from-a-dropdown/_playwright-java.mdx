@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"5-select-from-a-dropdown/code/playwright-java/src/test/java/com/elemental/playwright/DropdownTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in Playwright's assertions, its `Page` class and JUnit extension, `SelectOption` to pick the option,
+and JUnit to run the test.
+
+### Setup and Teardown
+
+Line 10 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 14 to 20 are the test itself.
+
+After visiting the page, we call `selectOption` on the dropdown. `new SelectOption().setLabel("Option 1")` picks the
+option by its visible text. It could also pick it by its value with `setValue`.
+
+Then we check that the selected option (`option:checked`) is the one we chose.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"5-select-from-a-dropdown/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
