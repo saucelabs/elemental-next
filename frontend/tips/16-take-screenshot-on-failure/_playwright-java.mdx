@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"16-take-screenshot-on-failure/code/playwright-java/src/test/java/com/elemental/playwright/ScreenshotTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Taking the Screenshot
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. The `setUp` method (lines 29 to 32) asks
+for it and keeps it in the `page` field, so the test and the screenshot code can use it.
+
+Lines 20 to 27 register a JUnit `TestWatcher`. JUnit calls its `testFailed` method when a test fails, with the test's
+details in `context`. We take a screenshot with `page.screenshot` and save it with the name of the test class and the
+test in the file name, like `failshot_com.elemental.playwright.ScreenshotTest.failsOnPurpose.png`. The file is saved in
+the folder the tests run from (the folder of the `pom.xml` file).
+
+### The Test
+
+Lines 34 to 40 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah blah`,
+which it doesn't. We give the check a short timeout (2 seconds), so it fails fast.
+
+When it fails, the `TestWatcher` takes the screenshot.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"16-take-screenshot-on-failure/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
