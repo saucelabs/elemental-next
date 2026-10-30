@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"7-use-a-page-object/code/playwright-java/src/test/java/com/elemental/playwright/DynamicLoadingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Page Object
+
+<TipCode codePath={"7-use-a-page-object/code/playwright-java/src/test/java/com/elemental/playwright/DynamicLoadingPage.java"} language={"java"}/>
+
+The page object keeps the Playwright page and the locators of the elements we use (lines 10 to 18). Locators don't look
+for the element when we create them. They look for it each time we use them, so they can be created up front.
+
+`visit` (lines 20 to 23) loads the page and checks its title, and `start` (lines 25 to 27) clicks the start button.
+
+There is no wait method. Playwright waits for the element before it acts on it, and `hasText` waits for the text.
+
+### The Test
+
+Line 11 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test (and its setup) that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends.
+
+The `setUp` method (lines 16 to 20) runs before each test. It creates the page object with the `Page` and visits the
+page. The test (lines 22 to 27) clicks start and checks that `Hello World!` appears. The text takes a few seconds to
+show, so we give `hasText` a timeout of 10 seconds instead of the default 5.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"7-use-a-page-object/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
