@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -34,12 +34,12 @@ const CI_RUNS = [
     {name: 'Vibium · JavaScript', workflow: 'vibium-tips.yml'},
 ];
 
-// The same use case (tip 1) with each web tool
-const UPLOAD_EXAMPLES = [
-    {tool: 'Selenium', codePath: '1-upload-a-file/code/python/upload.py', language: 'python'},
-    {tool: 'Playwright', codePath: '1-upload-a-file/code/playwright/tests/upload.spec.ts', language: 'typescript'},
-    {tool: 'WebdriverIO', codePath: '1-upload-a-file/code/webdriverio/test/upload.e2e.ts', language: 'typescript'},
-    {tool: 'Vibium', codePath: '1-upload-a-file/code/vibium/test/upload.spec.js', language: 'javascript'},
+// The example of each web tool (the value of its <DisplayTips> entry) shown in "One use case, many tools"
+const USE_CASE_TOOLS = [
+    {tool: 'Selenium', value: 'python'},
+    {tool: 'Playwright', value: 'playwright'},
+    {tool: 'WebdriverIO', value: 'webdriverio'},
+    {tool: 'Vibium', value: 'vibium'},
 ];
 
 const START_HERE = [1, 3, 5, 51, 61];
@@ -163,13 +163,25 @@ function Frameworks({stats}) {
     );
 }
 
-function UseCase() {
+// Shows one tip with the code of each web tool. The page is built with tip 1, and the browser then picks a random tip
+// from the ones that have code for all of them, so each visit can show a different use case.
+function UseCase({tips}) {
+    const candidates = tips
+        .filter((tip) => USE_CASE_TOOLS.every(({value}) => tip.examples?.[value]))
+        .sort((a, b) => a.number - b.number);
+    const [tip, setTip] = useState(candidates[0]);
+    useEffect(() => {
+        setTip(candidates[Math.floor(Math.random() * candidates.length)]);
+    }, []);
+    if (!tip) {
+        return null;
+    }
     return (
         <section>
             <div className={clsx('container', styles.useCase)}>
                 <div className={styles.useCaseCopy}>
                     <span className={styles.eyebrow}>One use case, many tools</span>
-                    <h2>Upload a file</h2>
+                    <h2>{tip.title}</h2>
                     <p className={styles.lede}>
                         Every tip solves one use case. Switch the tool to compare how each framework does it.
                     </p>
@@ -178,15 +190,16 @@ function UseCase() {
                         <li>Each example is a full project you can run</li>
                         <li>Pick your language inside each tool</li>
                     </ul>
-                    <Link className="button button--outline button--primary" to="/tips/1-upload-a-file">
-                        Read tip 1 →
+                    <Link className="button button--outline button--primary" to={`/tips${tip.slug}`}>
+                        Read tip {tip.number} →
                     </Link>
                 </div>
                 <div className={styles.code}>
-                    <Tabs>
-                        {UPLOAD_EXAMPLES.map(({tool, codePath, language}) => (
+                    <Tabs key={tip.number}>
+                        {USE_CASE_TOOLS.map(({tool, value}) => (
                             <TabItem key={tool} value={tool} label={tool}>
-                                <TipCode codePath={codePath} language={language}/>
+                                <TipCode codePath={tip.examples[value].codePath}
+                                         language={tip.examples[value].language}/>
                             </TabItem>
                         ))}
                     </Tabs>
@@ -303,7 +316,7 @@ function Home() {
             <Hero/>
             <main>
                 <Frameworks stats={toolStats(tips)}/>
-                <UseCase/>
+                <UseCase tips={tips}/>
                 <Tips tips={tips}/>
                 <Proof/>
                 <Contribute/>

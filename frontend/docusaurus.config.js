@@ -53,13 +53,26 @@ function generateSidebarItems(items) {
 }
 
 // Reads the entries of the <DisplayTips> block of a tip (e.g., {label: 'C#', value: 'playwright-csharp', tool:
-// 'Playwright'}) and returns them as {tool, label}. Selenide is a tool of its own, and the default tool is Selenium.
+// 'Playwright'}). Returns them as `languages` ({tool, label}; Selenide is a tool of its own, and the default tool is
+// Selenium), and the first code file each partial (_<value>.mdx) shows as `examples` ({value: {codePath, language}}).
 function tipLanguages(file) {
     const entry = /\{\s*label:\s*'([^']+)',\s*value:\s*'([^']+)'(?:,\s*tool:\s*'([^']+)')?/g;
-    const entries = fs.readFileSync(file, 'utf8').matchAll(entry);
-    return [...entries].map(([, label, value, tool]) => value === 'selenide'
-        ? {tool: 'Selenide', label: 'Java'}
-        : {tool: tool || 'Selenium', label});
+    const entries = [...fs.readFileSync(file, 'utf8').matchAll(entry)];
+    const examples = {};
+    entries.forEach(([, , value]) => {
+        const partial = path.join(path.dirname(file), `_${value}.mdx`);
+        const code = fs.existsSync(partial)
+            && fs.readFileSync(partial, 'utf8').match(/codePath=\{"([^"]+)"\}\s+language=\{"([^"]+)"\}/);
+        if (code) {
+            examples[value] = {codePath: code[1], language: code[2]};
+        }
+    });
+    return {
+        languages: entries.map(([, label, value, tool]) => value === 'selenide'
+            ? {tool: 'Selenide', label: 'Java'}
+            : {tool: tool || 'Selenium', label}),
+        examples,
+    };
 }
 
 /** @type {import('@docusaurus/types').Config} */
@@ -153,7 +166,7 @@ const config = {
                         .map((doc) => tempFrontMatter.push({
                             ...doc.frontMatter,
                             lastUpdatedAt: doc.lastUpdatedAt,
-                            languages: tipLanguages(path.join(context.siteDir, doc.source.replace('@site/', ''))),
+                            ...tipLanguages(path.join(context.siteDir, doc.source.replace('@site/', ''))),
                         }))
                     setGlobalData({aggregateFrontMatter: tempFrontMatter})
                 }
