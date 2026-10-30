@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/playwright-java/src/test/java/com/elemental/playwright/HeadlessTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Running Headless
+
+`@UsePlaywright` runs the browsers headless (without a window) by default, so there is nothing to set. To see the
+browser, pass it a class that implements `OptionsFactory` and returns `new Options().setHeadless(false)`, like
+`@UsePlaywright(HeadedOptions.class)`.
+
+For Chromium, Playwright uses a headless build of the browser (`chromium-headless-shell`), which starts faster.
+
+### The Test
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 13 to 21 are the test. It visits the
+page, checks the title, and reads the user agent with `page.evaluate`. A headless Chrome says `HeadlessChrome` in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
