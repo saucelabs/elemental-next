@@ -94,20 +94,22 @@ function CiRun({name, workflow, hidden}) {
 
 // Shows the CI status of every tool and language, a few rows at a time, moving one row up every few seconds. After the
 // last row, it shows the first rows again (copies, hidden from screen readers) and jumps back to the start without
-// animation, so the loop looks continuous. It stops while the pointer or the focus is on it, and with the pause button.
+// animation, so the loop looks continuous. It stops while the pointer or the keyboard focus is on it (each one on its
+// own, so leaving the page or clicking a badge doesn't restart it under the pointer), and with the pause button.
 // When the reader asks for less motion, it doesn't move: the list scrolls by hand instead.
 function CiRuns() {
     const [index, setIndex] = useState(0);
     const [animate, setAnimate] = useState(true);
     const [paused, setPaused] = useState(false);
-    const [holding, setHolding] = useState(false);
+    const [hovering, setHovering] = useState(false);
+    const [focusing, setFocusing] = useState(false);
     const [reducedMotion, setReducedMotion] = useState(false);
 
     useEffect(() => {
         setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     }, []);
 
-    const moving = !reducedMotion && !paused && !holding;
+    const moving = !reducedMotion && !paused && !hovering && !focusing;
     useEffect(() => {
         if (!moving) {
             return undefined;
@@ -125,13 +127,21 @@ function CiRuns() {
             setIndex(0);
         }
     };
-    // Brings a row into view when it gets the keyboard focus
+    // Stops and brings a row into view when it gets the keyboard focus (a mouse click on a badge doesn't count)
     const showFocused = (event) => {
-        setHolding(true);
+        if (!event.target.matches(':focus-visible')) {
+            return;
+        }
+        setFocusing(true);
         const row = [...event.currentTarget.querySelectorAll('li')].indexOf(event.target.closest('li'));
         if (row >= 0 && !reducedMotion) {
             setAnimate(true);
             setIndex(Math.min(row, CI_RUNS.length - CI_VISIBLE_ROWS));
+        }
+    };
+    const releaseFocus = (event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+            setFocusing(false);
         }
     };
 
@@ -147,8 +157,8 @@ function CiRuns() {
                 )}
             </div>
             <div className={clsx(styles.runWindow, reducedMotion && styles.runScroll)}
-                 onMouseEnter={() => setHolding(true)} onMouseLeave={() => setHolding(false)}
-                 onFocus={showFocused} onBlur={() => setHolding(false)}>
+                 onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}
+                 onFocus={showFocused} onBlur={releaseFocus}>
                 <ul className={styles.runRows} onTransitionEnd={restartLoop}
                     style={reducedMotion ? undefined : {
                         transform: `translateY(calc(${-index} * var(--run-row)))`,
