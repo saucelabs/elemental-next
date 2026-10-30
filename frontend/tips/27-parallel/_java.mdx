@@ -22,6 +22,10 @@ each test, so each test gets its own driver.
 
 Each test class has the tests for one of the tables and extends `BaseTest`.
 
+After the clicks, `waitForSort` waits until the header has the class `headerSortDown` (ascending) or
+`headerSortUp` (descending). The page sorts the table after the click, so reading the cells right away
+could get them in the old order.
+
 ### Running in Parallel
 
 JUnit runs tests one at a time out of the box. The `junit-platform.properties` file in `src/test/resources` turns

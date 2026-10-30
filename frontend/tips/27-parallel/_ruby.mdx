@@ -23,6 +23,10 @@ quits it. Each spec requires it at the top (`require 'spec_helper'`).
 Each spec file has the tests for one of the tables. Its tests are grouped with `describe` and `context` blocks, and
 defined within `it` blocks.
 
+After the clicks, `wait_for_sort` waits until the header has the class `headerSortDown` (ascending) or
+`headerSortUp` (descending). The page sorts the table after the click, so reading the cells right away
+could get them in the old order.
+
 ### Running in Parallel
 
 RSpec runs specs one at a time out of the box. The [parallel_tests](https://github.com/grosser/parallel_tests) gem

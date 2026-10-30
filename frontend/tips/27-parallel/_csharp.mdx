@@ -22,6 +22,10 @@ class for each test, so each test gets its own driver.
 
 Each test class has the tests for one of the tables and inherits from `BaseTest`.
 
+After the clicks, `WaitForSort` waits until the header has the class `headerSortDown` (ascending) or
+`headerSortUp` (descending). The page sorts the table after the click, so reading the cells right away
+could get them in the old order.
+
 ### Running in Parallel
 
 MSTest runs tests one at a time out of the box. The `[assembly: Parallelize(...)]` attribute in `AssemblyInfo.cs`
