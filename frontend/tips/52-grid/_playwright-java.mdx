@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"52-grid/code/playwright-java/src/test/java/com/elemental/playwright/GridTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Running on the Grid
+
+Playwright can start Chrome on a Selenium Grid instead of on our machine. It does it when the `SELENIUM_REMOTE_URL`
+environment variable has the address of the Grid. Then Playwright asks the Grid for a Chrome session and talks to it
+over the Chrome DevTools Protocol.
+
+This works only with Chromium-based browsers, and Playwright marks it as experimental.
+
+### The Test
+
+Line 23 reads the address of the Grid from the `GRID_URL` environment variable, or uses `http://localhost:4444`.
+
+`@UsePlaywright` takes the `GridOptions` class (lines 25 to 32), which sets the options Playwright starts with. Java
+can't change the environment variables of a running program, so we pass `SELENIUM_REMOTE_URL` to Playwright with
+`setEnv`.
+
+The `@BeforeAll` method (lines 34 to 46) runs once, before the browser starts. It asks the Grid for its status. When the
+Grid is not running, `assumeTrue` skips the tests of the class with a message that says how to run them.
+
+The test (lines 48 to 52) gets a fresh browser tab in its `Page` parameter, loads the page and checks the title. It is
+the same test we would run without a Grid.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"52-grid/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
