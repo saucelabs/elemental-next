@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"2-download-a-file/code/playwright-java/src/test/java/com/elemental/playwright/DownloadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in JUnit's `assertTrue`, Playwright's `Download` and `Page` classes and its JUnit extension, the
+`java.nio.file` classes to check the downloaded file, and JUnit to run the test.
+
+### Setup and Teardown
+
+Line 13 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 17 to 27 are the test itself.
+
+Playwright doesn't need any browser setting to download files. It catches each download as a download event.
+
+After visiting the page, we click the first download link inside `waitForDownload`. It runs the click, waits for the
+download to start, and returns it as a `Download` object.
+
+We save the file with `saveAs` into a new temporary folder, using the name the server suggests.
+
+Finally, we check that the file is not empty.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"2-download-a-file/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
