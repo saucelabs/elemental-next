@@ -37,11 +37,9 @@ namespace csharp
             _driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/tinymce");
             _driver.SwitchTo().Frame(_driver.FindElement(By.Id("mce_0_ifr")));
             IWebElement Editor = _driver.FindElement(By.Id("tinymce"));
-            string StartText = Editor.Text;
             Editor.Clear();
             Editor.SendKeys("Hello World!");
-            string EndText = Editor.Text;
-            Assert.AreNotEqual(EndText, StartText);
+            Assert.AreEqual("Hello World!", Editor.Text);
 
             _driver.SwitchTo().DefaultContent();
             string HeaderText = _driver.FindElement(By.CssSelector("h3")).Text;

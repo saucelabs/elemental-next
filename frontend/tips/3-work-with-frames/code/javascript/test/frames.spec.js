@@ -28,11 +28,9 @@ describe("Frame Test", function () {
         await driver.get("https://the-internet.herokuapp.com/tinymce");
         await driver.switchTo().frame(await driver.findElement(By.id("mce_0_ifr")));
         const editor = await driver.findElement(By.id("tinymce"));
-        let beforeText = await editor.getText();
         await editor.clear();
         await editor.sendKeys("Hello World!");
-        let afterText = await editor.getText();
-        assert.notEqual(afterText, beforeText);
+        assert.equal(await editor.getText(), "Hello World!");
         await driver.switchTo().defaultContent();
         let txt = await driver.findElement(By.css("h3")).getText();
         assert.equal(txt, "An iFrame containing the TinyMCE WYSIWYG Editor");
