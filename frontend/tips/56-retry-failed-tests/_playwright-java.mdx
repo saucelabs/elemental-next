@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"56-retry-failed-tests/code/playwright-java/src/test/java/com/elemental/playwright/RetryTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Retrying the Test
+
+JUnit doesn't retry failed tests, but Maven Surefire, the plugin that runs them, can. `rerunFailingTestsCount` in the
+`pom.xml` file runs a failed test up to 9 more times before it counts as failed. It applies to every test of the
+project. A test that passes on a retry shows up as a "flake" in the results.
+
+### The Test
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 14 to 20 are the test. The page
+shows the successful message only some of the time, so the test is flaky on purpose. It visits the page and checks that
+the notification says `Action successful`.
+
+Retries hide flaky tests, so use them with care: keep the count low, and fix the cause of the flakiness when you can.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"56-retry-failed-tests/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
