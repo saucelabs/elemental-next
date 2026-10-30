@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"10-retry-test-actions/code/playwright-java/src/test/java/com/elemental/playwright/RetryActionsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Playwright's assertions, its `Page` class and JUnit extension, JUnit to run the test, and
+`AssertionFailedError`, the error a failed check throws.
+
+Line 14 sets how many times we try.
+
+### Setup and Teardown
+
+Line 11 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 17 to 30 are the test itself.
+
+Playwright for JavaScript has a built-in way to retry a block of actions (`expect(...).toPass()`), but Playwright for
+Java doesn't. A loop does the same job.
+
+In each attempt, we load the page and check that the notification says `Action successful`. We give that check a short
+timeout (1 second), so a page with the wrong message fails fast. When the check passes, `return` ends the test.
+
+When it fails, `assertThat` throws an `AssertionFailedError`. We catch it and try again, unless it was the last attempt:
+then we throw it again (line 26), so the test fails with that error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"10-retry-test-actions/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
