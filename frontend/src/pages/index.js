@@ -26,7 +26,8 @@ const MOBILE_TOOLS = [
     {tool: 'XCUITest', icon: 'Xc', meta: 'iOS, Swift'},
 ];
 
-// One workflow per row: the CI badge shows the result of its last run on main
+// One workflow per row: the CI badge shows the result of its last run on main. The mobile rows have no workflow yet,
+// so they show as coming soon.
 const CI_RUNS = [
     {name: 'Selenium · Python', workflow: 'python-tips.yml'},
     {name: 'Selenium · Java', workflow: 'java-tips.yml'},
@@ -43,6 +44,9 @@ const CI_RUNS = [
     {name: 'Vibium · Python', workflow: 'vibium-python-tips.yml'},
     {name: 'Vibium · Java', workflow: 'vibium-java-tips.yml'},
     {name: 'Appium · Sauce Labs'},
+    {name: 'Mobilewright · Sauce Labs'},
+    {name: 'Espresso · Sauce Labs'},
+    {name: 'XCUITest · Sauce Labs'},
 ];
 
 // How many rows of the CI panel show at a time, and how often it moves to the next one
@@ -78,9 +82,10 @@ function CiRun({name, workflow, hidden}) {
         <li aria-hidden={hidden || undefined}>
             <span className={styles.runName}>{name}</span>
             {workflow
-                ? <a href={`${REPO}/actions/workflows/${workflow}`} tabIndex={hidden ? -1 : undefined}>
+                ? <a href={`${REPO}/actions/workflows/${workflow}`} target="_blank" rel="noopener noreferrer"
+                     tabIndex={hidden ? -1 : undefined}>
                     <img src={`${REPO}/actions/workflows/${workflow}/badge.svg`}
-                         alt={hidden ? '' : `Last CI run of the ${name} examples`} height="20"/>
+                         alt={hidden ? '' : `Last CI run of the ${name} examples (opens in a new tab)`} height="20"/>
                 </a>
                 : <span className={styles.pending}>coming soon</span>}
         </li>
