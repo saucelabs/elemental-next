@@ -1,0 +1,28 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"50-how-to-work-with-hovers/code/playwright-java/src/test/java/com/elemental/playwright/HoversTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Test
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 13 to 22 are the test. The page has
+a few avatars, and hovering over one shows a caption with a link.
+
+We find the first avatar and the caption inside it. Before hovering, the caption is hidden (`isHidden`). Then `hover`
+moves the mouse over the avatar, and the caption becomes visible (`isVisible`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"50-how-to-work-with-hovers/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
