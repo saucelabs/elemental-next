@@ -266,6 +266,11 @@ a.tool:hover {
     min-width: 0;
 }
 
+/* Keeps the space of the section while the browser picks the tip to show */
+.picking {
+    visibility: hidden;
+}
+
 /* tips */
 .tips {
     margin: 0;

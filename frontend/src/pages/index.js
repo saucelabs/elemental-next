@@ -34,13 +34,8 @@ const CI_RUNS = [
     {name: 'Vibium · JavaScript', workflow: 'vibium-tips.yml'},
 ];
 
-// The example of each web tool (the value of its <DisplayTips> entry) shown in "One use case, many tools"
-const USE_CASE_TOOLS = [
-    {tool: 'Selenium', value: 'python'},
-    {tool: 'Playwright', value: 'playwright'},
-    {tool: 'WebdriverIO', value: 'webdriverio'},
-    {tool: 'Vibium', value: 'vibium'},
-];
+// The web tools shown in "One use case, many tools"
+const USE_CASE_TOOLS = ['Selenium', 'Playwright', 'WebdriverIO', 'Vibium'];
 
 const START_HERE = [1, 3, 5, 51, 61];
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
@@ -163,22 +158,32 @@ function Frameworks({stats}) {
     );
 }
 
-// Shows one tip with the code of each web tool. The page is built with tip 1, and the browser then picks a random tip
-// from the ones that have code for all of them, so each visit can show a different use case.
+// The languages of a tool in a tip that have a code file to show, e.g. [{label: 'Python', codePath, language}]
+function toolExamples(tip, tool) {
+    return (tip.languages || [])
+        .filter((entry) => entry.tool === tool && tip.examples?.[entry.value])
+        .map(({label, value}) => ({label, ...tip.examples[value]}));
+}
+
+// Shows one tip with the code of each web tool, in all its languages. The browser picks a random tip from the ones
+// that have code for all the tools, so each visit can show a different use case. The page is built with the first
+// one, hidden until the browser picks, so the title doesn't change in front of the reader.
 function UseCase({tips}) {
     const candidates = tips
-        .filter((tip) => USE_CASE_TOOLS.every(({value}) => tip.examples?.[value]))
+        .filter((tip) => USE_CASE_TOOLS.every((tool) => toolExamples(tip, tool).length > 0))
         .sort((a, b) => a.number - b.number);
     const [tip, setTip] = useState(candidates[0]);
+    const [picked, setPicked] = useState(false);
     useEffect(() => {
         setTip(candidates[Math.floor(Math.random() * candidates.length)]);
+        setPicked(true);
     }, []);
     if (!tip) {
         return null;
     }
     return (
         <section>
-            <div className={clsx('container', styles.useCase)}>
+            <div className={clsx('container', styles.useCase, !picked && styles.picking)}>
                 <div className={styles.useCaseCopy}>
                     <span className={styles.eyebrow}>One use case, many tools</span>
                     <h2>{tip.title}</h2>
@@ -196,10 +201,15 @@ function UseCase({tips}) {
                 </div>
                 <div className={styles.code}>
                     <Tabs key={tip.number}>
-                        {USE_CASE_TOOLS.map(({tool, value}) => (
+                        {USE_CASE_TOOLS.map((tool) => (
                             <TabItem key={tool} value={tool} label={tool}>
-                                <TipCode codePath={tip.examples[value].codePath}
-                                         language={tip.examples[value].language}/>
+                                <Tabs groupId="use-case-language">
+                                    {toolExamples(tip, tool).map(({label, codePath, language}) => (
+                                        <TabItem key={label} value={label} label={label}>
+                                            <TipCode codePath={codePath} language={language}/>
+                                        </TabItem>
+                                    ))}
+                                </Tabs>
                             </TabItem>
                         ))}
                     </Tabs>

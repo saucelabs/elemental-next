@@ -53,8 +53,9 @@ function generateSidebarItems(items) {
 }
 
 // Reads the entries of the <DisplayTips> block of a tip (e.g., {label: 'C#', value: 'playwright-csharp', tool:
-// 'Playwright'}). Returns them as `languages` ({tool, label}; Selenide is a tool of its own, and the default tool is
-// Selenium), and the first code file each partial (_<value>.mdx) shows as `examples` ({value: {codePath, language}}).
+// 'Playwright'}). Returns them as `languages` ({tool, label, value}; Selenide is a tool of its own, and the default
+// tool is Selenium), and the first code file each partial (_<value>.mdx) shows as `examples` ({value: {codePath,
+// language}}).
 function tipLanguages(file) {
     const entry = /\{\s*label:\s*'([^']+)',\s*value:\s*'([^']+)'(?:,\s*tool:\s*'([^']+)')?/g;
     const entries = [...fs.readFileSync(file, 'utf8').matchAll(entry)];
@@ -69,8 +70,8 @@ function tipLanguages(file) {
     });
     return {
         languages: entries.map(([, label, value, tool]) => value === 'selenide'
-            ? {tool: 'Selenide', label: 'Java'}
-            : {tool: tool || 'Selenium', label}),
+            ? {tool: 'Selenide', label: 'Java', value}
+            : {tool: tool || 'Selenium', label, value}),
         examples,
     };
 }
