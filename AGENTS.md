@@ -97,6 +97,10 @@ tips/1-upload-a-file/
 - A local `metadata` plugin (also in `docusaurus.config.js`) collects the frontmatter of every tip and exposes it as
   global data (`aggregateFrontMatter`). The `/tips` page (`src/pages/tips.js`) reads it to list, filter, and sort the
   tips, so the frontmatter fields (`number`, `level`, `category`, `tags`, `publish_date`) matter.
+- The plugin also adds the date of the last update (`lastUpdatedAt`) and the entries of the `<DisplayTips>` block
+  (`languages`, as `{tool, label}`) of each tip. The home page (`src/pages/index.js`) uses them to count the tips of
+  each tool and to list the recently updated tips. It reads the entries with a regular expression, so keep them in
+  the `{label: '...', value: '...', tool: '...'}` order.
 
 ### Adding a new tip
 
