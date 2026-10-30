@@ -1,0 +1,29 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"63-right-click/code/playwright-java/src/test/java/com/elemental/playwright/RightClickTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Test
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 16 to 28 are the test. Right
+clicking the box on the page opens a JavaScript alert with a message.
+
+The alert blocks the page until someone closes it, and the click doesn't end until then. So before the click, we add a
+handler with `onDialog` (lines 21 to 24): it saves the message and accepts the alert. Then we right click with
+`MouseButton.RIGHT` and check the message.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"63-right-click/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
