@@ -6,20 +6,68 @@ main > section {
     padding-block: 4rem;
 }
 
-.band {
-    background: var(--sauce-ivory);
-    border-block: 1px solid var(--sauce-warm-gray);
+/* The page takes the color (tone) of the section in the middle of the screen, and fades from one to the next while
+   scrolling, like saucelabs.com. The sections themselves are transparent, except for the contribute band, which has
+   its own color (a dark tone for the whole page would hide the dark text of the section above it). */
+.page {
+    --tone-hero: var(--sauce-ivory);
+    --tone-frameworks: var(--sauce-light-highlight);
+    --tone-useCase: var(--sauce-off-white);
+    --tone-tips: #bed1e4;
+    --tone-proof: #ffeef5;
+    background-color: var(--tone-hero);
+    transition: background-color 0.8s ease;
 }
 
-[data-theme='dark'] .band {
-    background: #1f2b1f;
-    border-color: var(--sauce-slate);
+[data-theme='dark'] .page {
+    --tone-hero: var(--sauce-pine);
+    --tone-frameworks: #1f2b1f;
+    --tone-useCase: var(--sauce-slate);
+    --tone-tips: var(--sauce-forest);
+    --tone-proof: #3c483c;
+}
+
+.tone-frameworks {
+    background-color: var(--tone-frameworks);
+}
+
+.tone-useCase {
+    background-color: var(--tone-useCase);
+}
+
+.tone-tips {
+    background-color: var(--tone-tips);
+}
+
+.tone-proof {
+    background-color: var(--tone-proof);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page {
+        transition: none;
+    }
+}
+
+/* A faint grid behind the frameworks, like the grid lines of saucelabs.com */
+.grid {
+    background-image:
+        linear-gradient(rgba(25, 35, 25, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(25, 35, 25, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+[data-theme='dark'] .grid {
+    background-image:
+        linear-gradient(rgba(240, 240, 236, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240, 240, 236, 0.05) 1px, transparent 1px);
 }
 
 .eyebrow {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-family: var(--sauce-font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
@@ -43,7 +91,22 @@ main > section {
     text-wrap: balance;
 }
 
-/* hero */
+/* hero: a warm glow (like the sunflower gradient of saucelabs.com) and a pixel cluster behind the CI panel */
+.hero {
+    background-image:
+        url('../../static/img/backgrounds/pixels-hero-light.svg'),
+        linear-gradient(rgba(240, 240, 236, 0), rgba(241, 224, 130, 0.55) 55%, rgba(240, 240, 236, 0));
+    background-repeat: no-repeat;
+    background-position: right max(0px, calc((100% - 1140px) / 2)) bottom -2rem, center;
+    background-size: 40rem auto, 100% 100%;
+}
+
+[data-theme='dark'] .hero {
+    background-image:
+        url('../../static/img/backgrounds/pixels-hero-dark.svg'),
+        linear-gradient(rgba(25, 35, 25, 0), rgba(171, 224, 130, 0.08) 55%, rgba(25, 35, 25, 0));
+}
+
 .heroGrid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -235,14 +298,17 @@ a.tool:hover {
     height: 40px;
     border: 1px solid var(--sauce-warm-gray);
     border-radius: 10px;
-    background: var(--ifm-background-color);
+    background: #ffffff;
     font-weight: 800;
 }
 
-.live .toolIcon {
-    border-color: var(--ifm-color-primary);
-    color: var(--ifm-background-color);
-    background: var(--ifm-color-primary);
+.toolIcon img {
+    object-fit: contain;
+}
+
+/* The "+" of the card that asks for a framework */
+.suggest .toolIcon {
+    background: var(--ifm-background-color);
 }
 
 .toolText {
@@ -416,12 +482,14 @@ a.tool:hover {
 /* contribute */
 .contribute {
     color: #ffffff;
-    background: var(--sauce-forest);
+    background: var(--sauce-forest) url('../../static/img/backgrounds/pixels-band-light.svg') no-repeat right center /
+        auto 100%;
 }
 
 [data-theme='dark'] .contribute {
     color: var(--sauce-pine);
-    background: var(--sauce-highlight);
+    background-color: var(--sauce-highlight);
+    background-image: url('../../static/img/backgrounds/pixels-band-dark.svg');
 }
 
 .contribute h2 {
@@ -441,15 +509,25 @@ a.tool:hover {
     margin: 0.4rem 0 0;
 }
 
+/* The button sits over the pixels, so it has a solid background */
 .contributeButton {
     border: 2px solid currentColor;
     color: inherit;
-    background: transparent;
+    background: var(--sauce-forest);
 }
 
 .contributeButton:hover {
-    color: inherit;
-    background: rgba(255, 255, 255, 0.12);
+    color: var(--sauce-forest);
+    background: #ffffff;
+}
+
+[data-theme='dark'] .contributeButton {
+    background: var(--sauce-highlight);
+}
+
+[data-theme='dark'] .contributeButton:hover {
+    color: var(--sauce-highlight);
+    background: var(--sauce-pine);
 }
 
 @media (max-width: 996px) {

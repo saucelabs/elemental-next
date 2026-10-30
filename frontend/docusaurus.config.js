@@ -139,7 +139,13 @@ const config = {
                 },
                 blog: false,
                 theme: {
-                    customCss: require.resolve('./src/css/custom.css'),
+                    // The fonts of saucelabs.com that are free (Fraunces stands in for its serif), served by the site
+                    customCss: [
+                        require.resolve('@fontsource-variable/fraunces/index.css'),
+                        require.resolve('@fontsource-variable/atkinson-hyperlegible-next/index.css'),
+                        require.resolve('@fontsource-variable/atkinson-hyperlegible-mono/index.css'),
+                        require.resolve('./src/css/custom.css'),
+                    ],
                 },
                 gtag: {
                     trackingID: 'G-QY5T3BLYC5',
@@ -257,7 +263,9 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
+                copyright: `© ${new Date().getFullYear()} <a href="https://saucelabs.com" target="_blank"
+                    rel="noopener noreferrer" aria-label="Sauce Labs Inc. (opens in a new tab)">Sauce Labs Inc.</a>, all
+                    rights reserved`,
             },
             prism: {
                 theme: codeTheme,

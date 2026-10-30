@@ -1,29 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import useGlobalData from '@docusaurus/useGlobalData';
 import TipCode from '../components/tipCode';
 import styles from './index.module.css';
 
 const REPO = 'https://github.com/saucelabs/elemental-next';
 
-// Web tools, in the order they show up on the page, with the short name of their icon
+// Web tools, in the order they show up on the page, with their logo (in static/img/tools). The logos come from each
+// project, except for Espresso and XCUITest, which show drawings of their logos (the Android robot over a coffee cup,
+// and a green badge with a check mark).
 const WEB_TOOLS = [
-    {tool: 'Selenium', icon: 'Se'},
-    {tool: 'Selenide', icon: 'Sd'},
-    {tool: 'Playwright', icon: 'Pw'},
-    {tool: 'WebdriverIO', icon: 'Wd'},
-    {tool: 'Vibium', icon: 'Vb'},
+    {tool: 'Selenium', logo: 'selenium.svg'},
+    {tool: 'Selenide', logo: 'selenide.png'},
+    {tool: 'Playwright', logo: 'playwright.svg'},
+    {tool: 'WebdriverIO', logo: 'webdriverio.svg'},
+    {tool: 'Vibium', logo: 'vibium.png'},
 ];
 
 const MOBILE_TOOLS = [
-    {tool: 'Appium', icon: 'Ap', meta: 'Android and iOS'},
-    {tool: 'Mobilewright', icon: 'Mw', meta: 'Android and iOS'},
-    {tool: 'Espresso', icon: 'Es', meta: 'Android, Kotlin'},
-    {tool: 'XCUITest', icon: 'Xc', meta: 'iOS, Swift'},
+    {tool: 'Appium', logo: 'appium.png', meta: 'Android and iOS'},
+    {tool: 'Mobilewright', logo: 'mobilewright.png', meta: 'Android and iOS'},
+    {tool: 'Espresso', logo: 'espresso.svg', meta: 'Android, Kotlin'},
+    {tool: 'XCUITest', logo: 'xcuitest.svg', meta: 'iOS, Swift'},
 ];
 
 // One workflow per row: the CI badge shows the result of its last run on main. The mobile rows have no workflow yet,
@@ -176,7 +179,7 @@ function CiRuns() {
 
 function Hero() {
     return (
-        <header className={styles.hero}>
+        <header className={styles.hero} data-tone="hero">
             <div className={clsx('container', styles.heroGrid)}>
                 <div className={styles.heroCopy}>
                     <span className={styles.eyebrow}>Free and open source</span>
@@ -199,10 +202,11 @@ function Hero() {
     );
 }
 
-function ToolCard({icon, name, meta, count, sauce}) {
+function ToolCard({logo, name, meta, count, sauce}) {
+    const logoUrl = useBaseUrl(`/img/tools/${logo}`);
     const content = (
         <>
-            <span className={styles.toolIcon} aria-hidden="true">{icon}</span>
+            <span className={styles.toolIcon}><img src={logoUrl} alt="" width="28" height="28"/></span>
             <span className={styles.toolText}>
                 <span className={styles.toolName}>{name}</span>
                 <span className={styles.toolMeta}>
@@ -222,7 +226,7 @@ function ToolCard({icon, name, meta, count, sauce}) {
 
 function Frameworks({stats}) {
     return (
-        <section className={styles.band}>
+        <section className={styles.grid} data-tone="frameworks">
             <div className="container">
                 <div className={styles.sectionHead}>
                     <span className={styles.eyebrow}>Frameworks</span>
@@ -235,15 +239,15 @@ function Frameworks({stats}) {
                 <div className={styles.columns}>
                     <div className={styles.column}>
                         <h3>Web <small>runs in CI on Linux, Windows and macOS, and some tips on Sauce Labs</small></h3>
-                        {WEB_TOOLS.map(({tool, icon}) => (
-                            <ToolCard key={tool} icon={icon} name={tool} count={stats[tool]?.tips.size}
+                        {WEB_TOOLS.map(({tool, logo}) => (
+                            <ToolCard key={tool} logo={logo} name={tool} count={stats[tool]?.tips.size}
                                       meta={[...(stats[tool]?.languages || [])].join(', ')}/>
                         ))}
                     </div>
                     <div className={styles.column}>
                         <h3>Mobile <small>will run on real devices in Sauce Labs</small></h3>
-                        {MOBILE_TOOLS.map(({tool, icon, meta}) => (
-                            <ToolCard key={tool} icon={icon} name={tool} meta={meta} sauce/>
+                        {MOBILE_TOOLS.map(({tool, logo, meta}) => (
+                            <ToolCard key={tool} logo={logo} name={tool} meta={meta} sauce/>
                         ))}
                         <Link className={clsx(styles.tool, styles.suggest)} to={`${REPO}/discussions`}>
                             <span className={styles.toolIcon} aria-hidden="true">+</span>
@@ -284,7 +288,7 @@ function UseCase({tips}) {
         return null;
     }
     return (
-        <section>
+        <section data-tone="useCase">
             <div className={clsx('container', styles.useCase, !picked && styles.picking)}>
                 <div className={styles.useCaseCopy}>
                     <span className={styles.eyebrow}>One use case, many tools</span>
@@ -346,7 +350,7 @@ function Tips({tips}) {
         .slice(0, 5);
     const tools = (tip) => plural(new Set((tip.languages || []).map(({tool}) => tool)).size, 'tool');
     return (
-        <section className={styles.band}>
+        <section data-tone="tips">
             <div className="container">
                 <div className={styles.sectionHead}>
                     <span className={styles.eyebrow}>Tips</span>
@@ -375,7 +379,7 @@ function Tips({tips}) {
 
 function Proof() {
     return (
-        <section>
+        <section data-tone="proof">
             <div className="container">
                 <div className={styles.sectionHead}>
                     <span className={styles.eyebrow}>Why trust the code</span>
@@ -419,20 +423,53 @@ function Contribute() {
     );
 }
 
+// Gives the page the color (tone) of the section in the middle of the screen, like saucelabs.com does while scrolling.
+// Each section names its tone in `data-tone`, and the CSS fades the page from one color to the next. The current
+// section is the last one that starts above the middle of the screen, so a long jump (e.g., the End key) can't skip it.
+function useSectionTone(ref) {
+    const [tone, setTone] = useState('hero');
+    useEffect(() => {
+        const sections = [...ref.current.querySelectorAll('[data-tone]')];
+        let frame = 0;
+        const update = () => {
+            frame = 0;
+            const middle = window.innerHeight / 2;
+            const current = sections.filter((section) => section.getBoundingClientRect().top <= middle).pop();
+            setTone((current || sections[0]).dataset.tone);
+        };
+        const schedule = () => {
+            frame = frame || requestAnimationFrame(update);
+        };
+        update();
+        window.addEventListener('scroll', schedule, {passive: true});
+        window.addEventListener('resize', schedule);
+        return () => {
+            window.removeEventListener('scroll', schedule);
+            window.removeEventListener('resize', schedule);
+            cancelAnimationFrame(frame);
+        };
+    }, [ref]);
+    return tone;
+}
+
 function Home() {
     const tips = useGlobalData().metadata.default.aggregateFrontMatter;
+    const page = useRef(null);
+    const tone = useSectionTone(page);
     return (
         <Layout
             title="Home"
             description="Short, tested tips for web and mobile test automation">
-            <Hero/>
-            <main>
-                <Frameworks stats={toolStats(tips)}/>
-                <UseCase tips={tips}/>
-                <Tips tips={tips}/>
-                <Proof/>
-                <Contribute/>
-            </main>
+            <div ref={page} className={clsx(styles.page, styles[`tone-${tone}`])}>
+                <Hero/>
+                <main>
+                    <Frameworks stats={toolStats(tips)}/>
+                    <UseCase tips={tips}/>
+                    <Tips tips={tips}/>
+                    <Proof/>
+                    <Contribute/>
+                </main>
+            </div>
         </Layout>
     );
 }
