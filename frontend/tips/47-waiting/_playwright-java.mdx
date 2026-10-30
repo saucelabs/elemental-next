@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"47-waiting/code/playwright-java/src/test/java/com/elemental/playwright/WaitingTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Waiting for an Element
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Lines 22 to 32 run a test for each example
+of the page (`@ValueSource`). The element shows up a few seconds after we click start: in example 1 it is hidden until
+then, and in example 2 it is not on the page until then.
+
+`waitFor` waits until the element is in a state, `VISIBLE` here, or fails after the timeout (10 seconds). Then we read
+its text.
+
+### Giving Up
+
+Lines 35 to 42 wait for only 2 seconds, which is too short. `waitFor` fails with a `TimeoutError`, and `assertThrows`
+checks that it did.
+
+### Waiting Inside the Assertion
+
+Lines 45 to 51 show the shorter way. The assertions of Playwright (e.g., `hasText`) wait on their own: they keep
+checking until the element matches or the timeout ends. So we don't need a separate wait. Actions like `click` and
+`fill` wait for the element too.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"47-waiting/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
