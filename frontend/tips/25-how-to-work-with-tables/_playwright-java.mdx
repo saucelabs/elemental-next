@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"25-how-to-work-with-tables/code/playwright-java/src/test/java/com/elemental/playwright/TablesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Helpers
+
+The `dues` method (lines 17 to 19) reads the text of the cells with `allTextContents`, removes the `$` and turns each
+value into a number, so we can sort them.
+
+### The Tests
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. All the tests visit the page with the
+tables first: the `@BeforeEach` method on lines 21 to 24 runs before each test and does it. Clicking a column header
+sorts the table by that column, and the header gets the class `headerSortDown` (ascending) or `headerSortUp`
+(descending).
+
+- Lines 27 to 32 click the "Due" header of the first table once and check that the values are in ascending order. The
+  table has no handy attributes, so we find the column by its position (`nth-of-type(4)`).
+- Lines 35 to 41 click it twice to sort in descending order.
+- Lines 44 to 49 sort the "Email" column, which holds text.
+- Lines 52 to 57 do the same as the first test on the second table, which has a class on each cell (e.g., `.dues`), so
+  the locators are easier to read.
+
+`containsClass` waits until the header has the class, which tells us the table is sorted before we read it.
+`assertEquals` then compares the values with a sorted copy of them.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"25-how-to-work-with-tables/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
