@@ -98,32 +98,75 @@ main > section {
     border: 1px solid var(--sauce-slate);
 }
 
+.runHead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
 .runTitle {
-    margin: 0 0 0.75rem;
+    margin: 0;
     color: #c3cbbf;
     font-family: inherit;
     font-size: inherit;
     font-weight: 400;
 }
 
+.runPause {
+    padding: 0.1rem 0.6rem;
+    border: 1px solid #c3cbbf;
+    border-radius: 999px;
+    color: #c3cbbf;
+    background: none;
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.runPause:hover {
+    color: var(--sauce-pine);
+    background: #c3cbbf;
+}
+
+/* Shows CI_VISIBLE_ROWS rows of the same height (--run-row), so moving the list by one row height shows the next one */
+.runWindow {
+    --run-row: 2.4rem;
+    height: calc(5 * var(--run-row));
+    overflow: hidden;
+}
+
+.runScroll {
+    overflow-y: auto;
+}
+
 .runRows {
     margin: 0;
     padding: 0;
     list-style: none;
+    transition: transform 0.6s ease;
 }
 
 .runRows li {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.4rem 0.75rem;
-    padding: 0.4rem 0;
+    gap: 0.75rem;
+    height: var(--run-row);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.runName {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .runRows a {
     display: inline-flex;
+    flex-shrink: 0;
 }
 
 .pending {
@@ -428,6 +471,18 @@ a.tool:hover {
 }
 
 @media (max-width: 480px) {
+    /* The name and the badge don't fit side by side, so each row shows them one above the other */
+    .runWindow {
+        --run-row: 3.4rem;
+    }
+
+    .runRows li {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.2rem;
+    }
+
     .tips a {
         grid-template-columns: 2.6rem 1fr;
     }

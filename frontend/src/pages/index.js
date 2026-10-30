@@ -30,10 +30,24 @@ const MOBILE_TOOLS = [
 const CI_RUNS = [
     {name: 'Selenium · Python', workflow: 'python-tips.yml'},
     {name: 'Selenium · Java', workflow: 'java-tips.yml'},
+    {name: 'Selenium · C#', workflow: 'dotnet-tips.yml'},
+    {name: 'Selenium · JavaScript', workflow: 'javascript-tips.yml'},
+    {name: 'Selenium · Ruby', workflow: 'ruby-tips.yml'},
+    {name: 'Selenide · Java', workflow: 'selenide-tips.yml'},
     {name: 'Playwright · TypeScript', workflow: 'playwright-tips.yml'},
+    {name: 'Playwright · Python', workflow: 'playwright-python-tips.yml'},
+    {name: 'Playwright · C#', workflow: 'playwright-csharp-tips.yml'},
+    {name: 'Playwright · Java', workflow: 'playwright-java-tips.yml'},
     {name: 'WebdriverIO · TypeScript', workflow: 'webdriverio-tips.yml'},
     {name: 'Vibium · JavaScript', workflow: 'vibium-tips.yml'},
+    {name: 'Vibium · Python', workflow: 'vibium-python-tips.yml'},
+    {name: 'Vibium · Java', workflow: 'vibium-java-tips.yml'},
+    {name: 'Appium · Sauce Labs'},
 ];
+
+// How many rows of the CI panel show at a time, and how often it moves to the next one
+const CI_VISIBLE_ROWS = 5;
+const CI_STEP_MS = 2500;
 
 // The web tools shown in "One use case, many tools"
 const USE_CASE_TOOLS = ['Selenium', 'Selenide', 'Playwright', 'WebdriverIO', 'Vibium'];
@@ -59,6 +73,92 @@ function plural(count, word) {
     return `${count} ${word}${count === 1 ? '' : 's'}`;
 }
 
+function CiRun({name, workflow, hidden}) {
+    return (
+        <li aria-hidden={hidden || undefined}>
+            <span className={styles.runName}>{name}</span>
+            {workflow
+                ? <a href={`${REPO}/actions/workflows/${workflow}`} tabIndex={hidden ? -1 : undefined}>
+                    <img src={`${REPO}/actions/workflows/${workflow}/badge.svg`}
+                         alt={hidden ? '' : `Last CI run of the ${name} examples`} height="20"/>
+                </a>
+                : <span className={styles.pending}>coming soon</span>}
+        </li>
+    );
+}
+
+// Shows the CI status of every tool and language, a few rows at a time, moving one row up every few seconds. After the
+// last row, it shows the first rows again (copies, hidden from screen readers) and jumps back to the start without
+// animation, so the loop looks continuous. It stops while the pointer or the focus is on it, and with the pause button.
+// When the reader asks for less motion, it doesn't move: the list scrolls by hand instead.
+function CiRuns() {
+    const [index, setIndex] = useState(0);
+    const [animate, setAnimate] = useState(true);
+    const [paused, setPaused] = useState(false);
+    const [holding, setHolding] = useState(false);
+    const [reducedMotion, setReducedMotion] = useState(false);
+
+    useEffect(() => {
+        setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }, []);
+
+    const moving = !reducedMotion && !paused && !holding;
+    useEffect(() => {
+        if (!moving) {
+            return undefined;
+        }
+        const timer = setInterval(() => {
+            setAnimate(true);
+            setIndex((current) => current + 1);
+        }, CI_STEP_MS);
+        return () => clearInterval(timer);
+    }, [moving]);
+
+    const restartLoop = () => {
+        if (index >= CI_RUNS.length) {
+            setAnimate(false);
+            setIndex(0);
+        }
+    };
+    // Brings a row into view when it gets the keyboard focus
+    const showFocused = (event) => {
+        setHolding(true);
+        const row = [...event.currentTarget.querySelectorAll('li')].indexOf(event.target.closest('li'));
+        if (row >= 0 && !reducedMotion) {
+            setAnimate(true);
+            setIndex(Math.min(row, CI_RUNS.length - CI_VISIBLE_ROWS));
+        }
+    };
+
+    return (
+        <div className={styles.run}>
+            <div className={styles.runHead}>
+                <h2 className={styles.runTitle}>Every example runs in CI, every night</h2>
+                {!reducedMotion && (
+                    <button type="button" className={styles.runPause} aria-pressed={paused}
+                            onClick={() => setPaused(!paused)}>
+                        {paused ? 'Play' : 'Pause'}
+                    </button>
+                )}
+            </div>
+            <div className={clsx(styles.runWindow, reducedMotion && styles.runScroll)}
+                 onMouseEnter={() => setHolding(true)} onMouseLeave={() => setHolding(false)}
+                 onFocus={showFocused} onBlur={() => setHolding(false)}>
+                <ul className={styles.runRows} onTransitionEnd={restartLoop}
+                    style={reducedMotion ? undefined : {
+                        transform: `translateY(calc(${-index} * var(--run-row)))`,
+                        transition: animate ? undefined : 'none',
+                    }}>
+                    {CI_RUNS.map((run) => <CiRun key={run.name} {...run}/>)}
+                    {!reducedMotion && CI_RUNS.slice(0, CI_VISIBLE_ROWS).map((run) => (
+                        <CiRun key={`copy-${run.name}`} {...run} hidden/>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+}
+
 function Hero() {
     return (
         <header className={styles.hero}>
@@ -78,24 +178,7 @@ function Hero() {
                               to={`${REPO}/blob/main/CONTRIBUTING.md`}>Write a tip</Link>
                     </div>
                 </div>
-                <div className={styles.run}>
-                    <h2 className={styles.runTitle}>Every example runs in CI, every night</h2>
-                    <ul className={styles.runRows}>
-                        {CI_RUNS.map(({name, workflow}) => (
-                            <li key={workflow}>
-                                <span>{name}</span>
-                                <a href={`${REPO}/actions/workflows/${workflow}`}>
-                                    <img src={`${REPO}/actions/workflows/${workflow}/badge.svg`}
-                                         alt={`Last CI run of the ${name} examples`} height="20"/>
-                                </a>
-                            </li>
-                        ))}
-                        <li>
-                            <span>Appium · Sauce Labs</span>
-                            <span className={styles.pending}>coming soon</span>
-                        </li>
-                    </ul>
-                </div>
+                <CiRuns/>
             </div>
         </header>
     );
