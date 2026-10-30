@@ -1,19 +1,5 @@
-<!--Taken from https://www.systemuicons.com/-->
-<svg height="100" viewBox="0 0 21 21" width="100" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        g {
-        stroke: #043423;
-        }
-        @media ( prefers-color-scheme: dark ) {
-        g {
-        stroke: #abe082;
-        }
-        }
-    </style>
-    <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"
-       transform="translate(1 1)">
-        <path d="m.5 9.5 9-9 9 9"/>
-        <path d="m2.5 7.5v7c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-7"/>
-        <path d="m6.5 10.5 2 2 4-4"/>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="64" height="64" shape-rendering="crispEdges">
+    <!-- "Se", the element symbol of selenium, in the colors of Sauce Labs -->
+    <rect width="16" height="16" rx="3" fill="#043423" shape-rendering="geometricPrecision"/>
+    <g><rect x="4" y="4" width="1" height="1" fill="#abe082"/><rect x="5" y="4" width="1" height="1" fill="#abe082"/><rect x="6" y="4" width="1" height="1" fill="#abe082"/><rect x="3" y="5" width="1" height="1" fill="#abe082"/><rect x="3" y="6" width="1" height="1" fill="#abe082"/><rect x="4" y="7" width="1" height="1" fill="#abe082"/><rect x="5" y="7" width="1" height="1" fill="#abe082"/><rect x="6" y="8" width="1" height="1" fill="#abe082"/><rect x="6" y="9" width="1" height="1" fill="#abe082"/><rect x="3" y="10" width="1" height="1" fill="#abe082"/><rect x="4" y="10" width="1" height="1" fill="#abe082"/><rect x="5" y="10" width="1" height="1" fill="#abe082"/><rect x="10" y="6" width="1" height="1" fill="#abe082"/><rect x="11" y="6" width="1" height="1" fill="#abe082"/><rect x="9" y="7" width="1" height="1" fill="#abe082"/><rect x="12" y="7" width="1" height="1" fill="#abe082"/><rect x="9" y="8" width="1" height="1" fill="#abe082"/><rect x="10" y="8" width="1" height="1" fill="#abe082"/><rect x="11" y="8" width="1" height="1" fill="#abe082"/><rect x="12" y="8" width="1" height="1" fill="#abe082"/><rect x="9" y="9" width="1" height="1" fill="#abe082"/><rect x="10" y="10" width="1" height="1" fill="#abe082"/><rect x="11" y="10" width="1" height="1" fill="#abe082"/><rect x="12" y="10" width="1" height="1" fill="#abe082"/></g>
 </svg>
