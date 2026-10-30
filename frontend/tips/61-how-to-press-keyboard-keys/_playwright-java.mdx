@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright-java/src/test/java/com/elemental/playwright/KeyPressesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+`@UsePlaywright` gives each test a fresh browser tab in its `Page` parameter. Both tests visit a page that shows the
+last key we pressed (the `@BeforeEach` method on lines 13 to 16).
+
+- Lines 19 to 22 press a key on an element: `press` focuses the input and presses `Space` on it.
+- Lines 25 to 28 press a key without an element: `page.keyboard().press` sends `Tab` to whatever has the focus.
+
+The keys have names like `Enter`, `ArrowDown` or `Shift+A`, and Playwright fires the same events a real key press does.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"61-how-to-press-keyboard-keys/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
