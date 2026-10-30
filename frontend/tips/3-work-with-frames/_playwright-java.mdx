@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"3-work-with-frames/code/playwright-java/src/test/java/com/elemental/playwright/FramesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Playwright's assertions, the `FrameLocator`, `Locator` and `Page` classes, its JUnit extension, and
+JUnit to run the tests.
+
+### Setup and Teardown
+
+Line 11 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### Example 1
+
+Lines 15 to 22 work with nested frames. The page has a frame at the top that holds three more frames (left, middle and
+right).
+
+`frameLocator` finds a frame, and calling it again on the result finds a frame inside that one. We don't switch to the
+frames like in Selenium: the locators reach into them. We find the middle frame inside the top frame, and check the text
+of its `#content` element.
+
+### Example 2
+
+Lines 25 to 33 work with an iframe that holds the TinyMCE text editor.
+
+We find the editor's body (`#tinymce`) inside the iframe, fill it with new text, and check it. Then we check the heading
+of the page, outside of the iframe, using `page` directly. There is no need to switch back.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"3-work-with-frames/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
