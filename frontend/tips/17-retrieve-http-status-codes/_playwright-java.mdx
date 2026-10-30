@@ -1,0 +1,29 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"17-retrieve-http-status-codes/code/playwright-java/src/test/java/com/elemental/playwright/StatusCodesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Tests
+
+Lines 14 and 15 give JUnit the status codes we want to check. `@ParameterizedTest` runs the test once for each value of
+`@ValueSource`, with the code in `expected`. `@UsePlaywright` still gives each run a fresh `Page`, in the second
+parameter.
+
+Playwright doesn't need the Navigation Timing API: `page.navigate` returns the response of the main request of the page.
+So we visit the page for the status code and check `response.status()`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"17-retrieve-http-status-codes/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
