@@ -1,10 +1,10 @@
 ---
-title: 'ChromeDriver'
-card_highlight: 'ChromeDriver'
+title: 'How to Run Your Tests Against Chrome'
+card_highlight: 'Chrome'
 id: 29-chrome-driver
 slug: /29-chrome-driver
-sidebar_label: ChromeDriver
-description: "It's straightforward to get your tests running locally against Firefox. But when you want to run them against a different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and lacking in code examples for getting started."
+sidebar_label: Run Your Tests Against Chrome
+description: "Selenium needs a browser driver (ChromeDriver for Chrome) to drive a browser. Selenium Manager finds or downloads the driver and the browser for you, so a test only needs to ask for Chrome."
 number: 29
 hide_table_of_contents: true
 level: 2
@@ -15,35 +15,53 @@ tags:
   - chromedriver
   - chrome
   - different browsers
+  - 'selenium manager'
 category:
   - 'fundamentals'
   - 'remote'
 ---
 
-# How to Run Your Tests Locally Against Chrome
+# How to Run Your Tests Against Chrome
 
 ## Intro
 
-It's straightforward to get your tests running locally against Firefox. But when you want to run them against a
-different browser like Chrome, you quickly run into configuration overhead that can seem overly complex and
-lacking in code examples for getting started.
+Selenium drives each browser through a browser driver: a small program, made by the browser vendor, that receives the
+WebDriver commands and runs them in the browser. Chrome's driver is ChromeDriver, Firefox's is GeckoDriver, and so
+on.
 
-With the introduction of WebDriver (circa Selenium 2) a lot of benefits were realized (e.g. more effective &
-faster browser execution, no more single host origin issues, etc.). But with it came some architectural & configuration
-differences that may not be widely known. Namely -- browser drivers.
+For years, running tests on Chrome meant downloading the right ChromeDriver for our Chrome version, and telling
+Selenium where it was (in the `PATH`, or with a system property). Each Chrome update could break the tests until we
+downloaded a new driver.
 
 ## A Solution
 
-[WebDriver](https://www.selenium.dev/documentation/webdriver/) works with each of the major browsers through a browser driver which is (ideally) maintained by the
-browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between
-Selenium and the browser.
+Let Selenium Manager do it. It comes with Selenium (since 4.6), and runs when we start a browser without a driver:
 
-[ChromeDriver](https://chromedriver.chromium.org/downloads) is Google Chrome's browser driver. In this specific use case is of using WebDriver with Chrome
-in testing locally.
+- It finds the Chrome installed on the machine and downloads the ChromeDriver that matches its version.
+- When Chrome is not installed (or we ask for a version that is not there), it downloads
+  [Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing), an unbranded Chrome made for
+  automation, and its ChromeDriver.
+- It keeps the downloads in a cache (`~/.cache/selenium`), so it downloads them only once.
 
-Let's step through an example using ChromeDriver ([download here](https://chromedriver.chromium.org/downloads)).
+The same goes for Firefox (GeckoDriver and Firefox) and Edge (msedgedriver). So, for now, a test only needs to ask for
+Chrome. No driver downloads, no paths.
 
+### What about Playwright?
 
+Playwright has a similar approach, but for the browsers. It doesn't use the browsers installed on the machine:
+`npx playwright install` downloads the browsers of each Playwright version, and Playwright drives them directly (no
+driver in between). These browsers are not the ones our users have:
+
+- `chromium` is a Chromium-based, unbranded build (Chrome for Testing in recent versions), not Google Chrome.
+- `firefox` and `webkit` are custom builds of Firefox and WebKit, patched by the Playwright team to support
+  automation. The WebKit build is not Safari.
+
+To test on the branded Google Chrome or Microsoft Edge installed on the machine, Playwright has the `channel` option
+(e.g., `channel: 'chrome'`).
+
+Let's continue with an example.
+
+## Example
 
 import DisplayTips from '@site/src/components/displayTips';
 
@@ -51,8 +69,27 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Python', value: 'python'},
     {label: 'C#', value: 'csharp'},
     {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
+
+## Expected Behavior
+
+- Selenium Manager finds Chrome and ChromeDriver (and downloads what is missing)
+- ChromeDriver starts
+- Chrome opens
+- The test loads the page, checks the title, and prints the versions of Chrome and ChromeDriver
+- Chrome closes
+- ChromeDriver stops
+
+## Summary
+
+Selenium Manager removes the setup that made browser drivers a pain: no downloads, no paths, no broken tests after a
+browser update. If you need to manage the drivers yourself (e.g., a machine without internet access), you can still
+put the driver in the `PATH` or pass its path to the driver service, and Selenium Manager steps aside. See the
+[Selenium Manager documentation](https://www.selenium.dev/documentation/selenium_manager/) for its options.
+
+Happy Testing!
 
 ## Authors
 
