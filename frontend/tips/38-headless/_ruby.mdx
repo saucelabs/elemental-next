@@ -1,10 +1,12 @@
 ## Example
 
-Before we can use Xvfb, we need to install it (along with the browser we want if it's not already loaded).
+Before we can use Xvfb, we need to install it. In Linux we need to find the relevant package name for the package
+manager and install it (e.g., `apt-get install xvfb` for Debian based systems like Ubuntu, `dnf install
+xorg-x11-server-Xvfb` for RedHat based systems, etc.).
 
-In Linux we need to find the relevant package names for the package manager and install them 
-(e.g., `apt-get install xvfb firefox` for Debian based systems like Ubuntu, `yum install Xvfb firefox` for 
-RedHat based systems, etc.).
+We don't need to install Chrome: when it is missing, Selenium Manager downloads Chrome for Testing and its
+ChromeDriver (see [tip 29](/tips/29-chrome-driver)). Chrome for Testing needs some system libraries, which the
+`google-chrome-stable` package or your distribution's `chromium` package also installs.
 
 Now let's create a simple Selenium script.
 
@@ -16,7 +18,7 @@ require 'rspec/expectations'
 include RSpec::Matchers
 
 def setup
-  @driver = Selenium::WebDriver.for :firefox
+  @driver = Selenium::WebDriver.for :chrome
 end
 
 def teardown
@@ -81,7 +83,7 @@ require 'headless'
 def setup
   @headless = Headless.new
   @headless.start
-  @driver = Selenium::WebDriver.for :firefox
+  @driver = Selenium::WebDriver.for :chrome
 end
 
 def teardown
@@ -135,7 +137,7 @@ then jobs will start to break unexpectedly. This is because of a display port co
 Xvfb sessions trying to run on the same display port at the same time).
 
 When this happens you can issue a runtime flag when launching `xvfb-run` that will keep trying display ports 
-until it finds a free one (e.g., `xvfb-run -a`). You can read more about it in the man page [here](http://manpages.ubuntu.com/manpages/lucid/man1/xvfb-run.1.html).
+until it finds a free one (e.g., `xvfb-run -a`). You can read more about it in the man page [here](https://manpages.ubuntu.com/manpages/noble/man1/xvfb-run.1.html).
 
 Alternatively you can use the CI build number as your Xvfb display port. This way each display port is unique. 
 Each CI server is different, but you should have access to this value somehow. For example, this is made available 
@@ -143,8 +145,6 @@ through an environment variable in Jenkins.
 
 ## Summary
 
-Hopefully this tip has helped you get your tests running smoothly on your CI Server. For more information on 
-taking screenshots with Selenium, check out 
-[tip 16](https://elementalselenium.com/docs/take-screenshot-on-failure/16-take-screenshot-on-failure). And to learn 
-how to run a different browser locally (e.g., Chrome), check out 
-[tip 29](https://elementalselenium.com/docs/chrome-driver/29-chrome-driver).
+Hopefully this tip has helped you get your tests running smoothly on your CI Server. For more information on
+taking screenshots with Selenium, check out [tip 16](/tips/16-take-screenshot-on-failure). And to run Chrome
+without Xvfb, check out [tip 72](/tips/72-headless-chrome).

@@ -1,0 +1,31 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/csharp/HeadlessTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp` method (lines 12 to 19) adds the `--headless` argument to the `ChromeOptions`, and starts Chrome with
+them. The `TearDown` method (lines 21 to 25) quits the browser.
+
+### The Test
+
+`PageLoaded` (lines 27 to 36) loads the page and checks its title, like any other test. Then it reads the user agent
+of the browser with `ExecuteScript`, prints it, and checks that it says `HeadlessChrome`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

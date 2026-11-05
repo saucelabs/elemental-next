@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/javascript/test/headless.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook (lines 8 to 12) adds the `--headless` argument to the Chrome options, and starts Chrome with
+them. The `afterEach` hook (lines 14 to 18) quits the browser.
+
+### The Test
+
+The test (lines 20 to 27) loads the page and checks its title, like any other test. Then it reads the user agent of
+the browser with `executeScript`, prints it, and checks that it says `HeadlessChrome`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

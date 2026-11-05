@@ -1,0 +1,30 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/java/src/test/java/com/elemental/selenium/HeadlessTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 13 to 19) adds the `--headless` argument to the `ChromeOptions`, and starts Chrome
+with them. The `afterEach` method (lines 21 to 26) quits the browser.
+
+### The Test
+
+`pageLoaded` (lines 28 to 36) loads the page and checks its title, like any other test. Then it reads the user agent
+of the browser with `executeScript`, prints it, and checks that it says `HeadlessChrome`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
