@@ -4,7 +4,7 @@ card_highlight: 'Headlessly'
 id: '72-headless-chrome'
 slug: /72-headless-chrome
 sidebar_label: Headlessly with Chrome
-description: "If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you can't with an out-of-the-box setup since there is no display output for the browser to launch in."
+description: "A Continuous Integration (CI) server usually has no display for the browser to open a window in. Chrome can run headless (without a window), so the tests run there with no extra tools."
 number: 72
 hide_table_of_contents: true
 publish_date: 2017-09-25
@@ -17,27 +17,39 @@ category:
   - 'remote'
 ---
 
-# How To Run Your Tests Headless with Chrome
+# How To Run Your Tests Headlessly with Chrome
 
 ## Intro
 
 > This is a guest post from [Chris Kenst](https://twitter.com/ckenst).
 
-If you want to run your tests headlessly on a Continuous Integration (CI) server you'll quickly realize that you
-can't with an out-of-the-box setup since there is no display output for the browser to launch in. You could use a
-third party library like Xvfb or PhantomJS but those can be hard to install and aren't guaranteed to be supported
-in the long run (like PhantomJS).
+When we run our tests on a Continuous Integration (CI) server, there is usually no display for the browser to open a
+window in. We need the browser to run without one.
 
 ## A Solution
 
-Enter Headless Chrome ([link](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md))
+Run Chrome headless. [Headless Chrome](https://developer.chrome.com/docs/chromium/headless) is the same Chrome, with
+the same rendering engine, but without a window. We turn it on with the `--headless` argument, and nothing else
+changes: the tests load pages, click, type and take screenshots as usual.
 
-Starting with Chrome 59 (Chrome 60 for Windows) we can pass Chrome a few configuration options to enable headless mode.
+Since Chrome 132, `--headless` runs the full Chrome browser. The older headless mode is now a separate program,
+`chrome-headless-shell`, which starts faster but is not exactly Chrome (Playwright uses it by default).
+
+A headless Chrome tells websites what it is: its user agent says `HeadlessChrome` instead of `Chrome`. The examples
+check it to show that the browser runs headless.
+
+Let's continue with an example.
+
+## Example
 
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
     {label: 'Selenide', value: 'selenide'},
     {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
@@ -49,6 +61,21 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
     {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
 ]}/>
+
+## Expected Behavior
+
+- Chrome starts without a window
+- The test loads the page and checks the title
+- The test prints the user agent, which says `HeadlessChrome`
+- Chrome closes
+
+## Summary
+
+Headless Chrome is the simplest way to run browser tests on a machine without a display: it needs no extra tools, it
+comes with Chrome, and it renders pages like the Chrome our users have. To see what the browser does while you write
+or debug a test, remove the `--headless` argument.
+
+Happy Testing!
 
 ## Special Thanks
 

@@ -12,6 +12,7 @@ image: "img/cards/38-headless.png"
 tags:
   - headless
   - xvfb
+  - chrome
 level: 2
 category:
   - 'tools'
@@ -28,6 +29,10 @@ can't with an out-of-the-box setup since there is no display output for the brow
 
 In order to run your tests using a browser that's loaded on your CI Server you will need to configure your tests
 to launch the browser virtually (e.g., using something like Xvfb).
+
+__NOTE: If you only need to run Chrome on a machine without a display, [headless Chrome](/tips/72-headless-chrome) is
+simpler: it needs no extra tools. Xvfb is useful when the browser needs a real window, e.g., to run it headed on a
+Linux CI server, or to use a feature that headless mode does not have.__
 
 >### An Xvfb primer
 

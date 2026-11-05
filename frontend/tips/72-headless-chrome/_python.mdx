@@ -1,0 +1,32 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"72-headless-chrome/code/python/headless.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 5 to 12) adds the `--headless` argument to the Chrome options, and starts Chrome
+with them. It `yield`s the driver to the test, and quits the browser when the test is done.
+
+### The Test
+
+`test_page_loaded` (lines 15 to 21) loads the page and checks its title, like any other test. Then it reads the user
+agent of the browser with `execute_script`, prints it, and checks that it says `HeadlessChrome`.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"72-headless-chrome/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest headless.py` from the
+command-line.
