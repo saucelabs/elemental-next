@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"29-chrome-driver/code/playwright-python/browsers.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Playwright's Browsers
+
+Playwright doesn't use browser drivers: it talks to the browsers directly. Instead, it downloads its own browsers.
+The `chromium` browser type starts the Chromium build of this Playwright version by default. With
+`channel: 'chrome'`, it starts the Google Chrome installed on the machine instead.
+
+### The Tests
+
+`load_the_page` (lines 4 to 10) launches Chromium with the given channel, loads the page, checks the title, and prints
+the browser version. It uses the `playwright` fixture of `pytest-playwright` and launches the browser itself (instead
+of using the `page` fixture) to show the options.
+
+- `test_playwright_chromium` (lines 14 and 15) uses no channel, so it runs the Chromium build that
+  `playwright install chromium` downloaded.
+- `test_google_chrome` (lines 19 and 20) uses `channel='chrome'`, so it runs Google Chrome.
+
+The versions differ: each Playwright version comes with its own browser builds, while Google Chrome updates on its own.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"29-chrome-driver/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the browser with `playwright install chromium`. The second test needs Google Chrome on the machine
+(`playwright install chrome` installs it, if missing). Then run the tests by executing `pytest -s browsers.py` from
+the command-line (`-s` shows what the tests print).

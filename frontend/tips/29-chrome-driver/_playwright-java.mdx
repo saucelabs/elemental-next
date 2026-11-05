@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"29-chrome-driver/code/playwright-java/src/test/java/com/elemental/playwright/BrowsersTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Playwright's Browsers
+
+Playwright doesn't use browser drivers: it talks to the browsers directly. Instead, it downloads its own browsers.
+The `chromium` browser type starts the Chromium build of this Playwright version by default. With
+`channel: 'chrome'`, it starts the Google Chrome installed on the machine instead.
+
+### The Tests
+
+`loadThePage` (lines 13 to 21) creates Playwright, launches Chromium with the given options, loads the page, checks
+the title, and prints the browser version. The `try` block closes the browser and Playwright at the end.
+
+- `playwrightChromium` (lines 24 to 27) uses no options, so it runs the Chromium build of this Playwright version.
+- `googleChrome` (lines 30 to 33) uses `setChannel("chrome")`, so it runs Google Chrome.
+
+The versions differ: each Playwright version comes with its own browser builds, while Google Chrome updates on its own.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"29-chrome-driver/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the tests by executing `mvn test` from the command-line. Playwright for Java downloads its browsers the first time.
+The second test needs Google Chrome on the machine.

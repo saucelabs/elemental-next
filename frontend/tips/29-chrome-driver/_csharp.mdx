@@ -1,70 +1,34 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Before starting, we'll need to download the latest ChromeDriver binary executable from [here](http://chromedriver.storage.googleapis.com/index.html). Once we have it we'll need to tell Selenium where it is. Two ways we can do this are to:
+## TL;DR - Show Me The Code
 
-- Add it to the System PATH
-- Specify it in the Selenium setup
+<TipCode codePath={"29-chrome-driver/code/csharp/ChromeTest.cs"} language={"csharp"}/>
 
-Let's start by including our requisite classes for our test framework (e.g., `using NUnit.Framework`), driving the browser with Selenium (e.g., `using OpenQA.Selenium`, etc.), accessing C# methods to work with the local file system (e.g., `using System.IO`), and start our class with some setup and teardown methods.
+## Code Walkthrough
 
-```csharp
-// filename: Chrome.cs
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.IO;
+### Setup and Teardown
 
-public class Chrome
-{
-    IWebDriver Driver;
-    string VendorDirectory = Directory.GetParent(
-        Path.GetDirectoryName(typeof(Chrome).Assembly.Location)).
-            Parent.FullName + @"\Vendor";
+The `SetUp` method (lines 13 to 18) starts Chrome with `new ChromeDriver()`. There is no driver path: Selenium
+Manager finds Chrome and the matching ChromeDriver, and downloads what is missing. The `TearDown` method (lines 20 to
+24) quits the browser.
 
-    [SetUp]
-    public void SetUp()
-    {
-        Driver = new ChromeDriver(VendorDirectory);
-    }
+### The Test
 
-    [TearDown]
-    public void TearDown()
-    {
-        Driver.Quit();
-    }
-// ...
-```
+`PageLoaded` (lines 26 to 34) loads the page and checks its title. Then it prints the versions of Chrome and
+ChromeDriver from the capabilities of the session, to show which ones Selenium Manager picked. The ChromeDriver version
+matches the Chrome version.
 
-Notice the field variable declaration for `VendorDirectory`. With it, we are effectively grabbing the full path of the project directory and appending the `Vendor` directory to it. This is then put to use when creating an instance of Chrome (e.g., `Driver = new ChromeDriver(VendorDirectory);`).
+### Executing the Test
 
-Now we're ready to add a test.
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
 
-```csharp
-// filename: Chrome.cs
-// ...
-    [Test]
-    public void PageLoads()
-    {
-        Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com");
-        Assert.That(Driver.Title.Equals("The Internet"));
-    }
-}
-```
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"29-chrome-driver/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
 
-If we save this file and run the project (e.g., `nunit3-console.exe .\Chrome.sln`) it will launch an instance of Chrome, visit the homepage of [the-internet](http://the-internet.herokuapp.com/), and assert that the page title loaded.
-
-## Expected Behavior
-
-When you save this file and run the project (e.g., `nunit3-console.exe .\Chrome.sln` from the command-line) here is what will happen.
-
-- ChromeDriver starts
-- Chrome opens
-- Test runs
-- Chrome closes
-- ChromeDriver stops
-
-## Summary
-
-Hopefully this tip has helped you get a better handle on how WebDriver works with various browsers and saved you some time in your configuration setup. But keep in mind that no two browser drivers are alike, so be sure to check out the documentation for the browser you care about to find out it's specific requirements. For more about specific driver requirements, visit the official [Selenium Quick Reference page for Installing Browser Drivers](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference).
-
-Happy Testing!
+Finally, we can run the test by executing `dotnet test --logger "console;verbosity=detailed"` from the command-line
+(the logger shows what the test prints).

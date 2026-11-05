@@ -1,71 +1,32 @@
-## A Solution
+import TipCode from "@site/src/components/tipCode";
 
-[WebDriver](https://www.selenium.dev/documentation/webdriver/) works with each of the major browsers through a browser driver which is (ideally) maintained by the browser manufacturer. It is an executable file (consider it a thin layer or a shim) that acts as a bridge between Selenium and the browser.
+## TL;DR - Show Me The Code
 
-[ChromeDriver](https://chromedriver.chromium.org/downloads) is Google Chrome's browser driver. In this specific use case is of using WebDriver with Chrome in testing locally.
+<TipCode codePath={"29-chrome-driver/code/ruby/chrome.rb"} language={"ruby"}/>
 
-Let's step through an example using ChromeDriver ([download here](https://chromedriver.chromium.org/downloads)).
+## Code Walkthrough
 
-## Example
+### Setup and Teardown
 
-Before starting, we'll need to download the latest ChromeDriver binary executable from [here](http://chromedriver.storage.googleapis.com/index.html). Once we have it we'll need to tell Selenium where it is. Two ways we can do this are to:
+The `setup` method (lines 5 to 8) starts Chrome with `Selenium::WebDriver.for :chrome`. There is no driver path:
+Selenium Manager finds Chrome and the matching ChromeDriver, and downloads what is missing. The `teardown` method
+(lines 10 to 12) quits the browser, and `run` (lines 14 to 18) calls them around the test.
 
-+ Add it to the System PATH
-+ Specify it in the Selenium setup
+### The Test
 
-We'll start by pulling in our requisite libraries (e.g., `selenium-webdriver` to driver the browser and `rspec/expectations` & `RSpec::Matchers` to perform an assertion) and wiring up some simple `setup`, `teardown`, and `run` methods.
+The test (lines 20 to 26) loads the page and checks its title. Then it prints the versions of Chrome and ChromeDriver
+from the capabilities of the session, to show which ones Selenium Manager picked. The ChromeDriver version matches the
+Chrome version.
 
-```ruby
-# filename: chrome.rb
+### Executing the Test
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
 
-def setup
-  Selenium::WebDriver::Chrome::Service.driver_path = "C:\\tmp\\chromedriver.exe"
-  @driver = Selenium::WebDriver.for :chrome
-end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"29-chrome-driver/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
 
-def teardown
-  @driver.quit
-end
-
-def run
-  setup
-  yield
-  teardown
-end
-```
-
-Notice that in `setup` we are telling Selenium where the ChromeDriver exectuable is with `driver_path` before creating an instance of the browser.
-
-Now we're ready to add a simple test.
-
-```ruby
-# filename: chrome.rb
-# ...
-
-run do
-  @driver.get 'http://the-internet.herokuapp.com/'
-  expect(@driver.title).to eql 'The Internet'
-end
-```
-
-If we save this file and run it (e.g., `ruby chrome.rb`) it will launch an instance of Chrome, visit the homepage of [the-internet](http://the-internet.herokuapp.com/), and assert that the page title loaded.
-
-## Expected Behavior
-
-When we save this file and run it (e.g., `ruby chrome.rb` from the command-line) here is what will happen.
-
-+ ChromeDriver starts
-+ Chrome opens
-+ Test runs
-+ Chrome closes
-+ ChromeDriver stops
-
-## Summary
-
-Hopefully this tip has helped you get a better handle on how WebDriver works with various browsers and saved you some time in your configuration setup. But keep in mind that no two browser drivers are alike, so be sure to check out the documentation for the browser you care about to find out it's specific requirements. For more about specific driver requirements, visit the official [Selenium Quick Reference page for Installing Browser Drivers](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference).
-
-Happy Testing!
+Install them with `bundle install`, then run the test by executing `ruby chrome.rb` from the command-line.
