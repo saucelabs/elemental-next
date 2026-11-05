@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"29-chrome-driver/code/playwright-csharp/BrowsersTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Playwright's Browsers
+
+Playwright doesn't use browser drivers: it talks to the browsers directly. Instead, it downloads its own browsers.
+The `chromium` browser type starts the Chromium build of this Playwright version by default. With
+`channel: 'chrome'`, it starts the Google Chrome installed on the machine instead.
+
+### The Tests
+
+The test class extends `PlaywrightTest`, which gives the tests a `Playwright` object. `LoadThePage` (lines 12 to
+19) launches Chromium with the given options, loads the page, checks the title, and prints the browser version.
+`await using` closes the browser at the end.
+
+- `PlaywrightChromium` (lines 22 to 26) uses no options, so it runs the Chromium build of this Playwright version.
+- `GoogleChrome` (lines 29 to 33) uses `Channel = "chrome"`, so it runs Google Chrome.
+
+The versions differ: each Playwright version comes with its own browser builds, while Google Chrome updates on its own.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"29-chrome-driver/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with `pwsh bin/Debug/net10.0/playwright.ps1 install
+chromium` (the script is created by the build). The second test needs Google Chrome on the machine. Then run the tests
+by executing `dotnet test --logger "console;verbosity=detailed"` from the command-line (the logger shows what the
+tests print).

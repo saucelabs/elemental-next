@@ -71,9 +71,15 @@ import DisplayTips from '@site/src/components/displayTips';
     {label: 'Java', value: 'java'},
     {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
 ]}/>
 
 ## Expected Behavior
+
+With Selenium:
 
 - Selenium Manager finds Chrome and ChromeDriver (and downloads what is missing)
 - ChromeDriver starts
@@ -81,6 +87,12 @@ import DisplayTips from '@site/src/components/displayTips';
 - The test loads the page, checks the title, and prints the versions of Chrome and ChromeDriver
 - Chrome closes
 - ChromeDriver stops
+
+With Playwright, two tests:
+
+- The first one starts the Chromium build of Playwright, the second one the installed Google Chrome
+- Each test loads the page, checks the title, and prints the browser version
+- The browser closes
 
 ## Summary
 

@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"29-chrome-driver/code/playwright/tests/browsers.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Playwright's Browsers
+
+Playwright doesn't use browser drivers: it talks to the browsers directly. Instead, it downloads its own browsers.
+The `chromium` browser type starts the Chromium build of this Playwright version by default. With
+`channel: 'chrome'`, it starts the Google Chrome installed on the machine instead.
+
+### The Tests
+
+`loadThePage` (lines 3 to 10) launches Chromium with the given options, loads the page, checks the title, and prints
+the browser version. It launches the browser itself (instead of using the `page` fixture) to show the options.
+
+- The first test (lines 13 to 15) uses no options, so it runs the Chromium build that
+  `npx playwright install chromium` downloaded.
+- The second test (lines 18 to 20) uses `channel: 'chrome'`, so it runs Google Chrome.
+
+The versions differ: each Playwright version comes with its own browser builds, while Google Chrome updates on its own.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"29-chrome-driver/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`. The second test
+needs Google Chrome on the machine (`npx playwright install chrome` installs it, if missing). Then run the tests by
+executing `npm test` from the command-line.
