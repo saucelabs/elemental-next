@@ -48,6 +48,7 @@ and sort the tips):
 ```yaml
 ---
 title: 'How To Upload a File'
+card_highlight: 'Upload a File'       # words of the title shown in green on the social card
 id: '1-upload-a-file'                 # must match the folder name
 slug: /1-upload-a-file
 sidebar_label: How To Upload a File
@@ -56,6 +57,7 @@ hide_table_of_contents: true
 level: 1                              # 1 = beginner, 2 = intermediate, 3 = advanced
 number: 1
 publish_date: 2026-10-16
+image: "img/cards/1-upload-a-file.png" # the social card, added by `npm run cards` or by CI
 tags:
   - 'file'
   - 'upload'
@@ -167,6 +169,9 @@ numbers in the walkthrough, keep them in sync with the code.
 - Run each example from its `code/<language>/` directory (see its `README.md`).
 - From `frontend/`, run `npm install` and `npm run start` to see the page at http://localhost:3000, and
   `npm run build` to check that the site builds.
+- From `frontend/`, run `npm run cards -- <tip folder>` (e.g., `npm run cards -- 1-upload-a-file`) to create the
+  social card of the tip (the image shown when a link to it is shared). It needs Chrome. If you skip it, CI creates
+  the card after the merge.
 - When you open the pull request, CI runs the examples that changed on Ubuntu, Windows, and macOS, and checks the site
   build. Netlify adds a link to a preview of the site.
 

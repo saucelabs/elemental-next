@@ -1,0 +1,69 @@
+# Creates the social cards (the link preview image of each tip) with frontend/scripts/social-cards.mjs.
+# - On push to main: the cards of the tips whose main.mdx changed (a new tip, a new title, card_highlight or tools).
+#   When the template or the script changed, every card.
+# - On demand: every card.
+# The cards, and the `image` field of new tips, go in a pull request.
+name: Social cards
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/tips/*/main.mdx'
+      - 'frontend/scripts/social-card.html'
+      - 'frontend/scripts/social-cards.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    if: github.repository == 'saucelabs/elemental-next'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26.x
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Create the social cards
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          cd frontend
+          # Every card on manual runs, when the template or the script changed, or when the previous commit is unknown.
+          if [ "$GITHUB_EVENT_NAME" != "push" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null \
+            || ! git diff --quiet "$BEFORE" "$GITHUB_SHA" -- scripts/social-card.html scripts/social-cards.mjs; then
+            npm run cards
+            exit 0
+          fi
+          folders=$(git diff --name-only "$BEFORE" "$GITHUB_SHA" -- 'tips/*/main.mdx' | cut -d/ -f3 | sort -u \
+            | while read -r folder; do [ -f "tips/$folder/main.mdx" ] && echo "$folder"; done)
+          if [ -n "$folders" ]; then
+            npm run cards -- $folders
+          fi
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          title: 'chore(site): update the social cards'
+          # A fixed branch, so each run updates the same pull request instead of opening a new one.
+          branch: auto-social-cards
+          delete-branch: true
+          commit-message: 'chore(site): update the social cards'
+          signoff: true
+          add-paths: |
+            frontend/static/img/cards/*.png
+            frontend/static/img/social-card.png
+            frontend/tips/*/main.mdx
+          body: Social cards created by the `Social cards` workflow (`npm run cards`).
