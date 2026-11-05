@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/playwright-csharp/DownloadTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Connecting to the Playwright Server
+
+A Playwright server starts browsers for the tests that connect to it. The browsers run where the server runs, and the
+test drives them over a WebSocket. When the browser downloads a file, the file stays on the server's machine, and
+Playwright copies it to our machine when we ask for it.
+
+Lines 14 and 15 read the address of the server from the `PLAYWRIGHT_SERVER_URL` environment variable, or use
+`ws://127.0.0.1:3000/`.
+
+The `[ClassInitialize]` method (lines 18 to 32) runs once, before the browser starts, and checks that the server
+answers.
+
+The test class extends `PageTest`, which gives each test a fresh browser tab in the `Page` property. It asks
+`ConnectOptionsAsync` (lines 35 to 39) where the browser is. When the server is running, it returns its address, and
+`PageTest` connects to it instead of launching a local browser.
+
+### The Test
+
+`DownloadFile` (lines 41 to 68) skips the test (`Assert.Inconclusive`) when the server is not running. It visits the
+page and saves the name of the first download link.
+
+- Line 53 clicks the link inside `RunAndWaitForDownloadAsync`, which waits for the download that the click starts.
+- Line 54 checks the name of the file.
+- Lines 57 to 67 copy the file with `SaveAsAsync` to a temp folder on our machine, check that it is not empty, and
+  delete the temp folder. When the browser is remote, `SaveAsAsync` is the way to get the file: `PathAsync()` would
+  point to a file on the server's machine.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build`. Then start a Playwright server (see Part 1). It can be the one of this project:
+`pwsh bin/Debug/net10.0/playwright.ps1 run-server --port 3000 --host 127.0.0.1` (the script is created by the
+build). The server uses the browsers installed on its machine (`pwsh bin/Debug/net10.0/playwright.ps1 install
+chromium`). Finally, run the test by executing `dotnet test` from the command-line.

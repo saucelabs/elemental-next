@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/python/download.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 11 to 28) skips the test when the Sauce Labs credentials are not set. Otherwise, it asks
+for the latest Chrome on Windows 11, and sets `options.enable_downloads = True`. This sends the `se:downloadsEnabled`
+capability, so Sauce Labs keeps the files the browser downloads. The `sauce:options` carry the credentials and the
+name of the test on Sauce Labs. Then it connects with `webdriver.Remote` and `yield`s the driver to the test. Once the
+test is done, it quits the browser.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+`test_download_file` (lines 31 to 44) visits the page, saves the name of the first download link, and clicks it.
+
+- Line 38 waits up to 10 seconds until the file shows up in `get_downloadable_files()`, the list of files the browser
+  downloaded on the remote machine.
+- Lines 41 to 44 copy the file with `download_file(file_name, target_dir)` to a temp folder on our machine, and check
+  that it is not empty. The temp folder is deleted when the `with` block ends.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables (see Part 1). Then, before executing the test,
+we need to install the required libraries. We can do this by running `pip install -r requirements.txt` from the
+command-line. The `requirements.txt` file contains the libraries we need to install.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest download.py` from the
+command-line.

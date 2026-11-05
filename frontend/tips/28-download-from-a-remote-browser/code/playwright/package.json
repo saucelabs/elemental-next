@@ -1,0 +1,12 @@
+{
+  "name": "download-from-a-remote-browser",
+  "version": "1.0.0",
+  "description": "A project to showcase downloading files from a remote browser using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}

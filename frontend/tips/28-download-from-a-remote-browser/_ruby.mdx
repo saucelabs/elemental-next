@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/ruby/download.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+Lines 8 to 11 print how to run the test and exit when the Sauce Labs credentials are not set.
+
+The `setup` method (lines 13 to 23) asks for the latest Chrome on Windows 11, and sets `enable_downloads = true`. This
+sends the `se:downloadsEnabled` capability, so Sauce Labs keeps the files the browser downloads. The `sauce:options`
+carry the credentials and the name of the test on Sauce Labs. Then it connects with
+`Selenium::WebDriver.for(:remote, ...)`. The `teardown` method (lines 25 to 27) quits the browser, and `run` (lines 29
+to 33) calls them around the test.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+The test (lines 35 to 50) visits the page, saves the name of the first download link, and clicks it.
+
+- Lines 42 and 43 wait up to 10 seconds until the file shows up in `downloadable_files`, the list of files the browser
+  downloaded on the remote machine.
+- Lines 46 to 49 copy the file with `download_file(file_name, target_dir)` to a temp folder on our machine, and check
+  that it is not empty. `Dir.mktmpdir` deletes the temp folder when the block ends.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables (see Part 1). Then, before executing the test,
+we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby download.rb` from the command-line.
