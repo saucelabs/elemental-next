@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/javascript/test/download.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook (lines 14 to 32) skips the test when the Sauce Labs credentials are not set. Otherwise, it asks
+for the latest Chrome on Windows 11, and calls `enableDownloads()`. This sends the `se:downloadsEnabled` capability,
+so Sauce Labs keeps the files the browser downloads. The `sauce:options` carry the credentials and the name of the
+test on Sauce Labs. Then it connects with `usingServer(SAUCE_URL)`, and creates a temp folder on our machine. The
+`afterEach` hook (lines 34 to 41) quits the browser and deletes the temp folder.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+The test (lines 43 to 58) visits the page, saves the name of the first download link, and clicks it.
+
+- Line 50 waits up to 10 seconds until the file shows up in `getDownloadableFiles()`, the list of files the browser
+  downloaded on the remote machine.
+- Lines 53 to 57 copy the file with `downloadFile(fileName, targetDir)` to the temp folder, and check that it is not
+  empty. `downloadFile` writes the file in the background after it returns, so line 56 waits until the file is there.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables (see Part 1). Then, before executing the test,
+we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

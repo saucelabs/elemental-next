@@ -1,0 +1,128 @@
+---
+title: 'How To Download Files From a Remote Browser'
+card_highlight: 'Remote Browser'
+id: '28-download-from-a-remote-browser'
+slug: /28-download-from-a-remote-browser
+sidebar_label: 'How To Download Files From a Remote Browser'
+description: 'When the browser runs on another machine (a Selenium Grid, a cloud provider), the files it downloads stay on that machine. Here is how to get them back to your tests.'
+number: 28
+publish_date: 2026-11-05
+hide_table_of_contents: true
+level: 2
+tags:
+  - 'files'
+  - 'downloading'
+  - 'file download'
+  - 'grid'
+  - 'selenium grid'
+  - 'sauce labs'
+  - 'cloud'
+category:
+  - 'remote'
+  - 'tools'
+---
+
+# How To Download Files From a Remote Browser
+
+## The Problem
+
+In [tip 2](/tips/2-download-a-file) we downloaded a file and checked it on disk. That works when the browser runs on
+our machine. But when it runs somewhere else, on a [Selenium Grid](/tips/52-how-to-use-selenium-grid) node or at a
+cloud provider, the file lands on the disk of that machine. Our test can't open it there.
+
+## A Solution
+
+Ask the remote side to keep the downloaded files and to send them to us.
+
+- **Selenium**: Selenium Grid has "managed downloads". The test asks for a session with downloads enabled (the
+  `se:downloadsEnabled` capability). The Grid then gives the session its own download folder, and the bindings can
+  list the files in it and copy a file to our machine. [Sauce Labs](https://saucelabs.com/) supports the same
+  capability and commands, so the code is the same as with a Grid: only the address and the Sauce Labs options
+  change. Selenide and WebdriverIO use the same feature.
+- **Playwright**: Playwright has its own remote mode. A Playwright server runs next to the browsers, and the test
+  connects to it. When a download finishes, `saveAs` copies the file from the server to our machine.
+
+Let's continue with an example.
+
+## Example
+
+### Part 1: Start the Remote Browser
+
+The Selenium and WebdriverIO examples run on Sauce Labs. They read the credentials from the `SAUCE_USERNAME` and
+`SAUCE_ACCESS_KEY` environment variables (see [tip 26](/tips/26-cloud) for more on running tests on Sauce Labs).
+
+They work the same on a Selenium Grid started with managed downloads (it requires Java). Get the Selenium Server from
+the Selenium [releases](https://github.com/SeleniumHQ/selenium/releases), start it, and use `http://localhost:4444`
+as the address in the tests:
+
+```sh
+java -jar selenium-server-<version>.jar standalone --enable-managed-downloads true
+```
+
+The Selenide example uses this Grid: `http://localhost:4444`, or the address in the `GRID_URL` environment variable.
+
+For the Playwright examples, start a Playwright server. Every Playwright package can start it. For example, with the
+one of the TypeScript example:
+
+```sh
+npx playwright run-server --port 3000 --host 127.0.0.1
+```
+
+The tests use `ws://127.0.0.1:3000/`, or the address in the `PLAYWRIGHT_SERVER_URL` environment variable. The server
+and the tests must use the same Playwright version. On a separate machine, use `--host 0.0.0.0` so other machines can
+reach it.
+
+Here the Grid and the Playwright server run on our machine to keep things simple, but the tests work the same when
+they run somewhere else.
+
+### Part 2: The Test
+
+If the Sauce Labs credentials are not set, or the Grid or the Playwright server is not running, the tests are
+skipped.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+]}/>
+
+## Expected Behavior
+
+- Start a browser on Sauce Labs (or the Grid, or the Playwright server) with downloads enabled
+- Visit the page and click the first download link
+- The browser downloads the file on the remote machine
+- Wait until the file is there
+- Copy the file to a temp folder on our machine and check it is not empty
+- Close the browser
+
+## Summary
+
+With the files on our machine, we can check them as in [tip 2](/tips/2-download-a-file): the name, the size, or the
+content.
+
+The remote machine keeps the files only while the session lives. So copy the files you need before quitting the
+browser.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

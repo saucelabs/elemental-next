@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/playwright/tests/download.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Connecting to the Playwright Server
+
+A Playwright server starts browsers for the tests that connect to it. The browsers run where the server runs, and the
+test drives them over a WebSocket. When the browser downloads a file, the file stays on the server's machine, and
+Playwright copies it to our machine when we ask for it.
+
+Line 4 reads the address of the server from the `PLAYWRIGHT_SERVER_URL` environment variable, or uses
+`ws://127.0.0.1:3000/`.
+
+The `beforeAll` hook (lines 8 to 13) checks that the server answers, and skips the test when it doesn't. Then
+`chromium.connect` connects to the server, which starts Chrome. The `afterAll` hook (lines 15 to 17) closes it.
+
+### The Test
+
+The test (lines 19 to 35) opens a new page in the remote browser, visits the page, and saves the name of the first
+download link.
+
+- Lines 26 to 28 start waiting for the `download` event, click the link, and get the `Download`. We start waiting
+  before the click, so we don't miss the event.
+- Line 29 checks the name of the file.
+- Lines 32 to 34 copy the file with `saveAs` to the output folder of the test, on our machine, and check that it is
+  not empty. When the browser is remote, `saveAs` is the way to get the file: `download.path()` would point to a file
+  on the server's machine.
+
+### Executing the Test
+
+First, start a Playwright server (see Part 1). Then, before executing the test, we need to make sure the required
+dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`. The browser is on the server, but the server uses the browsers
+installed on its machine, so run `npx playwright install chromium` there. Then run the test by executing `npm test`
+from the command-line.

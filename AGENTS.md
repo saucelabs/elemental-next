@@ -130,7 +130,7 @@ tips/1-upload-a-file/
 - About 15 tips have partials for several languages, but the code is pasted inline in fenced blocks and is not run
   by CI.
 - Most of the other tips are Ruby only, with inline code (copied from the original Elemental Selenium).
-- A few tips are prose only (e.g., 18, 21, 28, 31, 36, 71).
+- A few tips are prose only (e.g., 18, 21, 31, 36, 71).
 - Reference for older multi-language examples: https://github.com/saucelabs-training/elemental-selenium-tips
 
 ## CI
@@ -161,7 +161,10 @@ tips/1-upload-a-file/
     tests fail and those files exist.
   - Tips that need a Selenium Grid (e.g., tip 52) have a `needs-grid` file. The run script downloads the Selenium
     Server jar (`GRID_VERSION` in `run-tips.sh`) and starts it in standalone mode on `http://localhost:4444` while
-    their tests run.
+    their tests run, with managed downloads enabled (tip 28).
+  - Playwright tips that need a Playwright server (e.g., tip 28) have a `needs-playwright-server` file. The run script
+    starts it on `ws://127.0.0.1:3000/` with the Playwright CLI of the directory (so the versions match) while their
+    tests run.
   - Tips that run on Sauce Labs (e.g., tip 26) read `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` (repository secrets in
     CI) and skip themselves when they are not set.
 - Renovate (`renovate.json`) keeps dependencies updated.

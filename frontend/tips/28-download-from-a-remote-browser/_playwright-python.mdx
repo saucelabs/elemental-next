@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/playwright-python/download.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Connecting to the Playwright Server
+
+A Playwright server starts browsers for the tests that connect to it. The browsers run where the server runs, and the
+test drives them over a WebSocket. When the browser downloads a file, the file stays on the server's machine, and
+Playwright copies it to our machine when we ask for it.
+
+Line 6 reads the address of the server from the `PLAYWRIGHT_SERVER_URL` environment variable, or uses
+`ws://127.0.0.1:3000/`.
+
+The `pytest-playwright` plugin gives each test a `page` from a `browser` fixture, which launches a local browser. The
+`browser` fixture of lines 17 to 24 replaces it. It skips the test when the server does not answer. Otherwise,
+`playwright.chromium.connect` connects to the server, which starts Chrome. The plugin creates the `page` in it.
+
+### The Test
+
+`test_download_file` (lines 27 to 41) visits the page and saves the name of the first download link.
+
+- Lines 33 to 35 click the link inside `page.expect_download()`, which waits for the download that the click starts.
+- Line 36 checks the name of the file.
+- Lines 39 to 41 copy the file with `save_as` to a temp folder on our machine (pytest's `tmp_path`), and check that
+  it is not empty. When the browser is remote, `save_as` is the way to get the file: `download.path()` would point to
+  a file on the server's machine.
+
+### Executing the Test
+
+First, start a Playwright server (see Part 1). It can be the one of this package:
+`playwright run-server --port 3000 --host 127.0.0.1`. Then, before executing the test, we need to install the
+required libraries. We can do this by running `pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+The server uses the browsers installed on its machine, so run `playwright install chromium` there. Then run the test
+by executing `pytest download.py` from the command-line.

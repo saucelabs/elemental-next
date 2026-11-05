@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/java/src/test/java/com/elemental/selenium/DownloadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 25 to 42) skips the test (`Assumptions.assumeTrue`) when the Sauce Labs credentials
+are not set. Otherwise, it asks for the latest Chrome on Windows 11, and calls `setEnableDownloads(true)`. This sends
+the `se:downloadsEnabled` capability, so Sauce Labs keeps the files the browser downloads. The `sauce:options` carry
+the credentials and the name of the test on Sauce Labs. Then it connects with a `RemoteWebDriver`. The `afterEach`
+method (lines 44 to 49) quits the browser.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+The `driver` field is a `RemoteWebDriver` and not a `WebDriver`, since the download methods are part of
+`RemoteWebDriver`.
+
+### The Test
+
+`downloadFile` (lines 51 to 65) gets a temp folder from JUnit (`@TempDir`). It visits the page, saves the name of
+the first download link, and clicks it.
+
+- Lines 59 and 60 wait up to 10 seconds until the file shows up in `getDownloadableFiles()`, the list of files the
+  browser downloaded on the remote machine.
+- Lines 63 and 64 copy the file with `downloadFile(fileName, targetDir)` to the temp folder on our machine, and check
+  that it is not empty.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables (see Part 1). Then, before executing the test,
+we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

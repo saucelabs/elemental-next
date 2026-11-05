@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/selenide/src/test/java/com/elemental/selenium/DownloadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+`gridIsRunning` (lines 29 to 36) checks if the Grid answers on its `/status` endpoint.
+
+The `setUp` method (lines 38 to 47) skips the test (`Assumptions.assumeTrue`) when the Grid is not running.
+Otherwise, it configures Selenide:
+
+- `Configuration.remote` points Selenide to the Grid, and `Configuration.browser` asks for Firefox.
+- `Configuration.browserCapabilities` adds the Firefox options with `setEnableDownloads(true)`. This sends the
+  `se:downloadsEnabled` capability, so the Grid gives the session a download folder and keeps the files the browser
+  downloads.
+- `Configuration.downloadsFolder` is where Selenide puts the files on our machine (`target/downloads`, so
+  `mvn clean` removes them).
+
+The `tearDown` method (lines 49 to 52) closes the browser.
+
+### The Test
+
+`downloadFile` (lines 54 to 64) visits the page and saves the name of the first download link.
+
+Line 60 does the rest. `download()` clicks the link and waits for the file. With `using(FOLDER)`, the browser saves
+the file in its download folder, which is on the Grid node. Selenide sees that the browser is remote, gets the file
+from the Grid, and returns a `File` on our machine. `withTimeout(ofSeconds(10))` gives it up to 10 seconds.
+
+Lines 62 and 63 check the name of the file and that it is not empty.
+
+### Executing the Test
+
+First, start a Selenium Grid with managed downloads (see Part 1). Then, before executing the test, we need to make
+sure the required dependencies are declared on the `pom.xml` file. Besides `selenide`, it needs `selenide-grid`,
+the module that gets the downloaded files from the Grid.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

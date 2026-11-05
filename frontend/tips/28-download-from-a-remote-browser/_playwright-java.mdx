@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"28-download-from-a-remote-browser/code/playwright-java/src/test/java/com/elemental/playwright/DownloadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Connecting to the Playwright Server
+
+A Playwright server starts browsers for the tests that connect to it. The browsers run where the server runs, and the
+test drives them over a WebSocket. When the browser downloads a file, the file stays on the server's machine, and
+Playwright copies it to our machine when we ask for it.
+
+Lines 27 and 28 read the address of the server from the `PLAYWRIGHT_SERVER_URL` environment variable, or use
+`ws://127.0.0.1:3000/`.
+
+`@UsePlaywright` gives each test a `Page`, with the options of the `RemoteOptions` class (lines 30 to 36).
+`setWsEndpoint` makes it connect to the server instead of launching a local browser.
+
+The `checkServer` method (lines 38 to 53) runs before the tests, and skips them (`assumeTrue`) when the server does
+not answer.
+
+### The Test
+
+`downloadFile` (lines 55 to 69) gets a temp folder from JUnit (`@TempDir`). It visits the page and saves the name of
+the first download link.
+
+- Line 62 clicks the link inside `waitForDownload`, which waits for the download that the click starts.
+- Line 63 checks the name of the file.
+- Lines 66 to 68 copy the file with `saveAs` to the temp folder on our machine, and check that it is not empty. When
+  the browser is remote, `saveAs` is the way to get the file: `download.path()` would point to a file on the
+  server's machine.
+
+### Executing the Test
+
+First, start a Playwright server (see Part 1). It can be the one of this project:
+`mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.classpathScope=test
+-Dexec.args="run-server --port 3000 --host 127.0.0.1"`. Then, before executing the test, we need to make sure the
+required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"28-download-from-a-remote-browser/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line. The server uses the browsers installed
+on its machine.
