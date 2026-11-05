@@ -20,7 +20,8 @@ frontend/               Docusaurus site (all npm commands run here)
   src/pages/            index, tips listing, community, resources, subscribe, ...
   tips/<n>-<slug>/      One directory per tip
   tips/images/          Shared images for tips
-  static/               Static assets (img/cards/* are social cards)
+  scripts/              Accessibility check, social card generator (social-cards.mjs + social-card.html)
+  static/               Static assets (img/cards/* are social cards, img/social-card.png is the default one)
 netlify.toml            Netlify build config (base: frontend/)
 TIP-TEMPLATE.MD         Template for writing a new tip
 ```
@@ -110,6 +111,18 @@ tips/1-upload-a-file/
    macOS, since CI runs it on all three.
 3. Add one `_<lang>.mdx` partial per language and list them in the `<DisplayTips>` block of `main.mdx`.
 4. Every path in a `<TipCode codePath=...>` must exist under `frontend/tips/`, or the site build fails.
+5. Set `card_highlight` in the frontmatter. After the merge, CI creates the social card (or run
+   `npm run cards -- <tip folder>`).
+
+### Social cards
+
+- Each tip has a social card (the link preview image), `static/img/cards/<tip folder>.png`, set in the `image` field
+  of its frontmatter. Pages without an `image` use `static/img/social-card.png`.
+- `npm run cards` creates them with Chrome from `scripts/social-card.html`: the tip number, the title (the
+  `card_highlight` words in green) and the tools of the `<DisplayTips>` block. It also sets the `image` field.
+  With tip folders as arguments, it creates only those cards; with none, every card and the default one.
+- The `social-cards.yml` workflow runs it on push to main for the tips whose `main.mdx` changed (every card when
+  the template or the script changed) and opens a pull request with the cards. Run it locally to see a card first.
 
 ### Status of the tips
 
@@ -129,6 +142,8 @@ tips/1-upload-a-file/
   tab of a tip, and fails on any violation or on a page that crashes ("This page crashed"). On a PR that only changes
   files inside tip folders, it checks only those tip pages (`CHANGED_FILES`); any other change, the nightly run and
   manual runs check every page.
+- `social-cards.yml`: on push to main, creates the social cards of the tips that changed and opens a pull request
+  with them (see Social cards).
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`, `playwright`,
   `playwright-python`, `playwright-csharp`, `playwright-java`, `webdriverio`, `vibium`, `vibium-python`, `vibium-java`):
@@ -159,6 +174,7 @@ npm install
 npm run start   # dev server at http://localhost:3000
 npm run build   # production build into frontend/build (fails on broken links/MDX errors)
 npm run serve   # serve the production build
+npm run cards   # create the social cards (`npm run cards -- <tip folder>` for one tip)
 npm run test:a11y  # accessibility check with axe (needs `npm run serve` running; BASE_URL to change the site)
 npm run clear   # clear the Docusaurus cache (try it when the dev server shows stale content)
 ```
