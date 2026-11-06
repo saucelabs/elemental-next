@@ -20,6 +20,8 @@ it, so we get ready for it before the click. Lines 7 to 12 create a promise that
 text and accept it.
 
 Line 13 right clicks the box: `click` takes a `button` option, and `'right'` opens the context menu.
+`skipRelease: true` tells WebdriverIO not to release the mouse button actions after the click. The alert is already
+open at that point, and the browser would reject that call.
 
 Finally, we wait for the promise and check the text of the alert.
 
