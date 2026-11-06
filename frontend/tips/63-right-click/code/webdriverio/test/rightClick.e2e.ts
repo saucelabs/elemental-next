@@ -10,7 +10,7 @@ describe('Right Click', () => {
                 await dialog.accept();
             });
         });
-        await $('#hot-spot').click({button: 'right'});
+        await $('#hot-spot').click({button: 'right', skipRelease: true});
 
         expect(await alertText).toBe('You selected a context menu');
     });
