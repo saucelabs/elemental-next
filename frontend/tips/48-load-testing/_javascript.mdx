@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"48-load-testing/code/javascript/test/recordHar.spec.js"} language={"javascript"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` function (lines 13 to 17) turns on WebDriver BiDi with `enableBidi`, and starts Chrome. The
+`afterEach` function (lines 19 to 23) quits the browser.
+
+### The Test
+
+The test (lines 25 to 54) creates the BiDi `Network` module and adds a handler with `beforeRequestSent` (lines 27
+to 37), which runs before each request of the browser. The handler skips the requests to other sites, and keeps the method, the URL and the start time of the others.
+Then the test goes from the home page to [the second Dynamic Loading example](https://the-internet.herokuapp.com/dynamic_loading/2),
+clicks Start, and waits until "Hello World!" shows up.
+
+At the end, it writes the HAR file, `journey.har` (lines 47 and 48), and checks that the three pages are in it.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running `npm install` from
+the command-line.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"48-load-testing/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `npm test` from the command-line. It writes
+`journey.har` in the same directory.
