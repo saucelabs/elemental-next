@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"48-load-testing/code/java/src/test/java/com/elemental/selenium/RecordHarTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 30 to 37) turns on WebDriver BiDi with `enableBiDi`, starts Chrome, and creates the
+BiDi `Network` module. The `afterEach` method (lines 39 to 47) closes the module and quits the browser.
+
+### The Test
+
+`recordUserJourney` (lines 49 to 81) adds a handler with `onBeforeRequestSent` (lines 53 to 62), which runs before
+each request of the browser. The handler skips the requests to other sites, and keeps the method, the URL and the start time of the others.
+Then the test goes from the home page to [the second Dynamic Loading example](https://the-internet.herokuapp.com/dynamic_loading/2),
+clicks Start, and waits until "Hello World!" shows up.
+
+At the end, it writes the HAR file, `journey.har`, with the JSON writer of Selenium (lines 72 to 76), and checks that
+the three pages are in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"48-load-testing/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line. It writes `journey.har` in the same
+directory.

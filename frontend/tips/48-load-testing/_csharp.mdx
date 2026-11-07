@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"48-load-testing/code/csharp/RecordHarTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp` method (lines 23 to 30) turns on WebDriver BiDi with `UseWebSocketUrl`, starts Chrome, and connects to
+BiDi with `AsBiDiAsync`. The `TearDown` method (lines 32 to 40) closes the BiDi connection and quits the browser.
+
+### The Test
+
+`RecordUserJourney` (lines 42 to 84) subscribes to `Network.BeforeRequestSent` (lines 47 to 59), which the browser
+sends before each request. The handler skips the requests to other sites, and keeps the method, the URL and the start time of the others.
+Then the test goes from the home page to [the second Dynamic Loading example](https://the-internet.herokuapp.com/dynamic_loading/2),
+clicks Start, and waits until "Hello World!" shows up.
+
+At the end, it writes the HAR file, `journey.har`, with `System.Text.Json` (lines 69 to 78), and checks that the three
+pages are in it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"48-load-testing/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line. It writes `journey.har` in the output
+directory (`bin/Debug/net10.0`).
