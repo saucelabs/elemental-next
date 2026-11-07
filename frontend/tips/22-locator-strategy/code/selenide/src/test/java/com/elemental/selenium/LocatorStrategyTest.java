@@ -15,7 +15,7 @@ public class LocatorStrategyTest {
 
   @Test
   public void firstLinkOnThePage() {
-    $("a").shouldHave(attributeMatching("href", ".*github.com.*"));
+    $("a").shouldHave(attributeMatching("href", ".*#content"));
   }
 
   @Test

@@ -18,7 +18,7 @@ describe('Locator Strategy', function () {
         await page.go('https://the-internet.herokuapp.com/download');
         const link = await page.find('a').attr('href');
         console.log(link);
-        assert(link.includes('github.com'));
+        assert(link.includes('#content'));
     });
 
     it('finds the first link in the content', async function () {

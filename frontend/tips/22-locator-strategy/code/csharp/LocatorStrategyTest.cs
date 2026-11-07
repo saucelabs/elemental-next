@@ -28,7 +28,7 @@ namespace csharp
         {
             var link = _driver.FindElement(By.CssSelector("a")).GetDomProperty("href");
             Console.WriteLine(link);
-            StringAssert.Contains(link, "github.com");
+            StringAssert.Contains(link, "#content");
         }
 
         [TestMethod]

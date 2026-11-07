@@ -13,7 +13,7 @@ def test_first_link_on_the_page(page):
     page.go('https://the-internet.herokuapp.com/download')
     link = page.find('a').attr('href')
     print(link)
-    assert 'github.com' in link
+    assert '#content' in link
 
 
 def test_first_link_in_the_content(page):

@@ -10,7 +10,7 @@ def visit_download_page(page: Page):
 def test_first_link_on_the_page(page: Page):
     link = page.locator('a').first.get_attribute('href')
     print(link)
-    assert 'github.com' in link
+    assert '#content' in link
 
 
 def test_first_link_in_the_content(page: Page):

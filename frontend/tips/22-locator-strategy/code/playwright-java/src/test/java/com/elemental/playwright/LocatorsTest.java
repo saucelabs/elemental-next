@@ -19,7 +19,7 @@ class LocatorsTest {
     void firstLinkOnThePage(Page page) {
         String link = page.locator("a").first().getAttribute("href");
         System.out.println(link);
-        assertTrue(link.contains("github.com"));
+        assertTrue(link.contains("#content"));
     }
 
     @Test
