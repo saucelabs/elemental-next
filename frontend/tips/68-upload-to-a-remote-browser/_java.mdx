@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"68-upload-to-a-remote-browser/code/java/src/test/java/com/elemental/selenium/UploadTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 21 to 38) skips the test when the Sauce Labs credentials are not set. Otherwise, it
+asks for the latest Chrome on Windows 11. The `sauce:options` carry the credentials and the name of the test on Sauce
+Labs. It connects with `RemoteWebDriver`, and line 37 sets the file detector with
+`setFileDetector(new LocalFileDetector())`. Without it, Java types the path as it is. The `afterEach` method (lines
+40 to 45) quits the browser.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+`uploadFile` (lines 47 to 55) builds the full path of `some-file.txt`, in the project folder. Then it visits [the upload page](https://the-internet.herokuapp.com/upload), types the path of the file in the file
+input, submits the form, and checks that the page shows the name of the file.
+When the test types the path (line 52), the file detector sends the file to the remote machine.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables. Then, before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"68-upload-to-a-remote-browser/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

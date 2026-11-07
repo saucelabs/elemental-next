@@ -1,0 +1,99 @@
+---
+title: 'How To Upload Files to a Remote Browser'
+card_highlight: 'Remote Browser'
+id: '68-upload-to-a-remote-browser'
+slug: /68-upload-to-a-remote-browser
+sidebar_label: 'How To Upload Files to a Remote Browser'
+description: 'When the browser runs on another machine (a Selenium Grid, a cloud provider), it cannot see the files on our machine. Here is how to send a file to it and upload it.'
+number: 68
+publish_date: 2014-10-08
+hide_table_of_contents: true
+level: 2
+image: "img/cards/68-upload-to-a-remote-browser.png"
+tags:
+  - 'files'
+  - 'uploading'
+  - 'file upload'
+  - 'grid'
+  - 'selenium grid'
+  - 'sauce labs'
+  - 'cloud'
+category:
+  - 'remote'
+  - 'tools'
+---
+
+# How To Upload Files to a Remote Browser
+
+## The Problem
+
+In [tip 1](/tips/1-upload-a-file) we uploaded a file by typing its path in the file input. That works when the
+browser runs on our machine. But when it runs somewhere else, on a [Selenium Grid](/tips/52-how-to-use-selenium-grid)
+node or at a cloud provider, the path points to a file the remote machine doesn't have, and the upload fails.
+
+## A Solution
+
+Send the file to the remote machine first, and type the path it gets there.
+
+- **Selenium**: the bindings have a "file detector". When the test types a path in a file input, the file detector
+  checks if the file exists on our machine. If it does, the bindings send the file to the remote machine, and type
+  its path on that machine instead. Python and Ruby turn it on for remote drivers. In Java, C# and JavaScript, we turn
+  it on ourselves. Selenium Grid and [Sauce Labs](https://saucelabs.com/) both support it, so the code is the same:
+  only the address and the Sauce Labs options change.
+- **WebdriverIO**: WebdriverIO 10 has no file detector. The test sends the file with the same Selenium endpoint
+  (`browser.file`), which takes the file in a zip archive and returns its path on the remote machine. Then it types
+  that path in the file input.
+
+This is the opposite of [tip 28](/tips/28-download-from-a-remote-browser), where the files go from the remote
+machine to ours.
+
+Let's continue with an example.
+
+## Example
+
+The examples run on Sauce Labs. They read the credentials from the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`
+environment variables (see [tip 26](/tips/26-cloud) for more on running tests on Sauce Labs), and are skipped when
+they are not set.
+
+They work the same on a Selenium Grid (see [tip 52](/tips/52-how-to-use-selenium-grid)): use its address, e.g.,
+`http://localhost:4444`, instead of the Sauce Labs one.
+
+Each example has a small text file, `some-file.txt`, next to the test.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+]}/>
+
+## Expected Behavior
+
+- Start a browser on Sauce Labs (or the Grid)
+- Send `some-file.txt` to the remote machine (the file detector does it when the test types the path)
+- Visit the upload page, type the path in the file input, and submit the form
+- Check that the page shows the name of the uploaded file
+- Close the browser
+
+## Summary
+
+With a file detector, the same upload test runs on our machine, on a Grid, and on a cloud provider. Without it, the
+test types a path the remote machine doesn't know, and the upload fails or picks the wrong file.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

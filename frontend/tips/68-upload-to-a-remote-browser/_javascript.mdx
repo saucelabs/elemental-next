@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"68-upload-to-a-remote-browser/code/javascript/test/upload.spec.js"} language={"javascript"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` function (lines 12 to 29) skips the test when the Sauce Labs credentials are not set. Otherwise, it
+asks for the latest Chrome on Windows 11. The `sauce:options` carry the credentials and the name of the test on Sauce
+Labs. It connects to Sauce Labs with `usingServer`, and line 28 sets the file detector with
+`setFileDetector(new remote.FileDetector())`. Without it, JavaScript types the path as it is. The `afterEach`
+function (lines 31 to 35) quits the browser.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+The test (lines 37 to 44) builds the full path of `some-file.txt`, in the project folder. Then it visits [the upload page](https://the-internet.herokuapp.com/upload), types the path of the file in the file
+input, submits the form, and checks that the page shows the name of the file.
+When the test types the path (line 41), the file detector sends the file to the remote machine.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables. Then, before executing the test, we need to install the required libraries. We can do this by running `npm install` from
+the command-line.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"68-upload-to-a-remote-browser/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `npm test` from the command-line.

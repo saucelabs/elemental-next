@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"68-upload-to-a-remote-browser/code/webdriverio/test/upload.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Configuring Sauce Labs
+
+In WebdriverIO, where the browser runs is part of the configuration, not of the test.
+
+<TipCode codePath={"68-upload-to-a-remote-browser/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+
+- Lines 3 to 5 send the tests to Sauce Labs: the credentials, and the region of the data center.
+- Lines 7 to 9 add the Sauce service, which names each job and marks it as passed or failed on Sauce Labs.
+- Lines 12 to 16 ask for the latest Chrome on Windows 11.
+- Lines 22 to 27 skip the tests when the Sauce Labs credentials are not set.
+
+To use a Selenium Grid instead, point WebdriverIO to its address (`protocol`, `hostname`, `port` and `path`), as in
+[tip 52](/tips/52-how-to-use-selenium-grid).
+
+### The Test
+
+`sendFile` (lines 8 to 12) puts the file in a zip archive with [JSZip](https://stuk.github.io/jszip/), and sends it,
+encoded in base64, with `browser.file`. The remote machine unpacks it and returns the path of the file there.
+
+The test (lines 15 to 23) sends `some-file.txt` from the project folder. Then it visits
+[the upload page](https://the-internet.herokuapp.com/upload), types the remote path in the file input with
+`setValue`, submits the form, and checks that the page shows the name of the file.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables. Then, before executing the test, we need to
+make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"68-upload-to-a-remote-browser/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

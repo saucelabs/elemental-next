@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"68-upload-to-a-remote-browser/code/python/upload.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 10 to 27) skips the test when the Sauce Labs credentials are not set. Otherwise, it asks
+for the latest Chrome on Windows 11. The `sauce:options` carry the credentials and the name of the test on Sauce
+Labs. It connects with `webdriver.Remote`, and line 25 sets the file detector, `LocalFileDetector`. Python remote
+drivers use it by default, so the line only makes it visible. Once the test is done, the fixture quits the browser.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+`test_upload_file` (lines 30 to 36) builds the full path of `some-file.txt`, next to the test. Then it visits [the upload page](https://the-internet.herokuapp.com/upload), types the path of the file in the file
+input, submits the form, and checks that the page shows the name of the file.
+When the test types the path (line 34), the file detector sends the file to the remote machine.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables. Then, before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"68-upload-to-a-remote-browser/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest upload.py` from the command-line.
