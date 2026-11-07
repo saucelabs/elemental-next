@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/vibium-java/src/test/java/com/elemental/vibium/EmulateTimeZoneTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+Vibium can change the location (`setGeolocation`), but it can't grant the geolocation permission yet, so the
+browser would ask the user first. It can't change the locale either. So this example changes the time zone only.
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Vibium (`Browser`, `Page` and `Vibium`) and JUnit.
+
+### Setup and Teardown
+
+Lines 12 and 13 declare the browser and the page, so every method of the class can use them.
+
+The `beforeEach` method (lines 15 to 19) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 21 to 26) runs after each test and closes the
+browser with `browser.stop()`.
+
+### The Test
+
+Lines 28 to 37 are the test itself. `page.clock().setTimezone` sets the time zone of the page to `Asia/Tokyo`.
+
+Then the test loads the page, and checks that it shows the `Asia/Tokyo` time zone and the date at the time of Tokyo:
+`12:00 UTC` is `21:00` there. The format of the date depends on the language of the browser (e.g., `9:00 PM` with a
+12-hour clock), so the test only looks for the time.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

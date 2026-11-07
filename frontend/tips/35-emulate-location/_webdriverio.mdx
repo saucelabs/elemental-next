@@ -1,0 +1,52 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/webdriverio/test/emulateLocation.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect` from `@wdio/globals`).
+
+### Setup and Teardown
+
+The WebdriverIO test runner starts the browser before the tests and closes it after them. The browser and the test
+framework (Mocha) are set in the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+### The Tests
+
+`geolocation` (lines 4 to 14) sets the location to Berlin with `browser.emulate('geolocation', ...)` and loads the
+page. `setPermissions` grants the page the geolocation permission, so the browser doesn't ask the user. It applies to
+the origin of the current page, so the test calls it after loading the page.
+
+Then the test loads the page and clicks the button. The page asks the browser for the location, and shows the
+latitude and longitude of Berlin. `toHaveText` waits for them and checks them.
+
+`time zone and locale` (lines 16 to 27) sets the time zone with `browser.emulate('timezone', ...)` and the language
+with `browser.emulate('locale', ...)`. WebdriverIO does both with WebDriver BiDi.
+
+Then the test loads the page. The server greets the user in German (`Hallo!`), and the page shows the language
+(`de-DE`), the time zone (`Asia/Tokyo`), the date in German at the time of Tokyo (`Mittwoch, 15. April 2026 um
+21:00`), and the number with German separators (`1.234.567,891`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

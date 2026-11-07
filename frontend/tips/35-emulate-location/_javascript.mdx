@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/javascript/test/emulateLocation.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `assert`, Selenium, and Selenium's BiDi `Emulation` and `Permissions` modules.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 12 to 18) turns on WebDriver BiDi with `enableBidi()`, starts Chrome, creates the
+`Emulation` module, and keeps the window handle of the current tab in `tab`. The overrides apply to the browser tabs
+we pass in `contexts`: the current tab, from its window handle. The `afterEach` method (lines 20 to 24) quits the
+browser.
+
+### The Tests
+
+`geolocation` (lines 26 to 37) grants the geolocation permission to the-internet with `setPermission`, so the browser
+doesn't ask the user. Then `setGeolocationOverride` sets the location to Berlin.
+
+Then the test loads the page and clicks the button. The page asks the browser for the location, and shows the
+latitude and longitude of Berlin. The test waits for them and checks them.
+
+`time zone and locale` (lines 39 to 49) sets the time zone with `setTimezoneOverride` and the language with
+`setLocaleOverride`, for the current tab.
+
+Then the test loads the page. The server greets the user in German (`Hallo!`), and the page shows the language
+(`de-DE`), the time zone (`Asia/Tokyo`), the date in German at the time of Tokyo (`Mittwoch, 15. April 2026 um
+21:00`), and the number with German separators (`1.234.567,891`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install them with `npm install`, then run the test by executing `npm test` from the command-line.

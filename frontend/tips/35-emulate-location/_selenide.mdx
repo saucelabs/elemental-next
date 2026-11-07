@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/selenide/src/test/java/com/elemental/selenium/EmulateLocationTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 23 pull in Selenide, JUnit, and the classes of Selenium's BiDi `emulation` and `permissions` modules.
+Selenide drives the browser with Selenium, so the test can use them.
+
+### Setup and Teardown
+
+The `setUp` method (lines 29 to 36) turns on WebDriver BiDi with `enableBiDi()` in the browser capabilities, starts
+the browser with `open()`, creates the `Emulation` module for Selenide's driver (`getWebDriver()`), and keeps the
+window handle of the current tab in `tab`. The overrides apply to the browser tabs we pass in `contexts`: the current
+tab, from its window handle. The `tearDown` method (lines 38 to 41) closes the browser.
+
+### The Tests
+
+`geolocation` (lines 43 to 54) grants the geolocation permission to the-internet with `Permission.setPermission`, so
+the browser doesn't ask the user. Then `setGeolocationOverride` sets the location to Berlin.
+
+Then the test loads the page and clicks the button. The page asks the browser for the location, and shows the
+latitude and longitude of Berlin. `shouldHave` waits for them and checks them.
+
+`timeZoneAndLocale` (lines 56 to 69) sets the time zone with `setTimezoneOverride`. Selenium Java doesn't have a
+method for the locale override yet, so lines 60 and 61 send the BiDi command (`emulation.setLocaleOverride`) with
+`getBiDi().send`.
+
+Then the test loads the page. The server greets the user in German (`Hallo!`), and the page shows the language
+(`de-DE`), the time zone (`Asia/Tokyo`), the date in German at the time of Tokyo (`Mittwoch, 15. April 2026 um
+21:00`), and the number with German separators (`1.234.567,891`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

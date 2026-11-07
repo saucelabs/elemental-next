@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/java/src/test/java/com/elemental/selenium/EmulateLocationTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 21 pull in JUnit, Selenium, and the classes of Selenium's BiDi `emulation` and `permissions` modules.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 28 to 36) turns on WebDriver BiDi with `enableBiDi()`, starts Chrome, creates the
+`Emulation` module, and keeps the window handle of the current tab in `tab`. The overrides apply to the browser tabs
+we pass in `contexts`: the current tab, from its window handle. The `afterEach` method (lines 38 to 43) quits the
+browser.
+
+### The Tests
+
+`geolocation` (lines 45 to 58) grants the geolocation permission to the-internet with `Permission.setPermission`, so
+the browser doesn't ask the user. Then `setGeolocationOverride` sets the location to Berlin.
+
+Then the test loads the page and clicks the button. The page asks the browser for the location, and shows the
+latitude and longitude of Berlin. The test waits for them and checks them.
+
+`timeZoneAndLocale` (lines 60 to 74) sets the time zone with `setTimezoneOverride`. Selenium Java doesn't have a
+method for the locale override yet, so lines 64 and 65 send the BiDi command (`emulation.setLocaleOverride`) with
+`getBiDi().send`.
+
+Then the test loads the page. The server greets the user in German (`Hallo!`), and the page shows the language
+(`de-DE`), the time zone (`Asia/Tokyo`), the date in German at the time of Tokyo (`Mittwoch, 15. April 2026 um
+21:00`), and the number with German separators (`1.234.567,891`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

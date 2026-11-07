@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/csharp/EmulateLocationTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 10 pull in MSTest, Selenium, and Selenium's BiDi `Emulation` and `Permissions` modules. Line 10 names the
+BiDi `BrowsingContext` class (a browser tab) `Tab`, to keep the code short.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 21 to 29) turns on WebDriver BiDi with `UseWebSocketUrl`, starts Chrome, connects to BiDi
+with `AsBiDiAsync`, and keeps the current tab in `_tab`, from its window handle. The overrides apply to the tabs we
+pass in `Contexts`. The `TearDown` method (lines 31 to 39) closes the BiDi connection and quits the browser.
+
+### The Tests
+
+`Geolocation` (lines 41 to 55) grants the geolocation permission to the-internet with `SetPermissionAsync`, so the
+browser doesn't ask the user. Then `SetGeolocationOverrideAsync` sets the location to Berlin.
+
+Then the test loads the page and clicks the button. The page asks the browser for the location, and shows the
+latitude and longitude of Berlin. The test waits for them and checks them.
+
+`TimeZoneAndLocale` (lines 57 to 70) sets the time zone with `SetTimezoneOverrideAsync` and the language with
+`SetLocaleOverrideAsync`, for the current tab.
+
+Then the test loads the page. The server greets the user in German (`Hallo!`), and the page shows the language
+(`de-DE`), the time zone (`Asia/Tokyo`), the date in German at the time of Tokyo (`Mittwoch, 15. April 2026 um
+21:00`), and the number with German separators (`1.234.567,891`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test` from the command-line.
