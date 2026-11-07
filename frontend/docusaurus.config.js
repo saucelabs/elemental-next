@@ -159,15 +159,6 @@ const config = {
     // It also adds the date of the last update and the tools and languages of the <DisplayTips> block of each tip,
     // which the home page uses.
     plugins: [
-        // Sends the old URLs of renamed tips to the new ones, so links to them keep working
-        [
-            '@docusaurus/plugin-client-redirects',
-            {
-                redirects: [
-                    {from: '/tips/66-blacklist', to: '/tips/66-blocklist'},
-                ],
-            },
-        ],
         function metadata(context, options) {
             return {
                 name: 'metadata',
