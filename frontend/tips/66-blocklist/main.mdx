@@ -1,15 +1,15 @@
 ---
 title: 'Block Slow Third-Party Requests'
 card_highlight: 'Block'
-id: '66-blacklist'
-slug: /66-blacklist
+id: '66-blocklist'
+slug: /66-blocklist
 sidebar_label: Block Third-Party Requests
 description: "Pages load resources that are not relevant to the functionality we test (analytics, social widgets, ads). When they load slowly, they slow down our tests or make them fail. WebDriver BiDi lets the test block them."
 number: 66
 hide_table_of_contents: true
 level: 3
 publish_date: 2015-10-20
-image: "img/cards/66-blacklist.png"
+image: "img/cards/66-blocklist.png"
 tags:
   - 'bidi'
   - 'network'
@@ -33,7 +33,7 @@ Block them. With [WebDriver BiDi](https://www.selenium.dev/documentation/webdriv
 the requests the browser sends, before they leave the browser. We tell the browser which URLs to hold, and the test
 fails those requests right away instead of letting them load. Everything else loads as usual.
 
-Older versions of this tip used a proxy server (BrowserMob Proxy) with a block list. The proxy is no longer
+Older versions of this tip used a proxy server (BrowserMob Proxy) with a blocklist. The proxy is no longer
 maintained, and BiDi does the same from the test, with no extra server.
 
 The example uses [the slow resources page](https://the-internet.herokuapp.com/slow) of the-internet. It sends a
