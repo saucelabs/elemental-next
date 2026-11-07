@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/vibium-java/src/test/java/com/elemental/vibium/ControlTheClockTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 9 pull in Vibium (`Browser`, `Page` and `Vibium`) and JUnit.
+
+### Setup and Teardown
+
+Line 12 is the script that counts the toasts in the page. Lines 13 and 14 declare the browser and the page, so every
+method of the class can use them.
+
+The `beforeEach` method (lines 16 to 20) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 22 to 27) runs after each test and closes the
+browser with `browser.stop()`.
+
+### The Test
+
+Lines 29 to 43 are the test itself.
+
+First, `page.clock().install()` replaces the timers of the page with fake ones. They don't move on their own. Then the
+test loads the page and clicks the button, and the toast shows up with its message.
+
+`page.clock().runFor(59000)` moves the clock forward 59 seconds, and runs what was due (nothing yet): the toast is
+still there. One more second runs the callback that hides the toast, and it's gone. The test counts the toasts by
+running the script of line 12 in the page with `evaluate`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
