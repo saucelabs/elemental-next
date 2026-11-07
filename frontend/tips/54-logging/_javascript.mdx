@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"54-logging/code/javascript/test/consoleLogs.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook (lines 8 to 12) turns on WebDriver BiDi with `enableBidi`, and starts Chrome. The `afterEach`
+hook (lines 14 to 18) quits the browser.
+
+### The Test
+
+The test (lines 20 to 38) adds two handlers: `addConsoleMessageHandler` (line 23) gets each console message, and
+`addJavaScriptErrorHandler` (line 24) gets each JavaScript error that the page does not catch. They keep them in two
+lists.
+
+Then it loads [the Network & Console page](https://the-internet.herokuapp.com/network_console) and clicks two
+buttons: one logs a message, a warning and an error to the console, the other throws a JavaScript error. The handlers
+run outside the page, so the test waits up to 5 seconds until they have the 3 console messages and the error. At the
+end, it checks the level and text of each message (they can arrive in any order) and the text of the error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"54-logging/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

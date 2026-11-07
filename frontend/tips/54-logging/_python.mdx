@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"54-logging/code/python/console_logs.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 7 to 14) turns on WebDriver BiDi with `enable_bidi`, and starts Chrome. It `yield`s the
+driver to the test, and quits the browser when the test is done.
+
+### The Test
+
+`test_console_messages_and_errors` (lines 17 to 35) adds two handlers: `add_console_message_handler` (line 20) gets
+each console message, and `add_javascript_error_handler` (line 21) gets each JavaScript error that the page does not
+catch. They keep them in two lists.
+
+Then it loads [the Network & Console page](https://the-internet.herokuapp.com/network_console) and clicks two
+buttons: one logs a message, a warning and an error to the console, the other throws a JavaScript error. The handlers
+run outside the page, so the test waits up to 5 seconds until they have the 3 console messages and the error. At the
+end, it checks the level and text of each message (they can arrive in any order) and the text of the error.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"54-logging/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest console_logs.py` from the
+command-line.
