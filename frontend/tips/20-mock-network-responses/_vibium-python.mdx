@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"20-mock-network-responses/code/vibium-python/mock_responses.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `json` to build the body of the mocked response, `pytest`, and Vibium's `browser`.
+
+### Setup and Teardown
+
+Lines 6 to 10 are a pytest fixture that starts and stops the browser.
+
+It starts the browser with `browser.start()` and gives the test its first page (tab) with `bro.page()`. After the test
+runs, the code after `yield` closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 13 to 24 are the test itself.
+
+The `mock` function (lines 14 and 15) answers a request with `route.fulfill`: a JSON content type and a JSON body with
+the message (the status is `200`). Line 17 registers it with `page.route` for the requests whose URL matches
+`**/slow_api/data?*`. The request never reaches the server. The pattern is a glob: `**` matches the start of the URL, and `?*` matches the query string, which changes with the
+options of the form. The other requests load as usual.
+
+Then the test loads the page and clicks the button. The page calls the API, gets the mocked response, and shows its
+message. `find` waits for the element to exist, so it waits for the answer in the list. The test checks the attempt
+(`200: Hello from the mock`) and the message in the status line.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"20-mock-network-responses/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest mock_responses.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.

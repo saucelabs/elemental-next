@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"20-mock-network-responses/code/java/src/test/java/com/elemental/selenium/MockResponsesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 20 pull in JUnit, Selenium, and the classes of Selenium's BiDi `network` module that build the intercept
+and the mocked response.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 26 to 33) turns on WebDriver BiDi with `enableBiDi()`, starts Chrome, and creates the
+`Network` module. The `afterEach` method (lines 35 to 43) closes the module and quits the browser.
+
+### The Test
+
+Lines 45 to 65 are the test itself.
+
+Line 48 builds the URL pattern of the requests to mock. It has only the host name and the path (`/slow_api/data`), so
+it matches the API calls with any query string. Line 49 adds an intercept for it, in the `BEFORE_REQUEST_SENT` phase:
+the browser pauses the matching requests before it sends them. The other requests load as usual.
+
+`onBeforeRequestSent` (lines 50 to 58) is called for each request. When the request is paused by the intercept
+(`isBlocked`), `provideResponse` answers it: a `200`, a JSON content type, and a JSON body with the message. The
+request never reaches the server.
+
+Then the test loads the page and clicks the button. The page calls the API, gets the mocked response, and shows its
+message. The test waits for the message in the status line, and checks the attempt in the list (`200: Hello from the
+mock`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"20-mock-network-responses/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.
