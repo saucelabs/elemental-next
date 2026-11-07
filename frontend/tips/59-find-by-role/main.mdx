@@ -1,0 +1,99 @@
+---
+title: 'How to Find Elements by Role and Name'
+card_highlight: 'Role and Name'
+id: '59-find-by-role'
+slug: /59-find-by-role
+sidebar_label: Find Elements by Role
+description: "IDs and CSS classes change when the page is redesigned, and many widgets don't have them. The role and the name of an element, as a screen reader announces them, change less often, and finding elements by them also checks that the page is accessible."
+number: 59
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'locators'
+  - 'accessibility'
+  - 'aria'
+category:
+  - 'fundamentals'
+---
+
+# How to Find Elements by Role and Name
+
+## Intro
+
+Locators based on IDs, CSS classes, or the structure of the page break when the page changes, even when it looks and
+works the same for the users. Widgets built from `div`s (a dropdown, a menu, a tab list) often have no useful IDs at
+all.
+
+Users don't see any of that. They see "the Fruit dropdown" and "the Mango option". A screen reader announces the same:
+the role of the element (combobox, option, button, ...) and its accessible name (from its label, its text, or
+`aria-label` / `aria-labelledby`).
+
+## A Solution
+
+Find elements by their role and their accessible name. They change less often than the markup, the test reads like
+what the user does, and when the test can't find an element by its role and name, a screen reader user can't either.
+
+- **Playwright** has `getByRole` (and `getByLabel`, `getByText`, ...).
+- **Selenide** has `byRole` (and `byLabel`).
+- **Vibium** takes a `role` with a `label` or a `text` in `find`.
+- **WebdriverIO** has the `aria/` selector, which finds an element by its accessible name.
+- **Selenium** has no role locator yet, but the browser computes the role and the accessible name of an element for
+  it (`aria_role` and `accessible_name`). A small helper finds the elements with a role and keeps the one with the
+  name.
+
+## Example
+
+The example uses [the custom dropdown page](https://the-internet.herokuapp.com/custom_dropdown) of the-internet. It
+looks like a select list, but it's made of `div`s with ARIA roles: a `combobox`, named "Fruit" by the label next to
+it (`aria-labelledby`), and a list of `option`s.
+
+The test opens the "Fruit" combobox, picks the "Mango" option, and checks that the combobox shows "Mango" and that the
+page shows `Selected: mango`. No IDs needed, except to read the result.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts and loads the page
+- The test finds the combobox named "Fruit" and clicks it, and the list of fruits opens
+- The test finds the option named "Mango" and clicks it
+- The combobox shows "Mango", and the page shows `Selected: mango`
+- The browser closes
+
+## Summary
+
+Finding elements by role and name makes tests read like what the user does, and keeps them working when the markup
+changes. It also catches accessibility bugs early: an element without a role or a name is hard to find for the test,
+and for a screen reader user too.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

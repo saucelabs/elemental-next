@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/webdriverio/test/findByRole.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect` from `@wdio/globals`).
+
+### Setup and Teardown
+
+The WebdriverIO test runner starts the browser before the tests and closes it after them. The browser and the test
+framework (Mocha) are set in the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+### The Test
+
+The test loads the page, and `$('aria/Fruit')` finds the first element whose accessible name is "Fruit": the combobox
+(the list of options has the same name, but comes after it). The test clicks it, and the list of fruits opens. Then
+`$('aria/Mango')` finds the option, and the test clicks it. At the end, `toHaveText` checks that the combobox shows
+"Mango", and that the page shows `Selected: mango`.
+
+The `aria/` selector matches the name only, not the role. When two elements have the same name, use a more specific
+locator for the one you want.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

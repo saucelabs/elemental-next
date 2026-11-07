@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/selenide/src/test/java/com/elemental/selenium/FindByRoleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in Selenide (`$`, `open`, the `exactText` condition and the `byRole` selector) and JUnit.
+
+### Setup and Teardown
+
+Selenide starts the browser when the test opens the first page, and closes it when the tests end. There is no setup or
+teardown code to write.
+
+### The Test
+
+The test loads the page, and `byRole("combobox", "Fruit")` finds the combobox named "Fruit". The test clicks it, and
+the list of fruits opens. Then `byRole("option", "Mango")` finds the option, and the test clicks it. At the end,
+`shouldHave` checks that the combobox shows "Mango", and that the page shows `Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

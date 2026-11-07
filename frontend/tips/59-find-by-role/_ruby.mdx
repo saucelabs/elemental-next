@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/ruby/find_by_role.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `setup` method (lines 5 to 7) starts Firefox. The `teardown` method (lines 9 to 11) quits it, and `run` (lines 13
+to 18) calls them around the test.
+
+### Finding by Role and Name
+
+Selenium has no role locator yet, so the helper `find_by_role` (lines 20 to 26) finds the elements with a `role`
+attribute and keeps the first one with the role and the name we ask for. The browser computes both, as a screen reader
+sees them: `aria_role` returns the role, and `accessible_name` returns the accessible name, which for the combobox
+comes from the label next to it (`aria-labelledby`). When no element matches, the helper fails with a clear message.
+
+### The Test
+
+The test loads the page, finds the combobox named "Fruit" and clicks it, and the list of fruits opens. Then it finds
+the option named "Mango" and clicks it. At the end, it checks that the combobox shows "Mango", and that the page shows
+`Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby find_by_role.rb` from the command-line.

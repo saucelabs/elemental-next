@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/java/src/test/java/com/elemental/selenium/FindByRoleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in JUnit and Selenium.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 16 to 19) starts Firefox, and the `afterEach` method (lines 21 to 26) quits it.
+
+### Finding by Role and Name
+
+Selenium has no role locator yet, so the helper `findByRole` (lines 28 to 36) finds the elements with a `role`
+attribute and keeps the first one with the role and the name we ask for. The browser computes both, as a screen reader
+sees them: `getAriaRole()` returns the role, and `getAccessibleName()` returns the accessible name, which for the
+combobox comes from the label next to it (`aria-labelledby`). When no element matches, the helper fails with a clear
+message.
+
+### The Test
+
+The test loads the page, finds the combobox named "Fruit" and clicks it, and the list of fruits opens. Then it finds
+the option named "Mango" and clicks it. At the end, it checks that the combobox shows "Mango", and that the page shows
+`Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

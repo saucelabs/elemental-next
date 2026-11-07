@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/vibium-java/src/test/java/com/elemental/vibium/FindByRoleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Vibium (`Browser`, `Page`, `Vibium` and the `SelectorOptions` to find by role) and JUnit.
+
+### Setup and Teardown
+
+Lines 13 and 14 declare the browser and the page, so every method of the class can use them.
+
+The `beforeEach` method (lines 16 to 20) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 22 to 27) runs after each test and closes the
+browser with `browser.stop()`.
+
+### The Test
+
+The test loads the page, and `page.find(new SelectorOptions().role("combobox").label("Fruit"))` finds the combobox
+labelled "Fruit". The test clicks it, and the list of fruits opens. Then `new
+SelectorOptions().role("option").text("Mango")` finds the option with the text "Mango", and the test clicks it. At the
+end, the test checks that the combobox shows "Mango", and that the page shows `Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.
