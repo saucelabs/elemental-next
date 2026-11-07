@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"69-safari/code/python/safari.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### macOS Only
+
+Safari runs on macOS only, so `pytestmark` (lines 6 and 7) skips the test on Windows and Linux.
+
+### Setup and Teardown
+
+The `driver` fixture (lines 10 to 14) starts Safari with `webdriver.Safari()`. Selenium finds `safaridriver`, which
+comes with macOS, so there is nothing to download. The fixture `yield`s the driver to the test, and quits the browser
+when the test is done.
+
+### The Test
+
+`test_page_loaded` (lines 17 to 21) loads the page, prints the name and version of the browser from the capabilities
+of the session, and checks the title of the page.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"69-safari/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest safari.py` from the
+command-line.

@@ -1,61 +1,36 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Run the following command on the terminal:
+## TL;DR - Show Me The Code
 
-`$  /usr/bin/safaridriver --enable`
+<TipCode codePath={"69-safari/code/java/src/test/java/com/elemental/selenium/SafariTest.java"} language={"java"}/>
 
-After that, make sure it's enabled. To do that:
+## Code Walkthrough
 
-1. open `Safari`
-2. go to `Develop`
-3. click on `Allow Remote Automations`
+### macOS Only
 
-Let's wire up a simple test, so we can see that everything works as expected.
+Safari runs on macOS only, so `@EnabledOnOs(OS.MAC)` (lines 12 and 13) skips the test on Windows and Linux.
 
-## Expected Behavior
+### Setup and Teardown
 
-Let's wire up a simple test, so we can see that everything works as expected.
+The `beforeEach` method (lines 17 to 20) starts Safari with `new SafariDriver()`. Selenium finds `safaridriver`,
+which comes with macOS, so there is nothing to download. The `afterEach` method (lines 22 to 27) quits the browser.
 
-```java
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+### The Test
 
-public class Safari {
-    WebDriver driver;
+`pageLoaded` (lines 29 to 36) loads the page, prints the name and version of the browser from the capabilities of the
+session, and checks the title of the page.
 
-    @Before
-    public void setUp() throws Exception {
-        driver = new SafariDriver();
-    }
+### Executing the Test
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
 
-    @Test
-    public void dropdownTest() {
-        driver.get("http://the-internet.herokuapp.com/");
-        String title = driver.getTitle();
-        assertThat(title, is(equalTo("The Internet")));
-    }
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"69-safari/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
 
-}
-```
+Finally, we can run the test by executing `mvn test` from the command-line.
 
-When we run the test, we should see a successful communication between Selenium and Safari.
-
-## Summary
-
-Keep in mind that Safari can load without you realizing it (since it doesn't obtain focus when launching with Selenium). When that happens you'll need to switch to Safari in order to see what the test is doing.
-
-And if you're running Safari on a remote node (or set of nodes), you'll need to install and enable the SafariDriver browser extension on each of them.
-
-Thanks to [Roman Isko](https://github.com/sturman) for contributing the initial code for this tip.
-
-Happy Testing!
+Thanks to [Roman Isko](https://github.com/sturman) for contributing the first Java code for this tip.

@@ -1,68 +1,35 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-Run the following command on the terminal:
+## TL;DR - Show Me The Code
 
-`$  /usr/bin/safaridriver --enable`
+<TipCode codePath={"69-safari/code/ruby/safari.rb"} language={"ruby"}/>
 
-After that, make sure it's enabled. To do that:
+## Code Walkthrough
 
-1. open `Safari`
-2. go to `Develop`
-3. click on `Allow Remote Automations`
+### macOS Only
 
+Safari runs on macOS only, so lines 5 to 9 skip the test on Windows and Linux.
 
-Now if we open up an interactive Ruby terminal (e.g., `irb`) and launch a Selenium instance, here's what we'd see.
+### Setup and Teardown
 
-```sh
-> irb
-irb(main):001:0> require 'selenium-webdriver'
-irb(main):002:0> driver = Selenium::WebDriver.for :safari
-```
+The `setup` method (lines 11 to 13) starts Safari with `Selenium::WebDriver.for :safari`. Selenium finds
+`safaridriver`, which comes with macOS, so there is nothing to download. The `teardown` method (lines 15 to 17) quits
+the browser, and `run` (lines 19 to 24) calls them around the test.
 
-A successful communication between Safari and the Selenium Driver extension has occurred.
+### The Test
 
-Now let's wire up a simple test, so we can see that everything works as expect.
+The test (lines 26 to 32) loads the page, prints the name and version of the browser from the capabilities of the
+session, and checks the title of the page.
 
-```ruby
-# filename: safari.rb
+### Executing the Test
 
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
 
-def setup
-  @driver = Selenium::WebDriver.for :safari
-end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"69-safari/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
 
-def teardown
-  @driver.quit
-end
-
-def run
-  setup
-  yield
-  teardown
-end
-
-run do
-  @driver.get 'http://the-internet.herokuapp.com'
-  expect(@driver.title).to eql 'The Internet'
-end
-```
-
-## Expected Behavior
-
-When you save the file and run it (e.g., `ruby safari.rb` from the command-line), here is what will happen:
-
-+ Safari opens
-+ The home page of [the-internet](http://github.com/saucelabs/the-internet) loads
-+ The title of the page is checked to make sure it's what we expect
-+ Safari closes
-
-## Summary
-
-Keep in mind that Safari can load without you realizing it (since it doesn't obtain focus when launching with Selenium). When that happens you'll need to switch to Safari in order to see what the test is doing.
-
-And if you're running Safari on a remote node (or set of nodes), you'll need to install and enable the SafariDriver browser extension on each of them.
-
-Happy Testing!
+Install them with `bundle install`, then run the test by executing `ruby safari.rb` from the command-line.
