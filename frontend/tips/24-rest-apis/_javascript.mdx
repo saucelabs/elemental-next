@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"24-rest-apis/code/javascript/test/restApis.spec.js"} language={"javascript"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+`post` (lines 8 to 14) sends the user name and the password as JSON to a path of the API, with the `fetch` of
+Node.js.
+
+The `beforeEach` function (lines 20 to 26) creates the user. The name has a random part (`randomUUID`), so tests
+that run at the same time don't share a user. It checks the `201`, and starts Chrome. The `afterEach` function
+(lines 28 to 33) quits the browser and deletes the user, even when the test fails.
+
+### The Tests
+
+`loggedInUser` (lines 35 to 39) waits until the secure area shows the user name, and returns it.
+
+The first test (lines 41 to 47) opens the login page, types the user name and the password, submits the form, and checks the name in the
+secure area.
+
+The second test (lines 49 to 60) posts the same JSON to `/api/sessions`, and takes the value of the `rack.session`
+cookie from the `set-cookie` header. The browser accepts cookies only for the site it shows, so the test opens the login page first, adds the cookie, and
+then opens the secure area directly.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running `npm install` from
+the command-line.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"24-rest-apis/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the tests by executing `npm test` from the command-line.

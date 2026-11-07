@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"24-rest-apis/code/java/src/test/java/com/elemental/selenium/RestApisTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 27 to 34) creates the user with the HTTP client of Java (`java.net.http`). The name
+has a random part (`UUID`), so tests that run at the same time don't share a user. It checks the `201`, and starts
+Chrome. The `afterEach` method (lines 36 to 43) quits the browser and deletes the user, even when the test fails.
+
+`post` (lines 45 to 52) sends the user name and the password as JSON to a path of the API.
+
+### The Tests
+
+`loggedInUser` (lines 54 to 57) waits until the secure area shows the user name, and returns it.
+
+`logInWithANewUser` (lines 59 to 66) opens the login page, types the user name and the password, submits the form, and checks the name in the
+secure area.
+
+`skipTheLoginForm` (lines 68 to 80) posts the same JSON to `/api/sessions`, and takes the value of the
+`rack.session` cookie from the `Set-Cookie` header. The browser accepts cookies only for the site it shows, so the test opens the login page first, adds the cookie, and
+then opens the secure area directly.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"24-rest-apis/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line.

@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"24-rest-apis/code/python/rest_apis.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 14 to 18) starts Chrome, and quits it when the test is done.
+
+The `user` fixture (lines 21 to 28) creates the user with [requests](https://requests.readthedocs.io/). The name has
+a random part (`uuid4`), so tests that run at the same time don't share a user. It posts the JSON to `/api/users`,
+checks the `201`, and `yield`s the name to the test. After the test, even when it fails, it deletes the user.
+
+### The Tests
+
+`logged_in_user` (lines 31 to 33) waits until the secure area shows the user name, and returns it.
+
+`test_log_in_with_a_new_user` (lines 36 to 41) opens the login page, types the user name and the password, submits the form, and checks the name in the
+secure area.
+
+`test_skip_the_login_form` (lines 44 to 51) posts the same JSON to `/api/sessions`, and reads the `rack.session`
+cookie from the response. The browser accepts cookies only for the site it shows, so the test opens the login page first, adds the cookie, and
+then opens the secure area directly.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"24-rest-apis/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the tests by executing `pytest rest_apis.py` from the
+command-line.
