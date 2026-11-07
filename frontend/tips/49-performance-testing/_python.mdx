@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"49-performance-testing/code/python/performance.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### The Timings Script
+
+`TIMINGS` (lines 4 to 12) is the JavaScript the test runs in the page. It reads the navigation entry of the
+[Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Navigation_timing), and
+returns three of its values, in milliseconds since the navigation started: when the first byte of the page arrived
+(`responseStart`), when the HTML was parsed (`domContentLoadedEventEnd`), and when the page and its images, styles
+and scripts finished loading (`loadEventEnd`). `LOAD_BUDGET_MS` (line 13) is our budget for the load: 10 seconds.
+
+### Setup and Teardown
+
+The `driver` fixture (lines 16 to 20) starts Chrome. It `yield`s the driver to the test, and quits the browser when
+the test is done.
+
+### The Test
+
+`test_page_loads_within_budget` (lines 23 to 29) loads the page, runs the script with `execute_script`, and prints
+the three values. Then it checks that the load is within the budget. The load is 0 while the page is still loading,
+so the test also checks that it is greater than 0.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"49-performance-testing/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest performance.py` from the
+command-line.

@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"49-performance-testing/code/javascript/test/performance.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### The Timings Script
+
+`TIMINGS` (lines 4 to 12) is the JavaScript the test runs in the page. It reads the navigation entry of the
+[Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Navigation_timing), and
+returns three of its values, in milliseconds since the navigation started: when the first byte of the page arrived
+(`responseStart`), when the HTML was parsed (`domContentLoadedEventEnd`), and when the page and its images, styles
+and scripts finished loading (`loadEventEnd`). `LOAD_BUDGET_MS` (line 13) is our budget for the load: 10 seconds.
+
+### Setup and Teardown
+
+The `beforeEach` hook (lines 18 to 20) starts Chrome, and the `afterEach` hook (lines 22 to 26) quits it.
+
+### The Test
+
+The test (lines 28 to 35) loads the page, runs the script with `executeScript`, and prints the three values. Then it
+checks that the load is within the budget. The load is 0 while the page is still loading, so the test also checks
+that it is greater than 0.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"49-performance-testing/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

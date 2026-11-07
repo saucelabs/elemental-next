@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"49-performance-testing/code/java/src/test/java/com/elemental/selenium/PerformanceTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### The Timings Script
+
+`TIMINGS` (lines 11 to 19) is the JavaScript the test runs in the page. It reads the navigation entry of the
+[Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Navigation_timing), and
+returns three of its values, in milliseconds since the navigation started: when the first byte of the page arrived
+(`responseStart`), when the HTML was parsed (`domContentLoadedEventEnd`), and when the page and its images, styles
+and scripts finished loading (`loadEventEnd`). `LOAD_BUDGET_MS` (line 20) is our budget for the load: 10 seconds.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 23 to 26) starts Chrome, and the `afterEach` method (lines 28 to 33) quits it.
+
+### The Test
+
+`pageLoadsWithinBudget` (lines 35 to 46) loads the page, runs the script with `executeScript`, and prints the three
+values. Then it checks that the load is within the budget. The load is 0 while the page is still loading, so the test
+also checks that it is greater than 0. The script returns a JavaScript object, which Selenium turns into a `Map`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"49-performance-testing/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
