@@ -7,7 +7,7 @@ test.beforeEach(async ({page}) => {
 test('finds the first link on the page', async ({page}) => {
     const link = await page.locator('a').first().getAttribute('href');
     console.log(link);
-    expect(link).toContain('github.com');
+    expect(link).toContain('#content');
 });
 
 test('finds the first link in the content', async ({page}) => {

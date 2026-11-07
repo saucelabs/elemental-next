@@ -20,7 +20,7 @@ namespace PlaywrightTests
         {
             string link = await Page.Locator("a").First.GetAttributeAsync("href");
             Console.WriteLine(link);
-            Assert.IsTrue(link.Contains("github.com"));
+            Assert.IsTrue(link.Contains("#content"));
         }
 
         [TestMethod]

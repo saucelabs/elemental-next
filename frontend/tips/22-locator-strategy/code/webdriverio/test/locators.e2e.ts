@@ -8,7 +8,7 @@ describe('Locator Strategy', () => {
     it('finds the first link on the page', async () => {
         const link = await $$('a')[0].getAttribute('href');
         console.log(link);
-        expect(link).toContain('github.com');
+        expect(link).toContain('#content');
     });
 
     it('finds the first link in the content', async () => {

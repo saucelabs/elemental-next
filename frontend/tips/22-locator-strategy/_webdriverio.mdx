@@ -22,7 +22,7 @@ In WebdriverIO 10, `$` is strict: it fails when the selector matches more than o
 silently pick the wrong one. Here every selector matches many links, and we want the first one, so we use `$$`
 (all the matches) and take the first with `[0]`.
 
-- Lines 8 to 12 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not
+- Lines 8 to 12 use `a`, which matches every link on the page. The first one is the "Skip to content" link, not
   what we're after.
 - Lines 14 to 18 scope the selector to the content of the page (`#content a`). The first match is a download link.
 - Lines 20 to 24 scope it further, to the example (`#content .example a`). It's still a download link, and the

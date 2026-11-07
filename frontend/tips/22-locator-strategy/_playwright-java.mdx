@@ -14,7 +14,7 @@ runs before each test and visits the download page. It gets the same `Page` as t
 Each test finds the first link with a locator that is a bit more specific than the one before, reads its `href` and
 checks where it points:
 
-- Lines 19 to 23 use `a`, which matches every link on the page. The first one is the "Fork me on GitHub" banner, not the
+- Lines 19 to 23 use `a`, which matches every link on the page. The first one is the "Skip to content" link, not the
   link we want.
 - Lines 26 to 30 look only inside the `#content` element, which gets us one of the download links.
 - Lines 33 to 37 go one step further, into the `.example` element inside `#content`.

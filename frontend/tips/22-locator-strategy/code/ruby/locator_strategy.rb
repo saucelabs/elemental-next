@@ -21,7 +21,7 @@ end
 run do
   link = @driver.find_element(css: 'a').attribute('href')
   puts link
-  expect(link).to match(/github\.com/)
+  expect(link).to match(/#content/)
 end
 
 # The first link in the content

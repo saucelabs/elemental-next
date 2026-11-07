@@ -20,7 +20,7 @@ The `beforeEach` method (lines 8 to 11) starts the browser and gets its first pa
 Each test visits the download page and finds a link with a CSS selector. `page.find` returns the first element that
 matches, and `attr('href')` reads where the link goes. We print it and check it.
 
-- Lines 17 to 22 look for any link on the page (`a`). The first one on the page is the "Fork me on GitHub" banner,
+- Lines 17 to 22 look for any link on the page (`a`). The first one on the page is the "Skip to content" link,
   which is not the link we want.
 - Lines 24 to 29 narrow the search to the content of the page (`#content a`). That finds a file link.
 - Lines 31 to 36 narrow it further to the list of files (`#content .example a`). This selector says exactly where

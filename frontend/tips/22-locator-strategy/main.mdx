@@ -47,7 +47,8 @@ With the markup below (taken from [the file download example](https://the-intern
 of links with varying degrees of precision via CSS Selectors.
 
 ```html
-<a href="https://github.com/saucelabs/the-internet"><img ... alt="Fork me on GitHub"></a>
+<a class="skip-link" href="#content">Skip to content</a>
+<a class="home-link" href="/" aria-label="The Internet: home"></a>
 <div class="row">
   <div id="content" class="large-12 columns">
     <div class="example">
@@ -64,7 +65,8 @@ Selenium works by first finding the element you want and then chaining additiona
 tests finds a link with a different CSS selector, outputs its URL, and checks where it points to:
 
 - `a` is a selector for a link. Of all the links on the page Selenium returns the first one, which is the
-  __Fork me on GitHub__ banner, not a download link. Not quite what we want.
+  __Skip to content__ link (a link for keyboard users that is hidden until it gets focus), not a download link. Not
+  quite what we want.
 - `#content a` is more precise. `#content` is a selector for an HTML element with `id="content"`, and chaining it
   with `a` (separated by a space) grabs the first link from within the content div on the page.
 - `#content .example a` scopes down even further. `.example` is a selector for an HTML element with

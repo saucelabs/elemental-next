@@ -21,7 +21,7 @@ closes it when the tests finish, so we don't need a teardown.
 Each test finds the first link (`a`) in a smaller part of the page, and checks where it points with
 `attributeMatching`, which compares the `href` against a regular expression:
 
-- Lines 17 to 19 use `a`. The first link on the page is the "Fork me on GitHub" banner, so it points to `github.com`,
+- Lines 17 to 19 use `a`. The first link on the page is the "Skip to content" link, so it points to `#content`,
   not to a file.
 - Lines 22 to 24 use `#content a`. Limiting the search to the content of the page finds the first file to download.
 - Lines 27 to 29 use `#content .example a`, which is even more specific. It also finds the first file, and it keeps

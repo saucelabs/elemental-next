@@ -30,7 +30,7 @@ public class LocatorsTest {
         page.go("https://the-internet.herokuapp.com/download");
         String link = page.find("a").attr("href");
         System.out.println(link);
-        Assertions.assertTrue(link.contains("github.com"));
+        Assertions.assertTrue(link.contains("#content"));
     }
 
     @Test

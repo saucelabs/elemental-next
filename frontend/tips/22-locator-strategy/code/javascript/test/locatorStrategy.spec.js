@@ -16,7 +16,7 @@ describe("Locator Strategy", function () {
     it("finds the first link on the page", async function () {
         const link = await driver.findElement(By.css("a")).getAttribute("href");
         console.log(link);
-        assert(link.includes("github.com"));
+        assert(link.includes("#content"));
     });
 
     it("finds the first link in the content", async function () {

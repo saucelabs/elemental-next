@@ -28,7 +28,7 @@ public class LocatorStrategyTest {
     public void firstLinkOnThePage() {
         String link = driver.findElement(By.cssSelector("a")).getDomProperty("href");
         System.out.println(link);
-        Assertions.assertTrue(link.contains("github.com"));
+        Assertions.assertTrue(link.contains("#content"));
     }
 
     @Test
