@@ -4,7 +4,7 @@ card_highlight: 'Performance'
 id: '49-performance-testing'
 slug: /49-performance-testing
 sidebar_label: How to Do Performance Testing
-description: "Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New Relic). This goes a long way towards identifying when something detrimental has been released into the wild."
+description: "Most production applications have some kind of performance monitoring. But how do we catch a slow page before it reaches production? The browser measures every page load, and our Selenium tests can read and check those numbers."
 number: 49
 hide_table_of_contents: true
 level: 3
@@ -12,9 +12,7 @@ publish_date: 2014-05-06
 image: "img/cards/49-performance-testing.png"
 tags:
   - 'performance testing'
-  - 'proxy'
-  - 'browsermob-proxy'
-  - 'yslow'
+  - 'navigation timing'
 category: 'fundamentals'
 ---
 
@@ -22,25 +20,57 @@ category: 'fundamentals'
 
 ## Intro
 
-Odds are pretty good that your production application has some kind of performance monitoring in place (e.g., New
-Relic). This goes a long way towards identifying when something detrimental has been released into the wild.
+Odds are pretty good that our production application has some kind of performance monitoring in place. This goes a
+long way towards finding out when something slow has been released into the wild.
 
-But how do you catch performance issues before they reach production?
+But how do we catch performance issues before they reach production?
 
 ## A Solution
 
-By repurposing a Selenium script, we can run it through a proxy server and capture the HTTP traffic. With this
-traffic, we can run some simple checks to see if the application's performance has degraded.
+Let our Selenium tests check how fast the pages load. The browser already measures every page load, step by step,
+with the [Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Navigation_timing).
+A test can read these numbers with a line of JavaScript, and check them against a budget: for example, the page
+must finish loading in less than 10 seconds.
 
-Let's dig in with an example.
+The API works in every modern browser, so the same check runs in Chrome, Edge, Firefox and Safari. And since the
+numbers come from the browser, they include what the user waits for: the server, the network, and the time to load
+the images, styles and scripts of the page.
 
+Older versions of this tip captured the traffic with a proxy server (BrowserMob Proxy) and graded it with YSlow.
+Both are no longer maintained.
 
+Let's continue with an example.
+
+## Example
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
+
+## Expected Behavior
+
+- Chrome starts
+- The test loads the page
+- The test reads the page load timings from the browser and prints them
+- The test checks that the page loaded within the budget
+- Chrome closes
+
+## Summary
+
+A budget check in our tests catches the release that makes a page much slower. Keep the budget loose enough for
+the machines our tests run on (a CI server is often slower than our laptop), and keep in mind that one page load is
+one sample: the numbers change from run to run.
+
+For a deeper look at a page, [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview) grades its
+performance, accessibility and best practices, and can run from the command-line or in CI.
+
+Happy Testing!
 
 ## Authors
 

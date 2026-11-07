@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"49-performance-testing/code/csharp/PerformanceTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### The Timings Script
+
+`Timings` (lines 11 to 19) is the JavaScript the test runs in the page. It reads the navigation entry of the
+[Navigation Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Navigation_timing), and
+returns three of its values, in milliseconds since the navigation started: when the first byte of the page arrived
+(`responseStart`), when the HTML was parsed (`domContentLoadedEventEnd`), and when the page and its images, styles
+and scripts finished loading (`loadEventEnd`). `LoadBudgetMs` (line 20) is our budget for the load: 10 seconds.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 23 to 27) starts Chrome, and the `TearDown` method (lines 29 to 33) quits it.
+
+### The Test
+
+`PageLoadsWithinBudget` (lines 35 to 46) loads the page, runs the script with `ExecuteScript`, and prints the three
+values. Then it checks that the load is within the budget. The load is 0 while the page is still loading, so the test
+also checks that it is greater than 0. The script returns a JavaScript object, which Selenium turns into a
+`Dictionary`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"49-performance-testing/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
