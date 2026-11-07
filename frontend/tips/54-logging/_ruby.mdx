@@ -1,161 +1,36 @@
-## Example
+import TipCode from "@site/src/components/tipCode";
 
-First, we'll need to [download a copy of Selenium Server](https://www.selenium.dev/downloads/) and launch it.
+## TL;DR - Show Me The Code
 
-```sh
-java -jar selenium-server-4.8.2.jar standalone
-```
+<TipCode codePath={"54-logging/code/ruby/console_logs.rb"} language={"ruby"}/>
 
-Next, we'll want to create a mechanism to access the Selenium Server logs through the WebDriver Wire Protocol via an 
-HTTP library -- filtering out the logs we don't want and return the most recent one.
+## Code Walkthrough
 
-```ruby
-# filename: logger.rb
+### Setup and Teardown
 
-require 'rest-client'
-require 'json'
+The `setup` method (lines 5 to 10) turns on WebDriver BiDi with `web_socket_url`, and starts Chrome. The `teardown`
+method (lines 12 to 14) quits the browser, and `run` (lines 16 to 21) calls them around the test.
 
-class Logger
+### The Test
 
-  def initialize(session_id)
-    @session_id = session_id
-  end
+The test (lines 23 to 42) adds two handlers: `add_console_message_handler` (line 26) gets each console message, and
+`add_javascript_error_handler` (line 27) gets each JavaScript error that the page does not catch. They keep them in
+two lists.
 
-  def latest
-    parse(fetch).last
-  end
+Then it loads [the Network & Console page](https://the-internet.herokuapp.com/network_console) and clicks two
+buttons: one logs a message, a warning and an error to the console, the other throws a JavaScript error. The handlers
+run outside the page, so the test waits up to 5 seconds until they have the 3 console messages and the error. At the
+end, it checks the level and text of each message (they can arrive in any order) and the text of the error.
 
-  private
+### Executing the Test
 
-  def fetch
-    RestClient.post(
-      "http://127.0.0.1:4444/wd/hub/session/#{@session_id}/log",
-      { "type" => "client" }.to_json,
-      content_type: :json,
-      accept: :json
-    )
-  end
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
 
-  def parse(input)
-    logs = JSON.parse(input)
-    messages = []
-    logs["value"].each do |entry|
-      msg = entry["message"]
-      unless msg.include? "session:" or
-        msg.include? "fetching logs" or
-          msg.include? "execute script"
-            messages << msg.scan(/handle(.*)$/)[-1][-1]
-      end
-    end
-    messages
-  end
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"54-logging/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
 
-end
-```
-
-A couple of things to note.
-
-The `session_id` will come from the instance of Selenium that gets created in our test (via Selenium Grid). To see 
-your sessions, navigate to the instance in your web browser (http://localhost:4444/) and then click Sessions in the 
-side panel. This session ID maps to a URI endpoint on the Selenium Server that we use to get the logging payload 
-with an HTTP POST (see `fetch`). We are then taking that payload (which comes back as a JSON object in String form) 
-and parsing it into JSON, iterating through it, grabbing the relevant bits we want (see `parse`). When that's all 
-done, we return the last entry found (see `latest`).
-
-And of [all the available log types we can access](https://code.google.com/p/selenium/wiki/Logging#Log_Types), we're grabbing the client logs 
-(which will give us the real time actions taken in our test).
-
-__NOTE: Each time we access the logs, it will clear the cache of logs. So the next time we access them, it will 
-only return new entries.__
-
-Now we're ready to wire up our test to use the Selenium Server, access our logger class, and output the latest 
-log entries after each Selenium action.
-
-```ruby
-# filename: log_test.rb
-
-require 'selenium-webdriver'
-require 'rspec/expectations'
-include RSpec::Matchers
-require_relative 'logger'
-
-def setup
-  @driver = Selenium::WebDriver.for :remote, url: 'http://127.0.0.1:4444/wd/hub'
-  @logger = Logger.new(@driver.session_id)
-end
-
-def teardown
-  @driver.quit
-end
-
-def run
-  setup
-  yield
-  teardown
-end
-
-run do
-  @driver.get 'https://the-internet.herokuapp.com'
-  puts @logger.latest
-  @driver.find_elements(css: 'a').last.click
-  puts @logger.latest
-end
-```
-
-When we run this (e.g., `ruby log_test.rb`), here's what we should see.
-
-```sh
- Done: [get: http://the-internet.herokuapp.com]
- Done: [click: 23 [[FirefoxDriver: firefox on MAC (2afa5f83-1aba-ad43-b1f3-9b4907ae9471)] -> css selector: a]]
-```
-
-If we couple this with jQuery Growl Notifications ([covered in the last tip](https://elementalselenium.com/docs/growl/53-growl)) 
-then we can really put this information to work.
-
-Let's add some helper methods to add jQuery Growl to the page and display notification messages.
-
-```ruby
-def add_growl_notifications
-  @driver.execute_script("if (!window.jQuery) {
-      var jquery = document.createElement('script'); jquery.type = 'text/javascript';
-      jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js';
-      document.getElementsByTagName('head')[0].appendChild(jquery);
-    }")
-
-  @driver.execute_script("$.getScript('http://the-internet.herokuapp.com/js/vendor/jquery.growl.js')")
-
-  @driver.execute_script("$('head').append('<link rel=\"stylesheet\" href=\"http://the-internet.herokuapp.com/css/jquery.growl.css\" type=\"text/css\" />');")
-end
-
-def display_growl_message(message)
-  @driver.execute_script("$.growl({ title: 'Selenium', message: '#{message}' });")
-  sleep 2
-end
-```
-
-Now let's update our test to perform an action and then display it through jQuery Growl notifications.
-
-```ruby
-run do
-  @driver.get 'http://the-internet.herokuapp.com'
-  add_growl_notifications
-  display_growl_message(@logger.latest)
-end
-```
-
-When we run this (e.g., `ruby log_test.rb`), we should see the latest log action appear in a growl notification within 
-the browser window.
-
-
-## Expected Behavior
-
-+ Load the browser
-+ Take an action
-+ Grab the action from the logs
-+ Display the action
-
-## Summary
-
-Hopefully that was a helpful tip on how to get browser-agnostic, real-time logging information.
-
-Happy Testing!
+Install them with `bundle install`, then run the test by executing `ruby console_logs.rb` from the command-line.

@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"54-logging/code/csharp/ConsoleLogsTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp` method (lines 19 to 26) turns on WebDriver BiDi with `UseWebSocketUrl`, starts Chrome, and connects to
+BiDi with `AsBiDiAsync`. The `TearDown` method (lines 28 to 36) closes the BiDi connection and quits the browser.
+
+### The Test
+
+`ConsoleMessagesAndErrors` (lines 38 to 69) subscribes to the log entries of the browser (`Log.EntryAdded`, lines 43
+to 53). A `ConsoleEntryAddedEventArgs` is a console message, and a `JavascriptEntryAddedEventArgs` is a JavaScript
+error that the page does not catch. The test keeps them in two lists.
+
+Then it loads [the Network & Console page](https://the-internet.herokuapp.com/network_console) and clicks two
+buttons: one logs a message, a warning and an error to the console, the other throws a JavaScript error. The handlers
+run outside the page, so the test waits up to 5 seconds until they have the 3 console messages and the error. At the
+end, it checks the level and text of each message (they can arrive in any order) and the text of the error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"54-logging/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

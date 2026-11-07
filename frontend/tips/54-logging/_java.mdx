@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"54-logging/code/java/src/test/java/com/elemental/selenium/ConsoleLogsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 21 to 28) turns on WebDriver BiDi with `enableBiDi`, starts Chrome, and creates a
+`LogInspector` to get the logs of the browser. The `afterEach` method (lines 30 to 38) closes it and quits the
+browser.
+
+### The Test
+
+`consoleMessagesAndErrors` (lines 40 to 59) adds two handlers: `onConsoleEntry` (line 44) gets each console message,
+and `onJavaScriptException` (line 45) gets each JavaScript error that the page does not catch. They keep them in two
+lists.
+
+Then it loads [the Network & Console page](https://the-internet.herokuapp.com/network_console) and clicks two
+buttons: one logs a message, a warning and an error to the console, the other throws a JavaScript error. The handlers
+run outside the page, so the test waits up to 5 seconds until they have the 3 console messages and the error. At the
+end, it checks the level and text of each message (they can arrive in any order) and the text of the error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"54-logging/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.

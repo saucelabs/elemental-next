@@ -1,10 +1,10 @@
 ---
-title: "How to Access Selenium Logs in Real-Time"
-card_highlight: 'Selenium Logs'
+title: "How to Capture Console Logs and JavaScript Errors"
+card_highlight: 'Console Logs'
 id: "54-logging"
 slug: /54-logging
-sidebar_label: "How to Access Selenium Logs in Real-Time"
-description: "Logging is a deep rabbit hole to fall down in Selenium. The documentation isn't complete and the approach for each of the browser and language bindings is inconsistent and hard to find examples for."
+sidebar_label: "Capture Console Logs and Errors"
+description: "A page that logs an error to the console, or throws a JavaScript error, can look fine while it is broken. With WebDriver BiDi, the test gets the console messages and the errors of the page as they happen, and can check them."
 hide_table_of_contents: true
 number: 54
 publish_date: 2014-06-10
@@ -12,32 +12,64 @@ image: "img/cards/54-logging.png"
 tags:
   - 'logging'
   - 'logs'
-  - 'growl'
-  - 'growl notifications'
+  - 'bidi'
 level: 3
 category:
   - 'troubleshooting'
 ---
 
-# How to Access Selenium Logs in Real-Time
+# How to Capture Console Logs and JavaScript Errors
 
 ## Intro
 
-Logging is a deep rabbit hole to fall down in Selenium. [The documentation](https://code.google.com/p/selenium/wiki/Logging)
-isn't complete and the approach for each of the browser and language bindings is inconsistent and hard to find examples
-for.
+A page can look fine while it is broken: a script fails, logs an error to the console, and a button stops working.
+Our tests check what they see on the page, so they don't notice until much later, if at all. And when a test fails,
+the console of the browser often has the reason.
+
+How do we get the console messages and the JavaScript errors of the page in our tests?
 
 ## A Solution
 
-By accessing what we want through the [WebDriver Wire Protocol](https://code.google.com/p/selenium/wiki/JsonWireProtocol), we can get at the logs we want in a browser
-agnostic way that also gets us the information in real time.
+Use [WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/). With BiDi, the browser sends events
+to the test while the test runs: here, each console message (`console.log`, `console.warn`, `console.error`, ...)
+and each JavaScript error that the page does not catch. The test adds a handler for each kind, and the handlers get
+the messages as they happen.
 
+Older versions of this tip read the logs through the JSON Wire Protocol log endpoint of Selenium Server. That
+endpoint is gone in the W3C protocol, and BiDi works with a local browser, a Grid, and any browser that supports
+BiDi (Chrome, Edge and Firefox).
+
+With the messages in hand, the test can fail when the page logs an error, or print them to explain a failure.
+
+Let's continue with an example.
+
+## Example
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
+
+## Expected Behavior
+
+- Chrome starts with WebDriver BiDi turned on
+- The test adds a handler for console messages and one for JavaScript errors
+- The test loads the page and clicks the buttons that log to the console and throw an error
+- The handlers get 3 console messages and 1 error, and the test checks them
+- Chrome closes
+
+## Summary
+
+Console messages and JavaScript errors tell us what goes wrong inside the page. A common use is to collect the errors
+during every test, and fail the test (or print them) when there are any. Keep in mind that third-party scripts log
+too, so check the messages that come from our own code.
+
+Happy Testing!
 
 ## Authors
 
