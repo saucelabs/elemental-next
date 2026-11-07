@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"68-upload-to-a-remote-browser/code/ruby/upload.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+Lines 7 to 10 skip the test when the Sauce Labs credentials are not set. The `setup` method (lines 12 to 22) asks
+for the latest Chrome on Windows 11. The `sauce:options` carry the credentials and the name of the test on Sauce
+Labs. It connects with `Selenium::WebDriver.for(:remote, ...)`, and line 21 sets the file detector: a lambda that
+returns the path when the file exists on our machine. Ruby remote drivers use the same one by default, so the line
+only makes it visible. The `teardown` method (lines 24 to 26) quits the browser, and `run` (lines 28 to 33) calls
+them around the test.
+
+To use a Selenium Grid instead, only the address changes (e.g., `http://localhost:4444`), and the `sauce:options`
+are not needed.
+
+### The Test
+
+The test (lines 35 to 42) builds the full path of `some-file.txt`, next to the test. Then it visits [the upload page](https://the-internet.herokuapp.com/upload), types the path of the file in the file
+input, submits the form, and checks that the page shows the name of the file.
+When the test types the path (line 39), the file detector sends the file to the remote machine.
+
+### Executing the Test
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables. Then, before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"68-upload-to-a-remote-browser/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `bundle exec ruby upload.rb` from the
+command-line.
