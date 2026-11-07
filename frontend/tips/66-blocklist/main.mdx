@@ -1,0 +1,91 @@
+---
+title: 'Block Slow Third-Party Requests'
+card_highlight: 'Block'
+id: '66-blocklist'
+slug: /66-blocklist
+sidebar_label: Block Third-Party Requests
+description: "Pages load resources that are not relevant to the functionality we test (analytics, social widgets, ads). When they load slowly, they slow down our tests or make them fail. WebDriver BiDi lets the test block them."
+number: 66
+hide_table_of_contents: true
+level: 3
+publish_date: 2015-10-20
+image: "img/cards/66-blocklist.png"
+tags:
+  - 'bidi'
+  - 'network'
+category:
+  - 'troubleshooting'
+---
+
+# How to Block Slow Third-Party Requests
+
+## Intro
+
+Pages load plenty of resources that are not relevant to the functionality we test (e.g., analytics, social widgets,
+ads, chat widgets). They come from servers we don't control, and when they load slowly, they slow down our tests or
+make them fail.
+
+So how do we protect our tests from these things that are outside our control?
+
+## A Solution
+
+Block them. With [WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/), the test can intercept
+the requests the browser sends, before they leave the browser. We tell the browser which URLs to hold, and the test
+fails those requests right away instead of letting them load. Everything else loads as usual.
+
+Older versions of this tip used a proxy server (BrowserMob Proxy) with a blocklist. The proxy is no longer
+maintained, and BiDi does the same from the test, with no extra server.
+
+The example uses [the slow resources page](https://the-internet.herokuapp.com/slow) of the-internet. It sends a
+request (`/slow_external`) that takes 30 seconds to complete. The test blocks it, and checks that the page has no
+requests running a moment later.
+
+Let's continue with an example.
+
+## Example
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+]}/>
+
+## Expected Behavior
+
+- Chrome starts with WebDriver BiDi turned on
+- The test tells the browser to block the requests to `/slow_external`
+- The test loads the page, and the slow request fails right away
+- The page has no requests running, and the test checks that the slow request was blocked
+- Chrome closes
+
+## Summary
+
+Blocking the resources we don't test makes our tests faster and keeps them from failing when a third-party server is
+slow or down. Keep the list short and specific, though: block only what the test does not need, or the page may not
+work as it does for our users.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Dave Piacente"
+    imgSrc={"https://github.com/tourdedave.png"}
+    description={"Original creator of Elemental Selenium"}
+    url={"https://github.com/tourdedave"}
+    author={true}
+/>
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

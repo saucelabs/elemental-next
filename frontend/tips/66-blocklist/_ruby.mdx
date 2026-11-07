@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"66-blocklist/code/ruby/block_requests.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `setup` method (lines 7 to 12) turns on WebDriver BiDi with `web_socket_url`, and starts Chrome. The `teardown`
+method (lines 14 to 16) quits the browser, and `run` (lines 18 to 23) calls them around the test.
+
+### The Test
+
+The test (lines 25 to 42) adds a request handler for the URL of the slow request (`add_request_handler`, lines 27 to
+34). The handler is called for every request, so it acts only on the slow one: it keeps its URL in a list and fails
+it, so the browser never waits for it. Requests to other URLs load as usual.
+
+Then the test loads the page and waits up to 5 seconds until jQuery has no requests running (`jQuery.active` is 0).
+The slow request takes 30 seconds, so the wait passes only when the request is blocked. At the end, the test checks
+that the slow request was blocked.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"66-blocklist/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby block_requests.rb` from the command-line.
