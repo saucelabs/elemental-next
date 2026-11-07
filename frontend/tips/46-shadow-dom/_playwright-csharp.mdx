@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/playwright-csharp/ShadowDomTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in the libraries we need: Playwright's MSTest integration and MSTest itself.
+
+### Setup and Teardown
+
+The test class extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package. `PageTest` handles the browser
+for us: each test gets a fresh browser tab in the `Page` property, and it is closed when the test ends. The
+`OpenPage` method (lines 10 to 14) loads the page before each test.
+
+### The Tests
+
+The first test clicks the button with the usual CSS locator (`#inner-button`). Playwright's CSS locators look inside
+open shadow roots, so the test doesn't name the shadow hosts on the way. Then it checks the text of `#nested-result`.
+
+The second test shows that XPath locators don't look inside shadow roots: the same button, found by XPath, isn't
+there. `ToHaveCountAsync(0)` checks it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.

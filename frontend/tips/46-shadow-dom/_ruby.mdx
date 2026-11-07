@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/ruby/shadow_dom.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `setup` method (lines 5 to 8) starts Firefox and loads the page. The `teardown` method (lines 10 to 12) quits the
+browser, and `run` (lines 14 to 19) calls them around each test.
+
+### The Tests
+
+The first test goes through the shadow roots one at a time. It finds the outer component (`#outer-card`) and gets its
+shadow root with `shadow_root`. Inside it, `find_element` finds the inner component (`#inner-card`), and the test gets
+its shadow root too. Inside that one, it finds the button and clicks it. Inside a shadow root, use CSS selectors:
+XPath doesn't work there.
+
+The page shows the result outside the components, so the test finds `#nested-result` with the driver, as usual, and
+checks its text.
+
+The second test shows the problem: a normal locator for the button finds nothing, because the button is in a shadow
+root. `find_elements` returns an empty list.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby shadow_dom.rb` from the command-line.

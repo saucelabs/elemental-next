@@ -1,0 +1,99 @@
+---
+title: 'How to Find Elements in the Shadow DOM'
+card_highlight: 'Shadow DOM'
+id: '46-shadow-dom'
+slug: /46-shadow-dom
+sidebar_label: Elements in the Shadow DOM
+description: "Web components keep their elements in a shadow root, apart from the rest of the page, so a normal locator doesn't find them. The test has to go through the shadow root, or use a tool whose locators look inside it."
+number: 46
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'shadow dom'
+  - 'web components'
+  - 'locators'
+category:
+  - 'fundamentals'
+---
+
+# How to Find Elements in the Shadow DOM
+
+## Intro
+
+Many pages are built with web components (e.g., design systems, Salesforce Lightning, Ionic). A web component keeps
+its elements in a shadow root: a small DOM tree attached to the component (the shadow host), apart from the rest of
+the page. Its styles and its elements don't leak out, and the page's CSS and scripts don't leak in.
+
+That includes our locators: `#inner-button` finds nothing when the button is in a shadow root, even when it's right
+there on the screen. And a component can contain other components, each with its own shadow root.
+
+## A Solution
+
+Go through the shadow roots, one at a time:
+
+- **Selenium** gets the shadow root of an element (`shadow_root`, `getShadowRoot()`), and finds elements inside it
+  with a CSS selector, like in the page. To reach a nested component, repeat it: host, shadow root, host, shadow
+  root, element.
+- **Selenide** has `shadowCss`, which takes the element and the shadow hosts on the way to it.
+- **Playwright** and **WebdriverIO** look inside open shadow roots on their own, so the usual locator works.
+  WebdriverIO also has `shadow$`, to go one shadow root at a time.
+
+This works for open shadow roots, the most common kind. Closed shadow roots (`mode: 'closed'`) hide their elements
+from the page's scripts too, and only some tools reach them.
+
+Vibium is not part of this tip: its `find` doesn't look inside shadow roots yet.
+
+## Example
+
+The example uses [the advanced shadow DOM page](https://the-internet.herokuapp.com/shadowdom_advanced) of
+the-internet. The `outer-card` component has a shadow root, which contains the `inner-card` component, which has a
+shadow root with a "Click me" button (`#inner-button`). Clicking it changes the text of `#nested-result`, in the
+page.
+
+One test clicks the button and checks the text. The other one shows that a normal locator (or, in Playwright, XPath)
+doesn't find the button.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts and loads the page
+- The test finds the button inside the two shadow roots and clicks it
+- The page shows `You clicked the button in the inner shadow root`, and the test checks it
+- A normal locator (Selenium) or XPath (Playwright) doesn't find the button
+- The browser closes
+
+## Summary
+
+An element in a shadow root needs a way into the shadow root. With Selenium, get the shadow root of each host on the
+way, and use CSS selectors inside it (XPath doesn't work there). With Playwright and WebdriverIO, the usual CSS
+locators look inside on their own.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

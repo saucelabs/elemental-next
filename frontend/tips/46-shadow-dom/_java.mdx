@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/java/src/test/java/com/elemental/selenium/ShadowDomTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in JUnit and Selenium. A shadow root is a `SearchContext`: like the driver, it can find elements.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 15 to 19) starts Firefox and loads the page. The `afterEach` method (lines 21 to 26)
+quits the browser.
+
+### The Tests
+
+The first test goes through the shadow roots one at a time. It finds the outer component (`#outer-card`) and gets its
+shadow root with `getShadowRoot()`. Inside it, `findElement` finds the inner component (`#inner-card`), and the test
+gets its shadow root too. Inside that one, it finds the button and clicks it. Inside a shadow root, use CSS selectors:
+XPath doesn't work there.
+
+The page shows the result outside the components, so the test finds `#nested-result` with the driver, as usual, and
+checks its text.
+
+The second test shows the problem: a normal locator for the button finds nothing, because the button is in a shadow
+root. `findElements` returns an empty list.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

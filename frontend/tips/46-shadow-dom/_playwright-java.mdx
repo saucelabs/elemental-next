@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/playwright-java/src/test/java/com/elemental/playwright/ShadowDomTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in Playwright's assertions, `Page` and JUnit extension, and JUnit.
+
+### Setup and Teardown
+
+Line 10 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. The `openPage` method
+(lines 13 to 16) loads the page before each test.
+
+### The Tests
+
+The first test clicks the button with the usual CSS locator (`#inner-button`). Playwright's CSS locators look inside
+open shadow roots, so the test doesn't name the shadow hosts on the way. Then it checks the text of `#nested-result`.
+
+The second test shows that XPath locators don't look inside shadow roots: the same button, found by XPath, isn't
+there. `hasCount(0)` checks it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.

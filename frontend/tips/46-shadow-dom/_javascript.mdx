@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/javascript/test/shadowDom.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `assert` and Selenium.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 7 to 10) starts Firefox and loads the page. The `afterEach` method (lines 12 to 14)
+quits the browser.
+
+### The Tests
+
+The first test goes through the shadow roots one at a time. It finds the outer component (`#outer-card`) and gets its
+shadow root with `getShadowRoot()`. Inside it, `findElement` finds the inner component (`#inner-card`), and the test
+gets its shadow root too. Inside that one, it finds the button and clicks it. Inside a shadow root, use CSS selectors:
+XPath doesn't work there.
+
+The page shows the result outside the components, so the test finds `#nested-result` with the driver, as usual, and
+checks its text. Each step returns a promise, so the test waits for it (`await`) before the
+next one.
+
+The second test shows the problem: a normal locator for the button finds nothing, because the button is in a shadow
+root. `findElements` returns an empty list.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install them with `npm install`, then run the test by executing `npm test` from the command-line.
