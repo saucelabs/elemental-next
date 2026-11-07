@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"24-rest-apis/code/csharp/RestApisTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp` method (lines 22 to 30) creates the user with `HttpClient`. The name has a random part (`Guid`), so
+tests that run at the same time don't share a user. `PostAsJsonAsync` sends the user name and the password as JSON.
+It checks the `201`, and starts Chrome. The `TearDown` method (lines 32 to 37) quits the browser and deletes the
+user, even when the test fails.
+
+### The Tests
+
+`LoggedInUser` (lines 39 to 44) waits until the secure area shows the user name, and returns it.
+
+`LogInWithANewUser` (lines 46 to 54) opens the login page, types the user name and the password, submits the form, and checks the name in the
+secure area.
+
+`SkipTheLoginForm` (lines 56 to 69) posts the same JSON to `/api/sessions`, and takes the value of the
+`rack.session` cookie from the `Set-Cookie` header. The browser accepts cookies only for the site it shows, so the test opens the login page first, adds the cookie, and
+then opens the secure area directly.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"24-rest-apis/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `dotnet test` from the command-line.

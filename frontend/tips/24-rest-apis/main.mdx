@@ -1,10 +1,10 @@
 ---
-title: 'REST APIs'
+title: 'Fast and Reliable Test Setup with REST APIs'
 card_highlight: 'REST APIs'
 id: '24-rest-apis'
 slug: /24-rest-apis
-sidebar_label: REST APIs
-description: "When we list out the properties that make a test a good test, some things that often come up are: Precise. The test should test one thing, and one thing only. A bug in some part of the application that is unrelated to the test should not cause the test to fail."
+sidebar_label: Test Setup with REST APIs
+description: "Signing up and logging in through the UI makes every test slower and more fragile. When the application has an API, the test can create its user with one HTTP call, log in with a session cookie, and keep the browser for what it needs to check."
 number: 24
 hide_table_of_contents: true
 level: 2
@@ -13,6 +13,7 @@ image: "img/cards/24-rest-apis.png"
 tags:
   - 'REST APIs'
   - 'test setup'
+  - 'cookies'
   - 'guest post'
 category:
   - 'fundamentals'
@@ -22,41 +23,72 @@ category:
 
 ## Intro
 
-This is a guest post from Robert Schultheis, a Test Engineer at [Knewton](http://www.knewton.com/) who is doing great things with REST
-APIs in his testing practice
+This tip started as a guest post from Robert Schultheis, a Test Engineer at Knewton.
 
-When we list out the properties that make a test a "good test", some things that often come up are:
+A good test is:
 
-+ **Precise.** The test should test one thing, and one thing only. A bug in some part of the application that is
-unrelated to the test should not cause the test to fail.
-+ **Independent.** A test should not have it's outcome affected by any other test in the test suite.
-+ **Fast.** This doesn't need much explanation. The quicker a test suite runs, the more useful it is.
+- **Precise.** It tests one thing. A bug in an unrelated part of the application should not make it fail.
+- **Independent.** Other tests don't change its outcome.
+- **Fast.** The quicker a test suite runs, the more useful it is.
 
-Of course there are many other properties that might be included in such a list, but I mention these specifically
-because they can be particularly challenging to achieve in a Selenium test suite. The reason for this is that Selenium
-tests often involve setups that may include a sign-up, a login, some navigation, form submission, or other
-interactions with a website. Only after doing those things are you ready to assert on some aspect of the website.
-If you confine your tests to only being allowed to interact with the website, there is little that can be done to
-alleviate this issue.
+These are hard to get in a Selenium test suite. Before a test can check anything, it often has to sign up, log in,
+navigate, or fill in forms. Each step takes time, and each step can break, even when the feature under test works.
 
 ## A Solution
 
-REST APIs are increasingly common in the backends of newer websites. If you are fortunate enough to have such an
-architecture in the site you are testing it may make sense to make use of those REST APIs in your Selenium test suite.
-By using calls to the REST APIs in the backend to perform parts of a test setup, and using Selenium to perform the
-assertion within the website normally, we can end up with tests that are faster, more focused, and more reliable.
+Many applications have a REST API behind the website. The test can use it for the setup: create the data it needs
+with a few HTTP calls, and use the browser only for what it checks. The tests get faster, more focused, and more
+reliable. Every language has an HTTP client, so this works in any test suite.
 
-REST APIs are based on the HTTP protocol, which is the same protocol that powers essentially the entire internet.
-Nearly every modern programming language has libraries that can be used to make HTTP requests, thus we can add
-support for calling into REST APIs to virtually any test suite.
+Two common steps:
 
+- **Create the test data**, e.g., a new user for each test. A fresh user gives a clean slate: no other test changed
+  it. Give it a unique name, so tests that run at the same time (on a Grid or in parallel CI jobs) don't share it.
+  Delete it when the test is done.
+- **Log in without the form.** If the API gives a session, add its cookie to the browser and go straight to the page
+  under test. Keep one test that logs in through the form, so the login page is still covered.
 
+## Example
+
+[The-internet](https://the-internet.herokuapp.com) has a small API for this:
+
+- `POST /api/users` with `{"username": "...", "password": "..."}` creates a user (`201`). The login form accepts it,
+  and the secure area shows its name in `#username`.
+- `POST /api/sessions` with the same JSON returns the session cookie (`rack.session`) of a logged-in user.
+- `DELETE /api/users/<username>` deletes the user (`204`).
+
+Users expire after 1 hour. Each example has two tests:
+
+1. Creates a user with the API, logs in through the form, and checks the user name in the secure area.
+2. Creates a user, gets a session from the API, adds the cookie to the browser, and opens the secure area directly.
+
+Both delete their user at the end.
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
+
+## Expected Behavior
+
+- The test creates a user with a unique name through the API
+- Chrome starts
+- The first test logs in through the form; the second one adds the session cookie and opens the secure area
+- The secure area shows the name of the new user
+- Chrome closes, and the test deletes the user through the API
+
+## Summary
+
+Use the API for the setup and the browser for what the test checks. Creating data with an API takes milliseconds,
+while the same steps in the UI take seconds and can break for reasons unrelated to the test. With unique data and a
+cleanup step, the tests stay independent, even when they run at the same time.
+
+Happy Testing!
 
 ## Authors
 
@@ -64,9 +96,9 @@ import DefaultAvatar from "@site/src/components/defaultAvatar";
 
 <DefaultAvatar
     name="Robert Schultheis"
-    imgSrc={""}
+    imgSrc={"https://github.com/rschultheis.png"}
     description={"Author of this tip (guest post)"}
-    url={"http://www.knewton.com/"}
+    url={"https://github.com/rschultheis"}
     author={true}
 />
 
