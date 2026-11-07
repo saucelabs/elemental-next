@@ -1,0 +1,34 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"64-limit-bandwidth/code/csharp/SlowNetworkTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `SetUp` method (lines 15 to 26) starts Chrome and limits its network with `NetworkConditions`: every request
+waits half a second (`Latency`), and the browser downloads at most 200 KB per second and uploads at most 50 KB per
+second (`DownloadThroughput` and `UploadThroughput`, in bytes per second). The `TearDown` method (lines 28 to 32)
+quits the browser.
+
+### The Test
+
+`PageLoadsOnSlowNetwork` (lines 34 to 45) loads the page and measures how long it takes. Then it checks the heading
+of the page, to make sure it loaded, and that it took at least 3 seconds. On a fast connection, the page loads in 1
+or 2 seconds, so the check shows that the limits work.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"64-limit-bandwidth/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.

@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"64-limit-bandwidth/code/javascript/test/slowNetwork.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook (lines 7 to 15) starts Chrome and limits its network with `setNetworkConditions`: every request
+waits half a second (`latency`, in milliseconds), and the browser downloads at most 200 KB per second and uploads at
+most 50 KB per second (`download_throughput` and `upload_throughput`, in bytes per second). The `afterEach` hook
+(lines 17 to 21) quits the browser.
+
+### The Test
+
+The test (lines 23 to 32) loads the page and measures how long it takes. Then it checks the heading of the page, to
+make sure it loaded, and that it took at least 3 seconds. On a fast connection, the page loads in 1 or 2 seconds, so
+the check shows that the limits work.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"64-limit-bandwidth/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.
