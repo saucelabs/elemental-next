@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"66-blacklist/code/python/block_requests.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 8 to 15) turns on WebDriver BiDi with `enable_bidi`, and starts Chrome. It `yield`s the
+driver to the test, and quits the browser when the test is done.
+
+### The Test
+
+`test_slow_request_is_blocked` (lines 18 to 31) adds a request handler for the URL of the slow request
+(`add_request_handler`, line 25). The handler (lines 21 to 23) keeps the URL in a list and fails the request, so the
+browser never waits for it. Requests to other URLs load as usual.
+
+Then the test loads the page and waits up to 5 seconds until jQuery has no requests running (`jQuery.active` is 0).
+The slow request takes 30 seconds, so the wait passes only when the request is blocked. At the end, the test checks
+that the handler blocked the slow request.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"66-blacklist/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest block_requests.py` from the
+command-line.

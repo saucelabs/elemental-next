@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"66-blacklist/code/javascript/test/blockRequests.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `beforeEach` hook (lines 13 to 17) turns on WebDriver BiDi with `enableBidi`, and starts Chrome. The `afterEach`
+hook (lines 19 to 23) quits the browser.
+
+### The Test
+
+The test (lines 25 to 42) creates a `Network` object to work with the requests of the browser. It tells the browser
+to hold the requests to the URL of the slow request (`addIntercept`, lines 28 and 29), and listens to the requests
+the browser sends (`beforeRequestSent`, lines 30 to 35). When the slow request comes, the test keeps its URL in a list
+and fails it, so the browser never waits for it. Requests to other URLs load as usual.
+
+Then the test loads the page and waits up to 5 seconds until jQuery has no requests running (`jQuery.active` is 0).
+The slow request takes 30 seconds, so the wait passes only when the request is blocked. At the end, the test checks
+that the slow request was blocked.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"66-blacklist/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.
