@@ -4,7 +4,7 @@ card_highlight: 'Safari'
 id: '69-safari'
 slug: /69-safari
 sidebar_label: Safari Driver
-description: 'Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.'
+description: "Safari comes with its own driver, safaridriver, on every Mac. It needs two settings turned on once, and then Selenium runs our tests on Safari like on any other browser."
 number: 69
 hide_table_of_contents: true
 level: 1
@@ -23,23 +23,68 @@ category:
 
 ## Intro
 
-Since Selenium 2.45.0, in order to use SafariDriver, you need to manually install the SafariDriver browser extension.
+Many of our users browse with Safari, on their Mac, iPhone or iPad. So we want our tests to run on Safari too. But
+running our Selenium tests on a different browser tends to require additional setup, and Safari is no exception.
 
 ## A Solution
 
-Running your Selenium tests on a different browser tends to require additional setup, and [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver) is no
-exception.
+Safari comes with its own driver, `safaridriver`, built by Apple. It is part of macOS (in `/usr/bin/safaridriver`),
+so there is nothing to download, and Selenium finds it by itself. Safari runs on macOS only, so our Safari tests
+need a Mac.
 
-The following example will go through how to do it and make sure it's working.
+Before the first test, we turn on two settings, once per Mac:
 
+1. Allow `safaridriver` to start Safari. Run the following command on the terminal (it asks for an administrator
+   password):
 
+   ```sh
+   safaridriver --enable
+   ```
+
+2. Turn on remote automation in Safari. Open Safari, go to `Settings`, then `Advanced`, and check
+   `Show features for web developers`. Then, in the `Develop` menu, click `Allow Remote Automation`.
+
+Older versions of Safari needed a browser extension (the SafariDriver extension). It is no longer needed (or
+available) since Safari 10.
+
+A few things to know about Safari:
+
+- Safari runs one test at a time on a Mac: it does not run sessions in parallel. To run Safari tests in parallel,
+  run them on several Macs (e.g., a Selenium Grid, or a cloud provider like Sauce Labs).
+- The test runs in a separate window, with an orange address bar. It ignores our mouse and keyboard, so we don't
+  change the test by mistake.
+- Safari does not start in front of the other windows. When we want to watch what the test does, we switch to
+  Safari.
+- [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) has its own driver, to test
+  the upcoming Safari features.
+
+Let's wire up a simple test, so we can see that everything works as expected.
+
+## Example
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
     {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
+
+## Expected Behavior
+
+- Safari opens, with an orange address bar
+- The home page of [the-internet](https://github.com/saucelabs/the-internet) loads
+- The test prints the name and version of the browser, and checks the title of the page
+- Safari closes
+
+## Summary
+
+With `safaridriver` turned on, a Selenium test runs on Safari with a one-line change: the browser we start. Keep in
+mind that Safari runs one test at a time on each Mac.
+
+Happy Testing!
 
 ## Authors
 

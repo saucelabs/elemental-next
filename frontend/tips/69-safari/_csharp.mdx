@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"69-safari/code/csharp/SafariTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### macOS Only
+
+Safari runs on macOS only, so `[OSCondition(OperatingSystems.OSX)]` (lines 7 to 9) skips the test on Windows and
+Linux.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 14 to 18) starts Safari with `new SafariDriver()`. Selenium finds `safaridriver`, which
+comes with macOS, so there is nothing to download. The `TearDown` method (lines 20 to 24) quits the browser.
+
+### The Test
+
+`PageLoaded` (lines 26 to 34) loads the page, prints the name and version of the browser from the capabilities of the
+session, and checks the title of the page.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"69-safari/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `dotnet test` from the command-line.
