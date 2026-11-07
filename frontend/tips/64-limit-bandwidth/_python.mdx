@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"64-limit-bandwidth/code/python/slow_network.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The `driver` fixture (lines 8 to 18) starts Chrome and limits its network with `set_network_conditions`: every
+request waits half a second (`latency`, in milliseconds), and the browser downloads at most 200 KB per second and
+uploads at most 50 KB per second (`download_throughput` and `upload_throughput`, in bytes per second). It `yield`s
+the driver to the test, and quits the browser when the test is done.
+
+### The Test
+
+`test_page_loads_on_slow_network` (lines 21 to 29) loads the page and measures how long it takes. Then it checks the
+heading of the page, to make sure it loaded, and that it took at least 3 seconds. On a fast connection, the page
+loads in 1 or 2 seconds, so the check shows that the limits work.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries. We can do this by running
+`pip install -r requirements.txt` from the command-line.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"64-limit-bandwidth/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+After installing the required libraries, we can run the test by executing `pytest slow_network.py` from the
+command-line.

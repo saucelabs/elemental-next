@@ -1,17 +1,18 @@
 ---
-title: 'Limit Bandwidth'
-card_highlight: 'Bandwidth'
+title: 'Test on a Slow Network'
+card_highlight: 'Slow Network'
 id: '64-limit-bandwidth'
 slug: /64-limit-bandwidth
-sidebar_label: Limit Bandwidth
-description: "With Selenium you have the luxury of cross browser testing. But what happens when you also need to test how your application behaves on a slow connection?"
+sidebar_label: Test on a Slow Network
+description: "With Selenium we can test our application on different browsers. But how does it behave on a slow connection? Chrome can limit its own network, so the tests can find out."
 number: 64
 hide_table_of_contents: true
 level: 3
 publish_date: 2015-10-16
 image: "img/cards/64-limit-bandwidth.png"
 tags:
-  - 'browsermob-proxy'
+  - 'network'
+  - 'chrome'
 category:
   - 'troubleshooting'
 ---
@@ -20,27 +21,52 @@ category:
 
 ## Intro
 
-With Selenium, you have the luxury of cross browser testing. But what happens when you also need to test how
-your application behaves on a _slow_ connection?
+With Selenium, we have the luxury of cross browser testing. But what happens when we also need to test how our
+application behaves on a _slow_ connection?
 
 ## A Solution
 
-With the help of a proxy server like [BrowserMob Proxy](http://bmp.lightbody.net/) we can simulate bandwidth limitations and run our
-tests to see if they fall down. In order to do this we'll also need to adjust our Selenium's default timeout.
+Chrome can limit its own network, like the network throttling of its DevTools. Selenium sets these limits with the
+network conditions command of ChromeDriver (it works with Microsoft Edge too). We set three values:
 
->### A Brief Primer on BrowserMob ProxyBrowserMob Proxy is a server which sits between your browser and the application you're testing. You connectto it by configuring a browser profile to pass through it. As listed on[the BrowserMob Proxy GitHub page](https://github.com/lightbody/browsermob-proxy#features-and-usage), here are someof the benefits it offers:+ blacklisting and whitelisting certain URL patterns+ simulating various bandwidth and latency+ remapping DNS lookups+ flushing DNS caching+ controlling DNS and request timeouts+ automatic BASIC authorization
+- **Latency**: how long each request waits before it goes out, in milliseconds.
+- **Download throughput**: the most the browser downloads per second, in bytes.
+- **Upload throughput**: the most the browser uploads per second, in bytes.
 
-__NOTE:__ You can also capture HTTP status codes with it as well. See [tip 17](/tips/17-retrieve-http-status-codes) for details on how to do that.
+Then the test runs as usual, and we see how the page behaves when it loads slowly. The command can also take the
+browser offline.
+
+Older versions of this tip used a proxy server (BrowserMob Proxy) to limit the bandwidth. The proxy is no longer
+maintained, and Chrome does the same with no extra server. Firefox has no such command.
 
 Let's continue with an example.
 
-
+## Example
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
     {label: 'Ruby', value: 'ruby'},
 ]}/>
+
+## Expected Behavior
+
+- Chrome starts
+- The test limits the network of Chrome
+- The test loads the page, which loads slowly
+- The test checks the heading of the page, and that the page took at least 3 seconds to load
+- Chrome closes
+
+## Summary
+
+A slow network shows problems a fast one hides: timeouts that are too short, spinners that never go away, and buttons
+we can click before the page is ready. Running a few tests with a slow network catches them before our users do.
+
+Happy Testing!
 
 ## Authors
 
