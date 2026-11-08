@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"74-sauce-visual/code/playwright/tests/sauceVisual.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in the Playwright test runner and the Sauce Labs Visual functions for Playwright.
+
+### Setup and Teardown
+
+Lines 6 and 7 skip the tests of the file when the Sauce Labs credentials are not set. Playwright Test handles the
+browser for us: it runs locally, and each test receives a `page` (a fresh browser tab) as a fixture.
+
+`sauceVisualSetup` (lines 10 to 12) creates a Visual build in the US West data center before the tests. It reads the
+credentials from the environment. `sauceVisualTeardown` (lines 14 to 16) finishes the build after the tests, and
+prints its link.
+
+### The Test
+
+Lines 18 to 27 are the test itself. It loads the page, and `sauceVisualCheck` takes a screenshot named "Newsletter card"
+with Playwright and uploads it. `clipSelector` keeps only the card.
+
+`sauceVisualResults` waits for Sauce Labs to compare the snapshots of the test, and returns the number of snapshots in
+each status. The test checks that no comparison had an error.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"74-sauce-visual/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`. Set the
+`SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables, then run the test by executing `npm test` from the
+command-line.

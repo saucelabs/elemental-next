@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"74-sauce-visual/code/java/src/test/java/com/elemental/selenium/SauceVisualTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 15 pull in the Sauce Labs Visual client (`VisualApi`, `CheckOptions`, `DataCenter` and `DiffStatus`), JUnit
+and Selenium. Line 18 is the address of Sauce Labs in the US West data center.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 23 to 42) skips the test when the Sauce Labs credentials are not set. Otherwise, it
+starts the latest Chrome on Windows 11 on Sauce Labs, with the credentials and a name for the job in `sauce:options`.
+Then it creates the Visual client for that session with `VisualApi.Builder`, in the same data center, and a Visual
+build, which groups the snapshots of the test run. The `afterEach` method (lines 44 to 49) quits the browser.
+
+### The Test
+
+Lines 51 to 64 are the test itself. It loads the page, and `sauceVisualCheck` takes a snapshot named "Newsletter card"
+from the Sauce Labs session. `setClipSelector` keeps only the card.
+
+`sauceVisualResults` waits for Sauce Labs to compare the snapshots, and returns the number of snapshots in each status.
+The test prints the link to the build and checks that no comparison had an error (statuses without snapshots are not
+in the map, so it uses `getOrDefault`). The client finishes the build when the tests end.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"74-sauce-visual/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables, then run the test by executing `mvn test` from
+the command-line.

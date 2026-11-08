@@ -1,0 +1,89 @@
+---
+title: 'How to Check Screenshots with Sauce Labs Visual'
+card_highlight: 'Sauce Labs Visual'
+id: '74-sauce-visual'
+slug: /74-sauce-visual
+sidebar_label: Sauce Labs Visual
+description: "Comparing screenshots in the test code means keeping baselines for every browser and operating system, and reviewing the differences by hand. Sauce Labs Visual stores the baselines, compares the snapshots, and shows the changes for review."
+number: 74
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'visual testing'
+  - 'screenshots'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Check Screenshots with Sauce Labs Visual
+
+## Intro
+
+[Tip 73](/tips/73-compare-screenshots) compares two screenshots of an element, pixel by pixel. In a real suite, that's
+only the start: someone has to keep a baseline image for every page, browser and operating system, update it when a
+change is expected, and look at the differences when a test fails.
+
+## A Solution
+
+Let a visual testing service do it. With [Sauce Labs Visual](https://docs.saucelabs.com/visual-testing/), the test
+takes snapshots (screenshots with a name) and sends them to Sauce Labs. Sauce Labs keeps a baseline for each snapshot
+name, browser, operating system and screen size, compares the new snapshot with it, and shows the changes in a build
+for review. Approving a change makes the new snapshot the baseline.
+
+- **Selenium** and **Selenide**: the browser runs on Sauce Labs, and the Visual client (`saucelabs-visual` for
+  Python, `com.saucelabs.visual:java-client` for Java) takes the snapshot from the session.
+- **Playwright**: `@saucelabs/visual-playwright` takes the snapshot with Playwright, in a local browser, and uploads it.
+
+The Visual clients for the other languages and tools of this site don't work with their current versions yet, so this
+tip shows these four.
+
+The examples need a Sauce Labs account. They read the user name and the access key from the `SAUCE_USERNAME` and
+`SAUCE_ACCESS_KEY` environment variables, and skip the test when they are not set.
+
+## Example
+
+The examples use [the visual differences page](https://the-internet.herokuapp.com/visual_diff) of the-internet. The
+test creates a Visual build, opens the page, takes a snapshot of the sign-up card (`#card`) named "Newsletter card",
+and waits for Sauce Labs to compare it. It fails if the comparison had an error, and prints the link to the build.
+
+The first time, the snapshot has no baseline, and Sauce Labs shows it for review. Approve it, and it becomes the
+baseline. The next runs compare with it: a change (e.g., the button moved) shows up as a diff to approve or reject.
+To make a test fail on unapproved changes too, check the `UNAPPROVED` count of the results as well.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'Java', value: 'java'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+]}/>
+
+## Expected Behavior
+
+- The test creates a Visual build in Sauce Labs
+- The browser starts (on Sauce Labs for Selenium and Selenide, locally for Playwright) and loads the page
+- The test takes a snapshot of the card and sends it to Sauce Labs
+- Sauce Labs compares it with the baseline, and the test checks that there were no errors
+- The browser closes, and the build shows the snapshot and its changes for review
+
+## Summary
+
+A visual testing service keeps the baselines, compares the snapshots of every browser and operating system, and gives
+the team one place to review the changes. The test only takes the snapshots.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

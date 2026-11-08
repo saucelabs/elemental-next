@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"74-sauce-visual/code/python/sauce_visual.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in `os` to read the credentials, `pytest`, the Sauce Labs Visual client (`SauceLabsVisual`), and
+Selenium's `webdriver`. Line 6 is the address of Sauce Labs in the US West data center.
+
+### Setup and Teardown
+
+The `visual` fixture (lines 9 to 17) skips the test when the Sauce Labs credentials are not set. Otherwise, it creates
+the Visual client (it reads the credentials from the environment) and a Visual build, which groups the snapshots of
+the test run. It runs once for the tests of the file (`scope='module'`).
+
+The `driver` fixture (lines 20 to 32) starts the latest Chrome on Windows 11 on Sauce Labs, with the credentials and
+a name for the job in `sauce:options`, and quits it at the end.
+
+### The Test
+
+Lines 35 to 45 are the test itself. It loads the page, and `create_snapshot_from_webdriver` takes a snapshot named
+"Newsletter card" from the Sauce Labs session. `clip_selector` keeps only the card.
+
+Then the test finishes the build: Sauce Labs compares the snapshots of a build when it finishes. `get_build_status`
+waits for the comparison and returns the build, with its link and the number of snapshots in each status. The test
+prints the link and checks that no comparison had an error.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"74-sauce-visual/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables, then run the test by executing
+`pytest -s sauce_visual.py` from the command-line (`-s` shows the link to the build).
