@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/playwright/tests/printToPdf.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect` from `@playwright/test`).
+
+### Setup and Teardown
+
+Playwright Test handles the browser for us. Each test receives a `page` (a fresh browser tab) as a fixture, and
+Playwright closes it when the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 3 to 13 are the test itself. It loads the page and prints it with `page.pdf`, in landscape, into the output
+folder of the test (`testInfo.outputPath`). Playwright saves the PDF in the path we give it, and returns it too. The
+test checks that it starts with `%PDF-`, as every PDF file does, and prints where it is. `pdf` works in Chromium,
+headless, as Playwright Test runs it by default.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`. Then run the test
+by executing `npm test` from the command-line.

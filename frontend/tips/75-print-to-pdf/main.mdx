@@ -1,0 +1,93 @@
+---
+title: 'How to Print a Page to PDF'
+card_highlight: 'Print a Page to PDF'
+id: '75-print-to-pdf'
+slug: /75-print-to-pdf
+sidebar_label: Print a Page to PDF
+description: "Invoices, tickets and reports are often printed or saved as PDF. The test can print the page to a PDF, without the print dialog, to check the printed version or to keep it as a record of the run."
+number: 75
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-08
+tags:
+  - 'pdf'
+  - 'print'
+category:
+  - 'fundamentals'
+---
+
+# How to Print a Page to PDF
+
+## Intro
+
+Some pages are made to be printed: an invoice, a boarding pass, a report. Their print version can look different from
+the screen (a print stylesheet hides the menus, a table breaks across pages), and users save them as PDF files.
+
+Clicking "Print" in a test opens the print dialog of the operating system, which the test can't use.
+
+## A Solution
+
+Ask the browser for the PDF. WebDriver has a "Print Page" command that prints the current page and returns the PDF,
+without the dialog. The test can set the orientation, the page size, the margins, the scale, and which pages to
+print, and then check the PDF or save it.
+
+- **Selenium** and Selenide: `print_page` / `print` / `printPage`, with print options. The result is the PDF in
+  base64.
+- **Playwright**: `page.pdf()`, in Chromium (headless, as Playwright Test runs it by default). It can save the file
+  itself.
+- **WebdriverIO**: `browser.savePDF()` saves the file and returns the PDF.
+- **Vibium**: `page.pdf()`, with the default settings (it has no print options yet).
+
+The examples check that the result is a PDF: every PDF file starts with `%PDF-`. To check its content (the text, the
+number of pages), read it with a PDF library of your language.
+
+## Example
+
+The examples print [the tables page](https://the-internet.herokuapp.com/tables) of the-internet in landscape (portrait
+in Vibium), check that the result is a PDF, and save it in a temporary folder, as `tables.pdf`. They print where they
+saved it, so you can open it.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts and loads the page
+- The test prints the page to a PDF, in landscape, without the print dialog
+- The test checks that the result starts with `%PDF-`, and saves it as `tables.pdf`
+- The browser closes
+
+## Summary
+
+Printing to PDF from the test checks the print version of a page, and keeps a copy of what the user would get. Set
+the print options the users would pick, and keep the PDF as an artifact of the test run when it's useful.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

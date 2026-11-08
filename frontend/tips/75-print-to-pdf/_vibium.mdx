@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/vibium/test/printToPdf.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `assert`, Node's `fs`, `os` and `path` modules to save the PDF, and Vibium's `browser`.
+
+### Setup and Teardown
+
+After creating a `describe` to group our tests, lines 11 to 18 start and stop the browser.
+
+The `beforeEach` method runs before each test. It starts the browser with `browser.start()` and gets its first page
+(tab) with `bro.page()`. The `afterEach` method runs after each test and closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 20 to 30 are the test itself. It loads the page and prints it with `page.pdf()`, which returns the PDF. Vibium
+has no print options yet, so the PDF is in portrait. It checks that the result starts with `%PDF-`, as every PDF file
+does, and saves it as `tables.pdf` in a temporary folder. It prints where, so you can open it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

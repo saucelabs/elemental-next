@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/python/print_to_pdf.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in `base64` to decode the PDF, `pytest`, Selenium's `webdriver`, and its `PrintOptions`.
+
+### Setup and Teardown
+
+Lines 7 to 11 are a fixture that starts Firefox, gives it to the test, and quits it at the end. The test also takes
+pytest's `tmp_path` fixture, a temporary folder for the PDF.
+
+### The Test
+
+Lines 14 to 25 are the test itself. It loads the page, sets the orientation to landscape in `PrintOptions`, and prints
+the page with `print_page`, which returns the PDF in base64. The test decodes it. It checks that the result starts
+with `%PDF-`, as every PDF file does, and saves it as `tables.pdf` in a temporary folder. It prints where, so you can
+open it.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest -s print_to_pdf.py` from the command-line (`-s` shows where the PDF is).

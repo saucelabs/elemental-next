@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/webdriverio/test/printToPdf.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in the WebdriverIO globals and Node's `fs`, `os` and `path` modules for the temporary folder.
+
+### Setup and Teardown
+
+The WebdriverIO test runner starts the browser before the tests and closes it after them. The browser and the test
+framework (Mocha) are set in the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+### The Test
+
+Lines 7 to 17 are the test itself. It loads the page, and `browser.savePDF` prints it in landscape, saves it as
+`tables.pdf` in a temporary folder, and returns the PDF. The test checks that it starts with `%PDF-`, as every PDF
+file does, and prints where it is.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

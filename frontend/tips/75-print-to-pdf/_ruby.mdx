@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/ruby/print_to_pdf.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in `base64` to decode the PDF, `tmpdir` for the temporary folder, Selenium and RSpec.
+
+### Setup and Teardown
+
+The `setup` method (lines 7 to 9) starts Firefox. The `teardown` method (lines 11 to 13) quits it, and `run` (lines 15
+to 20) calls them around the test.
+
+### The Test
+
+Lines 22 to 32 are the test itself. It loads the page and prints it with `print_page`, in landscape. It returns the
+PDF in base64, which the test decodes. It checks that the result starts with `%PDF-`, as every PDF file does, and
+saves it as `tables.pdf` in a temporary folder. It prints where, so you can open it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby print_to_pdf.rb` from the command-line.
