@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/playwright-csharp/CheckAccessibilityTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 7 pull in LINQ, Deque's axe packages (`Deque.AxeCore.Playwright`, which brings `Deque.AxeCore.Commons`),
+Playwright's MSTest integration and MSTest. Lines 15 and 16 lists the axe rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+The test class extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package. `PageTest` handles the browser
+for us: each test gets a fresh browser tab in the `Page` property, and it is closed when the test ends. There is no
+setup or teardown code to write.
+
+### Scanning the Page
+
+`Scan` (lines 18 to 24) `RunAxe` adds the axe-core script to the page and runs it, with the `AxeRunContext` we give
+it. `Include` limits the scan to the `#widgets` section, and the scan returns the results: the violations, the rules
+that passed, and the ones to review. The helper keeps the rule id of each violation.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (`IsSupersetOf`). It
+doesn't check that the scan reports only them: a newer version of axe can add rules, or report a rule as "incomplete"
+when it can't be sure (like the color contrast of text that another element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`Count` is 0). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.

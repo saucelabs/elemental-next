@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/java/src/test/java/com/elemental/selenium/CheckAccessibilityTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 12 pull in Deque's `AxeBuilder` and `Rule` (from `com.deque.html.axe-core:selenium`), JUnit and Selenium.
+Lines 16 and 17 lists the axe rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 20 to 23) starts Firefox, and the `afterEach` method (lines 25 to 30) quits it.
+
+### Scanning the Page
+
+`scan` (lines 32 to 37) `AxeBuilder` adds the axe-core script to the page and runs it with `analyze`. `include` limits
+the scan to the `#widgets` section, and the scan returns the results: the violations, the rules that passed, and the
+ones to review. The helper keeps the rule id of each violation.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (`containsAll`). It
+doesn't check that the scan reports only them: a newer version of axe can add rules, or report a rule as "incomplete"
+when it can't be sure (like the color contrast of text that another element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`Set.of()`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

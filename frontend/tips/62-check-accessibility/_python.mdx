@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/python/check_accessibility.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `pytest`, `Axe` from `axe-selenium-python`, and Selenium's `webdriver`. Line 6 lists the axe
+rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+Lines 9 to 13 are a fixture that starts Firefox, gives it to the test, and quits it at the end.
+
+### Scanning the Page
+
+`scan` (lines 16 to 21) `inject` adds the axe-core script to the page, and `run` runs it. `context` limits the scan to
+the `#widgets` section, and the scan returns the results: the violations, the rules that passed, and the ones to
+review. The helper keeps the rule id of each violation.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (`KNOWN_ISSUES <=
+...`, a subset of the reported rules). It doesn't check that the scan reports only them: a newer version of axe can
+add rules, or report a rule as "incomplete" when it can't be sure (like the color contrast of text that another
+element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`set()`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest check_accessibility.py` from the command-line.
