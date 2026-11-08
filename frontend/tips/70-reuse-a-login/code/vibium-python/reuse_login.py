@@ -14,7 +14,7 @@ def session_cookie():
         page.find('#username').fill('tomsmith')
         page.find('#password').fill('SuperSecretPassword!')
         page.find('button[type="submit"]').click()
-        page.find('#username')
+        page.find('a[href="/logout"]')
         return next(cookie for cookie in page.context.cookies() if cookie['name'] == 'rack.session')
     finally:
         login_browser.stop()

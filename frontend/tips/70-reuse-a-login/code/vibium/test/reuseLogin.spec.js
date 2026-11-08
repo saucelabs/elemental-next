@@ -17,7 +17,7 @@ describe('Reuse a login', function () {
             await loginPage.find('#username').fill('tomsmith');
             await loginPage.find('#password').fill('SuperSecretPassword!');
             await loginPage.find('button[type="submit"]').click();
-            await loginPage.find('#username');
+            await loginPage.find('a[href="/logout"]');
             const cookies = await loginPage.context.cookies();
             sessionCookie = cookies.find((cookie) => cookie.name === 'rack.session');
         } finally {

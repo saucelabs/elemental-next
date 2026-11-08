@@ -28,7 +28,7 @@ public class ReuseLoginTest {
             loginPage.find("#username").fill("tomsmith");
             loginPage.find("#password").fill("SuperSecretPassword!");
             loginPage.find("button[type='submit']").click();
-            loginPage.find("#username");
+            loginPage.find("a[href=\"/logout\"]");
             sessionCookie = loginPage.context().cookies().stream()
                     .filter(cookie -> cookie.name().equals("rack.session"))
                     .findFirst()
