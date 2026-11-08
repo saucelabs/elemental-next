@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"73-compare-screenshots/code/python/compare_screenshots.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `io`, `pytest`, Pillow's `Image` and `ImageChops`, and Selenium.
+
+### Setup and Teardown
+
+Lines 10 to 14 are a fixture that starts Firefox, gives it to the test, and quits it at the end.
+
+### Taking and Comparing Screenshots
+
+`card_screenshot` (lines 17 to 20) loads a URL, takes a screenshot of the card only (`screenshot_as_png` of the
+element), and reads the PNG into an image.
+
+`different_pixels` (lines 23 to 29) counts the pixels that differ between two images. When the sizes differ, every
+pixel is different. Otherwise, Pillow subtracts one image from the other: the result is black where the pixels are the
+same. Its histogram counts the pixels of each shade, and every shade but black is a difference.
+
+### The Tests
+
+Each test takes its baseline in the same run: a screenshot of the card without changes. The first test compares it
+with a second screenshot of the same card, and checks that no pixels differ. The second test compares it with a
+screenshot of the card with the button moved (`?shift=10`), and checks that some pixels differ.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"73-compare-screenshots/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest compare_screenshots.py` from the command-line.

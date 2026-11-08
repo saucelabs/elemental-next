@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2022",
+    "types": ["@wdio/globals/types", "@wdio/mocha-framework"],
+    "skipLibCheck": true,
+    "noEmit": true
+  }
+}
