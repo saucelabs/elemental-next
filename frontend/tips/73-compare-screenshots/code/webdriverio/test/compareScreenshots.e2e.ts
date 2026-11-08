@@ -6,8 +6,13 @@ const URL = 'https://the-internet.herokuapp.com/visual_diff';
 async function cardScreenshot(url: string) {
     await browser.url(url);
     const card = await $('#card');
-    const png = await browser.takeElementScreenshot(card.elementId);
-    return PNG.sync.read(Buffer.from(png, 'base64'));
+    // Takes the screenshot of the whole card with WebDriver BiDi, even when part of it is out of view
+    const screenshot = await browser.browsingContextCaptureScreenshot({
+        context: await browser.getWindowHandle(),
+        origin: 'document',
+        clip: {type: 'element', element: {sharedId: card.elementId}},
+    });
+    return PNG.sync.read(Buffer.from(screenshot.data, 'base64'));
 }
 
 function differentPixels(image: PNG, other: PNG) {

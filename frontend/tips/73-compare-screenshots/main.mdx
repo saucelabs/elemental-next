@@ -32,6 +32,11 @@ that differs is a change to check.
 Every tool here takes a screenshot of an element. The examples read the PNG with a small image library of each
 language (Pillow, `ImageIO`, SkiaSharp, `pngjs`, ChunkyPNG) and count the pixels that differ.
 
+Make sure the screenshot has the whole element. Some browsers cut an element screenshot to the visible part of the
+window, so a change below the fold goes unnoticed. The Selenium and Selenide examples use Firefox, which takes the
+whole element, and the WebdriverIO one takes a screenshot relative to the document. Playwright and Vibium scroll the
+element into view first.
+
 The same page looks a bit different in another browser, operating system, or screen: fonts and anti-aliasing change
 some pixels. So keep a baseline per browser and operating system, and take the screenshots in the same environment.
 The examples here run on three operating systems in CI, so each test takes its baseline in the same run, right before

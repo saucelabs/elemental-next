@@ -8,19 +8,22 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 8 pull in Selenide, Java's `BufferedImage`, and JUnit.
+Lines 3 to 14 pull in Selenide, Java's `BufferedImage` and `ImageIO`, JUnit, and Selenium's `OutputType`.
 
 ### Setup and Teardown
 
-Selenide starts the browser when the test opens the first page, and closes it when the tests end. There is no setup or
-teardown code to write.
+Selenide starts the browser when the test opens the first page, and closes it when the tests end. The `useFirefox`
+method (lines 19 to 22) tells it to use Firefox: Firefox takes the screenshot of the whole element, even when part of
+it is out of the window, while Chrome cuts it to the visible part. The card is near the bottom of a small window, so
+in Chrome the moved button could be out of the screenshot.
 
 ### Taking and Comparing Screenshots
 
-`cardScreenshot` (lines 13 to 16) loads a URL, takes a screenshot of the card only (`screenshotAsImage()` of the
-element, which returns the image already read), and reads the PNG into an image.
+`cardScreenshot` (lines 24 to 29) loads a URL, takes a screenshot of the card only, and reads the PNG into an image.
+It uses the screenshot of the WebDriver element (`toWebElement().getScreenshotAs`): Selenide's own element screenshot
+crops the element from a screenshot of the visible part of the page.
 
-`differentPixels` (lines 18 to 32) counts the pixels that differ between two images. When the sizes differ, every
+`differentPixels` (lines 31 to 45) counts the pixels that differ between two images. When the sizes differ, every
 pixel is different. Otherwise, it goes through every pixel and compares their colors.
 
 ### The Tests
