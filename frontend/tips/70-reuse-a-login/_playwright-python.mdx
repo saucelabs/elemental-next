@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/playwright-python/reuse_login.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` and Playwright's `Browser`, `Page` and `expect`.
+
+### Logging In Once
+
+The `storage_state` fixture (lines 7 to 19) runs once for the test run (`scope='session'`), with the browser of the
+`pytest-playwright` plugin: it creates a browser context (a fresh browser profile), logs in through the form, and
+waits for the secure area. Then `context.storage_state()` saves the storage state of the context: its cookies and
+local storage. That's the whole session, whatever the site uses to keep it.
+
+### Starting Each Test Logged In
+
+The plugin creates the browser context of each test with the options of the `browser_context_args` fixture. Lines 22
+to 25 override it to add the storage state to the default options, so the `page` of each test starts with the cookies
+and the local storage of the logged-in user.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message (`to_contain_text`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest reuse_login.py` from the command-line.

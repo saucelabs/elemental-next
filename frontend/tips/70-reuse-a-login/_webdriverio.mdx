@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/webdriverio/test/reuseLogin.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect` from `@wdio/globals`).
+
+### Logging In Once
+
+The `before` hook (lines 8 to 16) runs once, before the tests of the `describe`: it starts a browser, logs in through
+the form, and keeps the session cookie of the logged-in user, `rack.session`, with `getCookies`. Then it closes that
+browser. WebdriverIO keeps the same browser for all the tests of the file, so it doesn't close it.
+
+### Starting Each Test Logged In
+
+The `beforeEach` hook (lines 18 to 23) starts a fresh browser for each test with `browser.reloadSession()`, without the
+cookies of the login. Then it opens the site, because a cookie can only be added for the site of the current page, and
+adds the session cookie with `setCookies`. The browser now sends it, so the site sees the user as logged in.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message (`toHaveText`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

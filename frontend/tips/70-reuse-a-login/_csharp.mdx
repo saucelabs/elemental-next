@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/csharp/ReuseLoginTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in MSTest and Selenium.
+
+### Logging In Once
+
+The `LogIn` method (lines 14 to 31) runs once, before the tests of the class (`[ClassInitialize]`): it starts a
+browser, logs in through the form, and keeps the session cookie of the logged-in user, `rack.session`, with
+`GetCookieNamed`. Then it closes that browser.
+
+### Starting Each Test Logged In
+
+The `SetUp` method (lines 33 to 40) starts a fresh browser for each test. It opens the site first, because a cookie
+can only be added for the site of the current page, and then adds the session cookie with `AddCookie`, with its name
+and value. The browser now sends the session cookie, so the site sees the user as logged in. The `TearDown` method
+(lines 42 to 46) quits the browser.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message in `#flash`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test` from the command-line.

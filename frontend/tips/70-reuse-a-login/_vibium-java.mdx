@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/vibium-java/src/test/java/com/elemental/vibium/ReuseLoginTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 13 pull in Vibium (with its `Cookie` and `SetCookieParam` types) and JUnit.
+
+### Logging In Once
+
+The `logIn` method (lines 21 to 39) runs once, before the tests of the class (`@BeforeAll`): it starts a browser, logs
+in through the form, and keeps the session cookie of the logged-in user, `rack.session`, with
+`page.context().cookies()`. Then it closes that browser.
+
+### Starting Each Test Logged In
+
+The `beforeEach` method (lines 41 to 47) starts a fresh browser for each test. It adds the session cookie to the
+browser context with `setCookies`, for the site's URL. The cookie of the site has `SameSite=None` without `Secure`,
+which the browser doesn't send, so the test sets it to `lax`. The browser now sends the session cookie, so the site
+sees the user as logged in. The `afterEach` method (lines 49 to 54) closes the browser.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message in `#flash`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

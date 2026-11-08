@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/python/reuse_login.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `pytest`, Selenium's `webdriver`, and the `By` locators.
+
+### Logging In Once
+
+The `session_cookie` fixture (lines 8 to 18) runs once for the tests of the file (`scope='module'`): it starts a
+browser, logs in through the form, and keeps the session cookie of the logged-in user, `rack.session`, with
+`get_cookie`. Then it closes that browser.
+
+### Starting Each Test Logged In
+
+The `driver` fixture (lines 21 to 28) starts a fresh browser for each test, and quits it at the end. It opens the site
+first, because a cookie can only be added for the site of the current page, and then adds the session cookie with
+`add_cookie`, with its name and value. The browser now sends the session cookie, so the site sees the user as logged
+in.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message in `#flash`.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest reuse_login.py` from the command-line.
