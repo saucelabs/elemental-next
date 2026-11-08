@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"20-mock-network-responses/code/python/mock_responses.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 6 pull in `json` to build the body of the mocked response, `pytest`, Selenium's `webdriver`, the `By`
+locators, and the expected conditions and `WebDriverWait` to wait for the page.
+
+Line 9 is the URL pattern of the requests to mock. It has only the host name and the path (`/slow_api/data`), so it
+matches the API calls with any query string.
+
+### Setup and Teardown
+
+Lines 12 to 19 are a fixture that starts Chrome with WebDriver BiDi turned on (`enable_bidi`), gives it to the test,
+and quits it at the end.
+
+### The Test
+
+Lines 22 to 35 are the test itself.
+
+The `mock` function (lines 23 to 27) answers a request with `provide_response`: a `200`, a JSON content type, and a
+JSON body with the message. Line 29 registers it with `add_request_handler`, for the URL pattern of line 9. The
+browser pauses only the requests that match the pattern, and Selenium answers them with the mocked response. The
+other requests load as usual.
+
+Then the test loads the page and clicks the button. The page calls the API, gets the mocked response, and shows its
+message. The test waits for the message in the status line, and checks the attempt in the list (`200: Hello from the
+mock`).
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"20-mock-network-responses/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest mock_responses.py` from the command-line.

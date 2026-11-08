@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"20-mock-network-responses/code/csharp/MockResponsesTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 8 pull in MSTest, Selenium, and Selenium's BiDi `Network` module, which builds the intercept and the mocked
+response.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 18 to 25) turns on WebDriver BiDi with `UseWebSocketUrl`, starts Chrome, and connects to
+BiDi with `AsBiDiAsync`. The `TearDown` method (lines 27 to 35) closes the BiDi connection and quits the browser.
+
+### The Test
+
+Lines 37 to 62 are the test itself.
+
+Line 41 builds the URL pattern of the requests to mock. It has only the host name and the path (`/slow_api/data`), so
+it matches the API calls with any query string. Lines 42 and 43 add an intercept for it, in the `BeforeRequestSent`
+phase: the browser pauses the matching requests before it sends them. The other requests load as usual.
+
+The handler of `BeforeRequestSent` (lines 44 to 55) is called for each request. When the request is paused by the
+intercept (`IsBlocked`), `ProvideResponseAsync` answers it: a `200`, a JSON content type, and a JSON body with the
+message. The request never reaches the server.
+
+Then the test loads the page and clicks the button. The page calls the API, gets the mocked response, and shows its
+message. The test waits for the message in the status line, and checks the attempt in the list (`200: Hello from the
+mock`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"20-mock-network-responses/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test` from the command-line.

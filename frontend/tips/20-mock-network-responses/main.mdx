@@ -1,0 +1,104 @@
+---
+title: 'How to Mock Network Responses'
+card_highlight: 'Mock'
+id: '20-mock-network-responses'
+slug: /20-mock-network-responses
+sidebar_label: Mock Network Responses
+description: "A page that loads its data from an API is hard to test: the API can be slow, down, or return data that changes. The test can answer the API calls itself, with the data it chooses, and check how the page shows it."
+number: 20
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-07
+tags:
+  - 'bidi'
+  - 'network'
+  - 'mock'
+category:
+  - 'fundamentals'
+---
+
+# How to Mock Network Responses
+
+## Intro
+
+Many pages load their data from an API after the page loads (e.g., a list of products, the weather, the messages of a
+user). A test of such a page depends on the API too. When the API is slow, the test is slow. When the API is down or
+returns data that changes, the test fails even when the page works.
+
+Sometimes we also want data that is hard to get from the real API, like an empty list, a very long name, or a
+specific error.
+
+## A Solution
+
+Mock the API. The test tells the browser to pause the requests to the API, and answers them itself, with the status,
+headers, and body it chooses. The request never reaches the server. The rest of the page loads as usual.
+
+Every tool here can do it:
+
+- Selenium uses [WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/): `network.addIntercept`
+  pauses the requests, and `network.provideResponse` answers them.
+- Selenide starts the browser behind its own proxy, and its `responseMocker` answers the requests.
+- Playwright and Vibium use `page.route` and `route.fulfill`.
+- WebdriverIO uses `browser.mock` and `mock.respond`.
+
+[Tip 66](/tips/66-blocklist) uses the same idea to block requests.
+
+## Example
+
+The example uses [the slow and failing API page](https://the-internet.herokuapp.com/slow_api) of the-internet. Its
+"Call the API" button sends a request to `/slow_api/data` (with the options of the form in the query string), waits
+for the answer, and shows its `message`: in the status line, and in the list of attempts, after the status code
+(e.g., `200: Done`).
+
+The test mocks `/slow_api/data` with a `200` and the message `Hello from the mock`, clicks the button, and checks that
+the page shows the message.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts
+- The test tells the browser to answer the requests to `/slow_api/data` with the mocked response
+- The test loads the page and clicks "Call the API"
+- The request to `/slow_api/data` gets the mocked response, without reaching the server
+- The page shows `Hello from the mock`, and the test checks it
+- The browser closes
+
+## Summary
+
+Mocking the API makes the test faster and keeps it working when the API is slow or down. It also lets the test show
+the page with any data, including data the real API rarely returns.
+
+A mock only checks the page, though. Keep some tests that use the real API, so a change in the API doesn't go
+unnoticed.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

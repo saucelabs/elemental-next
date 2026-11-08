@@ -1,0 +1,12 @@
+{
+  "name": "mock-responses",
+  "version": "1.0.0",
+  "description": "A project to showcase mocking network responses using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
