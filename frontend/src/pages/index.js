@@ -246,7 +246,8 @@ function Frameworks({stats}) {
                     <div className={styles.column}>
                         <h3>Mobile <small>will run on real devices in Sauce Labs</small></h3>
                         {MOBILE_TOOLS.map(({tool, logo, meta}) => (
-                            <ToolCard key={tool} logo={logo} name={tool} meta={meta} sauce/>
+                            <ToolCard key={tool} logo={logo} name={tool} meta={meta} count={stats[tool]?.tips.size}
+                                      sauce/>
                         ))}
                         <Link className={clsx(styles.tool, styles.suggest)} to={`${REPO}/discussions`}>
                             <span className={styles.toolIcon} aria-hidden="true">+</span>
