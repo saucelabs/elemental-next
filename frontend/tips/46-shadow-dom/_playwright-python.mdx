@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/playwright-python/shadow_dom.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` and Playwright's `Page` and `expect`.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. The `open_page` fixture (lines 5 to 7) loads the page before
+each test (`autouse=True`).
+
+### The Tests
+
+The first test clicks the button with the usual CSS locator (`#inner-button`). Playwright's CSS locators look inside
+open shadow roots, so the test doesn't name the shadow hosts on the way. Then it checks the text of `#nested-result`.
+
+The second test shows that XPath locators don't look inside shadow roots: the same button, found by XPath, isn't
+there. `to_have_count(0)` checks it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest shadow_dom.py` from the command-line.

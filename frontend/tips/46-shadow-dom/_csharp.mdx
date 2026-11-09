@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/csharp/ShadowDomTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in MSTest and Selenium. A shadow root is an `ISearchContext`: like the driver, it can find elements.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 12 to 17) starts Firefox and loads the page. The `TearDown` method (lines 19 to 23) quits
+the browser.
+
+### The Tests
+
+The first test goes through the shadow roots one at a time. It finds the outer component (`#outer-card`) and gets its
+shadow root with `GetShadowRoot()`. Inside it, `FindElement` finds the inner component (`#inner-card`), and the test
+gets its shadow root too. Inside that one, it finds the button and clicks it. Inside a shadow root, use CSS selectors:
+XPath doesn't work there.
+
+The page shows the result outside the components, so the test finds `#nested-result` with the driver, as usual, and
+checks its text.
+
+The second test shows the problem: a normal locator for the button finds nothing, because the button is in a shadow
+root. `FindElements` returns an empty list.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test` from the command-line.

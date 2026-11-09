@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/python/shadow_dom.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `pytest`, Selenium's `webdriver`, and the `By` locators.
+
+### Setup and Teardown
+
+Lines 6 to 10 are a fixture that starts Firefox, gives it to the test, and quits it at the end.
+
+### The Tests
+
+Both tests load the page first.
+
+The first test goes through the shadow roots one at a time. It finds the outer component (`#outer-card`) and gets its
+shadow root with `shadow_root`. Inside it, `find_element` finds the inner component (`#inner-card`), and the test gets
+its shadow root too. Inside that one, it finds the button and clicks it. Inside a shadow root, use CSS selectors:
+XPath doesn't work there.
+
+The page shows the result outside the components, so the test finds `#nested-result` with the driver, as usual, and
+checks its text.
+
+The second test shows the problem: a normal locator for the button finds nothing, because the button is in a shadow
+root. `find_elements` returns an empty list.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest shadow_dom.py` from the command-line.

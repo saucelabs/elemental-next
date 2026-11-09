@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"46-shadow-dom/code/webdriverio/test/shadowDom.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals (`browser`, `$` and `expect` from `@wdio/globals`).
+
+### Setup and Teardown
+
+The WebdriverIO test runner starts the browser before the tests and closes it after them. The browser and the test
+framework (Mocha) are set in the `wdio.conf.ts` file. `beforeEach` (lines 4 to 6) loads the page before each test.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+### The Tests
+
+The first test (lines 8 to 12) clicks the button with the usual CSS selector (`#inner-button`). WebdriverIO's `$`
+looks inside open shadow roots, so the test doesn't name the shadow hosts on the way. Then it checks the text of
+`#nested-result`.
+
+The second test (lines 14 to 18) goes one shadow root at a time, like Selenium: `shadow$` finds an element inside the
+shadow root of the element before it. It's useful when the same selector matches elements in more than one
+component.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"46-shadow-dom/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.
