@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/vibium-python/check_accessibility.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `urllib.request` to download axe-core, `pytest`, and Vibium's `browser`. Line 5 is the address
+of the axe-core script, and line 7 lists the axe rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+The `axe_source` fixture (lines 10 to 13) downloads the axe-core script once for the tests of the file
+(`scope='module'`). Python has no axe-core package to take it from.
+
+Lines 16 to 20 are a pytest fixture that starts and stops the browser. It starts the browser with `browser.start()`
+and gives the test its first page (tab) with `bro.page()`. After the test runs, the code after `yield` closes the
+browser with `bro.stop()`.
+
+### Scanning the Page
+
+There is no axe package for this tool yet, so the lines of `scan` (23 to 27) do what the packages do:
+`page.evaluate(axe_source)` adds the axe-core script to the page, and the second `page.evaluate` runs
+`axe.run("#widgets")` in the page, which scans only the `#widgets` section. `axe.run` returns a promise, and the tool
+waits for its results: the violations, the rules that passed, and the ones to review. The helper keeps the rule id of
+each violation.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (`KNOWN_ISSUES <=
+...`, a subset of the reported rules). It doesn't check that the scan reports only them: a newer version of axe can
+add rules, or report a rule as "incomplete" when it can't be sure (like the color contrast of text that another
+element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`set()`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing
+`pytest check_accessibility.py` from the command-line. The first time, Vibium downloads Chrome for Testing.

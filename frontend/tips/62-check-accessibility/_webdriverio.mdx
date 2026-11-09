@@ -1,0 +1,54 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/webdriverio/test/checkAccessibility.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the WebdriverIO globals and the `axe-core` package. Its `source` is the axe-core script, as text.
+Line 5 lists the axe rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+The WebdriverIO test runner starts the browser before the tests and closes it after them. The browser and the test
+framework (Mocha) are set in the `wdio.conf.ts` file.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+### Scanning the Page
+
+There is no axe package for this tool yet, so the lines of `scan` (7 to 12) do what the packages do:
+`browser.execute(axe.source)` adds the axe-core script to the page, and the second `browser.execute` runs
+`axe.run("#widgets")` in the page, which scans only the `#widgets` section. `axe.run` returns a promise, and the tool
+waits for its results: the violations, the rules that passed, and the ones to review. The helper keeps the rule id of
+each violation. Deque's `@axe-core/webdriverio` package does the same, but it doesn't support WebdriverIO 10 yet.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue
+(`expect.arrayContaining`). It doesn't check that the scan reports only them: a newer version of axe can add rules, or
+report a rule as "incomplete" when it can't be sure (like the color contrast of text that another element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`[]`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

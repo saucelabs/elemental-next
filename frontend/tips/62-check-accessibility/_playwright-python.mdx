@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/playwright-python/check_accessibility.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `Axe` from `axe-playwright-python` and Playwright's `Page`. Line 5 lists the axe rules that the
+page breaks on purpose.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. There is no setup or teardown code to write.
+
+### Scanning the Page
+
+`scan` (lines 8 to 11) `Axe().run` adds the axe-core script to the page and runs it. `context` limits the scan to the
+`#widgets` section, and the scan returns the results: the violations, the rules that passed, and the ones to review.
+The helper keeps the rule id of each violation.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (`KNOWN_ISSUES <=
+...`, a subset of the reported rules). It doesn't check that the scan reports only them: a newer version of axe can
+add rules, or report a rule as "incomplete" when it can't be sure (like the color contrast of text that another
+element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`set()`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest check_accessibility.py` from the command-line.

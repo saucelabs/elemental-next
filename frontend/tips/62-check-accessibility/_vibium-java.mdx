@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/vibium-java/src/test/java/com/elemental/vibium/CheckAccessibilityTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 19 pull in Vibium, Java's HTTP client to download axe-core, and JUnit. Line 22 is the address of the
+axe-core script, and lines 24 and 25 lists the axe rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+The `downloadAxeCore` method (lines 30 to 36) downloads the axe-core script once, before the tests of the class.
+
+The `beforeEach` method (lines 38 to 42) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 44 to 49) runs after each test and closes the
+browser with `browser.stop()`.
+
+### Scanning the Page
+
+There is no axe package for this tool yet, so the lines of `scan` (51 to 59) do what the packages do:
+`page.evaluate(axeSource)` adds the axe-core script to the page, and the second `page.evaluate` runs
+`axe.run("#widgets")` in the page, which scans only the `#widgets` section. `axe.run` returns a promise, and the tool
+waits for its results: the violations, the rules that passed, and the ones to review. The helper keeps the rule id of
+each violation. The results come back as maps and lists, so the helper casts them.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (`containsAll`). It
+doesn't check that the scan reports only them: a newer version of axe can add rules, or report a rule as "incomplete"
+when it can't be sure (like the color contrast of text that another element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`Set.of()`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

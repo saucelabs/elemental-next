@@ -1,0 +1,102 @@
+---
+title: 'How to Check Accessibility with axe'
+card_highlight: 'Accessibility'
+id: '62-check-accessibility'
+slug: /62-check-accessibility
+sidebar_label: Check Accessibility with axe
+description: "Images without alt text, fields without labels, and buttons without names keep people who use screen readers out. The test can scan the page with axe and fail when it finds problems like these."
+number: 62
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'accessibility'
+  - 'axe'
+  - 'a11y'
+category:
+  - 'fundamentals'
+---
+
+# How to Check Accessibility with axe
+
+## Intro
+
+Many accessibility problems are easy to make and hard to see: an image without alt text, a text field without a label,
+a button with an icon and no name. The page looks fine, but a screen reader can't tell its users what these elements
+are, and they can't use the page.
+
+Checking every page by hand, after every change, takes too long.
+
+## A Solution
+
+Let the tests check them. [axe-core](https://github.com/dequelabs/axe-core) is an accessibility engine: a JavaScript
+library that runs in the page, checks it against rules based on the WCAG guidelines, and returns the violations it
+finds, each with its rule (e.g., `image-alt`), the elements, and how to fix them.
+
+- Selenium (Java, C#, JavaScript, Ruby), Selenide and Playwright (TypeScript, Java, C#) have Deque's axe packages, which
+  add axe-core to the page and run it. Python uses community packages (`axe-selenium-python` and
+  `axe-playwright-python`).
+- WebdriverIO and Vibium add the axe-core script to the page themselves, and call `axe.run`.
+
+axe finds about half of the accessibility problems: the ones a machine can check. It can't tell if an alt text
+describes the image well, or if the page makes sense with a keyboard. When axe can't be sure (e.g., the color
+contrast of text that another element covers), it reports the rule as "incomplete" instead of as a violation, for a
+person to review. Keep testing with people too.
+
+This site runs axe on every page in CI, with Selenium.
+
+## Example
+
+The examples use [the accessibility issues page](https://the-internet.herokuapp.com/accessibility_issues) of
+the-internet. It has a table of the rules it breaks on purpose, and a `#widgets` section with the elements that break
+them. [Its fixed version](https://the-internet.herokuapp.com/accessibility_issues?fixed=true) has the same elements,
+without the problems.
+
+The tests scan only the `#widgets` section. The first one checks that axe reports the known issues on the page. The
+second one checks that axe reports no violations on the fixed page, which is what a test of our own pages does.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts and loads the page with the issues
+- axe scans the `#widgets` section, and reports the rules the page breaks (e.g., `image-alt`, `label`,
+  `button-name`)
+- The browser loads the fixed page, and axe reports no violations
+- The browser closes
+
+## Summary
+
+An axe scan in the tests catches the common accessibility problems as soon as they're made, and the report says how
+to fix each one. Scan the pages the tests already visit, and fail the test on any violation.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

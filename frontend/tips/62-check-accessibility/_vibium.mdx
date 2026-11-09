@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"62-check-accessibility/code/vibium/test/checkAccessibility.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `assert`, the `axe-core` package, and Vibium's `browser`. The `source` of `axe-core` is the
+axe-core script, as text. Line 6 lists the axe rules that the page breaks on purpose.
+
+### Setup and Teardown
+
+After creating a `describe` to group our tests, lines 12 to 19 start and stop the browser.
+
+The `beforeEach` method runs before each test. It starts the browser with `browser.start()` and gets its first page
+(tab) with `bro.page()`. The `afterEach` method runs after each test and closes the browser with `bro.stop()`.
+
+### Scanning the Page
+
+There is no axe package for this tool yet, so the lines of `scan` (21 to 26) do what the packages do:
+`page.evaluate(axe.source)` adds the axe-core script to the page, and the second `page.evaluate` runs
+`axe.run("#widgets")` in the page, which scans only the `#widgets` section. `axe.run` returns a promise, and the tool
+waits for its results: the violations, the rules that passed, and the ones to review. The helper keeps the rule id of
+each violation.
+
+### The Tests
+
+The first test loads the page with the issues and checks that the scan reports every known issue (a loop that checks
+each one, and names the missing rule when it fails). It doesn't check that the scan reports only them: a newer version
+of axe can add rules, or report a rule as "incomplete" when it can't be sure (like the color contrast of text that
+another element covers).
+
+The second test loads the fixed page and checks that the scan reports no violations (`[]`). This is the check to
+use for our own pages.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"62-check-accessibility/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.
