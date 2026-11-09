@@ -7,7 +7,7 @@
     "test": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "1.64.1",
+    "@playwright/test": "1.65.0",
     "@saucelabs/visual-playwright": "0.8.0"
   }
 }
