@@ -1,0 +1,13 @@
+{
+  "name": "sauce-visual",
+  "version": "1.0.0",
+  "description": "A project to showcase checking screenshots with Sauce Labs Visual using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@saucelabs/visual-playwright": "0.8.0"
+  }
+}
