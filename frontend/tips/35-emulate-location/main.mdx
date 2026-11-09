@@ -1,0 +1,106 @@
+---
+title: 'How to Emulate the Location, Time Zone and Locale'
+card_highlight: 'Location, Time Zone and Locale'
+id: '35-emulate-location'
+slug: /35-emulate-location
+sidebar_label: Emulate Location and Locale
+description: "Pages that show content for where the user is, or format dates and numbers in the user's language, are hard to test from one machine. The test can tell the browser which location, time zone and locale to report."
+number: 35
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'bidi'
+  - 'geolocation'
+  - 'time zone'
+  - 'locale'
+category:
+  - 'fundamentals'
+---
+
+# How to Emulate the Location, Time Zone and Locale
+
+## Intro
+
+Many pages change with where the user is and which language they speak: a store shows the nearest shops, a booking
+site shows times in the local time zone, and a bank shows prices like `1.234,50 €` in Germany and `€1,234.50` in
+the US.
+
+The test machine has only one location, one time zone and one language. So how do we test the page as a user in
+Berlin, or in Tokyo, would see it?
+
+## A Solution
+
+Tell the browser what to report. The page reads the location, the time zone and the language from the browser, so
+the test can change them before it loads the page:
+
+- **Location**: the browser returns the given latitude and longitude when the page asks for the location. The page
+  also needs the geolocation permission, or the browser asks the user first. The test grants it.
+- **Time zone**: dates show in the given time zone (e.g., `Asia/Tokyo`).
+- **Locale**: the browser reports the given language (e.g., `de-DE`), formats dates and numbers with it, and sends it
+  to the server in the `Accept-Language` header.
+
+Selenium does it with [WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/): the `emulation`
+module changes what the browser reports, and the `permissions` module grants the permission. Selenide uses the same
+Selenium classes. Playwright sets them as options of the browser context, and WebdriverIO uses `browser.emulate`.
+Vibium can change the time zone, but it can't grant permissions or change the locale yet, so its examples show the
+time zone only.
+
+## Example
+
+The examples use two pages of the-internet:
+
+- [Geolocation](https://the-internet.herokuapp.com/geolocation): the "Where am I?" button asks the browser for the
+  location and shows the latitude and longitude. The test sets the location to Berlin (`52.52`, `13.405`).
+- [Locale & Time Zone](https://the-internet.herokuapp.com/locale): the server greets the user in the language of the
+  `Accept-Language` header, and the page shows the language and the time zone of the browser, a date (`2026-04-15
+  12:00 UTC`) and a number formatted with them. The test sets the time zone to `Asia/Tokyo` and the locale to
+  `de-DE`, so the date shows as `Mittwoch, 15. April 2026 um 21:00`, the number as `1.234.567,891`, and the greeting
+  as `Hallo!`.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts
+- The first test grants the geolocation permission and sets the location to Berlin
+- It clicks "Where am I?", and the page shows the latitude and longitude of Berlin
+- The second test sets the time zone to Tokyo and the locale to German
+- The page greets the user in German, and shows the date and the number in German, at the time of Tokyo
+- The browser closes
+
+## Summary
+
+Changing the location, the time zone and the locale lets one machine test the page as users from anywhere see it.
+Set them before the page loads, since many pages read them only once.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

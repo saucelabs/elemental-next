@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/vibium/test/emulateTimeZone.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+Vibium can change the location (`setGeolocation`), but it can't grant the geolocation permission yet, so the
+browser would ask the user first. It can't change the locale either. So this example changes the time zone only.
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module for the assertions and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+After creating a `describe` to group our tests, lines 8 to 15 start and stop the browser.
+
+The `beforeEach` method runs before each test. It starts the browser with `browser.start()` and gets its first page
+(tab) with `bro.page()`. The `afterEach` method runs after each test and closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 17 to 25 are the test itself. `page.clock.setTimezone` sets the time zone of the page to `Asia/Tokyo`.
+
+Then the test loads the page, and checks that it shows the `Asia/Tokyo` time zone and the date at the time of Tokyo:
+`12:00 UTC` is `21:00` there. The format of the date depends on the language of the browser (e.g., `9:00 PM` with a
+12-hour clock), so the test only looks for the time.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

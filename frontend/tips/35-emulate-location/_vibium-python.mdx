@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/vibium-python/emulate_time_zone.py"} language={"python"}/>
+
+## Code Walkthrough
+
+Vibium can change the location (`set_geolocation`), but it can't grant the geolocation permission yet, so the
+browser would ask the user first. It can't change the locale either. So this example changes the time zone only.
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `re` to look for the time in the date, `pytest`, and Vibium's `browser`.
+
+### Setup and Teardown
+
+Lines 6 to 10 are a pytest fixture that starts and stops the browser.
+
+It starts the browser with `browser.start()` and gives the test its first page (tab) with `bro.page()`. After the test
+runs, the code after `yield` closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 13 to 20 are the test itself. `page.clock.set_timezone` sets the time zone of the page to `Asia/Tokyo`.
+
+Then the test loads the page, and checks that it shows the `Asia/Tokyo` time zone and the date at the time of Tokyo:
+`12:00 UTC` is `21:00` there. The format of the date depends on the language of the browser (e.g., `9:00 PM` with a
+12-hour clock), so the test only looks for the time.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing
+`pytest emulate_time_zone.py` from the command-line. The first time, Vibium downloads Chrome for Testing.

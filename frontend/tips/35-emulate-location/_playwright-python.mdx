@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"35-emulate-location/code/playwright-python/emulate_location.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` and Playwright's `Page` and `expect`.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends.
+
+The plugin creates the browser context with the options of the `browser_context_args` fixture. Lines 5 to 14 override
+it to add our options to the default ones. The browser context (a fresh browser profile for each test) starts with the
+location of Berlin, the geolocation permission (so the browser doesn't ask the user), the `Asia/Tokyo` time zone and
+the `de-DE` locale.
+
+### The Tests
+
+`test_geolocation` (lines 17 to 22) loads the page and clicks the button. The page asks the browser for the location,
+and `to_have_text` waits for the latitude and longitude of Berlin.
+
+`test_time_zone_and_locale` (lines 25 to 32) loads the second page. The server greets the user in German (`Hallo!`),
+and the page shows the language (`de-DE`), the time zone (`Asia/Tokyo`), the date in German at the time of Tokyo
+(`Mittwoch, 15. April 2026 um 21:00`), and the number with German separators (`1.234.567,891`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"35-emulate-location/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest emulate_location.py` from the command-line.
