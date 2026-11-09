@@ -58,8 +58,8 @@ tips/1-upload-a-file/
   as the Java tab of a Selenide tool tab (see `KNOWN_TOOLS` in `displayTips.js`).
 - `TipCode` loads the file via `raw-loader`, relative to `frontend/tips/`. Line numbers referenced in the
   walkthrough prose must stay in sync with the code file.
-- Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Serenity/JS examples exist for some tips and
-  are kept. Selenide (Java) examples exist for some tips and show as their own tool.
+- Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Selenide (Java) examples exist for some tips
+  and show as their own tool.
 - Other tools: Playwright (TypeScript, Python, C# and Java), WebdriverIO (TypeScript) and Vibium (JavaScript, Python
   and Java). They use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
 - Per-language conventions in `code/`:
@@ -145,7 +145,7 @@ tips/1-upload-a-file/
 - `social-cards.yml`: on push to main, creates the social cards of the tips that changed and opens a pull request
   with them (see Social cards).
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
-- `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `serenity-js`, `playwright`,
+- `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `playwright`,
   `playwright-python`, `playwright-csharp`, `playwright-java`, `webdriverio`, `vibium`, `vibium-python`, `vibium-java`):
   thin callers of the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
   - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
