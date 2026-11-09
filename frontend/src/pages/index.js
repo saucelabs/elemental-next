@@ -62,12 +62,11 @@ const USE_CASE_TOOLS = ['Selenium', 'Selenide', 'Playwright', 'WebdriverIO', 'Vi
 const START_HERE = [1, 3, 5, 51, 61];
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
 
-// Counts the tips of each tool and collects their languages, from the <DisplayTips> block of each tip. Serenity/JS
-// examples are kept in some tips, but the page doesn't list them.
+// Counts the tips of each tool and collects their languages, from the <DisplayTips> block of each tip.
 function toolStats(tips) {
     const stats = {};
     tips.forEach((tip) => {
-        (tip.languages || []).filter(({label}) => label !== 'Serenity/JS').forEach(({tool, label}) => {
+        (tip.languages || []).forEach(({tool, label}) => {
             stats[tool] = stats[tool] || {tips: new Set(), languages: new Set()};
             stats[tool].tips.add(tip.number);
             stats[tool].languages.add(label);

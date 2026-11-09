@@ -6,7 +6,7 @@ on:
   workflow_call:
     inputs:
       language:
-        description: 'Directory name under code/ (java, selenide, csharp, javascript, serenity-js, python, ruby, playwright, playwright-python, playwright-csharp, playwright-java, webdriverio, vibium, vibium-python, vibium-java)'
+        description: 'Directory name under code/ (java, selenide, csharp, javascript, python, ruby, playwright, playwright-python, playwright-csharp, playwright-java, webdriverio, vibium, vibium-python, vibium-java)'
         required: true
         type: string
       workflow-file:
@@ -94,7 +94,7 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: Set up Node
-        if: contains(fromJSON('["javascript", "serenity-js", "playwright", "webdriverio", "vibium"]'), inputs.language)
+        if: contains(fromJSON('["javascript", "playwright", "webdriverio", "vibium"]'), inputs.language)
         uses: actions/setup-node@v7
         with:
           node-version: 26

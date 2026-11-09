@@ -45,7 +45,7 @@ run_one() {
           -Dexec.classpathScope=test -Dexec.args="${PLAYWRIGHT_SERVER}" \
           -- env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 mvn -B test
       ;;
-    javascript | serenity-js | webdriverio | vibium) npm install && npm test ;;
+    javascript | webdriverio | vibium) npm install && npm test ;;
     playwright)
       npm install && npx playwright install --with-deps chromium \
         && with_playwright_server npx playwright ${PLAYWRIGHT_SERVER} -- npm test
