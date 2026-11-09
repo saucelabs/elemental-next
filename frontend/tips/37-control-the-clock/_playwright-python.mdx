@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/playwright-python/control_the_clock.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in Playwright's `Page` and `expect`.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+Lines 4 to 16 are the test itself.
+
+First, `page.clock.install()` replaces the timers of the page with fake ones. They don't move on their own. Then the
+test loads the page and clicks the button, and the toast shows up with its message.
+
+`page.clock.run_for(59000)` moves the clock forward 59 seconds, and runs what was due (nothing yet): the toast is
+still there. One more second runs the callback that hides the toast, and it's gone. `to_have_count(0)` checks that
+there are no toasts.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest control_the_clock.py` from the command-line.

@@ -1,0 +1,100 @@
+---
+title: 'How to Control the Clock'
+card_highlight: 'Control the Clock'
+id: '37-control-the-clock'
+slug: /37-control-the-clock
+sidebar_label: Control the Clock
+description: "Messages that hide after a minute, sessions that expire after 15 minutes, and countdowns make tests slow, since the test has to wait. The test can control the clock of the page and move it forward instead."
+number: 37
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'bidi'
+  - 'clock'
+  - 'timers'
+category:
+  - 'fundamentals'
+---
+
+# How to Control the Clock
+
+## Intro
+
+Many pages do something after some time: a message hides itself after a minute, a session expires after 15 minutes of
+inactivity, a countdown reaches zero. To test it, the test has to wait for that time. A test that waits for 15 minutes
+is too slow to run often, and a test that waits for a short time with a fake setting (e.g., a session of 2 seconds)
+doesn't test what users get.
+
+## A Solution
+
+Control the clock of the page. Pages schedule what happens later with the timers of the browser (e.g.,
+`setTimeout`). The test replaces them with fake timers before the page loads. The fake timers don't move on their
+own: the test moves them forward, and the page runs what was due, right away. A minute takes a few milliseconds.
+
+- Playwright and Vibium have `page.clock`: `install()` replaces the timers, and `runFor()` moves them forward.
+- WebdriverIO has `browser.emulate('clock')`, which returns a clock with `tick()`.
+- Selenium has no clock yet. With [WebDriver BiDi](https://www.selenium.dev/documentation/webdriver/bidi/), the test
+  adds a preload script: a script that runs in every page before the page's own scripts. It replaces `setTimeout`
+  with a small fake one, and the test moves it forward with `fakeClock.tick()`. Selenide uses the same Selenium
+  classes.
+
+The fake `setTimeout` of the Selenium examples is enough for this page. The clocks of Playwright, Vibium and
+WebdriverIO also fake `setInterval`, `Date` and the other timers. For a full fake clock with Selenium, add a library
+like [`@sinonjs/fake-timers`](https://github.com/sinonjs/fake-timers) to the preload script.
+
+## Example
+
+The examples use [the toasts page](https://the-internet.herokuapp.com/toasts) of the-internet. Its buttons show a
+toast (a small message in the corner), which hides itself after the time set in the URL (`?duration=60000`, one
+minute).
+
+The test installs the fake clock, shows a toast, moves the clock forward 59 seconds and checks that the toast is
+still there, then moves it 1 more second and checks that the toast is gone.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts
+- The test replaces the timers of the page with fake ones
+- The test loads the page and shows a toast that hides itself after one minute
+- The test moves the clock forward 59 seconds, and the toast is still there
+- The test moves the clock forward 1 more second, and the toast is gone
+- The browser closes, a few seconds after it started
+
+## Summary
+
+Controlling the clock makes tests of timeouts fast, and keeps the times the users get. It also makes them reliable:
+the page runs what was due when the test moves the clock, so the test doesn't depend on how fast the machine is.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

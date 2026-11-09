@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/vibium-python/control_the_clock.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` and Vibium's `browser`. Line 4 is the script that counts the toasts in the page.
+
+### Setup and Teardown
+
+Lines 7 to 11 are a pytest fixture that starts and stops the browser.
+
+It starts the browser with `browser.start()` and gives the test its first page (tab) with `bro.page()`. After the test
+runs, the code after `yield` closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 14 to 26 are the test itself.
+
+First, `page.clock.install()` replaces the timers of the page with fake ones. They don't move on their own. Then the
+test loads the page and clicks the button, and the toast shows up with its message.
+
+`page.clock.run_for(59000)` moves the clock forward 59 seconds, and runs what was due (nothing yet): the toast is
+still there. One more second runs the callback that hides the toast, and it's gone. The test counts the toasts by
+running the script of line 4 in the page with `evaluate`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing
+`pytest control_the_clock.py` from the command-line. The first time, Vibium downloads Chrome for Testing.

@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/playwright-java/src/test/java/com/elemental/playwright/ControlTheClockTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 7 pull in Playwright's assertions, `Page` and JUnit extension, and JUnit's `@Test`.
+
+### Setup and Teardown
+
+Line 9 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 12 to 26 are the test itself.
+
+First, `page.clock().install()` replaces the timers of the page with fake ones. They don't move on their own. Then the
+test loads the page and clicks the button, and the toast shows up with its message.
+
+`page.clock().runFor(59000)` moves the clock forward 59 seconds, and runs what was due (nothing yet): the toast is
+still there. One more second runs the callback that hides the toast, and it's gone. `hasCount(0)` checks that there
+are no toasts.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.

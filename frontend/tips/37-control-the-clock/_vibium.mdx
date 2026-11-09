@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/vibium/test/controlTheClock.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module for the assertions and Vibium's `browser` to drive the browser.
+
+### Setup and Teardown
+
+After creating a `describe` to group our tests, lines 8 to 15 start and stop the browser.
+
+The `beforeEach` method runs before each test. It starts the browser with `browser.start()` and gets its first page
+(tab) with `bro.page()`. The `afterEach` method runs after each test and closes the browser with `bro.stop()`.
+
+### The Test
+
+Lines 17 to 31 are the test itself.
+
+First, `page.clock.install()` replaces the timers of the page with fake ones. They don't move on their own. Then the
+test loads the page and clicks the button, and the toast shows up with its message.
+
+`page.clock.runFor(59000)` moves the clock forward 59 seconds, and runs what was due (nothing yet): the toast is still
+there. One more second runs the callback that hides the toast, and it's gone. The test counts the toasts by running
+`document.querySelectorAll(".toast").length` in the page with `evaluate`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

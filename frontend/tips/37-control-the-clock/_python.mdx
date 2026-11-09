@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/python/control_the_clock.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `pytest`, Selenium's `webdriver`, and the `By` locators.
+
+### The Fake Clock
+
+Lines 6 to 19 are the fake clock, a JavaScript function that runs in the page. It replaces `setTimeout` with a function
+that only keeps the callback and the time it is due, and adds a `fakeClock` object to the page. `fakeClock.tick`
+moves the time forward, and runs the callbacks that are due.
+
+### Setup and Teardown
+
+Lines 22 to 29 are a fixture that starts Chrome with WebDriver BiDi turned on (`enable_bidi`), gives it to the test,
+and quits it at the end.
+
+### The Test
+
+Lines 32 to 43 are the test itself. `driver.script.add_preload_script` adds the fake clock as a preload script: the
+browser runs it in every page, before the page's own scripts.
+
+Then the test loads the page and clicks the button. The toast shows up with its message. The page asked
+`setTimeout` to hide it in one minute, but the fake `setTimeout` only keeps the callback.
+
+The test moves the clock forward 59 seconds with `fakeClock.tick(59000)`, run in the page with `execute_script`. The
+toast is still there. One more second (`fakeClock.tick(1000)`) makes the callback due, it runs, and the toast is
+gone.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest control_the_clock.py` from the command-line.

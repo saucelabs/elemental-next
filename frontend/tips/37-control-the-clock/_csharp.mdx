@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"37-control-the-clock/code/csharp/ControlTheClockTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in MSTest and Selenium, with its BiDi support.
+
+### The Fake Clock
+
+Lines 13 to 28 are the fake clock, a JavaScript function that runs in the page. It replaces `setTimeout` with a function
+that only keeps the callback and the time it is due, and adds a `fakeClock` object to the page. `fakeClock.tick`
+moves the time forward, and runs the callbacks that are due.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 33 to 40) turns on WebDriver BiDi with `UseWebSocketUrl`, starts Chrome, and connects to
+BiDi with `AsBiDiAsync`. The `TearDown` method (lines 42 to 50) closes the BiDi connection and quits the browser.
+
+### The Test
+
+Lines 52 to 66 are the test itself. `Script.AddPreloadScriptAsync` adds the fake clock as a preload script: the browser
+runs it in every page, before the page's own scripts.
+
+Then the test loads the page and clicks the button. The toast shows up with its message. The page asked
+`setTimeout` to hide it in one minute, but the fake `setTimeout` only keeps the callback.
+
+The test moves the clock forward 59 seconds with `fakeClock.tick(59000)`, run in the page with `ExecuteScript`. The
+toast is still there. One more second (`fakeClock.tick(1000)`) makes the callback due, it runs, and the toast is
+gone.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"37-control-the-clock/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test` from the command-line.
