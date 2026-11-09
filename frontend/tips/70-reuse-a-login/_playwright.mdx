@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/playwright/tests/reuseLogin.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect`) and the type of the context options.
+
+### Logging In Once
+
+`test.beforeAll` (lines 6 to 17) runs once, before the tests of the file: it creates a browser context (a fresh
+browser profile), logs in through the form, and waits for the secure area. Then `context.storageState()` saves the
+storage state of the context: its cookies and local storage. That's the whole session, whatever the site uses to keep
+it.
+
+### Starting Each Test Logged In
+
+Each test creates its own context with `browser.newContext({storageState})`. It starts with the cookies and the local
+storage of the logged-in user, so the site sees the user as logged in. The test closes the context at the end.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message (`toContainText`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`. Then run the test
+by executing `npm test` from the command-line.

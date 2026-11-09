@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/vibium/test/reuseLogin.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in the `assert` module and Vibium's `browser`.
+
+### Logging In Once
+
+The `before` hook (lines 11 to 26) runs once, before the tests of the `describe`: it starts a browser, logs in through
+the form, and keeps the session cookie of the logged-in user, `rack.session`, with `page.context.cookies()`. Then it
+closes that browser.
+
+### Starting Each Test Logged In
+
+The `beforeEach` hook (lines 28 to 33) starts a fresh browser for each test. It adds the session cookie to the browser
+context with `setCookies`, for the site's URL. The cookie of the site has `SameSite=None` without `Secure`, which the
+browser doesn't send, so the test sets it to `lax`. The browser now sends the session cookie, so the site sees the
+user as logged in. The `afterEach` hook (lines 35 to 37) closes the browser.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message (`assert.match`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Before
+the tests, `npm test` runs `vibium install`, which downloads Chrome for Testing the first time.

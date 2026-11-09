@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/selenide/src/test/java/com/elemental/selenium/ReuseLoginTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 15 pull in Selenide, JUnit and Selenium's `Cookie`.
+
+### Logging In Once
+
+The `logIn` method (lines 20 to 30) runs once, before the tests of the class (`@BeforeAll`): it starts a browser, logs
+in through the form, and keeps the session cookie of the logged-in user, `rack.session`, with `getCookieNamed`, from
+Selenide's driver (`getWebDriver()`). Then it closes that browser.
+
+### Starting Each Test Logged In
+
+The `addTheSessionCookie` method (lines 32 to 37) starts a fresh browser for each test: Selenide starts it when the
+test opens the first page. It opens the site first, because a cookie can only be added for the site of the current
+page, and then adds the session cookie with `addCookie`, with its name and value. The browser now sends the session
+cookie, so the site sees the user as logged in. The `tearDown` method (lines 39 to 42) closes the browser.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message (`shouldHave`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

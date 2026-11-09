@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/ruby/reuse_login.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Logging In Once
+
+The `log_in` method (lines 8 to 17) runs once: line 37 calls it before the tests and keeps the cookie in
+`SESSION_COOKIE`: it starts a browser, logs in through the form, and keeps the session cookie of the logged-in user,
+`rack.session`, with `cookie_named`. Then it closes that browser.
+
+### Starting Each Test Logged In
+
+The `setup` method (lines 19 to 24) starts a fresh browser for each test. It opens the site first, because a cookie
+can only be added for the site of the current page, and then adds the session cookie with `add_cookie`, with its name
+and value. The browser now sends the session cookie, so the site sees the user as logged in. The `teardown` method
+(lines 26 to 28) quits the browser, and `run` (lines 30 to 35) calls them around each test.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message in `#flash`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby reuse_login.rb` from the command-line.

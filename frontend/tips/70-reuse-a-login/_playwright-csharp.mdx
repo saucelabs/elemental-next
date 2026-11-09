@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/playwright-csharp/ReuseLoginTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in Playwright, its MSTest integration, and MSTest.
+
+### Logging In Once
+
+The `LogIn` method (lines 16 to 27) runs once: it creates a browser context (a fresh browser profile), logs in through
+the form, and waits for the secure area. Then `StorageStateAsync()` saves the storage state of the context: its
+cookies and local storage. That's the whole session, whatever the site uses to keep it. The test class extends
+`BrowserTest`, which gives it a `Browser`, so the method can create the context.
+
+### Starting Each Test Logged In
+
+The `SetUp` method (lines 29 to 35) logs in on the first test only (`??=` keeps the state for the next ones), and
+creates a context with the storage state for each test. It starts with the cookies and the local storage of the
+logged-in user. The `TearDown` method (lines 37 to 41) closes the context.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message (`ToContainTextAsync`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.

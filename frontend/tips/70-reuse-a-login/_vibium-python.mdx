@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"70-reuse-a-login/code/vibium-python/reuse_login.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` and Vibium's `browser`.
+
+### Logging In Once
+
+The `session_cookie` fixture (lines 7 to 20) runs once for the tests of the file (`scope='module'`): it starts a
+browser, logs in through the form, and keeps the session cookie of the logged-in user, `rack.session`, with
+`page.context.cookies()`. Then it closes that browser.
+
+### Starting Each Test Logged In
+
+The `page` fixture (lines 23 to 30) starts a fresh browser for each test, and closes it at the end. It adds the
+session cookie to the browser context with `set_cookies`, for the site's URL. The cookie of the site has
+`SameSite=None` without `Secure`, which the browser doesn't send, so the test sets it to `lax`. The browser now sends
+the session cookie, so the site sees the user as logged in.
+
+### The Tests
+
+Both tests open the secure area (`/secure`) directly, without the form. The first one checks that it shows the user
+name, and the second one clicks "Logout" and checks the message in `#flash`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"70-reuse-a-login/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest reuse_login.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.

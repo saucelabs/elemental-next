@@ -1,0 +1,98 @@
+---
+title: 'How to Reuse a Login Across Tests'
+card_highlight: 'Reuse a Login'
+id: '70-reuse-a-login'
+slug: /70-reuse-a-login
+sidebar_label: Reuse a Login Across Tests
+description: "Logging in through the form at the start of every test makes the suite slow, and every test fails when the login page has a problem. The test suite can log in once, keep the session cookie, and start each test already logged in."
+number: 70
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'login'
+  - 'cookies'
+  - 'storage state'
+  - 'test setup'
+category:
+  - 'fundamentals'
+---
+
+# How to Reuse a Login Across Tests
+
+## Intro
+
+Most tests of a web application need a logged-in user. When each test logs in through the form first, the suite
+spends a few seconds per test on the same steps, and a problem in the login page fails every test, even the ones that
+test something else.
+
+## A Solution
+
+Log in once, and reuse the session. After the login, the site keeps the session in a cookie (or in the local storage).
+The suite logs in through the form once, before the tests, and keeps the session cookie. Each test starts a fresh
+browser, adds the cookie, and goes straight to the page it tests, already logged in.
+
+- **Selenium**, Selenide, WebdriverIO and Vibium read the session cookie after the login, and add it to the browser of
+  each test. With Selenium, a cookie can only be added for the site of the current page, so the test opens the site
+  first.
+- **Playwright** saves the whole storage state of the browser context (cookies and local storage) with
+  `storageState()`, and starts the context of each test with it.
+
+Each test still gets its own browser, so the tests stay independent. Keep one test that logs in through the form, so
+the login page is still covered. When the application has an API to log in, use it instead of the form (see
+[tip 24](/tips/24-rest-apis)).
+
+## Example
+
+The examples use [the login page](https://the-internet.herokuapp.com/login) of the-internet. After the login, the site
+keeps the session in the `rack.session` cookie, and the secure area (`/secure`) shows the user name in `#username`.
+Without the cookie, `/secure` sends the browser back to the login page.
+
+The suite logs in once with `tomsmith`. Then two tests start already logged in: the first one opens the secure area
+and checks the user name, and the second one logs out.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- A browser starts, logs in through the form, and the test keeps the session (the cookie or the storage state)
+- That browser closes
+- For each test, a fresh browser starts with the session, and opens the secure area without the form
+- The first test checks the user name, and the second one logs out
+- Each browser closes at the end of its test
+
+## Summary
+
+Logging in once saves the login steps in every test, and keeps a problem in the login page in one test. Reuse the
+session for tests that run close together: sessions expire, so log in again at the start of each run.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
