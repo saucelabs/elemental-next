@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/playwright-java/src/test/java/com/elemental/playwright/FindByRoleTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 8 pull in Playwright's assertions, `Page`, JUnit extension and `AriaRole`, and JUnit's `@Test`.
+
+### Setup and Teardown
+
+Line 10 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives each
+test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup or
+teardown code to write.
+
+### The Test
+
+The test loads the page, and `getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Fruit"))` finds the
+combobox named "Fruit" (its accessible name, from the label next to it). The test clicks it, and the list of fruits
+opens. Then the test finds the "Mango" option the same way, and clicks it. At the end, `hasText` checks that the
+combobox shows "Mango", and that the page shows `Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.

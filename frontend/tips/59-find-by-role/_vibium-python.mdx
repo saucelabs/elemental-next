@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/vibium-python/find_by_role.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `pytest` and Vibium's `browser`.
+
+### Setup and Teardown
+
+Lines 5 to 9 are a pytest fixture that starts and stops the browser.
+
+It starts the browser with `browser.start()` and gives the test its first page (tab) with `bro.page()`. After the test
+runs, the code after `yield` closes the browser with `bro.stop()`.
+
+### The Test
+
+The test loads the page, and `page.find(role='combobox', label='Fruit')` finds the combobox labelled "Fruit". The test
+clicks it, and the list of fruits opens. Then `page.find(role='option', text='Mango')` finds the option with the text
+"Mango", and the test clicks it. At the end, the test checks that the combobox shows "Mango", and that the page shows
+`Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest find_by_role.py`
+from the command-line. The first time, Vibium downloads Chrome for Testing.

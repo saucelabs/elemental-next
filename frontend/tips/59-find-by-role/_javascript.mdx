@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/javascript/test/findByRole.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `assert` and Selenium.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 7 to 9) starts Firefox, and the `afterEach` method (lines 11 to 13) quits it.
+
+### Finding by Role and Name
+
+Selenium has no role locator yet, so the helper `findByRole` (lines 15 to 23) finds the elements with a `role`
+attribute and keeps the first one with the role and the name we ask for. The browser computes both, as a screen reader
+sees them: `getAriaRole()` returns the role, and `getAccessibleName()` returns the accessible name, which for the
+combobox comes from the label next to it (`aria-labelledby`). When no element matches, the helper fails with a clear
+message.
+
+### The Test
+
+The test loads the page, finds the combobox named "Fruit" and clicks it, and the list of fruits opens. Then it finds
+the option named "Mango" and clicks it. At the end, it checks that the combobox shows "Mango", and that the page shows
+`Selected: mango`. The helper returns a promise, so the test waits for it (`await`) before clicking.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install them with `npm install`, then run the test by executing `npm test` from the command-line.

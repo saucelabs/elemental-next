@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/playwright-python/find_by_role.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in Playwright's `Page` and `expect`.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+The test loads the page, and `get_by_role('combobox', name='Fruit')` finds the combobox named "Fruit" (its accessible
+name, from the label next to it). The test clicks it, and the list of fruits opens. Then the test finds the "Mango"
+option the same way, and clicks it. At the end, `to_have_text` checks that the combobox shows "Mango", and that the
+page shows `Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest find_by_role.py` from the command-line.

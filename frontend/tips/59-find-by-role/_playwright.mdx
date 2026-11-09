@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"59-find-by-role/code/playwright/tests/findByRole.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect` from `@playwright/test`).
+
+### Setup and Teardown
+
+Playwright Test handles the browser for us. Each test receives a `page` (a fresh browser tab) as a fixture, and
+Playwright closes it when the test ends. There is no setup or teardown code to write.
+
+### The Test
+
+The test loads the page, and `getByRole('combobox', {name: 'Fruit'})` finds the combobox named "Fruit" (its accessible
+name, from the label next to it). The test clicks it, and the list of fruits opens. Then the test finds the "Mango"
+option the same way, and clicks it. At the end, `toHaveText` checks that the combobox shows "Mango", and that the page
+shows `Selected: mango`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"59-find-by-role/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`. Then run the test
+by executing `npm test` from the command-line.
