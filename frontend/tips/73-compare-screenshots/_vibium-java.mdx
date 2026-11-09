@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"73-compare-screenshots/code/vibium-java/src/test/java/com/elemental/vibium/CompareScreenshotsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 13 pull in Vibium, Java's `BufferedImage` and `ImageIO`, and JUnit.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 20 to 24) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 26 to 31) runs after each test and closes
+the browser with `browser.stop()`.
+
+### Taking and Comparing Screenshots
+
+`cardScreenshot` (lines 33 to 37) loads a URL, takes a screenshot of the card only (`screenshot()` of the element),
+and reads the PNG into an image.
+
+`differentPixels` (lines 39 to 53) counts the pixels that differ between two images. When the sizes differ, every
+pixel is different. Otherwise, it goes through every pixel and compares their colors.
+
+### The Tests
+
+Each test takes its baseline in the same run: a screenshot of the card without changes. The first test compares it
+with a second screenshot of the same card, and checks that no pixels differ. The second test compares it with a
+screenshot of the card with the button moved (`?shift=10`), and checks that some pixels differ.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"73-compare-screenshots/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"73-compare-screenshots/code/vibium-python/compare_screenshots.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in `io`, `pytest`, Pillow's `Image` and `ImageChops`, and Vibium's `browser`.
+
+### Setup and Teardown
+
+Lines 9 to 13 are a pytest fixture that starts and stops the browser.
+
+It starts the browser with `browser.start()` and gives the test its first page (tab) with `bro.page()`. After the test
+runs, the code after `yield` closes the browser with `bro.stop()`.
+
+### Taking and Comparing Screenshots
+
+`card_screenshot` (lines 16 to 19) loads a URL, takes a screenshot of the card only (`screenshot()` of the element),
+and reads the PNG into an image.
+
+`different_pixels` (lines 22 to 28) counts the pixels that differ between two images. When the sizes differ, every
+pixel is different. Otherwise, Pillow subtracts one image from the other: the result is black where the pixels are the
+same. Its histogram counts the pixels of each shade, and every shade but black is a difference.
+
+### The Tests
+
+Each test takes its baseline in the same run: a screenshot of the card without changes. The first test compares it
+with a second screenshot of the same card, and checks that no pixels differ. The second test compares it with a
+screenshot of the card with the button moved (`?shift=10`), and checks that some pixels differ.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"73-compare-screenshots/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt`, then run the test by executing `pytest
+compare_screenshots.py` from the command-line. The first time, Vibium downloads Chrome for Testing.

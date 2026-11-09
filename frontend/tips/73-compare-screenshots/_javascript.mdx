@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"73-compare-screenshots/code/javascript/test/compareScreenshots.spec.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `assert`, Selenium, and `pngjs` to read PNG images.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 10 to 12) starts Firefox, and the `afterEach` method (lines 14 to 16) quits it.
+
+### Taking and Comparing Screenshots
+
+`cardScreenshot` (lines 18 to 22) loads a URL, takes a screenshot of the card only (`takeScreenshot()` of the element,
+in base64), and reads the PNG into an image.
+
+`differentPixels` (lines 24 to 37) counts the pixels that differ between two images. When the sizes differ, every
+pixel is different. Otherwise, it goes through the pixel data: each pixel takes 4 bytes (red, green, blue and alpha),
+so it compares them 4 bytes at a time.
+
+### The Tests
+
+Each test takes its baseline in the same run: a screenshot of the card without changes. The first test compares it
+with a second screenshot of the same card, and checks that no pixels differ. The second test compares it with a
+screenshot of the card with the button moved (`?shift=10`), and checks that some pixels differ.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"73-compare-screenshots/code/javascript/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install them with `npm install`, then run the test by executing `npm test` from the command-line.

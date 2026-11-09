@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"73-compare-screenshots/code/ruby/compare_screenshots.rb"} language={"ruby"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in ChunkyPNG to read PNG images, Selenium and RSpec.
+
+### Setup and Teardown
+
+The `setup` method (lines 8 to 10) starts Firefox. The `teardown` method (lines 12 to 14) quits it, and `run` (lines
+16 to 21) calls them around each test.
+
+### Taking and Comparing Screenshots
+
+`card_screenshot` (lines 23 to 27) loads a URL, takes a screenshot of the card only (`screenshot_as(:png)` of the
+element), and reads the PNG into an image.
+
+`different_pixels` (lines 29 to 34) counts the pixels that differ between two images. When the sizes differ, every
+pixel is different. Otherwise, it pairs the pixels of both images and counts the pairs that differ.
+
+### The Tests
+
+Each test takes its baseline in the same run: a screenshot of the card without changes. The first test compares it
+with a second screenshot of the same card, and checks that no pixels differ. The second test compares it with a
+screenshot of the card with the button moved (`?shift=10`), and checks that some pixels differ.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `Gemfile`.
+
+<details>
+    <summary>Toggle to see the <code>Gemfile</code> file.</summary>
+    <div>
+        <TipCode codePath={"73-compare-screenshots/code/ruby/Gemfile"} language={"ruby"}/>
+    </div>
+</details>
+
+Install them with `bundle install`, then run the test by executing `ruby compare_screenshots.rb` from the command-line.

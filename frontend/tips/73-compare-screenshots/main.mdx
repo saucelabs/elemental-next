@@ -1,0 +1,102 @@
+---
+title: 'How to Compare Screenshots of an Element'
+card_highlight: 'Compare Screenshots'
+id: '73-compare-screenshots'
+slug: /73-compare-screenshots
+sidebar_label: Compare Screenshots
+description: "A button that moves a few pixels, a wrong color, or a missing logo pass every functional check. A test that compares screenshots of an element, pixel by pixel, notices them."
+number: 73
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-08
+tags:
+  - 'visual testing'
+  - 'screenshots'
+category:
+  - 'fundamentals'
+---
+
+# How to Compare Screenshots of an Element
+
+## Intro
+
+Functional tests check what the page does: the button is there, the click works, the text is right. They don't check
+how it looks. A button that moved over the label, a color that changed, or a logo that is missing pass them all.
+
+## A Solution
+
+Compare screenshots. The test takes a screenshot of an element (not the whole page, so the rest of the page doesn't
+get in the way), and compares it, pixel by pixel, with a screenshot of how it should look: the baseline. Any pixel
+that differs is a change to check.
+
+Every tool here takes a screenshot of an element. The examples read the PNG with a small image library of each
+language (Pillow, `ImageIO`, SkiaSharp, `pngjs`, ChunkyPNG) and count the pixels that differ.
+
+Make sure the screenshot has the whole element. Some browsers cut an element screenshot to the visible part of the
+window, so a change below the fold goes unnoticed. The Selenium and Selenide examples use Firefox, which takes the
+whole element, and the WebdriverIO one takes a screenshot relative to the document. Playwright and Vibium scroll the
+element into view first.
+
+The same page looks a bit different in another browser, operating system, or screen: fonts and anti-aliasing change
+some pixels. So keep a baseline per browser and operating system, and take the screenshots in the same environment.
+The examples here run on three operating systems in CI, so each test takes its baseline in the same run, right before
+the screenshot it compares.
+
+For a real suite, a visual testing tool does the rest: it stores the baselines, shows the differences, and lets you
+approve the expected ones. Playwright Test has `expect(locator).toHaveScreenshot()`, WebdriverIO has the
+`@wdio/visual-service`, and there are services like Sauce Labs Visual.
+
+## Example
+
+The examples use [the visual differences page](https://the-internet.herokuapp.com/visual_diff) of the-internet. It
+shows a sign-up card (`#card`). Each URL parameter turns on one small change: `?shift=10` moves the button 10 pixels.
+
+The first test takes a screenshot of the card twice, and checks that no pixels differ. The second one takes a
+screenshot of the card, then one with the button moved, and checks that some pixels differ.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- The browser starts and loads the page
+- The test takes a screenshot of the card
+- It takes another screenshot of the same card, and no pixels differ
+- It takes a screenshot of the card with the button moved, and some pixels differ
+- The browser closes
+
+## Summary
+
+A screenshot comparison of an element catches the visual changes that functional checks miss. Compare screenshots
+from the same browser and operating system, and use a visual testing tool to keep the baselines and review the
+differences.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

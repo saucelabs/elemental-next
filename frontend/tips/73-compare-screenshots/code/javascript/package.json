@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "pngjs": "7.0.0",
+    "selenium-webdriver": "4.52.0"
+  },
+  "description": "A project to showcase comparing screenshots using official WebdriverJs",
+  "devDependencies": {
+    "mocha": "12.0.3"
+  },
+  "license": "MIT",
+  "name": "compare-screenshots",
+  "scripts": {
+    "test": "npx mocha test/**/*.spec.js --timeout 60000"
+  },
+  "version": "1.0.0"
+}
