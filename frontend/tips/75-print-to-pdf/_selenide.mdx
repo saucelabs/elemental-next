@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/selenide/src/test/java/com/elemental/selenium/PrintToPdfTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 16 pull in Selenide, Java's file and base64 classes, JUnit, and Selenium's `Pdf`, `PrintsPage` and
+`PrintOptions`.
+
+### Setup and Teardown
+
+Selenide starts the browser when the test opens the first page, and closes it when the tests end. There is no setup or
+teardown code to write.
+
+### The Test
+
+Lines 19 to 33 are the test itself. It opens the page, sets the orientation to landscape in `PrintOptions`, and prints
+the page with `print`, from Selenide's driver (`getWebDriver()`) as a `PrintsPage`. It returns a `Pdf`, with the PDF
+in base64, which the test decodes. It checks that the result starts with `%PDF-`, as every PDF file does, and saves it
+as `tables.pdf` in a temporary folder. It prints where, so you can open it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

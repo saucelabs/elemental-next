@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/vibium-java/src/test/java/com/elemental/vibium/PrintToPdfTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 14 pull in Vibium, Java's file classes, and JUnit.
+
+### Setup and Teardown
+
+The `beforeEach` method (lines 20 to 24) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 26 to 31) runs after each test and closes
+the browser with `browser.stop()`.
+
+### The Test
+
+Lines 33 to 44 are the test itself. It loads the page and prints it with `page.pdf()`, which returns the PDF. Vibium
+has no print options yet, so the PDF is in portrait. It checks that the result starts with `%PDF-`, as every PDF file
+does, and saves it as `tables.pdf` in a temporary folder. It prints where, so you can open it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

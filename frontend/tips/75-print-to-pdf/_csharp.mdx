@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/csharp/PrintToPdfTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 7 pull in the file and text classes of .NET, LINQ, MSTest and Selenium.
+
+### Setup and Teardown
+
+The `SetUp` method (lines 16 to 20) starts Firefox, and the `TearDown` method (lines 22 to 26) quits it.
+
+### The Test
+
+Lines 28 to 42 are the test itself. It loads the page, sets the orientation to landscape in `PrintOptions`, and prints
+the page with `Print`, from the `ISupportsPrint` interface. It returns a `PrintDocument`, and `AsByteArray` gives the
+PDF. It checks that the result starts with `%PDF-`, as every PDF file does, and saves it as `tables.pdf` in a
+temporary folder. It prints where, so you can open it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test --logger "console;verbosity=detailed"` from the command-line (the logger
+shows where the PDF is).

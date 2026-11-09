@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/playwright-csharp/PrintToPdfTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 8 pull in the file and text classes of .NET, LINQ, Playwright, its MSTest integration, and MSTest.
+
+### Setup and Teardown
+
+The test class extends `PageTest`, from the `Microsoft.Playwright.MSTest.v4` package. `PageTest` handles the browser
+for us: each test gets a fresh browser tab in the `Page` property, and it is closed when the test ends. There is no
+setup or teardown code to write.
+
+### The Test
+
+Lines 15 to 26 are the test itself. It loads the page and prints it with `PdfAsync`, in landscape, into a temporary
+folder. Playwright saves the PDF in the path we give it, and returns it too. The test checks that it starts with
+`%PDF-`, as every PDF file does, and prints where it is. `pdf` works in Chromium, headless, as Playwright Test runs it
+by default.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with `pwsh bin/Debug/net10.0/playwright.ps1 install
+chromium` (the script is created by the build). Then run the test by executing `dotnet test` from the command-line.

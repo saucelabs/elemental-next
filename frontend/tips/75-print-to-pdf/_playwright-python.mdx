@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/playwright-python/print_to_pdf.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in Playwright's `Page`.
+
+### Setup and Teardown
+
+The `pytest-playwright` plugin handles the browser for us. Each test that takes a `page` argument receives a fresh
+browser tab, and the plugin closes it when the test ends. The test also takes pytest's `tmp_path` fixture, a temporary
+folder for the PDF.
+
+### The Test
+
+Lines 4 to 12 are the test itself. It loads the page and prints it with `page.pdf`, in landscape, into the temporary
+folder. Playwright saves the PDF in the path we give it, and returns it too. The test checks that it starts with
+`%PDF-`, as every PDF file does, and prints where it is. `pdf` works in Chromium, headless, as Playwright Test runs it
+by default.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install the libraries with `pip install -r requirements.txt` and the browser with `playwright install chromium`. Then
+run the test by executing `pytest -s print_to_pdf.py` from the command-line (`-s` shows where the PDF is).

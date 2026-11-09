@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"75-print-to-pdf/code/playwright-java/src/test/java/com/elemental/playwright/PrintToPdfTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in Playwright's `Page` and JUnit extension, Java's file classes, and JUnit.
+
+### Setup and Teardown
+
+Line 13 adds `@UsePlaywright` to the test class. It's Playwright's JUnit extension: it starts the browser and gives
+each test that asks for a `Page` parameter a fresh browser tab, which it closes when the test ends. There is no setup
+or teardown code to write.
+
+### The Test
+
+Lines 16 to 26 are the test itself. It loads the page and prints it with `page.pdf`, in landscape, into a temporary
+folder. Playwright saves the PDF in the path we give it, and returns it too. The test checks that it starts with
+`%PDF-`, as every PDF file does, and prints where it is. `pdf` works in Chromium, headless, as Playwright Test runs it
+by default.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"75-print-to-pdf/code/playwright-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Playwright downloads the browsers.
