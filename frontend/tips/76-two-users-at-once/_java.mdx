@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/java/src/test/java/com/elemental/selenium/TwoUsersTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 12 pull in `UUID` (for the room name), JUnit, Selenium, and the explicit wait (`WebDriverWait` and
+`ExpectedConditions`).
+
+### One Browser for Each User
+
+Lines 16 and 17 build the URL of the chat with a random room. The `beforeEach` method (lines 21 to 25) starts one
+Firefox for Alice and one for Bob, and the `afterEach` method (lines 27 to 35) quits both.
+
+### The Steps of a User
+
+- `waitForText` (lines 37 to 40) waits up to 10 seconds until the text of an element contains the given text.
+- `join` (lines 42 to 47) opens the chat, waits until the page is connected, types the name, and clicks "Join".
+- `sendMessage` (lines 49 to 52) types the message and clicks "Send".
+
+Each one takes the driver of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Alice and Bob join (lines 56 and 57). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 59). Then Alice sends "Hi Bob", and the test waits until Bob's page shows it (lines 61 and 62), and the
+other way around (lines 64 and 65). When the text doesn't show up, the wait fails the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/vibium-python/two_users.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in `uuid` (for the room name), `pytest`, and Vibium's `browser`.
+
+### One Browser for Each User
+
+Line 7 builds the URL of the chat with a random room. The `alice` and `bob` fixtures (lines 10 to 21) start one
+browser each, give the test its page, and stop the browser at the end of the test. The test asks for both fixtures, so
+it gets two browsers.
+
+### The Steps of a User
+
+- `join` (lines 24 to 28) opens the chat, waits until the page is connected (`wait_for_function` waits until the
+  expression is true), types the name, and clicks "Join".
+- `send_message` (lines 31 to 33) types the message and clicks "Send".
+
+Each one takes the page of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Alice and Bob join (lines 37 and 38). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 40). Then Alice sends "Hi Bob", and Bob's page should show it (lines 42 and 43), and the other way around
+(lines 45 and 46). `find(text=...)` inside `#messages` waits until an element with that text shows up, and fails the
+test when it doesn't.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest two_users.py` from the command-line. The first time, Vibium downloads Chrome for
+Testing.

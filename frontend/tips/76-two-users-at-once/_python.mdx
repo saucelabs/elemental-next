@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/python/two_users.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 7 pull in `uuid` (for the room name), `pytest`, Selenium's `webdriver`, the `By` locators, and the explicit
+wait (`WebDriverWait` and `expected_conditions`).
+
+### One Browser for Each User
+
+Line 10 builds the URL of the chat with a random room. The `alice` and `bob` fixtures (lines 13 to 24) start one
+Firefox each, and quit it at the end of the test. The test asks for both fixtures, so it gets two browsers.
+
+### The Steps of a User
+
+- `wait_for_text` (lines 27 to 28) waits up to 10 seconds until the text of an element contains the given text.
+- `join` (lines 31 to 35) opens the chat, waits until the page is connected, types the name, and clicks "Join".
+- `send_message` (lines 38 to 40) types the message and clicks "Send".
+
+Each one takes the driver of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Alice and Bob join (lines 44 and 45). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 47). Then Alice sends "Hi Bob", and the test waits until Bob's page shows it (lines 49 and 50), and the
+other way around (lines 52 and 53). When the text doesn't show up, the wait fails the test.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest two_users.py` from the command-line.

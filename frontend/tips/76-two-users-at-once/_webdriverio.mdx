@@ -1,0 +1,57 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/webdriverio/test/twoUsers.e2e.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the WebdriverIO globals `multiRemoteBrowser` and `expect` (from `@wdio/globals`).
+
+### One Browser for Each User
+
+WebdriverIO's multiremote starts more than one browser for the same test. The `capabilities` of `wdio.conf.ts` name
+one browser for each user, `alice` and `bob`, instead of a list of capabilities. Both start before the test, and close
+after it.
+
+<details>
+    <summary>Toggle to see the <code>wdio.conf.ts</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/webdriverio/wdio.conf.ts"} language={"ts"}/>
+    </div>
+</details>
+
+In the test, `multiRemoteBrowser.getInstance()` (lines 21 and 22) returns the browser of each user. A command on
+`multiRemoteBrowser` itself runs in every browser at once, which is handy when all the users do the same thing.
+
+### The Steps of a User
+
+Line 4 builds the URL of the chat with a random room.
+
+- `join` (lines 6 to 11) opens the chat, waits until the page is connected (`toHaveText` waits for it), types the
+  name, and clicks "Join".
+- `sendMessage` (lines 13 to 16) types the message and clicks "Send".
+
+Each one takes the browser of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Alice and Bob join (lines 24 and 25). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 27). Then Alice sends "Hi Bob", and Bob's page should show it (lines 29 and 30), and the other way around
+(lines 32 and 33). `toHaveText` with `expect.stringContaining` waits until the text shows up, and fails the test when
+it doesn't.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/webdriverio/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

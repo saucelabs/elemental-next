@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/csharp/TwoUsersTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `System` (for `Guid` and `TimeSpan`), MSTest, Selenium, and its support library (for
+`WebDriverWait`).
+
+### One Browser for Each User
+
+Lines 13 and 14 build the URL of the chat with a random room. The `SetUp` method (lines 18 to 23) starts one Firefox
+for Alice and one for Bob, and the `TearDown` method (lines 25 to 30) quits both.
+
+### The Steps of a User
+
+- `WaitForText` (lines 32 to 36) waits up to 10 seconds until the text of an element contains the given text.
+- `Join` (lines 38 to 44) opens the chat, waits until the page is connected, types the name, and clicks "Join".
+- `SendMessage` (lines 46 to 50) types the message and clicks "Send".
+
+Each one takes the driver of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Alice and Bob join (lines 55 and 56). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 58). Then Alice sends "Hi Bob", and the test waits until Bob's page shows it (lines 60 and 61), and the
+other way around (lines 63 and 64). When the text doesn't show up, the wait fails the test.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the project file (e.g.,
+`csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/csharp/csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `dotnet test` from the command-line.

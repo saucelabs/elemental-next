@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/vibium-java/src/test/java/com/elemental/vibium/TwoUsersTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 10 pull in Vibium (with its `SelectorOptions` type), `UUID` (for the room name), and JUnit.
+
+### One Browser for Each User
+
+Lines 14 and 15 build the URL of the chat with a random room. The `beforeEach` method (lines 19 to 23) starts one
+browser for Alice and one for Bob, and the `afterEach` method (lines 25 to 33) stops both.
+
+### The Steps of a User
+
+- `join` (lines 35 to 42) opens the chat in the browser of the user, waits until the page is connected
+  (`waitForFunction` waits until the expression is true), types the name, clicks "Join", and returns the page.
+- `sendMessage` (lines 44 to 47) types the message and clicks "Send", on the page of the user.
+
+### The Test
+
+Alice and Bob join (lines 51 and 52). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 54). Then Alice sends "Hi Bob", and Bob's page should show it (lines 56 and 57), and the other way around
+(lines 59 and 60). `find(new SelectorOptions().text(...))` inside `#messages` waits until an element with that text
+shows up, and fails the test when it doesn't.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/vibium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Run the test by executing `mvn test` from the command-line. The first time, Vibium downloads Chrome for Testing.

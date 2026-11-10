@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/playwright/tests/twoUsers.spec.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Line 1 pulls in the Playwright test runner (`test` and `expect`) and the `Browser` and `Page` types.
+
+### One Browser Context for Each User
+
+Line 4 builds the URL of the chat with a random room. The `join` function (lines 6 to 15) creates a browser context
+with `browser.newContext()`: a fresh browser profile, with its own cookies and storage. Two contexts in the same
+browser work like two browsers, and they start much faster. Then it opens the chat, waits until the page is connected
+(`toHaveText` waits for it), types the name, clicks "Join", and returns the page of the user.
+
+The `sendMessage` function (lines 17 to 20) types the message and clicks "Send", on the page of the user.
+
+### The Test
+
+The test uses the `browser` fixture, not `page`, to create the contexts itself. Alice and Bob join (lines 23 and 24).
+Messages are not saved, so Alice waits until she sees "Bob joined" before she writes (line 26). Then Alice sends "Hi
+Bob", and Bob's page should show it (lines 28 and 29), and the other way around (lines 31 and 32). `toContainText`
+waits until the text shows up, and fails the test when it doesn't. At the end, the test closes both contexts.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/playwright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install` and the browser with `npx playwright install chromium`. Then run the test
+by executing `npm test` from the command-line.

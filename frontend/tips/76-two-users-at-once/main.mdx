@@ -1,0 +1,105 @@
+---
+title: 'How to Test Two Users at Once'
+card_highlight: 'Two Users at Once'
+id: '76-two-users-at-once'
+slug: /76-two-users-at-once
+sidebar_label: Test Two Users at Once
+description: "A chat, a shared document or a multiplayer game only works when one user sees what another user does. One test can start two browsers, one for each user, and check that a message sent by one user reaches the other."
+number: 76
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-10
+tags:
+  - 'multiple users'
+  - 'multiple browsers'
+  - 'browser contexts'
+  - 'websockets'
+category:
+  - 'fundamentals'
+---
+
+# How to Test Two Users at Once
+
+## Intro
+
+Some features need more than one user: a chat, a shared document, a game, or an approval where one user asks and
+another one answers. A test with one browser can only check one side. What matters is that what one user does shows up
+for the other user.
+
+## A Solution
+
+Start one browser for each user, in the same test. Each browser has its own cookies and storage, so for the site they
+are two different users. The test drives them one step at a time: one user sends something, and the test waits until
+the other user sees it.
+
+- **Selenium** and Selenide start two drivers (in Selenide, two `SelenideDriver` objects), and Vibium starts two
+  browsers.
+- **WebdriverIO** has multiremote: the configuration names one browser for each user, and the test gets each one with
+  `multiRemoteBrowser.getInstance()`.
+- **Playwright** creates two browser contexts. A context is a fresh browser profile, so two contexts in one browser
+  work like two browsers, and they start much faster.
+
+The users don't wait for each other. When a user sends a message, the other user gets it a moment later, so the test
+waits for it instead of reading the page right away. The same goes for the start: a user only gets the messages sent
+after they joined, so the test waits until the other user is in before it sends anything.
+
+## Example
+
+The examples use [the chat page](https://the-internet.herokuapp.com/chat) of the-internet. Everyone in the same room
+sees the messages of the others, over a WebSocket. The page shows the connection in `#status` ("Connected"), the user
+joins with a name (`#name` and `#join`) and sends with `#message` and `#send`. The `#messages` list shows each message
+as "Alice: Hi Bob", and a notice when someone joins ("Bob joined").
+
+Each run uses a random room (`/chat?room=<name>`): tests running at the same time, for example on other machines,
+don't see each other's messages.
+
+Alice and Bob open the chat and join the room. Alice waits until Bob is in, and says "Hi Bob". Bob waits for it, and
+answers "Hi Alice", which Alice waits for.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Python', value: 'python'},
+    {label: 'C#', value: 'csharp'},
+    {label: 'Java', value: 'java'},
+    {label: 'JavaScript', value: 'javascript'},
+    {label: 'Ruby', value: 'ruby'},
+    {label: 'Selenide', value: 'selenide'},
+    {label: 'TypeScript', value: 'playwright', tool: 'Playwright'},
+    {label: 'Python', value: 'playwright-python', tool: 'Playwright'},
+    {label: 'C#', value: 'playwright-csharp', tool: 'Playwright'},
+    {label: 'Java', value: 'playwright-java', tool: 'Playwright'},
+    {label: 'TypeScript', value: 'webdriverio', tool: 'WebdriverIO'},
+    {label: 'JavaScript', value: 'vibium', tool: 'Vibium'},
+    {label: 'Python', value: 'vibium-python', tool: 'Vibium'},
+    {label: 'Java', value: 'vibium-java', tool: 'Vibium'},
+]}/>
+
+## Expected Behavior
+
+- Two browsers start (with Playwright, two browser contexts), one for Alice and one for Bob
+- Both open the chat in the same random room, wait until it's connected, and join
+- Alice waits until Bob joined, and sends "Hi Bob"
+- Bob sees the message, and answers "Hi Alice"
+- Alice sees the answer
+- Both browsers close
+
+## Summary
+
+One browser for each user lets a test check what one user does from the side of the other user. Keep each user's
+steps in small functions (join, send a message), wait for what the other user should see, and keep the users apart
+from other test runs (here, with a random room).
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

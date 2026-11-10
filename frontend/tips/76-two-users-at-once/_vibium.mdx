@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/vibium/test/twoUsers.spec.js"} language={"javascript"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `crypto` (for the room name) and Vibium's `browser`.
+
+### The Steps of a User
+
+Line 5 builds the URL of the chat with a random room.
+
+- `join` (lines 7 to 14) opens the chat in the browser of the user, waits until the page is connected
+  (`waitForFunction` waits until the expression is true), types the name, clicks "Join", and returns the page.
+- `sendMessage` (lines 16 to 19) types the message and clicks "Send", on the page of the user.
+
+### One Browser for Each User
+
+The `beforeEach` hook (lines 25 to 28) starts one browser for Alice and one for Bob, and the `afterEach` hook (lines
+30 to 33) stops both.
+
+### The Test
+
+Alice and Bob join (lines 36 and 37). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 39). Then Alice sends "Hi Bob", and Bob's page should show it (lines 41 and 42), and the other way around
+(lines 44 and 45). `find({text: ...})` inside `#messages` waits until an element with that text shows up, and fails
+the test when it doesn't.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+`vibium install` first, which downloads Chrome for Testing.
