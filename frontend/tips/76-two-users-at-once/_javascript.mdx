@@ -8,28 +8,36 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 1 and 2 pull in `crypto` (for the room name) and Selenium (`Builder`, `By` and the `until` conditions).
+Lines 1 to 6 pull in `crypto` (for the room name), Selenium (`Builder`, `By` and the `until` conditions), the Firefox
+options, and the BiDi `browser` and `browsingContext` modules.
+
+### A Window for Each User
+
+Line 9 builds the URL of the chat with a random room. `newUserWindow` (lines 11 to 17) creates a user context with
+`createUserContext()` of the BiDi `browser` module: a fresh browser profile, with its own cookies and storage. Then it
+opens a window in that user context (a browsing context with `CreateContextParameters`), and returns its handle. The
+first window of the browser stays open, unused.
 
 ### The Steps of a User
 
-Line 5 builds the URL of the chat with a random room.
+- `waitForText` (lines 19 to 22) waits up to 10 seconds until the text of an element contains the given text.
+- `join` (lines 24 to 29) opens the chat, waits until the page is connected, types the name, and clicks "Join".
+- `sendMessage` (lines 31 to 34) types the message and clicks "Send".
 
-- `waitForText` (lines 7 to 10) waits up to 10 seconds until the text of an element contains the given text.
-- `join` (lines 12 to 17) opens the chat, waits until the page is connected, types the name, and clicks "Join".
-- `sendMessage` (lines 19 to 22) types the message and clicks "Send".
+They act on the current window, so the same steps work for Alice and for Bob.
 
-Each one takes the driver of the user, so the same steps work for Alice and for Bob.
+### Starting the Browser
 
-### One Browser for Each User
-
-The `beforeEach` hook (lines 28 to 31) starts one Firefox for Alice and one for Bob, and the `afterEach` hook (lines 33
-to 36) quits both.
+The `beforeEach` hook (lines 39 to 43) starts Firefox with WebDriver BiDi turned on (`enableBidi()`), and the
+`afterEach` hook (lines 45 to 47) quits it.
 
 ### The Test
 
-Alice and Bob join (lines 39 and 40). Messages are not saved, so Alice waits until she sees "Bob joined" before she
-writes (line 42). Then Alice sends "Hi Bob", and the test waits until Bob's page shows it (lines 44 and 45), and the
-other way around (lines 47 and 48). When the text doesn't show up, the wait fails the test.
+Line 50 creates a window for Alice and line 51 one for Bob. Before each step, the test switches to the window of the
+user with `driver.switchTo().window()`. Alice and Bob join (lines 53 to 56). Messages are not saved, so Alice waits
+until she sees "Bob joined" before she writes "Hi Bob" (lines 58 to 61). Then Bob waits until his page shows it and
+answers "Hi Alice" (lines 63 to 65), and Alice waits for the answer (lines 67 and 68). When the text doesn't show up,
+the wait fails the test.
 
 ### Executing the Test
 

@@ -10,25 +10,30 @@ import TipCode from "@site/src/components/tipCode";
 
 Lines 1 and 2 pull in `crypto` (for the room name) and Vibium's `browser`.
 
+### A Page for Each User
+
+Line 5 builds the URL of the chat with a random room. `newUserPage` (lines 7 to 11) creates a browser context with
+`newContext()`: a fresh browser profile, with its own cookies and storage, in the same browser. Then it opens a page in
+that context. Each page has its own methods, so the test doesn't switch between them.
+
 ### The Steps of a User
 
-Line 5 builds the URL of the chat with a random room.
+- `join` (lines 13 to 18) opens the chat, waits until the page is connected (`waitForFunction` waits until the
+  expression is true), types the name, and clicks "Join".
+- `sendMessage` (lines 20 to 23) types the message and clicks "Send".
 
-- `join` (lines 7 to 14) opens the chat in the browser of the user, waits until the page is connected
-  (`waitForFunction` waits until the expression is true), types the name, clicks "Join", and returns the page.
-- `sendMessage` (lines 16 to 19) types the message and clicks "Send", on the page of the user.
+Each one takes the page of the user, so the same steps work for Alice and for Bob.
 
-### One Browser for Each User
+### Starting the Browser
 
-The `beforeEach` hook (lines 25 to 28) starts one browser for Alice and one for Bob, and the `afterEach` hook (lines
-30 to 33) stops both.
+The `beforeEach` hook (lines 28 to 30) starts the browser, and the `afterEach` hook (lines 32 to 34) stops it.
 
 ### The Test
 
-Alice and Bob join (lines 36 and 37). Messages are not saved, so Alice waits until she sees "Bob joined" before she
-writes (line 39). Then Alice sends "Hi Bob", and Bob's page should show it (lines 41 and 42), and the other way around
-(lines 44 and 45). `find({text: ...})` inside `#messages` waits until an element with that text shows up, and fails
-the test when it doesn't.
+Lines 37 and 38 create a page for Alice and one for Bob. Alice and Bob join (lines 40 and 41). Messages are not saved,
+so Alice waits until she sees "Bob joined" before she writes (line 43). Then Alice sends "Hi Bob", and Bob's page should
+show it (lines 45 and 46), and the other way around (lines 48 and 49). `find({text: ...})` inside `#messages` waits
+until an element with that text shows up, and fails the test when it doesn't.
 
 ### Executing the Test
 

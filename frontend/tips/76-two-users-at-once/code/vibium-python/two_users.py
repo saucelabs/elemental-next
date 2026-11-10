@@ -8,17 +8,15 @@ CHAT_URL = f'https://the-internet.herokuapp.com/chat?room=elemental-{uuid.uuid4(
 
 
 @pytest.fixture
-def alice():
+def bro():
     bro = browser.start()
-    yield bro.page()
+    yield bro
     bro.stop()
 
 
-@pytest.fixture
-def bob():
-    bro = browser.start()
-    yield bro.page()
-    bro.stop()
+def new_user_page(bro):
+    # A browser context has its own cookies and storage, like a fresh browser profile
+    return bro.new_context().new_page()
 
 
 def join(page, name):
@@ -33,7 +31,10 @@ def send_message(page, text):
     page.find('#send').click()
 
 
-def test_two_users_chat(alice, bob):
+def test_two_users_chat(bro):
+    alice = new_user_page(bro)
+    bob = new_user_page(bro)
+
     join(alice, 'Alice')
     join(bob, 'Bob')
     # Messages are not saved: Alice waits until Bob is in the room before she writes

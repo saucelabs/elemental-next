@@ -11,24 +11,32 @@ import TipCode from "@site/src/components/tipCode";
 Lines 1 to 7 pull in `uuid` (for the room name), `pytest`, Selenium's `webdriver`, the `By` locators, and the explicit
 wait (`WebDriverWait` and `expected_conditions`).
 
-### One Browser for Each User
+### Starting the Browser
 
-Line 10 builds the URL of the chat with a random room. The `alice` and `bob` fixtures (lines 13 to 24) start one
-Firefox each, and quit it at the end of the test. The test asks for both fixtures, so it gets two browsers.
+Line 10 builds the URL of the chat with a random room. The `driver` fixture (lines 13 to 20) starts Firefox with
+WebDriver BiDi turned on (`enable_bidi`), and quits it at the end of the test.
+
+### A Window for Each User
+
+`new_user_window` (lines 23 to 26) creates a user context with `driver.browser.create_user_context()`: a fresh browser
+profile, with its own cookies and storage. Then it opens a window in that user context with
+`driver.browsing_context.create`, and returns its handle. The first window of the browser stays open, unused.
 
 ### The Steps of a User
 
-- `wait_for_text` (lines 27 to 28) waits up to 10 seconds until the text of an element contains the given text.
-- `join` (lines 31 to 35) opens the chat, waits until the page is connected, types the name, and clicks "Join".
-- `send_message` (lines 38 to 40) types the message and clicks "Send".
+- `wait_for_text` (lines 29 to 30) waits up to 10 seconds until the text of an element contains the given text.
+- `join` (lines 33 to 37) opens the chat, waits until the page is connected, types the name, and clicks "Join".
+- `send_message` (lines 40 to 42) types the message and clicks "Send".
 
-Each one takes the driver of the user, so the same steps work for Alice and for Bob.
+They act on the current window, so the same steps work for Alice and for Bob.
 
 ### The Test
 
-Alice and Bob join (lines 44 and 45). Messages are not saved, so Alice waits until she sees "Bob joined" before she
-writes (line 47). Then Alice sends "Hi Bob", and the test waits until Bob's page shows it (lines 49 and 50), and the
-other way around (lines 52 and 53). When the text doesn't show up, the wait fails the test.
+Line 46 creates a window for Alice and line 47 one for Bob. Before each step, the test switches to the window of the
+user with `driver.switch_to.window`. Alice and Bob join (lines 49 to 52). Messages are not saved, so Alice waits until
+she sees "Bob joined" before she writes "Hi Bob" (lines 54 to 57). Then Bob waits until his page shows it and answers
+"Hi Alice" (lines 59 to 61), and Alice waits for the answer (lines 63 and 64). When the text doesn't show up, the wait
+fails the test.
 
 ### Executing the Test
 

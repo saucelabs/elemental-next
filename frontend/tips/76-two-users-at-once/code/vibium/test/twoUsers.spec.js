@@ -4,13 +4,17 @@ const {browser} = require('vibium');
 // A random room, so tests running at the same time don't see each other's messages
 const CHAT_URL = `https://the-internet.herokuapp.com/chat?room=elemental-${crypto.randomUUID().slice(0, 8)}`;
 
-async function join(bro, name) {
-    const page = await bro.page();
+async function newUserPage(bro) {
+    // A browser context has its own cookies and storage, like a fresh browser profile
+    const context = await bro.newContext();
+    return context.newPage();
+}
+
+async function join(page, name) {
     await page.go(CHAT_URL);
     await page.waitForFunction('document.getElementById("status").textContent === "Connected"');
     await page.find('#name').fill(name);
     await page.find('#join').click();
-    return page;
 }
 
 async function sendMessage(page, text) {
@@ -19,22 +23,22 @@ async function sendMessage(page, text) {
 }
 
 describe('Two users at once', function () {
-    let aliceBrowser;
-    let bobBrowser;
+    let bro;
 
     beforeEach(async function () {
-        aliceBrowser = await browser.start();
-        bobBrowser = await browser.start();
+        bro = await browser.start();
     });
 
     afterEach(async function () {
-        await aliceBrowser?.stop();
-        await bobBrowser?.stop();
+        await bro?.stop();
     });
 
     it('two users chat', async function () {
-        const alice = await join(aliceBrowser, 'Alice');
-        const bob = await join(bobBrowser, 'Bob');
+        const alice = await newUserPage(bro);
+        const bob = await newUserPage(bro);
+
+        await join(alice, 'Alice');
+        await join(bob, 'Bob');
         // Messages are not saved: Alice waits until Bob is in the room before she writes
         await alice.find('#messages').find({text: 'Bob joined'});
 

@@ -10,23 +10,27 @@ import TipCode from "@site/src/components/tipCode";
 
 Lines 3 to 10 pull in Vibium (with its `SelectorOptions` type), `UUID` (for the room name), and JUnit.
 
-### One Browser for Each User
+### A Page for Each User
 
-Lines 14 and 15 build the URL of the chat with a random room. The `beforeEach` method (lines 19 to 23) starts one
-browser for Alice and one for Bob, and the `afterEach` method (lines 25 to 33) stops both.
+Lines 14 and 15 build the URL of the chat with a random room. The `beforeEach` method (lines 18 to 21) starts the
+browser, and the `afterEach` method (lines 23 to 28) stops it. `newUserPage` (lines 30 to 33) creates a browser context
+with `newContext()`: a fresh browser profile, with its own cookies and storage, in the same browser. Then it opens a
+page in that context. Each page has its own methods, so the test doesn't switch between them.
 
 ### The Steps of a User
 
-- `join` (lines 35 to 42) opens the chat in the browser of the user, waits until the page is connected
-  (`waitForFunction` waits until the expression is true), types the name, clicks "Join", and returns the page.
-- `sendMessage` (lines 44 to 47) types the message and clicks "Send", on the page of the user.
+- `join` (lines 35 to 40) opens the chat, waits until the page is connected (`waitForFunction` waits until the
+  expression is true), types the name, and clicks "Join".
+- `sendMessage` (lines 42 to 45) types the message and clicks "Send".
+
+Each one takes the page of the user, so the same steps work for Alice and for Bob.
 
 ### The Test
 
-Alice and Bob join (lines 51 and 52). Messages are not saved, so Alice waits until she sees "Bob joined" before she
-writes (line 54). Then Alice sends "Hi Bob", and Bob's page should show it (lines 56 and 57), and the other way around
-(lines 59 and 60). `find(new SelectorOptions().text(...))` inside `#messages` waits until an element with that text
-shows up, and fails the test when it doesn't.
+Lines 49 and 50 create a page for Alice and one for Bob. Alice and Bob join (lines 52 and 53). Messages are not saved,
+so Alice waits until she sees "Bob joined" before she writes (line 55). Then Alice sends "Hi Bob", and Bob's page should
+show it (lines 57 and 58), and the other way around (lines 60 and 61). `find(new SelectorOptions().text(...))` inside
+`#messages` waits until an element with that text shows up, and fails the test when it doesn't.
 
 ### Executing the Test
 

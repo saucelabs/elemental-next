@@ -11,17 +11,19 @@ CHAT_URL = f'https://the-internet.herokuapp.com/chat?room=elemental-{uuid.uuid4(
 
 
 @pytest.fixture
-def alice():
-    driver = webdriver.Firefox()
+def driver():
+    options = webdriver.FirefoxOptions()
+    # Turns on WebDriver BiDi, which lets the test create user contexts
+    options.enable_bidi = True
+    driver = webdriver.Firefox(options=options)
     yield driver
     driver.quit()
 
 
-@pytest.fixture
-def bob():
-    driver = webdriver.Firefox()
-    yield driver
-    driver.quit()
+def new_user_window(driver):
+    # A user context has its own cookies and storage, like a fresh browser profile
+    user_context = driver.browser.create_user_context()
+    return driver.browsing_context.create(type='window', user_context=user_context)
 
 
 def wait_for_text(driver, element_id, text):
@@ -40,14 +42,23 @@ def send_message(driver, text):
     driver.find_element(By.ID, 'send').click()
 
 
-def test_two_users_chat(alice, bob):
-    join(alice, 'Alice')
-    join(bob, 'Bob')
+def test_two_users_chat(driver):
+    alice = new_user_window(driver)
+    bob = new_user_window(driver)
+
+    driver.switch_to.window(alice)
+    join(driver, 'Alice')
+    driver.switch_to.window(bob)
+    join(driver, 'Bob')
+
     # Messages are not saved: Alice waits until Bob is in the room before she writes
-    wait_for_text(alice, 'messages', 'Bob joined')
+    driver.switch_to.window(alice)
+    wait_for_text(driver, 'messages', 'Bob joined')
+    send_message(driver, 'Hi Bob')
 
-    send_message(alice, 'Hi Bob')
-    wait_for_text(bob, 'messages', 'Alice: Hi Bob')
+    driver.switch_to.window(bob)
+    wait_for_text(driver, 'messages', 'Alice: Hi Bob')
+    send_message(driver, 'Hi Alice')
 
-    send_message(bob, 'Hi Alice')
-    wait_for_text(alice, 'messages', 'Bob: Hi Alice')
+    driver.switch_to.window(alice)
+    wait_for_text(driver, 'messages', 'Bob: Hi Alice')
