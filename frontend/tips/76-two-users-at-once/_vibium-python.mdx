@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/vibium-python/two_users.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 4 pull in `uuid` (for the room name), `pytest`, and Vibium's `browser`.
+
+### A Page for Each User
+
+Line 7 builds the URL of the chat with a random room. The `bro` fixture (lines 10 to 14) starts the browser, and stops
+it at the end of the test. `new_user_page` (lines 17 to 19) creates a browser context with `new_context()`: a fresh
+browser profile, with its own cookies and storage, in the same browser. Then it opens a page in that context. Each
+page has its own methods, so the test doesn't switch between them.
+
+### The Steps of a User
+
+- `join` (lines 22 to 26) opens the chat, waits until the page is connected (`wait_for_function` waits until the
+  expression is true), types the name, and clicks "Join".
+- `send_message` (lines 29 to 31) types the message and clicks "Send".
+
+Each one takes the page of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Lines 35 and 36 create a page for Alice and one for Bob. Alice and Bob join (lines 38 and 39). Messages are not saved,
+so Alice waits until she sees "Bob joined" before she writes (line 41). Then Alice sends "Hi Bob", and Bob's page should
+show it (lines 43 and 44), and the other way around (lines 46 and 47). `find(text=...)` inside `#messages` waits until
+an element with that text shows up, and fails the test when it doesn't.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/vibium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest two_users.py` from the command-line. The first time, Vibium downloads Chrome for
+Testing.

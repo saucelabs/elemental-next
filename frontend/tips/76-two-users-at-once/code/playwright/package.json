@@ -1,0 +1,12 @@
+{
+  "name": "two-users-at-once",
+  "version": "1.0.0",
+  "description": "A project to showcase two users at once using Playwright",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}

@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/selenide/src/test/java/com/elemental/selenium/TwoUsersTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 3 to 11 pull in the Selenide conditions (`exactText` and `text`), `SelenideConfig` and `SelenideDriver`, `UUID`
+(for the room name), and JUnit.
+
+### One Browser for Each User
+
+Lines 15 and 16 build the URL of the chat with a random room. The static `open()` and `$()` of Selenide drive one
+browser. For two users, the `setUp` method (lines 20 to 25) creates two `SelenideDriver` objects: each one has its own
+configuration (here, waits of up to 10 seconds) and its own browser, and has the same `open()` and `$()` methods. The
+`tearDown` method (lines 27 to 31) closes both.
+
+### The Steps of a User
+
+- `join` (lines 33 to 38) opens the chat, waits until the page is connected (`exactText`), types the name, and clicks
+  "Join".
+- `sendMessage` (lines 40 to 43) types the message and clicks "Send".
+
+Each one takes the `SelenideDriver` of the user, so the same steps work for Alice and for Bob.
+
+### The Test
+
+Alice and Bob join (lines 47 and 48). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 50). Then Alice sends "Hi Bob", and Bob's page should have it (lines 52 and 53), and the other way around
+(lines 55 and 56). `shouldHave` waits until the condition is met, and fails the test when it isn't.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/selenide/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Then run the test by executing `mvn test` from the command-line.

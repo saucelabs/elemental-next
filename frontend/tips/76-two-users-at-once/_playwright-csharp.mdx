@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/playwright-csharp/TwoUsersTest.cs"} language={"csharp"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 5 pull in `System` (for `Guid`), Playwright, its MSTest integration, and MSTest.
+
+### One Browser Context for Each User
+
+Lines 13 and 14 build the URL of the chat with a random room. The test class extends `BrowserTest`, which gives it a
+`Browser`. The `Join` method (lines 16 to 26) creates a browser context with `Browser.NewContextAsync()`: a fresh
+browser profile, with its own cookies and storage. Two contexts in the same browser work like two browsers, and they
+start much faster. Then it opens the chat, waits until the page is connected (`ToHaveTextAsync` waits for it), types
+the name, clicks "Join", and returns the page of the user.
+
+The `SendMessage` method (lines 28 to 32) types the message and clicks "Send", on the page of the user.
+
+### The Test
+
+Alice and Bob join (lines 37 and 38). Messages are not saved, so Alice waits until she sees "Bob joined" before she
+writes (line 40). Then Alice sends "Hi Bob", and Bob's page should show it (lines 42 and 43), and the other way around
+(lines 45 and 46). `ToContainTextAsync` waits until the text shows up, and fails the test when it doesn't. At the end,
+the test closes both contexts.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the project file (e.g.,
+`playwright-csharp.csproj` in this case).
+
+<details>
+    <summary>Toggle to see the <code>playwright-csharp.csproj</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/playwright-csharp/playwright-csharp.csproj"} language={"xml"}/>
+    </div>
+</details>
+
+Build the project with `dotnet build` and install the browser with
+`pwsh bin/Debug/net10.0/playwright.ps1 install chromium` (the script is created by the build). Then
+run the test by executing `dotnet test` from the command-line.

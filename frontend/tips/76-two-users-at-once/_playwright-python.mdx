@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/playwright-python/two_users.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 to 3 pull in `uuid` (for the room name), and the Playwright `Browser` and `Page` types and `expect`.
+
+### One Browser Context for Each User
+
+Line 6 builds the URL of the chat with a random room. The `join` function (lines 9 to 17) creates a browser context
+with `browser.new_context()`: a fresh browser profile, with its own cookies and storage. Two contexts in the same
+browser work like two browsers, and they start much faster. Then it opens the chat, waits until the page is connected
+(`to_have_text` waits for it), types the name, clicks "Join", and returns the page of the user.
+
+The `send_message` function (lines 20 to 22) types the message and clicks "Send", on the page of the user.
+
+### The Test
+
+The test uses the `browser` fixture of the pytest-playwright plugin, not `page`, to create the contexts itself. Alice
+and Bob join (lines 26 and 27). Messages are not saved, so Alice waits until she sees "Bob joined" before she writes
+(line 29). Then Alice sends "Hi Bob", and Bob's page should show it (lines 31 and 32), and the other way around (lines
+34 and 35). `to_contain_text` waits until the text shows up, and fails the test when it doesn't. At the end, the test
+closes both contexts.
+
+### Executing the Test
+
+Before executing the test, we need to install the required libraries with `pip install -r requirements.txt`, and the
+browser with `playwright install chromium`.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/playwright-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Then run the test by executing `pytest two_users.py` from the command-line.

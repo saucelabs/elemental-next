@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"76-two-users-at-once/code/vibium/test/twoUsers.spec.js"} language={"javascript"}/>
+
+## Code Walkthrough
+
+### Importing Libraries
+
+Lines 1 and 2 pull in `crypto` (for the room name) and Vibium's `browser`.
+
+### A Page for Each User
+
+Line 5 builds the URL of the chat with a random room. `newUserPage` (lines 7 to 11) creates a browser context with
+`newContext()`: a fresh browser profile, with its own cookies and storage, in the same browser. Then it opens a page in
+that context. Each page has its own methods, so the test doesn't switch between them.
+
+### The Steps of a User
+
+- `join` (lines 13 to 18) opens the chat, waits until the page is connected (`waitForFunction` waits until the
+  expression is true), types the name, and clicks "Join".
+- `sendMessage` (lines 20 to 23) types the message and clicks "Send".
+
+Each one takes the page of the user, so the same steps work for Alice and for Bob.
+
+### Starting the Browser
+
+The `beforeEach` hook (lines 28 to 30) starts the browser, and the `afterEach` hook (lines 32 to 34) stops it.
+
+### The Test
+
+Lines 37 and 38 create a page for Alice and one for Bob. Alice and Bob join (lines 40 and 41). Messages are not saved,
+so Alice waits until she sees "Bob joined" before she writes (line 43). Then Alice sends "Hi Bob", and Bob's page should
+show it (lines 45 and 46), and the other way around (lines 48 and 49). `find({text: ...})` inside `#messages` waits
+until an element with that text shows up, and fails the test when it doesn't.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"76-two-users-at-once/code/vibium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+`vibium install` first, which downloads Chrome for Testing.
