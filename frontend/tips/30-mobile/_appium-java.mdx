@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"30-mobile/code/appium-java/src/test/java/com/elemental/appium/RealDeviceTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+- Line 23 is the Sauce Labs URL for the `us-west-1` data center. Lines 24 to 27 are the demo app for Android (`.apk`)
+  and iOS (`.ipa`), from their GitHub releases. Sauce Labs downloads the app and installs it on the device.
+- Lines 31 to 35 skip the tests when the Sauce Labs credentials are not set. `Assumptions.assumeTrue` aborts the test,
+  which reports it as skipped.
+- Lines 37 to 42 end the session after each test, which frees the device.
+
+### The Tests
+
+There is one test for each platform. Each one creates the options for its Appium driver, starts a session on Sauce
+Labs, and checks that the catalog shows the backpack.
+
+- Lines 46 to 48 create the options for Android. `UiAutomator2Options` sets the platform (`Android`) and the Appium
+  driver (`UiAutomator2`). `setDeviceName("Google.*")` asks for any Google phone: on Sauce Labs, the device name is a
+  regular expression, and the test gets the first free device that matches. `setApp` sets the app to install.
+- Line 49 adds the Sauce Labs options (`sauce:options`), built in lines 66 to 72: the credentials, the Appium version
+  (`latest`) and the name of the test on Sauce Labs.
+- Line 50 starts the session with an `AndroidDriver`. This is when Sauce Labs picks the device and installs the app.
+- Line 52 looks for the text "Sauce Labs Backpack" with a UiAutomator selector, the Android way of finding elements.
+- Lines 57 to 63 do the same on an iPhone, with `XCUITestOptions` (the `XCUITest` Appium driver) and an `IOSDriver`.
+  On iOS, the product name is "Sauce Labs Backpack - Black", and line 63 finds it with an iOS predicate on its label.
+- Lines 74 to 78 wait up to 30 seconds for the element to show up. The app shows a splash screen first, so the catalog
+  is not there right away.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file. The
+Appium Java client brings Selenium with it, and `selenium-support` adds the waits.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"30-mobile/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line. The tests show up on the Sauce Labs test
+results page, with the video of each session.

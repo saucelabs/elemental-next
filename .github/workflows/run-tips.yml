@@ -6,17 +6,23 @@ on:
   workflow_call:
     inputs:
       language:
-        description: 'Directory name under code/ (java, selenide, csharp, javascript, python, ruby, playwright, playwright-python, playwright-csharp, playwright-java, webdriverio, vibium, vibium-python, vibium-java)'
+        description: 'Directory name under code/ (java, selenide, csharp, javascript, python, ruby, playwright, playwright-python, playwright-csharp, playwright-java, webdriverio, vibium, vibium-python, vibium-java, appium-java, appium-python, appium, mobilewright, espresso, xcuitest)'
         required: true
         type: string
       workflow-file:
         description: 'File name of the calling workflow, a change to it runs every directory'
         required: true
         type: string
+      os:
+        description: 'JSON array of the runners to use. The mobile tips run on Sauce Labs real devices, so one is enough'
+        required: false
+        type: string
+        default: '["ubuntu-latest", "windows-latest", "macos-latest"]'
 
 env:
   DISPLAY: :99
-  # Used by the tips that run on Sauce Labs (e.g., tip 26). They are skipped when these are not set (e.g., on forks).
+  # Used by the tips that run on Sauce Labs (e.g., tip 26 and the mobile tips). They are skipped when these are not set
+  # (e.g., on forks).
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
@@ -49,7 +55,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: ${{ fromJSON(inputs.os) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 90
     defaults:
@@ -78,13 +84,13 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
       - name: Set up Java
-        if: contains(fromJSON('["java", "selenide", "playwright-java", "vibium-java"]'), inputs.language)
+        if: contains(fromJSON('["java", "selenide", "playwright-java", "vibium-java", "appium-java", "espresso"]'), inputs.language)
         uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
           java-version: 25
       - name: Set up Maven
-        if: contains(fromJSON('["java", "selenide", "playwright-java", "vibium-java"]'), inputs.language)
+        if: contains(fromJSON('["java", "selenide", "playwright-java", "vibium-java", "appium-java"]'), inputs.language)
         uses: stCarolas/setup-maven@v5.1
         with:
           maven-version: 3.10.0
@@ -94,12 +100,12 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: Set up Node
-        if: contains(fromJSON('["javascript", "playwright", "webdriverio", "vibium"]'), inputs.language)
+        if: contains(fromJSON('["javascript", "playwright", "webdriverio", "vibium", "appium", "mobilewright", "espresso", "xcuitest"]'), inputs.language)
         uses: actions/setup-node@v7
         with:
           node-version: 26
       - name: Set up Python
-        if: contains(fromJSON('["python", "playwright-python", "vibium-python"]'), inputs.language)
+        if: contains(fromJSON('["python", "playwright-python", "vibium-python", "appium-python"]'), inputs.language)
         uses: actions/setup-python@v7
         with:
           python-version: '3.15'

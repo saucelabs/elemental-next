@@ -1,0 +1,15 @@
+{
+  "name": "real-device",
+  "version": "1.0.0",
+  "description": "A project to showcase running a test on a Sauce Labs real device using Mobilewright",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "mobilewright test --project android && mobilewright test --project ios"
+  },
+  "devDependencies": {
+    "@mobilewright/test": "0.0.68",
+    "@saucelabs/mobilewright-driver": "0.0.3",
+    "mobilewright": "0.0.68"
+  }
+}

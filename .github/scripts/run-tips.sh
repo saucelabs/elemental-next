@@ -10,6 +10,10 @@
 # ws://127.0.0.1:3000/ while its tests run (e.g., tip 28). It starts with the Playwright of the directory, so the
 # versions match.
 #
+# The mobile tips run on Sauce Labs real devices. Espresso and XCUITest build the tests and run them with saucectl
+# (`SAUCECTL_VERSION`), which reads the `.sauce/config.yml` of the directory. They are skipped when the Sauce Labs
+# credentials are not set.
+#
 # A directory with an `expect-files` file passes when its tests pass AND every file pattern listed in it matches a
 # file (e.g., the JUnit XML report in tip 57).
 #
@@ -25,6 +29,9 @@ PLAYWRIGHT_SERVER="run-server --port 3000 --host 127.0.0.1"
 # Selenium Server version used for the tips that need a Grid. Keep it in sync with the Selenium version of the tips.
 GRID_VERSION=4.51.0
 
+# saucectl version used to run the Espresso and XCUITest tips on Sauce Labs.
+SAUCECTL_VERSION=0.217.0
+
 language="$1"
 dirs_json="$2"
 root="$(pwd)"
@@ -32,7 +39,7 @@ root="$(pwd)"
 # shellcheck disable=SC2086 # PLAYWRIGHT_SERVER is split into the arguments of the Playwright CLI
 run_one() {
   case "${language}" in
-    java | selenide | vibium-java) mvn -B test ;;
+    java | selenide | vibium-java | appium-java) mvn -B test ;;
     csharp) dotnet test ;;
     playwright-csharp)
       dotnet build && pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium \
@@ -45,17 +52,31 @@ run_one() {
           -Dexec.classpathScope=test -Dexec.args="${PLAYWRIGHT_SERVER}" \
           -- env PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 mvn -B test
       ;;
-    javascript | webdriverio | vibium) npm install && npm test ;;
+    javascript | webdriverio | vibium | appium | mobilewright) npm install && npm test ;;
     playwright)
       npm install && npx playwright install --with-deps chromium \
         && with_playwright_server npx playwright ${PLAYWRIGHT_SERVER} -- npm test
       ;;
-    python | vibium-python)
+    python | vibium-python | appium-python)
       python -m pip install -r requirements.txt && python -m pytest ./*.py
       ;;
     playwright-python)
       python -m pip install -r requirements.txt && python -m playwright install --with-deps chromium \
         && with_playwright_server python -m playwright ${PLAYWRIGHT_SERVER} -- python -m pytest ./*.py
+      ;;
+    espresso)
+      has_sauce_credentials || return 0
+      ./gradlew appUnderTest && saucectl run
+      ;;
+    xcuitest)
+      has_sauce_credentials || return 0
+      # Builds the tests of the Xcode project of the directory, with the scheme of the same name
+      local project
+      project=$(ls -d ./*.xcodeproj) || return 1
+      project=$(basename "${project}" .xcodeproj)
+      xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project "${project}.xcodeproj" -scheme "${project}" \
+        -sdk iphoneos -derivedDataPath build -quiet \
+        && saucectl run
       ;;
     ruby)
       bundle install || return 1
@@ -68,6 +89,17 @@ run_one() {
       return 1
       ;;
   esac
+}
+
+saucectl() {
+  npx --yes "saucectl@${SAUCECTL_VERSION}" "$@"
+}
+
+has_sauce_credentials() {
+  if [[ -z "${SAUCE_USERNAME:-}" || -z "${SAUCE_ACCESS_KEY:-}" ]]; then
+    echo "Skipped: set SAUCE_USERNAME and SAUCE_ACCESS_KEY to run these tests on Sauce Labs"
+    return 1
+  fi
 }
 
 start_grid() {

@@ -62,7 +62,11 @@ tips/1-upload-a-file/
 - Target languages for Selenium: Python, Java, C#, JavaScript, Ruby. Selenide (Java) examples exist for some tips
   and show as their own tool.
 - Other tools: Playwright (TypeScript, Python, C# and Java), WebdriverIO (TypeScript) and Vibium (JavaScript, Python
-  and Java). They use Chrome. Mobile tips (Appium, Espresso, XCUITest, ...) are planned and will run on Sauce Labs.
+  and Java). They use Chrome.
+- Mobile tools: Appium (Java, Python, and JavaScript with WebdriverIO), Mobilewright (TypeScript), Espresso (Kotlin) and
+  XCUITest (Swift). They run on Sauce Labs real devices (`us-west-1`) and test Sauce Labs' demo app ("My Demo App",
+  https://github.com/saucelabs/my-demo-app-android and https://github.com/saucelabs/my-demo-app-ios), installed from
+  its GitHub release. Tip 30 is the reference.
 - Per-language conventions in `code/`:
   - Python: `requirements.txt` + pytest test file (`pytest <file>.py`)
   - Java: Maven `pom.xml`, JUnit 5, `src/test/java/com/elemental/selenium/*Test.java` (`mvn test`)
@@ -88,6 +92,24 @@ tips/1-upload-a-file/
     which downloads Chrome for Testing the first time)
   - Vibium Java (`code/vibium-java`): Maven `pom.xml` with `com.vibium:vibium`, JUnit 5,
     `src/test/java/com/elemental/vibium/*Test.java` (`mvn test`, which downloads Chrome for Testing the first time)
+  - Appium Java (`code/appium-java`): Maven `pom.xml` with `io.appium:java-client` and `selenium-support`, JUnit 5,
+    `src/test/java/com/elemental/appium/*Test.java` (`mvn test`)
+  - Appium Python (`code/appium-python`): `requirements.txt` with `Appium-Python-Client` and pytest (`pytest <file>.py`)
+  - Appium JavaScript (`code/appium`): WebdriverIO with `wdio.conf.js` (the devices are its capabilities), tests in
+    `test/*.e2e.js` (`npm test`)
+  - Mobilewright (`code/mobilewright`): `package.json` with `mobilewright`, `@mobilewright/test` and
+    `@saucelabs/mobilewright-driver`, `mobilewright.config.ts` with one project per platform, tests in
+    `tests/*.test.ts` (`npm test`, which runs the Android project and then the iOS one)
+  - Espresso (`code/espresso`): Gradle project (Kotlin DSL, with the wrapper) whose `app` module only builds the tests
+    (`src/androidTest/kotlin`) against the demo app's package. Its `appUnderTest` task builds them, downloads the demo
+    app and signs it with the same debug key, since Android runs the tests only when both have the same signature.
+    `.sauce/config.yml` for saucectl (`./gradlew appUnderTest`, then `saucectl run`)
+  - XCUITest (`code/xcuitest`): Xcode project with only a UI test target, which opens the demo app by its bundle id.
+    The scheme has the name of the project. `.sauce/config.yml` for saucectl (`xcodebuild build-for-testing` for
+    `iphoneos` without signing, then `saucectl run`)
+  - The Sauce Labs credentials come from `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`, and the tests skip themselves when
+    they are not set. `.sauce/config.yml` is in a dot folder, which `TipCode` can't embed (see Gotchas), so the
+    walkthroughs show it in a fenced block: keep them in sync.
 - Most examples hit https://the-internet.herokuapp.com and rely on Selenium Manager for browser drivers.
 
 ### How the site is put together
@@ -135,6 +157,7 @@ tips/1-upload-a-file/
 ### Status of the tips
 
 - Tips 1 to 6 use the full pattern (code in `code/`, run in CI).
+- Tip 30 is the first mobile tip, with every mobile tool.
 - About 15 tips have partials for several languages, but the code is pasted inline in fenced blocks and is not run
   by CI.
 - Most of the other tips are Ruby only, with inline code (copied from the original Elemental Selenium).
@@ -154,8 +177,10 @@ tips/1-upload-a-file/
   with them (see Social cards).
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
 - `<lang>-tips.yml` (`dotnet`, `java`, `javascript`, `python`, `ruby`, `selenide`, `playwright`,
-  `playwright-python`, `playwright-csharp`, `playwright-java`, `webdriverio`, `vibium`, `vibium-python`, `vibium-java`):
-  thin callers of the reusable `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS.
+  `playwright-python`, `playwright-csharp`, `playwright-java`, `webdriverio`, `vibium`, `vibium-python`, `vibium-java`,
+  `appium-java`, `appium-python`, `appium`, `mobilewright`, `espresso`, `xcuitest`): thin callers of the reusable
+  `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS. The mobile workflows set its `os` input to one
+  runner (Ubuntu, or macOS for XCUITest), since the tests run on Sauce Labs real devices.
   - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
     `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, Renovate branches, and when
     the CI itself changes.
@@ -173,8 +198,9 @@ tips/1-upload-a-file/
   - Playwright tips that need a Playwright server (e.g., tip 28) have a `needs-playwright-server` file. The run script
     starts it on `ws://127.0.0.1:3000/` with the Playwright CLI of the directory (so the versions match) while their
     tests run.
-  - Tips that run on Sauce Labs (e.g., tip 26) read `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` (repository secrets in
-    CI) and skip themselves when they are not set.
+  - Tips that run on Sauce Labs (e.g., tip 26 and the mobile tips) read `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`
+    (repository secrets in CI) and skip themselves when they are not set. For Espresso and XCUITest, the run script
+    skips them, builds the tests, and runs `saucectl` (`SAUCECTL_VERSION` in `run-tips.sh`, with `npx`).
 - Renovate (`renovate.json`) keeps dependencies updated.
 
 ## Common commands

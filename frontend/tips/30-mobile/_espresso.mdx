@@ -1,0 +1,76 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"30-mobile/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/RealDeviceTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+[Espresso](https://developer.android.com/training/testing/espresso) tests usually live in the project of the app, in
+`src/androidTest`. Here, the app is Sauce Labs' demo app, so this project only holds the tests and builds a test app
+that runs against the demo app.
+
+### The Test
+
+- Lines 21 and 22 get the intent that opens the app, as tapping its icon would. The test runs inside the app, so
+  `targetContext` is the context of the demo app.
+- Line 24 opens the app with `ActivityScenario`, and closes it when the test ends.
+- Line 25 waits until the catalog shows the text "Sauce Labs Backpack".
+- Lines 31 to 42 do the waiting. Espresso waits for the app to be idle before each check, but the demo app shows a
+  splash screen and loads the catalog in the background, which Espresso doesn't know about. So the check runs every
+  half second, for up to 30 seconds.
+
+### Building the Tests
+
+<TipCode codePath={"30-mobile/code/espresso/app/build.gradle.kts"} language={"kotlin"}/>
+
+- Line 11 sets the package of the app under test, `com.saucelabs.mydemoapp.android`. The test app runs against the
+  app with this package.
+- Lines 17 to 21 add the AndroidX Test libraries: the test runner, the JUnit rules and Espresso.
+- Lines 23 to 41 get the app under test ready. Android runs the tests only when the app and the tests are signed with
+  the same key. In a real project, Gradle builds and signs both. Here, the `appUnderTest` task downloads the demo app
+  and signs it with the debug key that Gradle uses for the tests.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 30 - Espresso
+espresso:
+  # Sauce Labs' demo app, signed with the same key as the tests by ./gradlew appUnderTest
+  app: app/build/outputs/apk/app-under-test.apk
+  # The tests, built with ./gradlew assembleDebugAndroidTest (appUnderTest builds them too)
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Real device
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload.
+- `suites` asks for a device. The name is a regular expression (`Google.*` is any Google device), and `deviceType:
+  PHONE` leaves out the tablets. The tests run on the first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on
+Sauce Labs, with the video and the device logs.
