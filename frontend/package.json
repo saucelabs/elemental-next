@@ -20,7 +20,6 @@
     "@docusaurus/preset-classic": "3.10.2",
     "@fontsource-variable/atkinson-hyperlegible-mono": "5.3.0",
     "@fontsource-variable/atkinson-hyperlegible-next": "5.3.0",
-    "@fontsource-variable/fraunces": "5.3.0",
     "@fontsource-variable/jetbrains-mono": "5.3.0",
     "clsx": "2.1.1",
     "prism-react-renderer": "2.4.1",

@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <style>
+        /* The fonts of the Sauce Labs brand, the same ones as the site */
         @font-face {
-            font-family: 'Fraunces';
-            src: url('{{root}}/node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2');
-            font-weight: 100 900;
+            font-family: 'P22 Mackinac Pro';
+            src: url('{{root}}/static/fonts/Mackinac-Book.otf') format('opentype');
+            font-weight: 300 400;
         }
 
         @font-face {
@@ -23,9 +24,11 @@
         }
 
         :root {
-            --sauce-pine: #192319;
-            --sauce-highlight: #abe082;
-            --sauce-ivory: #f0f0ec;
+            --sl-pine: #192319;
+            --sl-khaki: #abad6c;
+            --sl-highlight: #abe082;
+            --sl-ivory: #f0f0ec;
+            --line-on-inverse: rgba(240, 240, 236, 0.24);
         }
 
         * {
@@ -37,74 +40,75 @@
             width: 1200px;
             height: 675px;
             overflow: hidden;
+            padding: 20px;
             font-family: 'Atkinson Hyperlegible Next', sans-serif;
+            background: var(--sl-ivory);
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* A Pine plate with rounded corners, like the hero of the site */
         .card {
             display: flex;
             flex-direction: column;
             width: 100%;
             height: 100%;
-            padding: 64px 72px;
-            color: var(--sauce-ivory);
-            background:
-                url('{{root}}/static/img/backgrounds/pixels-hero-dark.svg') no-repeat right -40px bottom -70px / 560px auto,
-                linear-gradient(rgba(25, 35, 25, 0), rgba(171, 224, 130, 0.1) 60%, rgba(25, 35, 25, 0)),
-                var(--sauce-pine);
-        }
-
-        .top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 56px 68px 60px;
+            border-radius: 48px;
+            color: var(--sl-ivory);
+            background: var(--sl-pine);
         }
 
         .brand {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .brand img {
             height: 34px;
             width: auto;
         }
 
-        .powered {
-            font-family: 'Atkinson Hyperlegible Mono', monospace;
-            font-size: 22px;
-            letter-spacing: 0.04em;
-            color: rgba(240, 240, 236, 0.75);
-        }
-
-        .powered b {
-            color: var(--sauce-ivory);
+        .brand span {
+            padding-left: 22px;
+            border-left: 1px solid var(--line-on-inverse);
+            font-family: 'P22 Mackinac Pro', serif;
+            font-size: 34px;
+            line-height: 40px;
+            letter-spacing: -0.03em;
         }
 
         .label {
             margin-top: auto;
             font-family: 'Atkinson Hyperlegible Mono', monospace;
+            font-weight: 500;
             font-size: 24px;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
-            color: var(--sauce-highlight);
+            color: var(--sl-khaki);
         }
 
         h1 {
-            max-width: 820px;
-            margin-top: 16px;
-            font-family: 'Fraunces', serif;
-            font-weight: 600;
-            font-size: 76px;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
+            max-width: 940px;
+            margin-top: 20px;
+            font-family: 'P22 Mackinac Pro', serif;
+            font-weight: 400;
+            font-size: 84px;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
             text-wrap: balance;
         }
 
         h1 em {
             font-style: normal;
-            color: var(--sauce-highlight);
+            color: var(--sl-highlight);
         }
 
         .tools {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 40px;
+            margin-top: 44px;
         }
 
         .tools:empty {
@@ -112,20 +116,28 @@
         }
 
         .tools span {
-            padding: 8px 16px;
+            padding: 9px 18px;
+            border: 1.5px solid var(--line-on-inverse);
             border-radius: 999px;
             font-family: 'Atkinson Hyperlegible Mono', monospace;
             font-size: 22px;
-            color: var(--sauce-pine);
-            background: var(--sauce-highlight);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--sl-ivory);
+        }
+
+        .tools span:first-child {
+            border-color: var(--sl-highlight);
+            background: var(--sl-highlight);
+            color: var(--sl-pine);
         }
     </style>
 </head>
 <body>
 <div class="card">
-    <div class="top">
-        <img class="brand" src="{{root}}/static/img/banner-dark.svg" alt="Elemental Selenium">
-        <span class="powered">Powered by <b>Sauce Labs</b></span>
+    <div class="brand">
+        <img src="{{root}}/static/img/sauce/sauce-lockup-white.svg" alt="Sauce Labs">
+        <span>Elemental Selenium</span>
     </div>
     <div class="label">{{label}}</div>
     <h1>{{title}}</h1>
