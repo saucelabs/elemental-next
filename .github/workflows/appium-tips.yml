@@ -1,0 +1,31 @@
+name: Run Appium JavaScript tips
+
+# The tests run on Sauce Labs real devices, so one runner is enough
+on:
+  schedule:
+    - cron: '20 21 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/code/appium/**'
+      - '.github/workflows/appium-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/code/appium/**'
+      - '.github/workflows/appium-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+
+jobs:
+  run_tips:
+    uses: ./.github/workflows/run-tips.yml
+    secrets: inherit
+    with:
+      language: appium
+      os: '["ubuntu-latest"]'

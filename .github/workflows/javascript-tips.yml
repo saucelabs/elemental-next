@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: javascript
-      workflow-file: javascript-tips.yml

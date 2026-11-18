@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: java
-      workflow-file: java-tips.yml

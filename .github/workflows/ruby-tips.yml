@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: ruby
-      workflow-file: ruby-tips.yml

@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: vibium-java
-      workflow-file: vibium-java-tips.yml

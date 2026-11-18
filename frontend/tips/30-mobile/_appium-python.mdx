@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"30-mobile/code/appium-python/real_device.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+- Line 10 is the Sauce Labs URL for the `us-west-1` data center. Lines 11 and 12 are the demo app for Android (`.apk`)
+  and iOS (`.ipa`), from their GitHub releases. Sauce Labs downloads the app and installs it on the device.
+- Lines 15 to 35 are a fixture that starts the sessions. It skips the test when the Sauce Labs credentials are not set
+  (lines 17 and 18). Otherwise, it gives the test a `start` function that adds the Sauce Labs options
+  (`sauce:options`) to the options of a platform and starts the session: the credentials, the Appium version (`latest`)
+  and the name of the test on Sauce Labs. After the test, it ends the sessions (lines 34 and 35), which frees the
+  devices.
+
+### The Tests
+
+There is one test for each platform.
+
+- Lines 44 to 47 create the options for Android and start the session. `UiAutomator2Options` sets the platform
+  (`Android`) and the Appium driver (`UiAutomator2`). `device_name = 'Google.*'` asks for any Google phone: on Sauce
+  Labs, the device name is a regular expression, and the test gets the first free device that matches. `app` sets the
+  app to install.
+- Line 49 looks for the text "Sauce Labs Backpack" with a UiAutomator selector, the Android way of finding elements.
+- Lines 53 to 58 do the same on an iPhone, with `XCUITestOptions` (the `XCUITest` Appium driver). On iOS, the product
+  name is "Sauce Labs Backpack - Black", and line 58 finds it with an iOS predicate on its label.
+- Lines 38 to 40 wait up to 30 seconds for the element to show up. The app shows a splash screen first, so the catalog
+  is not there right away.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"30-mobile/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest real_device.py` from the
+command-line. The tests show up on the Sauce Labs test results page, with the video of each session.

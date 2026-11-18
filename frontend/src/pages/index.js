@@ -30,8 +30,8 @@ const MOBILE_TOOLS = [
     {tool: 'XCUITest', logo: 'xcuitest.svg', meta: 'iOS, Swift'},
 ];
 
-// One workflow per row: the CI badge shows the result of its last run on main. The mobile rows have no workflow yet,
-// so they show as coming soon.
+// One workflow per row: the CI badge shows the result of its last run on main. A row without a workflow shows as
+// coming soon.
 const CI_RUNS = [
     {name: 'Selenium · Python', workflow: 'python-tips.yml'},
     {name: 'Selenium · Java', workflow: 'java-tips.yml'},
@@ -47,10 +47,12 @@ const CI_RUNS = [
     {name: 'Vibium · JavaScript', workflow: 'vibium-tips.yml'},
     {name: 'Vibium · Python', workflow: 'vibium-python-tips.yml'},
     {name: 'Vibium · Java', workflow: 'vibium-java-tips.yml'},
-    {name: 'Appium · Sauce Labs'},
-    {name: 'Mobilewright · Sauce Labs'},
-    {name: 'Espresso · Sauce Labs'},
-    {name: 'XCUITest · Sauce Labs'},
+    {name: 'Appium · Java', workflow: 'appium-java-tips.yml'},
+    {name: 'Appium · Python', workflow: 'appium-python-tips.yml'},
+    {name: 'Appium · JavaScript', workflow: 'appium-tips.yml'},
+    {name: 'Mobilewright · TypeScript', workflow: 'mobilewright-tips.yml'},
+    {name: 'Espresso · Kotlin', workflow: 'espresso-tips.yml'},
+    {name: 'XCUITest · Swift', workflow: 'xcuitest-tips.yml'},
 ];
 
 // How many rows of the CI panel show at a time, and how often it moves to the next one
@@ -232,7 +234,7 @@ function Frameworks({stats}) {
                     </div>
                     <p className="es-lead">
                         Selenium is where we started. Selenide, Playwright, WebdriverIO and Vibium are here too, and
-                        mobile frameworks are on the way.
+                        the mobile tips run on real Android and iOS devices.
                     </p>
                 </div>
                 <div className={styles.sub}>
@@ -247,7 +249,7 @@ function Frameworks({stats}) {
                 </div>
                 <div className={styles.sub}>
                     <h3>Mobile</h3>
-                    <span className="es-mono">Will run on real devices in Sauce Labs</span>
+                    <span className="es-mono">Runs in CI on real devices in Sauce Labs</span>
                 </div>
                 <div className={styles.tools}>
                     {MOBILE_TOOLS.map(({tool, logo, meta}) => (
@@ -399,7 +401,7 @@ function Proof() {
                     </div>
                     <div className={styles.card}>
                         <h3>Real devices for mobile</h3>
-                        <p>Mobile tips need devices and emulators, so they will run in Sauce Labs. You can run them
+                        <p>CI runs the mobile examples on real Android and iOS devices in Sauce Labs. You can run them
                             with a free account.</p>
                     </div>
                     <div className={styles.card}>
