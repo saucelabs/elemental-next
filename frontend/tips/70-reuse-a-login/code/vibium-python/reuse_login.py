@@ -11,10 +11,10 @@ def session_cookie():
     try:
         page = login_browser.page()
         page.go(f'{BASE_URL}/login')
-        page.find('#username').fill('tomsmith')
-        page.find('#password').fill('SuperSecretPassword!')
-        page.find('button[type="submit"]').click()
-        page.find('a[href="/logout"]')
+        page.find(css='#username').fill('tomsmith')
+        page.find(css='#password').fill('SuperSecretPassword!')
+        page.find(css='button[type="submit"]').click()
+        page.find(css='a[href="/logout"]')
         return next(cookie for cookie in page.context.cookies() if cookie['name'] == 'rack.session')
     finally:
         login_browser.stop()
@@ -33,11 +33,11 @@ def page(session_cookie):
 def test_the_secure_area_shows_the_user(page):
     page.go(f'{BASE_URL}/secure')
 
-    assert page.find('#username').text() == 'tomsmith'
+    assert page.find(css='#username').text() == 'tomsmith'
 
 
 def test_log_out(page):
     page.go(f'{BASE_URL}/secure')
-    page.find('a[href="/logout"]').click()
+    page.find(css='a[href="/logout"]').click()
 
-    assert 'You logged out of the secure area!' in page.find('#flash').text()
+    assert 'You logged out of the secure area!' in page.find(css='#flash').text()

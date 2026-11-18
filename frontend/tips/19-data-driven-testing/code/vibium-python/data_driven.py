@@ -19,9 +19,9 @@ def page():
 @pytest.mark.parametrize('user', user_data(), ids=lambda user: user['account_type'])
 def test_login(page, user):
     page.go('https://the-internet.herokuapp.com/login')
-    page.find('#username').fill(user['username'])
-    page.find('#password').fill(user['password'])
-    page.find('#login button').click()
+    page.find(css='#username').fill(user['username'])
+    page.find(css='#password').fill(user['password'])
+    page.find(css='#login button').click()
 
-    notification = page.find('#flash').text()
+    notification = page.find(css='#flash').text()
     assert notification.startswith(user['notification_message']), notification

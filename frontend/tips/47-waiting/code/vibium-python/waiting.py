@@ -15,15 +15,15 @@ def page():
 @pytest.mark.parametrize('example', ['1', '2'])
 def test_waits_for_the_element_to_be_visible(page, example):
     page.go(f'{BASE_URL}/{example}')
-    page.find('#start button').click()
+    page.find(css='#start button').click()
 
-    page.find('#finish').wait_until('visible', timeout=10000)
-    assert page.find('#finish').text() == 'Hello World!'
+    page.find(css='#finish').wait_until('visible', timeout=10000)
+    assert page.find(css='#finish').text() == 'Hello World!'
 
 
 def test_gives_up_when_the_wait_is_too_short(page):
     page.go(f'{BASE_URL}/2')
-    page.find('#start button').click()
+    page.find(css='#start button').click()
 
     with pytest.raises(ElementNotFoundError):
-        page.find('#finish', timeout=2000)
+        page.find(css='#finish', timeout=2000)

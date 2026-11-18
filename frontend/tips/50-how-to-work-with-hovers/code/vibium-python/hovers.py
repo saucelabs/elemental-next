@@ -11,8 +11,8 @@ def page():
 
 def test_displays_the_caption_on_hover(page):
     page.go('https://the-internet.herokuapp.com/hovers')
-    an_avatar = page.find('.figure')
-    caption = an_avatar.find('.figcaption')
+    an_avatar = page.find(css='.figure')
+    caption = an_avatar.find(css='.figcaption')
     assert not caption.is_visible()
 
     an_avatar.hover()

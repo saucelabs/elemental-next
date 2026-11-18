@@ -20,8 +20,8 @@ Lines 30 to 35 are the test itself.
 We put the user and the password in the URL (`https://admin:admin@...`). The browser sends them to the server, so it
 never shows the login dialog. Then we check that the page shows the message.
 
-The JavaScript and Python examples use `setHeaders` to send the `Authorization` header instead. In the Java client
-(version 26.8.21), `setHeaders` is not enough for basic auth: the page fails to load with
+The JavaScript example uses `setHeaders` to send the `Authorization` header instead. In the Java and Python clients,
+`setHeaders` is not enough for basic auth: the page fails to load with
 `net::ERR_INVALID_AUTH_CREDENTIALS`.
 
 ### Executing the Test

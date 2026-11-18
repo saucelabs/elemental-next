@@ -15,8 +15,8 @@ def test_file_upload(page):
     file_path = os.path.join(os.getcwd(), filename)
 
     page.go('https://the-internet.herokuapp.com/upload')
-    page.find('#file-upload').set_files([file_path])
-    page.find('#file-submit').click()
+    page.find(css='#file-upload').set_files([file_path])
+    page.find(css='#file-submit').click()
 
-    uploaded_file = page.find('#uploaded-files').text()
+    uploaded_file = page.find(css='#uploaded-files').text()
     assert uploaded_file == filename
