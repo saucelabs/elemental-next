@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: csharp
-      workflow-file: dotnet-tips.yml

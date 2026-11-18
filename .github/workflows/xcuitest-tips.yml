@@ -1,0 +1,31 @@
+name: Run XCUITest tips
+
+# The tests run on Sauce Labs real devices, so one runner is enough
+on:
+  schedule:
+    - cron: '35 21 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/code/xcuitest/**'
+      - '.github/workflows/xcuitest-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/code/xcuitest/**'
+      - '.github/workflows/xcuitest-tips.yml'
+      - '.github/workflows/run-tips.yml'
+      - '.github/scripts/**'
+
+jobs:
+  run_tips:
+    uses: ./.github/workflows/run-tips.yml
+    secrets: inherit
+    with:
+      language: xcuitest
+      os: '["macos-latest"]'

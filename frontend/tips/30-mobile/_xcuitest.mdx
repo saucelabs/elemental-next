@@ -1,0 +1,68 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"30-mobile/code/xcuitest/RealDeviceUITests/RealDeviceTests.swift"} language={"swift"}/>
+
+## Code Walkthrough
+
+[XCUITest](https://developer.apple.com/documentation/xcuiautomation) tests usually live in the Xcode project of the
+app, in a UI test target. Here, the app is Sauce Labs' demo app, so the Xcode project (`RealDevice.xcodeproj`) only
+holds a UI test target, `RealDeviceUITests`.
+
+### The Test
+
+- Line 7 points to the demo app by its bundle identifier, `com.saucelabs.mydemo.app.ios`. UI tests run in their own
+  process and drive the app from outside, so they can test any app installed on the device.
+- Line 8 opens the app.
+- Lines 10 and 11 wait up to 30 seconds for the text "Sauce Labs Backpack - Black" (the name of the backpack on iOS).
+  The app shows a splash screen first, so the catalog is not there right away.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 30 - XCUITest
+xcuitest:
+  # Sauce Labs' demo app, downloaded from its GitHub release
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  # The tests, built with xcodebuild build-for-testing
+  testApp: build/Build/Products/Debug-iphoneos/RealDeviceUITests-Runner.app
+suites:
+  - name: Real device
+    devices:
+      - name: iPhone.*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+- `suites` asks for a device. The name is a regular expression (`iPhone.*` is any iPhone), and the tests run on the
+  first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+You need a Mac with Xcode, and [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl). First,
+build the tests for a real device:
+
+```bash
+xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project RealDevice.xcodeproj -scheme RealDevice \
+  -sdk iphoneos -derivedDataPath build
+```
+
+The tests don't need to be signed: Sauce Labs signs the app and the tests to install them on its devices. Then run them
+by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on Sauce
+Labs, with the video and the device logs.

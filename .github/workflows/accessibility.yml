@@ -1,11 +1,12 @@
 # Checks the pages of the site with axe (WCAG 2.2 A and AA).
-# On pull requests that only change tips, only those tip pages are checked. Otherwise (and every night, and when started
-# manually) every page is checked. See frontend/scripts/accessibility.mjs.
+# On pull requests, it runs only when a tip page changes, and checks only the pages of the changed tips. Every night, and
+# when started manually, every page is checked. See frontend/scripts/accessibility.mjs.
 name: Accessibility
 on:
   pull_request:
-    paths-ignore:
-      - 'frontend/tips/*/code/**'
+    paths:
+      - 'frontend/tips/**'
+      - '!frontend/tips/*/code/**'
   workflow_dispatch:
   schedule:
     - cron: '0 2 * * *'

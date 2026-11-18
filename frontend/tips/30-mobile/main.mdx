@@ -1,59 +1,93 @@
 ---
-title: 'How to Test Your Mobile App'
-card_highlight: 'Mobile App'
+title: 'How to Run a Test on a Real Mobile Device'
+card_highlight: 'Real Mobile Device'
 id: 30-mobile
 slug: /30-mobile
-sidebar_label: Mobile
-description: "Mobile is kind of a big deal. And if you haven't needed to test a mobile app yet, it's only a matter of time. But where do you start? And how do you do it in a way that is complimentary to your existing automation and experience?"
+sidebar_label: Run a Test on a Real Mobile Device
+description: "Your users run your app on real phones, not on emulators. Here is how to run a first test on a real Android phone and a real iPhone on Sauce Labs, with Appium, Mobilewright, Espresso and XCUITest."
 number: 30
 hide_table_of_contents: true
-level: 2
+level: 1
 publish_date: 2013-12-17
 image: "img/cards/30-mobile.png"
 tags:
-  - mobile testing
-  - mobile
-  - appium
-  - sauce labs
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
 category:
   - 'remote'
 ---
 
-# How to Test Your Mobile App
+# How to Run a Test on a Real Mobile Device
 
 ## Intro
 
-__NOTE: This post is outdated. I've written a more current series of getting started posts for mobile testing
-with Appium. You can find them [here](https://saucelabs.com/resources/articles/appium-bootcamp-chapter-1).__
-
-## Use Case
-
-Mobile is kind of a big deal. And if you haven't needed to test a mobile app yet, it's only a matter of time.
-But where do you start? And how do you do it in a way that is complimentary to your existing automation and experience?
+Your users run your app on real phones: many brands and models, different OS versions, screen sizes, and the
+manufacturers' own changes to Android. Emulators and simulators are great while you write the app, but they don't show
+how it behaves on the phones your users have. Buying and maintaining a shelf of phones to test on is slow and costly.
 
 ## A Solution
 
-Give [Appium](https://appium.io/) a try. It's open source, works for both iPhone & Android, and works through the use
-of the Selenium WebDriver API (without having to recompile the app in order to test it).
+Run your tests on real devices in the cloud. [Sauce Labs](https://saucelabs.com/) has a cloud of real Android
+phones and iPhones. Your test asks for a device (e.g., any Google Pixel, or any iPhone), Sauce Labs installs your app on
+it, and the test drives the app, as it would on a phone on your desk. Each test run records a video, screenshots and the
+device logs.
 
-That is to say -- you can write tests pretty much the same way as you do now, there are just some additional things
-to think about -- like new functionality (e.g. pinch, swipe, etc.) and setup (e.g. serving your app, running
-simulators and a server locally, or sending things off to the cloud).
+Every example here uses Sauce Labs' demo app ("My Demo App", for
+[Android](https://github.com/saucelabs/my-demo-app-android) and [iOS](https://github.com/saucelabs/my-demo-app-ios)),
+a small shop app. The test opens the app and checks that the catalog shows the Sauce Labs Backpack. Sauce Labs
+downloads the app from its GitHub release, so you don't need to build or upload anything to try it.
 
-To simplify things, let's step through 2 examples using Sauce Labs to test native apps -- one for iPhone and
-another for Android. If you need a primer on what Sauce Labs is and how to use it, check out
-[this tip](https://elementalselenium.com/docs/cloud/26-cloud).
+There are two kinds of mobile test tools:
 
-__NOTE: These examples were borrowed from
-[the Appium project](https://github.com/appium/appium/tree/master/sample-code/examples/ruby) and modified for simplicity.__
+- **Appium** and **Mobilewright** drive the app from outside, like a user would. One test can run on Android and iOS,
+  and you can write it in many languages. The test runs on your machine and talks to the device over the network.
+- **Espresso** (Android) and **XCUITest** (iOS) are the test frameworks from Google and Apple. The tests are written in
+  the language of the app (Kotlin and Swift), built into a test app, and run on the device itself. Sauce Labs'
+  [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests and starts the run.
 
+## Example
 
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. Each one asks for a device by a pattern of its name (e.g., `Google.*` or
+`iPhone.*`), so any free device that matches can run the test.
 
 import DisplayTips from '@site/src/components/displayTips';
 
 <DisplayTips languages={[
-    {label: 'Ruby', value: 'ruby', tool: 'Appium'},
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
 ]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device that matches the test (an Android phone, an iPhone, or both)
+- It installs the demo app (and, for Espresso and XCUITest, the tests)
+- The test opens the app and checks that the catalog shows the Sauce Labs Backpack
+- The session ends, and the results (with a video, screenshots and the device logs) are available on the
+  [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/)
+
+## Summary
+
+With a test running on a real device, you can check your app on the phones your users have, without keeping any of
+them on your desk. The next tips build on this one: installing your own app, finding elements, waiting for them, and
+answering permission pop-ups.
+
+Happy Testing!
 
 ## Authors
 

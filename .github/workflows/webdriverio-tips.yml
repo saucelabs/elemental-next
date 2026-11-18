@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: webdriverio
-      workflow-file: webdriverio-tips.yml
