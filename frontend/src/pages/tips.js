@@ -1,230 +1,93 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 import useGlobalData from '@docusaurus/useGlobalData';
-import Link from "@docusaurus/Link";
-import {useLocation, useHistory} from "@docusaurus/router";
-import BackToTopButton from '@theme/BackToTopButton';
+import {useHistory, useLocation} from '@docusaurus/router';
+import PageHero from '../components/pageHero';
+import styles from './tips.module.css';
 
 // Three rows of three cards
 const TIPS_PER_PAGE = 9;
+const LEVELS = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+const ORDERS = ['Newest', 'Oldest'];
 
-function Pagination({page, pageCount, showAll, handlePageChange, handleShowAll}) {
-    if (pageCount <= 1 && !showAll) {
-        return null;
-    }
+// A row of pill buttons, one pressed at a time
+function FilterGroup({label, options, selected, onSelect}) {
     return (
-        <nav className="tips-pagination" aria-label="Tips pages">
-            {!showAll && (
-                <>
-                    <button
-                        className="button button--outline button--primary"
-                        disabled={page === 1}
-                        onClick={() => handlePageChange(page - 1)}
-                    >
-                        ← Previous
-                    </button>
-                    <span className="tips-pagination__status">
-                        Page {page} of {pageCount}
-                    </span>
-                    <button
-                        className="button button--outline button--primary"
-                        disabled={page === pageCount}
-                        onClick={() => handlePageChange(page + 1)}
-                    >
-                        Next →
-                    </button>
-                </>
-            )}
-            <button className="button button--link" onClick={() => handleShowAll(!showAll)}>
-                {showAll ? 'Show fewer tips' : 'Show all tips'}
-            </button>
-        </nav>
-    );
-}
-
-function CardTags({tags, handleTagChange}) {
-    return (
-        <>
-            {tags.sort().map((tag, index) => {
-                return (
-                    <button
-                        key={index}
-                        className="button button--outline button--secondary button--sm padding--xs margin--xs"
-                        onClick={() => handleTagChange({target: {value: {tag}}})}
-                    >
-                        {tag}
-                    </button>
-                );
-            })}
-        </>
-    );
-}
-
-function CardLevel({level, handleLevelChange}) {
-    const buttonClass = clsx('button button--outline button--sm margin-right--xs');
-    return (
-        <>
-            {(() => {
-                switch (level) {
-                    case 1:
-                        return (
-                            <button
-                                className={clsx(buttonClass, "button--success")}
-                                onClick={() => handleLevelChange({target: {value: 'Beginner'}})}
-                            >
-                                <small>BEGINNER</small>
-                            </button>
-                        );
-                    case 2:
-                        return (
-                            <button
-                                className={clsx(buttonClass, "button--info")}
-                                onClick={() => handleLevelChange({target: {value: 'Intermediate'}})}
-                            >
-                                <small>INTERMEDIATE</small>
-                            </button>
-                        );
-                    case 3:
-                        return (
-                            <button
-                                className={clsx(buttonClass, "button--primary")}
-                                onClick={() => handleLevelChange({target: {value: 'Advanced'}})}
-                            >
-                                <small>ADVANCED</small>
-                            </button>
-                        );
-                }
-            })()}
-        </>
-    );
-}
-
-function CardCategory({category, handleCategoryChange}) {
-    const flattenedCategories = [];
-    flattenedCategories.push(Array.isArray(category) ? category : [category]);
-    return (
-        <>
-            {flattenedCategories.flat().map((flattenedCategory, index) => (
-                <button
-                    key={index}
-                    className="button button--outline button--warning button--sm margin-right--xs"
-                    onClick={() => handleCategoryChange({target: {value: flattenedCategory.toString()}})}
-                >
-                    <small>{flattenedCategory.toString().toUpperCase()}</small>
+        <div className={styles.group} role="group" aria-label={label}>
+            <span className={styles.label} aria-hidden="true">{label}</span>
+            {options.map((option) => (
+                <button key={option} type="button" aria-pressed={option === selected}
+                        onClick={() => onSelect(option)}>
+                    {option}
                 </button>
             ))}
-        </>
+        </div>
     );
 }
 
-const Tips = () => {
-    const tipLevels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
-    const orderPosted = ['Newest', 'Oldest'];
-    const globalData = useGlobalData();
-    const [originalMetadata, setOriginalMetadata] = useState([]);
-    const [metadata, setMetadata] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('All');
-    const [selectedLevel, setSelectedLevel] = useState('All');
-    const [selectedOrder, setSelectedOrder] = useState('Newest');
-    const [selectedTag, setSelectedTag] = useState({tag: 'All'});
+function TipCard({tip}) {
+    const categories = [].concat(tip.category || []);
+    return (
+        <Link className={styles.card} to={`/tips${tip.slug}`}>
+            <span className={styles.top}>
+                <span className={styles.number} aria-hidden="true">{String(tip.number).padStart(2, '0')}</span>
+                <span className={styles.meta}>
+                    <span className={clsx(styles.tag, styles.level)}>{LEVELS[tip.level]}</span>
+                    {categories.map((category) => <span key={category} className={styles.tag}>{category}</span>)}
+                </span>
+            </span>
+            <h2>{tip.title}</h2>
+            <p>{tip.description}</p>
+            {tip.tags?.length > 0 && <span className={styles.keywords}>{[...tip.tags].sort().join(' · ')}</span>}
+        </Link>
+    );
+}
+
+export default function Tips() {
+    const allTips = useGlobalData().metadata.default.aggregateFrontMatter;
+    const categories = ['All', ...[...new Set(allTips.flatMap((tip) => tip.category || []))].sort()];
+    const [level, setLevel] = useState('All');
+    const [category, setCategory] = useState('All');
+    const [order, setOrder] = useState('Newest');
     const [page, setPage] = useState(1);
     const [showAll, setShowAll] = useState(false);
     const location = useLocation();
     const history = useHistory();
 
-    const handleCategoryChange = (event) => {
-        setSelectedTag({tag: 'All'});
-        setSelectedCategory(event.target.value);
-    };
-
-    const handleLevelChange = (event) => {
-        setSelectedTag({tag: 'All'});
-        setSelectedLevel(event.target.value);
-    };
-
-    const handleOrderChange = (event) => {
-        setSelectedOrder(event.target.value);
-    }
-
-    const handleTagChange = (event) => {
-        setSelectedTag(event.target.value);
-    }
-
     // Keeps the page in the URL (?page=2 or ?page=all), so the back button and shared links work
     const updatePageParam = (value) => {
-        const urlParams = new URLSearchParams(location.search);
+        const params = new URLSearchParams(location.search);
         if (value === 1) {
-            urlParams.delete("page");
+            params.delete('page');
         } else {
-            urlParams.set("page", value);
+            params.set('page', value);
         }
-        history.replace({search: urlParams.toString()});
-    }
+        history.replace({search: params.toString()});
+    };
 
-    const handlePageChange = (newPage) => {
-        setPage(newPage);
-        updatePageParam(newPage);
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-
-    const handleShowAll = (all) => {
-        setShowAll(all);
-        setPage(1);
-        updatePageParam(all ? 'all' : 1);
-    }
-
+    // Reads the level (e.g., ?level=beginner, from the footer) and the page from the URL
     useEffect(() => {
-        let globalMetadata = globalData.metadata.default.aggregateFrontMatter;
-        const uniqueCategories = [...new Set(globalMetadata.flatMap(card => card.category))];
-        uniqueCategories.push("All");
-        globalMetadata = globalMetadata.sort((a, b) => b.number - a.number);
-        setMetadata(globalMetadata);
-        setOriginalMetadata(globalMetadata);
-        setCategories(uniqueCategories.sort());
-
-        if (location.search) {
-            const urlParams = new URLSearchParams(location.search);
-            const paramLevel = urlParams.get("level");
-            const matchedLevel = tipLevels.find(level => level.toLowerCase() === paramLevel?.toLowerCase());
-            if (matchedLevel) {
-                setSelectedLevel(matchedLevel);
-            }
-            const paramPage = urlParams.get("page");
-            if (paramPage === "all") {
-                setShowAll(true);
-            } else if (Number(paramPage) > 1) {
-                setPage(Number(paramPage));
-            }
-            urlParams.delete("level");
-            history.replace({
-                search: urlParams.toString(),
-            })
+        const params = new URLSearchParams(location.search);
+        const matchedLevel = LEVELS.find((item) => item.toLowerCase() === params.get('level')?.toLowerCase());
+        if (matchedLevel) {
+            setLevel(matchedLevel);
         }
-
-    }, []); // Empty dependency array ensures this runs only on mount
-
-    useEffect(() => {
-        if (originalMetadata.length === 0) {
-            return;
+        const paramPage = params.get('page');
+        if (paramPage === 'all') {
+            setShowAll(true);
+        } else if (Number(paramPage) > 1) {
+            setPage(Number(paramPage));
         }
-        let filteredMetadata = originalMetadata.filter(card => {
-            const categoryMatch = selectedCategory === "All" || card.category.includes(selectedCategory);
-            const levelMatch = selectedLevel === "All" || card.level === tipLevels.indexOf(selectedLevel);
-            const tagMatch = selectedTag.tag === "All" || card.tags.includes(selectedTag.tag);
-            return categoryMatch && levelMatch && tagMatch;
-        });
-        if (selectedOrder === "Newest") {
-            filteredMetadata = filteredMetadata.sort((a, b) => b.number - a.number);
-        } else {
-            filteredMetadata = filteredMetadata.sort((a, b) => a.number - b.number);
+        if (params.has('level')) {
+            params.delete('level');
+            history.replace({search: params.toString()});
         }
-        setMetadata(filteredMetadata);
-    }, [selectedCategory, selectedLevel, selectedOrder, selectedTag]);
+    }, []);
 
     // A new filter or order starts again from the first page
-    const isFirstFilter = React.useRef(true);
+    const isFirstFilter = useRef(true);
     useEffect(() => {
         if (isFirstFilter.current) {
             isFirstFilter.current = false;
@@ -234,143 +97,69 @@ const Tips = () => {
             setPage(1);
             updatePageParam(showAll ? 'all' : 1);
         }
-    }, [selectedCategory, selectedLevel, selectedOrder, selectedTag]);
+    }, [level, category, order]);
 
-    const pageCount = Math.max(1, Math.ceil(metadata.length / TIPS_PER_PAGE));
+    const tips = allTips
+        .filter((tip) => level === 'All' || tip.level === LEVELS.indexOf(level))
+        .filter((tip) => category === 'All' || [].concat(tip.category || []).includes(category))
+        .sort((a, b) => (order === 'Newest' ? b.number - a.number : a.number - b.number));
+    const pageCount = Math.max(1, Math.ceil(tips.length / TIPS_PER_PAGE));
     const currentPage = Math.min(page, pageCount);
-    const visibleTips = showAll
-        ? metadata
-        : metadata.slice((currentPage - 1) * TIPS_PER_PAGE, currentPage * TIPS_PER_PAGE);
-    const pagination = (
-        <Pagination
-            page={currentPage}
-            pageCount={pageCount}
-            showAll={showAll}
-            handlePageChange={handlePageChange}
-            handleShowAll={handleShowAll}
-        />
-    );
+    const visibleTips = showAll ? tips : tips.slice((currentPage - 1) * TIPS_PER_PAGE, currentPage * TIPS_PER_PAGE);
+
+    const changePage = (newPage) => {
+        setPage(newPage);
+        updatePageParam(newPage);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+    const toggleShowAll = () => {
+        setShowAll(!showAll);
+        setPage(1);
+        updatePageParam(showAll ? 1 : 'all');
+    };
 
     return (
-        <Layout
-            title='Tips'
-            description='Tips for test automation Pros'
-        >
-            <header className={"hero padding-bottom--md"}>
-                <div className="container">
-                    <h1 className="hero__title">The Tips</h1>
+        <Layout title="Tips" description="Tips for test automation Pros">
+            <PageHero
+                crumb="Tips"
+                title="The tips"
+                lead={`${allTips.length} short, tested tips. Each one automates one use case, in every framework we `
+                    + 'cover, and CI runs every example.'}/>
+            <main className="es-wrap">
+                <div className={styles.filters}>
+                    <FilterGroup label="Level" options={LEVELS} selected={level} onSelect={setLevel}/>
+                    <FilterGroup label="Category" options={categories} selected={category} onSelect={setCategory}/>
+                    <FilterGroup label="Order" options={ORDERS} selected={order} onSelect={setOrder}/>
                 </div>
-            </header>
-            <main>
-                <div className="container padding-bottom--lg">
-                    <div className="row padding-bottom--md">
-                        <div className="col col--12 center-filters">
-                            <span
-                                className="hero__subtitle"
-                                style={{color: "var(--ifm-color-content)"}}
-                            >
-                                Filters:
-                            </span>
-                            <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--primary">
-                                    Order Posted{' '}↓
-                                </button>
-                                <ul className="dropdown__menu">
-                                    {orderPosted.map((order, index) => (
-                                        <li key={index}>
-                                            <a
-                                                className="dropdown__link"
-                                                onClick={() => handleOrderChange({target: {value: order}})}
-                                                href="#"
-                                            >
-                                                {order}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--primary">
-                                    Categories{' '}↓
-                                </button>
-                                <ul className="dropdown__menu">
-                                    {categories.map((category, index) => (
-                                        <li key={index}>
-                                            <a
-                                                className="dropdown__link"
-                                                onClick={() => handleCategoryChange({target: {value: category}})}
-                                                href="#"
-                                            >
-                                                {category}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="dropdown dropdown--hoverable margin-horiz--sm margin-vert--xs">
-                                <button className="button button--primary">
-                                    Levels{' '}↓
-                                </button>
-                                <ul className="dropdown__menu">
-                                    {tipLevels.map((level, index) => (
-                                        <li key={index}>
-                                            <a
-                                                className="dropdown__link"
-                                                onClick={() => handleLevelChange({target: {value: level}})}
-                                                href="#"
-                                            >
-                                                {level}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+                {visibleTips.length > 0
+                    ? <div className={styles.grid}>
+                        {visibleTips.map((tip) => <TipCard key={tip.number} tip={tip}/>)}
                     </div>
-                    <div className="row">
-                        {visibleTips.map((card, index) => (
-                            <div key={index} className="col col--4 col--12@xs padding-vert--sm">
-                                <div className="card card--full-height shadow--md">
-                                    <div className="card__header">
-                                        <h3>
-                                            <Link to={`tips${card.slug}`}>
-                                                {`${card.number} - ${card.title}`}
-                                            </Link>
-                                        </h3>
-                                        <div className="row">
-                                            <div className={clsx("col col--12")}>
-                                                <CardLevel
-                                                    level={card.level}
-                                                    handleLevelChange={handleLevelChange}
-                                                />
-                                                <CardCategory
-                                                    category={card.category}
-                                                    handleCategoryChange={handleCategoryChange}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="card__body">
-                                        <p>
-                                            {card.description}
-                                        </p>
-                                    </div>
-                                    <div className="card__footer">
-                                        <CardTags
-                                            tags={card.tags}
-                                            handleTagChange={handleTagChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    {pagination}
-                </div>
-                <BackToTopButton/>
+                    : <p className={styles.empty}>No tips match these filters.</p>}
+                <nav className={styles.pager} aria-label="Tips pages">
+                    <span className="es-mono">
+                        {showAll ? `All ${tips.length} tips` : `Page ${currentPage} of ${pageCount}`}
+                        {' · '}{order} first
+                    </span>
+                    <span className={styles.pagerButtons}>
+                        {!showAll && currentPage > 1 && (
+                            <button type="button" className="es-btn es-btn--ghost es-btn--sm"
+                                    onClick={() => changePage(currentPage - 1)}>
+                                Previous page
+                            </button>
+                        )}
+                        <button type="button" className="es-btn es-btn--ghost es-btn--sm" onClick={toggleShowAll}>
+                            {showAll ? 'Show fewer tips' : 'Show all tips'}
+                        </button>
+                        {!showAll && currentPage < pageCount && (
+                            <button type="button" className="es-btn es-btn--primary es-btn--sm"
+                                    onClick={() => changePage(currentPage + 1)}>
+                                Next page
+                            </button>
+                        )}
+                    </span>
+                </nav>
             </main>
         </Layout>
     );
-};
-
-export default Tips;
+}

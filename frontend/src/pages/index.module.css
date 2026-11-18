@@ -1,571 +1,497 @@
-/* Home page: hero with the CI status of the examples, then bands for the frameworks, one use case with many tools,
-   where to begin, why trust the code, and how to contribute. Colors come from the Sauce Labs palette in custom.css. */
+/* Home page: hero with the CI status of the examples, then the frameworks, one use case with many tools, where to
+   begin, why trust the code, and the contribute band. Colors and type come from custom.css. */
 
-.hero,
-main > section {
-    padding-block: 4rem;
-}
-
-/* The page takes the color (tone) of the section in the middle of the screen, and fades from one to the next while
-   scrolling, like saucelabs.com. The sections themselves are transparent, except for the contribute band, which has
-   its own color (a dark tone for the whole page would hide the dark text of the section above it). */
-.page {
-    --tone-hero: var(--sauce-ivory);
-    --tone-frameworks: var(--sauce-light-highlight);
-    --tone-useCase: var(--sauce-off-white);
-    --tone-tips: #bed1e4;
-    --tone-proof: #ffeef5;
-    background-color: var(--tone-hero);
-    transition: background-color 0.8s ease;
-}
-
-[data-theme='dark'] .page {
-    --tone-hero: var(--sauce-pine);
-    --tone-frameworks: #1f2b1f;
-    --tone-useCase: var(--sauce-slate);
-    --tone-tips: var(--sauce-forest);
-    --tone-proof: #3c483c;
-}
-
-.tone-frameworks {
-    background-color: var(--tone-frameworks);
-}
-
-.tone-useCase {
-    background-color: var(--tone-useCase);
-}
-
-.tone-tips {
-    background-color: var(--tone-tips);
-}
-
-.tone-proof {
-    background-color: var(--tone-proof);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .page {
-        transition: none;
-    }
-}
-
-/* A faint grid behind the frameworks, like the grid lines of saucelabs.com */
-.grid {
-    background-image:
-        linear-gradient(rgba(25, 35, 25, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(25, 35, 25, 0.06) 1px, transparent 1px);
-    background-size: 48px 48px;
-}
-
-[data-theme='dark'] .grid {
-    background-image:
-        linear-gradient(rgba(240, 240, 236, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(240, 240, 236, 0.05) 1px, transparent 1px);
-}
-
-.eyebrow {
-    font-family: var(--sauce-font-mono);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.lede {
-    max-width: 60ch;
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-.sectionHead {
-    display: grid;
-    gap: 0.6rem;
-    margin-bottom: 2rem;
-}
-
-.sectionHead h2,
-.useCaseCopy h2,
-.contribute h2 {
-    margin: 0;
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-    text-wrap: balance;
-}
-
-/* hero: a warm glow (like the sunflower gradient of saucelabs.com) and a pixel cluster behind the CI panel */
-.hero {
-    background-image:
-        url('../../static/img/backgrounds/pixels-hero-light.svg'),
-        linear-gradient(rgba(240, 240, 236, 0), rgba(241, 224, 130, 0.55) 55%, rgba(240, 240, 236, 0));
-    background-repeat: no-repeat;
-    background-position: right max(0px, calc((100% - 1140px) / 2)) bottom -2rem, center;
-    background-size: 40rem auto, 100% 100%;
-}
-
-[data-theme='dark'] .hero {
-    background-image:
-        url('../../static/img/backgrounds/pixels-hero-dark.svg'),
-        linear-gradient(rgba(25, 35, 25, 0), rgba(171, 224, 130, 0.08) 55%, rgba(25, 35, 25, 0));
+/* Sections that follow another one don't repeat its top space */
+.flush {
+    padding-top: 0;
 }
 
 .heroGrid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 3rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
     align-items: center;
 }
 
-.heroCopy {
-    display: grid;
-    gap: 1.25rem;
-    min-width: 0;
-}
-
 .heroTitle {
-    margin: 0;
-    font-size: clamp(2.3rem, 5.4vw, 3.6rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
+    margin-bottom: 28px !important;
 }
 
-.heroTitle em {
-    padding: 0 0.08em;
-    font-style: normal;
-    background: linear-gradient(transparent 62%, var(--sauce-highlight) 62%);
+.heroLead {
+    margin: 0 0 40px;
 }
 
-[data-theme='dark'] .heroTitle em {
-    color: var(--sauce-highlight);
-    background: none;
+/* CI panel */
+.ci {
+    --ci-row: 46px;
+    padding: 28px;
+    border: 1px solid var(--line-on-inverse);
+    border-radius: var(--radius-lg);
+    background: var(--sl-deep-green);
+    box-shadow: 0 8px 36px rgba(0, 0, 0, 0.35);
 }
 
-.ctas {
+.ciHead {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.run {
-    min-width: 0;
-    padding: 1.1rem 1.25rem;
-    border-radius: 14px;
-    color: var(--sauce-ivory);
-    background: var(--sauce-pine);
-    font-family: var(--ifm-font-family-monospace);
-    font-size: 0.82rem;
-    box-shadow: 0 18px 40px -24px rgba(4, 52, 35, 0.6);
-}
-
-[data-theme='dark'] .run {
-    background: #0f170f;
-    border: 1px solid var(--sauce-slate);
-}
-
-.runHead {
-    display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
 }
 
-.runTitle {
+.ciHead h2 {
     margin: 0;
-    color: #c3cbbf;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 400;
+    color: var(--fg-on-inverse-muted);
 }
 
-.runPause {
-    padding: 0.1rem 0.6rem;
-    border: 1px solid #c3cbbf;
-    border-radius: 999px;
-    color: #c3cbbf;
+.ciLive {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: 0;
     background: none;
-    font: inherit;
-    font-size: 0.75rem;
+    color: var(--sl-highlight);
     cursor: pointer;
 }
 
-.runPause:hover {
-    color: var(--sauce-pine);
-    background: #c3cbbf;
+.ciLive i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sl-highlight);
+    box-shadow: 0 0 0 4px rgba(171, 224, 130, 0.18);
 }
 
-/* Shows CI_VISIBLE_ROWS rows of the same height (--run-row), so moving the list by one row height shows the next one */
-.runWindow {
-    --run-row: 2.4rem;
-    height: calc(5 * var(--run-row));
+.ciPaused {
+    color: var(--fg-on-inverse-muted);
+}
+
+.ciPaused i {
+    background: var(--fg-on-inverse-muted);
+    box-shadow: none;
+}
+
+.ciWindow {
+    height: calc(var(--ci-row) * 7);
     overflow: hidden;
 }
 
-.runScroll {
+.ciScroll {
     overflow-y: auto;
 }
 
-.runRows {
+.ciRows {
     margin: 0;
     padding: 0;
     list-style: none;
     transition: transform 0.6s ease;
 }
 
-.runRows li {
+.ciRows li {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
-    height: var(--run-row);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+    gap: 12px;
+    height: var(--ci-row);
+    border-top: 1px solid var(--line-on-inverse);
 }
 
-.runName {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.ciName {
+    font: var(--t-body-sm);
+    letter-spacing: var(--tracking-body);
+    color: var(--sl-ivory);
 }
 
-.runRows a {
-    display: inline-flex;
-    flex-shrink: 0;
+.ciName b {
+    font-weight: 600;
 }
 
-.pending {
-    color: #ffb38a;
+.ciRows img {
+    display: block;
+    height: 20px;
+    opacity: 0.9;
 }
 
-/* frameworks */
-.columns {
+.ciRows a:focus-visible {
+    outline-offset: 2px;
+}
+
+/* Section heads */
+.secHead {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 64px;
+    align-items: end;
+    margin-bottom: 56px;
 }
 
-.column {
-    display: grid;
-    align-content: start;
-    gap: 0.75rem;
-    min-width: 0;
-}
-
-.column h3 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.6rem;
+.secHead h2,
+.show h2 {
     margin: 0;
-    font-size: 1.15rem;
+    font-size: clamp(2.25rem, 4vw, 3.125rem);
+    line-height: 0.95;
 }
 
-.column h3 small {
-    font-size: 0.85rem;
-    font-weight: 500;
+.secHead :global(.es-lead) {
+    margin: 0;
+}
+
+.sub {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 0 0 20px;
+}
+
+.sub h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.sub :global(.es-mono) {
+    color: var(--fg-muted);
+}
+
+/* Framework cards */
+.tools {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 56px;
 }
 
 .tool {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 0.9rem 1rem;
-    border: 1px solid var(--sauce-warm-gray);
-    border-radius: 12px;
-    color: inherit;
-    background: var(--ifm-background-surface-color);
-}
-
-[data-theme='dark'] .tool {
-    border-color: #3d483d;
-}
-
-/* The card that asks for a framework that is not on the list, so both columns have the same number of rows */
-.suggest {
-    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--bg-paper);
+    color: var(--fg);
+    text-decoration: none;
+    transition: box-shadow 0.16s, transform 0.16s;
 }
 
 a.tool:hover {
-    border-color: var(--ifm-color-primary);
-    color: inherit;
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+    color: var(--fg);
     text-decoration: none;
 }
 
-.toolIcon {
+.toolLogo {
     display: grid;
     place-items: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--sauce-warm-gray);
-    border-radius: 10px;
-    background: #ffffff;
-    font-weight: 800;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--sl-ivory);
 }
 
-.toolIcon img {
+.toolLogo img {
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 }
 
-/* The "+" of the card that asks for a framework */
-.suggest .toolIcon {
-    background: var(--ifm-background-color);
-}
-
-.toolText {
-    display: grid;
-    min-width: 0;
-}
-
 .toolName {
-    font-weight: 700;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
 }
 
 .toolMeta {
-    font-size: 0.85rem;
+    display: block;
+    margin-top: 4px;
+    font: var(--t-caption);
+    letter-spacing: var(--tracking-body);
+    color: var(--fg-muted);
 }
 
-.pill {
-    padding: 0.15rem 0.6rem;
-    border: 1px solid currentColor;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    white-space: nowrap;
+.toolCount {
+    margin-top: auto;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--sl-pine);
 }
 
-.count {
-    border-color: var(--ifm-color-primary);
-    color: var(--ifm-background-color);
-    background: var(--ifm-color-primary);
+.toolSoon {
+    border-style: dashed;
+    background: transparent;
 }
 
-.sauce {
-    margin-left: 0.4rem;
-    color: #b8370f;
+.toolSoon .toolCount {
+    color: var(--fg-muted);
 }
 
-[data-theme='dark'] .sauce {
-    color: #ff8a5c;
+.toolSuggest {
+    border-color: transparent;
+    background: var(--sl-warm-gray);
 }
 
-/* one use case, many tools */
-.useCase {
+/* One use case, many tools */
+.show {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
-    gap: 2.5rem;
+    gap: 56px;
     align-items: start;
+    transition: opacity 0.2s;
 }
 
-.useCaseCopy {
-    display: grid;
-    justify-items: start;
-    gap: 1rem;
-    min-width: 0;
+.picking {
+    opacity: 0;
 }
 
-.checks {
-    display: grid;
-    gap: 0.4rem;
-    margin: 0;
+.showList {
+    margin: 32px 0 40px;
     padding: 0;
     list-style: none;
 }
 
-.checks li::before {
-    content: "✓ ";
-    font-weight: 800;
+.showList li {
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    font: var(--t-body-sm);
 }
 
 .code {
+    overflow: hidden;
     min-width: 0;
+    border-radius: var(--radius-lg);
+    background: var(--sl-pine);
+    box-shadow: var(--shadow-md);
 }
 
-/* Keeps the space of the section while the browser picks the tip to show */
-.picking {
-    visibility: hidden;
-}
-
-/* tips */
-.tips {
+.code :global(.tabs-container) {
     margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--sauce-warm-gray);
 }
 
-[data-theme='dark'] .tips,
-[data-theme='dark'] .tips a {
-    border-color: #3d483d;
+.code :global(.tabs-container > .tabs) {
+    width: auto;
+    margin: 0;
+    padding: 14px;
+    border-bottom: 1px solid var(--line-on-inverse);
+    border-radius: 0;
+    background: transparent;
 }
 
-.tips a {
-    display: grid;
-    grid-template-columns: 3.2rem 1fr auto;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 0.25rem;
-    border-bottom: 1px solid var(--sauce-warm-gray);
-    color: inherit;
+.code :global(.tabs-container > .tabs > .tabs__item) {
+    padding: 8px 14px;
+    border: 0;
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--fg-on-inverse-muted);
 }
 
-.tips a:hover {
-    color: inherit;
+.code :global(.tabs-container > .tabs > .tabs__item:hover) {
+    color: var(--sl-ivory);
 }
 
-.number {
-    font-family: var(--ifm-font-family-monospace);
-    font-size: 0.85rem;
-    font-variant-numeric: tabular-nums;
+.code :global(.tabs-container > .tabs > .tabs__item--active),
+.code :global(.tabs-container > .tabs > .tabs__item--active:hover) {
+    background: var(--sl-highlight);
+    color: var(--sl-deep-green);
+    box-shadow: none;
 }
 
-.tipTitle {
-    font-weight: 600;
+.code :global(.tabs-container .tabs-container > .tabs) {
+    padding: 12px 14px 0;
+    border-bottom: 0;
 }
 
-.tag {
-    font-size: 0.8rem;
-    white-space: nowrap;
+.code :global(.tabs-container .tabs-container > .tabs > .tabs__item) {
+    padding: 5px 12px;
+    border: 1px solid var(--line-on-inverse);
 }
 
+.code :global(.tabs-container .tabs-container > .tabs > .tabs__item--active) {
+    border-color: var(--sl-ivory);
+    background: transparent;
+    color: var(--sl-ivory);
+}
+
+.code :global(.es-code) {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.code :global(.theme-code-block pre) {
+    max-height: 420px;
+}
+
+/* Where to begin */
 .levels {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.levels a {
-    padding: 0.2rem 0.75rem;
-    border: 1px solid var(--sauce-warm-gray);
+.pill {
+    padding: 10px 18px;
+    border: 1px solid var(--fg-xlight);
     border-radius: 999px;
-    color: inherit;
-    background: var(--ifm-background-surface-color);
-    font-size: 0.85rem;
-    font-weight: 600;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--sl-pine);
+    text-decoration: none;
 }
 
-.levels a:hover {
-    border-color: var(--ifm-color-primary);
-    color: inherit;
+.pill:hover {
+    border-color: var(--sl-pine);
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+    text-decoration: none;
 }
 
-/* why trust the code */
-.proof {
+.lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.list {
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--bg-paper);
+}
+
+.list h3 {
+    margin: 0 0 12px;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.tipList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tip {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.tip:hover {
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.tipNumber {
+    font: var(--t-mono-sm);
+    color: var(--fg-muted);
+}
+
+.tipTitle {
+    font: 500 1.03rem/1.35 var(--font-body);
+}
+
+.tip:hover .tipTitle {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.tipMeta {
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+/* Tested, not just written */
+.trust {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 16px;
 }
 
-.proof h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--bg-paper);
+    box-shadow: var(--shadow-sm);
 }
 
-.proof p {
-    margin-bottom: 0.5rem;
+.card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.card p {
+    margin: 0;
+    color: var(--fg-muted);
 }
 
 .os {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 16px;
 }
 
 .os span {
-    padding: 0.1rem 0.5rem;
-    border: 1px solid var(--sauce-warm-gray);
-    border-radius: 6px;
-    background: var(--ifm-background-surface-color);
-    font-family: var(--ifm-font-family-monospace);
-    font-size: 0.75rem;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xs);
+    background: var(--sl-ivory);
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
 }
 
-/* contribute */
-.contribute {
-    color: #ffffff;
-    background: var(--sauce-forest) url('../../static/img/backgrounds/pixels-band-light.svg') no-repeat right center /
-        auto 100%;
-}
-
-[data-theme='dark'] .contribute {
-    color: var(--sauce-pine);
-    background-color: var(--sauce-highlight);
-    background-image: url('../../static/img/backgrounds/pixels-band-dark.svg');
-}
-
-.contribute h2 {
-    color: inherit;
-}
-
-.contributeRow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-}
-
-.contributeRow p {
-    max-width: 55ch;
-    margin: 0.4rem 0 0;
-}
-
-/* The button sits over the pixels, so it has a solid background */
-.contributeButton {
-    border: 2px solid currentColor;
-    color: inherit;
-    background: var(--sauce-forest);
-}
-
-.contributeButton:hover {
-    color: var(--sauce-forest);
-    background: #ffffff;
-}
-
-[data-theme='dark'] .contributeButton {
-    background: var(--sauce-highlight);
-}
-
-[data-theme='dark'] .contributeButton:hover {
-    color: var(--sauce-highlight);
-    background: var(--sauce-pine);
-}
-
-@media (max-width: 996px) {
+@media (max-width: 1000px) {
     .heroGrid,
-    .useCase,
-    .columns {
+    .secHead,
+    .show,
+    .lists {
         grid-template-columns: 1fr;
     }
 
-    .proof {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .hero,
-    main > section {
-        padding-block: 3rem;
+    .trust {
+        grid-template-columns: 1fr;
+    }
+
+    .levels {
+        justify-content: flex-start;
     }
 }
 
 @media (max-width: 480px) {
-    /* The name and the badge don't fit side by side, so each row shows them one above the other */
-    .runWindow {
-        --run-row: 3.4rem;
+    .tools {
+        grid-template-columns: 1fr;
     }
 
-    .runRows li {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 0.2rem;
+    .ci {
+        padding: 20px;
     }
 
-    .tips a {
-        grid-template-columns: 2.6rem 1fr;
-    }
-
-    .tips .tag {
-        display: none;
+    .ciName {
+        font-size: 0.875rem;
     }
 }

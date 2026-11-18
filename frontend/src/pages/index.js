@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
@@ -7,6 +7,7 @@ import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useGlobalData from '@docusaurus/useGlobalData';
 import TipCode from '../components/tipCode';
+import ContributeBand from '../components/contributeBand';
 import styles from './index.module.css';
 
 const REPO = 'https://github.com/saucelabs/elemental-next';
@@ -53,7 +54,7 @@ const CI_RUNS = [
 ];
 
 // How many rows of the CI panel show at a time, and how often it moves to the next one
-const CI_VISIBLE_ROWS = 5;
+const CI_VISIBLE_ROWS = 7;
 const CI_STEP_MS = 2500;
 
 // The web tools shown in "One use case, many tools"
@@ -80,16 +81,17 @@ function plural(count, word) {
 }
 
 function CiRun({name, workflow, hidden}) {
+    const [tool, language] = name.split(' · ');
     return (
         <li aria-hidden={hidden || undefined}>
-            <span className={styles.runName}>{name}</span>
+            <span className={styles.ciName}><b>{tool}</b> · {language}</span>
             {workflow
                 ? <a href={`${REPO}/actions/workflows/${workflow}`} target="_blank" rel="noopener noreferrer"
                      tabIndex={hidden ? -1 : undefined}>
                     <img src={`${REPO}/actions/workflows/${workflow}/badge.svg`}
                          alt={hidden ? '' : `Last CI run of the ${name} examples (opens in a new tab)`} height="20"/>
                 </a>
-                : <span className={styles.pending}>coming soon</span>}
+                : <span className="es-chip">Coming soon</span>}
         </li>
     );
 }
@@ -97,7 +99,7 @@ function CiRun({name, workflow, hidden}) {
 // Shows the CI status of every tool and language, a few rows at a time, moving one row up every few seconds. After the
 // last row, it shows the first rows again (copies, hidden from screen readers) and jumps back to the start without
 // animation, so the loop looks continuous. It stops while the pointer or the keyboard focus is on it (each one on its
-// own, so leaving the page or clicking a badge doesn't restart it under the pointer), and with the pause button.
+// own, so leaving the page or clicking a badge doesn't restart it under the pointer), and with the "Live" button.
 // When the reader asks for less motion, it doesn't move: the list scrolls by hand instead.
 function CiRuns() {
     const [index, setIndex] = useState(0);
@@ -148,22 +150,22 @@ function CiRuns() {
     };
 
     return (
-        <div className={styles.run}>
-            <div className={styles.runHead}>
-                <h2 className={styles.runTitle}>Every example runs in CI, every night</h2>
-                {!reducedMotion && (
-                    <button type="button" className={styles.runPause} aria-pressed={paused}
-                            onClick={() => setPaused(!paused)}>
-                        {paused ? 'Play' : 'Pause'}
-                    </button>
-                )}
+        <aside className={styles.ci} aria-labelledby="ci-title">
+            <div className={styles.ciHead}>
+                <h2 id="ci-title" className="es-mono">Every example runs in CI, every night</h2>
+                {reducedMotion
+                    ? <span className={clsx('es-mono', styles.ciLive)}><i/>Live</span>
+                    : <button type="button" className={clsx('es-mono', styles.ciLive, paused && styles.ciPaused)}
+                              aria-pressed={paused} onClick={() => setPaused(!paused)}>
+                        <i/>{paused ? 'Paused' : 'Live'}<span className="es-sr-only">: pause the list</span>
+                    </button>}
             </div>
-            <div className={clsx(styles.runWindow, reducedMotion && styles.runScroll)}
+            <div className={clsx(styles.ciWindow, reducedMotion && styles.ciScroll)}
                  onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}
                  onFocus={showFocused} onBlur={releaseFocus}>
-                <ul className={styles.runRows} onTransitionEnd={restartLoop}
+                <ul className={styles.ciRows} onTransitionEnd={restartLoop}
                     style={reducedMotion ? undefined : {
-                        transform: `translateY(calc(${-index} * var(--run-row)))`,
+                        transform: `translateY(calc(${-index} * var(--ci-row)))`,
                         transition: animate ? undefined : 'none',
                     }}>
                     {CI_RUNS.map((run) => <CiRun key={run.name} {...run}/>)}
@@ -172,92 +174,95 @@ function CiRuns() {
                     ))}
                 </ul>
             </div>
-        </div>
+        </aside>
     );
 }
 
 function Hero() {
     return (
-        <header className={styles.hero} data-tone="hero">
-            <div className={clsx('container', styles.heroGrid)}>
-                <div className={styles.heroCopy}>
-                    <span className={styles.eyebrow}>Free and open source</span>
-                    <h1 className={styles.heroTitle}>
-                        Short, <em>tested</em> tips for web and mobile test automation
-                    </h1>
-                    <p className={styles.lede}>
-                        Each tip shows how to automate one use case, like uploading a file or handling an alert. The
-                        code is real, and CI runs every example.
-                    </p>
-                    <div className={styles.ctas}>
-                        <Link className="button button--primary button--lg" to="/tips">Browse the tips →</Link>
-                        <Link className="button button--outline button--primary button--lg"
-                              to={`${REPO}/blob/main/CONTRIBUTING.md`}>Write a tip</Link>
+        <header className="es-hero es-on-dark">
+            <div className="es-hero__plate">
+                <div className={clsx('es-wrap', styles.heroGrid)}>
+                    <div>
+                        <span className="es-eyebrow">Free and open source</span>
+                        <h1 className={styles.heroTitle}>Short, tested tips for web and mobile test automation</h1>
+                        <p className={clsx('es-lead', styles.heroLead)}>
+                            Each tip shows how to automate one use case, like uploading a file or handling an alert. The
+                            code is real, and CI runs every example.
+                        </p>
+                        <div className="es-hero__ctas">
+                            <Link className="es-btn es-btn--pop" to="/tips">Browse the tips</Link>
+                            <Link className="es-btn es-btn--ghost-inv" to={`${REPO}/blob/main/CONTRIBUTING.md`}>
+                                Write a tip
+                            </Link>
+                        </div>
                     </div>
+                    <CiRuns/>
                 </div>
-                <CiRuns/>
             </div>
         </header>
     );
 }
 
-function ToolCard({logo, name, meta, count, sauce}) {
-    const logoUrl = useBaseUrl(`/img/tools/${logo}`);
+function ToolCard({logo, name, meta, count}) {
+    const logoUrl = useBaseUrl(logo.startsWith('/') ? logo : `/img/tools/${logo}`);
     const content = (
         <>
-            <span className={styles.toolIcon}><img src={logoUrl} alt="" width="28" height="28"/></span>
-            <span className={styles.toolText}>
-                <span className={styles.toolName}>{name}</span>
-                <span className={styles.toolMeta}>
-                    {meta}
-                    {sauce && <span className={clsx(styles.pill, styles.sauce)}>Sauce Labs</span>}
-                </span>
+            <span className={styles.toolLogo}><img src={logoUrl} alt="" width="32" height="32"/></span>
+            <span>
+                <h4 className={styles.toolName}>{name}</h4>
+                <span className={styles.toolMeta}>{meta}</span>
             </span>
-            <span className={clsx(styles.pill, count && styles.count)}>
-                {count ? plural(count, 'tip') : 'Coming soon'}
-            </span>
+            <span className={styles.toolCount}>{count ? plural(count, 'tip') : 'Coming soon'}</span>
         </>
     );
     return count
-        ? <Link className={clsx(styles.tool, styles.live)} to="/tips">{content}</Link>
-        : <div className={styles.tool}>{content}</div>;
+        ? <Link className={styles.tool} to="/tips">{content}</Link>
+        : <div className={clsx(styles.tool, styles.toolSoon)}>{content}</div>;
 }
 
 function Frameworks({stats}) {
     return (
-        <section className={styles.grid} data-tone="frameworks">
-            <div className="container">
-                <div className={styles.sectionHead}>
-                    <span className={styles.eyebrow}>Frameworks</span>
-                    <h2>Pick your tool</h2>
-                    <p className={styles.lede}>
+        <section className="es-block" aria-labelledby="frameworks-title">
+            <div className="es-wrap">
+                <div className={styles.secHead}>
+                    <div>
+                        <span className="es-eyebrow">Frameworks</span>
+                        <h2 id="frameworks-title">Pick your tool</h2>
+                    </div>
+                    <p className="es-lead">
                         Selenium is where we started. Selenide, Playwright, WebdriverIO and Vibium are here too, and
                         mobile frameworks are on the way.
                     </p>
                 </div>
-                <div className={styles.columns}>
-                    <div className={styles.column}>
-                        <h3>Web <small>runs in CI on Linux, Windows and macOS, and some tips on Sauce Labs</small></h3>
-                        {WEB_TOOLS.map(({tool, logo}) => (
-                            <ToolCard key={tool} logo={logo} name={tool} count={stats[tool]?.tips.size}
-                                      meta={[...(stats[tool]?.languages || [])].join(', ')}/>
-                        ))}
-                    </div>
-                    <div className={styles.column}>
-                        <h3>Mobile <small>will run on real devices in Sauce Labs</small></h3>
-                        {MOBILE_TOOLS.map(({tool, logo, meta}) => (
-                            <ToolCard key={tool} logo={logo} name={tool} meta={meta} count={stats[tool]?.tips.size}
-                                      sauce/>
-                        ))}
-                        <Link className={clsx(styles.tool, styles.suggest)} to={`${REPO}/discussions`}>
-                            <span className={styles.toolIcon} aria-hidden="true">+</span>
-                            <span className={styles.toolText}>
-                                <span className={styles.toolName}>Missing your framework?</span>
-                                <span className={styles.toolMeta}>Tell us in GitHub Discussions</span>
-                            </span>
-                            <span className={styles.pill}>Suggest one</span>
-                        </Link>
-                    </div>
+                <div className={styles.sub}>
+                    <h3>Web</h3>
+                    <span className="es-mono">Runs in CI on Linux, Windows and macOS</span>
+                </div>
+                <div className={styles.tools}>
+                    {WEB_TOOLS.map(({tool, logo}) => (
+                        <ToolCard key={tool} logo={logo} name={tool} count={stats[tool]?.tips.size}
+                                  meta={[...(stats[tool]?.languages || [])].join(', ')}/>
+                    ))}
+                </div>
+                <div className={styles.sub}>
+                    <h3>Mobile</h3>
+                    <span className="es-mono">Will run on real devices in Sauce Labs</span>
+                </div>
+                <div className={styles.tools}>
+                    {MOBILE_TOOLS.map(({tool, logo, meta}) => (
+                        <ToolCard key={tool} logo={logo} name={tool} meta={meta} count={stats[tool]?.tips.size}/>
+                    ))}
+                    <Link className={clsx(styles.tool, styles.toolSuggest)} to={`${REPO}/discussions`}>
+                        <span className={styles.toolLogo}>
+                            <img src={useBaseUrl('/img/sauce/sauce-mark-pine.svg')} alt="" width="32" height="32"/>
+                        </span>
+                        <span>
+                            <h4 className={styles.toolName}>Missing yours?</h4>
+                            <span className={styles.toolMeta}>Tell us in GitHub Discussions</span>
+                        </span>
+                        <span className={styles.toolCount}>Suggest one</span>
+                    </Link>
                 </div>
             </div>
         </section>
@@ -288,22 +293,17 @@ function UseCase({tips}) {
         return null;
     }
     return (
-        <section data-tone="useCase">
-            <div className={clsx('container', styles.useCase, !picked && styles.picking)}>
-                <div className={styles.useCaseCopy}>
-                    <span className={styles.eyebrow}>One use case, many tools</span>
-                    <h2>{tip.title}</h2>
-                    <p className={styles.lede}>
-                        Every tip solves one use case. Switch the tool to compare how each framework does it.
-                    </p>
-                    <ul className={styles.checks}>
+        <section className={clsx('es-block', styles.flush)} aria-labelledby="use-case-title">
+            <div className={clsx('es-wrap', styles.show, !picked && styles.picking)}>
+                <div>
+                    <span className="es-eyebrow">One use case, many tools</span>
+                    <h2 id="use-case-title">{tip.title}</h2>
+                    <ul className={styles.showList}>
+                        <li>Every tip solves one use case. Switch the tool to compare how each framework does it.</li>
                         <li>Same use case, same test site</li>
                         <li>Each example is a full project you can run</li>
-                        <li>Pick your language inside each tool</li>
                     </ul>
-                    <Link className="button button--outline button--primary" to={`/tips${tip.slug}`}>
-                        Read tip {tip.number} →
-                    </Link>
+                    <Link className="es-btn es-btn--primary" to={`/tips${tip.slug}`}>Read tip {tip.number}</Link>
                 </div>
                 <div className={styles.code}>
                     <Tabs key={tip.number}>
@@ -327,13 +327,13 @@ function UseCase({tips}) {
 
 function TipList({tips, tag}) {
     return (
-        <ul className={styles.tips}>
+        <ul className={styles.tipList}>
             {tips.map((tip) => (
                 <li key={tip.number}>
-                    <Link to={`/tips${tip.slug}`}>
-                        <span className={styles.number}>#{tip.number}</span>
+                    <Link className={styles.tip} to={`/tips${tip.slug}`}>
+                        <span className={styles.tipNumber}>#{tip.number}</span>
                         <span className={styles.tipTitle}>{tip.title}</span>
-                        <span className={styles.tag}>{tag(tip)}</span>
+                        <span className={styles.tipMeta}>{tag(tip)}</span>
                     </Link>
                 </li>
             ))}
@@ -350,24 +350,28 @@ function Tips({tips}) {
         .slice(0, 5);
     const tools = (tip) => plural(new Set((tip.languages || []).map(({tool}) => tool)).size, 'tool');
     return (
-        <section data-tone="tips">
-            <div className="container">
-                <div className={styles.sectionHead}>
-                    <span className={styles.eyebrow}>Tips</span>
-                    <h2>Where to begin</h2>
+        <section className={clsx('es-block', styles.flush)} aria-labelledby="tips-title">
+            <div className="es-wrap">
+                <div className={styles.secHead}>
+                    <div>
+                        <span className="es-eyebrow">Tips</span>
+                        <h2 id="tips-title">Where to begin</h2>
+                    </div>
+                    <nav className={styles.levels} aria-label="Browse the tips by level">
+                        {LEVELS.map((level) => (
+                            <Link key={level} className={styles.pill} to={`/tips?level=${level.toLowerCase()}`}>
+                                {level}
+                            </Link>
+                        ))}
+                        <Link className="es-btn es-btn--primary es-btn--sm" to="/tips">All {tips.length} tips</Link>
+                    </nav>
                 </div>
-                <div className={styles.columns}>
-                    <div className={styles.column}>
+                <div className={styles.lists}>
+                    <div className={styles.list}>
                         <h3>Start here</h3>
                         <TipList tips={startHere} tag={tools}/>
-                        <nav className={styles.levels} aria-label="Browse the tips by level">
-                            {LEVELS.map((level) => (
-                                <Link key={level} to={`/tips?level=${level.toLowerCase()}`}>{level}</Link>
-                            ))}
-                            <Link to="/tips">All {tips.length} tips</Link>
-                        </nav>
                     </div>
-                    <div className={styles.column}>
+                    <div className={styles.list}>
                         <h3>Recently updated</h3>
                         <TipList tips={recent} tag={tools}/>
                     </div>
@@ -379,24 +383,26 @@ function Tips({tips}) {
 
 function Proof() {
     return (
-        <section data-tone="proof">
-            <div className="container">
-                <div className={styles.sectionHead}>
-                    <span className={styles.eyebrow}>Why trust the code</span>
-                    <h2>Tested, not just written</h2>
-                </div>
-                <div className={styles.proof}>
+        <section className={clsx('es-block', styles.flush)} aria-labelledby="proof-title">
+            <div className="es-wrap">
+                <div className={styles.secHead}>
                     <div>
+                        <span className="es-eyebrow">Why trust the code</span>
+                        <h2 id="proof-title">Tested, not just written</h2>
+                    </div>
+                </div>
+                <div className={styles.trust}>
+                    <div className={styles.card}>
                         <h3>Runs every night</h3>
                         <p>CI runs the web examples on three operating systems. A broken example fails the build.</p>
-                        <div className={styles.os}><span>ubuntu</span><span>windows</span><span>macos</span></div>
+                        <div className={styles.os}><span>Ubuntu</span><span>Windows</span><span>macOS</span></div>
                     </div>
-                    <div>
+                    <div className={styles.card}>
                         <h3>Real devices for mobile</h3>
                         <p>Mobile tips need devices and emulators, so they will run in Sauce Labs. You can run them
                             with a free account.</p>
                     </div>
-                    <div>
+                    <div className={styles.card}>
                         <h3>Short and focused</h3>
                         <p>One use case per tip, with a walkthrough of every important line. Read it in five
                             minutes.</p>
@@ -407,69 +413,20 @@ function Proof() {
     );
 }
 
-function Contribute() {
-    return (
-        <section className={styles.contribute}>
-            <div className={clsx('container', styles.contributeRow)}>
-                <div>
-                    <h2>Know a better way?</h2>
-                    <p>Write a tip, add your language or framework to an existing one, or fix an example. We review
-                        every pull request.</p>
-                </div>
-                <Link className={clsx('button button--lg', styles.contributeButton)}
-                      to={`${REPO}/blob/main/CONTRIBUTING.md`}>Read the contributing guide →</Link>
-            </div>
-        </section>
-    );
-}
-
-// Gives the page the color (tone) of the section in the middle of the screen, like saucelabs.com does while scrolling.
-// Each section names its tone in `data-tone`, and the CSS fades the page from one color to the next. The current
-// section is the last one that starts above the middle of the screen, so a long jump (e.g., the End key) can't skip it.
-function useSectionTone(ref) {
-    const [tone, setTone] = useState('hero');
-    useEffect(() => {
-        const sections = [...ref.current.querySelectorAll('[data-tone]')];
-        let frame = 0;
-        const update = () => {
-            frame = 0;
-            const middle = window.innerHeight / 2;
-            const current = sections.filter((section) => section.getBoundingClientRect().top <= middle).pop();
-            setTone((current || sections[0]).dataset.tone);
-        };
-        const schedule = () => {
-            frame = frame || requestAnimationFrame(update);
-        };
-        update();
-        window.addEventListener('scroll', schedule, {passive: true});
-        window.addEventListener('resize', schedule);
-        return () => {
-            window.removeEventListener('scroll', schedule);
-            window.removeEventListener('resize', schedule);
-            cancelAnimationFrame(frame);
-        };
-    }, [ref]);
-    return tone;
-}
-
 function Home() {
     const tips = useGlobalData().metadata.default.aggregateFrontMatter;
-    const page = useRef(null);
-    const tone = useSectionTone(page);
     return (
         <Layout
             title="Home"
             description="Short, tested tips for web and mobile test automation">
-            <div ref={page} className={clsx(styles.page, styles[`tone-${tone}`])}>
-                <Hero/>
-                <main>
-                    <Frameworks stats={toolStats(tips)}/>
-                    <UseCase tips={tips}/>
-                    <Tips tips={tips}/>
-                    <Proof/>
-                    <Contribute/>
-                </main>
-            </div>
+            <Hero/>
+            <main>
+                <Frameworks stats={toolStats(tips)}/>
+                <UseCase tips={tips}/>
+                <Tips tips={tips}/>
+                <Proof/>
+                <ContributeBand/>
+            </main>
         </Layout>
     );
 }

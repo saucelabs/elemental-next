@@ -1,232 +1,1265 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Global styles of the site, following the Sauce Labs brand: an Ivory page, Pine hero plates, code blocks and footer,
+ * and one accent (Highlight lime). Headings use P22 Mackinac, text uses Atkinson Hyperlegible Next, and labels, the
+ * nav and buttons use Atkinson Hyperlegible Mono in uppercase. Code uses JetBrains Mono.
+ *
+ * Classes that start with `es-` are shared by the pages and components of the site.
  */
 
+/* P22 Mackinac is covered by the Sauce Labs licence for official Sauce Labs sites */
+@font-face {
+    font-family: 'P22 Mackinac Pro';
+    src: url('/fonts/Mackinac-Book.otf') format('opentype');
+    font-weight: 300 400;
+    font-display: swap;
+}
 
-/* You can override the default Infima variables here. */
-/* Colors from the Sauce Labs brand palette (https://saucelabs.com). */
 :root {
-    --sauce-pine: #192319;
-    --sauce-forest: #043423;
-    --sauce-slate: #2d372d;
-    --sauce-olive: #6d7344;
-    --sauce-highlight: #abe082;
-    --sauce-light-highlight: #f3ffcc;
-    --sauce-flare: #f55524;
-    --sauce-ivory: #f0f0ec;
-    --sauce-off-white: #f8f8f8;
-    --sauce-warm-gray: #dcdcd7;
+    /* Sauce Labs palette */
+    --sl-deep-green: #0a140a;
+    --sl-pine: #192319;
+    --sl-slate: #2d372d;
+    --sl-moss: #3c483c;
+    --sl-forest: #043423;
+    --sl-olive: #6d7344;
+    --sl-khaki: #abad6c;
+    --sl-ivory: #f0f0ec;
+    --sl-off-white: #f8f8f8;
+    --sl-warm-gray: #dcdcd7;
+    --sl-highlight: #abe082;
+    --sl-light-highlight: #f3ffcc;
+    --sl-light-sunflower: #f1e082;
+    --sl-light-khaki: #ebedb8;
+    --sl-light-flare: #ffb098;
 
-    --ifm-color-primary: var(--sauce-forest);
-    --ifm-color-primary-dark: #042f20;
-    --ifm-color-primary-darker: #032c1e;
-    --ifm-color-primary-darkest: #032419;
-    --ifm-color-primary-light: #0a4a33;
-    --ifm-color-primary-lighter: #0f5c40;
-    --ifm-color-primary-lightest: #1a7a55;
+    /* Semantic colors. The olive of the labels is a bit darker than the brand olive, so it has enough contrast on
+       the Ivory page (WCAG AA, 4.5:1). The same goes for the faded text. */
+    --bg: var(--sl-ivory);
+    --bg-paper: var(--sl-off-white);
+    --fg: var(--sl-pine);
+    --fg-muted: rgba(25, 35, 25, 0.68);
+    --fg-faint: rgba(25, 35, 25, 0.56);
+    --fg-xlight: rgba(25, 35, 25, 0.44);
+    --fg-on-inverse-muted: rgba(240, 240, 236, 0.7);
+    --fg-accent-mono: #5f6539;
+    --line: rgba(10, 20, 10, 0.12);
+    --line-on-inverse: rgba(240, 240, 236, 0.16);
 
-    --ifm-font-color-base: var(--sauce-pine);
-    --ifm-heading-color: var(--sauce-pine);
-    --ifm-background-color: var(--sauce-ivory);
-    --ifm-background-surface-color: #ffffff;
-    --ifm-navbar-background-color: #ffffff;
-    --ifm-footer-background-color: var(--sauce-ivory);
+    /* Fonts */
+    --font-display: 'P22 Mackinac Pro', 'Libre Baskerville', Georgia, serif;
+    --font-body: 'Atkinson Hyperlegible Next Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Atkinson Hyperlegible Mono Variable', ui-monospace, SFMono-Regular, Consolas, monospace;
+    --font-code: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Consolas, monospace;
 
-    /* Fonts of saucelabs.com: a serif for headings, Atkinson Hyperlegible for text, and its mono for labels and code */
-    --sauce-font-serif: 'Fraunces Variable', 'Times New Roman', serif;
-    --sauce-font-mono: 'Atkinson Hyperlegible Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
-    --ifm-font-family-base: 'Atkinson Hyperlegible Next Variable', Arial, sans-serif;
-    --ifm-heading-font-family: var(--sauce-font-serif);
+    /* Type roles */
+    --t-lead: 400 1.2rem/1.45 var(--font-body);
+    --t-body-sm: 400 1.03rem/1.45 var(--font-body);
+    --t-caption: 400 0.875rem/1.45 var(--font-body);
+    --t-eyebrow: 500 0.781rem/1 var(--font-mono);
+    --t-mono-sm: 400 0.781rem/1.45 var(--font-mono);
+    --tracking-heading: -0.04em;
+    --tracking-eyebrow: 0.02em;
+    --tracking-loose: 0.08em;
+    --tracking-body: 0.0165em;
+
+    /* Shape and depth */
+    --radius-xs: 6px;
+    --radius-sm: 13px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    --radius-xl: 40px;
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 8px 36px rgba(0, 0, 0, 0.18);
+    --shadow-float: 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 40px rgba(0, 0, 0, 0.1);
+    --shadow-lift: 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 32px rgba(0, 0, 0, 0.2);
+    --glow-dark: 0 0 38px rgba(255, 255, 255, 0.44), 0 2px 16px rgba(0, 0, 0, 0.4);
+
+    /* Infima */
+    --ifm-color-primary: var(--sl-pine);
+    --ifm-color-primary-dark: var(--sl-pine);
+    --ifm-color-primary-darker: var(--sl-deep-green);
+    --ifm-color-primary-darkest: var(--sl-deep-green);
+    --ifm-color-primary-light: var(--sl-slate);
+    --ifm-color-primary-lighter: var(--sl-moss);
+    --ifm-color-primary-lightest: var(--sl-moss);
+    --ifm-font-color-base: var(--fg);
+    --ifm-heading-color: var(--fg);
+    --ifm-background-color: var(--bg);
+    --ifm-background-surface-color: var(--bg-paper);
+    --ifm-link-color: var(--sl-moss);
+    --ifm-link-hover-color: var(--sl-pine);
+    --ifm-font-family-base: var(--font-body);
+    --ifm-heading-font-family: var(--font-display);
     --ifm-heading-font-weight: 400;
-    --ifm-font-family-monospace: var(--sauce-font-mono);
-    --ifm-toc-border-color: var(--sauce-warm-gray);
-    --ifm-hr-background-color: var(--sauce-warm-gray);
-    --ifm-menu-color-background-active: var(--sauce-light-highlight);
-    --ifm-menu-color-background-hover: var(--sauce-ivory);
+    --ifm-font-family-monospace: var(--font-code);
+    --ifm-navbar-height: 5rem;
+    --ifm-code-background: var(--sl-warm-gray);
+    --ifm-code-font-size: 88%;
+    --ifm-code-border-radius: var(--radius-xs);
+    --ifm-pre-background: var(--sl-pine);
+    --ifm-hr-background-color: var(--line);
+    --ifm-toc-border-color: var(--line);
     --ifm-button-border-radius: 999px;
-    --ifm-code-font-size: 95%;
-    --docusaurus-highlighted-code-line-bg: rgba(171, 224, 130, 0.35);
+    --docusaurus-highlighted-code-line-bg: rgba(171, 224, 130, 0.16);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-html[data-theme='dark'] {
-    --ifm-color-primary: var(--sauce-highlight);
-    --ifm-color-primary-dark: #98d966;
-    --ifm-color-primary-darker: #8ed557;
-    --ifm-color-primary-darkest: #72c731;
-    --ifm-color-primary-light: #b3e38e;
-    --ifm-color-primary-lighter: #b8e595;
-    --ifm-color-primary-lightest: #c4e9a8;
-
-    --ifm-font-color-base: var(--sauce-ivory);
-    --ifm-heading-color: var(--sauce-ivory);
-    --ifm-background-color: var(--sauce-pine);
-    --ifm-background-surface-color: var(--sauce-slate);
-    --ifm-navbar-background-color: var(--sauce-pine);
-    --ifm-footer-background-color: var(--sauce-pine);
-    --ifm-toc-border-color: var(--sauce-slate);
-    --ifm-hr-background-color: var(--sauce-slate);
-    --ifm-menu-color-background-active: var(--sauce-slate);
-    --ifm-menu-color-background-hover: var(--sauce-slate);
-    --docusaurus-highlighted-code-line-bg: rgba(171, 224, 130, 0.2);
+body {
+    font-size: 1.125rem;
+    line-height: 1.45;
+    letter-spacing: var(--tracking-body);
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Sauce Labs uses dark pill buttons with light text. */
-.button--primary:not(.button--outline) {
-    --ifm-button-color: #ffffff;
+h1, h2, h3, h4, h5 {
+    font-weight: 400;
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
 }
 
-[data-theme='dark'] .button--primary:not(.button--outline) {
-    --ifm-button-color: var(--sauce-pine);
+::selection {
+    background: var(--sl-highlight);
+    color: var(--sl-deep-green);
 }
 
-.center-filters {
-    display: flex;
-    justify-content: center;
+:focus-visible {
+    outline: 3px solid var(--sl-highlight);
+    outline-offset: 3px;
+}
+
+/* ---------- Shared pieces ---------- */
+
+.es-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.es-eyebrow {
+    display: block;
+    margin: 0 0 20px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-accent-mono);
+}
+
+.es-on-dark .es-eyebrow {
+    color: var(--sl-khaki);
+}
+
+.es-lead {
+    max-width: 36em;
+    font: var(--t-lead);
+    letter-spacing: var(--tracking-body);
+    color: var(--fg-muted);
+}
+
+.es-on-dark .es-lead {
+    color: var(--fg-on-inverse-muted);
+}
+
+.es-mono {
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+}
+
+/* Buttons: solid pills with an uppercase mono label */
+.es-btn {
+    display: inline-flex;
     align-items: center;
-    flex-direction: row;
+    gap: 10px;
+    padding: 18px 26px;
+    border: 0;
+    border-radius: 999px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.16s, color 0.16s, transform 0.16s, box-shadow 0.16s;
 }
 
-@media screen and (max-width: 480px) {
-    .navbar__logo img {
-        max-width: 200px;
-    }
-
-    .center-filters {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+.es-btn:hover {
+    transform: translateY(-1px);
+    text-decoration: none;
 }
 
-.footer {
-    background-color: transparent;
+.es-btn--primary,
+.es-btn--primary:hover {
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
 }
 
-.hero {
-    background-color: transparent;
+.es-btn--primary:hover {
+    background: var(--sl-slate);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-
-.navbar-sidebar .nav-button {
-    align-items: center;
-    justify-content: center;
-    padding: 0;
+.es-btn--pop,
+.es-btn--pop:hover {
+    background: var(--sl-highlight);
+    color: var(--sl-deep-green);
 }
 
-.nav-button {
-    width: 178px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 700;
-    background-color: var(--ifm-color-primary);
-    border-radius: 8px;
-    border: none;
-    padding: 8px 0 0 16px;
-    color: var(--ifm-color-content-inverse);
+.es-btn--pop:hover {
+    box-shadow: var(--glow-dark);
 }
 
-.nav-button:hover {
-    -moz-box-shadow: 0 0 10px var(--ifm-color-primary-dark);
-    -webkit-box-shadow: 0 0 10px var(--ifm-color-primary-dark);
-    box-shadow: 0 0 10px var(--ifm-color-primary-dark);
-    color: var(--ifm-color-content-inverse);
+.es-btn--ghost-inv,
+.es-btn--ghost-inv:hover {
+    background: transparent;
+    color: var(--sl-ivory);
+    box-shadow: inset 0 0 0 1.5px rgba(240, 240, 236, 0.4);
 }
 
+.es-btn--ghost-inv:hover {
+    box-shadow: inset 0 0 0 1.5px var(--sl-ivory);
+}
 
-.tips-pagination {
+.es-btn--ghost,
+.es-btn--ghost:hover {
+    background: transparent;
+    color: var(--sl-pine);
+    box-shadow: inset 0 0 0 1px var(--fg-xlight);
+}
+
+.es-btn--ghost:hover {
+    box-shadow: inset 0 0 0 1px var(--sl-pine);
+}
+
+.es-btn--sm {
+    padding: 12px 20px;
+}
+
+.es-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+}
+
+.es-chip {
+    padding: 4px 10px;
+    border: 1px solid var(--line-on-inverse);
+    border-radius: 999px;
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-on-inverse-muted);
+}
+
+.es-chip--level {
+    padding: 6px 12px;
+    border: 0;
+    background: var(--sl-highlight);
+    color: var(--sl-deep-green);
+}
+
+.es-chip--light {
+    padding: 5px 12px;
+    border: 1px solid var(--line);
+    background: var(--sl-ivory);
+    color: var(--sl-pine);
+    text-decoration: none;
+}
+
+a.es-chip--light:hover {
+    border-color: var(--sl-pine);
+    color: var(--sl-pine);
+    text-decoration: none;
+}
+
+/* Hero plate: a Pine block with rounded corners, which starts under the floating nav */
+.es-hero {
+    margin-top: -80px;
+    padding: 0 16px;
+}
+
+.es-hero__plate {
+    overflow: hidden;
+    padding: 170px 0 96px;
+    border-radius: clamp(40px, calc(48px - (100vw - 1280px) / 2), 48px);
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+}
+
+.es-hero h1 {
+    margin: 0;
+    color: var(--sl-ivory);
+    font-size: clamp(3rem, 5.6vw, 4.375rem);
+    line-height: 0.95;
+}
+
+.es-hero--page .es-hero__plate {
+    padding: 160px 0 72px;
+}
+
+.es-hero--page h1 {
+    max-width: 14em;
+    margin-bottom: 20px;
+}
+
+.es-hero--page .es-lead {
+    margin: 0;
+}
+
+.es-hero__ctas {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding-top: 1.5rem;
+    gap: 12px;
 }
 
-.tips-pagination__status {
-    color: var(--ifm-color-content);
+.es-hero--page .es-hero__ctas {
+    margin-top: 36px;
 }
 
-/* Level and category badges on the tip cards, with enough contrast for their text (WCAG AA, 4.5:1) */
-.card .button--outline.button--success {
-    --ifm-button-border-color: #1a7f37;
-}
-
-.card .button--outline.button--info {
-    --ifm-button-border-color: #0b6e8f;
-}
-
-.card .button--outline.button--warning {
-    --ifm-button-border-color: #8a5a00;
-}
-
-[data-theme='dark'] .card .button--outline.button--success {
-    --ifm-button-border-color: #5fd35f;
-}
-
-[data-theme='dark'] .card .button--outline.button--info {
-    --ifm-button-border-color: var(--ifm-color-info);
-}
-
-[data-theme='dark'] .card .button--outline.button--warning {
-    --ifm-button-border-color: var(--ifm-color-warning);
-}
-
-/* Links inside text are underlined, so they don't rely only on color to stand out (WCAG 1.4.1) */
-.markdown a:not(.button):not(.card),
-.hero__subtitle a {
+.es-hero .es-lead a {
+    color: var(--sl-highlight);
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-/* The language tabs inside a tool tab (e.g., Selenium > Python) are smaller than the tool tabs */
-.tabs-container .tabs-container > .tabs {
-    font-size: 0.9rem;
+/* Text for screen readers only */
+.es-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
-.tabs-container .tabs-container > .tabs .tabs__item {
-    padding: 0.5rem 0.9rem;
+.es-crumb {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-on-inverse-muted);
 }
 
-/* Like saucelabs.com: a navbar that floats as a rounded bar, with mono uppercase links */
+.es-crumb li + li::before {
+    content: '/';
+    margin-right: 10px;
+}
+
+.es-crumb a {
+    color: var(--sl-khaki);
+    text-decoration: none;
+}
+
+.es-crumb a:hover {
+    color: var(--sl-ivory);
+    text-decoration: none;
+}
+
+.es-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+}
+
+.es-block {
+    padding: 120px 0;
+}
+
+/* Cards that link somewhere (resources and community) */
+.es-linkgrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.es-linkcard {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding: 36px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--bg-paper);
+    color: var(--fg);
+    text-decoration: none;
+    transition: box-shadow 0.16s, transform 0.16s;
+}
+
+.es-linkcard:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.es-linkcard__icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: var(--sl-ivory);
+}
+
+.es-linkcard__icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.es-linkcard h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.es-linkcard p {
+    margin: 0;
+    font: var(--t-body-sm);
+    color: var(--fg-muted);
+}
+
+.es-linkcard__host {
+    display: block;
+    margin-top: 16px;
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--sl-moss);
+}
+
+.es-linkcard__arrow {
+    font: var(--t-eyebrow);
+    color: var(--sl-moss);
+    transition: transform 0.16s;
+}
+
+.es-linkcard:hover .es-linkcard__arrow {
+    transform: translate(3px, -3px);
+    color: var(--sl-pine);
+}
+
+/* The accent band: Highlight lime, full width */
+.es-band {
+    padding: 110px 0;
+    background: var(--sl-highlight);
+    color: var(--sl-pine);
+}
+
+.es-band__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 64px;
+    align-items: end;
+}
+
+.es-band .es-eyebrow {
+    color: var(--sl-pine);
+}
+
+.es-band h2 {
+    margin: 0;
+    font-size: clamp(2.75rem, 5vw, 4.375rem);
+    line-height: 0.95;
+}
+
+.es-band p {
+    max-width: 30em;
+    margin: 0 0 32px;
+}
+
+/* ---------- Navbar: a white pill that floats over the hero plate ---------- */
+
 .navbar {
-    top: 0.75rem;
-    margin: 0.75rem 0.75rem 0;
-    border: 1px solid var(--sauce-warm-gray);
-    border-radius: 999px;
+    display: block;
+    position: sticky;
+    top: 16px;
+    z-index: 100;
+    width: 100%;
+    height: auto;
+    max-width: 1280px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+    background: transparent;
     box-shadow: none;
 }
 
-[data-theme='dark'] .navbar {
-    border-color: var(--sauce-slate);
+.navbar__inner {
+    width: 100%;
+    height: 64px;
+    padding: 0 10px 0 28px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: var(--shadow-float);
 }
 
-.navbar__link {
-    font-family: var(--sauce-font-mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
+.navbar__brand {
+    gap: 16px;
+    margin-right: 32px;
+    color: var(--fg);
+}
+
+.navbar__brand:hover {
+    color: var(--fg);
+}
+
+.navbar__logo {
+    height: 22px;
+    margin-right: 0;
+}
+
+.navbar__logo img {
+    height: 22px;
+    width: auto;
+}
+
+.navbar__title {
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
+    font: 400 1.25rem/24px var(--font-display);
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+}
+
+.navbar__items--right {
+    gap: 28px;
+}
+
+.navbar__items--right > .navbar__link {
+    padding: 0;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-accent-mono);
+}
+
+.navbar__items--right > .navbar__link:hover {
+    color: var(--sl-pine);
+}
+
+.navbar__items--right > .navbar__link--active {
+    color: var(--sl-pine);
+    box-shadow: inset 0 -1.5px 0 var(--sl-pine);
+}
+
+.navbar__items--right > .navbar__cta,
+.navbar__items--right > .navbar__cta:hover {
+    margin-left: 4px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: var(--sl-pine);
+    box-shadow: none;
+    color: var(--sl-ivory);
+    transition: background 0.16s, transform 0.16s;
+}
+
+.navbar__items--right > .navbar__cta:hover {
+    background: var(--sl-slate);
+    transform: translateY(-1px);
+}
+
+.navbar-sidebar__brand {
+    padding: 0 16px;
+}
+
+.navbar-sidebar .navbar__link {
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
     text-transform: uppercase;
 }
 
-/* Buttons are pills with mono uppercase text, like the ones of saucelabs.com */
-.button {
-    font-family: var(--sauce-font-mono);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
+@media (max-width: 996px) {
+    .navbar {
+        padding: 0 16px;
+    }
 
-/* The uppercase text is wider, so on small screens a long label wraps instead of making the page scroll sideways */
-@media screen and (max-width: 480px) {
-    .button {
-        max-width: 100%;
-        white-space: normal;
+    .navbar__inner {
+        padding: 0 20px;
     }
 }
 
-/* The link to saucelabs.com in the footer is underlined, like the other links inside text */
-.footer__copyright a {
+@media (max-width: 480px) {
+    .navbar__inner {
+        padding: 0 14px;
+    }
+
+    .navbar__brand {
+        gap: 10px;
+        margin-right: 0;
+    }
+
+    .navbar__logo,
+    .navbar__logo img {
+        height: 18px;
+    }
+
+    .navbar__title {
+        padding-left: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ---------- Footer ---------- */
+
+.es-footer {
+    padding: 88px 0 40px;
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+}
+
+.es-footer__grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 48px;
+}
+
+.es-footer__logo {
+    height: 26px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.es-footer p {
+    max-width: 24em;
+    margin: 0;
+    font: var(--t-caption);
+    color: var(--fg-on-inverse-muted);
+}
+
+.es-footer h2 {
+    margin: 0 0 18px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-loose);
+    text-transform: uppercase;
+    color: var(--sl-khaki);
+}
+
+.es-footer ul {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.es-footer a {
+    font: var(--t-body-sm);
+    color: var(--sl-ivory);
+    text-decoration: none;
+}
+
+.es-footer a:hover {
+    color: var(--sl-highlight);
+    text-decoration: none;
+}
+
+.es-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-on-inverse);
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-on-inverse-muted);
+}
+
+.es-footer__legal a {
+    font: inherit;
+}
+
+/* ---------- Tip pages ---------- */
+
+/* The tip pages lay out their own hero and columns, so the docs container doesn't add space around them */
+main[class*='docMainContainer'] > .container {
+    max-width: none;
+    margin: 0;
+    padding: 0 !important;
+}
+
+main[class*='docMainContainer'] > .container > .row {
+    margin: 0;
+}
+
+.es-article {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 72px;
+    align-items: start;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.es-toc {
+    position: sticky;
+    top: 120px;
+}
+
+.es-toc .es-eyebrow {
+    margin-bottom: 14px;
+}
+
+.es-toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid var(--line);
+}
+
+.es-toc a {
+    display: block;
+    margin-left: -1px;
+    padding: 7px 0 7px 18px;
+    border-left: 1.5px solid transparent;
+    font: var(--t-caption);
+    color: var(--fg-muted);
+    text-decoration: none;
+}
+
+.es-toc a:hover {
+    border-color: var(--sl-pine);
+    color: var(--sl-pine);
+    text-decoration: none;
+}
+
+.es-prose {
+    min-width: 0;
+    max-width: 760px;
+}
+
+/* The title of the tip is in the hero, so the one of the content is hidden */
+.es-prose .markdown > h1:first-child,
+.es-prose .markdown > header:first-child {
+    display: none;
+}
+
+.es-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+.es-meta-row a {
+    color: var(--sl-moss);
+}
+
+.es-meta-row .theme-edit-this-page svg {
+    display: none;
+}
+
+.es-meta-row > *,
+.es-meta-row .row {
+    margin: 0;
+}
+
+.es-meta-row .row > [class*='col'] {
+    flex: 0 1 auto;
+    max-width: none;
+    padding: 0;
+}
+
+.es-meta-row .row {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.es-meta-row .theme-last-updated {
+    font-style: normal;
+}
+
+.es-meta-row .theme-last-updated b {
+    font-weight: inherit;
+}
+
+.es-next {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-top: 72px;
+    padding: 36px 40px;
+    border-radius: var(--radius-lg);
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+    text-decoration: none;
+}
+
+.es-next:hover {
+    background: var(--sl-slate);
+    color: var(--sl-ivory);
+    text-decoration: none;
+}
+
+.es-next .es-eyebrow {
+    margin: 0 0 8px;
+    color: var(--sl-khaki);
+}
+
+.es-next__title {
+    display: block;
+    font: 400 2rem/1.2 var(--font-display);
+    letter-spacing: var(--tracking-heading);
+}
+
+/* ---------- Content of the tips ---------- */
+
+.markdown {
+    --ifm-h2-font-size: 2.25rem;
+    --ifm-h3-font-size: 1.5rem;
+}
+
+.markdown h2 {
+    margin: 72px 0 20px;
+    line-height: 1.05;
+}
+
+.markdown > h2:first-of-type {
+    margin-top: 0;
+}
+
+.markdown h3 {
+    margin: 40px 0 12px;
+    line-height: 1.2;
+}
+
+.markdown p {
+    margin: 0 0 18px;
+}
+
+.markdown a {
+    color: var(--sl-moss);
     text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.markdown a:hover {
+    color: var(--sl-pine);
+}
+
+.markdown code {
+    padding: 3px 6px;
+    border: 0;
+    font-weight: 500;
+    vertical-align: baseline;
+}
+
+.markdown ul,
+.markdown ol {
+    margin: 0 0 18px;
+    padding-left: 1.3em;
+}
+
+.markdown li {
+    margin: 6px 0;
+}
+
+.markdown img {
+    height: auto;
+    margin: 24px 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+}
+
+.markdown table {
+    display: table;
+    width: 100%;
+    margin: 24px 0;
+    border-collapse: collapse;
+    font: var(--t-body-sm);
+}
+
+.markdown table tr,
+.markdown table th,
+.markdown table td {
+    border: 0;
+    background: transparent;
+}
+
+.markdown th,
+.markdown td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line) !important;
+    text-align: left;
+    vertical-align: top;
+}
+
+.markdown th {
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+.markdown blockquote {
+    margin: 24px 0;
+    padding: 4px 0 4px 24px;
+    border-left: 3px solid var(--sl-highlight);
+    color: var(--fg-muted);
+}
+
+/* A paragraph that starts with "NOTE:" (see remarkNote in docusaurus.config.js) and the admonitions */
+.markdown .note,
+.markdown .theme-admonition {
+    margin: 24px 0;
+    padding: 20px 24px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: var(--sl-light-highlight);
+    box-shadow: none;
+    color: var(--fg);
+}
+
+.markdown .note > strong:first-child,
+.markdown .theme-admonition [class*='admonitionHeading'] {
+    margin-right: 12px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg);
+}
+
+.markdown .theme-admonition [class*='admonitionHeading'] {
+    margin-bottom: 8px;
+}
+
+.markdown .theme-admonition [class*='admonitionIcon'] svg {
+    fill: var(--fg);
+}
+
+.markdown .theme-admonition p:last-child {
+    margin-bottom: 0;
+}
+
+/* The steps under "Expected Behavior", numbered */
+.markdown [id^='expected-behav'] + p + ul,
+.markdown [id^='expected-behav'] + ul {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+}
+
+.markdown [id^='expected-behav'] + p + ul > li,
+.markdown [id^='expected-behav'] + ul > li {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin: 0;
+    padding: 14px 20px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg-paper);
+    counter-increment: step;
+}
+
+.markdown [id^='expected-behav'] + p + ul > li::before,
+.markdown [id^='expected-behav'] + ul > li::before {
+    content: counter(step, decimal-leading-zero);
+    font: var(--t-mono-sm);
+    color: var(--fg-muted);
+}
+
+/* Collapsible blocks (e.g., the requirements file) */
+.markdown details {
+    --docusaurus-details-decoration-color: var(--fg);
+    margin: 16px 0 24px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg-paper);
+    box-shadow: none;
+    color: var(--fg);
+}
+
+.markdown details > summary {
+    padding: 14px 20px 14px 40px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+}
+
+.markdown details > summary::before {
+    left: 20px;
+}
+
+.markdown details > div > div {
+    margin-top: 0;
+    padding: 0 20px 4px;
+    border-top: 0;
+}
+
+/* Code blocks: Pine cards, with the file name on top */
+.theme-code-block {
+    overflow: hidden;
+    margin: 24px 0 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.theme-code-block [class*='codeBlockTitle'] {
+    padding: 14px 24px 0;
+    border-bottom: 0;
+    font: var(--t-mono-sm);
+    color: var(--sl-khaki);
+}
+
+.theme-code-block pre {
+    border-radius: 0;
+}
+
+.theme-code-block [class*='codeBlockLines'] {
+    padding: 16px 24px 24px;
+    font: 400 13.5px/1.65 var(--font-code);
+}
+
+.theme-code-block [class*='codeLineNumber'] {
+    padding-left: 0;
+    color: #8f948d;
+    opacity: 1;
+}
+
+.theme-code-block [class*='codeLineNumber']::before {
+    opacity: 1;
+}
+
+.theme-code-block button {
+    border-color: var(--line-on-inverse);
+    background: var(--sl-slate);
+    color: var(--sl-ivory);
+}
+
+/* A code block with the link to the complete solution (TipCode) */
+.es-code {
+    overflow: hidden;
+    margin: 24px 0 32px;
+    border-radius: var(--radius-lg);
+    background: var(--sl-pine);
+    box-shadow: var(--shadow-md);
+}
+
+.es-code .theme-code-block {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.es-code__foot {
+    padding: 16px 24px;
+    border-top: 1px solid var(--line-on-inverse);
+}
+
+.es-code__foot a,
+.markdown .es-code__foot a {
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--sl-khaki);
+}
+
+.es-code__foot a:hover,
+.markdown .es-code__foot a:hover {
+    color: var(--sl-ivory);
+    text-decoration: none;
+}
+
+/* Tabs: the tool tabs sit in a Warm Gray pill, the language tabs inside them are outlined pills */
+.tabs-container {
+    margin: 28px 0;
+}
+
+.tabs-container > .tabs {
+    flex-wrap: wrap;
+    gap: 6px;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 6px;
+    border-radius: 999px;
+    background: var(--sl-warm-gray);
+}
+
+.tabs-container > .tabs > .tabs__item {
+    padding: 9px 16px;
+    border: 0;
+    border-radius: 999px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--sl-moss);
+}
+
+.tabs-container > .tabs > .tabs__item:hover {
+    background: transparent;
+    color: var(--sl-pine);
+}
+
+.tabs-container > .tabs > .tabs__item--active,
+.tabs-container > .tabs > .tabs__item--active:hover {
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+    box-shadow: var(--shadow-sm);
+}
+
+.tabs-container > .margin-top--md {
+    margin-top: 0 !important;
+}
+
+.tabs-container .tabs-container {
+    margin-top: 0;
+}
+
+.tabs-container .tabs-container > .tabs {
+    gap: 4px;
+    padding: 0;
+    background: transparent;
+}
+
+.tabs-container .tabs-container > .tabs > .tabs__item {
+    border: 1px solid var(--fg-xlight);
+}
+
+.tabs-container .tabs-container > .tabs > .tabs__item--active,
+.tabs-container .tabs-container > .tabs > .tabs__item--active:hover {
+    border-color: var(--sl-highlight);
+    background: var(--sl-highlight);
+    color: var(--sl-deep-green);
+    box-shadow: none;
+}
+
+/* Contributors (Special Thanks and Authors), two cards per row */
+.es-people {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 16px 0 8px;
+}
+
+.markdown .es-person {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 12px 16px 12px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg-paper);
+    color: var(--fg);
+    text-decoration: none;
+    transition: box-shadow 0.16s, border-color 0.16s;
+}
+
+.markdown a.es-person:hover {
+    border-color: var(--fg-xlight);
+    box-shadow: var(--shadow-sm);
+    color: var(--fg);
+}
+
+.markdown .es-person img {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.es-person__txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.es-person__txt b {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--sl-pine);
+}
+
+.es-person__txt span {
+    font: var(--t-caption);
+    line-height: 1.35;
+    color: var(--fg-muted);
+}
+
+/* ---------- Narrow screens ---------- */
+
+@media (max-width: 1000px) {
+    .es-band__grid,
+    .es-footer__grid,
+    .es-article {
+        grid-template-columns: 1fr;
+    }
+
+    .es-toc {
+        position: static;
+    }
+
+    .es-linkgrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .es-wrap {
+        padding: 0 20px;
+    }
+
+    .es-people {
+        grid-template-columns: 1fr;
+    }
+
+    .es-linkcard {
+        grid-template-columns: 1fr auto;
+        padding: 28px;
+    }
+
+    .es-linkcard__icon {
+        grid-column: 1 / -1;
+    }
+
+    .es-linkcard__arrow {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .es-next {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px;
+    }
+
+    .es-block {
+        padding: 80px 0;
+    }
+
+    .es-article {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .es-hero__plate {
+        padding: 140px 0 72px;
+    }
 }

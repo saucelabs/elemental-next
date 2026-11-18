@@ -15,8 +15,9 @@ know it works.
 .github/workflows/      CI: site build/deploy + one workflow per language that runs every tips/*/code/<lang>
 frontend/               Docusaurus site (all npm commands run here)
   docusaurus.config.js  Site config. Tips are the docs plugin content (path: tips)
-  src/components/       DisplayTips (language tabs), TipCode (embeds a code file), DefaultAvatar, ...
-  src/css/custom.css    Theme colors and global styles
+  src/components/       DisplayTips (language tabs), TipCode (embeds a code file), DefaultAvatar, PageHero, ...
+  src/css/custom.css    Sauce Labs brand colors, fonts and global styles (shared classes start with `es-`)
+  src/theme/            Swizzled Footer and DocItem/Layout (the tip page: hero, contents list, next tip)
   src/pages/            index, tips listing, community, resources, subscribe, ...
   tips/<n>-<slug>/      One directory per tip
   tips/images/          Shared images for tips
@@ -94,7 +95,14 @@ tips/1-upload-a-file/
 - `main.mdx` is the only file Docusaurus turns into a page. In `docusaurus.config.js`, the docs plugin uses
   `include: ['**/*.mdx']` and `exclude: ['**/_*.mdx', 'cards/**/*']`, which is what keeps the `_<lang>.mdx` partials
   from becoming pages of their own.
-- `sidebarItemsGenerator` is overridden to produce a single "More Tips" category with the tips in reverse order.
+- The docs have no sidebar (`sidebarPath: false`). The tip page layout (`src/theme/DocItem/Layout`) shows a hero with
+  the title, description, level, categories and tools, a contents list with the `##` headings of `main.mdx`, and a
+  link to the next tip.
+- Two remark plugins in `docusaurus.config.js` shape the content: a paragraph that starts with `__NOTE:__` shows as a
+  callout, and consecutive `<DefaultAvatar>` elements show two per row.
+- The design follows the Sauce Labs brand (light only, no dark mode). Headings use P22 Mackinac
+  (`static/fonts`, licensed for official Sauce Labs sites), text uses Atkinson Hyperlegible, and code uses
+  JetBrains Mono.
 - A local `metadata` plugin (also in `docusaurus.config.js`) collects the frontmatter of every tip and exposes it as
   global data (`aggregateFrontMatter`). The `/tips` page (`src/pages/tips.js`) reads it to list, filter, and sort the
   tips, so the frontmatter fields (`number`, `level`, `category`, `tags`, `publish_date`) matter.
@@ -138,7 +146,7 @@ tips/1-upload-a-file/
 - `test-build.yml`: builds the site on every PR.
 - `accessibility.yml`: on PRs, builds and serves the site and runs `npm run test:a11y`
   (`frontend/scripts/accessibility.mjs`). It checks every page in the sitemap (one tag page only) with axe, WCAG 2.2
-  A and AA rules, in light and dark mode (in parallel), using Selenium and Firefox. It checks every tool and language
+  A and AA rules, using Selenium and Firefox. It checks every tool and language
   tab of a tip, and fails on any violation or on a page that crashes ("This page crashed"). On a PR that only changes
   files inside tip folders, it checks only those tip pages (`CHANGED_FILES`); any other change, the nightly run and
   manual runs check every page.

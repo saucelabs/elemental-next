@@ -6,7 +6,7 @@ function TipCode({codePath, language}) {
     const code = require(`!!raw-loader!@site/tips/${codePath}`);
 
     return (
-        <div>
+        <div className="es-code">
             <CodeBlock
                 language={language}
                 showLineNumbers={true}
