@@ -1,4 +1,4 @@
-// Checks the pages of the site with axe (WCAG 2.2 A and AA rules), in light and dark mode.
+// Checks the pages of the site with axe (WCAG 2.2 A and AA rules). The site has a single, light color scheme.
 // Usage: npm run build && npm run serve, then, in another terminal: npm run test:a11y
 // BASE_URL changes the site to check (default: http://localhost:3000).
 // CHANGED_FILES (one path per line, relative to the repository) checks only the tip pages those files belong to. When a
@@ -143,8 +143,7 @@ async function checkTheme(theme) {
     }
 }
 
-// Light and dark mode run at the same time, each in its own browser
-await Promise.all([checkTheme('light'), checkTheme('dark')]);
+await checkTheme('light');
 
 if (failures > 0) {
     console.log(`\n${failures} accessibility problems found`);

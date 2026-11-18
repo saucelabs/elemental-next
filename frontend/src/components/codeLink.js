@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import ExternalLink from '@theme/Icon/ExternalLink';
 
+// The link to the folder of a code file on GitHub, at the foot of its code block
 const CodeLink = ({codePath}) => {
     const baseEditUrl = 'https://github.com/saucelabs/elemental-next/blob/main/frontend/tips/'
     const codePathParts = codePath.split('/');
@@ -10,17 +10,10 @@ const CodeLink = ({codePath}) => {
     const codeDirectoryUrl = `${baseEditUrl}${codePathBase}`;
 
     return (
-        <div className={"margin-bottom--md text-center"}>
-            <Link
-                to={codeDirectoryUrl}
-            >
-                <ExternalLink/>
-                {' '}Check out the complete solution
-            </Link>
+        <div className="es-code__foot">
+            <Link to={codeDirectoryUrl}>Check out the complete solution →</Link>
         </div>
     );
 }
 
 export default CodeLink;
-
-

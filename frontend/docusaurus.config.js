@@ -1,55 +1,68 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-import {themes} from 'prism-react-renderer';
 import fs from 'fs';
 import path from 'path';
 
-// Replaces the colors of a Prism theme that don't have enough contrast with its background (WCAG AA, 4.5:1),
-// and removes the opacity of the faded tokens (e.g., namespaces in Java imports), which lowers their contrast too
-function withColors(theme, replacements) {
-    return {
-        ...theme,
-        styles: theme.styles.map((style) => {
-            const {opacity, ...rest} = style.style;
-            const color = replacements[rest.color];
-            return {...style, style: color ? {...rest, color} : rest};
-        }),
+// Code colors of the Sauce Labs brand, on the Pine code blocks. Every color has enough contrast with the background
+// (WCAG AA, 4.5:1).
+const codeTheme = {
+    plain: {color: '#E6E6DE', backgroundColor: '#192319'},
+    styles: [
+        {types: ['comment', 'prolog', 'doctype', 'cdata'], style: {color: '#8F948D', fontStyle: 'italic'}},
+        {types: ['keyword', 'boolean', 'important', 'atrule', 'selector'], style: {color: '#ABE082'}},
+        {types: ['string', 'char', 'attr-value', 'template-string', 'regex', 'url'], style: {color: '#F1E082'}},
+        {types: ['function', 'class-name', 'maybe-class-name', 'tag', 'builtin', 'property'], style: {color: '#EBEDB8'}},
+        {types: ['number', 'constant', 'symbol', 'annotation', 'decorator', 'attr-name'], style: {color: '#FFB098'}},
+        {types: ['punctuation', 'operator'], style: {color: '#B0B3AD'}},
+        {types: ['deleted'], style: {color: '#FFB098'}},
+        {types: ['inserted'], style: {color: '#ABE082'}},
+    ],
+};
+
+// Gives a paragraph that starts with a bold "NOTE:" (e.g., `__NOTE:__ We are using ...`) the `note` class, so it
+// shows as a callout.
+function remarkNote() {
+    const visit = (node) => {
+        const first = node.children?.[0];
+        if (node.type === 'paragraph' && first?.type === 'strong'
+            && /^note:?$/i.test(first.children?.[0]?.value?.trim() || '')) {
+            node.data = {...node.data, hProperties: {className: ['note']}};
+        }
+        (node.children || []).forEach(visit);
     };
+    return (tree) => visit(tree);
 }
 
-const codeTheme = withColors(themes.github, {
-    '#999988': '#636c76', // comments
-    '#e3116c': '#b3135a', // strings
-    '#36acaa': '#0a7d7b', // numbers, booleans, constants
-    '#00a4db': '#005cc5', // keywords
-    '#d73a49': '#cf222e', // functions, tags
-});
-
-const darkCodeTheme = withColors(themes.dracula, {
-    'rgb(98, 114, 164)': '#8b9bc8', // comments
-});
-
-// Reverse the sidebar items ordering (including nested category items)
-function generateSidebarItems(items) {
-    // Reverse items in categories
-    const categories = items.filter((item) => item.type === 'category');
-    const result = [
-        {
-            type: 'category',
-            label: 'More Tips',
-            collapsed: false,
-            collapsible: false,
-            items: [],
-        },
-    ];
-
-    categories.forEach((category) => {
-        category.items.filter(item => item.type === 'doc').forEach((item) => {
-            result[0].items.push({type: item.type, label: item.label, id: item.id})
-        })
-    });
-    return result;
+// Puts each run of <DefaultAvatar> elements (the contributors of a tip) in a <div className="es-people">, so they show
+// two per row.
+function remarkPeople() {
+    const isAvatar = (node) => node.type === 'mdxJsxFlowElement' && node.name === 'DefaultAvatar';
+    const visit = (node) => {
+        if (!node.children) {
+            return;
+        }
+        const children = [];
+        node.children.forEach((child) => {
+            const last = children[children.length - 1];
+            if (isAvatar(child) && last?.data?.people) {
+                last.children.push(child);
+            } else if (isAvatar(child)) {
+                children.push({
+                    type: 'mdxJsxFlowElement',
+                    name: 'div',
+                    attributes: [{type: 'mdxJsxAttribute', name: 'className', value: 'es-people'}],
+                    children: [child],
+                    data: {people: true},
+                });
+            } else {
+                visit(child);
+                children.push(child);
+            }
+        });
+        node.children = children;
+    };
+    return (tree) => visit(tree);
 }
 
 // Reads the entries of the <DisplayTips> block of a tip (e.g., {label: 'C#', value: 'playwright-csharp', tool:
@@ -80,7 +93,7 @@ function tipLanguages(file) {
 const config = {
     title: 'Elemental Selenium',
     tagline: 'A free collection of tips to do test automation like a Pro',
-    favicon: 'img/favicon.svg',
+    favicon: 'img/sauce/sauce-mark.svg',
 
     // Set the production url of your site here
     url: 'https://elementalselenium.com',
@@ -124,10 +137,9 @@ const config = {
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
                 docs: {
-                    async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
-                        const sidebarItems = await defaultSidebarItemsGenerator(args);
-                        return generateSidebarItems(sidebarItems);
-                    },
+                    // The tip pages show their own contents list instead of a sidebar
+                    sidebarPath: false,
+                    remarkPlugins: [remarkNote, remarkPeople],
                     path: 'tips',
                     routeBasePath: 'tips',
                     include: ['**/*.mdx'],
@@ -139,9 +151,10 @@ const config = {
                 },
                 blog: false,
                 theme: {
-                    // The fonts of saucelabs.com that are free (Fraunces stands in for its serif), served by the site
+                    // The fonts of the Sauce Labs brand: Atkinson Hyperlegible for text and labels, JetBrains Mono for
+                    // code, and P22 Mackinac for headings (in static/fonts, loaded by custom.css)
                     customCss: [
-                        require.resolve('@fontsource-variable/fraunces/index.css'),
+                        require.resolve('@fontsource-variable/jetbrains-mono/index.css'),
                         require.resolve('@fontsource-variable/atkinson-hyperlegible-next/index.css'),
                         require.resolve('@fontsource-variable/atkinson-hyperlegible-mono/index.css'),
                         require.resolve('./src/css/custom.css'),
@@ -187,11 +200,13 @@ const config = {
             image: 'img/social-card.png',
             navbar: {
                 hideOnScroll: false,
+                title: 'Elemental Selenium',
                 logo: {
                     href: '/',
-                    alt: 'Elemental Selenium Logo',
-                    src: 'img/banner-light.svg',
-                    srcDark: 'img/banner-dark.svg',
+                    alt: 'Sauce Labs',
+                    src: 'img/sauce/sauce-lockup.svg',
+                    width: 116,
+                    height: 22,
                 },
                 items: [
                     {
@@ -209,18 +224,19 @@ const config = {
                         to: '/community',
                         position: 'right',
                     },
+                    {
+                        label: 'Browse the tips',
+                        to: '/tips',
+                        position: 'right',
+                        className: 'navbar__cta',
+                    },
                 ],
             },
-            docs: {
-                sidebar: {
-                    hideable: true,
-                }
-            },
             footer: {
-                // style: 'dark',
+                style: 'dark',
                 links: [
                     {
-                        title: 'Tips by Level:',
+                        title: 'Tips by level',
                         items: [
                             {
                                 label: 'Beginner',
@@ -237,7 +253,7 @@ const config = {
                         ],
                     },
                     {
-                        title: 'Get Involved:',
+                        title: 'Get involved',
                         items: [
                             {
                                 label: 'GitHub',
@@ -250,7 +266,7 @@ const config = {
                         ],
                     },
                     {
-                        title: 'External Resources:',
+                        title: 'External resources',
                         items: [
                             {
                                 label: 'Selenium Docs',
@@ -263,17 +279,17 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `© ${new Date().getFullYear()} <a href="https://saucelabs.com" target="_blank"
-                    rel="noopener noreferrer" aria-label="Sauce Labs Inc. (opens in a new tab)">Sauce Labs Inc.</a>, all
-                    rights reserved`,
+                copyright: `© ${new Date().getFullYear()} Sauce Labs Inc., all rights reserved`,
             },
             prism: {
                 theme: codeTheme,
-                darkTheme: darkCodeTheme,
                 additionalLanguages: ['ruby', 'java', 'csharp', 'json'],
             },
+            // The Sauce Labs brand has a single, light color scheme
             colorMode: {
-                disableSwitch: false,
+                defaultMode: 'light',
+                disableSwitch: true,
+                respectPrefersColorScheme: false,
             },
         },
 };

@@ -1,24 +1,19 @@
 import React from 'react';
 
-const DefaultAvatar = ({imgSrc, name, description, url, author = false}) => {
-    const photoClass = author ? 'avatar__photo avatar__photo--lg' : 'avatar__photo';
-    return (
-        <div className="avatar margin-bottom--sm">
-            {imgSrc && (
-                <img
-                    className={photoClass}
-                    src={imgSrc}
-                    alt={name}
-                />
-            )}
-            <div className="avatar__intro">
-                <div className="avatar__name">
-                    {url ? <a href={url} target="_blank">{name}</a> : name}
-                </div>
-                <small className="avatar__subtitle">{description}</small>
-            </div>
-        </div>
+// A contributor of a tip: photo, name and what they did. It links to their profile when there is a URL.
+const DefaultAvatar = ({imgSrc, name, description, url}) => {
+    const content = (
+        <>
+            {imgSrc && <img src={imgSrc} alt="" loading="lazy" width="44" height="44"/>}
+            <span className="es-person__txt">
+                <b>{name}</b>
+                <span>{description}</span>
+            </span>
+        </>
     );
+    return url
+        ? <a className="es-person" href={url} target="_blank" rel="noopener noreferrer">{content}</a>
+        : <div className="es-person">{content}</div>;
 }
 
 export default DefaultAvatar;

@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import ContentCard from "../components/contentCard";
+import Link from "@docusaurus/Link";
+import PageHero from "../components/pageHero";
+import LinkCard from "../components/linkCard";
 
 const content = [
     {
@@ -46,29 +48,23 @@ const Community = () => {
         <Layout
             title={"Community"}
             description="Get involved as community or contributor">
-            <header className={"hero padding-bottom--md"}>
-                <div className="container">
-                    <h1 className="hero__title">Community</h1>
-                    <p className="hero__subtitle">
-                        Elemental Selenium extends beyond our <a href='/tips'>tips</a>.
-                        We’re open for contributions, all our content is open source!
-                    </p>
-                </div>
-            </header>
+            <PageHero
+                crumb="Get Involved"
+                title="Community"
+                lead={<>Elemental Selenium extends beyond our <Link to="/tips">tips</Link>. We’re open for
+                    contributions, all our content is open source!</>}>
+                <Link className="es-btn es-btn--pop"
+                      to="https://github.com/saucelabs/elemental-next/blob/main/CONTRIBUTING.md">Write a tip</Link>
+                <Link className="es-btn es-btn--ghost-inv" to="https://github.com/saucelabs/elemental-next">
+                    View on GitHub
+                </Link>
+            </PageHero>
             <main>
-                <div className="padding-vert--md">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col col--10">
-                                <div className="row">
-                                    {content.map((item) => (
-                                        <ContentCard key={item.id} content={item}/>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                <section className="es-block">
+                    <div className="es-wrap es-linkgrid">
+                        {content.map((item) => <LinkCard key={item.id} {...item}/>)}
                     </div>
-                </div>
+                </section>
             </main>
         </Layout>
     );

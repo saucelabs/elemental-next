@@ -1,12 +1,14 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import ContentCard from "../components/contentCard";
+import PageHero from "../components/pageHero";
+import LinkCard from "../components/linkCard";
+import ContributeBand from "../components/contributeBand";
 
 const content = [
     {
         id: 1,
         title: 'Selenium Documentation',
-        paragraph: 'An open source web app perfect for writing tests against, you can find the-internet all over our tips.',
+        paragraph: 'The official Selenium documentation, maintained by the Selenium project.',
         link: 'https://www.selenium.dev/documentation/',
         img: 'img/resource_page/selenium.png',
         alt: 'Selenium Logo',
@@ -22,7 +24,7 @@ const content = [
     {
         id: 3,
         title: 'Hands-On Selenium WebDriver with Java',
-        paragraph: 'Written by one of the Selenium maintainers, Boni Garcia',
+        paragraph: 'Written by one of the Selenium maintainers, Boni Garcia.',
         link: 'https://www.oreilly.com/library/view/hands-on-selenium-webdriver/9781098109998/',
         img: 'img/resource_page/guidebook.png',
         alt: 'Guidebook Logo',
@@ -42,30 +44,19 @@ const Resources = () => {
         <Layout
             title={"External Resources"}
             description="External resources for test automation Pros">
-            <header className={"hero padding-bottom--md"}>
-                <div className="container">
-                    <h1 className="hero__title">External Resources</h1>
-                    <p className="hero__subtitle">
-                        The goal of Elemental Selenium is to host information for testers and professionals to{' '}
-                        <b>stay up to date</b> with the technology they use for their work. However,{' '}
-                        <b>we can’t cover everything</b> and never will pretend otherwise.{'\n'}
-                    </p>
-                </div>
-            </header>
+            <PageHero
+                crumb="External Resources"
+                title="External resources"
+                lead={'The goal of Elemental Selenium is to host information for testers and professionals to stay up '
+                    + 'to date with the technology they use for their work. However, we can’t cover everything and '
+                    + 'never will pretend otherwise.'}/>
             <main>
-                <div className="padding-vert--md">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col col--10">
-                                <div className="row">
-                                    {content.map((item) => (
-                                        <ContentCard key={item.id} content={item}/>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                <section className="es-block">
+                    <div className="es-wrap es-linkgrid">
+                        {content.map((item) => <LinkCard key={item.id} {...item}/>)}
                     </div>
-                </div>
+                </section>
+                <ContributeBand/>
             </main>
         </Layout>
     );

@@ -1,0 +1,178 @@
+/* Tips page: a filter bar that overlaps the bottom of the hero, then the tips as cards, three per row */
+
+.filters {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 40px;
+    align-items: center;
+    margin: -36px 0 48px;
+    padding: 20px 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: var(--bg-paper);
+    box-shadow: var(--shadow-md);
+}
+
+.group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.label {
+    margin-right: 6px;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+.group button {
+    padding: 9px 16px;
+    border: 1px solid var(--fg-xlight);
+    border-radius: 999px;
+    background: transparent;
+    font: var(--t-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--sl-pine);
+    cursor: pointer;
+}
+
+.group button:hover {
+    border-color: var(--sl-pine);
+}
+
+.group button[aria-pressed='true'] {
+    border-color: var(--sl-pine);
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--bg-paper);
+    color: var(--fg);
+    text-decoration: none;
+    transition: box-shadow 0.16s, transform 0.16s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.number {
+    font: 400 2.5rem/1 var(--font-display);
+    letter-spacing: var(--tracking-heading);
+    color: var(--fg-faint);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.tag {
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font: var(--t-mono-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+}
+
+.tag.level {
+    border-color: var(--sl-pine);
+    background: var(--sl-pine);
+    color: var(--sl-ivory);
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.1;
+}
+
+.card p {
+    margin: 0;
+    font: var(--t-body-sm);
+    color: var(--fg-muted);
+}
+
+.keywords {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font: var(--t-mono-sm);
+    text-transform: lowercase;
+    color: var(--fg-muted);
+}
+
+.empty {
+    padding: 48px 0;
+    color: var(--fg-muted);
+}
+
+.pager {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 120px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+
+.pager > :global(.es-mono) {
+    color: var(--fg-muted);
+}
+
+.pagerButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+@media (max-width: 1000px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        padding: 20px;
+        border-radius: var(--radius-lg);
+    }
+}

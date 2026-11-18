@@ -1,4 +1,4 @@
-# Checks the pages of the site with axe (WCAG 2.2 A and AA), in light and dark mode.
+# Checks the pages of the site with axe (WCAG 2.2 A and AA).
 # On pull requests that only change tips, only those tip pages are checked. Otherwise (and every night, and when started
 # manually) every page is checked. See frontend/scripts/accessibility.mjs.
 name: Accessibility
