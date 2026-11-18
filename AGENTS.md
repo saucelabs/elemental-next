@@ -89,7 +89,9 @@ tips/1-upload-a-file/
   - Vibium: `package.json` with `vibium` and Mocha, tests in `test/*.spec.js` (`npm test`, which runs
     `vibium install` first to download Chrome for Testing)
   - Vibium Python (`code/vibium-python`): `requirements.txt` with `vibium` and pytest, like Python (`pytest <file>.py`,
-    which downloads Chrome for Testing the first time)
+    which downloads Chrome for Testing the first time). `vibium` accepts any newer version of its platform package
+    (`vibium-linux-x64`, ...), so `requirements.txt` pins each one to the same version, with a platform marker.
+    Exact locators are keywords: `page.find(css='#id')` (a bare string is a description)
   - Vibium Java (`code/vibium-java`): Maven `pom.xml` with `com.vibium:vibium`, JUnit 5,
     `src/test/java/com/elemental/vibium/*Test.java` (`mvn test`, which downloads Chrome for Testing the first time)
   - Appium Java (`code/appium-java`): Maven `pom.xml` with `io.appium:java-client` and `selenium-support`, JUnit 5,

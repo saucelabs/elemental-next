@@ -14,5 +14,5 @@ def page():
 @pytest.mark.flaky(reruns=9)
 def test_notification_message(page):
     page.go('https://the-internet.herokuapp.com/notification_message')
-    message = page.find('#flash').text()
+    message = page.find(css='#flash').text()
     assert 'Action successful' in message, message

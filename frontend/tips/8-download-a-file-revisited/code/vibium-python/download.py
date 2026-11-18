@@ -13,7 +13,7 @@ def page():
 
 def test_file_can_be_downloaded(page):
     page.go('https://the-internet.herokuapp.com/download')
-    link = urljoin(page.url(), page.find('.example a').attr('href'))
+    link = urljoin(page.url(), page.find(css='.example a').attr('href'))
 
     request = urllib.request.Request(link, method='HEAD')
     with urllib.request.urlopen(request) as response:

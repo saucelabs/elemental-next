@@ -15,11 +15,11 @@ def test_accepts_the_confirmation(page):
     page.on_dialog(lambda dialog: dialog.accept())
     page.find(role='button', text='Click for JS Confirm').click()
 
-    assert page.find('#result').text() == 'You clicked: Ok'
+    assert page.find(css='#result').text() == 'You clicked: Ok'
 
 
 def test_dismisses_the_confirmation(page):
     page.on_dialog(lambda dialog: dialog.dismiss())
     page.find(role='button', text='Click for JS Confirm').click()
 
-    assert page.find('#result').text() == 'You clicked: Cancel'
+    assert page.find(css='#result').text() == 'You clicked: Cancel'

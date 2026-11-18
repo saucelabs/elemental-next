@@ -12,10 +12,10 @@ class DynamicLoadingPage:
         assert self.page.title() == 'The Internet'
 
     def start(self):
-        self.page.find(START_BUTTON).click()
+        self.page.find(css=START_BUTTON).click()
 
     def wait_for_finish(self, timeout=10000):
-        self.page.find(FINISH_TEXT).wait_until('visible', timeout=timeout)
+        self.page.find(css=FINISH_TEXT).wait_until('visible', timeout=timeout)
 
     def finish_text(self):
-        return self.page.find(FINISH_TEXT).text()
+        return self.page.find(css=FINISH_TEXT).text()

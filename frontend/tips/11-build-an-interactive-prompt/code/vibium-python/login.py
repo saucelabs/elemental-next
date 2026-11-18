@@ -13,7 +13,7 @@ def page():
 def test_login(page):
     page.go('https://the-internet.herokuapp.com')
     page.find(role='link', text='Form Authentication').click()
-    page.find('#username').fill('tomsmith')
-    page.find('#password').fill('SuperSecretPassword!')
-    page.find('button[type=submit]').click()
-    assert page.find('#flash').text().startswith('You logged into a secure area!')
+    page.find(css='#username').fill('tomsmith')
+    page.find(css='#password').fill('SuperSecretPassword!')
+    page.find(css='button[type=submit]').click()
+    assert page.find(css='#flash').text().startswith('You logged into a secure area!')

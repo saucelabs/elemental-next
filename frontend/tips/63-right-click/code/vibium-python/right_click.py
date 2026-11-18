@@ -21,6 +21,6 @@ def test_opens_the_context_menu(page):
 
     page.on_dialog(handle_alert)
     # Vibium has no right click, so we fire the contextmenu event on the element
-    page.find('#hot-spot').dispatch_event('contextmenu', {'bubbles': True})
+    page.find(css='#hot-spot').dispatch_event('contextmenu', {'bubbles': True})
 
     assert alert_texts.get(timeout=10) == 'You selected a context menu'
