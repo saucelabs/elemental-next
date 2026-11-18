@@ -21,7 +21,7 @@ def page():
 def test_eventually_displays_a_successful_notification(page):
     def show_notification():
         page.go('https://the-internet.herokuapp.com/notification_message')
-        return page.find('#flash').text()
+        return page.find(css='#flash').text()
 
     message = retry_if_message_contains('please try again', show_notification)
     assert 'Action successful' in message

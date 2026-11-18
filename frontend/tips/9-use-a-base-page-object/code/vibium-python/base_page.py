@@ -10,16 +10,16 @@ class BasePage:
         assert self.page.title() == 'The Internet'
 
     def click(self, selector):
-        self.page.find(selector).click()
+        self.page.find(css=selector).click()
 
     def type(self, selector, text):
-        self.page.find(selector).fill(text)
+        self.page.find(css=selector).fill(text)
 
     def text_of(self, selector):
-        return self.page.find(selector).text()
+        return self.page.find(css=selector).text()
 
     def is_displayed(self, selector):
-        return self.page.find(selector).is_visible()
+        return self.page.find(css=selector).is_visible()
 
     def wait_for(self, selector, timeout=10000):
-        self.page.find(selector).wait_until('visible', timeout=timeout)
+        self.page.find(css=selector).wait_until('visible', timeout=timeout)

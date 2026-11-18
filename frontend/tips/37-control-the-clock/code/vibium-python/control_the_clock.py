@@ -16,8 +16,8 @@ def test_toast_hides_itself_after_one_minute(page):
     page.clock.install()
 
     page.go('https://the-internet.herokuapp.com/toasts?duration=60000')
-    page.find('#success-toast').click()
-    assert page.find('.toast-message').text() == 'Saved successfully'
+    page.find(css='#success-toast').click()
+    assert page.find(css='.toast-message').text() == 'Saved successfully'
 
     page.clock.run_for(59000)
     assert page.evaluate(TOASTS) == 1

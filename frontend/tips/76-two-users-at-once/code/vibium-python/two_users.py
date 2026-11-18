@@ -22,13 +22,13 @@ def new_user_page(bro):
 def join(page, name):
     page.go(CHAT_URL)
     page.wait_for_function('document.getElementById("status").textContent === "Connected"')
-    page.find('#name').fill(name)
-    page.find('#join').click()
+    page.find(css='#name').fill(name)
+    page.find(css='#join').click()
 
 
 def send_message(page, text):
-    page.find('#message').fill(text)
-    page.find('#send').click()
+    page.find(css='#message').fill(text)
+    page.find(css='#send').click()
 
 
 def test_two_users_chat(bro):
@@ -38,10 +38,10 @@ def test_two_users_chat(bro):
     join(alice, 'Alice')
     join(bob, 'Bob')
     # Messages are not saved: Alice waits until Bob is in the room before she writes
-    alice.find('#messages').find(text='Bob joined')
+    alice.find(css='#messages').find(text='Bob joined')
 
     send_message(alice, 'Hi Bob')
-    bob.find('#messages').find(text='Alice: Hi Bob')
+    bob.find(css='#messages').find(text='Alice: Hi Bob')
 
     send_message(bob, 'Hi Alice')
-    alice.find('#messages').find(text='Bob: Hi Alice')
+    alice.find(css='#messages').find(text='Bob: Hi Alice')

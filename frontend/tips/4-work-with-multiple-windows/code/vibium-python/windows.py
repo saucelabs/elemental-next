@@ -16,7 +16,7 @@ def test_multiple_windows(bro):
 
     popups = queue.Queue()
     bro.on_popup(popups.put)
-    page.find('.example a').click()
+    page.find(css='.example a').click()
     new_page = popups.get(timeout=10)
     new_page.wait_for_load()
 

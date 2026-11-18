@@ -12,7 +12,7 @@ def page():
 def test_swaps_the_columns(page):
     page.go('https://the-internet.herokuapp.com/drag_and_drop')
 
-    page.find('#column-a').drag_to(page.find('#column-b'))
+    page.find(css='#column-a').drag_to(page.find(css='#column-b'))
 
-    assert page.find('#column-a').text() == 'B'
-    assert page.find('#column-b').text() == 'A'
+    assert page.find(css='#column-a').text() == 'B'
+    assert page.find(css='#column-b').text() == 'A'

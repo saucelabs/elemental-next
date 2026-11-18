@@ -36,6 +36,17 @@
         "Selenium.Support"
       ],
       "groupName": "Selenium .NET"
+    },
+    {
+      "description": "The Vibium Python package needs its platform package (pinned in requirements.txt) at the same version, so update them together",
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchPackageNames": [
+        "vibium",
+        "vibium-*"
+      ],
+      "groupName": "Vibium Python"
     }
   ]
 }
