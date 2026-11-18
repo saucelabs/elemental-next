@@ -16,4 +16,4 @@ def test_pick_a_fruit(page):
     page.find(role='option', text='Mango').click()
 
     assert page.find(role='combobox', label='Fruit').text() == 'Mango'
-    assert page.find('#result').text() == 'Selected: mango'
+    assert page.find(css='#result').text() == 'Selected: mango'

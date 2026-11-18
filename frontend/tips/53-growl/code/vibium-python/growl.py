@@ -33,5 +33,5 @@ def test_displays_a_notification(page):
     # Step 4: display a message with jquery-growl
     page.evaluate("window.jQuery.growl({title: 'GET', message: '/'})")
 
-    assert page.find('#growls .growl .growl-title').text() == 'GET'
-    assert page.find('#growls .growl .growl-message').text() == '/'
+    assert page.find(css='#growls .growl .growl-title').text() == 'GET'
+    assert page.find(css='#growls .growl .growl-message').text() == '/'

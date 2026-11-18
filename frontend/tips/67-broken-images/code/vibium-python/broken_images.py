@@ -23,7 +23,7 @@ def status_of(url):
 
 
 def test_broken_images_with_an_http_library(page):
-    sources = [urljoin(page.url(), image.attr('src')) for image in page.find_all('img')]
+    sources = [urljoin(page.url(), image.attr('src')) for image in page.find_all(css='img')]
     broken_images = [source for source in sources if status_of(source) != 200]
     print(broken_images)
     assert [source.split('/')[-1] for source in broken_images] == ['asdf.jpg', 'hjkl.jpg']

@@ -14,7 +14,7 @@ def test_file_download(page, tmp_path):
     page.go('https://the-internet.herokuapp.com/download')
 
     with page.capture.download() as captured:
-        page.find('.example a').click()
+        page.find(css='.example a').click()
     download = captured.value
 
     file_path = os.path.join(tmp_path, download.suggested_filename())

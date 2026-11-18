@@ -8,20 +8,17 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Setting the Credentials
 
-Line 5 holds the message the page shows when we log in.
+Line 4 holds the message the page shows when we log in.
 
-The fixture (lines 8 to 12) starts the browser, gives the test its first page (tab), and closes the browser after the
+The fixture (lines 7 to 11) starts the browser, gives the test its first page (tab), and closes the browser after the
 test.
 
 ### The Test
 
-Lines 15 to 20 are the test itself.
+Lines 14 to 17 are the test itself.
 
-Basic auth sends the credentials in the `Authorization` header of each request, as `Basic` followed by
-`user:password` in Base64. We build that value with the `base64` module, and `page.set_headers` adds the header to
-every request of the page. The server sees the credentials, so the browser never shows the login dialog.
-
-Then we visit the page and check that it shows the message.
+We put the user and the password in the URL (`https://admin:admin@...`). The browser sends them to the server, so it
+never shows the login dialog. Then we check that the page shows the message.
 
 ### Executing the Test
 

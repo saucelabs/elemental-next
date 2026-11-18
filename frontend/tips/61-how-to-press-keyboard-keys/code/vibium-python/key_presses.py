@@ -12,10 +12,10 @@ def page():
 
 
 def test_sends_keys_to_an_element(page):
-    page.find('#target').press('Space')
-    assert page.find('#result').text() == 'You entered: SPACE'
+    page.find(css='#target').press('Space')
+    assert page.find(css='#result').text() == 'You entered: SPACE'
 
 
 def test_sends_keys_without_an_element(page):
     page.keyboard.press('Tab')
-    assert page.find('#result').text() == 'You entered: TAB'
+    assert page.find(css='#result').text() == 'You entered: TAB'

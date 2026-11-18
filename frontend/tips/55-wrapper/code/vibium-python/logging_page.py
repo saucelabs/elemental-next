@@ -14,7 +14,7 @@ class LoggingPage:
         self.log(f'Navigated to {url}')
 
     def click(self, selector):
-        element = self.page.find(selector)
+        element = self.page.find(css=selector)
         self.log(f'Clicking on {element.text()}')
         pre_click_url = self.page.url()
         element.click()

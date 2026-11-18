@@ -17,8 +17,8 @@ def test_page_shows_the_mocked_answer(page):
     page.route('**/slow_api/data?*', mock)
 
     page.go('https://the-internet.herokuapp.com/slow_api')
-    page.find('#call-api').click()
+    page.find(css='#call-api').click()
 
     # find() waits for the answer to show up in the list
-    assert page.find('#attempts li').text() == '200: Hello from the mock'
-    assert page.find('#status-text').text() == 'Hello from the mock'
+    assert page.find(css='#attempts li').text() == '200: Hello from the mock'
+    assert page.find(css='#status-text').text() == 'Hello from the mock'

@@ -17,4 +17,4 @@ def test_new_tab(bro):
     new_page.go('https://the-internet.herokuapp.com/typos')
 
     assert len(bro.pages()) == 2
-    assert new_page.find('h3').text() == 'Typos'
+    assert new_page.find(css='h3').text() == 'Typos'

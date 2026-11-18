@@ -15,7 +15,7 @@ def page():
 
 def card_screenshot(page, url):
     page.go(url)
-    png = page.find('#card').screenshot()
+    png = page.find(css='#card').screenshot()
     return Image.open(io.BytesIO(png)).convert('RGB')
 
 

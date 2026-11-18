@@ -16,4 +16,4 @@ def page(request):
 
 def test_fails_on_purpose(page):
     page.go('https://the-internet.herokuapp.com')
-    assert page.find('h1').text() == 'blah blah blah'
+    assert page.find(css='h1').text() == 'blah blah blah'
