@@ -169,12 +169,13 @@ tips/1-upload-a-file/
 ## CI
 
 - `test-build.yml`: builds the site on every PR.
-- `accessibility.yml`: on PRs, builds and serves the site and runs `npm run test:a11y`
+- `accessibility.yml`: builds and serves the site and runs `npm run test:a11y`
   (`frontend/scripts/accessibility.mjs`). It checks every page in the sitemap (one tag page only) with axe, WCAG 2.2
   A and AA rules, using Selenium and Firefox. It checks every tool and language
-  tab of a tip, and fails on any violation or on a page that crashes ("This page crashed"). On a PR that only changes
-  files inside tip folders, it checks only those tip pages (`CHANGED_FILES`); any other change, the nightly run and
-  manual runs check every page.
+  tab of a tip, and fails on any violation or on a page that crashes ("This page crashed"). On PRs, it runs only when
+  a tip page changes (a file in a tip folder, outside `code/`), and checks only the pages of the changed tips
+  (`CHANGED_FILES`). The nightly run and manual runs check every page, so a change to the components or the CSS is
+  checked the next night (or start the workflow by hand).
 - `social-cards.yml`: on push to main, creates the social cards of the tips that changed and opens a pull request
   with them (see Social cards).
 - `deploy-on-push-to-main.yml`: builds and deploys to GitHub Pages (`gh-pages` branch) on push to main.
@@ -184,8 +185,8 @@ tips/1-upload-a-file/
   `run-tips.yml`, which runs the examples on Ubuntu, Windows and macOS. The mobile workflows set its `os` input to one
   runner (Ubuntu, or macOS for XCUITest), since the tests run on Sauce Labs real devices.
   - `.github/scripts/select-tip-dirs.sh` picks the directories: on PRs and pushes only the changed
-    `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, Renovate branches, and when
-    the CI itself changes.
+    `tips/*/code/<lang>` directories; everything on the nightly schedule, manual runs, and Renovate branches. A change
+    to the CI alone runs nothing on PRs; the nightly run (or a manual run) checks it.
   - `.github/scripts/run-tips.sh` holds the per-language test command, retries each directory up to 3 times, and
     fails if any directory fails.
   - A new `code/<lang>` directory is picked up automatically, as long as it follows the conventions above.

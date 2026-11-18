@@ -28,5 +28,4 @@ jobs:
     secrets: inherit
     with:
       language: espresso
-      workflow-file: espresso-tips.yml
       os: '["ubuntu-latest"]'

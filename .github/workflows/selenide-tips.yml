@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: selenide
-      workflow-file: selenide-tips.yml

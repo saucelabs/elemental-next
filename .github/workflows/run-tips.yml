@@ -9,10 +9,6 @@ on:
         description: 'Directory name under code/ (java, selenide, csharp, javascript, python, ruby, playwright, playwright-python, playwright-csharp, playwright-java, webdriverio, vibium, vibium-python, vibium-java, appium-java, appium-python, appium, mobilewright, espresso, xcuitest)'
         required: true
         type: string
-      workflow-file:
-        description: 'File name of the calling workflow, a change to it runs every directory'
-        required: true
-        type: string
       os:
         description: 'JSON array of the runners to use. The mobile tips run on Sauce Labs real devices, so one is enough'
         required: false
@@ -45,7 +41,7 @@ jobs:
           HEAD_REF: ${{ github.head_ref || github.ref_name }}
           ACTOR: ${{ github.actor }}
         run: |
-          dirs=$(.github/scripts/select-tip-dirs.sh "${{ inputs.language }}" "${{ inputs.workflow-file }}")
+          dirs=$(.github/scripts/select-tip-dirs.sh "${{ inputs.language }}")
           echo "Directories to run: ${dirs}"
           echo "dirs=${dirs}" >> "$GITHUB_OUTPUT"
 

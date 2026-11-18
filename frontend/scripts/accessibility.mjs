@@ -1,8 +1,8 @@
 // Checks the pages of the site with axe (WCAG 2.2 A and AA rules). The site has a single, light color scheme.
 // Usage: npm run build && npm run serve, then, in another terminal: npm run test:a11y
 // BASE_URL changes the site to check (default: http://localhost:3000).
-// CHANGED_FILES (one path per line, relative to the repository) checks only the tip pages those files belong to. When a
-// file outside a tip folder changed (e.g., a component or the CSS), every page is checked.
+// CHANGED_FILES (one path per line, relative to the repository) checks only the tip pages those files belong to. Files
+// outside a tip folder are left out. Without CHANGED_FILES, every page is checked.
 import fs from 'node:fs';
 import {Builder, By, until} from 'selenium-webdriver';
 import firefox from 'selenium-webdriver/firefox.js';
@@ -29,7 +29,7 @@ function tipPage(folder) {
     return slug ? `/tips${slug[1]}` : undefined;
 }
 
-// The pages to check: the pages of the changed tips, or every page when something else changed
+// The pages to check: the pages of the changed tips, or every page when CHANGED_FILES is not set
 function pages() {
     const changedFiles = (process.env.CHANGED_FILES || '').split('\n').map((file) => file.trim()).filter(Boolean);
     if (changedFiles.length === 0) {
@@ -39,11 +39,9 @@ function pages() {
     for (const file of changedFiles) {
         const folder = file.match(/^frontend\/tips\/([^/]+)\//)?.[1];
         const page = folder && tipPage(folder);
-        if (!page) {
-            console.log(`${file} is not part of a tip, so every page is checked`);
-            return allPages();
+        if (page) {
+            tipPages.add(page);
         }
-        tipPages.add(page);
     }
     console.log(`Checking only the changed tips: ${[...tipPages].join(', ')}`);
     return [...tipPages];

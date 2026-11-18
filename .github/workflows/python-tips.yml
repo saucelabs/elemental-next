@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: python
-      workflow-file: python-tips.yml

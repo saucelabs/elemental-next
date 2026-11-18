@@ -27,4 +27,3 @@ jobs:
     secrets: inherit
     with:
       language: playwright
-      workflow-file: playwright-tips.yml

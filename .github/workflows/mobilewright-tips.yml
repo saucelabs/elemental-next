@@ -28,5 +28,4 @@ jobs:
     secrets: inherit
     with:
       language: mobilewright
-      workflow-file: mobilewright-tips.yml
       os: '["ubuntu-latest"]'

@@ -28,5 +28,4 @@ jobs:
     secrets: inherit
     with:
       language: appium-java
-      workflow-file: appium-java-tips.yml
       os: '["ubuntu-latest"]'

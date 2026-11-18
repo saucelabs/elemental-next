@@ -28,5 +28,4 @@ jobs:
     secrets: inherit
     with:
       language: xcuitest
-      workflow-file: xcuitest-tips.yml
       os: '["macos-latest"]'

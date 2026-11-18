@@ -28,5 +28,4 @@ jobs:
     secrets: inherit
     with:
       language: appium-python
-      workflow-file: appium-python-tips.yml
       os: '["ubuntu-latest"]'
