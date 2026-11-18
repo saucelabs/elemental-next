@@ -23,11 +23,10 @@ def request(method, path, headers):
 
 
 def test_files_behind_basic_auth(page):
-    credentials = base64.b64encode(b'admin:admin').decode()
-    page.set_headers({'Authorization': f'Basic {credentials}'})
-    page.go(f'https://{HOST}/download_secure')
+    page.go(f'https://admin:admin@{HOST}/download_secure')
     link = page.find(css='.example a').attr('href')
 
+    credentials = base64.b64encode(b'admin:admin').decode()
     # The file names can have spaces and other characters that need to be encoded in a URL.
     response = request('HEAD', urllib.parse.quote(f'/{link}'), {'Authorization': f'Basic {credentials}'})
     assert response.status == 200, link
