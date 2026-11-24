@@ -17,7 +17,6 @@ import org.junit.runner.RunWith
 class RealDeviceTest {
     @Test
     fun showsTheBackpackInTheCatalog() {
-        // Opens Sauce Labs' demo app, as tapping its icon would
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)!!
 
@@ -26,8 +25,6 @@ class RealDeviceTest {
         }
     }
 
-    // The app shows a splash screen and loads the catalog in the background, which Espresso doesn't wait for. This
-    // checks the view every half second, for up to 30 seconds.
     private fun waitUntilDisplayed(view: Matcher<View>) {
         val end = System.currentTimeMillis() + 30_000
         while (true) {

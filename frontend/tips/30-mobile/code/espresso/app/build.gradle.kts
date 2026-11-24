@@ -7,7 +7,6 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        // The package of the app under test (Sauce Labs' demo app). The tests in src/androidTest run against it.
         applicationId = "com.saucelabs.mydemoapp.android"
         minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -20,8 +19,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
 }
 
-// Android runs the tests only when the app under test and the tests are signed with the same key. This task downloads
-// Sauce Labs' demo app and signs it with the debug key that Gradle uses for the tests.
 tasks.register<Exec>("appUnderTest") {
     dependsOn("assembleDebugAndroidTest")
     val url = "https://github.com/saucelabs/my-demo-app-android/releases/download/2.3.0/mda-2.3.0-27.apk"
