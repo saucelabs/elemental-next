@@ -6,9 +6,7 @@ sauce:
   metadata:
     build: Elemental Selenium - Tip 30 - XCUITest
 xcuitest:
-  # Sauce Labs' demo app, downloaded from its GitHub release
   app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
-  # The tests, built with xcodebuild build-for-testing
   testApp: build/Build/Products/Debug-iphoneos/RealDeviceUITests-Runner.app
 suites:
   - name: Real device
