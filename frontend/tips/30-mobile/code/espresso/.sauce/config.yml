@@ -6,9 +6,7 @@ sauce:
   metadata:
     build: Elemental Selenium - Tip 30 - Espresso
 espresso:
-  # Sauce Labs' demo app, signed with the same key as the tests by ./gradlew appUnderTest
   app: app/build/outputs/apk/app-under-test.apk
-  # The tests, built with ./gradlew assembleDebugAndroidTest (appUnderTest builds them too)
   testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 suites:
   - name: Real device
