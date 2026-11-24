@@ -13,7 +13,7 @@
         <dependency>
             <groupId>com.vibium</groupId>
             <artifactId>vibium</artifactId>
-            <version>26.8.21</version>
+            <version>26.11.16</version>
             <scope>test</scope>
         </dependency>
         <dependency>

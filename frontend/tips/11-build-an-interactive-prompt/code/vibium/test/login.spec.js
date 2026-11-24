@@ -18,9 +18,9 @@ describe('Login', function () {
     it('logs in', async function () {
         await page.go('https://the-internet.herokuapp.com');
         await page.find({role: 'link', text: 'Form Authentication'}).click();
-        await page.find('#username').fill('tomsmith');
-        await page.find('#password').fill('SuperSecretPassword!');
-        await page.find('button[type=submit]').click();
-        assert((await page.find('#flash').text()).startsWith('You logged into a secure area!'));
+        await page.find({css: '#username'}).fill('tomsmith');
+        await page.find({css: '#password'}).fill('SuperSecretPassword!');
+        await page.find({css: 'button[type=submit]'}).click();
+        assert((await page.find({css: '#flash'}).text()).startsWith('You logged into a secure area!'));
     });
 });

@@ -8,21 +8,21 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 12 pull in Vibium's classes to drive the browser, JUnit to run the tests, and `List`.
+Lines 3 to 13 pull in Vibium's classes to drive the browser, JUnit to run the tests, and `List`.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 18 to 23) starts the browser, gets its first page (tab), and visits the page with the
-checkboxes. The `afterEach` method (lines 25 to 30) closes the browser.
+The `beforeEach` method (lines 19 to 24) starts the browser, gets its first page (tab), and visits the page with the
+checkboxes. The `afterEach` method (lines 26 to 31) closes the browser.
 
 ### The Tests
 
 The page has two checkboxes. The first one is not checked, and the last one is.
 
-Lines 32 to 38 find the checkboxes with `page.findAll` and read their `checked` attribute. We print the values:
+Lines 33 to 39 find the checkboxes with `page.findAll` and read their `checked` attribute. We print the values:
 `null` means the attribute is not there, so the checkbox is not checked.
 
-Lines 40 to 45 do the same with `isChecked`, which returns `true` or `false`. This is easier to read and also works
+Lines 41 to 46 do the same with `isSet`, which returns `true` or `false`. This is easier to read and also works
 when the user checks a checkbox (the attribute only shows the starting state).
 
 ### Executing the Test

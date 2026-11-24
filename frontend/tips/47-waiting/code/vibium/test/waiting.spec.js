@@ -19,17 +19,17 @@ describe('Waiting', function () {
     for (const example of ['1', '2']) {
         it(`waits for the element to be visible in example ${example}`, async function () {
             await page.go(`${BASE_URL}/${example}`);
-            await page.find('#start button').click();
+            await page.find({css: '#start button'}).click();
 
-            await page.find('#finish').waitUntil('visible', {timeout: 10000});
-            assert.strictEqual(await page.find('#finish').text(), 'Hello World!');
+            await page.find({css: '#finish'}).waitUntil('visible', {timeout: 10000});
+            assert.strictEqual(await page.find({css: '#finish'}).text(), 'Hello World!');
         });
     }
 
     it('gives up when the wait is too short', async function () {
         await page.go(`${BASE_URL}/2`);
-        await page.find('#start button').click();
+        await page.find({css: '#start button'}).click();
 
-        await assert.rejects(page.find('#finish', {timeout: 2000}), /timeout/);
+        await assert.rejects(page.find({css: '#finish'}, {timeout: 2000}), /timeout/);
     });
 });

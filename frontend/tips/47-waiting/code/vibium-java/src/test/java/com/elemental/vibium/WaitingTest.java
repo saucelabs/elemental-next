@@ -5,6 +5,7 @@ import com.vibium.Page;
 import com.vibium.Vibium;
 import com.vibium.errors.ElementNotFoundException;
 import com.vibium.types.FindOptions;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,18 +36,18 @@ public class WaitingTest {
     @ValueSource(strings = {"1", "2"})
     public void waitsForTheElementToBeVisible(String example) {
         page.go(BASE_URL + "/" + example);
-        page.find("#start button").click();
+        page.find(new SelectorOptions().css("#start button")).click();
 
-        page.find("#finish").waitUntil("visible", new FindOptions().timeout(10000));
-        Assertions.assertEquals("Hello World!", page.find("#finish").text());
+        page.find(new SelectorOptions().css("#finish")).waitUntil("visible", new FindOptions().timeout(10000));
+        Assertions.assertEquals("Hello World!", page.find(new SelectorOptions().css("#finish")).text());
     }
 
     @Test
     public void givesUpWhenTheWaitIsTooShort() {
         page.go(BASE_URL + "/2");
-        page.find("#start button").click();
+        page.find(new SelectorOptions().css("#start button")).click();
 
         Assertions.assertThrows(ElementNotFoundException.class,
-            () -> page.find("#finish", new FindOptions().timeout(2000)));
+            () -> page.find(new SelectorOptions().css("#finish").timeout(2000)));
     }
 }

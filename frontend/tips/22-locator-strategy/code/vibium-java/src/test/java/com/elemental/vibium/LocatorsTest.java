@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +29,7 @@ public class LocatorsTest {
     @Test
     public void firstLinkOnThePage() {
         page.go("https://the-internet.herokuapp.com/download");
-        String link = page.find("a").attr("href");
+        String link = page.find(new SelectorOptions().css("a")).attr("href");
         System.out.println(link);
         Assertions.assertTrue(link.contains("#content"));
     }
@@ -36,7 +37,7 @@ public class LocatorsTest {
     @Test
     public void firstLinkInTheContent() {
         page.go("https://the-internet.herokuapp.com/download");
-        String link = page.find("#content a").attr("href");
+        String link = page.find(new SelectorOptions().css("#content a")).attr("href");
         System.out.println(link);
         Assertions.assertTrue(link.contains("download/"));
     }
@@ -44,7 +45,7 @@ public class LocatorsTest {
     @Test
     public void firstLinkInTheExample() {
         page.go("https://the-internet.herokuapp.com/download");
-        String link = page.find("#content .example a").attr("href");
+        String link = page.find(new SelectorOptions().css("#content .example a")).attr("href");
         System.out.println(link);
         Assertions.assertTrue(link.contains("download/"));
     }

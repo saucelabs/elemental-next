@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
 import com.vibium.types.FindOptions;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,9 +33,9 @@ public class DynamicPagesTest {
     @ValueSource(strings = {"1", "2"})
     public void waitsForTheElement(String example) {
         page.go("https://the-internet.herokuapp.com/dynamic_loading/" + example);
-        page.find("#start button").click();
+        page.find(new SelectorOptions().css("#start button")).click();
 
-        page.find("#finish").waitUntil("visible", new FindOptions().timeout(10000));
-        Assertions.assertTrue(page.find("#finish").isVisible());
+        page.find(new SelectorOptions().css("#finish")).waitUntil("visible", new FindOptions().timeout(10000));
+        Assertions.assertTrue(page.find(new SelectorOptions().css("#finish")).isVisible());
     }
 }

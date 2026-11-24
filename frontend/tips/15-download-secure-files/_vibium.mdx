@@ -13,18 +13,18 @@ The `beforeEach` method (lines 10 to 13) starts the browser and gets its first p
 
 ### Example 1: Files Behind Basic Auth
 
-Lines 19 to 30 are the first test.
+Lines 19 to 29 are the first test.
 
-Basic auth sends the credentials in the `Authorization` header of each request. We build that header with `Buffer`
-and add it to the page with `page.setHeaders`. Then we visit the page with the files and get the full URL of the
-first link.
+We visit the page with the files with the user and password in the URL (`https://admin:admin@...`), and get the full
+URL of the first link.
 
-`fetch` doesn't know about the browser, so we send the same header with it. We send a `HEAD` request for the file and
+`fetch` doesn't know about the browser, so we send the credentials in the `Authorization` header, as `Basic` followed
+by `user:password` in Base64, built with `Buffer`. We send a `HEAD` request for the file and
 check that it answers with status `200`.
 
 ### Example 2: A Page Behind a Form Login
 
-Lines 32 to 49 log in with the form and wait for the success message. The site keeps the session in a cookie called
+Lines 31 to 48 log in with the form and wait for the success message. The site keeps the session in a cookie called
 `rack.session`.
 
 We get the cookies of the page's context with `page.context.cookies()` and send that one in the `Cookie` header of a

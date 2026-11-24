@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Element;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,7 @@ public class TablesTest {
     }
 
     List<String> texts(String selector) {
-        return page.findAll(selector).stream().map(Element::text).toList();
+        return page.findAll(new SelectorOptions().css(selector)).stream().map(Element::text).toList();
     }
 
     List<Double> dues(String selector) {
@@ -40,33 +41,33 @@ public class TablesTest {
 
     @Test
     public void numberColumnAscending() {
-        page.find("#table1 thead tr th:nth-of-type(4)").click();
-        page.find("#table1 thead tr th:nth-of-type(4).headerSortDown");
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4).headerSortDown"));
         List<Double> dueValues = dues("#table1 tbody tr td:nth-of-type(4)");
         Assertions.assertEquals(dueValues.stream().sorted().toList(), dueValues);
     }
 
     @Test
     public void numberColumnDescending() {
-        page.find("#table1 thead tr th:nth-of-type(4)").click();
-        page.find("#table1 thead tr th:nth-of-type(4)").click();
-        page.find("#table1 thead tr th:nth-of-type(4).headerSortUp");
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4).headerSortUp"));
         List<Double> dueValues = dues("#table1 tbody tr td:nth-of-type(4)");
         Assertions.assertEquals(dueValues.stream().sorted(Comparator.reverseOrder()).toList(), dueValues);
     }
 
     @Test
     public void textColumnAscending() {
-        page.find("#table1 thead tr th:nth-of-type(3)").click();
-        page.find("#table1 thead tr th:nth-of-type(3).headerSortDown");
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(3)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(3).headerSortDown"));
         List<String> emails = texts("#table1 tbody tr td:nth-of-type(3)");
         Assertions.assertEquals(emails.stream().sorted().toList(), emails);
     }
 
     @Test
     public void numberColumnAscendingWithSemanticLocators() {
-        page.find("#table2 thead .dues").click();
-        page.find("#table2 thead th.headerSortDown:has(.dues)");
+        page.find(new SelectorOptions().css("#table2 thead .dues")).click();
+        page.find(new SelectorOptions().css("#table2 thead th.headerSortDown:has(.dues)"));
         List<Double> dueValues = dues("#table2 tbody .dues");
         Assertions.assertEquals(dueValues.stream().sorted().toList(), dueValues);
     }

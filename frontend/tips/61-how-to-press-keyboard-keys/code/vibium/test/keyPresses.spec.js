@@ -16,12 +16,12 @@ describe('Keyboard Keys', function () {
     });
 
     it('sends keys to an element', async function () {
-        await page.find('#target').press('Space');
-        assert.strictEqual(await page.find('#result').text(), 'You entered: SPACE');
+        await page.find({css: '#target'}).press('Space');
+        assert.strictEqual(await page.find({css: '#result'}).text(), 'You entered: SPACE');
     });
 
     it('sends keys without an element', async function () {
         await page.keyboard.press('Tab');
-        assert.strictEqual(await page.find('#result').text(), 'You entered: TAB');
+        assert.strictEqual(await page.find({css: '#result'}).text(), 'You entered: TAB');
     });
 });

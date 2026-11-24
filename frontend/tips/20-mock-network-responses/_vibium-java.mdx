@@ -8,21 +8,21 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 10 pull in Vibium (`Browser`, `Page`, `Vibium` and the `FulfillOptions` of a mocked response) and JUnit.
+Lines 3 to 11 pull in Vibium (`Browser`, `Page`, `Vibium` and the `FulfillOptions` of a mocked response) and JUnit.
 
 ### Setup and Teardown
 
-Lines 13 and 14 declare the browser and the page, so every method of the class can use them.
+Lines 14 and 15 declare the browser and the page, so every method of the class can use them.
 
-The `beforeEach` method (lines 16 to 20) runs before each test. It starts the browser with `Vibium.start()` and gets
-its first page (tab) with `browser.page()`. The `afterEach` method (lines 22 to 27) runs after each test and closes the
+The `beforeEach` method (lines 17 to 21) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 23 to 28) runs after each test and closes the
 browser with `browser.stop()`.
 
 ### The Test
 
-Lines 29 to 41 are the test itself.
+Lines 30 to 42 are the test itself.
 
-`page.route` (lines 31 to 33) intercepts the requests whose URL matches `**/slow_api/data?*`, and `route.fulfill`
+`page.route` (lines 32 to 34) intercepts the requests whose URL matches `**/slow_api/data?*`, and `route.fulfill`
 answers them with a JSON content type and a JSON body with the message (the status is `200`). The request never
 reaches the server. The pattern is a glob: `**` matches the start of the URL, and `?*` matches the query string, which changes with the
 options of the form. The other requests load as usual.

@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Dialog;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import com.vibium.types.SetCookieParam;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -36,13 +37,13 @@ public class AbTest {
     @Test
     public void optOutCookieOnTheTargetPage() {
         page.go("https://the-internet.herokuapp.com/abtest");
-        String headingText = page.find("h3").text();
+        String headingText = page.find(new SelectorOptions().css("h3")).text();
         Assertions.assertTrue(List.of("A/B Test Variation 1", "A/B Test Control").contains(headingText));
 
         page.context().setCookies(List.of(optOutCookie()));
         page.reload();
 
-        Assertions.assertEquals("No A/B Test", page.find("h3").text());
+        Assertions.assertEquals("No A/B Test", page.find(new SelectorOptions().css("h3")).text());
     }
 
     @Test
@@ -50,7 +51,7 @@ public class AbTest {
         page.context().setCookies(List.of(optOutCookie()));
         page.go("https://the-internet.herokuapp.com/abtest");
 
-        Assertions.assertEquals("No A/B Test", page.find("h3").text());
+        Assertions.assertEquals("No A/B Test", page.find(new SelectorOptions().css("h3")).text());
     }
 
     @Test
@@ -58,6 +59,6 @@ public class AbTest {
         page.onDialog(Dialog::dismiss);
         page.go("https://the-internet.herokuapp.com/abtest?optimizely_opt_out=true");
 
-        Assertions.assertEquals("No A/B Test", page.find("h3").text());
+        Assertions.assertEquals("No A/B Test", page.find(new SelectorOptions().css("h3")).text());
     }
 }

@@ -8,20 +8,20 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 14 pull in Vibium's classes to drive the browser, JUnit to run the test, and `Files` and `Path` to work
+Lines 3 to 15 pull in Vibium's classes to drive the browser, JUnit to run the test, and `Files` and `Path` to work
 with the downloaded file.
 
 ### Setup and Teardown
 
-Lines 17 and 18 declare the browser and the page. On lines 20 and 21, `@TempDir` asks JUnit for a temporary folder
+Lines 18 and 19 declare the browser and the page. On lines 21 and 22, `@TempDir` asks JUnit for a temporary folder
 for the downloaded file. JUnit creates it before each test and deletes it after.
 
-The `beforeEach` method (lines 23 to 27) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 29 to 34) closes the browser.
+The `beforeEach` method (lines 24 to 28) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 30 to 35) closes the browser.
 
 ### The Test
 
-Lines 36 to 46 are the test itself.
+Lines 37 to 47 are the test itself.
 
 Vibium doesn't need any browser setting to download files. It catches each download, and `page.capture().download()`
 gives it to us.

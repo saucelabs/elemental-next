@@ -8,17 +8,17 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the tests.
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the tests.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 15 to 20) starts the browser, gets its first page (tab), and visits the page that shows
-the last key pressed. The `afterEach` method (lines 22 to 27) closes the browser.
+The `beforeEach` method (lines 16 to 21) starts the browser, gets its first page (tab), and visits the page that shows
+the last key pressed. The `afterEach` method (lines 23 to 28) closes the browser.
 
 ### The Tests
 
-- Lines 29 to 33 press the space key on an input field with the element's `press` method.
-- Lines 35 to 39 press the tab key with `page.keyboard().press`, without an element. The key goes to the element that
+- Lines 30 to 34 press the space key on an input field with the element's `press` method.
+- Lines 36 to 40 press the tab key with `page.keyboard().press`, without an element. The key goes to the element that
   has the focus.
 
 Vibium uses the key names of the browser (e.g., `Space`, `Tab`, `Enter`, `ArrowDown`). Each test checks the message

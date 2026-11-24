@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "pngjs": "7.0.0",
-    "vibium": "26.8.21"
+    "vibium": "26.11.16"
   },
   "devDependencies": {
     "mocha": "12.0.3"

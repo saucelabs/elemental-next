@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +40,7 @@ public class RightClickTest {
             dialog.accept();
         });
         // Vibium has no right click, so we fire the contextmenu event on the element
-        page.find("#hot-spot").dispatchEvent("contextmenu", Map.of("bubbles", true));
+        page.find(new SelectorOptions().css("#hot-spot")).dispatchEvent("contextmenu", Map.of("bubbles", true));
 
         Assertions.assertEquals("You selected a context menu", alertText.get(10, TimeUnit.SECONDS));
     }

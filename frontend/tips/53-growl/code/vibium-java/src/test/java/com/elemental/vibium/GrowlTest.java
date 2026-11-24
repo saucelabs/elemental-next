@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import com.vibium.types.WaitOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -51,7 +52,7 @@ public class GrowlTest {
         // Step 4: display a message with jquery-growl
         page.evaluate("window.jQuery.growl({title: 'GET', message: '/'})");
 
-        Assertions.assertEquals("GET", page.find("#growls .growl .growl-title").text());
-        Assertions.assertEquals("/", page.find("#growls .growl .growl-message").text());
+        Assertions.assertEquals("GET", page.find(new SelectorOptions().css("#growls .growl .growl-title")).text());
+        Assertions.assertEquals("/", page.find(new SelectorOptions().css("#growls .growl .growl-message")).text());
     }
 }

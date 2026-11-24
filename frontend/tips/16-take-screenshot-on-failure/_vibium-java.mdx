@@ -23,10 +23,10 @@ The extension gets the page with a `Supplier`, because the page is created later
 
 ### The Test Class
 
-Lines 16 and 17 register the extension. The `beforeEach` method (lines 19 to 23) starts the browser and gets its
-first page (tab). The `afterEach` method (lines 25 to 30) closes the browser.
+Lines 17 and 18 register the extension. The `beforeEach` method (lines 20 to 24) starts the browser and gets its
+first page (tab). The `afterEach` method (lines 26 to 31) closes the browser.
 
-Lines 32 to 36 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah
+Lines 33 to 37 are a test that fails on purpose. It visits the page and checks that the heading says `blah blah
 blah`, which it doesn't. When it fails, the extension takes the screenshot.
 
 ### Executing the Test

@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,11 +31,11 @@ public class DataDrivenTest {
     @CsvFileSource(files = "user_data.csv", useHeadersInDisplayName = false, numLinesToSkip = 1)
     public void login(String accountType, String username, String password, String notificationMessage) {
         page.go("https://the-internet.herokuapp.com/login");
-        page.find("#username").fill(username);
-        page.find("#password").fill(password);
-        page.find("#login button").click();
+        page.find(new SelectorOptions().css("#username")).fill(username);
+        page.find(new SelectorOptions().css("#password")).fill(password);
+        page.find(new SelectorOptions().css("#login button")).click();
 
-        String notification = page.find("#flash").text();
+        String notification = page.find(new SelectorOptions().css("#flash")).text();
         Assertions.assertTrue(notification.startsWith(notificationMessage), notification);
     }
 }

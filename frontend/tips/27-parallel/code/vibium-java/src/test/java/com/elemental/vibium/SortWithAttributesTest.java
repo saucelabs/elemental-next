@@ -2,6 +2,7 @@ package com.elemental.vibium;
 
 import com.vibium.Browser;
 import com.vibium.Page;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,24 +30,24 @@ public class SortWithAttributesTest {
     }
 
     List<Double> dues() {
-        return page.findAll("#table2 tbody .dues").stream()
+        return page.findAll(new SelectorOptions().css("#table2 tbody .dues")).stream()
             .map(due -> Double.parseDouble(due.text().replace("$", "")))
             .toList();
     }
 
     @Test
     public void ascendingOrder() {
-        page.find("#table2 thead .dues").click();
-        page.find("#table2 thead th.headerSortDown:has(.dues)");
+        page.find(new SelectorOptions().css("#table2 thead .dues")).click();
+        page.find(new SelectorOptions().css("#table2 thead th.headerSortDown:has(.dues)"));
         List<Double> dueValues = dues();
         Assertions.assertEquals(dueValues.stream().sorted().toList(), dueValues);
     }
 
     @Test
     public void descendingOrder() {
-        page.find("#table2 thead .dues").click();
-        page.find("#table2 thead .dues").click();
-        page.find("#table2 thead th.headerSortUp:has(.dues)");
+        page.find(new SelectorOptions().css("#table2 thead .dues")).click();
+        page.find(new SelectorOptions().css("#table2 thead .dues")).click();
+        page.find(new SelectorOptions().css("#table2 thead th.headerSortUp:has(.dues)"));
         List<Double> dueValues = dues();
         Assertions.assertEquals(dueValues.stream().sorted(Comparator.reverseOrder()).toList(), dueValues);
     }

@@ -8,17 +8,17 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 14 pull in Vibium's classes to drive the browser, JUnit to run the test, and the HTTP client that comes with
+Lines 3 to 15 pull in Vibium's classes to drive the browser, JUnit to run the test, and the HTTP client that comes with
 Java.
 
 ### Setup and Teardown
 
-Lines 17 and 18 declare the browser and the page. The `beforeEach` method (lines 20 to 24) starts the browser and
-gets its first page (tab). The `afterEach` method (lines 26 to 31) closes the browser.
+Lines 18 and 19 declare the browser and the page. The `beforeEach` method (lines 21 to 25) starts the browser and
+gets its first page (tab). The `afterEach` method (lines 27 to 32) closes the browser.
 
 ### The Test
 
-Lines 33 to 45 are the test itself.
+Lines 34 to 46 are the test itself.
 
 After visiting the page, we get the `href` of the first download link. It is a relative URL, so we turn it into a full
 URL with `resolve`, using the URL of the page.

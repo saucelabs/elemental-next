@@ -8,25 +8,25 @@ import TipCode from "@site/src/components/tipCode";
 
 ### The Opt-out Cookie
 
-Lines 19 to 21 build the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`), with the
+Lines 20 to 22 build the cookie that tells the site to skip the A/B test (`optimizelyOptOut` set to `true`), with the
 `domain` of the site.
 
-The `beforeEach` method (lines 23 to 27) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 29 to 34) closes the browser.
+The `beforeEach` method (lines 24 to 28) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 30 to 35) closes the browser.
 
 ### Example 1: Forge the Cookie on the Target Page
 
-Lines 36 to 46 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie to the
+Lines 37 to 47 visit the A/B test page and check that it shows one of the two variants. Then we add the cookie to the
 context of the page (`page.context().setCookies`), reload the page, and check that the heading says `No A/B Test`.
 
 ### Example 2: Forge the Cookie Before Visiting the Page
 
-Lines 48 to 54 add the cookie first and then visit the page. Since the cookie has a `domain`, Vibium can add it before
+Lines 49 to 55 add the cookie first and then visit the page. Since the cookie has a `domain`, Vibium can add it before
 we visit the site, so we skip the extra page load that Selenium needs. The page shows `No A/B Test` right away.
 
 ### Example 3: Append the Opt-out Parameter to the URL
 
-Lines 56 to 62 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
+Lines 57 to 63 visit the page with `?optimizely_opt_out=true` in the URL. The site then shows a JavaScript alert.
 `page.onDialog(Dialog::dismiss)` dismisses it. Then we check the heading.
 
 ### Executing the Test

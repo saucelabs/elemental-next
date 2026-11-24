@@ -17,10 +17,10 @@ describe('Dynamic Pages', function () {
     for (const [example, description] of [['1', 'a hidden element'], ['2', 'an element rendered after']]) {
         it(`waits for ${description}`, async function () {
             await page.go(`https://the-internet.herokuapp.com/dynamic_loading/${example}`);
-            await page.find('#start button').click();
+            await page.find({css: '#start button'}).click();
 
-            await page.find('#finish').waitUntil('visible', {timeout: 10000});
-            assert(await page.find('#finish').isVisible());
+            await page.find({css: '#finish'}).waitUntil('visible', {timeout: 10000});
+            assert(await page.find({css: '#finish'}).isVisible());
         });
     }
 });

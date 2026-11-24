@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "selenium-webdriver": "4.52.0"
+    "selenium-webdriver": "4.54.0"
   },
   "description": "A project to showcase printing a page to PDF using official WebdriverJs",
   "devDependencies": {

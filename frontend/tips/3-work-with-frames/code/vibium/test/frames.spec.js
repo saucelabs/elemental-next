@@ -20,21 +20,21 @@ describe('Frame Test', function () {
         const topFrame = await page.frame('frame-top');
         const middleFrame = await topFrame.frame('frame-middle');
 
-        assert.equal(await middleFrame.find('#content').text(), 'MIDDLE');
+        assert.equal(await middleFrame.find({css: '#content'}).text(), 'MIDDLE');
     });
 
     it('iframe', async function () {
         await page.go('https://the-internet.herokuapp.com/tinymce');
 
         // The editor's iframe has no name and no URL, so we wait for it and take the only frame of the page
-        await page.find('#mce_0_ifr');
+        await page.find({css: '#mce_0_ifr'});
         const [editorFrame] = await page.frames();
-        const editor = editorFrame.find('#tinymce');
+        const editor = editorFrame.find({css: '#tinymce'});
         const beforeText = await editor.text();
         await editor.clear();
         await editor.type('Hello World!');
         assert.notEqual(await editor.text(), beforeText);
 
-        assert.equal(await page.find('h3').text(), 'An iFrame containing the TinyMCE WYSIWYG Editor');
+        assert.equal(await page.find({css: 'h3'}).text(), 'An iFrame containing the TinyMCE WYSIWYG Editor');
     });
 });

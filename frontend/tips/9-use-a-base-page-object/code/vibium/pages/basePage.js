@@ -13,23 +13,23 @@ class BasePage {
     }
 
     async click(selector) {
-        await this.page.find(selector).click();
+        await this.page.find({css: selector}).click();
     }
 
     async type(selector, text) {
-        await this.page.find(selector).fill(text);
+        await this.page.find({css: selector}).fill(text);
     }
 
     async textOf(selector) {
-        return this.page.find(selector).text();
+        return this.page.find({css: selector}).text();
     }
 
     async isDisplayed(selector) {
-        return this.page.find(selector).isVisible();
+        return this.page.find({css: selector}).isVisible();
     }
 
     async waitFor(selector, timeout = 10000) {
-        await this.page.find(selector).waitUntil('visible', {timeout});
+        await this.page.find({css: selector}).waitUntil('visible', {timeout});
     }
 }
 

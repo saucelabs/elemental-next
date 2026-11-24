@@ -17,9 +17,9 @@ describe('HTML5 Drag and Drop', function () {
     it('swaps the columns', async function () {
         await page.go('https://the-internet.herokuapp.com/drag_and_drop');
 
-        await page.find('#column-a').dragTo(await page.find('#column-b'));
+        await page.find({css: '#column-a'}).dragTo(await page.find({css: '#column-b'}));
 
-        assert.strictEqual(await page.find('#column-a').text(), 'B');
-        assert.strictEqual(await page.find('#column-b').text(), 'A');
+        assert.strictEqual(await page.find({css: '#column-a'}).text(), 'B');
+        assert.strictEqual(await page.find({css: '#column-b'}).text(), 'A');
     });
 });

@@ -17,8 +17,8 @@ describe('Dropdown Test', function () {
     it('select from a dropdown', async function () {
         await page.go('https://the-internet.herokuapp.com/dropdown');
 
-        await page.find('#dropdown').selectOption('Option 1');
+        await page.find({css: '#dropdown'}).selectOption('Option 1');
 
-        assert.equal(await page.find('#dropdown option:checked').text(), 'Option 1');
+        assert.equal(await page.find({css: '#dropdown option:checked'}).text(), 'Option 1');
     });
 });
