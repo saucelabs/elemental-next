@@ -12,10 +12,10 @@ holds a UI test target, `RealDeviceUITests`.
 
 ### The Test
 
-- Line 7 points to the demo app by its bundle identifier, `com.saucelabs.mydemo.app.ios`. UI tests run in their own
+- Line 6 points to the demo app by its bundle identifier, `com.saucelabs.mydemo.app.ios`. UI tests run in their own
   process and drive the app from outside, so they can test any app installed on the device.
-- Line 8 opens the app.
-- Lines 10 and 11 wait up to 30 seconds for the text "Sauce Labs Backpack - Black" (the name of the backpack on iOS).
+- Line 7 opens the app.
+- Lines 9 and 10 wait up to 30 seconds for the text "Sauce Labs Backpack - Black" (the name of the backpack on iOS).
   The app shows a splash screen first, so the catalog is not there right away.
 
 ### Running on Sauce Labs
@@ -32,9 +32,7 @@ sauce:
   metadata:
     build: Elemental Selenium - Tip 30 - XCUITest
 xcuitest:
-  # Sauce Labs' demo app, downloaded from its GitHub release
   app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
-  # The tests, built with xcodebuild build-for-testing
   testApp: build/Build/Products/Debug-iphoneos/RealDeviceUITests-Runner.app
 suites:
   - name: Real device
@@ -49,6 +47,7 @@ artifacts:
 ```
 
 - `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+  The test app is the one `xcodebuild build-for-testing` builds (see below).
 - `suites` asks for a device. The name is a regular expression (`iPhone.*` is any iPhone), and the tests run on the
   first free device that matches.
 - `artifacts` downloads the JUnit report of the run into `artifacts/`.

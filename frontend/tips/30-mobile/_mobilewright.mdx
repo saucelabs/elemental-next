@@ -14,12 +14,12 @@ Where the tests run is part of the configuration: the [Sauce Labs driver](https:
 
 <TipCode codePath={"30-mobile/code/mobilewright/mobilewright.config.ts"} language={"ts"}/>
 
-- Lines 5 to 8 skip the run when the Sauce Labs credentials are not set. Otherwise, the driver reads them from the
+- Lines 4 to 7 skip the run when the Sauce Labs credentials are not set. Otherwise, the driver reads them from the
   `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
-- Lines 13 to 18 set the timeouts. Finding a free device and installing the app can take a few minutes, and the 5
-  second defaults of Mobilewright are meant for local devices. Line 15 runs one device at a time.
-- Line 19 sets the Sauce Labs driver, the data center (`us-west-1`), and the name of the build on Sauce Labs.
-- Lines 20 to 43 are one project for each platform. Each one asks for a device by a regular expression of its name
+- Lines 11 to 14 set the timeouts. Finding a free device and installing the app can take a few minutes, and the 5
+  second defaults of Mobilewright are meant for local devices. Line 12 runs one device at a time.
+- Line 15 sets the Sauce Labs driver, the data center (`us-west-1`), and the name of the build on Sauce Labs.
+- Lines 16 to 37 are one project for each platform. Each one asks for a device by a regular expression of its name
   (`deviceName`) and its OS version (`osVersion`), and installs the demo app from its GitHub release (`installApps`):
   Sauce Labs downloads it and installs it on the device. `bundleId` is the app that the tests open.
 

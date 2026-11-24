@@ -16,17 +16,17 @@ In WebdriverIO, the devices are part of the configuration, not of the test.
 
 - Lines 3 to 5 give WebdriverIO the Sauce Labs user name and access key (from the `SAUCE_USERNAME` and
   `SAUCE_ACCESS_KEY` environment variables) and the region of the data center (`us` is `us-west-1`).
-- Lines 7 to 10 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and
+- Lines 6 to 9 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and
   marks it as passed or failed when the test ends.
-- Lines 14 to 26 ask for two devices, and the test runs on each one. The Android one (lines 15 to 19) uses the
-  `UiAutomator2` Appium driver, and the iPhone one (lines 21 to 25) the `XCUITest` driver. The device name is a regular
+- Lines 12 to 24 ask for two devices, and the test runs on each one. The Android one (lines 13 to 17) uses the
+  `UiAutomator2` Appium driver, and the iPhone one (lines 19 to 23) the `XCUITest` driver. The device name is a regular
   expression (`Google.*` is any Google phone), and the test gets the first free device that matches. `appium:app` is
   the demo app from its GitHub release: Sauce Labs downloads it and installs it on the device.
-- Line 13 runs one device at a time, and lines 28 and 29 give Sauce Labs up to 5 minutes to find a device and install
+- Line 11 runs one device at a time, and lines 25 and 26 give Sauce Labs up to 5 minutes to find a device and install
   the app.
-- Line 30 makes the assertions wait up to 30 seconds. The app shows a splash screen first, so the catalog is not there
+- Line 27 makes the assertions wait up to 30 seconds. The app shows a splash screen first, so the catalog is not there
   right away.
-- Lines 36 to 41 skip the run when the Sauce Labs credentials are not set.
+- Lines 32 to 37 skip the run when the Sauce Labs credentials are not set.
 
 ### The Test
 
