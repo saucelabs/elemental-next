@@ -8,16 +8,16 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the test.
 
 ### Setup and Teardown
 
-Lines 12 and 13 declare the browser and the page. The `beforeEach` method (lines 15 to 19) starts the browser and
-gets its first page (tab). The `afterEach` method (lines 21 to 26) closes the browser.
+Lines 13 and 14 declare the browser and the page. The `beforeEach` method (lines 16 to 20) starts the browser and
+gets its first page (tab). The `afterEach` method (lines 22 to 27) closes the browser.
 
 ### The Test
 
-Lines 28 to 37 are the test itself.
+Lines 29 to 38 are the test itself.
 
 We visit a page in the first tab. Then `browser.newPage()` opens a new tab and gives it to us as a `Page`, and we
 visit another page in it. There is no switching: each tab is its own `Page`.

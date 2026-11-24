@@ -3,7 +3,7 @@ const {browser} = require('vibium');
 
 async function isDisplayed(page, selector) {
     try {
-        return await page.find(selector, {timeout: 2000}).isVisible();
+        return await page.find({css: selector}, {timeout: 2000}).isVisible();
     } catch (error) {
         // page.find throws an error when the element doesn't show up in time
         return false;
@@ -18,10 +18,10 @@ describe('Exception Handling', function () {
         bro = await browser.start();
         page = await bro.page();
         await page.go('https://the-internet.herokuapp.com/login');
-        await page.find('#username').fill('tomsmith');
-        await page.find('#password').fill('SuperSecretPassword!');
-        await page.find('#login button').click();
-        await page.find('.flash.success').waitUntil('visible');
+        await page.find({css: '#username'}).fill('tomsmith');
+        await page.find({css: '#password'}).fill('SuperSecretPassword!');
+        await page.find({css: '#login button'}).click();
+        await page.find({css: '.flash.success'}).waitUntil('visible');
     });
 
     afterEach(async function () {
@@ -29,7 +29,7 @@ describe('Exception Handling', function () {
     });
 
     it('throws an error when acting on a missing element', async function () {
-        await assert.rejects(page.find('#login', {timeout: 2000}).click(), /timeout/);
+        await assert.rejects(page.find({css: '#login'}, {timeout: 2000}).click(), /timeout/);
     });
 
     it('does not display the login form', async function () {

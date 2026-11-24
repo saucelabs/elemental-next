@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,8 +30,8 @@ public class DropdownTest {
     public void selectFromDropdown() {
         page.go("https://the-internet.herokuapp.com/dropdown");
 
-        page.find("#dropdown").selectOption("Option 1");
+        page.find(new SelectorOptions().css("#dropdown")).selectOption("Option 1");
 
-        Assertions.assertEquals("Option 1", page.find("#dropdown option:checked").text());
+        Assertions.assertEquals("Option 1", page.find(new SelectorOptions().css("#dropdown option:checked")).text());
     }
 }

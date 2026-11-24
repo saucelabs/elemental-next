@@ -2,6 +2,7 @@ package com.elemental.vibium;
 
 import com.vibium.Page;
 import com.vibium.types.FindOptions;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.Assertions;
 
 public class BasePage {
@@ -19,22 +20,22 @@ public class BasePage {
     }
 
     public void click(String selector) {
-        page.find(selector).click();
+        page.find(new SelectorOptions().css(selector)).click();
     }
 
     public void type(String selector, String text) {
-        page.find(selector).fill(text);
+        page.find(new SelectorOptions().css(selector)).fill(text);
     }
 
     public String textOf(String selector) {
-        return page.find(selector).text();
+        return page.find(new SelectorOptions().css(selector)).text();
     }
 
     public boolean isDisplayed(String selector) {
-        return page.find(selector).isVisible();
+        return page.find(new SelectorOptions().css(selector)).isVisible();
     }
 
     public void waitFor(String selector) {
-        page.find(selector).waitUntil("visible", new FindOptions().timeout(10000));
+        page.find(new SelectorOptions().css(selector)).waitUntil("visible", new FindOptions().timeout(10000));
     }
 }

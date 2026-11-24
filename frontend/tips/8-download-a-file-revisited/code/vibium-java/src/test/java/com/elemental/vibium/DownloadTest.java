@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ public class DownloadTest {
     @Test
     public void fileCanBeDownloaded() throws Exception {
         page.go("https://the-internet.herokuapp.com/download");
-        URI link = URI.create(page.url()).resolve(page.find(".example a").attr("href"));
+        URI link = URI.create(page.url()).resolve(page.find(new SelectorOptions().css(".example a")).attr("href"));
 
         HttpRequest request = HttpRequest.newBuilder(link).method("HEAD", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<Void> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.discarding());

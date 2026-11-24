@@ -23,11 +23,11 @@ describe('Mock responses', function () {
         });
 
         await page.go('https://the-internet.herokuapp.com/slow_api');
-        await page.find('#call-api').click();
+        await page.find({css: '#call-api'}).click();
 
         // find() waits for the answer to show up in the list
-        const attempt = await page.find('#attempts li').text();
+        const attempt = await page.find({css: '#attempts li'}).text();
         assert.equal(attempt, '200: Hello from the mock');
-        assert.equal(await page.find('#status-text').text(), 'Hello from the mock');
+        assert.equal(await page.find({css: '#status-text'}).text(), 'Hello from the mock');
     });
 });

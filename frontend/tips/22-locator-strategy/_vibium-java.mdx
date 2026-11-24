@@ -8,22 +8,22 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the tests.
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the tests.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 15 to 19) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 21 to 26) closes the browser.
+The `beforeEach` method (lines 16 to 20) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
 
 ### The Tests
 
 Each test visits the download page and finds a link with a CSS selector. `page.find` returns the first element that
 matches, and `attr("href")` reads where the link goes. We print it and check it.
 
-- Lines 28 to 34 look for any link on the page (`a`). The first one on the page is the "Skip to content" link,
+- Lines 29 to 35 look for any link on the page (`a`). The first one on the page is the "Skip to content" link,
   which is not the link we want.
-- Lines 36 to 42 narrow the search to the content of the page (`#content a`). That finds a file link.
-- Lines 44 to 50 narrow it further to the list of files (`#content .example a`). This selector says exactly where
+- Lines 37 to 43 narrow the search to the content of the page (`#content a`). That finds a file link.
+- Lines 45 to 51 narrow it further to the list of files (`#content .example a`). This selector says exactly where
   the link is, so a change somewhere else on the page won't break it.
 
 ### Executing the Test

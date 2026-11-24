@@ -4,7 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
 import com.vibium.errors.ElementNotFoundException;
-import com.vibium.types.FindOptions;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,10 +19,10 @@ public class ExceptionsTest {
         browser = Vibium.start();
         page = browser.page();
         page.go("https://the-internet.herokuapp.com/login");
-        page.find("#username").fill("tomsmith");
-        page.find("#password").fill("SuperSecretPassword!");
-        page.find("#login button").click();
-        page.find(".flash.success").waitUntil("visible");
+        page.find(new SelectorOptions().css("#username")).fill("tomsmith");
+        page.find(new SelectorOptions().css("#password")).fill("SuperSecretPassword!");
+        page.find(new SelectorOptions().css("#login button")).click();
+        page.find(new SelectorOptions().css(".flash.success")).waitUntil("visible");
     }
 
     @AfterEach
@@ -34,7 +34,7 @@ public class ExceptionsTest {
 
     boolean isDisplayed(String selector) {
         try {
-            return page.find(selector, new FindOptions().timeout(2000)).isVisible();
+            return page.find(new SelectorOptions().css(selector).timeout(2000)).isVisible();
         } catch (ElementNotFoundException e) {
             // page.find throws an ElementNotFoundException when the element doesn't show up in time
             return false;
@@ -44,7 +44,7 @@ public class ExceptionsTest {
     @Test
     public void throwsAnExceptionWhenActingOnAMissingElement() {
         Assertions.assertThrows(ElementNotFoundException.class,
-            () -> page.find("#login", new FindOptions().timeout(2000)).click());
+            () -> page.find(new SelectorOptions().css("#login").timeout(2000)).click());
     }
 
     @Test

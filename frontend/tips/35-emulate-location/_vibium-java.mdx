@@ -11,19 +11,19 @@ browser would ask the user first. It can't change the locale either. So this exa
 
 ### Importing Libraries
 
-Lines 3 to 9 pull in Vibium (`Browser`, `Page` and `Vibium`) and JUnit.
+Lines 3 to 10 pull in Vibium (`Browser`, `Page` and `Vibium`) and JUnit.
 
 ### Setup and Teardown
 
-Lines 12 and 13 declare the browser and the page, so every method of the class can use them.
+Lines 13 and 14 declare the browser and the page, so every method of the class can use them.
 
-The `beforeEach` method (lines 15 to 19) runs before each test. It starts the browser with `Vibium.start()` and gets
-its first page (tab) with `browser.page()`. The `afterEach` method (lines 21 to 26) runs after each test and closes the
+The `beforeEach` method (lines 16 to 20) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 22 to 27) runs after each test and closes the
 browser with `browser.stop()`.
 
 ### The Test
 
-Lines 28 to 37 are the test itself. `page.clock().setTimezone` sets the time zone of the page to `Asia/Tokyo`.
+Lines 29 to 38 are the test itself. `page.clock().setTimezone` sets the time zone of the page to `Asia/Tokyo`.
 
 Then the test loads the page, and checks that it shows the `Asia/Tokyo` time zone and the date at the time of Tokyo:
 `12:00 UTC` is `21:00` there. The format of the date depends on the language of the browser (e.g., `9:00 PM` with a

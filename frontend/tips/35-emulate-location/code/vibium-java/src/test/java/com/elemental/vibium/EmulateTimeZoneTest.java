@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,8 +32,8 @@ public class EmulateTimeZoneTest {
 
         page.go("https://the-internet.herokuapp.com/locale");
 
-        Assertions.assertEquals("Asia/Tokyo", page.find("#browser-timezone").text());
+        Assertions.assertEquals("Asia/Tokyo", page.find(new SelectorOptions().css("#browser-timezone")).text());
         // 12:00 UTC is 21:00 in Tokyo (9:00 PM with a 12-hour clock, depending on the browser's language)
-        Assertions.assertTrue(page.find("#formatted-date").text().matches(".*(21:00|9:00).*"));
+        Assertions.assertTrue(page.find(new SelectorOptions().css("#formatted-date")).text().matches(".*(21:00|9:00).*"));
     }
 }

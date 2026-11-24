@@ -8,24 +8,24 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 13 pull in Vibium's classes to drive the browser, the `ElementNotFoundException` that Vibium throws when it
-can't find an element, and JUnit to run the tests. Line 16 sets the URL of the example pages.
+Lines 3 to 14 pull in Vibium's classes to drive the browser, the `ElementNotFoundException` that Vibium throws when it
+can't find an element, and JUnit to run the tests. Line 17 sets the URL of the example pages.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 21 to 25) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 27 to 32) closes the browser.
+The `beforeEach` method (lines 22 to 26) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 28 to 33) closes the browser.
 
 ### The Tests
 
 Vibium waits on its own: `page.find` waits for the element to be on the page (30 seconds by default), and actions like
 `click` wait for the element to be visible and enabled. There are no implicit waits to set.
 
-Lines 34 to 42 run the test once for each example page (`@ParameterizedTest`, from the `junit-jupiter-params` library
+Lines 35 to 43 run the test once for each example page (`@ParameterizedTest`, from the `junit-jupiter-params` library
 in the `pom.xml` file). After clicking the start button, `waitUntil("visible", ...)` waits up to 10 seconds for the
 `#finish` element to be visible. Then we check its text.
 
-Lines 44 to 51 show what happens when the wait is too short. The second example adds the element after about 5
+Lines 45 to 52 show what happens when the wait is too short. The second example adds the element after about 5
 seconds, so `page.find` with a 2 second `timeout` fails with an `ElementNotFoundException`. `Assertions.assertThrows`
 checks that it fails.
 

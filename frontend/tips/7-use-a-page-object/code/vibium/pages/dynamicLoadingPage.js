@@ -15,15 +15,15 @@ class DynamicLoadingPage {
     }
 
     async start() {
-        await this.page.find(START_BUTTON).click();
+        await this.page.find({css: START_BUTTON}).click();
     }
 
     async waitForFinish(timeout = 10000) {
-        await this.page.find(FINISH_TEXT).waitUntil('visible', {timeout});
+        await this.page.find({css: FINISH_TEXT}).waitUntil('visible', {timeout});
     }
 
     async finishText() {
-        return this.page.find(FINISH_TEXT).text();
+        return this.page.find({css: FINISH_TEXT}).text();
     }
 }
 

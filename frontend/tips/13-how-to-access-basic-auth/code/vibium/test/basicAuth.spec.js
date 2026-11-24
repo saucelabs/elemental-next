@@ -17,10 +17,8 @@ describe('Basic Auth', function () {
     });
 
     it('logs in with basic auth', async function () {
-        const credentials = Buffer.from('admin:admin').toString('base64');
-        await page.setHeaders({Authorization: `Basic ${credentials}`});
-        await page.go('https://the-internet.herokuapp.com/basic_auth');
+        await page.go('https://admin:admin@the-internet.herokuapp.com/basic_auth');
 
-        assert.strictEqual(await page.find('.example p').text(), MESSAGE);
+        assert.strictEqual(await page.find({css: '.example p'}).text(), MESSAGE);
     });
 });

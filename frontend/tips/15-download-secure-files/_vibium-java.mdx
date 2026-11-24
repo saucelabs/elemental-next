@@ -8,19 +8,18 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Setup and Teardown
 
-Line 20 creates Java's `HttpClient`, which we use to check the files. It doesn't follow redirects, which we need for
+Line 21 creates Java's `HttpClient`, which we use to check the files. It doesn't follow redirects, which we need for
 the second example.
 
-The `beforeEach` method (lines 25 to 29) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 31 to 36) closes the browser.
+The `beforeEach` method (lines 26 to 30) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 32 to 37) closes the browser.
 
 ### Example 1: Files Behind Basic Auth
 
-Lines 38 to 52 are the first test.
+Lines 39 to 53 are the first test.
 
 We visit the page with the files with the user and password in the URL (`https://admin:admin@...`), and get the link
-of the first file. (In the Java and Python clients, `setHeaders` is not enough for basic auth, so we don't use it
-like the JavaScript example does.)
+of the first file.
 
 The `HttpClient` doesn't know about the browser, so we send the credentials in the `Authorization` header, as `Basic`
 followed by `user:password` in Base64. We send a `HEAD` request for the file and check that it answers with status
@@ -28,7 +27,7 @@ followed by `user:password` in Base64. We send a `HEAD` request for the file and
 
 ### Example 2: A Page Behind a Form Login
 
-Lines 54 to 75 log in with the form and wait for the success message. The site keeps the session in a cookie called
+Lines 55 to 76 log in with the form and wait for the success message. The site keeps the session in a cookie called
 `rack.session`.
 
 We get the cookies of the page's context with `page.context().cookies()` and send that one in the `Cookie` header of a

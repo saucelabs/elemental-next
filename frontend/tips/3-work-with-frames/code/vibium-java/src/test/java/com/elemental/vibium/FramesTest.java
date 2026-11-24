@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Element;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ public class FramesTest {
         Page topFrame = page.frame("frame-top");
         Page middleFrame = topFrame.frame("frame-middle");
 
-        Assertions.assertEquals("MIDDLE", middleFrame.find("#content").text());
+        Assertions.assertEquals("MIDDLE", middleFrame.find(new SelectorOptions().css("#content")).text());
     }
 
     @Test
@@ -41,14 +42,14 @@ public class FramesTest {
         page.go("https://the-internet.herokuapp.com/tinymce");
 
         // The editor's iframe has no name and no URL, so we wait for it and take the only frame of the page
-        page.find("#mce_0_ifr");
+        page.find(new SelectorOptions().css("#mce_0_ifr"));
         Page editorFrame = page.frames().get(0);
-        Element editor = editorFrame.find("#tinymce");
+        Element editor = editorFrame.find(new SelectorOptions().css("#tinymce"));
         String beforeText = editor.text();
         editor.clear();
         editor.type("Hello World!");
         Assertions.assertNotEquals(beforeText, editor.text());
 
-        Assertions.assertEquals("An iFrame containing the TinyMCE WYSIWYG Editor", page.find("h3").text());
+        Assertions.assertEquals("An iFrame containing the TinyMCE WYSIWYG Editor", page.find(new SelectorOptions().css("h3")).text());
     }
 }

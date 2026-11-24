@@ -8,20 +8,20 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 12 pull in Vibium's `Browser`, `Page` and `Vibium` classes to drive the browser, JUnit to run the test,
+Lines 3 to 13 pull in Vibium's `Browser`, `Page` and `Vibium` classes to drive the browser, JUnit to run the test,
 `File` to build the path to the file, and `List` to pass it to the file input.
 
 ### Setup and Teardown
 
-Lines 15 and 16 declare the browser and the page, so every method of the class can use them.
+Lines 16 and 17 declare the browser and the page, so every method of the class can use them.
 
-The `beforeEach` method (lines 18 to 22) runs before each test. It starts the browser with `Vibium.start()` and gets
-its first page (tab) with `browser.page()`. The `afterEach` method (lines 24 to 29) runs after each test and closes the
+The `beforeEach` method (lines 19 to 23) runs before each test. It starts the browser with `Vibium.start()` and gets
+its first page (tab) with `browser.page()`. The `afterEach` method (lines 25 to 30) runs after each test and closes the
 browser with `browser.stop()`.
 
 ### The Test
 
-Lines 31 to 42 are the test itself.
+Lines 32 to 43 are the test itself.
 
 First we set the name of the file we'd like to upload. It's a text file called `some-file.txt` in the current working
 directory. We build the full path to it and store it in `path`.

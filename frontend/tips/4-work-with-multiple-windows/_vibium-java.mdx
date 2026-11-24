@@ -8,17 +8,17 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 12 pull in Vibium's classes to drive the browser, JUnit to run the test, and `CompletableFuture` and
+Lines 3 to 13 pull in Vibium's classes to drive the browser, JUnit to run the test, and `CompletableFuture` and
 `TimeUnit` to wait for the new window.
 
 ### Setup and Teardown
 
-Lines 15 and 16 declare the browser and the page. The `beforeEach` method (lines 18 to 22) starts the browser and
-gets its first page (tab). The `afterEach` method (lines 24 to 29) closes the browser.
+Lines 16 and 17 declare the browser and the page. The `beforeEach` method (lines 19 to 23) starts the browser and
+gets its first page (tab). The `afterEach` method (lines 25 to 30) closes the browser.
 
 ### The Test
 
-Lines 31 to 43 are the test itself.
+Lines 32 to 44 are the test itself.
 
 After visiting the page, we ask the browser to complete a `CompletableFuture` with the next new page
 (`browser.onPage`), and then click the link that opens a new window. `newWindow.get` waits (up to 10 seconds) for

@@ -19,8 +19,8 @@ describe('Control the clock', function () {
         await page.clock.install();
 
         await page.go('https://the-internet.herokuapp.com/toasts?duration=60000');
-        await page.find('#success-toast').click();
-        assert.equal(await page.find('.toast-message').text(), 'Saved successfully');
+        await page.find({css: '#success-toast'}).click();
+        assert.equal(await page.find({css: '.toast-message'}).text(), 'Saved successfully');
 
         const toasts = 'document.querySelectorAll(".toast").length';
         await page.clock.runFor(59000);

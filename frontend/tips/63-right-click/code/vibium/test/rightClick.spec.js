@@ -24,7 +24,7 @@ describe('Right Click', function () {
             });
         });
         // Vibium has no right click, so we fire the contextmenu event on the element
-        await page.find('#hot-spot').dispatchEvent('contextmenu', {bubbles: true});
+        await page.find({css: '#hot-spot'}).dispatchEvent('contextmenu', {bubbles: true});
 
         assert.strictEqual(await alertText, 'You selected a context menu');
     });

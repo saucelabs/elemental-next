@@ -18,7 +18,7 @@ describe('Multiple Windows', function () {
         await page.go('https://the-internet.herokuapp.com/windows');
 
         const newPagePromise = new Promise((resolve) => bro.onPopup(resolve));
-        await page.find('.example a').click();
+        await page.find({css: '.example a'}).click();
         const newPage = await newPagePromise;
         await newPage.waitForLoad();
 

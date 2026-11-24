@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,6 @@ public class BasicAuthTest {
     public void basicAuth() {
         page.go("https://admin:admin@the-internet.herokuapp.com/basic_auth");
 
-        Assertions.assertEquals(MESSAGE, page.find(".example p").text());
+        Assertions.assertEquals(MESSAGE, page.find(new SelectorOptions().css(".example p")).text());
     }
 }

@@ -2,7 +2,7 @@ const assert = require('assert');
 const {browser} = require('vibium');
 
 async function dues(page) {
-    const cells = await page.findAll('#table2 tbody .dues');
+    const cells = await page.findAll({css: '#table2 tbody .dues'});
     return Promise.all(cells.map(async (cell) => parseFloat((await cell.text()).replace('$', ''))));
 }
 
@@ -21,16 +21,16 @@ describe('Sort Data Table With Attributes', function () {
     });
 
     it('in ascending order', async function () {
-        await page.find('#table2 thead .dues').click();
-        await page.find('#table2 thead th.headerSortDown:has(.dues)');
+        await page.find({css: '#table2 thead .dues'}).click();
+        await page.find({css: '#table2 thead th.headerSortDown:has(.dues)'});
         const dueValues = await dues(page);
         assert.deepStrictEqual(dueValues, [...dueValues].sort((a, b) => a - b));
     });
 
     it('in descending order', async function () {
-        await page.find('#table2 thead .dues').click();
-        await page.find('#table2 thead .dues').click();
-        await page.find('#table2 thead th.headerSortUp:has(.dues)');
+        await page.find({css: '#table2 thead .dues'}).click();
+        await page.find({css: '#table2 thead .dues'}).click();
+        await page.find({css: '#table2 thead th.headerSortUp:has(.dues)'});
         const dueValues = await dues(page);
         assert.deepStrictEqual(dueValues, [...dueValues].sort((a, b) => b - a));
     });

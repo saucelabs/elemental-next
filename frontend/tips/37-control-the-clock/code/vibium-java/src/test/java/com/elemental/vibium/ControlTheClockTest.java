@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,8 +33,8 @@ public class ControlTheClockTest {
         page.clock().install();
 
         page.go("https://the-internet.herokuapp.com/toasts?duration=60000");
-        page.find("#success-toast").click();
-        Assertions.assertEquals("Saved successfully", page.find(".toast-message").text());
+        page.find(new SelectorOptions().css("#success-toast")).click();
+        Assertions.assertEquals("Saved successfully", page.find(new SelectorOptions().css(".toast-message")).text());
 
         page.clock().runFor(59000);
         Assertions.assertEquals(1, ((Number) page.evaluate(TOASTS)).intValue());

@@ -19,7 +19,7 @@ describe('Compare screenshots', function () {
 
     async function cardScreenshot(url) {
         await page.go(url);
-        return PNG.sync.read(await page.find('#card').screenshot());
+        return PNG.sync.read(await page.find({css: '#card'}).screenshot());
     }
 
     function differentPixels(image, other) {

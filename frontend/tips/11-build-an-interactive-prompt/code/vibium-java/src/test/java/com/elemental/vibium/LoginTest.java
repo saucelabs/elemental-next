@@ -31,9 +31,9 @@ public class LoginTest {
     public void login() {
         page.go("https://the-internet.herokuapp.com");
         page.find(new SelectorOptions().role("link").text("Form Authentication")).click();
-        page.find("#username").fill("tomsmith");
-        page.find("#password").fill("SuperSecretPassword!");
-        page.find("button[type=submit]").click();
-        Assertions.assertTrue(page.find("#flash").text().startsWith("You logged into a secure area!"));
+        page.find(new SelectorOptions().css("#username")).fill("tomsmith");
+        page.find(new SelectorOptions().css("#password")).fill("SuperSecretPassword!");
+        page.find(new SelectorOptions().css("button[type=submit]")).click();
+        Assertions.assertTrue(page.find(new SelectorOptions().css("#flash")).text().startsWith("You logged into a secure area!"));
     }
 }

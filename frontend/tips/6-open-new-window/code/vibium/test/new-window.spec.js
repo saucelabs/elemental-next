@@ -21,6 +21,6 @@ describe('Open New Window', function () {
         await newPage.go('https://the-internet.herokuapp.com/typos');
 
         assert.equal((await bro.pages()).length, 2);
-        assert.equal(await newPage.find('h3').text(), 'Typos');
+        assert.equal(await newPage.find({css: 'h3'}).text(), 'Typos');
     });
 });

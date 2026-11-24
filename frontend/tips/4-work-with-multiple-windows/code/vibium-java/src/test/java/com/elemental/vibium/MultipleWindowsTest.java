@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +35,7 @@ public class MultipleWindowsTest {
 
         CompletableFuture<Page> newWindow = new CompletableFuture<>();
         browser.onPage(newWindow::complete);
-        page.find(".example a").click();
+        page.find(new SelectorOptions().css(".example a")).click();
         Page newPage = newWindow.get(10, TimeUnit.SECONDS);
         newPage.waitForLoad();
 

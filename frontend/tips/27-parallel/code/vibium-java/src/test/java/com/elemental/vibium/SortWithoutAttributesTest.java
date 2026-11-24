@@ -2,6 +2,7 @@ package com.elemental.vibium;
 
 import com.vibium.Browser;
 import com.vibium.Page;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,24 +30,24 @@ public class SortWithoutAttributesTest {
     }
 
     List<Double> dues() {
-        return page.findAll("#table1 tbody tr td:nth-of-type(4)").stream()
+        return page.findAll(new SelectorOptions().css("#table1 tbody tr td:nth-of-type(4)")).stream()
             .map(due -> Double.parseDouble(due.text().replace("$", "")))
             .toList();
     }
 
     @Test
     public void ascendingOrder() {
-        page.find("#table1 thead tr th:nth-of-type(4)").click();
-        page.find("#table1 thead tr th:nth-of-type(4).headerSortDown");
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4).headerSortDown"));
         List<Double> dueValues = dues();
         Assertions.assertEquals(dueValues.stream().sorted().toList(), dueValues);
     }
 
     @Test
     public void descendingOrder() {
-        page.find("#table1 thead tr th:nth-of-type(4)").click();
-        page.find("#table1 thead tr th:nth-of-type(4)").click();
-        page.find("#table1 thead tr th:nth-of-type(4).headerSortUp");
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4)")).click();
+        page.find(new SelectorOptions().css("#table1 thead tr th:nth-of-type(4).headerSortUp"));
         List<Double> dueValues = dues();
         Assertions.assertEquals(dueValues.stream().sorted(Comparator.reverseOrder()).toList(), dueValues);
     }

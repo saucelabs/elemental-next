@@ -8,20 +8,20 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 13 pull in Vibium (with its `Cookie` and `SetCookieParam` types) and JUnit.
+Lines 3 to 14 pull in Vibium (with its `Cookie` and `SetCookieParam` types) and JUnit.
 
 ### Logging In Once
 
-The `logIn` method (lines 21 to 39) runs once, before the tests of the class (`@BeforeAll`): it starts a browser, logs
+The `logIn` method (lines 22 to 40) runs once, before the tests of the class (`@BeforeAll`): it starts a browser, logs
 in through the form, and keeps the session cookie of the logged-in user, `rack.session`, with
 `page.context().cookies()`. Then it closes that browser.
 
 ### Starting Each Test Logged In
 
-The `beforeEach` method (lines 41 to 47) starts a fresh browser for each test. It adds the session cookie to the
+The `beforeEach` method (lines 42 to 48) starts a fresh browser for each test. It adds the session cookie to the
 browser context with `setCookies`, for the site's URL. The cookie of the site has `SameSite=None` without `Secure`,
 which the browser doesn't send, so the test sets it to `lax`. The browser now sends the session cookie, so the site
-sees the user as logged in. The `afterEach` method (lines 49 to 54) closes the browser.
+sees the user as logged in. The `afterEach` method (lines 50 to 55) closes the browser.
 
 ### The Tests
 

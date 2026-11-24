@@ -8,22 +8,22 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 17 pull in Vibium's classes to drive the browser, JUnit to run the tests, and the HTTP client that comes
+Lines 3 to 18 pull in Vibium's classes to drive the browser, JUnit to run the tests, and the HTTP client that comes
 with Java, to request the images.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 25 to 30) starts the browser, gets its first page (tab), and visits a page with some
-broken images. The `afterEach` method (lines 32 to 37) closes the browser.
+The `beforeEach` method (lines 26 to 31) starts the browser, gets its first page (tab), and visits a page with some
+broken images. The `afterEach` method (lines 33 to 38) closes the browser.
 
 ### The Tests
 
 There are two ways to find broken images.
 
-Lines 39 to 53 use an HTTP library. We find all the images, and turn the `src` of each one into a full URL with
+Lines 40 to 54 use an HTTP library. We find all the images, and turn the `src` of each one into a full URL with
 `resolve`. Then we request each image and keep the ones that don't answer with status `200`.
 
-Lines 55 to 64 ask the browser instead, with `page.evaluate`. A broken image is `complete` (the browser finished
+Lines 56 to 65 ask the browser instead, with `page.evaluate`. A broken image is `complete` (the browser finished
 loading it) but has no width (`naturalWidth` is `0`). The code returns the `src` of each broken image, as a Java
 `List`.
 

@@ -16,7 +16,7 @@ describe('Download a File Revisited', function () {
 
     it('file can be downloaded', async function () {
         await page.go('https://the-internet.herokuapp.com/download');
-        const link = new URL(await page.find('.example a').attr('href'), await page.url()).toString();
+        const link = new URL(await page.find({css: '.example a'}).attr('href'), await page.url()).toString();
 
         const response = await fetch(link, {method: 'HEAD'});
         const contentDisposition = response.headers.get('content-disposition');

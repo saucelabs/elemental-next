@@ -13,13 +13,13 @@ async function newUserPage(bro) {
 async function join(page, name) {
     await page.go(CHAT_URL);
     await page.waitForFunction('document.getElementById("status").textContent === "Connected"');
-    await page.find('#name').fill(name);
-    await page.find('#join').click();
+    await page.find({css: '#name'}).fill(name);
+    await page.find({css: '#join'}).click();
 }
 
 async function sendMessage(page, text) {
-    await page.find('#message').fill(text);
-    await page.find('#send').click();
+    await page.find({css: '#message'}).fill(text);
+    await page.find({css: '#send'}).click();
 }
 
 describe('Two users at once', function () {
@@ -40,12 +40,12 @@ describe('Two users at once', function () {
         await join(alice, 'Alice');
         await join(bob, 'Bob');
         // Messages are not saved: Alice waits until Bob is in the room before she writes
-        await alice.find('#messages').find({text: 'Bob joined'});
+        await alice.find({css: '#messages'}).find({text: 'Bob joined'});
 
         await sendMessage(alice, 'Hi Bob');
-        await bob.find('#messages').find({text: 'Alice: Hi Bob'});
+        await bob.find({css: '#messages'}).find({text: 'Alice: Hi Bob'});
 
         await sendMessage(bob, 'Hi Alice');
-        await alice.find('#messages').find({text: 'Bob: Hi Alice'});
+        await alice.find({css: '#messages'}).find({text: 'Bob: Hi Alice'});
     });
 });

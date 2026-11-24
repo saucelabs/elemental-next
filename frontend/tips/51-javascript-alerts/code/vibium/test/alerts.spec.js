@@ -19,13 +19,13 @@ describe('JavaScript Alerts', function () {
         page.onDialog((dialog) => dialog.accept());
         await page.find({role: 'button', text: 'Click for JS Confirm'}).click();
 
-        assert.strictEqual(await page.find('#result').text(), 'You clicked: Ok');
+        assert.strictEqual(await page.find({css: '#result'}).text(), 'You clicked: Ok');
     });
 
     it('dismisses the confirmation', async function () {
         page.onDialog((dialog) => dialog.dismiss());
         await page.find({role: 'button', text: 'Click for JS Confirm'}).click();
 
-        assert.strictEqual(await page.find('#result').text(), 'You clicked: Cancel');
+        assert.strictEqual(await page.find({css: '#result'}).text(), 'You clicked: Cancel');
     });
 });

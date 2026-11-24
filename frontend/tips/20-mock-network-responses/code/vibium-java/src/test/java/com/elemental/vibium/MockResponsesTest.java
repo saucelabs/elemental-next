@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
 import com.vibium.types.FulfillOptions;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,10 +34,10 @@ public class MockResponsesTest {
                 .body("{\"message\": \"Hello from the mock\"}")));
 
         page.go("https://the-internet.herokuapp.com/slow_api");
-        page.find("#call-api").click();
+        page.find(new SelectorOptions().css("#call-api")).click();
 
         // find() waits for the answer to show up in the list
-        Assertions.assertEquals("200: Hello from the mock", page.find("#attempts li").text());
-        Assertions.assertEquals("Hello from the mock", page.find("#status-text").text());
+        Assertions.assertEquals("200: Hello from the mock", page.find(new SelectorOptions().css("#attempts li")).text());
+        Assertions.assertEquals("Hello from the mock", page.find(new SelectorOptions().css("#status-text")).text());
     }
 }

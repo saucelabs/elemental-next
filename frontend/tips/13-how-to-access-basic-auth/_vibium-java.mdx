@@ -8,21 +8,17 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Setting the Credentials
 
-Line 12 holds the message the page shows when we log in.
+Line 13 holds the message the page shows when we log in.
 
-The `beforeEach` method (lines 17 to 21) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 23 to 28) closes the browser.
+The `beforeEach` method (lines 18 to 22) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 24 to 29) closes the browser.
 
 ### The Test
 
-Lines 30 to 35 are the test itself.
+Lines 31 to 36 are the test itself.
 
 We put the user and the password in the URL (`https://admin:admin@...`). The browser sends them to the server, so it
 never shows the login dialog. Then we check that the page shows the message.
-
-The JavaScript example uses `setHeaders` to send the `Authorization` header instead. In the Java and Python clients,
-`setHeaders` is not enough for basic auth: the page fails to load with
-`net::ERR_INVALID_AUTH_CREDENTIALS`.
 
 ### Executing the Test
 

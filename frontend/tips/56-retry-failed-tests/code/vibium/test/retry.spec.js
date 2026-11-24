@@ -20,7 +20,7 @@ describe('Notification Message', function () {
 
     it('is successful', async function () {
         await page.go('https://the-internet.herokuapp.com/notification_message');
-        const message = await page.find('#flash').text();
+        const message = await page.find({css: '#flash'}).text();
         assert(message.includes('Action successful'), message);
     });
 });

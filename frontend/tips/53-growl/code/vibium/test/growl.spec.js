@@ -38,7 +38,7 @@ describe('Growl', function () {
         // Step 4: display a message with jquery-growl
         await page.evaluate("window.jQuery.growl({title: 'GET', message: '/'})");
 
-        assert.strictEqual(await page.find('#growls .growl .growl-title').text(), 'GET');
-        assert.strictEqual(await page.find('#growls .growl .growl-message').text(), '/');
+        assert.strictEqual(await page.find({css: '#growls .growl .growl-title'}).text(), 'GET');
+        assert.strictEqual(await page.find({css: '#growls .growl .growl-message'}).text(), '/');
     });
 });

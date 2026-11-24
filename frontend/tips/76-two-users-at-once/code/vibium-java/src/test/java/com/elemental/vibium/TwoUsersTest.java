@@ -35,13 +35,13 @@ public class TwoUsersTest {
     void join(Page page, String name) {
         page.go(CHAT_URL);
         page.waitForFunction("document.getElementById('status').textContent === 'Connected'");
-        page.find("#name").fill(name);
-        page.find("#join").click();
+        page.find(new SelectorOptions().css("#name")).fill(name);
+        page.find(new SelectorOptions().css("#join")).click();
     }
 
     void sendMessage(Page page, String text) {
-        page.find("#message").fill(text);
-        page.find("#send").click();
+        page.find(new SelectorOptions().css("#message")).fill(text);
+        page.find(new SelectorOptions().css("#send")).click();
     }
 
     @Test
@@ -52,12 +52,12 @@ public class TwoUsersTest {
         join(alice, "Alice");
         join(bob, "Bob");
         // Messages are not saved: Alice waits until Bob is in the room before she writes
-        alice.find("#messages").find(new SelectorOptions().text("Bob joined"));
+        alice.find(new SelectorOptions().css("#messages")).find(new SelectorOptions().text("Bob joined"));
 
         sendMessage(alice, "Hi Bob");
-        bob.find("#messages").find(new SelectorOptions().text("Alice: Hi Bob"));
+        bob.find(new SelectorOptions().css("#messages")).find(new SelectorOptions().text("Alice: Hi Bob"));
 
         sendMessage(bob, "Hi Alice");
-        alice.find("#messages").find(new SelectorOptions().text("Bob: Hi Alice"));
+        alice.find(new SelectorOptions().css("#messages")).find(new SelectorOptions().text("Bob: Hi Alice"));
     }
 }
