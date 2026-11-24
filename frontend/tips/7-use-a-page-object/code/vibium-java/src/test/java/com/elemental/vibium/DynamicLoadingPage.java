@@ -2,6 +2,7 @@ package com.elemental.vibium;
 
 import com.vibium.Page;
 import com.vibium.types.FindOptions;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.Assertions;
 
 public class DynamicLoadingPage {
@@ -21,14 +22,14 @@ public class DynamicLoadingPage {
     }
 
     public void start() {
-        page.find(START_BUTTON).click();
+        page.find(new SelectorOptions().css(START_BUTTON)).click();
     }
 
     public void waitForFinish() {
-        page.find(FINISH_TEXT).waitUntil("visible", new FindOptions().timeout(10000));
+        page.find(new SelectorOptions().css(FINISH_TEXT)).waitUntil("visible", new FindOptions().timeout(10000));
     }
 
     public String finishText() {
-        return page.find(FINISH_TEXT).text();
+        return page.find(new SelectorOptions().css(FINISH_TEXT)).text();
     }
 }

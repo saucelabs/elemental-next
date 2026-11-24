@@ -20,7 +20,7 @@ describe('Download Secure Files', function () {
         const credentials = Buffer.from('admin:admin').toString('base64');
         await page.setHeaders({Authorization: `Basic ${credentials}`});
         await page.go(`${BASE_URL}/download_secure`);
-        const link = new URL(await page.find('.example a').attr('href'), BASE_URL).toString();
+        const link = new URL(await page.find({css: '.example a'}).attr('href'), BASE_URL).toString();
 
         const response = await fetch(link, {
             method: 'HEAD',
@@ -31,10 +31,10 @@ describe('Download Secure Files', function () {
 
     it('checks a page behind a form login', async function () {
         await page.go(`${BASE_URL}/login`);
-        await page.find('#username').fill('tomsmith');
-        await page.find('#password').fill('SuperSecretPassword!');
-        await page.find('#login button').click();
-        await page.find('.flash.success').waitUntil('visible');
+        await page.find({css: '#username'}).fill('tomsmith');
+        await page.find({css: '#password'}).fill('SuperSecretPassword!');
+        await page.find({css: '#login button'}).click();
+        await page.find({css: '.flash.success'}).waitUntil('visible');
 
         const cookies = await page.context.cookies();
         const cookie = cookies.find((c) => c.name === 'rack.session');

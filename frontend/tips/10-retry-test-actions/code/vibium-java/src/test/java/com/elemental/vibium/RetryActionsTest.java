@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +40,7 @@ public class RetryActionsTest {
     public void eventuallyDisplaysASuccessfulNotification() {
         String message = retryIfMessageContains("please try again", () -> {
             page.go("https://the-internet.herokuapp.com/notification_message");
-            return page.find("#flash").text();
+            return page.find(new SelectorOptions().css("#flash")).text();
         });
         Assertions.assertTrue(message.contains("Action successful"));
     }

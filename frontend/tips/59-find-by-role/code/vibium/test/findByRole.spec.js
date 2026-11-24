@@ -21,6 +21,6 @@ describe('Find by role', function () {
         await page.find({role: 'option', text: 'Mango'}).click();
 
         assert.equal(await page.find({role: 'combobox', label: 'Fruit'}).text(), 'Mango');
-        assert.equal(await page.find('#result').text(), 'Selected: mango');
+        assert.equal(await page.find({css: '#result'}).text(), 'Selected: mango');
     });
 });

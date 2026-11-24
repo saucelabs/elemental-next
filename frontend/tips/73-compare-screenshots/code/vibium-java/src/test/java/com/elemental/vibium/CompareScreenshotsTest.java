@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class CompareScreenshotsTest {
 
     BufferedImage cardScreenshot(String url) throws IOException {
         page.go(url);
-        byte[] png = page.find("#card").screenshot();
+        byte[] png = page.find(new SelectorOptions().css("#card")).screenshot();
         return ImageIO.read(new ByteArrayInputStream(png));
     }
 

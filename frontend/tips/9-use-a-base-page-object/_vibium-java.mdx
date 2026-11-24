@@ -10,8 +10,8 @@ import TipCode from "@site/src/components/tipCode";
 
 <TipCode codePath={"9-use-a-base-page-object/code/vibium-java/src/test/java/com/elemental/vibium/BasePage.java"} language={"java"}/>
 
-The base page holds what every page object needs. It keeps the Vibium `page` (lines 10 to 14), and has methods for
-the common actions: `visit` a path of the site and check the title (lines 16 to 19), `click`, `type`, get the text of
+The base page holds what every page object needs. It keeps the Vibium `page` (lines 11 to 15), and has methods for
+the common actions: `visit` a path of the site and check the title (lines 17 to 20), `click`, `type`, get the text of
 an element (`textOf`), check that it is visible (`isDisplayed`), and `waitFor` it to be visible.
 
 If we ever need to change how we click or type (e.g., to add logging), we change it in one place.

@@ -14,10 +14,10 @@ describe('Reuse a login', function () {
         try {
             const loginPage = await loginBrowser.page();
             await loginPage.go(`${BASE_URL}/login`);
-            await loginPage.find('#username').fill('tomsmith');
-            await loginPage.find('#password').fill('SuperSecretPassword!');
-            await loginPage.find('button[type="submit"]').click();
-            await loginPage.find('a[href="/logout"]');
+            await loginPage.find({css: '#username'}).fill('tomsmith');
+            await loginPage.find({css: '#password'}).fill('SuperSecretPassword!');
+            await loginPage.find({css: 'button[type="submit"]'}).click();
+            await loginPage.find({css: 'a[href="/logout"]'});
             const cookies = await loginPage.context.cookies();
             sessionCookie = cookies.find((cookie) => cookie.name === 'rack.session');
         } finally {
@@ -39,13 +39,13 @@ describe('Reuse a login', function () {
     it('the secure area shows the user', async function () {
         await page.go(`${BASE_URL}/secure`);
 
-        assert.equal(await page.find('#username').text(), 'tomsmith');
+        assert.equal(await page.find({css: '#username'}).text(), 'tomsmith');
     });
 
     it('logs out', async function () {
         await page.go(`${BASE_URL}/secure`);
-        await page.find('a[href="/logout"]').click();
+        await page.find({css: 'a[href="/logout"]'}).click();
 
-        assert.match(await page.find('#flash').text(), /You logged out of the secure area!/);
+        assert.match(await page.find({css: '#flash'}).text(), /You logged out of the secure area!/);
     });
 });

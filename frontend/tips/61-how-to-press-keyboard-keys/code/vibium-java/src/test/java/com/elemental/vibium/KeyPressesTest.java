@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,13 +29,13 @@ public class KeyPressesTest {
 
     @Test
     public void sendsKeysToAnElement() {
-        page.find("#target").press("Space");
-        Assertions.assertEquals("You entered: SPACE", page.find("#result").text());
+        page.find(new SelectorOptions().css("#target")).press("Space");
+        Assertions.assertEquals("You entered: SPACE", page.find(new SelectorOptions().css("#result")).text());
     }
 
     @Test
     public void sendsKeysWithoutAnElement() {
         page.keyboard().press("Tab");
-        Assertions.assertEquals("You entered: TAB", page.find("#result").text());
+        Assertions.assertEquals("You entered: TAB", page.find(new SelectorOptions().css("#result")).text());
     }
 }

@@ -21,6 +21,6 @@ describe('Basic Auth', function () {
         await page.setHeaders({Authorization: `Basic ${credentials}`});
         await page.go('https://the-internet.herokuapp.com/basic_auth');
 
-        assert.strictEqual(await page.find('.example p').text(), MESSAGE);
+        assert.strictEqual(await page.find({css: '.example p'}).text(), MESSAGE);
     });
 });

@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Element;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,7 +41,7 @@ public class BrokenImagesTest {
     public void brokenImagesWithAnHttpLibrary() throws Exception {
         URI pageUrl = URI.create(page.url());
         List<String> brokenImages = new ArrayList<>();
-        for (Element image : page.findAll("img")) {
+        for (Element image : page.findAll(new SelectorOptions().css("img"))) {
             URI source = pageUrl.resolve(image.attr("src"));
             HttpRequest request = HttpRequest.newBuilder(source).build();
             if (httpClient.send(request, HttpResponse.BodyHandlers.discarding()).statusCode() != 200) {

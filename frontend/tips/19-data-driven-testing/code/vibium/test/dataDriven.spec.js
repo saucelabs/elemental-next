@@ -27,11 +27,11 @@ describe('Data-driven login', function () {
     for (const user of userData()) {
         it(`logs in as ${user.account_type}`, async function () {
             await page.go('https://the-internet.herokuapp.com/login');
-            await page.find('#username').fill(user.username);
-            await page.find('#password').fill(user.password);
-            await page.find('#login button').click();
+            await page.find({css: '#username'}).fill(user.username);
+            await page.find({css: '#password'}).fill(user.password);
+            await page.find({css: '#login button'}).click();
 
-            const notification = await page.find('#flash').text();
+            const notification = await page.find({css: '#flash'}).text();
             assert(notification.startsWith(user.notification_message), notification);
         });
     }

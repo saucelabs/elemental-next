@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,6 @@ public class ScreenshotTest {
     @Test
     public void failsOnPurpose() {
         page.go("https://the-internet.herokuapp.com");
-        Assertions.assertEquals("blah blah blah", page.find("h1").text());
+        Assertions.assertEquals("blah blah blah", page.find(new SelectorOptions().css("h1")).text());
     }
 }

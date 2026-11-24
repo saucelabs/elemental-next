@@ -6,7 +6,7 @@ const HIGHLIGHT_STYLE = 'border: 2px solid red; border-style: dashed;';
 async function highlight(page, selector, duration = 3) {
     const element = `document.querySelector('${selector}')`;
     // store the original style so it can be reset later
-    const originalStyle = (await page.find(selector).attr('style')) || '';
+    const originalStyle = (await page.find({css: selector}).attr('style')) || '';
     // style the element with a red dashed border
     await page.evaluate(`${element}.setAttribute('style', '${HIGHLIGHT_STYLE}')`);
     // keep the element highlighted for a spell and then revert
@@ -32,11 +32,11 @@ describe('Highlight Elements', function () {
 
     it('highlights an element', async function () {
         await highlight(page, '[id="sibling-2.3"]', 0);
-        assert((await page.find('[id="sibling-2.3"]').attr('style')).includes('dashed'));
+        assert((await page.find({css: '[id="sibling-2.3"]'}).attr('style')).includes('dashed'));
     });
 
     it('reverts the style afterward', async function () {
         await highlight(page, '[id="sibling-2.3"]', 1);
-        assert(!((await page.find('[id="sibling-2.3"]').attr('style')) || '').includes('dashed'));
+        assert(!((await page.find({css: '[id="sibling-2.3"]'}).attr('style')) || '').includes('dashed'));
     });
 });

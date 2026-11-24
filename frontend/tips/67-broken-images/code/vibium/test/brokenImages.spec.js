@@ -16,7 +16,7 @@ describe('Broken Images', function () {
     });
 
     it('finds them with an HTTP library', async function () {
-        const images = await page.findAll('img');
+        const images = await page.findAll({css: 'img'});
         const sources = await Promise.all(images.map(async (image) =>
             new URL(await image.attr('src'), await page.url()).toString()));
         const brokenImages = [];

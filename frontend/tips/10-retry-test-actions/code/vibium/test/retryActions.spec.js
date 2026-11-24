@@ -25,7 +25,7 @@ describe('Retry Test Actions', function () {
     it('eventually displays a successful notification', async function () {
         const message = await retryIfMessageContains('please try again', async () => {
             await page.go('https://the-internet.herokuapp.com/notification_message');
-            return page.find('#flash').text();
+            return page.find({css: '#flash'}).text();
         });
         assert(message.includes('Action successful'));
     });

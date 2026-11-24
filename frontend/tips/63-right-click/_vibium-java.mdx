@@ -8,23 +8,23 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 13 pull in Vibium's classes to drive the browser, JUnit to run the test, and `CompletableFuture` and
+Lines 3 to 14 pull in Vibium's classes to drive the browser, JUnit to run the test, and `CompletableFuture` and
 `TimeUnit` to wait for the alert.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 19 to 23) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 25 to 30) closes the browser.
+The `beforeEach` method (lines 20 to 24) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 26 to 31) closes the browser.
 
 ### The Test
 
-Lines 32 to 45 are the test itself.
+Lines 33 to 46 are the test itself.
 
 The page has a box that opens a JavaScript alert when we right click on it. Vibium can't right click yet, so we fire
 the `contextmenu` event (the event a right click sends) on the box with `dispatchEvent`. The page handles it the same
 way.
 
-Before that, lines 36 to 40 set a handler with `page.onDialog`. When the alert opens, the handler completes a
+Before that, lines 37 to 41 set a handler with `page.onDialog`. When the alert opens, the handler completes a
 `CompletableFuture` with its message and accepts it. Then `alertText.get` waits (up to 10 seconds) for the message, and
 we check it.
 

@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,10 +35,10 @@ public class UploadTest {
         String path = new File(fileName).getAbsolutePath();
 
         page.go("https://the-internet.herokuapp.com/upload");
-        page.find("#file-upload").setFiles(List.of(path));
-        page.find("#file-submit").click();
+        page.find(new SelectorOptions().css("#file-upload")).setFiles(List.of(path));
+        page.find(new SelectorOptions().css("#file-submit")).click();
 
-        String text = page.find("#uploaded-files").text();
+        String text = page.find(new SelectorOptions().css("#uploaded-files")).text();
         Assertions.assertEquals(fileName, text);
     }
 }

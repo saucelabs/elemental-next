@@ -17,7 +17,7 @@ class LoggingPage {
     }
 
     async click(selector) {
-        const element = await this.page.find(selector);
+        const element = await this.page.find({css: selector});
         this.log(`Clicking on ${await element.text()}`);
         const preClickUrl = await this.page.url();
         await element.click();

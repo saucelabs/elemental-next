@@ -16,8 +16,8 @@ describe('Hovers', function () {
 
     it('displays the caption on hover', async function () {
         await page.go('https://the-internet.herokuapp.com/hovers');
-        const anAvatar = await page.find('.figure');
-        const caption = await anAvatar.find('.figcaption');
+        const anAvatar = await page.find({css: '.figure'});
+        const caption = await anAvatar.find({css: '.figcaption'});
         assert.strictEqual(await caption.isVisible(), false);
 
         await anAvatar.hover();

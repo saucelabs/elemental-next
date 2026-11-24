@@ -8,12 +8,12 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 9 pull in Vibium's classes to drive the browser, and JUnit to run the test.
+Lines 3 to 10 pull in Vibium's classes to drive the browser, and JUnit to run the test.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 15 to 19) starts the browser and gets its first page (tab). The `afterEach` method
-(lines 21 to 26) closes the browser.
+The `beforeEach` method (lines 16 to 20) starts the browser and gets its first page (tab). The `afterEach` method
+(lines 22 to 27) closes the browser.
 
 ### Retrying the Test
 
@@ -23,7 +23,7 @@ times. JUnit also runs `beforeEach` and `afterEach` again, so each try gets a ne
 
 ### The Test
 
-Lines 28 to 35 visit the page and check that the notification says `Action successful`. When it doesn't, the test
+Lines 29 to 36 visit the page and check that the notification says `Action successful`. When it doesn't, the test
 fails and Surefire runs it again.
 
 ### Executing the Test

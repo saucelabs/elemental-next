@@ -2,6 +2,7 @@ package com.elemental.vibium;
 
 import com.vibium.Element;
 import com.vibium.Page;
+import com.vibium.types.SelectorOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class LoggingPage {
     }
 
     public void click(String selector) {
-        Element element = page.find(selector);
+        Element element = page.find(new SelectorOptions().css(selector));
         log("Clicking on " + element.text());
         String preClickUrl = page.url();
         element.click();

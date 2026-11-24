@@ -23,7 +23,7 @@ describe('Download Test', function () {
         await page.go('https://the-internet.herokuapp.com/download');
 
         const downloadStarted = new Promise((resolve) => page.onDownload(resolve));
-        await page.find('.example a').click();
+        await page.find({css: '.example a'}).click();
         const download = await downloadStarted;
 
         const filePath = path.join(tmpDir, download.suggestedFilename());

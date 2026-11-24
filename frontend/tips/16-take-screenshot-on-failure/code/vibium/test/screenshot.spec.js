@@ -21,7 +21,7 @@ describe('Screenshot', function () {
 
     it('fails on purpose', async function () {
         await page.go('https://the-internet.herokuapp.com');
-        const heading = await page.find('h1').text();
+        const heading = await page.find({css: 'h1'}).text();
         assert.strictEqual(heading, 'blah blah blah');
     });
 });

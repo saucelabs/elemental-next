@@ -34,6 +34,6 @@ public class FindByRoleTest {
         page.find(new SelectorOptions().role("option").text("Mango")).click();
 
         Assertions.assertEquals("Mango", page.find(new SelectorOptions().role("combobox").label("Fruit")).text());
-        Assertions.assertEquals("Selected: mango", page.find("#result").text());
+        Assertions.assertEquals("Selected: mango", page.find(new SelectorOptions().css("#result")).text());
     }
 }

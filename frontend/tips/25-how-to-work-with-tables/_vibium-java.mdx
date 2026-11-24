@@ -8,17 +8,17 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Importing Libraries
 
-Lines 3 to 13 pull in Vibium's classes to drive the browser, JUnit to run the tests, and `Comparator` and `List` to
+Lines 3 to 14 pull in Vibium's classes to drive the browser, JUnit to run the tests, and `Comparator` and `List` to
 sort the values.
 
 ### Setup and Teardown
 
-The `beforeEach` method (lines 19 to 24) starts the browser, gets its first page (tab), and visits the page with the
-tables. The `afterEach` method (lines 26 to 31) closes the browser.
+The `beforeEach` method (lines 20 to 25) starts the browser, gets its first page (tab), and visits the page with the
+tables. The `afterEach` method (lines 27 to 32) closes the browser.
 
 ### Helpers
 
-Lines 33 to 39 have two helpers. `texts` finds all the cells that match a selector with `page.findAll` and returns
+Lines 34 to 40 have two helpers. `texts` finds all the cells that match a selector with `page.findAll` and returns
 their text. `dues` turns the text of the "Due" cells (e.g., `$50.00`) into numbers, so we can sort them.
 
 ### The Tests
@@ -32,10 +32,10 @@ after the click, and marks the header with the class `headerSortDown` (ascending
 So before reading the values, we wait for the header with that class (`page.find` waits for it). Then we check that
 the values are in the same order as a sorted copy of them.
 
-- Lines 41 to 47 sort the "Due" column of the first table in ascending order.
-- Lines 49 to 56 sort it in descending order.
-- Lines 58 to 64 sort the "Email" column, which is text.
-- Lines 66 to 72 sort the "Due" column of the second table, using its classes.
+- Lines 42 to 48 sort the "Due" column of the first table in ascending order.
+- Lines 50 to 57 sort it in descending order.
+- Lines 59 to 65 sort the "Email" column, which is text.
+- Lines 67 to 73 sort the "Due" column of the second table, using its classes.
 
 ### Executing the Test
 

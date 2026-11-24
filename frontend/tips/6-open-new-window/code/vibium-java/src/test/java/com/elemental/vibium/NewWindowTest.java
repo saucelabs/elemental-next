@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,6 @@ public class NewWindowTest {
         newPage.go("https://the-internet.herokuapp.com/typos");
 
         Assertions.assertEquals(2, browser.pages().size());
-        Assertions.assertEquals("Typos", newPage.find("h3").text());
+        Assertions.assertEquals("Typos", newPage.find(new SelectorOptions().css("h3")).text());
     }
 }

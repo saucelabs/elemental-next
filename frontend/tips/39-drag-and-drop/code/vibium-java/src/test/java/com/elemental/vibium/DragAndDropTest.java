@@ -3,6 +3,7 @@ package com.elemental.vibium;
 import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,9 +30,9 @@ public class DragAndDropTest {
     public void swapsTheColumns() {
         page.go("https://the-internet.herokuapp.com/drag_and_drop");
 
-        page.find("#column-a").dragTo(page.find("#column-b"));
+        page.find(new SelectorOptions().css("#column-a")).dragTo(page.find(new SelectorOptions().css("#column-b")));
 
-        Assertions.assertEquals("B", page.find("#column-a").text());
-        Assertions.assertEquals("A", page.find("#column-b").text());
+        Assertions.assertEquals("B", page.find(new SelectorOptions().css("#column-a")).text());
+        Assertions.assertEquals("A", page.find(new SelectorOptions().css("#column-b")).text());
     }
 }

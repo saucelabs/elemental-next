@@ -33,7 +33,7 @@ public class AlertsTest {
         page.onDialog(Dialog::accept);
         page.find(new SelectorOptions().role("button").text("Click for JS Confirm")).click();
 
-        Assertions.assertEquals("You clicked: Ok", page.find("#result").text());
+        Assertions.assertEquals("You clicked: Ok", page.find(new SelectorOptions().css("#result")).text());
     }
 
     @Test
@@ -41,6 +41,6 @@ public class AlertsTest {
         page.onDialog(Dialog::dismiss);
         page.find(new SelectorOptions().role("button").text("Click for JS Confirm")).click();
 
-        Assertions.assertEquals("You clicked: Cancel", page.find("#result").text());
+        Assertions.assertEquals("You clicked: Cancel", page.find(new SelectorOptions().css("#result")).text());
     }
 }

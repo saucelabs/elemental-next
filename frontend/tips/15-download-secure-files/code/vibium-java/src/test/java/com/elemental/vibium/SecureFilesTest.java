@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
 import com.vibium.types.Cookie;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +40,7 @@ public class SecureFilesTest {
     public void filesBehindBasicAuth() throws Exception {
         String credentials = Base64.getEncoder().encodeToString("admin:admin".getBytes());
         page.go("https://admin:admin@the-internet.herokuapp.com/download_secure");
-        String link = page.find(".example a").attr("href");
+        String link = page.find(new SelectorOptions().css(".example a")).attr("href");
 
         // The file names can have spaces and other characters, which this URI constructor encodes.
         URI url = new URI("https", "the-internet.herokuapp.com", "/" + link, null);
@@ -54,10 +55,10 @@ public class SecureFilesTest {
     @Test
     public void pageBehindFormLogin() throws Exception {
         page.go(BASE_URL + "/login");
-        page.find("#username").fill("tomsmith");
-        page.find("#password").fill("SuperSecretPassword!");
-        page.find("#login button").click();
-        page.find(".flash.success").waitUntil("visible");
+        page.find(new SelectorOptions().css("#username")).fill("tomsmith");
+        page.find(new SelectorOptions().css("#password")).fill("SuperSecretPassword!");
+        page.find(new SelectorOptions().css("#login button")).click();
+        page.find(new SelectorOptions().css(".flash.success")).waitUntil("visible");
 
         Cookie cookie = page.context().cookies().stream()
             .filter(c -> c.name().equals("rack.session"))

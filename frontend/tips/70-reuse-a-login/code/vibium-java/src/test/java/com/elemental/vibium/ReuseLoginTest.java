@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Page;
 import com.vibium.Vibium;
 import com.vibium.types.Cookie;
+import com.vibium.types.SelectorOptions;
 import com.vibium.types.SetCookieParam;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -25,10 +26,10 @@ public class ReuseLoginTest {
         try {
             Page loginPage = loginBrowser.page();
             loginPage.go(BASE_URL + "/login");
-            loginPage.find("#username").fill("tomsmith");
-            loginPage.find("#password").fill("SuperSecretPassword!");
-            loginPage.find("button[type='submit']").click();
-            loginPage.find("a[href=\"/logout\"]");
+            loginPage.find(new SelectorOptions().css("#username")).fill("tomsmith");
+            loginPage.find(new SelectorOptions().css("#password")).fill("SuperSecretPassword!");
+            loginPage.find(new SelectorOptions().css("button[type='submit']")).click();
+            loginPage.find(new SelectorOptions().css("a[href=\"/logout\"]"));
             sessionCookie = loginPage.context().cookies().stream()
                     .filter(cookie -> cookie.name().equals("rack.session"))
                     .findFirst()
@@ -57,14 +58,14 @@ public class ReuseLoginTest {
     public void theSecureAreaShowsTheUser() {
         page.go(BASE_URL + "/secure");
 
-        Assertions.assertEquals("tomsmith", page.find("#username").text());
+        Assertions.assertEquals("tomsmith", page.find(new SelectorOptions().css("#username")).text());
     }
 
     @Test
     public void logOut() {
         page.go(BASE_URL + "/secure");
-        page.find("a[href='/logout']").click();
+        page.find(new SelectorOptions().css("a[href='/logout']")).click();
 
-        Assertions.assertTrue(page.find("#flash").text().contains("You logged out of the secure area!"));
+        Assertions.assertTrue(page.find(new SelectorOptions().css("#flash")).text().contains("You logged out of the secure area!"));
     }
 }

@@ -4,6 +4,7 @@ import com.vibium.Browser;
 import com.vibium.Element;
 import com.vibium.Page;
 import com.vibium.Vibium;
+import com.vibium.types.SelectorOptions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,8 +30,8 @@ public class HoversTest {
     @Test
     public void displaysTheCaptionOnHover() {
         page.go("https://the-internet.herokuapp.com/hovers");
-        Element anAvatar = page.find(".figure");
-        Element caption = anAvatar.find(".figcaption");
+        Element anAvatar = page.find(new SelectorOptions().css(".figure"));
+        Element caption = anAvatar.find(new SelectorOptions().css(".figcaption"));
         Assertions.assertFalse(caption.isVisible());
 
         anAvatar.hover();

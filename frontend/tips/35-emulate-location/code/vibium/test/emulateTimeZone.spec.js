@@ -19,8 +19,8 @@ describe('Emulate time zone', function () {
 
         await page.go('https://the-internet.herokuapp.com/locale');
 
-        assert.equal(await page.find('#browser-timezone').text(), 'Asia/Tokyo');
+        assert.equal(await page.find({css: '#browser-timezone'}).text(), 'Asia/Tokyo');
         // 12:00 UTC is 21:00 in Tokyo (9:00 PM with a 12-hour clock, depending on the browser's language)
-        assert.match(await page.find('#formatted-date').text(), /21:00|9:00/);
+        assert.match(await page.find({css: '#formatted-date'}).text(), /21:00|9:00/);
     });
 });

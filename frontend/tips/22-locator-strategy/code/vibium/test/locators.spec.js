@@ -16,21 +16,21 @@ describe('Locator Strategy', function () {
 
     it('finds the first link on the page', async function () {
         await page.go('https://the-internet.herokuapp.com/download');
-        const link = await page.find('a').attr('href');
+        const link = await page.find({css: 'a'}).attr('href');
         console.log(link);
         assert(link.includes('#content'));
     });
 
     it('finds the first link in the content', async function () {
         await page.go('https://the-internet.herokuapp.com/download');
-        const link = await page.find('#content a').attr('href');
+        const link = await page.find({css: '#content a'}).attr('href');
         console.log(link);
         assert(link.includes('download/'));
     });
 
     it('finds the first link in the example', async function () {
         await page.go('https://the-internet.herokuapp.com/download');
-        const link = await page.find('#content .example a').attr('href');
+        const link = await page.find({css: '#content .example a'}).attr('href');
         console.log(link);
         assert(link.includes('download/'));
     });
