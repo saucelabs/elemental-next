@@ -142,6 +142,8 @@ tips/1-upload-a-file/
 2. Add the runnable code under `code/<lang>/`, following the conventions above. It must work on Ubuntu, Windows and
    macOS, since CI runs it on all three.
 3. Add one `_<lang>.mdx` partial per language and list them in the `<DisplayTips>` block of `main.mdx`.
+   Add each tool of the block to `tags` in lowercase (e.g., `selenium`, `playwright`): the tool cards of the home
+   page link to the tag pages.
 4. Every path in a `<TipCode codePath=...>` must exist under `frontend/tips/`, or the site build fails.
 5. Set `card_highlight` in the frontmatter. After the merge, CI creates the social card (or run
    `npm run cards -- <tip folder>`).
