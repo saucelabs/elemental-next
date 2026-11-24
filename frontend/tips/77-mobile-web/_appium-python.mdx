@@ -1,0 +1,53 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"77-mobile-web/code/appium-python/mobile_web.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Opening the Browser
+
+- Line 10 is the Sauce Labs URL for the `us-west-1` data center, and line 11 is the site under test.
+- Lines 14 to 36 are a fixture that starts a session on Sauce Labs with the browser of the device. It has two
+  parameters (`Android` and `iOS`), so each test that uses it runs twice, once on each platform.
+- Lines 16 and 17 skip the test when the Sauce Labs credentials are not set.
+- Lines 20 to 23 ask for any Google phone (`Google.*`) with the `UiAutomator2` Appium driver. On Sauce Labs, the device
+  name is a regular expression, and the test gets the first free device that matches. Line 23 sets `browserName` to
+  `Chrome`: instead of installing an app, Appium opens Chrome. Lines 24 to 27 do the same on an iPhone, with the
+  `XCUITest` Appium driver and Safari.
+- Lines 28 to 33 are the Sauce Labs options (`sauce:options`): the credentials, the Appium version and the name of the
+  test on Sauce Labs. The Appium version is a fixed one (`appium3-2026-11`): with `latest`, Safari doesn't always load
+  the page the test opens.
+- Line 34 starts the session, and lines 35 and 36 end it after the test, which frees the device.
+
+From here on, the driver works like a Selenium `WebDriver` in a desktop browser.
+
+### The Tests
+
+- Lines 39 to 51 open the home page of the-internet, tap the "Form Authentication" link, wait for the login form, type
+  the user name and the password, and tap the login button. Lines 50 and 51 wait for the message at the top of the
+  page and check that it welcomes the user.
+- Lines 54 to 61 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
+
+Two things are different from a desktop browser:
+
+- Safari on a real device doesn't always wait for the page to load before `get` returns. Lines 42 and 57 wait for the
+  first element the test needs, instead of looking for it right away.
+- The device types with its on-screen keyboard, which takes the bottom half of the screen. On Android, it can cover the
+  login button, and the tap lands on the keyboard. Lines 46 and 47 hide it first (`hide_keyboard`). On iOS, Safari
+  scrolls the page above the keyboard.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"77-mobile-web/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest mobile_web.py` from the
+command-line. The tests show up on the Sauce Labs test results page, with the video of each session.

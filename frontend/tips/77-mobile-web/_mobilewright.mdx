@@ -1,0 +1,55 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"77-mobile-web/code/mobilewright/tests/mobileWeb.test.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Configuring Sauce Labs
+
+[Mobilewright](https://github.com/mobile-next/mobilewright) is a mobile test framework with the API of Playwright.
+Where the tests run is part of the configuration: the [Sauce Labs driver](https://github.com/saucelabs/mobilewright-saucelabs)
+(`@saucelabs/mobilewright-driver`) runs them on Sauce Labs real devices.
+
+<TipCode codePath={"77-mobile-web/code/mobilewright/mobilewright.config.ts"} language={"ts"}/>
+
+- Lines 4 to 7 skip the run when the Sauce Labs credentials are not set. Otherwise, the driver reads them from the
+  `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
+- Lines 11 to 14 set the timeouts. Finding a free device can take a few minutes, and the 5 second defaults of
+  Mobilewright are meant for local devices. Line 12 runs one device at a time.
+- Line 15 sets the Sauce Labs driver, the data center (`us-west-1`), and the name of the build on Sauce Labs.
+- Lines 16 to 34 are one project for each platform. Each one asks for a device by a regular expression of its name
+  (`deviceName`); on Android, a Pixel with Android 13 or later, which the Sauce Labs driver needs. There is no app to
+  install: `bundleId` is the browser that Mobilewright opens before each test, Chrome on Android
+  (`com.android.chrome`) and Safari on iOS (`com.apple.mobilesafari`).
+
+### The Tests
+
+To Mobilewright, the browser is an app with a web view. `screen.getByWebView().page()` connects to the page of the
+browser and gives the test a page with the API of Playwright (`goto`, `locator`, `fill`, `click`, ...).
+
+- Lines 6 to 13 are a helper that gives each test that page. A new Safari opens on its start page, which is not a web
+  page, so there is nothing to connect to. In that case, lines 8 and 9 open the site with `device.openUrl`, which
+  opens it in a tab. The next tests use that same tab: Safari shows only the tab in front to the test. Line 11 goes to
+  the page the test needs. Chrome always has a page, so on Android the helper only goes to the URL.
+- Lines 15 to 24 open the home page of the-internet, tap the "Form Authentication" link, type the user name and the
+  password, and tap the login button. Line 23 waits for the message at the top of the page and checks that it welcomes
+  the user.
+- Lines 26 to 33 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"77-mobile-web/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the tests by executing `npm test` from the command-line. It runs
+the Android project first and then the iOS one (`mobilewright test --project android`, then `--project ios`), as the
+Sauce Labs driver recommends running each platform in its own process. The tests show up on the Sauce Labs test results
+page, with the video of each session.

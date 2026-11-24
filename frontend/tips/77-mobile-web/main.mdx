@@ -1,0 +1,98 @@
+---
+title: 'How to Test a Website on a Real Mobile Device'
+card_highlight: 'Real Mobile Device'
+id: 77-mobile-web
+slug: /77-mobile-web
+sidebar_label: Test a Website on a Real Mobile Device
+description: "Many of your users visit your site from a phone. Here is how to test it in Chrome on a real Android phone and in Safari on a real iPhone on Sauce Labs, with Appium and Mobilewright."
+number: 77
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-24
+tags:
+  - 'mobile testing'
+  - 'mobile web'
+  - 'mobile'
+  - 'real devices'
+  - 'appium'
+  - 'mobilewright'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Test a Website on a Real Mobile Device
+
+## Intro
+
+Many of your users visit your site from a phone, in Chrome on Android or in Safari on an iPhone. A desktop browser with
+a small window is not the same: mobile browsers have their own engines, on-screen keyboards, touch, and their own bugs.
+To know your site works for those users, test it in the browsers they use, on the phones they have.
+
+## A Solution
+
+Run your tests in the browser of a real device in the cloud. [Sauce Labs](https://saucelabs.com/) has a cloud of real
+Android phones and iPhones. Your test asks for a device and a browser (Chrome on Android, Safari on iOS), opens your site
+and drives it, as it would in a desktop browser. There is no app to install. Each test run records a video, screenshots
+and the device logs.
+
+The examples test [the-internet](https://the-internet.herokuapp.com). Each one has two tests, and runs each test on an
+Android phone and on an iPhone:
+
+- Open the home page, follow the "Form Authentication" link, log in, and check the welcome message.
+- Open the checkboxes page, tap the first checkbox, and check that it is checked.
+
+The tools:
+
+- **Appium** starts the browser of the device when you set `browserName` instead of an app. From there, the test uses the
+  WebDriver API you know from Selenium: `get`, `findElement`, `click`, `sendKeys`, ...
+- **Mobilewright** opens the browser like any other app (with its `bundleId`), and `getByWebView` gives the test a page
+  with the API of Playwright.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. Each one asks for a device by a pattern of its name (e.g., `Google.*` or
+`iPhone.*`), so any free device that matches can run the test. See [tip 30](/tips/30-mobile) for a first test on a real
+device with a native app.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device that matches the test (an Android phone or an iPhone)
+- The browser of the device opens (Chrome on Android, Safari on iOS)
+- The test logs in to the-internet and checks the welcome message, or checks a checkbox
+- The session ends, and the results (with a video, screenshots and the device logs) are available on the
+  [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/)
+
+## Summary
+
+With your tests running in Chrome and Safari on real phones, you see your site the way your mobile users do. The tests
+are the same web tests you know: only the browser they ask for changes.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
