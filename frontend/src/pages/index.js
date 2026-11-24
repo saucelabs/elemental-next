@@ -219,7 +219,7 @@ function ToolCard({logo, name, meta, count}) {
         </>
     );
     return count
-        ? <Link className={styles.tool} to="/tips">{content}</Link>
+        ? <Link className={styles.tool} to={`/tips/tags/${name.toLowerCase()}`}>{content}</Link>
         : <div className={clsx(styles.tool, styles.toolSoon)}>{content}</div>;
 }
 
