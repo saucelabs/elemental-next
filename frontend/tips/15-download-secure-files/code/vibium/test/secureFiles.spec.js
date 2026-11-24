@@ -17,11 +17,10 @@ describe('Download Secure Files', function () {
     });
 
     it('checks the files behind Basic Auth', async function () {
-        const credentials = Buffer.from('admin:admin').toString('base64');
-        await page.setHeaders({Authorization: `Basic ${credentials}`});
-        await page.go(`${BASE_URL}/download_secure`);
+        await page.go('https://admin:admin@the-internet.herokuapp.com/download_secure');
         const link = new URL(await page.find({css: '.example a'}).attr('href'), BASE_URL).toString();
 
+        const credentials = Buffer.from('admin:admin').toString('base64');
         const response = await fetch(link, {
             method: 'HEAD',
             headers: {Authorization: `Basic ${credentials}`},

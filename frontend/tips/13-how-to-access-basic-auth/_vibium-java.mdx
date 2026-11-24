@@ -20,10 +20,6 @@ Lines 31 to 36 are the test itself.
 We put the user and the password in the URL (`https://admin:admin@...`). The browser sends them to the server, so it
 never shows the login dialog. Then we check that the page shows the message.
 
-The JavaScript example uses `setHeaders` to send the `Authorization` header instead. In the Java and Python clients,
-`setHeaders` is not enough for basic auth: the page fails to load with
-`net::ERR_INVALID_AUTH_CREDENTIALS`.
-
 ### Executing the Test
 
 Before executing the test, we need to make sure the required libraries are declared on the `pom.xml` file.
