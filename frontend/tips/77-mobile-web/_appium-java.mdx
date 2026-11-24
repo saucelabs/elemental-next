@@ -15,16 +15,16 @@ import TipCode from "@site/src/components/tipCode";
 
 ### Opening the Browser
 
-Lines 76 to 96 start a session on Sauce Labs with the browser of the device.
+Lines 74 to 94 start a session on Sauce Labs with the browser of the device.
 
-- Lines 77 to 81 are the Sauce Labs options (`sauce:options`): the credentials, the Appium version and the name of the
+- Lines 75 to 79 are the Sauce Labs options (`sauce:options`): the credentials, the Appium version and the name of the
   test on Sauce Labs. The Appium version is a fixed one (`appium3-2026-11`): with `latest`, Safari doesn't always load
   the page the test opens.
-- Lines 85 to 88 ask for any Google phone (`Google.*`) with the `UiAutomator2` Appium driver. On Sauce Labs, the device
-  name is a regular expression, and the test gets the first free device that matches. Line 86 sets `browserName` to
+- Lines 83 to 86 ask for any Google phone (`Google.*`) with the `UiAutomator2` Appium driver. On Sauce Labs, the device
+  name is a regular expression, and the test gets the first free device that matches. Line 84 sets `browserName` to
   `Chrome`: instead of installing an app, Appium opens Chrome.
-- Lines 90 to 93 do the same on an iPhone, with the `XCUITest` Appium driver and Safari.
-- Line 95 creates a wait of up to 30 seconds.
+- Lines 88 to 91 do the same on an iPhone, with the `XCUITest` Appium driver and Safari.
+- Line 93 creates a wait of up to 30 seconds.
 
 From here on, the driver works like a Selenium `WebDriver` in a desktop browser.
 
@@ -32,17 +32,17 @@ From here on, the driver works like a Selenium `WebDriver` in a desktop browser.
 
 Each test runs twice, once on Android and once on iOS: `@ParameterizedTest` with `@ValueSource` passes the platform.
 
-- Lines 45 to 61 open the home page of the-internet, tap the "Form Authentication" link, wait for the login form, type
-  the user name and the password, and tap the login button. Lines 59 and 60 wait for the message at the top of the
+- Lines 45 to 59 open the home page of the-internet, tap the "Form Authentication" link, wait for the login form, type
+  the user name and the password, and tap the login button. Lines 57 and 58 wait for the message at the top of the
   page and check that it welcomes the user.
-- Lines 65 to 74 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
+- Lines 63 to 72 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
 
 Two things are different from a desktop browser:
 
-- Safari on a real device doesn't always wait for the page to load before `get` returns. Lines 49 and 69 wait for the
+- Safari on a real device doesn't always wait for the page to load before `get` returns. Lines 48 and 67 wait for the
   first element the test needs, instead of looking for it right away.
 - The device types with its on-screen keyboard, which takes the bottom half of the screen. On Android, it can cover the
-  login button, and the tap lands on the keyboard. Lines 54 to 56 hide it first (`hideKeyboard`). On iOS, Safari
+  login button, and the tap lands on the keyboard. Lines 52 to 54 hide it first (`hideKeyboard`). On iOS, Safari
   scrolls the page above the keyboard.
 
 ### Executing the Test

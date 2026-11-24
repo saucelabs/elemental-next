@@ -7,7 +7,6 @@ describe('The Internet on a mobile browser', () => {
 
         await $('#username').setValue('tomsmith');
         await $('#password').setValue('SuperSecretPassword!');
-        // On Android, the on-screen keyboard can cover the login button
         if (driver.isAndroid) {
             await driver.hideKeyboard();
         }

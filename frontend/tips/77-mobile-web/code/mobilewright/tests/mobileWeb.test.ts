@@ -3,10 +3,8 @@ import type {Device, Screen} from 'mobilewright';
 
 const BASE_URL = 'https://the-internet.herokuapp.com';
 
-// Gives the test the page of the browser's tab, at the given URL
 async function openPage(device: Device, screen: Screen, url: string) {
     const page = await screen.getByWebView().first().page().catch(async () => {
-        // A new Safari opens on its start page, which is not a web page: opening the site in a tab gives it one
         await device.openUrl(url);
         return screen.getByWebView().first().page();
     });

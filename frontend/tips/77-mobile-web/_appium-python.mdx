@@ -25,17 +25,17 @@ From here on, the driver works like a Selenium `WebDriver` in a desktop browser.
 
 ### The Tests
 
-- Lines 39 to 53 open the home page of the-internet, tap the "Form Authentication" link, wait for the login form, type
-  the user name and the password, and tap the login button. Lines 52 and 53 wait for the message at the top of the
+- Lines 39 to 51 open the home page of the-internet, tap the "Form Authentication" link, wait for the login form, type
+  the user name and the password, and tap the login button. Lines 50 and 51 wait for the message at the top of the
   page and check that it welcomes the user.
-- Lines 56 to 63 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
+- Lines 54 to 61 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
 
 Two things are different from a desktop browser:
 
-- Safari on a real device doesn't always wait for the page to load before `get` returns. Lines 43 and 59 wait for the
+- Safari on a real device doesn't always wait for the page to load before `get` returns. Lines 42 and 57 wait for the
   first element the test needs, instead of looking for it right away.
 - The device types with its on-screen keyboard, which takes the bottom half of the screen. On Android, it can cover the
-  login button, and the tap lands on the keyboard. Lines 48 and 49 hide it first (`hide_keyboard`). On iOS, Safari
+  login button, and the tap lands on the keyboard. Lines 46 and 47 hide it first (`hide_keyboard`). On iOS, Safari
   scrolls the page above the keyboard.
 
 ### Executing the Test

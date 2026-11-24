@@ -45,12 +45,10 @@ public class MobileWebTest {
     public void logsIn(String platform) throws Exception {
         openBrowser(platform, "Logs in");
         driver.get(BASE_URL);
-        // Safari doesn't always wait for the page to load, so the test waits for the elements it needs
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='/login']"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#username"))).sendKeys("tomsmith");
         driver.findElement(By.cssSelector("#password")).sendKeys("SuperSecretPassword!");
-        // On Android, the on-screen keyboard can cover the login button
         if (driver instanceof AndroidDriver android) {
             android.hideKeyboard();
         }

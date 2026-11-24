@@ -38,13 +38,11 @@ def driver(request):
 
 def test_logs_in(driver):
     driver.get(BASE_URL)
-    # Safari doesn't always wait for the page to load, so the test waits for the elements it needs
     wait = WebDriverWait(driver, 30)
     wait.until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, "a[href='/login']"))).click()
 
     wait.until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '#username'))).send_keys('tomsmith')
     driver.find_element(By.CSS_SELECTOR, '#password').send_keys('SuperSecretPassword!')
-    # On Android, the on-screen keyboard can cover the login button
     if driver.capabilities['platformName'].lower() == 'android':
         driver.hide_keyboard()
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()

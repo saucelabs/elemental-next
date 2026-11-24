@@ -16,28 +16,28 @@ In WebdriverIO, the devices are part of the configuration, not of the test.
 
 - Lines 3 to 5 give WebdriverIO the Sauce Labs user name and access key (from the `SAUCE_USERNAME` and
   `SAUCE_ACCESS_KEY` environment variables) and the region of the data center (`us` is `us-west-1`).
-- Lines 7 to 10 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and
+- Lines 6 to 9 turn on the Sauce service (the `@wdio/sauce-service` package). It names each job on Sauce Labs and
   marks it as passed or failed when the tests end.
-- Line 12 is the site under test, so the tests open its pages with a path (`browser.url('/checkboxes')`).
-- Lines 15 to 27 ask for two devices, and the tests run on each one. The device name is a regular expression
+- Line 11 is the site under test, so the tests open its pages with a path (`browser.url('/checkboxes')`).
+- Lines 13 to 25 ask for two devices, and the tests run on each one. The device name is a regular expression
   (`Google.*` is any Google phone), and the tests get the first free device that matches. `browserName` opens the
-  browser of the device instead of an app: Chrome on Android (line 19) and Safari on iOS (line 25). The Appium version
+  browser of the device instead of an app: Chrome on Android (line 17) and Safari on iOS (line 23). The Appium version
   is a fixed one (`appium3-2026-11`): with `latest`, Safari doesn't always load the page the test opens.
-- Line 14 runs one device at a time, and lines 29 and 30 give Sauce Labs up to 5 minutes to find a device.
-- Line 31 makes the actions and assertions wait up to 30 seconds for their element.
-- Lines 37 to 42 skip the run when the Sauce Labs credentials are not set.
+- Line 12 runs one device at a time, and lines 26 and 27 give Sauce Labs up to 5 minutes to find a device.
+- Line 28 makes the actions and assertions wait up to 30 seconds for their element.
+- Lines 33 to 38 skip the run when the Sauce Labs credentials are not set.
 
 ### The Tests
 
 The tests use the same WebdriverIO API as in a desktop browser.
 
-- Lines 4 to 17 open the home page of the-internet, tap the "Form Authentication" link, type the user name and the
-  password, and tap the login button. Line 16 waits for the message at the top of the page and checks that it welcomes
+- Lines 4 to 16 open the home page of the-internet, tap the "Form Authentication" link, type the user name and the
+  password, and tap the login button. Line 15 waits for the message at the top of the page and checks that it welcomes
   the user.
-- Lines 19 to 26 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
+- Lines 18 to 25 open the checkboxes page, check that the first checkbox is not checked, tap it, and check that it is.
 
 The device types with its on-screen keyboard, which takes the bottom half of the screen. On Android, it can cover the
-login button, and the tap lands on the keyboard. Lines 11 to 13 hide it first (`hideKeyboard`). On iOS, Safari scrolls
+login button, and the tap lands on the keyboard. Lines 10 to 12 hide it first (`hideKeyboard`). On iOS, Safari scrolls
 the page above the keyboard. `driver.isAndroid` tells which device the test is running on.
 
 ### Executing the Test
