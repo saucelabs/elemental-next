@@ -47,6 +47,15 @@
         "vibium-*"
       ],
       "groupName": "Vibium Python"
+    },
+    {
+      "description": "The Sauce Labs driver for Mobilewright needs one exact version of Mobilewright, so update them together",
+      "matchPackageNames": [
+        "mobilewright",
+        "@mobilewright/**",
+        "@saucelabs/mobilewright-driver"
+      ],
+      "groupName": "Mobilewright"
     }
   ]
 }
