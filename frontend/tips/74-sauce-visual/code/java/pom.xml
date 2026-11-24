@@ -13,12 +13,12 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.52.0</version>
+            <version>4.54.0</version>
         </dependency>
         <dependency>
             <groupId>com.saucelabs.visual</groupId>
             <artifactId>java-client</artifactId>
-            <version>0.23.0</version>
+            <version>0.23.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>

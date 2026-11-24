@@ -8,7 +8,7 @@
     "test": "mocha test/**/*.spec.js --timeout 60000 --parallel --jobs 2"
   },
   "dependencies": {
-    "vibium": "26.8.21"
+    "vibium": "26.11.16"
   },
   "devDependencies": {
     "mocha": "12.0.3"
