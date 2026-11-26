@@ -1,0 +1,40 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"79-parallel-mobile-tests/code/appium-python/parallel.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+pytest runs tests one at a time. The [pytest-xdist](https://pytest-xdist.readthedocs.io/) plugin runs them in several
+processes at the same time. The `pytest.ini` file turns it on for every run, with two processes (`-n 2`):
+
+<TipCode codePath={"79-parallel-mobile-tests/code/appium-python/pytest.ini"} language={"ini"}/>
+
+### The Test
+
+- Line 15 runs the fixture (and so each test that uses it) once for each platform: `params=['Android', 'iOS']`. With
+  pytest-xdist, the Android run and the iOS run go to different processes and start at the same time.
+- Lines 20 to 35 start the session for the platform. It is the same as tip 30: the options of the platform, the app,
+  and the Sauce Labs options, with the platform in the name of the test.
+- Lines 36 and 37 give the session to the test and end it afterwards. Lines 17 and 18 skip the test when the Sauce Labs
+  credentials are not set.
+- Lines 41 to 44 pick the locator of the platform. The test is the same on both: only the way to find the backpack
+  changes.
+- Lines 45 and 46 wait up to 30 seconds for the backpack and check that it is displayed.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"79-parallel-mobile-tests/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest parallel.py` from the
+command-line. Both sessions show up on the Sauce Labs test results page at the same time.

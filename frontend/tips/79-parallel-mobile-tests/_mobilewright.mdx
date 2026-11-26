@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"79-parallel-mobile-tests/code/mobilewright/mobilewright.config.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+Mobilewright runs the tests of each project in workers, as Playwright does. Each worker gets its own device.
+
+- Line 12 runs two workers at the same time (`workers: 2`).
+- Lines 16 to 37 are the two projects: an Android phone and an iPhone. One `mobilewright test` runs both, so the
+  Android test and the iOS test start at the same time. In tip 30, `npm test` runs each project on its own, one after
+  the other.
+
+The rest is the configuration from tip 30: the Sauce Labs driver, the timeouts, and the device and app of each project.
+
+### The Test
+
+<TipCode codePath={"79-parallel-mobile-tests/code/mobilewright/tests/parallel.test.ts"} language={"ts"}/>
+
+The test is the same on both platforms. `getByText` with a regular expression finds the backpack on each one, and
+`toBeVisible` waits for it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"79-parallel-mobile-tests/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Both
+sessions show up on the Sauce Labs test results page at the same time.

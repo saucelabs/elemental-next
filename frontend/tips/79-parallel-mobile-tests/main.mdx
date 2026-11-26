@@ -1,0 +1,99 @@
+---
+title: 'How to Run Mobile Tests in Parallel'
+card_highlight: 'in Parallel'
+id: 79-parallel-mobile-tests
+slug: /79-parallel-mobile-tests
+sidebar_label: Run Mobile Tests in Parallel
+description: "Mobile tests are slow, and running them one device at a time makes them slower. Here is how to run one test on Android and iOS at the same time on Sauce Labs real devices, with Appium, Mobilewright, Espresso and XCUITest."
+number: 79
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'parallel'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Run Mobile Tests in Parallel
+
+## Intro
+
+A mobile test takes time before it even starts: finding a free device, installing the app, and opening it. Run your
+tests on an Android phone and then on an iPhone, and you wait twice. Add more tests and more devices, and the wait grows
+with each one.
+
+## A Solution
+
+Write the test once for both platforms, and run it on several devices at the same time. Each device on
+[Sauce Labs](https://saucelabs.com/) is its own session, so the sessions don't share anything, and they can run side by
+side. The run takes about as long as the slowest device, not the sum of all of them.
+
+The examples take the test from [tip 30](/tips/30-mobile) (open the demo app and check that the catalog shows the Sauce
+Labs Backpack) and run it in parallel:
+
+- **Appium** and **Mobilewright** run one test on an Android phone and on an iPhone at the same time. Only the locator
+  changes between the platforms. Each test runner has its own way to run tests in parallel: JUnit's parallel execution,
+  pytest-xdist, and the workers of WebdriverIO and Mobilewright.
+- **Espresso** and **XCUITest** run on one platform, so they run the test on two devices of the same platform at the same
+  time, with saucectl's `concurrency`.
+
+How many tests can run at once depends on the concurrency of your Sauce Labs account. Sessions over that limit wait in a
+queue until a device is free.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs starts two sessions at the same time: an Android phone and an iPhone (Appium and Mobilewright), or two
+  devices of the same platform (Espresso and XCUITest)
+- Each device installs the demo app, and the test checks that the catalog shows the Sauce Labs Backpack
+- The run takes about as long as one session, not two
+- The results of each session are available on the
+  [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/)
+
+## Summary
+
+Running your tests in parallel is the simplest way to make a mobile suite faster. Keep each test independent (its own
+session, its own data), and the number of devices you can use is the only limit.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

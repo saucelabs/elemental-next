@@ -1,0 +1,62 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"79-parallel-mobile-tests/code/xcuitest/ParallelUITests/ParallelTests.swift"} language={"swift"}/>
+
+## Code Walkthrough
+
+The test is the one from [tip 30](/tips/30-mobile): it opens the demo app by its bundle identifier and waits up to 30
+seconds for the text "Sauce Labs Backpack - Black". Running in parallel doesn't change the test: it is all in the
+configuration of saucectl.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 2
+  metadata:
+    build: Elemental Selenium - Tip 79 - XCUITest
+xcuitest:
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  testApp: build/Build/Products/Debug-iphoneos/ParallelUITests-Runner.app
+suites:
+  - name: Parallel
+    devices:
+      - name: iPhone 1[67].*
+      - name: iPhone 1[3-5].*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+  The test app is the one `xcodebuild build-for-testing` builds (see below).
+- `suites` asks for two devices: a newer iPhone (`iPhone 1[67].*`, an iPhone 16 or 17) and an older one
+  (`iPhone 1[3-5].*`). saucectl starts one job for each device.
+- `concurrency: 2` runs up to two jobs at the same time, so both devices run the tests in parallel. In tip 30 it is
+  `1`. Set it to the concurrency of your Sauce Labs account, at most.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+You need a Mac with Xcode, and [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl). First,
+build the tests for a real device:
+
+```bash
+xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project Parallel.xcodeproj -scheme Parallel \
+  -sdk iphoneos -derivedDataPath build
+```
+
+The tests don't need to be signed: Sauce Labs signs the app and the tests to install them on its devices. Then run them
+by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on Sauce
+Labs, with the video and the device logs.
