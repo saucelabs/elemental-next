@@ -1,0 +1,101 @@
+---
+title: 'How to Scroll to an Element in a Mobile App'
+card_highlight: 'Scroll'
+id: 82-mobile-scroll
+slug: /82-mobile-scroll
+sidebar_label: Scroll to an Element in a Mobile App
+description: "Mobile screens are small, and the element you need is often below the fold. Here is how to swipe until it shows up, with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs real devices."
+number: 82
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'scroll'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Scroll to an Element in a Mobile App
+
+## Intro
+
+On a phone, most screens don't fit: a long list, a form, a product page with its button at the bottom. In a web page,
+WebDriver scrolls to an element before clicking it. In a mobile app, an element below the fold is often not there at
+all: Android and iOS lists only create the rows on screen, and reuse them as you scroll. So the test can't find the
+element until it scrolls, and it can't scroll to an element it can't find.
+
+## A Solution
+
+Swipe, as a user would, until the element shows up. Swipe a bit at a time, check for the element after each swipe, and
+give up after a few swipes, so a missing element fails the test instead of swiping forever.
+
+- **Appium** swipes with W3C actions: a finger touches the screen, moves up, and lifts. The Appium drivers also have
+  their own commands (`mobile: scrollGesture` on Android, `mobile: scroll` on iOS), and WebdriverIO has
+  `scrollIntoView`, but a plain swipe works the same on both platforms and in every app.
+- **Mobilewright** has `screen.swipe()`. Its `scrollIntoViewIfNeeded()` does the loop for you in simple screens.
+- **Espresso** has `swipeUp()` on a view, and `scrollTo()` for a view inside a `ScrollView`.
+- **XCUITest** has `swipeUp()` on the app or on an element.
+
+On Android, the catalog of the demo app is a list inside a scroll view, and only the outer scroll view moves. Swipe on
+the screen, or on the view that scrolls: a swipe on the inner list does nothing. Also swipe slowly enough (half a
+second or more): a fast swipe can turn into a fling the app ignores, or scroll past the element.
+
+The examples use Sauce Labs' demo app ("My Demo App", for [Android](https://github.com/saucelabs/my-demo-app-android)
+and [iOS](https://github.com/saucelabs/my-demo-app-ios)). Its catalog has more than thirty products, and the test swipes
+through it until the "Sauce Labs Onesie" shows up, near the end of the list.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. See [tip 30](/tips/30-mobile) for how the tests start a session on a
+real device.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test waits for the catalog, which shows after the splash screen
+- It swipes up through the catalog until the "Sauce Labs Onesie" is on screen, up to ten swipes
+- It checks that the onesie is displayed
+
+## Summary
+
+Swipe in small steps, check after each one, and stop after a few tries. Your test then finds elements below the fold on
+any screen size, and fails fast when an element is really missing.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
