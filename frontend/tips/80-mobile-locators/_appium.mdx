@@ -9,9 +9,9 @@ This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
 ## Code Walkthrough
 
 The configuration (`wdio.conf.js`) is the one from [tip 30](/tips/30-mobile): an Android phone and an iPhone on Sauce
-Labs, each with the demo app. The device names ask for phones with a regular screen (`Google Pixel [0-9]+( Pro)?` and
-`iPhone 1[4-7].*`), since the test taps "Add to cart" without scrolling: on a small iPhone SE, or on the inner screen of
-a foldable, the button is below the fold.
+Labs, each with the demo app. The device names ask for phones with a regular screen (`Google Pixel ([89]|1[0-9])( Pro)?`
+and `iPhone 1[4-7].*`), since the test taps "Add to cart" without scrolling: on a small iPhone SE, or on the inner
+screen of a foldable, the button is below the fold.
 
 ### The Test
 

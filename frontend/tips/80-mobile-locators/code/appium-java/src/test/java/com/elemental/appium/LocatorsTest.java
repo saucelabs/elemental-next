@@ -43,7 +43,7 @@ public class LocatorsTest {
     @Test
     public void android() throws Exception {
         UiAutomator2Options options = new UiAutomator2Options()
-            .setDeviceName("Google Pixel [0-9]+( Pro)?")
+            .setDeviceName("Google Pixel ([89]|1[0-9])( Pro)?")
             .setApp(ANDROID_APP);
         options.setCapability("sauce:options", sauceOptions("Android"));
         driver = new AndroidDriver(URI.create(SAUCE_URL).toURL(), options);

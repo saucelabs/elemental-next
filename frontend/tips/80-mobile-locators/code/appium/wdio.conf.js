@@ -12,7 +12,7 @@ export const config = {
     capabilities: [{
         platformName: 'Android',
         'appium:automationName': 'UiAutomator2',
-        'appium:deviceName': 'Google Pixel [0-9]+( Pro)?',
+        'appium:deviceName': 'Google Pixel ([89]|1[0-9])( Pro)?',
         'appium:app': 'https://github.com/saucelabs/my-demo-app-android/releases/download/2.3.0/mda-2.3.0-27.apk',
         'sauce:options': {appiumVersion: 'latest'},
     }, {

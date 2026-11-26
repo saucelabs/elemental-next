@@ -42,7 +42,7 @@ def find(driver, accessibility_id):
 
 def test_android(start_driver):
     options = UiAutomator2Options()
-    options.device_name = 'Google Pixel [0-9]+( Pro)?'
+    options.device_name = 'Google Pixel ([89]|1[0-9])( Pro)?'
     options.app = ANDROID_APP
     driver = start_driver(options, 'Android')
 

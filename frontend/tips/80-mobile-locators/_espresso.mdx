@@ -67,9 +67,9 @@ artifacts:
 
 - `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
   the same key as the tests, and the test app.
-- `suites` asks for a device. The name is a regular expression: `Google Pixel [0-9]+( Pro)?` is a Pixel or a Pixel
-  Pro, with a regular screen, since the test taps "Add to cart" without scrolling. `deviceType: PHONE` leaves out the
-  tablets. The tests run on the first free device that matches.
+- `suites` asks for a device. The name is a regular expression: `Google Pixel ([89]|1[0-9])( Pro)?` is a Pixel 8 or
+  newer (or its Pro model), with a regular screen, since the test taps "Add to cart" without scrolling. `deviceType:
+  PHONE` leaves out the tablets. The tests run on the first free device that matches.
 - `artifacts` downloads the JUnit report of the run into `artifacts/`.
 
 ### Executing the Test
