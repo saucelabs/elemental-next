@@ -1,0 +1,67 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"83-mobile-keyboard/code/xcuitest/KeyboardUITests/KeyboardTests.swift"} language={"swift"}/>
+
+## Code Walkthrough
+
+### The Test
+
+- Lines 6 and 7 open the demo app, as in [tip 30](/tips/30-mobile).
+- Lines 9 to 12 wait for the "More" tab (the app shows a splash screen first), and open the WebView screen.
+- Lines 14 to 16 find the only text field of the screen, tap it (which brings up the keyboard), and type the URL with
+  `typeText`.
+- Line 17 checks that the field holds the URL. The text of a field is its `value`.
+- Lines 19 and 20 tap "Go To Site", which is above the keyboard, and wait for the web view.
+
+The demo app doesn't close its keyboard on "Return" or on a tap outside the field. In your app, if it does, tap
+`app.keyboards.buttons["Return"]` or an empty part of the screen before tapping elements under the keyboard.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 83 - XCUITest
+xcuitest:
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  testApp: build/Build/Products/Debug-iphoneos/KeyboardUITests-Runner.app
+suites:
+  - name: Keyboard
+    devices:
+      - name: iPhone.*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+  The test app is the one `xcodebuild build-for-testing` builds (see below).
+- `suites` asks for a device. The name is a regular expression (`iPhone.*` is any iPhone), and the tests run on the
+  first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+You need a Mac with Xcode, and [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl). First,
+build the tests for a real device:
+
+```bash
+xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project Keyboard.xcodeproj -scheme Keyboard \
+  -sdk iphoneos -derivedDataPath build
+```
+
+The tests don't need to be signed: Sauce Labs signs the app and the tests to install them on its devices. Then run them
+by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on Sauce
+Labs, with the video and the device logs.

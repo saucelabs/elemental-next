@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"83-mobile-keyboard/code/appium-java/src/test/java/com/elemental/appium/KeyboardTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): lines 22 to 43 skip the tests without credentials and end the
+session after each test, and lines 88 to 94 are the Sauce Labs options. `find` (lines 83 to 86) waits up to 30 seconds
+for an element to be visible.
+
+### The Tests
+
+- Line 49 keeps the session as an `AndroidDriver`, which has the keyboard commands of Android.
+- Lines 52 and 53 open the menu and the WebView screen.
+- Lines 55 and 56 find the URL field by its resource ID (`urlET`) and type the URL with `sendKeys`.
+- Line 57 checks that the field holds the URL. `getText` returns the text of the field.
+- Lines 58 to 60 close the keyboard if it is up: `isKeyboardShown` checks, and `hideKeyboard` closes it.
+- Lines 62 and 63 tap "Go To Site" and check that the web view shows up.
+- Lines 72 to 80 do the same on iOS. The URL field has no accessibility ID, so line 75 finds it by its type, the only
+  text field of the screen. The iOS app doesn't close its keyboard, and "Go To Site" is above it, so the test taps it
+  with the keyboard up.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"83-mobile-keyboard/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line.

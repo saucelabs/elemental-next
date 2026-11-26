@@ -1,0 +1,104 @@
+---
+title: 'How to Type Text in a Mobile App'
+card_highlight: 'Type Text'
+id: 83-mobile-keyboard
+slug: /83-mobile-keyboard
+sidebar_label: Type Text in a Mobile App
+description: "Typing on a phone brings up a keyboard that covers half of the screen. Here is how to type text, check it, and get the keyboard out of the way, with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs real devices."
+number: 83
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'keyboard'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Type Text in a Mobile App
+
+## Intro
+
+When a test types into a text field on a phone, the on-screen keyboard comes up and covers the bottom half of the
+screen. The next button the test needs is often under it. A tap on that button then lands on a key, and the test fails
+in a confusing way, or types a letter by mistake.
+
+## A Solution
+
+Type the text, check that the field holds it, and close the keyboard before you tap something that may be under it.
+
+- **Appium** types with `sendKeys` (`send_keys` in Python, `setValue` in WebdriverIO), and the text of the field is
+  its value. `isKeyboardShown` tells whether the keyboard is up, and `hideKeyboard` closes it. On Android, Appium
+  types without the keyboard most of the time, and `hideKeyboard` presses BACK when it is up. On iOS, `hideKeyboard`
+  looks for a key that closes it (like "Done"), and fails when the app has none.
+- **Mobilewright** types with `fill`, and `screen.keyboard.isVisible()` and `screen.keyboard.hide()` check and close
+  the keyboard. On Android, `hide()` presses BACK, so check that the keyboard is up first: BACK without a keyboard goes
+  to the previous screen.
+- **Espresso** types with `typeText`, which opens the keyboard, and closes it with `closeSoftKeyboard()`.
+- **XCUITest** taps the field and types with `typeText`. The value of the field is in `value`.
+
+On iOS, an app decides when its keyboard goes away: when the user taps "Return", taps outside the field, or leaves the
+screen. If the app does none of these (Sauce Labs' demo app doesn't, on its login screen), no tool can close the
+keyboard for you. Ask the developers to add one: users can't get past that keyboard either.
+
+The examples use Sauce Labs' demo app ("My Demo App", for [Android](https://github.com/saucelabs/my-demo-app-android)
+and [iOS](https://github.com/saucelabs/my-demo-app-ios)). Each one opens the WebView screen from the menu, types a URL,
+checks it, closes the keyboard on Android, taps "Go To Site", and checks that the web view shows up. On iOS, "Go To
+Site" is above the keyboard, so the test taps it with the keyboard up.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. See [tip 30](/tips/30-mobile) for how the tests start a session on a
+real device.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test opens the WebView screen from the menu
+- It types `https://saucelabs.com` and checks that the field holds it
+- On Android, it closes the keyboard if it is up
+- It taps "Go To Site" and checks that the web view shows up
+
+## Summary
+
+Check what you typed, and close the keyboard before you tap below it. When the app gives no way to close the keyboard,
+that is a bug worth reporting, not something to work around in every test.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

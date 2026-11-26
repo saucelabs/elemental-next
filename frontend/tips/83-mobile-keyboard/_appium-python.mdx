@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"83-mobile-keyboard/code/appium-python/keyboard.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): the fixture in lines 16 to 36 skips the test without credentials,
+starts the sessions with the Sauce Labs options, and ends them after the test. `find` (lines 39 and 40) waits up to 30
+seconds for an element to be visible.
+
+### The Tests
+
+- Lines 49 and 50 open the menu and the WebView screen.
+- Lines 52 and 53 find the URL field by its resource ID (`urlET`) and type the URL with `send_keys`.
+- Line 54 checks that the field holds the URL. `text` returns the text of the field.
+- Lines 55 and 56 close the keyboard if it is up: `is_keyboard_shown` checks, and `hide_keyboard` closes it.
+- Lines 58 and 59 tap "Go To Site" and check that the web view shows up.
+- Lines 68 to 76 do the same on iOS. The URL field has no accessibility ID, so line 71 finds it by its type, the only
+  text field of the screen. The iOS app doesn't close its keyboard, and "Go To Site" is above it, so the test taps it
+  with the keyboard up.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"83-mobile-keyboard/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest keyboard.py` from the
+command-line.
