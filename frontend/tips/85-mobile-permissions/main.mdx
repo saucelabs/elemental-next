@@ -1,0 +1,102 @@
+---
+title: 'How to Handle Permission Pop-ups in a Mobile App'
+card_highlight: 'Permission Pop-ups'
+id: 85-mobile-permissions
+slug: /85-mobile-permissions
+sidebar_label: Handle Permission Pop-ups in a Mobile App
+description: "Apps ask for the camera, the location or the notifications, and the system shows a pop-up the app doesn't own. Here is how to grant permissions up front or answer the pop-up, with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs real devices."
+number: 85
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'permissions'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Handle Permission Pop-ups in a Mobile App
+
+## Intro
+
+The first time an app needs the camera, the location or the notifications, Android and iOS ask the user with a pop-up.
+The pop-up belongs to the system, not to the app, so the elements of the app are behind it, and a test that doesn't
+expect it gets stuck. And the pop-up only shows the first time: after the user answers, or when the permission was
+granted another way, it doesn't show at all.
+
+## A Solution
+
+There are two ways, and a test suite usually needs both:
+
+- **Grant the permissions up front**, when the app is installed, so the pop-ups never show. Use it for every test that
+  is not about permissions. Appium has `autoGrantPermissions` for Android (it grants every permission the app declares)
+  and `autoAcceptAlerts` for iOS (it accepts every alert, permission or not). Espresso has `GrantPermissionRule`. On
+  Sauce Labs, saucectl and the Mobilewright driver install Android apps with their permissions granted.
+- **Answer the pop-up**, as a user would, when the test is about the permission itself. Find the button of the pop-up
+  and tap it. On Android, the pop-up comes from the permission controller of the system (its buttons have IDs like
+  `com.android.permissioncontroller:id/permission_allow_foreground_only_button`). On iOS, it is an alert of the home
+  screen app (SpringBoard), with buttons like "Allow While Using App".
+
+Since the pop-up may not show, the examples tap it only if it shows up within a few seconds, and then check the screen
+behind it. On iOS, Sauce Labs can also delay the system alerts at start-up (`systemAlertsDelayEnabled` in
+`sauce:options`), for apps that ask for permissions as soon as they open.
+
+The examples open the Geo Location screen of Sauce Labs' demo app ("My Demo App", for
+[Android](https://github.com/saucelabs/my-demo-app-android) and [iOS](https://github.com/saucelabs/my-demo-app-ios)).
+The app asks for the location, the test allows it while using the app, and checks that the screen shows.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. See [tip 30](/tips/30-mobile) for how the tests start a session on a
+real device.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test opens the Geo Location screen from the menu
+- If the system asks for the location, the test allows it while using the app
+- It checks that the Geo Location screen shows
+
+## Summary
+
+Grant permissions up front in most tests, so pop-ups don't get in the way, and answer them in the few tests that are
+about them. Either way, the test knows the pop-up may or may not show, and doesn't depend on it.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

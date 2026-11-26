@@ -1,0 +1,42 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"85-mobile-permissions/code/appium-java/src/test/java/com/elemental/appium/PermissionsTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): lines 23 to 43 skip the tests without credentials and end the
+session after each test, and lines 83 to 89 are the Sauce Labs options. `find` (lines 78 to 81) waits up to 30 seconds
+for an element to be visible.
+
+### Answering the Pop-up
+
+`allowIfAsked` (lines 69 to 76) waits up to 10 seconds for the button of the pop-up, and taps it. If the pop-up doesn't
+show (the permission was granted another way), the wait times out, and the test goes on.
+
+To grant the permissions up front instead, add `.setAutoGrantPermissions(true)` to the Android options, or
+`.setAutoAcceptAlerts(true)` to the iOS options.
+
+### The Tests
+
+- Lines 51 to 53 open the Geo Location screen from the menu, and allow the location while using the app. On Android,
+  the button belongs to the permission controller of the system, and line 53 finds it by its resource ID.
+- Line 54 checks that the Geo Location screen shows.
+- Lines 63 to 66 do the same on iOS. The pop-up is an alert of the system, and Appium finds its buttons by their
+  labels, like the elements of the app.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"85-mobile-permissions/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line.

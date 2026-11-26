@@ -1,0 +1,74 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"85-mobile-permissions/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/PermissionsTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+Espresso only sees the views of the app, and the permission pop-up belongs to the system. To tap it, the test uses
+[UI Automator](https://developer.android.com/training/testing/other-components/ui-automator), the Android library that
+drives any app on the device.
+
+### The Test
+
+- Lines 25 to 29 open the demo app, as in [tip 30](/tips/30-mobile).
+- Lines 30 to 33 wait for the menu button (the app shows a splash screen first), and open the Geo Location screen.
+- Line 35 gets the `UiDevice`, the entry point of UI Automator.
+- Line 36 is the "While using the app" button of the pop-up, by its resource ID in the permission controller of the
+  system.
+- Line 37 waits up to 10 seconds for it, and taps it. `wait` returns `null` when it doesn't show, and `?.` skips the tap
+  then. On Sauce Labs, saucectl installs the app with its permissions granted, so the pop-up doesn't show.
+- Line 39 checks that the Geo Location screen shows.
+
+To grant permissions up front instead, add `GrantPermissionRule.grant(...)` as a rule of the test class (from the
+`androidx.test:rules` library).
+
+### Building the Tests
+
+<TipCode codePath={"85-mobile-permissions/code/espresso/app/build.gradle.kts"} language={"kotlin"}/>
+
+Line 20 adds UI Automator. The rest is the build from tip 30.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 85 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Permissions
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
+  the same key as the tests, and the test app.
+- `suites` asks for a device. The name is a regular expression (`Google.*` is any Google device), and `deviceType:
+  PHONE` leaves out the tablets. The tests run on the first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on
+Sauce Labs, with the video and the device logs.
