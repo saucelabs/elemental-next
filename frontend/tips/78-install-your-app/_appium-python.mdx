@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"78-install-your-app/code/appium-python/install_app.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+- Line 11 is the Sauce Labs URL for the `us-west-1` data center, and line 12 is the upload URL of the storage API in
+  the same data center. Lines 13 and 14 are the demo app for Android (`.apk`) and iOS (`.ipa`), from their GitHub
+  releases.
+- Lines 17 to 37 are the fixture from tip 30: it skips the test when the Sauce Labs credentials are not set, starts
+  the sessions with the Sauce Labs options, and ends them after the test.
+
+### Uploading the App
+
+`upload_app` (lines 40 to 46) uploads an app to Sauce Labs storage and returns the value to use as the app of the test.
+
+- Line 42 downloads the demo app. In your project, open the file your build creates instead
+  (`open('app.apk', 'rb')`).
+- Lines 43 and 44 send it to the storage API with [Requests](https://requests.readthedocs.io/): a multipart form with
+  the file in a field named `payload`, and Basic authentication with your Sauce Labs user name and access key.
+- Line 45 fails the test if the upload fails.
+- Line 46 returns `storage:filename=` and the name of the file. Sauce Labs installs the latest upload with that name.
+
+### The Tests
+
+- Lines 55 to 58 create the options for Android and start the session. `options.app = upload_app(ANDROID_APP)`
+  uploads the app and points the session at it.
+- Line 60 checks that the catalog shows the backpack, waiting up to 30 seconds for it (lines 49 to 51).
+- Lines 64 to 69 do the same on an iPhone, with the `.ipa`. Sauce Labs re-signs it before installing it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"78-install-your-app/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest install_app.py` from the
+command-line. The apps show up in the App Management page of Sauce Labs, and the tests on the test results page.

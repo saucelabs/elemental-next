@@ -1,0 +1,102 @@
+---
+title: 'How to Install Your App on a Real Mobile Device'
+card_highlight: 'Install Your App'
+id: 78-install-your-app
+slug: /78-install-your-app
+sidebar_label: Install Your App on a Real Mobile Device
+description: "To test your own app on a real device, upload it to Sauce Labs first. Here is how to upload an Android or iOS app to Sauce Labs storage and install it from there, with Appium and Mobilewright."
+number: 78
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'appium'
+  - 'mobilewright'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Install Your App on a Real Mobile Device
+
+## Intro
+
+In [tip 30](/tips/30-mobile), Sauce Labs downloads the demo app from a public URL. Your own app is usually not public:
+it is a file your build creates, an `.apk` for Android or an `.ipa` for iOS. How do you get it onto a real device in the
+cloud?
+
+## A Solution
+
+Upload the app to [Sauce Labs App Storage](https://docs.saucelabs.com/mobile-apps/app-storage/), and point your test
+at it. The upload is one HTTP request to the storage API, with your Sauce Labs credentials. Then the test uses
+`storage:filename=<name of the file>` as its app, and Sauce Labs installs the latest upload with that name. Each upload
+also gets an id, and `storage:<id>` points to that exact upload.
+
+Before installing it, Sauce Labs changes the app a bit:
+
+- iOS apps are re-signed, so they can run on Sauce Labs' iPhones (`resigningEnabled`, on by default).
+- Android apps are instrumented.
+
+This is what makes some features work, like image injection, biometrics, device vitals, crash reporting, and network
+capture. If your app checks its own signature, turn it off with `resigningEnabled: false` in `sauce:options`, and
+those features won't work.
+
+The examples download Sauce Labs' demo app ("My Demo App", for
+[Android](https://github.com/saucelabs/my-demo-app-android) and [iOS](https://github.com/saucelabs/my-demo-app-ios))
+and upload it. In your project, upload the file your build creates instead. The test is the same as in tip 30: it opens
+the app and checks that the catalog shows the Sauce Labs Backpack.
+
+Espresso and XCUITest don't need an upload step: [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the
+app and the tests set in its `.sauce/config.yml` (see tip 30). You can also upload a file yourself with
+`saucectl storage upload <file>`.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center, for the devices and for the storage. An app uploaded to one data center
+is not available in the others.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+]}/>
+
+## Expected Behavior
+
+- The app is uploaded to Sauce Labs App Storage
+- Sauce Labs finds a free real device that matches the test (an Android phone or an iPhone)
+- It installs the app from storage
+- The test opens the app and checks that the catalog shows the Sauce Labs Backpack
+- The session ends, and the results are available on the
+  [test results dashboard](https://docs.saucelabs.com/test-results/viewing-test-results/)
+
+## Summary
+
+Upload your app to Sauce Labs storage once per build, and every test can install it by its name or id. Run the upload
+as a step of your CI pipeline, right after the build, so the tests always get the latest version of your app.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>
