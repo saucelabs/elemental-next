@@ -1,0 +1,106 @@
+---
+title: 'How to Wait for Elements in a Mobile App'
+card_highlight: 'Wait for Elements'
+id: 81-mobile-waits
+slug: /81-mobile-waits
+sidebar_label: Wait for Elements in a Mobile App
+description: "A mobile app is never ready right away: splash screens, screens that slide in, lists that load. Here is how to wait for the app instead of sleeping, with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs real devices."
+number: 81
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'waits'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Wait for Elements in a Mobile App
+
+## Intro
+
+A mobile app takes its time. It shows a splash screen while it starts, each new screen slides in, and lists load their
+items in the background. A test that taps an element the moment it asks for it fails now and then, and a test with a
+fixed `sleep` before each step is slow and still fails on a slower device.
+
+## A Solution
+
+Wait for the condition the next step needs, and only as long as it takes: an element is visible, it can be tapped, or
+it is gone. Each tool has its way:
+
+- **Appium** has explicit waits, as in Selenium (see [tip 47](/tips/47-waiting)): `WebDriverWait` with a condition like
+  `visibilityOfElementLocated`, `elementToBeClickable` or `invisibilityOfElementLocated`. In WebdriverIO, they are
+  element commands: `waitForDisplayed`, `waitForEnabled`, and `waitForDisplayed({reverse: true})`.
+- **Mobilewright** waits on its own: each action waits for its element, and `expect` checks again until the condition is
+  true or the timeout runs out (`toBeVisible`, `toBeHidden`).
+- **Espresso** waits for the app to be idle (no pending work on the main thread) before each action and check, so most
+  tests need no waits. Work it doesn't know about, like the timer of a splash screen, needs a wait of its own, or an
+  [idling resource](https://developer.android.com/training/testing/espresso/idling-resource) in the app.
+- **XCUITest** waits for the app to be idle before each action, and `waitForExistence` and `waitForNonExistence` wait
+  for an element to show up or to go away.
+
+The examples use Sauce Labs' demo app ("My Demo App", for [Android](https://github.com/saucelabs/my-demo-app-android)
+and [iOS](https://github.com/saucelabs/my-demo-app-ios)). Each one waits for the catalog after the splash screen, opens
+the backpack, waits for "Add to cart" to be ready, adds it, opens the cart, and then removes it and waits for the
+checkout button to go away. The elements are found by their accessibility IDs (see tip 80).
+
+Sauce Labs turns the animations off on Android real devices (set `enableAnimations` to `true` in `sauce:options` to keep
+them), which makes the tests faster and more stable. Don't use implicit waits together with explicit waits: they add up
+in surprising ways.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center, and ask for phones with a regular screen (a Pixel 8 or newer, and an
+iPhone 14 to 17), where "Add to cart" shows without scrolling.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test waits for the catalog, which shows after the splash screen, and opens the backpack
+- It waits for "Add to cart", adds the backpack, and opens the cart
+- It removes the backpack, and waits for the checkout button to go away
+- No step waits longer than it needs to
+
+## Summary
+
+Wait for what the next step needs, not for a fixed time. Your tests get as fast as the app allows on each device, and
+stop failing when a device is a little slower than usual.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

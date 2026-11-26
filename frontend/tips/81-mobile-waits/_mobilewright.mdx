@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"81-mobile-waits/code/mobilewright/tests/waits.test.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Configuring the Waits
+
+<TipCode codePath={"81-mobile-waits/code/mobilewright/mobilewright.config.ts"} language={"ts"}/>
+
+The configuration is the one from [tip 30](/tips/30-mobile). Line 13 sets how long each action waits for its element
+(`actionTimeout`), and line 14 how long each `expect` waits for its condition. The defaults (5 seconds) are meant for
+local devices. Line 31 asks for an iPhone 14 to 17, where "Add to cart" shows without scrolling.
+
+### The Test
+
+Mobilewright waits on its own, so the test has no waits in it:
+
+- Lines 4 to 19 pick how to find the elements on each platform, by their accessibility IDs.
+- Line 21 taps the first product. `tap` waits for the element to be there, visible and enabled, so it waits through
+  the splash screen.
+- Lines 22 and 23 tap "Add to cart" and open the cart, each one waiting for its element.
+- Line 25 waits for the checkout button to be visible. `expect` checks again and again until it is true, or the
+  timeout runs out.
+- Line 26 removes the backpack, and line 27 waits for the checkout button to go away (`toBeHidden`).
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"81-mobile-waits/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+the Android project first and then the iOS one.
