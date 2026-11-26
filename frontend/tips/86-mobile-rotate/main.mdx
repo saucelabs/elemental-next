@@ -1,0 +1,102 @@
+---
+title: 'How to Rotate a Mobile Device in a Test'
+card_highlight: 'Rotate'
+id: 86-mobile-rotate
+slug: /86-mobile-rotate
+sidebar_label: Rotate a Mobile Device in a Test
+description: "Users turn their phones, and the layout of an app changes with it. Here is how to rotate a real device to landscape and check the screen, with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs."
+number: 86
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'orientation'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Rotate a Mobile Device in a Test
+
+## Intro
+
+People turn their phones to watch a video, to type with both thumbs, or by accident. When the device rotates, the app
+lays out its screen again: elements move, lists show more columns, and things that fit in portrait can end up hidden.
+On Android, the screen is even created again, and an app that doesn't save its state loses what the user typed.
+
+## A Solution
+
+Rotate the device in the test, and check the screen in landscape, as you do in portrait:
+
+- **Appium** has `rotate` and `getOrientation` in Java, the `orientation` property in Python, and `setOrientation` and
+  `getOrientation` in WebdriverIO, with `PORTRAIT` and `LANDSCAPE`.
+- **Mobilewright** has `device.setOrientation()` and `device.getOrientation()`, with `portrait` and `landscape`.
+- **Espresso** runs inside the app, so it rotates the screen of the app: it sets the requested orientation of the
+  activity. UI Automator's `UiDevice.setOrientationLeft()` rotates the whole device instead.
+- **XCUITest** sets `XCUIDevice.shared.orientation`, the orientation of the device.
+
+An app can lock its orientation. The Android version of Sauce Labs' demo app ("My Demo App") runs in portrait only (its
+manifest sets `android:screenOrientation="portrait"`), so rotating the device doesn't change it: Appium fails ("Screen
+rotation cannot be changed"), and Mobilewright reports that the device is still in portrait. So the Appium and
+Mobilewright examples rotate an iPhone, with the [iOS demo app](https://github.com/saucelabs/my-demo-app-ios). The
+Espresso example rotates the Android app from inside, which overrides its manifest, as the
+[Android demo app](https://github.com/saucelabs/my-demo-app-android) does in its own tests.
+
+Each example waits for the catalog, rotates to landscape, checks the orientation and that the catalog still shows its
+products, and rotates back. Rotation tests find real layout issues: in landscape, the tab bar of the iOS demo app covers
+the names of the products. That's why the tests check the products themselves, which stay visible.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. See [tip 30](/tips/30-mobile) for how the tests start a session on a
+real device.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test waits for the catalog, in portrait
+- It rotates to landscape, and checks the orientation and that the products are visible
+- It rotates back to portrait (Appium, Mobilewright and XCUITest)
+
+## Summary
+
+A rotation is a cheap check that catches layout bugs and lost state. Add it to the screens where users are likely to
+turn their phones, and check what they would look at.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

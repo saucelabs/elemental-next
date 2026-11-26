@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"86-mobile-rotate/code/appium-python/rotate.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The fixture (lines 13 to 29) skips the test without credentials, starts a session on an iPhone with the Sauce Labs
+options, and ends it after the test, as in [tip 30](/tips/30-mobile). The Android demo app runs in portrait only, so
+this example uses iOS.
+
+### The Test
+
+- Lines 33 to 35 wait for the first product of the catalog (`ProductItem`), since the app shows a splash screen first.
+- Line 36 checks that the device starts in portrait: `driver.orientation` is `'PORTRAIT'` or `'LANDSCAPE'`.
+- Line 38 rotates the device to landscape, by setting `driver.orientation`.
+- Lines 39 and 40 check the orientation, and that the product is still visible.
+- Lines 42 and 43 rotate back to portrait and check it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"86-mobile-rotate/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the test by executing `pytest rotate.py` from the
+command-line.
