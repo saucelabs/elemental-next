@@ -1,0 +1,39 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
+
+<TipCode codePath={"80-mobile-locators/code/appium/test/locators.e2e.js"} language={"js"}/>
+
+## Code Walkthrough
+
+The configuration (`wdio.conf.js`) is the one from [tip 30](/tips/30-mobile): an Android phone and an iPhone on Sauce
+Labs, each with the demo app. The device names ask for phones with a regular screen (`Google Pixel [0-9]+( Pro)?` and
+`iPhone 1[4-7].*`), since the test taps "Add to cart" without scrolling: on a small iPhone SE, or on the inner screen of
+a foldable, the button is below the fold.
+
+### The Test
+
+In WebdriverIO, a selector that starts with `~` finds an element by its accessibility ID: the content description on
+Android, and the accessibility identifier on iOS.
+
+- Lines 5 to 17 pick the IDs of the platform. The Android and iOS apps use different names for the same elements.
+- Lines 19 to 21 tap the first product of the catalog, once it is displayed. Every product has the same ID (the image on
+  Android, the product item on iOS), so `$$` finds all of them and `[0]` takes the first one. `$` fails when more than
+  one element matches, as a safety net against selectors that are not specific enough.
+- Lines 22 and 23 tap "Add to cart" and open the cart. WebdriverIO waits for each element to exist before tapping it.
+- Line 24 checks that the checkout button is displayed, waiting for it if needed.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"80-mobile-locators/code/appium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

@@ -1,0 +1,80 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"80-mobile-locators/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/LocatorsTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+[Espresso](https://developer.android.com/training/testing/espresso) finds views with matchers. In the project of the app,
+`withId(R.id.cartBt)` is the usual choice. These tests are in a project of their own, without the `R` class of the demo
+app, so they use `withContentDescription`: the content description is the accessibility ID of an Android view.
+
+### The Test
+
+- Lines 23 and 24 get the intent that opens the app, and line 26 opens it, as in [tip 30](/tips/30-mobile).
+- Lines 27 and 28 wait for the catalog, a list with the content description "Displays all products of catalog". The
+  app shows a splash screen first.
+- Line 29 taps the first product of the catalog. Every product has an image with the content description "Product
+  Image", and `onView` fails when more than one view matches. So the test finds the list, and `tapFirst` (lines 36 to
+  47) looks inside it for the views with that content description (`findViewsWithText`) and taps the first one. The
+  Espresso contrib library has `RecyclerViewActions` for this, but its AndroidX libraries clash with the ones inside
+  the demo app, and the app crashes on start. In the project of your app, Gradle keeps them in sync, and
+  `RecyclerViewActions` is the better choice.
+- Lines 30 and 31 tap "Add to cart" and open the cart. Espresso waits for the app to be idle before each action, so the
+  new screens are there.
+- Line 32 checks that the checkout button is displayed. In the demo app, "Add to cart" and the checkout button have
+  the same ID (`cartBt`), but different content descriptions.
+- `waitUntilDisplayed` (lines 49 to 60) checks again every half second, for up to 30 seconds.
+
+### Building the Tests
+
+<TipCode codePath={"80-mobile-locators/code/espresso/app/build.gradle.kts"} language={"kotlin"}/>
+
+- Line 10 sets the package of the app under test, `com.saucelabs.mydemoapp.android`.
+- Lines 16 to 20 add the AndroidX Test libraries: the test runner, the JUnit rules and Espresso.
+- Lines 22 to 38 download the demo app and sign it with the same key as the tests (see tip 30).
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 80 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Real device
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
+  the same key as the tests, and the test app.
+- `suites` asks for a device. The name is a regular expression: `Google Pixel [0-9]+( Pro)?` is a Pixel or a Pixel
+  Pro, with a regular screen, since the test taps "Add to cart" without scrolling. `deviceType: PHONE` leaves out the
+  tablets. The tests run on the first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on
+Sauce Labs, with the video and the device logs.

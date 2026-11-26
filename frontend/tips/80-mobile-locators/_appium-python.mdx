@@ -1,0 +1,48 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"80-mobile-locators/code/appium-python/locators.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+Lines 10 to 35 are the setup from [tip 30](/tips/30-mobile): the Sauce Labs URL, the demo apps, and a fixture that
+skips the test without credentials, starts the sessions with the Sauce Labs options, and ends them after the test.
+
+### Picking the Devices
+
+The test taps "Add to cart" without scrolling, so it needs a phone with a regular screen. On a small iPhone SE, or on
+the inner screen of a foldable, the button is below the fold. The device names ask for those phones only: line 45 asks
+for `Google Pixel [0-9]+( Pro)?` (a Pixel or a Pixel Pro, no "a", "XL" or "Fold" models) and line 57 for `iPhone
+1[4-7].*` (an iPhone 14 to 17). Scrolling to an element is the topic of another tip.
+
+### Finding Elements
+
+`find` (lines 38 to 40) finds an element by its accessibility ID, with `AppiumBy.ACCESSIBILITY_ID`. It waits up to 30
+seconds for the element to be visible, since each tap opens a new screen. On Android, Appium matches the content
+description of the element, and on iOS its accessibility identifier.
+
+### The Tests
+
+- Lines 49 to 52 add the backpack to the cart on Android. `find(driver, 'Product Image')` returns the first element
+  with that ID, the image of the first product of the catalog. Then the test taps "Add to cart"
+  (`Tap to add product to cart`), opens the cart (`View cart`), and checks that the checkout button
+  (`Confirms products for checkout`) is displayed.
+- Lines 61 to 64 do the same on iOS. The iOS app uses other names for the same elements: `ProductItem` (a product
+  of the catalog), `AddToCart`, `Cart-tab-item` and `ProceedToCheckout`.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"80-mobile-locators/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest locators.py` from the
+command-line.

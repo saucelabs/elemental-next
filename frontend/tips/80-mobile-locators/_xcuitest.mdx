@@ -1,0 +1,70 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"80-mobile-locators/code/xcuitest/LocatorsUITests/LocatorsTests.swift"} language={"swift"}/>
+
+## Code Walkthrough
+
+In [XCUITest](https://developer.apple.com/documentation/xcuiautomation), a query like `app.buttons` finds every element
+of a type, and its subscript (`app.buttons["AddToCart"]`) picks the one whose accessibility identifier, or label, is
+that value.
+
+### The Test
+
+- Lines 6 and 7 open the demo app by its bundle identifier, as in [tip 30](/tips/30-mobile).
+- Lines 9 and 10 find the products of the catalog (the elements with the identifier "ProductItem"), and wait up to 30
+  seconds for the first one (`firstMatch`), the backpack. The app shows a splash screen first.
+- Line 11 taps it, which opens the product.
+- Lines 12 and 13 tap "Add to cart" (`AddToCart`) and open the cart (`Cart-tab-item`). XCUITest waits for the app to be
+  idle before each tap.
+- Line 14 checks that the checkout button (`ProceedToCheckout`) shows up.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 80 - XCUITest
+xcuitest:
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  testApp: build/Build/Products/Debug-iphoneos/LocatorsUITests-Runner.app
+suites:
+  - name: Real device
+    devices:
+      - name: iPhone.*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+  The test app is the one `xcodebuild build-for-testing` builds (see below).
+- `suites` asks for a device. The name is a regular expression: `iPhone 1[4-7].*` is an iPhone 14 to 17, with a
+  regular screen, since the test taps "Add to cart" without scrolling. The tests run on the first free device that
+  matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+You need a Mac with Xcode, and [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl). First,
+build the tests for a real device:
+
+```bash
+xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project Locators.xcodeproj -scheme Locators \
+  -sdk iphoneos -derivedDataPath build
+```
+
+The tests don't need to be signed: Sauce Labs signs the app and the tests to install them on its devices. Then run them
+by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on Sauce
+Labs, with the video and the device logs.
