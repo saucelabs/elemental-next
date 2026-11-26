@@ -11,14 +11,15 @@ for iOS, on Sauce Labs real devices.
 
 ### The Test
 
-- Lines 6 to 12 open the menu and the WebView screen of each platform.
-- Line 14 finds the URL field by its role, `textfield`, which matches text fields on both platforms.
-- Line 15 types the URL with `fill`. It taps the field first, which brings up the keyboard, and replaces its text.
-- Line 16 checks that the field holds the URL.
-- Lines 17 to 19 close the keyboard on Android, if it is up. `hide()` presses BACK on Android, which would go back to
+- Line 6 waits for the catalog, since the app shows a splash screen first.
+- Lines 7 to 13 open the menu and the WebView screen of each platform.
+- Line 15 finds the URL field by its role, `textfield`, which matches text fields on both platforms.
+- Line 16 types the URL with `fill`. It taps the field first, which brings up the keyboard, and replaces its text.
+- Line 17 checks that the field holds the URL.
+- Lines 18 to 20 close the keyboard on Android, if it is up. `hide()` presses BACK on Android, which would go back to
   the previous screen without a keyboard, so the test checks first with `isVisible()`. On iOS, `hide()` presses
   "Return", and the demo app doesn't close its keyboard then. "Go To Site" is above the keyboard anyway.
-- Lines 21 and 22 tap "Go To Site" and check that the web view shows up.
+- Lines 22 and 23 tap "Go To Site" and check that the web view shows up.
 
 ### Executing the Test
 

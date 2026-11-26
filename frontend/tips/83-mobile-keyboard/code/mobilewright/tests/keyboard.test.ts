@@ -3,6 +3,7 @@ import {expect, test} from '@mobilewright/test';
 const URL = 'https://saucelabs.com';
 
 test('types a URL and opens it', async ({screen, platform}) => {
+    await expect(screen.getByText(/Sauce Labs Backpack/).first()).toBeVisible();
     if (platform === 'android') {
         await screen.getByLabel('View menu').tap();
         await screen.getByText('WebView').tap();
