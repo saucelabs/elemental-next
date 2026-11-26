@@ -1,0 +1,69 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"84-mobile-gestures/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/GesturesTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+### The Test
+
+- Lines 29 and 30 grant the app access to the photos of the device before the test, with `GrantPermissionRule` (from
+  the `androidx.test:rules` library). The Drawing screen asks for it when it opens.
+- Lines 34 to 37 open the demo app, as in [tip 30](/tips/30-mobile).
+- Lines 38 to 41 wait for the menu button (the app shows a splash screen first), and open the Drawing screen.
+- Line 44 does three things on the pad: `capture` what it shows, swipe right across it (`swipeRight()`, from its left
+  edge to its right edge), and `capture` it again.
+- Line 45 checks that the two pictures are different: the swipe drew a line.
+
+`capture` (lines 49 to 59) is a `ViewAction` that draws the view into a `Bitmap`, a picture of what it shows. The test
+runs in the process of the app, so it can read the view directly.
+
+### Building the Tests
+
+<TipCode codePath={"84-mobile-gestures/code/espresso/app/build.gradle.kts"} language={"kotlin"}/>
+
+Line 20 adds the `androidx.test:rules` library, for `GrantPermissionRule`. The rest is the build from tip 30.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 84 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Gestures
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
+  the same key as the tests, and the test app.
+- `suites` asks for a device. The name is a regular expression (`Google.*` is any Google device), and `deviceType:
+  PHONE` leaves out the tablets. The tests run on the first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on
+Sauce Labs, with the video and the device logs.
