@@ -1,0 +1,56 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"78-install-your-app/code/mobilewright/mobilewright.config.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+### Uploading the App
+
+The upload runs before the tests, as its own step: `npm test` runs `upload-apps.js` first (the `pretest` script of the
+`package.json` file).
+
+<TipCode codePath={"78-install-your-app/code/mobilewright/upload-apps.js"} language={"js"}/>
+
+- Line 1 is the upload URL of the storage API in the `us-west-1` data center. Lines 2 to 5 are the demo app for Android
+  (`.apk`) and iOS (`.ipa`), from their GitHub releases.
+- Lines 7 to 10 skip the upload when the Sauce Labs credentials are not set. Line 12 builds the Basic authentication
+  header from them.
+- Line 16 downloads each app. In your project, read the file your build creates instead (e.g., with
+  `fs.openAsBlob(path)`).
+- Lines 17 to 24 send it to the storage API: a multipart form with the file in a field named `payload`.
+- Lines 25 to 27 stop the run if the upload fails.
+
+### Configuring Sauce Labs
+
+The configuration (above) is the one from tip 30. The only change is the app of each project:
+
+- Line 24 installs the Android app with `storage:filename=mda-2.3.0-27.apk`, and line 34 the iOS app with
+  `storage:filename=SauceLabs-Demo-App.ipa`. Sauce Labs installs the latest upload with that name, and re-signs the iOS
+  app before installing it.
+
+`installApps` also takes a path to a local file (e.g., `installApps: './app.apk'`). Then the Sauce Labs driver uploads
+it for you, once per run. An upload step of its own is still useful in CI: Appium and other tools can use the same
+upload.
+
+### The Test
+
+<TipCode codePath={"78-install-your-app/code/mobilewright/tests/installApp.test.ts"} language={"ts"}/>
+
+The test checks that the catalog shows the backpack. `getByText` with a regular expression finds it on both platforms.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"78-install-your-app/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It
+uploads the apps, then runs the Android project and the iOS one. The apps show up in the App Management page of Sauce
+Labs, and the tests on the test results page.

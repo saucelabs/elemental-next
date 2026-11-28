@@ -1,0 +1,49 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"78-install-your-app/code/appium-java/src/test/java/com/elemental/appium/InstallAppTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+- Line 28 is the Sauce Labs URL for the `us-west-1` data center, and line 29 is the upload URL of the storage API in
+  the same data center. Lines 30 to 33 are the demo app for Android (`.apk`) and iOS (`.ipa`), from their GitHub
+  releases.
+- Lines 37 to 41 skip the tests when the Sauce Labs credentials are not set.
+- Lines 43 to 48 end the session after each test, which frees the device.
+
+### Uploading the App
+
+`uploadApp` (lines 72 to 92) uploads an app to Sauce Labs storage and returns the value to use as the app of the test.
+
+- Lines 73 to 75 download the demo app. In your project, read the file your build creates instead (e.g., with
+  `BodyPublishers.ofFile`).
+- Lines 77 to 87 build the upload request. The storage API takes the file as a multipart form with a field named
+  `payload`, and Basic authentication with your Sauce Labs user name and access key. The Java HTTP client has no
+  multipart support, so lines 82 to 86 write the form by hand: a header, the file, and the closing boundary.
+- Lines 88 and 89 send the request and check that the API answers `201 Created`.
+- Line 91 returns `storage:filename=` and the name of the file. Sauce Labs installs the latest upload with that name.
+
+### The Tests
+
+- Lines 52 to 56 create the options for Android and start the session. `setApp(uploadApp(ANDROID_APP))` uploads the
+  app and points the session at it.
+- Line 58 checks that the catalog shows the backpack.
+- Lines 63 to 69 do the same on an iPhone, with the `.ipa`. Sauce Labs re-signs it before installing it.
+- Lines 94 to 100 are the Sauce Labs options, and lines 102 to 106 wait up to 30 seconds for the element to show up.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"78-install-your-app/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line. The apps show up in the App Management
+page of Sauce Labs, and the tests on the test results page.
