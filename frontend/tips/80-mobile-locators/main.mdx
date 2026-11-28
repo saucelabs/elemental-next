@@ -1,0 +1,111 @@
+---
+title: 'How to Find Elements in a Mobile App'
+card_highlight: 'Find Elements'
+id: 80-mobile-locators
+slug: /80-mobile-locators
+sidebar_label: Find Elements in a Mobile App
+description: "Mobile tests break when their locators break. Here is why accessibility IDs are a better choice than XPath, and how to use them with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs real devices."
+number: 80
+hide_table_of_contents: true
+level: 1
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'locators'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Find Elements in a Mobile App
+
+## Intro
+
+Tools like Appium Inspector make it easy to copy an XPath for any element, like
+`//android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.ImageView[1]`. The test works today, and breaks
+the next time a developer wraps the element in a new layout. XPath is also slow on mobile: to run it, Appium reads the
+whole screen as XML first, which can take seconds on iOS. And locators based on the text on screen break when the app is
+translated or a label changes.
+
+## A Solution
+
+Find elements by their accessibility ID. It is a name the developers of the app give to an element, which doesn't
+change with the layout or the language:
+
+- On Android, it is the content description of the view (`android:contentDescription`).
+- On iOS, it is the accessibility identifier of the view (`accessibilityIdentifier`), or its accessibility label when
+  it has no identifier.
+
+Each tool has a way to find elements by them:
+
+- **Appium**: `AppiumBy.accessibilityId("...")` in Java, `AppiumBy.ACCESSIBILITY_ID` in Python, and `$('~...')` in
+  WebdriverIO. It works on both platforms.
+- **Mobilewright**: `getByLabel` finds an element by its accessibility label (the content description on Android), and
+  `getByTestId` by its identifier (the accessibility identifier on iOS, or the resource ID on Android).
+- **Espresso**: `withContentDescription`, or `withId(R.id....)` when the tests are in the project of the app.
+- **XCUITest**: the subscript of a query, like `app.buttons["AddToCart"]`, matches the identifier or the label.
+
+The examples add the backpack to the cart of Sauce Labs' demo app ("My Demo App", for
+[Android](https://github.com/saucelabs/my-demo-app-android) and [iOS](https://github.com/saucelabs/my-demo-app-ios)),
+finding each element by its accessibility ID: they tap the first product of the catalog, tap "Add to cart", open the
+cart, and check that it shows the checkout button. The Android and iOS apps use different names (e.g., "Tap to add
+product to cart" on Android and "AddToCart" on iOS), so each platform has its own. The tests ask for phones with a
+regular screen, where "Add to cart" shows without scrolling.
+
+If an element you need has no accessibility ID, ask the developers of the app to add one. It is a one-line change, it
+makes the app more accessible (screen readers use the content description and the label), and it makes the tests
+simpler for everyone.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. See [tip 30](/tips/30-mobile) for how the tests start a session on a
+real device.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test taps the first product of the catalog (the backpack) and adds it to the cart
+- It opens the cart and checks that the checkout button is displayed
+- Each element is found by its accessibility ID
+
+## Summary
+
+Accessibility IDs give your tests locators that are fast, that don't depend on the layout, and that work in every
+language of the app. Use them first, and keep XPath for the rare element you can't reach in any other way.
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

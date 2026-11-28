@@ -1,0 +1,37 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"80-mobile-locators/code/mobilewright/tests/locators.test.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+The configuration (`mobilewright.config.ts`) is the one from [tip 30](/tips/30-mobile): a project for Android and one
+for iOS, on Sauce Labs real devices. The iOS project asks for an iPhone 14 to 17 (`/^iPhone_1[4-7]/`), since the test
+taps "Add to cart" without scrolling: on a small iPhone SE, the button is below the fold.
+
+### The Test
+
+- Line 3 gets the `platform` of the project (`android` or `ios`) from the fixtures.
+- Line 4 picks how to find an element by its accessibility ID. The demo app sets content descriptions on Android, which
+  `getByLabel` finds, and accessibility identifiers on iOS, which `getByTestId` finds. In your app, use the one your
+  developers set (`getByTestId` also finds Android resource IDs).
+- Lines 5 to 17 pick the IDs of the platform. The Android and iOS apps use different names for the same elements.
+- Line 19 taps the first product of the catalog. Every product has the same ID (the image on Android, the product item
+  on iOS), and `first()` picks the first one.
+- Lines 20 and 21 tap "Add to cart" and open the cart. Mobilewright waits for each element before tapping it.
+- Line 22 checks that the checkout button is visible, waiting for it if needed.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"80-mobile-locators/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+the Android project first and then the iOS one.
