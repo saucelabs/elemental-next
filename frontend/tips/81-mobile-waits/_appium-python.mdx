@@ -1,0 +1,46 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"81-mobile-waits/code/appium-python/waits.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): the fixture in lines 15 to 35 skips the test without credentials,
+starts the sessions with the Sauce Labs options, and ends them after the test. Lines 44 and 61 ask for phones with a
+regular screen (a Pixel 8 or newer, and an iPhone 14 to 17), where "Add to cart" shows without scrolling. `by_id`
+(lines 38 and 39) builds a locator by accessibility ID.
+
+### Waiting
+
+Line 47 creates a `WebDriverWait` that checks a condition again and again, for up to 30 seconds, and returns as soon as
+it is true. The conditions come from Selenium's `expected_conditions` (imported as `ec`). Each step of the test waits
+for what it needs:
+
+- Line 49 waits for the first product to be visible (`visibility_of_element_located`). The app shows a splash screen
+  first, and it can take a few seconds on some devices. `until` returns the element, so the test taps it right away.
+- Lines 50 and 51 wait for "Add to cart" and for the cart button to be clickable (`element_to_be_clickable`: visible
+  and enabled), since the product screen slides in after the tap.
+- Lines 53 and 54 wait for the checkout button of the cart.
+- Line 55 removes the backpack, and line 56 waits for the checkout button to go away
+  (`invisibility_of_element_located`). The cart is empty, so the app hides it.
+
+Lines 66 to 73 do the same on iOS, with the accessibility IDs of the iOS app.
+
+There is no `time.sleep` and no implicit wait: each wait ends as soon as the app is ready.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"81-mobile-waits/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest waits.py` from the
+command-line.
