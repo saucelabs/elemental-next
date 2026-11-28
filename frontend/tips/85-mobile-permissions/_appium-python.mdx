@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"85-mobile-permissions/code/appium-python/permissions.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): the fixture in lines 16 to 36 skips the test without credentials,
+starts the sessions with the Sauce Labs options, and ends them after the test. `find` (lines 39 and 40) waits up to 30
+seconds for an element to be visible.
+
+### Answering the Pop-up
+
+`allow_if_asked` (lines 43 to 47) waits up to 10 seconds for the button of the pop-up, and taps it. If the pop-up
+doesn't show (the permission was granted another way), the wait times out, and the test goes on.
+
+To grant the permissions up front instead, set `options.auto_grant_permissions = True` for Android, or
+`options.auto_accept_alerts = True` for iOS.
+
+### The Tests
+
+- Lines 56 to 58 open the Geo Location screen from the menu, and allow the location while using the app. On Android,
+  the button belongs to the permission controller of the system, and line 58 finds it by its resource ID.
+- Line 59 checks that the Geo Location screen shows.
+- Lines 68 to 71 do the same on iOS. The pop-up is an alert of the system, and Appium finds its buttons by their
+  labels, like the elements of the app.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"85-mobile-permissions/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest permissions.py` from the
+command-line.

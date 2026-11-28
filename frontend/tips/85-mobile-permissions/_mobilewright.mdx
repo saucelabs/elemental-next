@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"85-mobile-permissions/code/mobilewright/tests/permissions.test.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+The configuration (`mobilewright.config.ts`) is the one from [tip 30](/tips/30-mobile): a project for Android and one
+for iOS, on Sauce Labs real devices. On Android, the Sauce Labs driver installs the app with its permissions granted, so
+the location pop-up doesn't show there.
+
+### The Test
+
+- Line 4 waits for the catalog, since the app shows a splash screen first.
+- Line 5 answers every pop-up of the test. Mobilewright finds system alerts and permission pop-ups while an action or
+  an `expect` checks the screen, and calls the handler with a `Dialog`: `accept()` taps its "allow" button,
+  `dismiss()` its "don't allow" button, and `tap(name)` any button. `dialog.type()` tells whether it is a permission
+  pop-up, and `dialog.isSystem()` whether it comes from the system. Without a handler, Mobilewright leaves pop-ups
+  alone.
+- Lines 7 to 15 open the Geo Location screen from the menu of each platform, and check that it shows. While the
+  `expect` waits for the screen, Mobilewright finds the pop-up, and the handler accepts it.
+
+`screen.waitForEvent('dialog')` waits for the next pop-up instead, for a test that must check that it shows.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"85-mobile-permissions/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+the Android project first and then the iOS one.

@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
+
+<TipCode codePath={"85-mobile-permissions/code/appium/test/permissions.e2e.js"} language={"js"}/>
+
+## Code Walkthrough
+
+The configuration (`wdio.conf.js`) is the one from [tip 30](/tips/30-mobile): an Android phone and an iPhone on Sauce
+Labs, each with the demo app. To grant the permissions up front instead, add `'appium:autoGrantPermissions': true` to
+the Android capabilities, or `'appium:autoAcceptAlerts': true` to the iOS ones.
+
+### The Test
+
+- Lines 5 to 17 pick the selectors of the platform. On Android, the button of the pop-up belongs to the permission
+  controller of the system, and `id=` finds it by its resource ID. On iOS, the pop-up is an alert of the system, and
+  `~` finds its button by its label.
+- Lines 19 and 20 open the Geo Location screen from the menu.
+- Lines 21 to 24 wait up to 10 seconds for the "allow" button, and tap it. If the pop-up doesn't show (the permission
+  was granted another way), `waitForDisplayed` fails, `catch` turns that into `false`, and the test goes on.
+- Line 25 checks that the Geo Location screen shows.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"85-mobile-permissions/code/appium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.
