@@ -1,0 +1,41 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
+
+<TipCode codePath={"79-parallel-mobile-tests/code/appium/wdio.conf.js"} language={"js"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+In WebdriverIO, the devices are part of the configuration (above), and the test runs on each one.
+
+- Line 11 runs up to two devices at the same time (`maxInstances: 2`). In tip 30 it is `1`, so the iPhone waits for
+  the Android phone.
+- Lines 12 to 24 are the two devices: an Android phone and an iPhone, each with the demo app.
+
+The rest is the configuration from tip 30: the Sauce Labs credentials and region, the Sauce service that names each
+job, and the timeouts.
+
+### The Test
+
+<TipCode codePath={"79-parallel-mobile-tests/code/appium/test/parallel.e2e.js"} language={"js"}/>
+
+The test is the same on both devices. `driver.isAndroid` picks the locator of the platform (lines 5 to 7), and
+`toBeDisplayed` waits for the backpack.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"79-parallel-mobile-tests/code/appium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. Both
+sessions show up on the Sauce Labs test results page at the same time.

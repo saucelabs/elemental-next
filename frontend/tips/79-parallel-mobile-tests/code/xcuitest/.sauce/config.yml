@@ -1,0 +1,21 @@
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 2
+  metadata:
+    build: Elemental Selenium - Tip 79 - XCUITest
+xcuitest:
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  testApp: build/Build/Products/Debug-iphoneos/ParallelUITests-Runner.app
+suites:
+  - name: Parallel
+    devices:
+      - name: iPhone 1[67].*
+      - name: iPhone 1[3-5].*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/

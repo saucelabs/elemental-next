@@ -1,0 +1,43 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"79-parallel-mobile-tests/code/appium-java/src/test/java/com/elemental/appium/ParallelTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Running in Parallel
+
+JUnit runs tests one at a time by default. The `junit-platform.properties` file in `src/test/resources` turns on its
+parallel execution:
+
+<TipCode codePath={"79-parallel-mobile-tests/code/appium-java/src/test/resources/junit-platform.properties"} language={"properties"}/>
+
+- Line 1 turns on parallel execution, and line 2 runs every test (and every run of a parameterized test) at the same
+  time.
+- JUnit creates a new instance of the test class for each run, so each one has its own `driver` (line 30).
+
+### The Test
+
+- Lines 45 to 47 are one test with two runs, one for each platform (`@ParameterizedTest` with `@ValueSource`).
+  With parallel execution on, both runs start at the same time.
+- Line 48 starts the session for the platform, with `startDriver` (lines 57 to 74). It is the same as tip 30: the
+  options of the platform, the app, and the Sauce Labs options, with the platform in the name of the test.
+- Lines 50 to 52 pick the locator of the platform. The test is the same on both: only the way to find the backpack
+  changes.
+- Lines 53 and 54 wait up to 30 seconds for the backpack and check that it is displayed.
+- Lines 32 to 43 skip the test when the Sauce Labs credentials are not set, and end the session after each run.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"79-parallel-mobile-tests/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line. Both sessions show up on the Sauce Labs
+test results page at the same time.

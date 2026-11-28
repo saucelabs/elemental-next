@@ -1,0 +1,59 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"79-parallel-mobile-tests/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/ParallelTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+The test and the build are the ones from [tip 30](/tips/30-mobile): the test opens the demo app and waits until the
+catalog shows the text "Sauce Labs Backpack", and `./gradlew appUnderTest` builds the test app and gets the demo app
+ready. Running in parallel doesn't change the test: it is all in the configuration of saucectl.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 2
+  metadata:
+    build: Elemental Selenium - Tip 79 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Parallel
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+      - name: Samsung.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
+  the same key as the tests, and the test app.
+- `suites` asks for two devices: any Google phone and any Samsung phone (`deviceType: PHONE` leaves out the tablets).
+  saucectl starts one job for each device.
+- `concurrency: 2` runs up to two jobs at the same time, so both devices run the tests in parallel. In tip 30 it is
+  `1`. Set it to the concurrency of your Sauce Labs account, at most.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of each device and the link
+to it on Sauce Labs.
