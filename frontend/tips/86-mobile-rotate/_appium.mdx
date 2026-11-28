@@ -1,0 +1,33 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
+
+<TipCode codePath={"86-mobile-rotate/code/appium/test/rotate.e2e.js"} language={"js"}/>
+
+## Code Walkthrough
+
+The configuration (`wdio.conf.js`) is the one from [tip 30](/tips/30-mobile), with the iPhone only: the Android demo
+app runs in portrait only.
+
+### The Test
+
+- Lines 5 and 6 wait for the first product of the catalog (`ProductItem`), since the app shows a splash screen first.
+- Line 7 checks that the device starts in portrait.
+- Line 9 rotates the device to landscape with `setOrientation`.
+- Lines 10 and 11 check the orientation, and that the product is still displayed.
+- Lines 13 and 14 rotate back to portrait and check it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"86-mobile-rotate/code/appium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

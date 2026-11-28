@@ -1,0 +1,22 @@
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 86 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Rotate
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/

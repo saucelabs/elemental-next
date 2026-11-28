@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"86-mobile-rotate/code/appium-java/src/test/java/com/elemental/appium/RotateTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+Lines 26 to 37 skip the test without credentials and end the session after it, as in [tip 30](/tips/30-mobile). Lines
+41 to 47 start a session on an iPhone, with the Sauce Labs options. The Android demo app runs in portrait only, so this
+example uses iOS.
+
+### The Test
+
+- Lines 49 to 51 wait for the first product of the catalog (`ProductItem`), since the app shows a splash screen first.
+- Line 52 checks that the device starts in portrait. `getOrientation` comes from `SupportsRotation`, which both
+  `IOSDriver` and `AndroidDriver` implement.
+- Line 54 rotates the device to landscape.
+- Lines 55 and 56 check the orientation, and that the product is still visible.
+- Lines 58 and 59 rotate back to portrait and check it.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"86-mobile-rotate/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the test by executing `mvn test` from the command-line.
