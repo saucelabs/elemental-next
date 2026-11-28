@@ -1,0 +1,45 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"82-mobile-scroll/code/appium-java/src/test/java/com/elemental/appium/ScrollTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): lines 28 to 48 skip the tests without credentials and end the
+session after each test, and lines 98 to 104 are the Sauce Labs options.
+
+### Swiping
+
+`swipeUp` (lines 86 to 96) swipes up once, with the W3C actions of Selenium:
+
+- Lines 87 and 88 get the size of the screen, and the middle of it.
+- Line 89 creates a pointer of the `TOUCH` kind: a finger.
+- Lines 90 to 94 are the gesture: move the finger to 70% of the height, touch the screen, move to 30% of the height in
+  half a second, and lift the finger. The content scrolls up by about 40% of the screen.
+- Line 95 sends the gesture to the device.
+
+`swipeUpUntilDisplayed` (lines 76 to 84) checks for the element before each swipe, and swipes up to 20 times. It looks
+for the element with `findElements`, which returns an empty list instead of failing when the element is not there yet.
+It returns `true` as soon as the element is displayed.
+
+### The Tests
+
+- Line 56 waits for the catalog, since the app shows a splash screen first (`waitForCatalog`, lines 72 to 74).
+- Line 57 finds the onesie by its text, with a UiAutomator selector, and line 58 swipes until it is displayed.
+- Lines 67 to 69 do the same on iOS, with an iOS predicate on the label of the onesie.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"82-mobile-scroll/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line.

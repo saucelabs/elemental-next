@@ -1,0 +1,64 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"82-mobile-scroll/code/xcuitest/ScrollUITests/ScrollTests.swift"} language={"swift"}/>
+
+## Code Walkthrough
+
+### The Test
+
+- Lines 6 to 8 open the demo app, as in [tip 30](/tips/30-mobile), and wait for the catalog, since the app shows a
+  splash screen first.
+- Line 10 finds the onesie by its text.
+- Lines 11 to 13 swipe up on the app until the onesie can be tapped (`isHittable`: it is on screen), up to 20 times.
+  `swipeUp()` swipes from the bottom to the top of the element (here, the whole app).
+- Line 14 checks that the onesie is on screen.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 82 - XCUITest
+xcuitest:
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  testApp: build/Build/Products/Debug-iphoneos/ScrollUITests-Runner.app
+suites:
+  - name: Scroll
+    devices:
+      - name: iPhone.*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+  The test app is the one `xcodebuild build-for-testing` builds (see below).
+- `suites` asks for a device. The name is a regular expression (`iPhone.*` is any iPhone), and the tests run on the
+  first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+You need a Mac with Xcode, and [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl). First,
+build the tests for a real device:
+
+```bash
+xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project Scroll.xcodeproj -scheme Scroll \
+  -sdk iphoneos -derivedDataPath build
+```
+
+The tests don't need to be signed: Sauce Labs signs the app and the tests to install them on its devices. Then run them
+by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on Sauce
+Labs, with the video and the device logs.

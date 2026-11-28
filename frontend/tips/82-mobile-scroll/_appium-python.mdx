@@ -1,0 +1,47 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"82-mobile-scroll/code/appium-python/scroll.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): the fixture in lines 18 to 38 skips the test without credentials,
+starts the sessions with the Sauce Labs options, and ends them after the test.
+
+### Swiping
+
+`swipe_up` (lines 53 to 61) swipes up once, with the W3C actions of Selenium:
+
+- Lines 54 and 55 get the size of the screen, and the middle of it.
+- Line 56 creates the actions with a pointer of the touch kind (a finger), and moves that last half a second
+  (`duration=500`).
+- Lines 57 to 60 are the gesture: move the finger to 70% of the height, touch the screen, move to 30% of the height,
+  and lift the finger. The content scrolls up by about 40% of the screen.
+- Line 61 sends the gesture to the device.
+
+`swipe_up_until_displayed` (lines 45 to 50) checks for the element before each swipe, and swipes up to 20 times. It
+looks for the element with `find_elements`, which returns an empty list instead of failing when the element is not
+there yet. It returns `True` as soon as the element is displayed.
+
+### The Tests
+
+- Line 70 waits for the catalog, since the app shows a splash screen first (`wait_for_catalog`, lines 41 and 42).
+- Line 71 finds the onesie by its text, with a UiAutomator selector, and line 72 swipes until it is displayed.
+- Lines 81 to 83 do the same on iOS, with an iOS predicate on the label of the onesie.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"82-mobile-scroll/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest scroll.py` from the
+command-line.

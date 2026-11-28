@@ -1,0 +1,65 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"82-mobile-scroll/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/ScrollTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+### The Test
+
+- Lines 22 to 25 open the demo app, as in [tip 30](/tips/30-mobile).
+- Lines 26 and 27 wait for the catalog, since the app shows a splash screen first (`waitUntilDisplayed`, lines 46 to
+  52).
+- Line 29 is the view that scrolls: the scroll view of the screen, found by its content description. The catalog list
+  is inside it, and doesn't scroll on its own.
+- Lines 31 to 34 swipe up on it until the onesie is displayed, up to 20 times. `swipeUp()` is an Espresso action that
+  swipes from the bottom to the top of the view. `isDisplayed` (lines 39 to 44) checks the onesie, and returns `false`
+  instead of failing when it is not on screen yet. `return@use` ends the test as soon as it is displayed.
+- Line 35 fails the test if the onesie is still not displayed after 20 swipes.
+
+Espresso also has `scrollTo()`, which scrolls a `ScrollView` to a view inside it in one step. It doesn't work in the
+demo app, whose scroll view is a `NestedScrollView`.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 82 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Scroll
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
+  the same key as the tests, and the test app.
+- `suites` asks for a device. The name is a regular expression (`Google.*` is any Google device), and `deviceType:
+  PHONE` leaves out the tablets. The tests run on the first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on
+Sauce Labs, with the video and the device logs.
