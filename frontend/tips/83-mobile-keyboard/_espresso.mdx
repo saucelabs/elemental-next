@@ -1,0 +1,61 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"83-mobile-keyboard/code/espresso/app/src/androidTest/kotlin/com/elemental/espresso/KeyboardTest.kt"} language={"kotlin"}/>
+
+## Code Walkthrough
+
+### The Test
+
+- Lines 29 to 32 open the demo app, as in [tip 30](/tips/30-mobile).
+- Lines 33 to 36 wait for the menu button (the app shows a splash screen first), open the menu, and open the WebView
+  screen.
+- Line 38 types the URL into the field with the resource ID `urlET`. `typeText` taps the field, which brings up the
+  keyboard, and types each character. `closeSoftKeyboard()` closes the keyboard right after.
+- Line 39 checks that the field holds the URL.
+- Lines 41 and 42 tap "Go To Site" and check that a `WebView` shows up.
+- `waitUntilDisplayed` (lines 46 to 57) checks again every half second, for up to 30 seconds.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: espresso
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 83 - Espresso
+espresso:
+  app: app/build/outputs/apk/app-under-test.apk
+  testApp: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+suites:
+  - name: Keyboard
+    devices:
+      - name: Google.*
+        options:
+          deviceType: PHONE
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `espresso` sets the app and the test app to upload. `./gradlew appUnderTest` builds both: the demo app, signed with
+  the same key as the tests, and the test app.
+- `suites` asks for a device. The name is a regular expression (`Google.*` is any Google device), and `deviceType:
+  PHONE` leaves out the tablets. The tests run on the first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+[Install saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl) and set the `ANDROID_HOME`
+environment variable to your Android SDK. Then build the tests and the app under test with `./gradlew appUnderTest`, and
+run them by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on
+Sauce Labs, with the video and the device logs.

@@ -1,0 +1,17 @@
+{
+  "name": "keyboard",
+  "version": "1.0.0",
+  "description": "A project to showcase typing text on Sauce Labs real devices using Appium and WebdriverIO",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "wdio run ./wdio.conf.js"
+  },
+  "devDependencies": {
+    "@wdio/cli": "10.2.0",
+    "@wdio/local-runner": "10.2.0",
+    "@wdio/mocha-framework": "10.2.0",
+    "@wdio/spec-reporter": "10.2.0",
+    "@wdio/sauce-service": "10.2.0"
+  }
+}

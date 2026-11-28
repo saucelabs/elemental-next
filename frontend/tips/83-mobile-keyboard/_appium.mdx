@@ -1,0 +1,38 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
+
+<TipCode codePath={"83-mobile-keyboard/code/appium/test/keyboard.e2e.js"} language={"js"}/>
+
+## Code Walkthrough
+
+The configuration (`wdio.conf.js`) is the one from [tip 30](/tips/30-mobile): an Android phone and an iPhone on Sauce
+Labs, each with the demo app.
+
+### The Test
+
+- Lines 7 to 21 pick the selectors of the platform. On Android, `id=urlET` finds the URL field by its resource ID. On
+  iOS, it has no accessibility ID, and `XCUIElementTypeTextField` finds it by its type, the only text field of the
+  screen.
+- Lines 23 and 24 open the menu and the WebView screen.
+- Lines 26 to 28 type the URL with `setValue` (it clears the field first), and check that the field holds it with
+  `toHaveText`.
+- Lines 29 to 31 close the keyboard on Android, if it is up. The iOS app doesn't close its keyboard, and "Go To Site"
+  is above it.
+- Lines 33 and 34 tap "Go To Site" and check that the web view shows up. On iOS, `$$(...)[0]` takes the first match:
+  the button and its label share the same name, and the web view screen has more than one web view.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"83-mobile-keyboard/code/appium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

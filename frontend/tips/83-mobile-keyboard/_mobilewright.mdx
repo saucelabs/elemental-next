@@ -1,0 +1,36 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"83-mobile-keyboard/code/mobilewright/tests/keyboard.test.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+The configuration (`mobilewright.config.ts`) is the one from [tip 30](/tips/30-mobile): a project for Android and one
+for iOS, on Sauce Labs real devices.
+
+### The Test
+
+- Line 6 waits for the catalog, since the app shows a splash screen first.
+- Lines 7 to 13 open the menu and the WebView screen of each platform.
+- Line 15 finds the URL field by its role, `textfield`, which matches text fields on both platforms.
+- Line 16 types the URL with `fill`. It taps the field first, which brings up the keyboard, and replaces its text.
+- Line 17 checks that the field holds the URL.
+- Lines 18 to 20 close the keyboard on Android, if it is up. `hide()` presses BACK on Android, which would go back to
+  the previous screen without a keyboard, so the test checks first with `isVisible()`. On iOS, `hide()` presses
+  "Return", and the demo app doesn't close its keyboard then. "Go To Site" is above the keyboard anyway.
+- Lines 22 and 23 tap "Go To Site" and check that the web view shows up.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"83-mobile-keyboard/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+the Android project first and then the iOS one.
