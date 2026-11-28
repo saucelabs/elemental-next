@@ -1,0 +1,51 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"84-mobile-gestures/code/appium-python/gestures.py"} language={"python"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): the fixture in lines 18 to 38 skips the test without credentials,
+starts the sessions with the Sauce Labs options, and ends them after the test. Line 66 grants every permission the app
+asks for when Sauce Labs installs it (`auto_grant_permissions`), so the Drawing screen opens without a pop-up on
+Android.
+
+### The Gesture
+
+`draw_line` (lines 45 to 52) drags a finger across the middle of the pad, with the W3C actions of Selenium:
+
+- Line 46 is the middle of the pad.
+- Line 47 creates the actions with a pointer of the touch kind (a finger), and moves that last half a second.
+- Lines 48 to 51 are the steps of the finger: move to a quarter of the width, touch the screen, move to three quarters
+  of the width, and lift. For a long press, add a pause between the touch and the lift. For a pinch, add a second
+  finger (`actions.add_pointer_input`).
+- Line 52 sends the gesture to the device.
+
+### Checking the Result
+
+`assert_draws_on` (lines 55 to 59) takes a screenshot of the pad (`screenshot_as_png` on the element), draws the line,
+takes another one, and checks that they are different.
+
+### The Tests
+
+- Lines 69 to 71 open the Drawing screen from the menu, and draw on the pad (`Pad to draw on`).
+- Lines 80 to 82 do the same on iOS, where the pad is the image `DrawingBackground Icons`. The drawing covers that
+  image, so Appium reports it as not visible: `find` (lines 41 and 42) waits for the element to be there
+  (`presence_of_element_located`), not to be visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `requirements.txt` file.
+
+<details>
+    <summary>Toggle to see the <code>requirements.txt</code> file.</summary>
+    <div>
+        <TipCode codePath={"84-mobile-gestures/code/appium-python/requirements.txt"} language={"txt"}/>
+    </div>
+</details>
+
+Install them with `pip install -r requirements.txt`, then run the tests by executing `pytest gestures.py` from the
+command-line.

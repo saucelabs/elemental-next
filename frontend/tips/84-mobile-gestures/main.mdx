@@ -1,0 +1,104 @@
+---
+title: 'How to Use Touch Gestures in a Mobile App'
+card_highlight: 'Touch Gestures'
+id: 84-mobile-gestures
+slug: /84-mobile-gestures
+sidebar_label: Use Touch Gestures in a Mobile App
+description: "Some screens of a mobile app need more than a tap: a drag, a long press, or a pinch. Here is how to draw on the screen with a drag gesture, and check the result, with Appium, Mobilewright, Espresso and XCUITest on Sauce Labs real devices."
+number: 84
+hide_table_of_contents: true
+level: 2
+publish_date: 2026-11-26
+tags:
+  - 'mobile testing'
+  - 'mobile'
+  - 'real devices'
+  - 'gestures'
+  - 'appium'
+  - 'mobilewright'
+  - 'espresso'
+  - 'xcuitest'
+  - 'sauce labs'
+category:
+  - 'remote'
+---
+
+# How to Use Touch Gestures in a Mobile App
+
+## Intro
+
+Taps and typing cover most of a mobile app, but not all of it. A signature pad, a slider, a map, a photo you zoom
+into, a list item you hold to see more options: they all need a gesture. A gesture is a path: where the finger touches
+the screen, how it moves, how long it takes, and when it lifts.
+
+## A Solution
+
+Describe the gesture as the steps of a finger, and check what it changed on the screen.
+
+- **Appium** sends gestures as W3C actions: a pointer of the touch kind, and a list of moves, presses and releases,
+  each with a position and a duration. A long press is a press, a pause, and a release. A pinch is two fingers that
+  move at the same time (two pointers).
+- **Mobilewright** has `swipe` on a locator or on the screen, `longPress`, and `screen.gesture()` for a path with one
+  or more fingers.
+- **Espresso** has `swipeLeft()`, `swipeRight()`, `swipeUp()`, `swipeDown()` and `longClick()`, and
+  `GeneralSwipeAction` for other paths.
+- **XCUITest** has `press(forDuration:thenDragTo:)` on a coordinate, `press(forDuration:)` for a long press, and
+  `pinch(withScale:velocity:)`.
+
+The examples use the Drawing screen of Sauce Labs' demo app ("My Demo App", for
+[Android](https://github.com/saucelabs/my-demo-app-android) and [iOS](https://github.com/saucelabs/my-demo-app-ios)), a
+pad that draws where the finger goes. Each one drags a finger across the pad to draw a line. The drawing is not in the
+accessibility tree (it is pixels, not an element), so the test takes a screenshot of the pad before and after the
+gesture, and checks that they are different.
+
+On Android, the Drawing screen asks for access to the photos of the device when it opens. The examples grant it up
+front (Appium's `autoGrantPermissions`, and Espresso's `GrantPermissionRule`). A later tip covers permission pop-ups.
+
+## Example
+
+__NOTE:__ You'll need an account to use Sauce Labs. You can sign up for a
+[free trial account (no credit-card required)](https://saucelabs.com/sign-up).
+
+Export your Sauce Labs username and access key as the environment variables `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`,
+instead of hard-coding them in your tests. If they are not set, the tests are skipped.
+
+The examples use the `us-west-1` data center. See [tip 30](/tips/30-mobile) for how the tests start a session on a
+real device.
+
+import DisplayTips from '@site/src/components/displayTips';
+
+<DisplayTips languages={[
+    {label: 'Java', value: 'appium-java', tool: 'Appium'},
+    {label: 'Python', value: 'appium-python', tool: 'Appium'},
+    {label: 'JavaScript', value: 'appium', tool: 'Appium'},
+    {label: 'TypeScript', value: 'mobilewright', tool: 'Mobilewright'},
+    {label: 'Kotlin', value: 'espresso', tool: 'Espresso'},
+    {label: 'Swift', value: 'xcuitest', tool: 'XCUITest'},
+]}/>
+
+## Expected Behavior
+
+- Sauce Labs finds a free real device and installs the demo app
+- The test opens the Drawing screen from the menu
+- It takes a screenshot of the pad, drags a finger across it, and takes another one
+- It checks that the two screenshots are different: the gesture drew a line
+
+## Summary
+
+A gesture is a path of a finger: write it as such, and check what it changed. When the change is not in the
+accessibility tree, a screenshot of the element is an easy way to see it. For a stricter check, compare it to a
+screenshot you saved before (see [tip 73](/tips/73-compare-screenshots) for the web).
+
+Happy Testing!
+
+## Authors
+
+import DefaultAvatar from "@site/src/components/defaultAvatar";
+
+<DefaultAvatar
+    name="Diego Molina"
+    imgSrc={"https://github.com/diemol.png"}
+    description={"Elemental Selenium maintainer"}
+    url={"https://github.com/diemol"}
+    author={true}
+/>

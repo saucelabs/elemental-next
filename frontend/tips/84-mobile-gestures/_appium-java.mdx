@@ -1,0 +1,50 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"84-mobile-gestures/code/appium-java/src/test/java/com/elemental/appium/GesturesTest.java"} language={"java"}/>
+
+## Code Walkthrough
+
+### Setup and Teardown
+
+The setup is the one from [tip 30](/tips/30-mobile): lines 30 to 50 skip the tests without credentials and end the
+session after each test, and lines 102 to 108 are the Sauce Labs options. Line 57 grants every permission the app asks
+for when Sauce Labs installs it (`autoGrantPermissions`), so the Drawing screen opens without a pop-up on Android.
+
+### The Gesture
+
+`drawLine` (lines 84 to 95) drags a finger across the middle of the pad, with the W3C actions of Selenium:
+
+- Lines 85 to 87 compute the middle of the pad (`y`), and where the line starts and ends (a quarter and three quarters
+  of its width).
+- Line 88 creates a pointer of the `TOUCH` kind: a finger.
+- Lines 89 to 93 are the steps of the finger: move to the start, touch the screen, move to the end in half a second,
+  and lift. For a long press, add a pause between the touch and the lift. For a pinch, perform two sequences, one for
+  each finger.
+- Line 94 sends the gesture to the device.
+
+### Checking the Result
+
+`assertDrawsOn` (lines 77 to 82) takes a screenshot of the pad (`getScreenshotAs` on the element), draws the line, takes
+another one, and checks that they are different.
+
+### The Tests
+
+- Lines 61 to 63 open the Drawing screen from the menu, and draw on the pad (`Pad to draw on`).
+- Lines 72 to 74 do the same on iOS, where the pad is the image `DrawingBackground Icons`. The drawing covers that
+  image, so Appium reports it as not visible: `find` (lines 97 to 100) waits for the element to be there
+  (`presenceOfElementLocated`), not to be visible.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `pom.xml` file.
+
+<details>
+    <summary>Toggle to see the <code>pom.xml</code> file.</summary>
+    <div>
+        <TipCode codePath={"84-mobile-gestures/code/appium-java/pom.xml"} language={"xml"}/>
+    </div>
+</details>
+
+Finally, we can run the tests by executing `mvn test` from the command-line.

@@ -1,0 +1,44 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+This example uses [WebdriverIO](https://webdriver.io/) as the Appium client.
+
+<TipCode codePath={"84-mobile-gestures/code/appium/test/gestures.e2e.js"} language={"js"}/>
+
+## Code Walkthrough
+
+The configuration (`wdio.conf.js`) is the one from [tip 30](/tips/30-mobile), with `appium:autoGrantPermissions` for
+Android: it grants every permission the app asks for when Sauce Labs installs it, so the Drawing screen opens without a
+pop-up.
+
+### The Gesture
+
+`drawLine` (lines 3 to 13) drags a finger across the middle of the pad, with `driver.action`, the W3C actions of
+WebdriverIO:
+
+- Lines 4 to 6 get the position and size of the pad, and its middle.
+- Line 7 creates a pointer of the `touch` type: a finger.
+- Lines 8 to 12 are the steps of the finger: move to a quarter of the width, touch the screen, move to three quarters
+  of the width in half a second, and lift. For a long press, add `.pause(1000)` between `down` and `up`.
+
+### The Test
+
+- Lines 17 to 19 pick the selectors of the platform.
+- Lines 21 to 24 open the Drawing screen from the menu, and wait for the pad. On iOS, the drawing covers the pad image,
+  so the test waits for it to exist (`waitForExist`), not to be displayed.
+- Lines 26 to 29 take a screenshot of the pad (`takeScreenshot` on the element), draw the line, take another one, and
+  check that they are different.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"84-mobile-gestures/code/appium/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line.

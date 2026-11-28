@@ -1,0 +1,35 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"84-mobile-gestures/code/mobilewright/tests/gestures.test.ts"} language={"ts"}/>
+
+## Code Walkthrough
+
+The configuration (`mobilewright.config.ts`) is the one from [tip 30](/tips/30-mobile): a project for Android and one
+for iOS, on Sauce Labs real devices. On Android, the Sauce Labs driver installs the app with its permissions granted,
+so the Drawing screen opens without a pop-up.
+
+### The Test
+
+- Line 4 waits for the catalog, since the app shows a splash screen first.
+- Lines 5 to 11 open the Drawing screen from the menu of each platform.
+- Line 12 finds the pad by its accessibility label.
+- Line 14 takes a screenshot of the pad (`screenshot` on the locator).
+- Line 15 drags a finger from the middle of the pad to the right, in one second: `swipe` on a locator starts at its
+  center. For other paths, `screen.gesture()` takes the points of each finger, with a time for each one.
+- Lines 16 and 17 take another screenshot, and check that it is different.
+
+### Executing the Test
+
+Before executing the test, we need to make sure the required dependencies are declared on the `package.json` file.
+
+<details>
+    <summary>Toggle to see the <code>package.json</code> file.</summary>
+    <div>
+        <TipCode codePath={"84-mobile-gestures/code/mobilewright/package.json"} language={"json"}/>
+    </div>
+</details>
+
+Install the dependencies with `npm install`, then run the test by executing `npm test` from the command-line. It runs
+the Android project first and then the iOS one.

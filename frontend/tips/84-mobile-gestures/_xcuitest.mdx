@@ -1,0 +1,66 @@
+import TipCode from "@site/src/components/tipCode";
+
+## TL;DR - Show Me The Code
+
+<TipCode codePath={"84-mobile-gestures/code/xcuitest/GesturesUITests/GesturesTests.swift"} language={"swift"}/>
+
+## Code Walkthrough
+
+### The Test
+
+- Lines 6 and 7 open the demo app, as in [tip 30](/tips/30-mobile).
+- Lines 9 to 12 wait for the "More" tab (the app shows a splash screen first), and open the Drawing screen.
+- Lines 14 and 15 find the pad and wait for it.
+- Line 16 takes a screenshot of the pad (`screenshot()` on the element) as PNG data.
+- Lines 17 to 19 drag a finger across the pad: `coordinate(withNormalizedOffset:)` is a point relative to the element
+  (0 is its left or top edge, 1 its right or bottom edge), and `press(forDuration:thenDragTo:)` touches the first point
+  and drags to the second one.
+- Line 20 checks that a new screenshot is different: the drag drew a line.
+
+### Running on Sauce Labs
+
+[saucectl](https://docs.saucelabs.com/dev/cli/saucectl/) uploads the app and the tests to Sauce Labs and runs them. It
+reads its configuration from `.sauce/config.yml`:
+
+```yaml
+apiVersion: v1alpha
+kind: xcuitest
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    build: Elemental Selenium - Tip 84 - XCUITest
+xcuitest:
+  app: https://github.com/saucelabs/my-demo-app-ios/releases/download/2.3.0/SauceLabs-Demo-App.ipa
+  testApp: build/Build/Products/Debug-iphoneos/GesturesUITests-Runner.app
+suites:
+  - name: Gestures
+    devices:
+      - name: iPhone.*
+artifacts:
+  download:
+    when: always
+    match:
+      - junit.xml
+    directory: ./artifacts/
+```
+
+- `xcuitest` sets the app and the test app. saucectl downloads the demo app from its GitHub release, and uploads both.
+  The test app is the one `xcodebuild build-for-testing` builds (see below).
+- `suites` asks for a device. The name is a regular expression (`iPhone.*` is any iPhone), and the tests run on the
+  first free device that matches.
+- `artifacts` downloads the JUnit report of the run into `artifacts/`.
+
+### Executing the Test
+
+You need a Mac with Xcode, and [saucectl](https://docs.saucelabs.com/dev/cli/saucectl/#installing-saucectl). First,
+build the tests for a real device:
+
+```bash
+xcodebuild CODE_SIGNING_ALLOWED=NO build-for-testing -project Gestures.xcodeproj -scheme Gestures \
+  -sdk iphoneos -derivedDataPath build
+```
+
+The tests don't need to be signed: Sauce Labs signs the app and the tests to install them on its devices. Then run them
+by executing `saucectl run` from the command-line. saucectl prints the result of the run and the link to it on Sauce
+Labs, with the video and the device logs.
